@@ -116,6 +116,11 @@
     /* Hero video background */
     .hero-video-wrap {
       position: absolute; inset: 0; overflow: hidden; z-index: 0;
+      /* Fallback solid background — visible if video fails/blocks (e.g. iOS) */
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.35), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.12), transparent 55%);
     }
     .hero-video-wrap iframe {
       position: absolute;
@@ -124,6 +129,10 @@
       min-width: 120vw; min-height: 120vh;
       transform: translate(-50%, -50%);
       pointer-events: none;
+    }
+    /* Hide video on mobile — iOS blocks autoplay; fallback gradient is nicer */
+    @media (max-width: 767px) {
+      .hero-video-wrap iframe { display: none; }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -336,11 +345,8 @@
         </div>
       </div>
 
-      <!-- Subtitle -->
-      <p class="text-[11px] md:text-xs uppercase tracking-[0.35em] text-white/50 font-medium mb-10">WeDeepen &middot; The Love Ecosystem</p>
-
       <!-- Hero headline — invitation voice -->
-      <h1 class="font-heading text-[2.6rem] md:text-[3.5rem] lg:text-[4.2rem] font-normal leading-[1.12] mb-7">
+      <h1 class="font-heading text-[2.1rem] sm:text-[2.6rem] md:text-[3.5rem] lg:text-[4.2rem] font-normal leading-[1.12] mb-7 mt-10">
         <span class="text-white">You were made for</span><br>
         <span class="italic" style="color: #C4577A; text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 8px rgba(0,0,0,0.5);">extraordinary love.</span>
       </h1>

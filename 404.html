@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting — WeDeepen</title>
+  <meta name="robots" content="noindex">
+
+  <!-- Auto-redirect (0.8s — long enough to show a branded splash, fast enough to feel instant) -->
+  <meta http-equiv="refresh" content="0.8; url=/">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <style>
+    :root {
+      --ink: #1A1A1A;
+      --gold: #C9A277;
+      --rose: #C4577A;
+      --pink: #E8337A;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: 'Playfair Display', Georgia, serif;
+      background: var(--ink);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.22), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .wrap { max-width: 520px; }
+    .waves {
+      width: 64px; height: 64px;
+      margin: 0 auto 2rem;
+      border-radius: 14px;
+      background: #A01B4A;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .waves svg { width: 40px; height: 40px; }
+    .eyebrow {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      opacity: 0.85;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+    h1 em { font-style: italic; color: var(--rose); }
+    p {
+      font-family: system-ui, sans-serif;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      font-size: 0.95rem;
+      margin: 0 0 2rem;
+    }
+    a.btn {
+      font-family: system-ui, sans-serif;
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--pink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    a.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,51,122,0.35); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="waves" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#F4EDE0" stroke-width="2.5" stroke-linecap="round">
+        <path d="M8 14c4-4 8 4 12 0s8-4 12 0"/>
+        <path d="M8 21c4-4 8 4 12 0s8-4 12 0"/>
+        <path d="M8 28c4-4 8 4 12 0s8-4 12 0"/>
+      </svg>
+    </div>
+    <p class="eyebrow">Page Not Found</p>
+    <h1>That page has <em>moved on.</em></h1>
+    <p>We&rsquo;re taking you back to the beginning&hellip;</p>
+    <a href="/" class="btn">Go to wedeepen.com</a>
+  </main>
+
+  <script>
+    // Belt & suspenders: JS redirect in case meta refresh is blocked
+    setTimeout(function() {
+      if (window.location.pathname !== '/') window.location.replace('/');
+    }, 800);
+  </script>
+</body>
+</html>

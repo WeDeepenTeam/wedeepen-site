@@ -441,11 +441,11 @@
           const data = await res.json();
           allEvents = (data.events || data || [])
             .filter(e => {
-              const eventDate = new Date(e.end_date || e.date);
-              eventDate.setHours(23,59,59,999);
+              // Parse date as local time (not UTC) so today's events don't get filtered out
+              const eventDate = new Date((e.end_date || e.date) + 'T23:59:59');
               return eventDate >= new Date();
             })
-            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .sort((a, b) => new Date(a.date + 'T00:00:00') - new Date(b.date + 'T00:00:00'))
             .slice(0, 12);
           renderEvents();
           return;

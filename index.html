@@ -47,8 +47,10 @@
   }
   </script>
 
-  <!-- Hero poster preload — LCP image (renders immediately, behind hero text) -->
-  <link rel="preload" as="image" href="/images/love-immersion-group-coaching.webp" type="image/webp" fetchpriority="high">
+  <!-- Hero poster preload — LCP image (renders immediately, behind hero text).
+       Mobile gets the 900px variant (~59KB), desktop gets the 1800px (~220KB). -->
+  <link rel="preload" as="image" href="/images/love-immersion-group-coaching-sm.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/love-immersion-group-coaching.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -346,9 +348,12 @@
        ============================ -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Hero background — static poster image renders immediately (LCP-friendly).
+         Mobile gets a small variant (~59KB, 900px) so it decodes fast on slow CPUs.
          YouTube iframe lazy-injects on top on desktop only, after first paint. -->
     <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false">
       <picture class="hero-poster">
+        <source media="(max-width: 767px)" srcset="/images/love-immersion-group-coaching-sm.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/images/love-immersion-group-coaching-sm.jpg" type="image/jpeg">
         <source srcset="/images/love-immersion-group-coaching.webp" type="image/webp">
         <img
           src="/images/love-immersion-group-coaching.jpg"

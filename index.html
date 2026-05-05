@@ -163,14 +163,18 @@
       z-index: 1;
     }
 
-    /* Sticky header */
+    /* Sticky header — transparent at top so the hero video shows behind it,
+       opaque on scroll for legibility against page content. */
     .wd-header {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      background-color: transparent !important;
+      border-bottom-color: transparent !important;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, border-bottom-color 0.3s ease, backdrop-filter 0.3s ease;
     }
     .wd-header.scrolled {
-      background-color: rgba(26,26,26,0.95);
+      background-color: rgba(26,26,26,0.95) !important;
+      border-bottom-color: rgba(255,255,255,0.06) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
@@ -1422,8 +1426,8 @@
     (() => {
       const wrap = document.getElementById('hero-video-wrap');
       if (!wrap || wrap.dataset.ytLoaded === 'true') return;
-      // Respect user prefs — skip the video for accessibility/data savings
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Skip only on save-data / very slow connections — the video is core
+      // to the brand experience, so we want it loading on most devices.
       const conn = navigator.connection;
       if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
 

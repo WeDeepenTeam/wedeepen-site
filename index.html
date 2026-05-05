@@ -47,6 +47,9 @@
   }
   </script>
 
+  <!-- Hero poster preload — LCP image (renders immediately, behind hero text) -->
+  <link rel="preload" as="image" href="/images/love-immersion-group-coaching.webp" type="image/webp" fetchpriority="high">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,11 +119,22 @@
     /* Hero video background */
     .hero-video-wrap {
       position: absolute; inset: 0; overflow: hidden; z-index: 0;
-      /* Fallback solid background — visible if video fails/blocks (e.g. iOS) */
+      /* Fallback solid background — visible if video and image both fail */
       background-color: #1A1A1A;
       background-image:
         radial-gradient(circle at 30% 20%, rgba(160,27,74,0.35), transparent 55%),
         radial-gradient(circle at 70% 80%, rgba(201,162,119,0.12), transparent 55%);
+    }
+    /* Static poster image — renders immediately on every device.
+       YouTube iframe layers on top on desktop after lazy-injection. */
+    .hero-poster {
+      position: absolute; inset: 0;
+      display: block;
+    }
+    .hero-poster img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
     .hero-video-wrap iframe {
       position: absolute;
@@ -129,8 +143,9 @@
       min-width: 120vw; min-height: 120vh;
       transform: translate(-50%, -50%);
       pointer-events: none;
+      z-index: 1; /* above the poster */
     }
-    /* Hide video on mobile — iOS blocks autoplay; fallback gradient is nicer */
+    /* Hide video on mobile — iOS blocks autoplay; the poster image is the experience there */
     @media (max-width: 767px) {
       .hero-video-wrap iframe { display: none; }
     }
@@ -330,9 +345,18 @@
        SECTION 1: HERO
        ============================ -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- YouTube Video Background — lazy-injected on desktop only after first paint
-         (avoids loading 500KB+ of YouTube player JS on mobile/initial render) -->
-    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false"></div>
+    <!-- Hero background — static poster image renders immediately (LCP-friendly).
+         YouTube iframe lazy-injects on top on desktop only, after first paint. -->
+    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false">
+      <picture class="hero-poster">
+        <source srcset="/images/love-immersion-group-coaching.webp" type="image/webp">
+        <img
+          src="/images/love-immersion-group-coaching.jpg"
+          alt=""
+          fetchpriority="high"
+          width="1800" height="1200">
+      </picture>
+    </div>
     <!-- Dark overlay -->
     <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.62) 40%, rgba(26,26,26,0.82) 85%, rgba(26,26,26,0.95) 100%);"></div>
 
@@ -637,7 +661,7 @@
       <div class="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
         <div class="text-center px-4">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-2">Coaches</p>
-          <p class="text-white/75 text-sm leading-relaxed">World-class strategists who actually move the needle.</p>
+          <p class="text-white/75 text-sm leading-relaxed">Strategists who move you toward the love you want.</p>
         </div>
         <div class="text-center px-4">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-2">Network</p>
@@ -645,7 +669,7 @@
         </div>
         <div class="text-center px-4">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-2">Practice</p>
-          <p class="text-white/75 text-sm leading-relaxed">A weekly rhythm you can actually show up to.</p>
+          <p class="text-white/75 text-sm leading-relaxed">A weekly rhythm that keeps you growing.</p>
         </div>
       </div>
 

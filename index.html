@@ -138,18 +138,19 @@
       object-fit: cover;
       object-position: center;
     }
+    /* 16:9 cover sizing — fills viewport on portrait AND landscape without
+       letterboxing the YouTube embed. Width and height are sized so the
+       16:9 video frame always covers the viewport in both dimensions. */
     .hero-video-wrap iframe {
       position: absolute;
       top: 50%; left: 50%;
-      width: 120vw; height: 120vh;
-      min-width: 120vw; min-height: 120vh;
+      width: 100vw;
+      height: 56.25vw;        /* 100vw at 16:9 */
+      min-width: 177.78vh;    /* 100vh at 16:9 — kicks in on portrait */
+      min-height: 100vh;
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 1; /* above the poster */
-    }
-    /* Hide video on mobile — iOS blocks autoplay; the poster image is the experience there */
-    @media (max-width: 767px) {
-      .hero-video-wrap iframe { display: none; }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -1378,15 +1379,14 @@
       });
     });
 
-    // Hero YouTube background — lazy-inject on desktop only, after first paint.
-    // Avoids loading YouTube player JS (~500KB) before the page is interactive
-    // and lets the static poster image render immediately as the LCP.
+    // Hero YouTube background — lazy-inject on every device after first paint.
+    // The static poster (love-immersion-group-coaching) renders immediately as
+    // the LCP, then the video plays on top once the page is interactive.
+    // (Avoids loading YouTube player JS ~500KB during initial render.)
     (() => {
       const wrap = document.getElementById('hero-video-wrap');
       if (!wrap || wrap.dataset.ytLoaded === 'true') return;
-      // Skip on small screens (CSS hides the iframe; the static poster is the experience there)
-      if (window.matchMedia('(max-width: 767px)').matches) return;
-      // Respect user prefs
+      // Respect user prefs — skip the video for accessibility/data savings
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const conn = navigator.connection;
       if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;

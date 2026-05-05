@@ -47,11 +47,6 @@
   }
   </script>
 
-  <!-- Hero poster preload — LCP image (renders immediately, behind hero text).
-       Mobile gets the 900px variant (~59KB), desktop gets the 1800px (~220KB). -->
-  <link rel="preload" as="image" href="/images/love-immersion-group-coaching-sm.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
-  <link rel="preload" as="image" href="/images/love-immersion-group-coaching.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,17 +121,6 @@
       background-image:
         radial-gradient(circle at 30% 20%, rgba(160,27,74,0.35), transparent 55%),
         radial-gradient(circle at 70% 80%, rgba(201,162,119,0.12), transparent 55%);
-    }
-    /* Static poster image — renders immediately on every device.
-       YouTube iframe layers on top on desktop after lazy-injection. */
-    .hero-poster {
-      position: absolute; inset: 0;
-      display: block;
-    }
-    .hero-poster img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
     }
     /* 16:9 cover sizing — fills viewport on portrait AND landscape without
        letterboxing the YouTube embed. Width and height are sized so the
@@ -352,21 +336,10 @@
        SECTION 1: HERO
        ============================ -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Hero background — static poster image renders immediately (LCP-friendly).
-         Mobile gets a small variant (~59KB, 900px) so it decodes fast on slow CPUs.
-         YouTube iframe lazy-injects on top on desktop only, after first paint. -->
-    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false">
-      <picture class="hero-poster">
-        <source media="(max-width: 767px)" srcset="/images/love-immersion-group-coaching-sm.webp" type="image/webp">
-        <source media="(max-width: 767px)" srcset="/images/love-immersion-group-coaching-sm.jpg" type="image/jpeg">
-        <source srcset="/images/love-immersion-group-coaching.webp" type="image/webp">
-        <img
-          src="/images/love-immersion-group-coaching.jpg"
-          alt=""
-          fetchpriority="high"
-          width="1800" height="1200">
-      </picture>
-    </div>
+    <!-- Hero background — YouTube video lazy-injects after first paint.
+         Falls back to the gradient defined on .hero-video-wrap if the video
+         is blocked (saveData / 2g connections). -->
+    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false"></div>
     <!-- Dark overlay -->
     <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.62) 40%, rgba(26,26,26,0.82) 85%, rgba(26,26,26,0.95) 100%);"></div>
 

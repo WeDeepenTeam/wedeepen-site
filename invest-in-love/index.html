@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invest in Love &mdash; A Founding Investor Conversation with WeDeepen</title>
+  <meta name="description" content="A private conversation for aligned investors. WeDeepen is building the platform that will make love the next mainstream wellness category — the way fitness, yoga, and meditation came before it.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://wedeepen.com/invest-in-love/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/invest-in-love/">
+  <meta property="og:title" content="Invest in Love &mdash; A Founding Investor Conversation">
+  <meta property="og:description" content="A private conversation for aligned investors. WeDeepen is building the platform that will make love the next mainstream wellness category.">
+  <meta property="og:site_name" content="WeDeepen">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#E8337A', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+            softgray: '#F5F5F5',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    /* Sticky header */
+    .wd-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .gold-line-center::after {
+      content: ''; display: block;
+      width: 60px; height: 2px;
+      background: #C9A277;
+      margin: 16px auto 0;
+    }
+
+    .wd-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .wd-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+
+    .btn-pink {
+      background: #E8337A; color: #fff;
+      padding: 14px 32px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-pink:hover { background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }
+
+    .btn-outline {
+      border: 1.5px solid #C9A277; color: #C9A277;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+
+    .include-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .include-card:hover {
+      border-color: rgba(201,162,119,0.4);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .mobile-nav { transform: translateX(100%); transition: transform 0.35s ease; }
+    .mobile-nav.open { transform: translateX(0); }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #C9A277;
+      line-height: 1;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .row-divider { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  </style>
+</head>
+<body class="bg-ink text-white">
+
+  <!-- ============================
+       STICKY HEADER
+       ============================ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
+        <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
+        <a href="/love-immersion/" class="text-white/80 hover:text-white transition">Love Immersion</a>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="mailto:c@wedeepen.com?subject=WeDeepen%20Investor%20Brief%20%E2%80%94%20Request" class="btn-rose text-sm !py-2.5 !px-6 hidden sm:inline-block">Request the Brief</a>
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] bg-ink/98 flex flex-col pt-20 px-8">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium">
+      <a href="/" class="text-white hover:text-gold transition">Home</a>
+      <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
+      <a href="/love-immersion/" class="text-white hover:text-gold transition">Love Immersion</a>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <a href="mailto:c@wedeepen.com?subject=WeDeepen%20Investor%20Brief%20%E2%80%94%20Request" class="btn-rose text-center mt-4">Request the Brief</a>
+    </nav>
+  </div>
+
+
+  <!-- ============================
+       HERO
+       ============================ -->
+  <section class="relative min-h-[85vh] flex items-center overflow-hidden" style="background: radial-gradient(ellipse at top, #2a1620 0%, #1A1A1A 60%, #0f0a0c 100%);">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-32 md:pt-40 pb-20 text-center">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-6">A Founding Investor Conversation</p>
+      <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] mb-6">
+        <span class="text-white">Invest in</span>
+        <span class="italic" style="color: #C4577A;">love.</span>
+      </h1>
+      <p class="text-white/75 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+        Each decade chooses its frontier. Fitness. Yoga. Mindfulness. Biohacking. <em class="text-white">Love is next</em> &mdash; and WeDeepen is being built to lead it.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="mailto:c@wedeepen.com?subject=WeDeepen%20Investor%20Brief%20%E2%80%94%20Request&body=Hi%20Christina%2C%0A%0AI%27d%20like%20to%20review%20the%20WeDeepen%20investor%20brief.%0A%0AName%3A%0AAffiliation%3A%0AAccredited%20investor%3F%20(yes%2Fno)%3A%0AWhat%20drew%20you%20to%20WeDeepen%3A%0A%0AThank%20you." class="btn-rose text-base !px-8 !py-4">Request the Investor Brief</a>
+        <a href="#thesis" class="flex items-center gap-2.5 text-white/80 hover:text-white transition font-medium text-base px-5 py-4">
+          Read the thesis
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <p class="text-white/40 text-xs mt-8 italic">Private conversation. Accredited investors only.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       THE THESIS
+       ============================ -->
+  <section id="thesis" class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5 text-center">The Thesis</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-10 leading-tight text-center">
+        Each decade chooses its frontier. <br>
+        <span class="italic" style="color:#E8337A;">Love is next.</span>
+      </h2>
+      <div class="space-y-6 text-white/75 text-lg leading-relaxed font-light">
+        <p>
+          Fitness went mainstream in the <strong class="text-white">1980s</strong>. Yoga in the <strong class="text-white">late &rsquo;90s</strong>. Meditation and mindfulness through the <strong class="text-white">2000s</strong>. Biohacking through the <strong class="text-white">2010s</strong>.
+        </p>
+        <p>
+          The pattern is consistent. A generation discovers that a dimension of being human is trainable, worth studying, worthy of real practice. Teachers, books, platforms, and communities form around it. The category grows up. Early platforms compound into category-defining companies.
+        </p>
+        <p>
+          The teachers in love already exist. Esther Perel cracked the conversation open. The Hendricks, John Gray, Ken Page, Dave Asprey, and dozens of brilliant practitioners are doing the work in adjacent silos. What&rsquo;s missing is the <em class="text-white">connective tissue</em> &mdash; the platform where the field&rsquo;s best teachers find each other, find the people ready to learn, and shape what this becomes.
+        </p>
+        <p class="font-heading italic text-xl md:text-2xl leading-snug pt-2" style="color:#C4577A;">
+          WeDeepen is being built to be that platform.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       WHY NOW
+       ============================ -->
+  <section class="py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #1e1019 100%);">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-pink-hot text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Why Now</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight">
+          The cultural conditions for this category have <span class="italic" style="color:#C4577A;">already arrived.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Loneliness as a public-health crisis</p>
+          <p class="text-white/70 text-sm leading-relaxed">The U.S. Surgeon General has named loneliness an epidemic with health effects on par with smoking. Marriage rates are at historic lows. Demand for repair, intimacy, and skill-based relating is structural, not cyclical.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Dating apps have failed the next layer</p>
+          <p class="text-white/70 text-sm leading-relaxed">Match Group&rsquo;s decline and rising user fatigue point to the same gap. Apps optimized for matching never taught anyone how to love. The customer is now ready to pay for the teaching, not the swipe.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Wellness has trained the buyer</p>
+          <p class="text-white/70 text-sm leading-relaxed">A generation that already pays for therapy, retreats, breathwork, plant medicine, and biohacking is fluent in &ldquo;practice.&rdquo; They are pre-qualified for love-as-practice &mdash; the next adjacency in a $5T+ wellness market.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">No category leader exists yet</p>
+          <p class="text-white/70 text-sm leading-relaxed">Authors, podcasters, and individual coaches are siloed. There is no Peloton, no Headspace, no MasterClass for love. The brand, the platform, and the practitioner network around this work are <em class="text-white">unbuilt</em>.</p>
+        </div>
+
+      </div>
+
+      <p class="text-center text-white/45 text-sm italic max-w-2xl mx-auto mt-10 leading-relaxed">
+        We are not predicting the trend. We are catching it at the moment the buyer, the teachers, and the absence of a leader are all true at once.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       WHAT WEDEEPEN IS — THREE LAYERS
+       ============================ -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">The Business</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight">
+          Three layers. <span class="italic" style="color:#C4577A;">One compounding flywheel.</span>
+        </h2>
+        <p class="text-white/60 max-w-2xl mx-auto leading-relaxed">A membership engine fed by peak experiences and powered by an elite practitioner network. Each layer feeds the others.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: linear-gradient(180deg, rgba(232,51,122,0.12) 0%, rgba(232,51,122,0.04) 100%); border: 1px solid rgba(232,51,122,0.35);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.25em] font-semibold mb-3">I &middot; Recurring Revenue</p>
+          <h3 class="font-heading text-2xl text-white mb-3">Love Club</h3>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Annual membership at <strong class="text-white">$4,997</strong> and <strong class="text-white">$9,997 (Plus)</strong>. Coaching cohorts, member events, the platform&rsquo;s gravitational center. Annual prepay = locked-in ARR.</p>
+          <p class="text-gold text-xs italic">50 Plus members = $500K ARR.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: linear-gradient(180deg, rgba(196,87,122,0.12) 0%, rgba(196,87,122,0.04) 100%); border: 1px solid rgba(196,87,122,0.35);">
+          <p class="text-rose-light text-xs uppercase tracking-[0.25em] font-semibold mb-3">II &middot; Peak Experience</p>
+          <h3 class="font-heading text-2xl text-white mb-3">Love Immersions</h3>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Two to three signature retreats per year. The peak moment that converts attendees into members and members into evangelists. Standard ticket: <strong class="text-white">$1,995</strong>.</p>
+          <p class="text-gold text-xs italic">Per-attendee revenue climbed $880 &rarr; $1,491 in 18 months.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: linear-gradient(180deg, rgba(201,162,119,0.10) 0%, rgba(201,162,119,0.03) 100%); border: 1px solid rgba(201,162,119,0.35);">
+          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">III &middot; Network Effect</p>
+          <h3 class="font-heading text-2xl text-white mb-3">Love Strategists</h3>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Twelve founding practitioners who shape the work, lead cohorts, and refer their clients in. <strong class="text-white">10% reciprocal lifetime referral economics</strong> create durable two-sided supply.</p>
+          <p class="text-gold text-xs italic">Founding tier launching 2026.</p>
+        </div>
+
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-12 reveal">
+        <div class="rounded-2xl px-6 py-7 md:px-10 md:py-8 text-center" style="background: linear-gradient(135deg, rgba(232,51,122,0.10) 0%, rgba(201,162,119,0.08) 100%); border: 1px solid rgba(232,51,122,0.35);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.25em] font-semibold mb-3">The Flywheel</p>
+          <p class="text-white/80 text-base md:text-lg leading-relaxed">
+            Immersion attendees convert to <em class="text-white">Love Club members</em>. Members hire <em class="text-white">Love Strategists</em> privately, paying us referral economics for life. Strategists send their existing clients into <em class="text-white">Love Club</em>, earning lifetime revenue share. Every layer fills the next.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       TRACTION
+       ============================ -->
+  <section id="traction" class="py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Traction</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight gold-line-center">
+          Bootstrapped, profitable, and ready to scale.
+        </h2>
+        <p class="text-white/60 max-w-2xl mx-auto mt-6 leading-relaxed">Every dollar to date has been earned. The numbers below are paying customers, not pipeline.</p>
+      </div>
+
+      <!-- Headline stats -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div class="rounded-xl p-6 text-center" style="background: rgba(232,51,122,0.08); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="stat-num text-4xl md:text-5xl mb-2">$65K</p>
+          <p class="text-white/60 text-xs uppercase tracking-wider">Net revenue, last 6 months</p>
+        </div>
+        <div class="rounded-xl p-6 text-center" style="background: rgba(232,51,122,0.08); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="stat-num text-4xl md:text-5xl mb-2">$129K</p>
+          <p class="text-white/60 text-xs uppercase tracking-wider">Across 6 Love Immersions</p>
+        </div>
+        <div class="rounded-xl p-6 text-center" style="background: rgba(201,162,119,0.08); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="stat-num text-4xl md:text-5xl mb-2">$125K</p>
+          <p class="text-white/60 text-xs uppercase tracking-wider">2025 high-ticket membership revenue</p>
+        </div>
+        <div class="rounded-xl p-6 text-center" style="background: rgba(201,162,119,0.08); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="stat-num text-4xl md:text-5xl mb-2">$88K</p>
+          <p class="text-white/60 text-xs uppercase tracking-wider">Single Love Club launch, 2024</p>
+        </div>
+      </div>
+
+      <!-- The story -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.10);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-4">Per-attendee economics are climbing</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">18 months ago</span>
+              <span class="text-white font-medium">$880 / attendee</span>
+            </div>
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">Today</span>
+              <span class="text-white font-medium">$1,491 / attendee</span>
+            </div>
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">Mastermind format (validated)</span>
+              <span class="text-white font-medium">$2,272 / guest</span>
+            </div>
+            <div class="flex justify-between items-baseline pt-2">
+              <span class="text-gold text-xs uppercase tracking-wider">Standard ticket rolling forward</span>
+              <span class="text-gold font-heading text-lg">$1,995</span>
+            </div>
+          </div>
+          <p class="text-white/50 text-xs italic mt-5 leading-relaxed">Pricing power is real. The market is paying premium for the work.</p>
+        </div>
+
+        <div class="rounded-2xl p-7 md:p-8" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.10);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-4">Membership model just elevated</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">Love Club (annual)</span>
+              <span class="text-white font-medium">$4,997</span>
+            </div>
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">Love Club Plus (annual)</span>
+              <span class="text-white font-medium">$9,997</span>
+            </div>
+            <div class="flex justify-between items-baseline pb-3 row-divider">
+              <span class="text-white/70">Premium memberships sold, April 2026</span>
+              <span class="text-white font-medium">3</span>
+            </div>
+            <div class="flex justify-between items-baseline pt-2">
+              <span class="text-gold text-xs uppercase tracking-wider">50 Plus members</span>
+              <span class="text-gold font-heading text-lg">= $500K ARR</span>
+            </div>
+          </div>
+          <p class="text-white/50 text-xs italic mt-5 leading-relaxed">Replaced legacy monthly tiers. Annual prepay = clean ARR investors can underwrite.</p>
+        </div>
+
+      </div>
+
+      <!-- Compounding -->
+      <div class="max-w-4xl mx-auto mt-10">
+        <div class="rounded-2xl p-7 md:p-9" style="background: linear-gradient(135deg, rgba(232,51,122,0.08) 0%, rgba(201,162,119,0.05) 100%); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-4 text-center">The Compounding Story</p>
+          <ul class="space-y-3 text-white/75 text-base leading-relaxed">
+            <li class="flex gap-3">
+              <span class="text-pink-hot mt-1 flex-shrink-0">&middot;</span>
+              <span>Annual prepay locks in ARR; renewals compound it.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-pink-hot mt-1 flex-shrink-0">&middot;</span>
+              <span>Immersion flywheel converts attendees into members and members into Strategist clients.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-pink-hot mt-1 flex-shrink-0">&middot;</span>
+              <span>Love Strategist coaching cohort already active &mdash; founding twelve in formation.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-pink-hot mt-1 flex-shrink-0">&middot;</span>
+              <span>Reviews, photography, and brand assets are deep. The story sells itself.</span>
+            </li>
+          </ul>
+          <p class="text-white/55 text-sm italic text-center mt-6 leading-relaxed">Built without venture capital. Profitable at every step. Now ready to compound.</p>
+        </div>
+      </div>
+
+      <p class="text-center text-white/40 text-xs italic max-w-2xl mx-auto mt-10 leading-relaxed">
+        Detailed P&amp;L, cohort retention, and unit economics shared in the data room.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       THE RAISE
+       ============================ -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-3xl mx-auto reveal text-center">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">The Raise</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight">
+        $2M, post-money SAFE, <span class="italic" style="color:#C4577A;">founder-friendly.</span>
+      </h2>
+      <div class="space-y-6 text-white/75 text-lg leading-relaxed font-light">
+        <p>
+          Bootstrapped to product-market fit. Now raising a single round to build the team, the platform, and the brand that turn this into the category leader.
+        </p>
+        <p>
+          The instrument is a standard post-money SAFE. No board seats. No preferred-stock complexity. Founder retains operational control while the work matures into the company.
+        </p>
+        <p class="font-heading italic text-xl md:text-2xl leading-snug pt-2" style="color:#E8337A;">
+          Cap and terms shared in the investor brief.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       USE OF FUNDS
+       ============================ -->
+  <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-14 reveal">
+        <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Use of Funds</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4 gold-line-center">What $2M actually buys.</h2>
+        <p class="text-white/60 max-w-2xl mx-auto mt-6">Eighteen months of runway. A small, hungry team. Real platform infrastructure. Marketing fuel. Capital deployed where it compounds.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5 mb-10">
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Team</h4>
+            <span class="font-heading text-2xl text-pink-hot">$1.0M</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">50% &middot; four hires, 18 months</p>
+          <p class="text-white/65 text-sm leading-relaxed">Lean, equity-heavy team. Modest cash, real ownership. People who want to build a company, not collect a paycheck.</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Founder Salary</h4>
+            <span class="font-heading text-2xl text-pink-hot">$200K</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">10% &middot; 18 months</p>
+          <p class="text-white/65 text-sm leading-relaxed">First time the founder has paid herself in this work. Investor-aligned, modest, freeing her to lead full-time.</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Marketing &amp; Community</h4>
+            <span class="font-heading text-2xl text-pink-hot">$300K</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">15% &middot; growth fuel</p>
+          <p class="text-white/65 text-sm leading-relaxed">Podcast distribution, paid acquisition, content production, member experience. Test channels until two compound.</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Platform &amp; Product</h4>
+            <span class="font-heading text-2xl text-pink-hot">$200K</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">10% &middot; the moat</p>
+          <p class="text-white/65 text-sm leading-relaxed">Member portal, Strategist marketplace, booking and payments, content library, CRM. The infrastructure category leaders are built on.</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Immersions</h4>
+            <span class="font-heading text-2xl text-pink-hot">$150K</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">7.5% &middot; production capital</p>
+          <p class="text-white/65 text-sm leading-relaxed">Venue deposits, production crew, brand-grade content capture. Each immersion ships as ten units of marketing for the next.</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <div class="flex justify-between items-baseline mb-3">
+            <h4 class="font-heading text-xl text-white">Legal, Ops &amp; Reserve</h4>
+            <span class="font-heading text-2xl text-pink-hot">$150K</span>
+          </div>
+          <p class="text-gold text-xs uppercase tracking-wider mb-4">7.5% &middot; structural integrity</p>
+          <p class="text-white/65 text-sm leading-relaxed">Entity, contracts, insurance, finance stack, audit trail. A company built clean from day one.</p>
+        </div>
+
+      </div>
+
+      <p class="text-center text-white/45 text-xs italic max-w-2xl mx-auto leading-relaxed">
+        Allocations are operating estimates and will flex with hiring sequence and growth signal. Detailed budget shared in the data room.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       THE TEAM TO BUILD
+       ============================ -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-pink-hot text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">The Team to Build</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight">
+          Four hires. Lean salaries. <span class="italic" style="color:#C4577A;">Real ownership.</span>
+        </h2>
+        <p class="text-white/60 max-w-2xl mx-auto leading-relaxed">No inflated titles. No padded comp. People who want to build a company that matters and own a real piece of it.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Hire 1</p>
+          <h4 class="font-heading text-2xl text-white mb-3">Head of Community</h4>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Owns Love Club from the day someone hears about it through year-five renewal. Member experience, retention, programming, and culture. The job that makes the flywheel real.</p>
+          <p class="text-white/45 text-xs uppercase tracking-wider">Modest base &middot; meaningful equity</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Hire 2</p>
+          <h4 class="font-heading text-2xl text-white mb-3">Senior Producer</h4>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Owns the brand surface: Immersion production, podcast, content engine, brand-grade capture and distribution. Turns every event into ten more pieces of marketing.</p>
+          <p class="text-white/45 text-xs uppercase tracking-wider">Modest base &middot; meaningful equity</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Hire 3</p>
+          <h4 class="font-heading text-2xl text-white mb-3">Platform Engineer</h4>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Builds the product layer: member portal, Strategist marketplace, booking, payments, content library, internal CRM. The infrastructure that turns a brand into a platform.</p>
+          <p class="text-white/45 text-xs uppercase tracking-wider">Modest base &middot; meaningful equity</p>
+        </div>
+
+        <div class="include-card rounded-xl p-7 reveal">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Hire 4</p>
+          <h4 class="font-heading text-2xl text-white mb-3">COO / Head of Operations</h4>
+          <p class="text-white/65 text-sm leading-relaxed mb-4">Runs the business: finance, partnerships, hiring, vendor relationships, Strategist network operations. Frees the founder to be the founder.</p>
+          <p class="text-white/45 text-xs uppercase tracking-wider">Modest base &middot; meaningful equity</p>
+        </div>
+
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-12">
+        <div class="rounded-2xl px-6 py-7 md:px-10 md:py-8 text-center" style="background: linear-gradient(135deg, rgba(232,51,122,0.10) 0%, rgba(201,162,119,0.08) 100%); border: 1px solid rgba(232,51,122,0.35);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.25em] font-semibold mb-3">The Hiring Standard</p>
+          <p class="font-heading italic text-white text-xl md:text-2xl leading-snug">
+            Hungry, not titled. <br class="hidden md:block">Builders who want to own a piece of what gets built.
+          </p>
+          <p class="text-white/55 text-sm mt-4 leading-relaxed">Vesting schedules, real equity, mission alignment. The kind of team you can only build at the start.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       18-MONTH MILESTONES
+       ============================ -->
+  <section class="py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #1e1019 100%);">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">18-Month Milestones</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight">
+          What this capital is supposed to <span class="italic" style="color:#C4577A;">make true.</span>
+        </h2>
+        <p class="text-white/60 max-w-2xl mx-auto leading-relaxed">Concrete targets investors can hold us to. Honest, not hockey-stick.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <div class="rounded-2xl p-7" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Membership</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">$1M+ ARR</p>
+          <p class="text-white/60 text-sm leading-relaxed">From a combination of Love Club and Love Club Plus annual memberships. Path: roughly 100 Plus + 100 Standard members.</p>
+        </div>
+
+        <div class="rounded-2xl p-7" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Practitioner Network</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">Founding 12 + Wave 2</p>
+          <p class="text-white/60 text-sm leading-relaxed">Founding circle fully seated. Second wave open by invitation. Reciprocal referral economics generating measurable two-sided supply.</p>
+        </div>
+
+        <div class="rounded-2xl p-7" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Immersions</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">8&ndash;10 / year</p>
+          <p class="text-white/60 text-sm leading-relaxed">Repeatable production model. Each immersion sells out, converts attendees into members, and ships months of content forward.</p>
+        </div>
+
+        <div class="rounded-2xl p-7" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Platform</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">Live &amp; in use</p>
+          <p class="text-white/60 text-sm leading-relaxed">Member portal, Strategist marketplace, booking, payments, and CRM operating end-to-end. Members and practitioners using the system daily.</p>
+        </div>
+
+        <div class="rounded-2xl p-7" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.30);">
+          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Brand</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">Category leader</p>
+          <p class="text-white/60 text-sm leading-relaxed">National press placement. One marquee partnership (wellness brand, retreat platform, or media). The name people use when they say &ldquo;the love thing.&rdquo;</p>
+        </div>
+
+        <div class="rounded-2xl p-7" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Series A Readiness</p>
+          <p class="font-heading text-3xl md:text-4xl text-white mb-2">Optional, not forced</p>
+          <p class="text-white/60 text-sm leading-relaxed">Unit economics, retention, and category position strong enough to raise at a step-up &mdash; or to keep compounding off the cap table we have.</p>
+        </div>
+
+      </div>
+
+      <p class="text-center text-white/45 text-xs italic max-w-2xl mx-auto mt-10 leading-relaxed">
+        Forward-looking targets, not guarantees. Quarterly investor letters keep the room honest.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       THE FOUNDER
+       ============================ -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5 text-center">The Founder</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-10 leading-tight text-center">
+        Christina Weber has been building <span class="italic" style="color:#C4577A;">to this moment</span> for a decade.
+      </h2>
+      <div class="space-y-6 text-white/75 text-lg leading-relaxed font-light">
+        <p>
+          ICF-certified coach. Experience designer. Relationship activist. Founder of WeDeepen and host of <em class="text-white">Deepen with Christina</em>, with guests including John Gray, Gay and Katie Hendricks, Dave Asprey, and Ken Page.
+        </p>
+        <p>
+          Prior ventures: <strong class="text-white">Feminine Weapon</strong> (raised $74K+ for orphans), <strong class="text-white">The Dating Dojo</strong>, <strong class="text-white">RelateFest</strong>, and the cult-loved <strong class="text-white">Shop &amp; Shag</strong> (LA Magazine cover, Bill Maher, Good Day LA). NYU-educated. Lived in LA, NYC, and Bali. Now in Austin.
+        </p>
+        <p>
+          The work has been bootstrapped, tested, refined in public, and shipped under her own name. Reviews, photography, and lived testimony are deep. <em class="text-white">The proof is on the customer side, not the pitch deck.</em>
+        </p>
+        <p class="font-heading italic text-xl md:text-2xl leading-snug pt-2" style="color:#E8337A;">
+          What she has not had, until now, is capital and a team.
+        </p>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="https://christinalweber.com" target="_blank" rel="noopener" class="btn-outline text-base">View Founder Site</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       NEXT STEPS
+       ============================ -->
+  <section id="next-steps" class="py-24 md:py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
+    <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
+      <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-5">The Process</p>
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight">
+        If this is your kind of bet, <br>
+        <span class="italic" style="color:#C4577A;">let&rsquo;s talk.</span>
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-5 mt-14 mb-12 text-left">
+        <div class="rounded-2xl p-6 md:p-7" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+          <p class="step-num mb-3">01</p>
+          <h3 class="font-heading text-lg text-white mb-2">Request the Brief</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Email Christina with a short note. Receive the investor brief, deck, and data-room link after a quick accreditation confirmation.</p>
+        </div>
+        <div class="rounded-2xl p-6 md:p-7" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(232,51,122,0.3);">
+          <p class="step-num mb-3" style="color:#E8337A;">02</p>
+          <h3 class="font-heading text-lg text-white mb-2">Conversation with Christina</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Forty-five minutes on the work, the plan, the team to build, and whether the fit is real. We&rsquo;re both deciding.</p>
+        </div>
+        <div class="rounded-2xl p-6 md:p-7" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+          <p class="step-num mb-3">03</p>
+          <h3 class="font-heading text-lg text-white mb-2">SAFE &amp; Welcome</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Standard post-money SAFE. Wire instructions follow. Quarterly investor letters from there forward.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="mailto:c@wedeepen.com?subject=WeDeepen%20Investor%20Brief%20%E2%80%94%20Request&body=Hi%20Christina%2C%0A%0AI%27d%20like%20to%20review%20the%20WeDeepen%20investor%20brief.%0A%0AName%3A%0AAffiliation%3A%0AAccredited%20investor%3F%20(yes%2Fno)%3A%0AWhat%20drew%20you%20to%20WeDeepen%3A%0A%0AThank%20you." class="btn-pink text-base !py-4 !px-10">Request the Brief</a>
+        <a href="mailto:c@wedeepen.com?subject=WeDeepen%20%E2%80%94%20A%20Question%20From%20a%20Potential%20Investor" class="btn-outline text-base !py-4 !px-10">Ask a Question First</a>
+      </div>
+      <p class="text-white/40 text-xs italic mt-6">c@wedeepen.com &middot; WeDeepen.com</p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       SECURITIES DISCLAIMER
+       ============================ -->
+  <section class="bg-ink py-12 px-6 border-t border-white/10">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-white/35 text-xs leading-relaxed text-center">
+        This page is a private invitation, not an offer to sell or a solicitation of an offer to buy any securities. Any offering of securities by WeDeepen will be made only to accredited investors as defined under Rule 501 of Regulation D, pursuant to definitive transaction documents. Forward-looking statements reflect management estimates and are subject to risk and change. Past performance does not guarantee future results.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer class="bg-ink border-t border-white/10 py-14">
+    <div class="max-w-site mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+        <div>
+          <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+          <p class="text-white/40 text-sm mt-3 leading-relaxed max-w-xs">A founding-investor invitation from Christina Weber.</p>
+        </div>
+        <div class="flex gap-5">
+          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@wedeepen" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <p>&copy; 2026 WeDeepen. All rights reserved.</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
+          <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
+          <a href="mailto:c@wedeepen.com" class="hover:text-gold transition">c@wedeepen.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>

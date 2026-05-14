@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+/**
+ * Shared HTML shell for gallery pages — mirrors wedeepen.com's nav, footer, and styles.
+ * Pulled from wedeepen.com homepage as of 2026-05-06. If the site nav changes, regenerate.
+ */
+import { escapeHtml } from './escape-html.js';
+
+export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,26 +18,26 @@
     gtag('js', new Date());
     gtag('config', 'G-BY3F2GQXR8');
   </script>
-  <title>Photo Galleries — WeDeepen</title>
-  <meta name="description" content="Photos from WeDeepen events: Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and more. Every gathering, every practice, every moment we&#39;ve held together.">
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://wedeepen.com/gallery/">
+  <link rel="canonical" href="${escapeHtml(canonical)}">
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wedeepen.com/gallery/">
-  <meta property="og:title" content="Photo Galleries — WeDeepen">
-  <meta property="og:description" content="Photos from WeDeepen events: Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and more. Every gathering, every practice, every moment we&#39;ve held together.">
-  <meta property="og:image" content="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-ii/full/f1f2418098415bf5.webp">
+  <meta property="og:url" content="${escapeHtml(canonical)}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:image" content="${escapeHtml(ogImage)}">
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="1067">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Photo Galleries — WeDeepen">
-  <meta name="twitter:description" content="Photos from WeDeepen events: Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and more. Every gathering, every practice, every moment we&#39;ve held together.">
-  <meta name="twitter:image" content="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-ii/full/f1f2418098415bf5.webp">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="${escapeHtml(ogImage)}">
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"WeDeepen Photo Galleries","description":"Photos from WeDeepen events including Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and more.","url":"https://wedeepen.com/gallery/","publisher":{"@type":"Organization","name":"WeDeepen","url":"https://wedeepen.com"},"hasPart":[{"@type":"ImageGallery","name":"Love Immersion II","url":"https://wedeepen.com/gallery/love-immersion-ii/","numberOfItems":76},{"@type":"ImageGallery","name":"Love Immersion I","url":"https://wedeepen.com/gallery/love-immersion-i/","numberOfItems":129},{"@type":"ImageGallery","name":"Biohacking Love","url":"https://wedeepen.com/gallery/biohacking-love/","numberOfItems":100},{"@type":"ImageGallery","name":"The Dating Dojo","url":"https://wedeepen.com/gallery/dating-dojo/","numberOfItems":37},{"@type":"ImageGallery","name":"MediDating","url":"https://wedeepen.com/gallery/medidating/","numberOfItems":15},{"@type":"ImageGallery","name":"Solar Punk Summit 2025","url":"https://wedeepen.com/gallery/solar-punk-2025/","numberOfItems":38},{"@type":"ImageGallery","name":"Heart Flow","url":"https://wedeepen.com/gallery/heart-flow/","numberOfItems":18},{"@type":"ImageGallery","name":"WeDeepen × Aboutly Training","url":"https://wedeepen.com/gallery/aboutly-training/","numberOfItems":35}]}</script>
+  ${jsonLd ? `<script type="application/ld+json">${jsonLd}</script>` : ''}
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,9 +152,11 @@
       outline: 2px solid #C4577A; outline-offset: 2px; border-radius: 4px;
     }
   </style>
-</head>
-<body class="bg-ink text-white">
-<a href="#main" class="skip-link">Skip to content</a>
+</head>`;
+}
+
+export function pageNav() {
+  return `<a href="#main" class="skip-link">Skip to content</a>
 
   <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
     <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
@@ -190,132 +199,11 @@
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
       <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-center mt-4">Login to Love Club</a>
     </nav>
-  </div>
+  </div>`;
+}
 
-  <main id="main">
-    <!-- Hero -->
-    <section class="relative pt-32 md:pt-40 pb-16 md:pb-20 px-6">
-      <div class="max-w-site mx-auto text-center reveal">
-        <p class="text-[11px] md:text-xs uppercase tracking-[0.35em] text-white/50 font-medium mb-6">WeDeepen</p>
-        <h1 class="font-heading text-[2.4rem] md:text-[3.4rem] lg:text-[4rem] font-normal leading-[1.12] mb-6">
-          <span class="text-white">Photo</span>
-          <span class="italic" style="color: #C4577A;">Albums</span>
-        </h1>
-        <p class="text-[15px] md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
-          Love Immersion, Biohacking Love, Dating Dojo, and more.
-        </p>
-      </div>
-    </section>
-
-    <!-- Album grid -->
-    <section class="px-6 pb-24">
-      <div class="max-w-site mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <a href="/gallery/love-immersion-ii/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-ii/thumb/f1f2418098415bf5.webp" alt="Love Immersion II" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">Love Immersion II</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>76 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/love-immersion-i/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-i/thumb/0541af787ef259e5.webp" alt="Love Immersion I" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">Love Immersion I</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>129 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/biohacking-love/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/d86894015e731c42.webp" alt="Biohacking Love" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">Biohacking Love</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>100 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/dating-dojo/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/dating-dojo/thumb/51d851e7565c3339.webp" alt="The Dating Dojo" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">The Dating Dojo</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>37 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/medidating/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/medidating/thumb/25ffa1918003cab4.webp" alt="MediDating" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">MediDating</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>15 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/solar-punk-2025/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/solar-punk-2025/thumb/ca1ea3cc85bfbb6e.webp" alt="Solar Punk Summit 2025" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">Solar Punk Summit 2025</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>38 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/heart-flow/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/heart-flow/thumb/3a9794b12013d45a.webp" alt="Heart Flow" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">Heart Flow</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>18 photos</span>
-              </div>
-            </div>
-          </a>
-          <a href="/gallery/aboutly-training/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
-            <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/aboutly-training/thumb/e0a67997e66dd23c.webp" alt="WeDeepen × Aboutly Training" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">WeDeepen × Aboutly Training</h2>
-              <div class="flex items-center gap-3 text-white/50 text-sm">
-                <span>35 photos</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="bg-cream text-charcoal py-20 md:py-24 px-6">
-      <div class="max-w-3xl mx-auto text-center reveal">
-        <h2 class="font-heading text-3xl md:text-4xl font-normal mb-5">Want to be at the next one?</h2>
-        <p class="text-charcoal/70 text-lg leading-relaxed mb-8 font-light">
-          Our events fill fast. Browse what's coming up and find your next gathering.
-        </p>
-        <a href="/events/" class="btn-rose">View Upcoming Events &rarr;</a>
-      </div>
-    </section>
-  </main>
-
-<footer class="bg-ink border-t border-white/10 py-14">
+export function pageFooter() {
+  return `<footer class="bg-ink border-t border-white/10 py-14">
     <div class="max-w-site mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
         <div>
@@ -335,7 +223,7 @@
         </div>
       </div>
       <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
-        <p>&copy; 2026 WeDeepen. All rights reserved.</p>
+        <p>&copy; ${new Date().getFullYear()} WeDeepen. All rights reserved.</p>
         <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
           <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
           <a href="/about/" class="hover:text-gold transition">About</a>
@@ -343,8 +231,11 @@
         </div>
       </div>
     </div>
-  </footer>
-<script>
+  </footer>`;
+}
+
+export function pageScripts() {
+  return `<script>
     // Sticky header scroll effect
     const header = document.getElementById('wd-header');
     window.addEventListener('scroll', () => {
@@ -374,6 +265,5 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  </script>
-</body>
-</html>
+  </script>`;
+}

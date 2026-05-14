@@ -1,0 +1,13 @@
+# Node
+node_modules/
+
+# Working/scratch dirs used by the gallery pipeline
+tmp/
+
+# Secrets — kept locally only, never committed
+scripts/gallery/.env
+.env
+
+# OS
+.DS_Store
+Thumbs.db

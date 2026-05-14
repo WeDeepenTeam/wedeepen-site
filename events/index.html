@@ -427,6 +427,19 @@
     const WD_EVENTS_API = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/circle-events';
     const WD_EVENTS_JSON = '/events/events.json'; // fallback if function fails
 
+    // Per-event URL overrides — when an event has its own dedicated page on
+    // wedeepen.com, route the card to that page instead of the Circle calendar.
+    // Matches by case-insensitive substring on event title.
+    const EVENT_URL_OVERRIDES = [
+      { match: /biohacking love/i, url: '/biohacking-love/' },
+    ];
+    function resolveEventUrl(e) {
+      for (const o of EVENT_URL_OVERRIDES) {
+        if (o.match.test(e.title || '')) return o.url;
+      }
+      return e.url;
+    }
+
     let allEvents = [];
     let activeFilter = 'all';
     let searchQuery = '';
@@ -496,8 +509,9 @@
           ? `background-image: url('${e.image_url}'); background-size: cover; background-position: center;`
           : `background: linear-gradient(135deg, #A01B4A 0%, #3a0818 100%);`;
 
+        const eventUrl = resolveEventUrl(e);
         return `
-          <a href="${e.url}" class="event-card" ${e.url.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+          <a href="${eventUrl}" class="event-card" ${eventUrl.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
             <div class="event-card__image" style="${imageBg}"></div>
             <div class="event-card__body">
               <div class="event-card__chips">${locChip}${labelChip}${tagChip}</div>

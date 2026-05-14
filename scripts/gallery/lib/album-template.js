@@ -6,6 +6,9 @@ const PAGE_SIZE = 100;
 
 export function renderAlbumPage(album, photos) {
   const cover = album.cover_full_url || photos[0]?.full_url || `${SITE}/images/og-image.jpg`;
+  // WhatsApp-safe og:image: JPEG, <150KB. Falls back to the WebP cover if no
+  // generated JPEG exists yet (run `node scripts/gallery/generate-og-jpegs.js`).
+  const ogImage = `${SITE}/images/og/gallery-${album.slug}.jpg`;
   const description = album.description
     || `Photos from ${album.title}${album.event_date ? ' on ' + formatDate(album.event_date) : ''}.`;
 
@@ -39,7 +42,7 @@ export function renderAlbumPage(album, photos) {
     title: `${album.title} — Photos | WeDeepen`,
     description,
     canonical: `${SITE}/gallery/${album.slug}/`,
-    ogImage: cover,
+    ogImage,
     jsonLd,
   })}
 <body class="bg-ink text-white">

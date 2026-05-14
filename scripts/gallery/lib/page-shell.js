@@ -28,8 +28,9 @@ export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
   <meta property="og:title" content="${escapeHtml(title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:image" content="${escapeHtml(ogImage)}">
-  <meta property="og:image:width" content="1600">
-  <meta property="og:image:height" content="1067">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">

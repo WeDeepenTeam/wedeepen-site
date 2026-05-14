@@ -11,13 +11,15 @@
   <meta property="og:url" content="https://wedeepen.com/bl/">
   <meta property="og:title" content="Biohacking Love — One-Day Intensive · Austin · May 30">
   <meta property="og:description" content="Upgrade your heart's operating system. A one-day intensive with Christina Weber and four special guests. Saturday, May 30 at AWKN Ranch, Austin.">
-  <meta property="og:image" content="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/d86894015e731c42.webp">
+  <meta property="og:image" content="https://wedeepen.com/biohacking-love/flyer.jpg">
+  <meta property="og:image:width" content="2160">
+  <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Biohacking Love — One-Day Intensive · Austin · May 30">
   <meta name="twitter:description" content="A one-day intensive blending nervous system science with the practice of love. With Christina Weber and four special guests.">
-  <meta name="twitter:image" content="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/d86894015e731c42.webp">
+  <meta name="twitter:image" content="https://wedeepen.com/biohacking-love/flyer.jpg">
 
   <script type="application/ld+json">
   {
@@ -41,7 +43,7 @@
         "addressCountry": "US"
       }
     },
-    "image": "https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/d86894015e731c42.webp",
+    "image": "https://wedeepen.com/biohacking-love/flyer.jpg",
     "organizer": {
       "@type": "Organization",
       "name": "WeDeepen",
@@ -158,13 +160,12 @@
       line-height: 1;
     }
 
-    .hero-bg {
-      background:
-        linear-gradient(180deg, rgba(20,12,16,0.78) 0%, rgba(20,12,16,0.85) 60%, rgba(15,10,12,1) 100%),
-        radial-gradient(ellipse at top, rgba(160,27,74,0.28) 0%, transparent 60%),
-        url('https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/10fe48d05a53bc4a.webp');
-      background-size: cover;
-      background-position: center;
+    .hero-flyer-wrap {
+      background: #0e0810;
+      padding-top: 80px; /* clear sticky header on mobile */
+    }
+    @media (min-width: 768px) {
+      .hero-flyer-wrap { padding-top: 88px; }
     }
 
     .guest-card {
@@ -230,23 +231,19 @@
 
 
   <!-- ============================
-       HERO
+       HERO — flyer banner + CTAs
        ============================ -->
-  <section class="hero-bg relative min-h-[88vh] flex items-center overflow-hidden">
-    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-32 md:pt-40 pb-20 text-center">
-      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-6">Austin · One-Day Intensive</p>
-      <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.02] mb-6">
-        <span class="text-white">Biohacking</span>
-        <span class="italic" style="color: #FF4F8C;">Love.</span>
-      </h1>
-      <p class="text-white/85 text-xl md:text-2xl max-w-2xl mx-auto mb-3 leading-snug font-light italic">
-        Upgrade your heart&rsquo;s operating system.
-      </p>
-      <p class="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-        A one-day intensive blending nervous system science with the practice of love &mdash; with <em class="text-white">Christina Weber</em> and four special guests.
-      </p>
+  <section class="hero-flyer-wrap">
+    <div class="max-w-site mx-auto">
+      <img
+        src="/biohacking-love/flyer.jpg"
+        alt="Biohacking Love · Saturday, May 30 · Upgrade Your Heart's Operating System. With Christina Weber. Special guests: Pavel Aeön, Ariana Hall, Kayce Neill, Jordan Bowditch."
+        class="w-full h-auto block"
+        fetchpriority="high">
+    </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/85 text-sm md:text-base mb-10">
+    <div class="max-w-4xl mx-auto px-6 py-10 md:py-14 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/85 text-sm md:text-base mb-8">
         <span class="flex items-center gap-2">
           <svg width="18" height="18" fill="none" stroke="#C9A277" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           Saturday, May 30
@@ -263,7 +260,7 @@
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <a href="https://www.eventbrite.com/e/biohacking-love-austin-one-day-intensive-with-christina-weber-tickets-1984442524009?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink text-base !px-10 !py-4">Get Tickets on Eventbrite</a>
-        <a href="#what-it-is" class="flex items-center gap-2.5 text-white/85 hover:text-white transition font-medium text-base px-5 py-4">
+        <a href="#what-it-is" class="flex items-center gap-2.5 text-white/85 hover:text-white transition font-medium text-base px-5 py-3">
           What you&rsquo;ll experience
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </a>

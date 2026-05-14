@@ -193,6 +193,32 @@
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(201,162,119,0.20);
     }
+
+    /* ──────────────────────────────────────────────────────────────
+       "big love" double-underline — channels 💯 emoji vibe.
+       Uses absolutely-positioned pseudo-elements so the marks live
+       in the line-gap without expanding the line box (which would
+       crash into the next line of copy). Two clean, slightly-thick
+       pink-hot lines, gently tracked from the text.
+       ────────────────────────────────────────────────────────────── */
+    .big-love-mark {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .big-love-mark::before,
+    .big-love-mark::after {
+      content: '';
+      position: absolute;
+      left: -0.02em;
+      right: -0.02em;
+      height: 0.075em;
+      background: #E8337A;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    .big-love-mark::before { bottom: -0.12em; }
+    .big-love-mark::after  { bottom: -0.28em; }
   </style>
 </head>
 <body class="bg-ink text-white">
@@ -291,12 +317,14 @@
        ============================ -->
   <section id="what-it-is" class="bg-ink py-24 md:py-32 px-6">
     <div class="max-w-3xl mx-auto reveal">
-      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5 text-center">Why this day</p>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-10 leading-tight text-center">
-        Nobody trained you for <span class="whitespace-nowrap" style="text-decoration: underline; text-decoration-style: double; text-decoration-color: #E8337A; text-decoration-thickness: 3px; text-underline-offset: 10px;">big love</span>.
-        <br>
-        <span class="italic" style="color:#E8337A;">We&rsquo;re changing that.</span>
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-8 text-center">Why this day</p>
+
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal text-center text-white leading-[1.1] tracking-tight mb-7 md:mb-9">
+        Nobody trained you for <span class="big-love-mark">big love</span>.
       </h2>
+      <p class="font-heading italic text-3xl md:text-4xl lg:text-5xl text-center leading-[1.1] mb-14 md:mb-16" style="color:#E8337A;">
+        We&rsquo;re changing that.
+      </p>
       <div class="space-y-6 text-white/75 text-lg leading-relaxed font-light">
         <p>
           Most people didn&rsquo;t grow up observing healthy relationships. School curricula barely touch the subject. You&rsquo;ve optimized your sleep, your supplements, your training, and your morning routine &mdash; while the most consequential operating system in your life has been running on factory settings.

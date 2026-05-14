@@ -1,0 +1,16 @@
+{
+  "name": "wedeepen-site",
+  "private": true,
+  "type": "module",
+  "description": "Source for wedeepen.com — static HTML + Tailwind CDN, deployed via GitHub Pages. Gallery pages are generated from Supabase via the gallery:* scripts.",
+  "scripts": {
+    "gallery:install": "cd scripts/gallery && npm install",
+    "gallery:download": "python3 scripts/gallery/download-drive.py",
+    "gallery:process": "cd scripts/gallery && node process-and-upload.js",
+    "gallery:build": "cd scripts/gallery && node build-static-pages.js",
+    "gallery:smoke": "cd scripts/gallery && node smoke-test.js",
+    "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js"
+  },
+  "keywords": ["wedeepen", "supabase", "github-pages"],
+  "license": "UNLICENSED"
+}

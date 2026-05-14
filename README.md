@@ -83,11 +83,25 @@ wedeepen-site/
 ├── book-session-with-christina/         # Private client booking (Acuity, gated offerings)
 ├── zoom/                                # Branded redirect to live Zoom room
 │
+├── gallery/                             # Generated photo gallery pages
+│   ├── index.html                       # Gallery landing
+│   └── <album-slug>/index.html          # Per-album page (one per event)
+│
+├── scripts/gallery/                     # Build pipeline (Drive → Supabase → HTML)
+│   ├── README.md                        # Runbook
+│   ├── albums.json                      # Album metadata + photographer credits
+│   ├── build-static-pages.js            # Regenerate /gallery/*/index.html
+│   ├── process-and-upload.js            # Sharp resize + Supabase upload
+│   ├── download-drive.py                # Pull from public Google Drive folders
+│   └── lib/                             # Template helpers
+│
+├── supabase/migrations/                 # Schema-as-code (gallery_albums, gallery_media)
+│
 ├── images/                              # All static assets
 │   ├── og/                              # Open Graph social share thumbnails
 │   ├── press-logos/                     # Peacock, LA Mag, Vice, Omega, etc.
 │   ├── strategists/                     # Love Strategist headshots
-│   └── gallery/                         # Retreat + community photos
+│   └── gallery/                         # Homepage gallery preview photos
 │
 └── fonts/                               # Self-hosted Vilonti (Love Immersion only)
 ```
@@ -106,6 +120,7 @@ wedeepen-site/
 | Reviews | `/reviews/` | `reviews/index.html` |
 | About | `/about/` | `about/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |
+| **Photo Galleries** | `/gallery/` | `gallery/index.html` (generated) |
 | Schedule 15 min | `/schedule-with-christina/` | `schedule-with-christina/index.html` |
 | Private clients | `/book-session-with-christina/` | `book-session-with-christina/index.html` |
 | Zoom redirect | `/zoom/` | `zoom/index.html` |
@@ -168,6 +183,26 @@ wedeepen-site/
 ### Events (dynamic calendar)
 
 Live events pull from Circle via a Supabase Edge Function. See the `/supabase/functions/` directory in the sister repo `WeDeepenTeam/my-app` for the function source. The `events/index.html` page fetches `/functions/v1/circle-events`.
+
+### Photo galleries (`/gallery/*`)
+
+Event photos live in Supabase Storage and are rendered into static HTML pages by a build pipeline in `scripts/gallery/`. See **[`scripts/gallery/README.md`](./scripts/gallery/README.md)** for the full runbook.
+
+Quick reference:
+
+```bash
+# One-time: install deps + create scripts/gallery/.env (Supabase service role key from Bitwarden)
+npm run gallery:install
+
+# Add a new album: edit scripts/gallery/albums.json, then:
+npm run gallery:download      # pull photos from public Drive folder
+npm run gallery:process        # resize + upload to Supabase Storage
+npm run gallery:build          # regenerate /gallery/*/index.html files
+npm run gallery:smoke          # verify HTML is sound
+git add gallery/ && git commit -m "Gallery: add <album-name>" && git push
+```
+
+Photo source-of-truth: Google Drive (public folders) → Supabase Storage (CDN-served WebPs) → static HTML in `gallery/`.
 
 ---
 
@@ -240,7 +275,15 @@ The brand voice is **provocative, intellectual, sensual, direct** — captured i
 
 ## Sister repos
 
-- **`WeDeepenTeam/my-app`** — Christina's personal site (christinalweber.com) + Supabase Edge Functions
+- **[`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/my-app)** — Christina's personal site ([christinalweber.com](https://christinalweber.com)) plus shared Supabase Edge Functions. Strict separation: WeDeepen-specific code, content, and assets do **not** belong in `my-app`.
+
+---
+
+## Contributing
+
+Anyone joining the WeDeepen team — please read **[CONTRIBUTING.md](./CONTRIBUTING.md)** before opening a PR. It covers branch naming, commit style, the PR review bar, and how secrets are managed.
+
+AI agents (Claude Code, etc.) should read **[CLAUDE.md](./CLAUDE.md)** — it contains the project directives, on-demand docs, and code guards that automated agents must follow.
 
 ---
 

@@ -27,12 +27,20 @@ const ALBUMS_JSON = path.join(ROOT, 'scripts', 'gallery', 'albums.json');
 // URL prefix on wedeepen.com — gallery lives at /gallery (no /wedeepen/ prefix).
 const URL_PREFIX = process.env.GALLERY_URL_PREFIX || '/gallery';
 
-async function loadPhotographers() {
+async function loadAlbumExtras() {
+  // Per-slug map of fields that live in albums.json (not in Supabase):
+  // - photographer (string)
+  // - parent_event (slug, used for grouping cards on the gallery index)
+  // - parent_event_title (human-readable label for the parent event)
   const raw = await fs.readFile(ALBUMS_JSON, 'utf-8');
   const data = JSON.parse(raw);
   const map = {};
   for (const a of data.albums) {
-    if (a.photographer) map[a.slug] = a.photographer;
+    map[a.slug] = {
+      photographer: a.photographer || null,
+      parent_event: a.parent_event || null,
+      parent_event_title: a.parent_event_title || null,
+    };
   }
   return map;
 }
@@ -77,17 +85,20 @@ async function writeFile(p, content) {
   console.log(`  ✓ ${path.relative(ROOT, p)}`);
 }
 
-async function buildAlbumPage(album, photographers) {
+async function buildAlbumPage(album, extras) {
   const photos = await fetchAlbumPhotos(album.id);
   if (photos.length === 0) {
     console.log(`  ⊘ ${album.slug}: 0 photos; skipping page`);
     return null;
   }
+  const extra = extras[album.slug] || {};
   const albumWithCover = {
     ...album,
     cover_full_url: album.cover?.full_url || photos[0].full_url,
     cover_thumb_url: album.cover?.thumb_url || photos[0].thumb_url,
-    photographer: photographers[album.slug] || null,
+    photographer: extra.photographer || null,
+    parent_event: extra.parent_event || null,
+    parent_event_title: extra.parent_event_title || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);
   await ensureDir(dir);
@@ -138,10 +149,10 @@ async function main() {
   const albums = await fetchAlbums(args.album);
   if (albums.length === 0) { console.log('No albums found.'); return; }
 
-  const photographers = await loadPhotographers();
+  const extras = await loadAlbumExtras();
   const summaries = [];
   for (const album of albums) {
-    const summary = await buildAlbumPage(album, photographers);
+    const summary = await buildAlbumPage(album, extras);
     if (summary) summaries.push(summary);
   }
 

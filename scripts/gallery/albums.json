@@ -12,7 +12,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 10,
-      "photographer": "Allison Powers"
+      "photographer": "Allison Powers",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "love-immersion-v",
@@ -24,7 +26,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 11,
-      "photographer": "Allison Powers"
+      "photographer": "Allison Powers",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "love-immersion-iv",
@@ -36,7 +40,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 12,
-      "photographer": "Allison Powers"
+      "photographer": "Allison Powers",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "love-immersion-iii",
@@ -48,7 +54,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 13,
-      "photographer": "Allison Powers"
+      "photographer": "Allison Powers",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "love-immersion-ii",
@@ -60,7 +68,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 14,
-      "photographer": "Pierre Zah"
+      "photographer": "Pierre Zah",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "love-immersion-i",
@@ -72,7 +82,9 @@
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
       "display_order": 15,
-      "photographer": "Allison Powers"
+      "photographer": "Allison Powers",
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     },
     {
       "slug": "biohacking-love",
@@ -120,7 +132,9 @@
       "youtube_ids": [],
       "event_page_slug": null,
       "display_order": 35,
-      "photographer": "Jen Esteban"
+      "photographer": "Jen Esteban",
+      "parent_event": "dating-dojo",
+      "parent_event_title": "The Dating Dojo"
     },
     {
       "slug": "medidating",
@@ -216,7 +230,9 @@
       "youtube_ids": [],
       "event_page_slug": null,
       "display_order": 36,
-      "photographer": null
+      "photographer": null,
+      "parent_event": "dating-dojo",
+      "parent_event_title": "The Dating Dojo"
     },
     {
       "slug": "dating-dojo-venice",
@@ -228,7 +244,9 @@
       "youtube_ids": [],
       "event_page_slug": null,
       "display_order": 37,
-      "photographer": null
+      "photographer": null,
+      "parent_event": "dating-dojo",
+      "parent_event_title": "The Dating Dojo"
     }
   ]
 }

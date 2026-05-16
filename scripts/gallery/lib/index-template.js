@@ -55,12 +55,10 @@ ${pageNav()}
       </div>
     </section>
 
-    <!-- Album grid -->
+    <!-- Album grid — grouped by parent event (Love Immersion, Dating Dojo) with standalones first -->
     <section class="px-6 pb-24">
-      <div class="max-w-site mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          ${albums.map(a => renderAlbumCard(a)).join('\n          ')}
-        </div>
+      <div class="max-w-site mx-auto space-y-16 md:space-y-20">
+        ${renderGroupedAlbums(albums)}
       </div>
     </section>
 
@@ -80,6 +78,60 @@ ${pageFooter()}
 ${pageScripts()}
 </body>
 </html>`;
+}
+
+/**
+ * Group albums by parent_event. Standalone albums (no parent) render first as
+ * a single grid. Then each parent event (Love Immersion, Dating Dojo, etc.)
+ * gets its own labeled section with its child albums as a sub-grid.
+ *
+ * This is the lightest-touch implementation of the parent→child architecture:
+ * URLs stay flat (/gallery/<slug>/), DB stays flat, only the gallery index
+ * groups things visually.
+ */
+function renderGroupedAlbums(albums) {
+  const standalone = [];
+  const groups = new Map();   // parent_event -> { title, albums: [] }
+  for (const a of albums) {
+    if (a.parent_event) {
+      if (!groups.has(a.parent_event)) {
+        groups.set(a.parent_event, {
+          title: a.parent_event_title || a.parent_event,
+          albums: [],
+        });
+      }
+      groups.get(a.parent_event).albums.push(a);
+    } else {
+      standalone.push(a);
+    }
+  }
+
+  const sections = [];
+
+  if (standalone.length) {
+    sections.push(`<div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            ${standalone.map(a => renderAlbumCard(a)).join('\n            ')}
+          </div>
+        </div>`);
+  }
+
+  for (const [parentSlug, group] of groups) {
+    const totalPhotos = group.albums.reduce((sum, a) => sum + (a.photo_count || 0), 0);
+    const eventLabel = group.albums.length === 1 ? 'event' : 'events';
+    sections.push(`<div>
+          <div class="mb-8 md:mb-10">
+            <p class="text-pink-hot text-[11px] md:text-xs uppercase tracking-[0.3em] font-semibold mb-3">Series</p>
+            <h2 class="font-heading text-3xl md:text-4xl text-white font-normal leading-tight mb-2">${escapeHtml(group.title)}</h2>
+            <p class="text-white/50 text-sm">${group.albums.length} ${eventLabel} &middot; ${totalPhotos} photo${totalPhotos === 1 ? '' : 's'}</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            ${group.albums.map(a => renderAlbumCard(a)).join('\n            ')}
+          </div>
+        </div>`);
+  }
+
+  return sections.join('\n\n        ');
 }
 
 function renderAlbumCard(album) {

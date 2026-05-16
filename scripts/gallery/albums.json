@@ -11,7 +11,7 @@
       "drive_folder_id": "1ER4wXCfrgwEaXTBMRbpynHRG2m2XiVuC",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 10,
+      "display_order": 6,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -25,7 +25,7 @@
       "drive_folder_id": "1TY9CqP_HtaizPkgs1-HHvdcB8tf8pQ1Z",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 11,
+      "display_order": 5,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -39,7 +39,7 @@
       "drive_folder_id": "1sPuuq4XbpwjsZUzbQ2KTtED4DrftU6o0",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 12,
+      "display_order": 4,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -53,7 +53,7 @@
       "drive_folder_id": "1zg2Kg5inzwyvF7gQ8Eev0F7InZQdnDl1",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 13,
+      "display_order": 3,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -67,7 +67,7 @@
       "drive_folder_id": "1fDAzDxunkqvV0v6w-XpVkXdfpNIAOAiI",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 14,
+      "display_order": 2,
       "photographer": "Pierre Zah",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -81,22 +81,24 @@
       "drive_folder_id": "1zXXrsI7evzxwz05SgaH9Zp84w6e1U2_J",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 15,
+      "display_order": 1,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
     },
     {
       "slug": "biohacking-love",
-      "title": "Biohacking Love",
+      "title": "Biohacking Love — April 2025",
       "description": "A one-day intensive blending nervous system science with the practice of love.",
       "event_date": "2025-04-25",
       "location": null,
       "drive_folder_id": "1PqM4l2cJ3lDTIlo-N7eTQ9l57DUFo140",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 20,
-      "photographer": "Allison Powers"
+      "display_order": 11,
+      "photographer": "Allison Powers",
+      "parent_event": "biohacking-love",
+      "parent_event_title": "Biohacking Love"
     },
     {
       "slug": "beyond-biohacking-2025",
@@ -107,7 +109,7 @@
       "drive_folder_id": "1R27T9s2O1I2mFgVsBtkncK7IpyKyYxgK",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 25,
+      "display_order": 38,
       "photographer": "Allison Powers"
     },
     {
@@ -119,19 +121,19 @@
       "drive_folder_id": "1n9PB73mpIsvLntOhZ9HsTTXGWwjeXsh3",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 30,
+      "display_order": 34,
       "photographer": null
     },
     {
       "slug": "dating-dojo",
-      "title": "The Dating Dojo",
+      "title": "The Dating Dojo — Biohacking Conference",
       "description": "WeDeepen's pop-up dating practice space — across cities and conferences.",
       "event_date": null,
       "location": null,
       "drive_folder_id": "1SzvMytGANWGT7Lw-dW8jFIgfvIucJprC",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 35,
+      "display_order": 21,
       "photographer": "Jen Esteban",
       "parent_event": "dating-dojo",
       "parent_event_title": "The Dating Dojo"
@@ -145,7 +147,7 @@
       "drive_folder_id": "1Ze3EbS5chsdnG4gq9cCQxtgpxjUYx8Nw",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 40,
+      "display_order": 30,
       "photographer": "Allison Powers"
     },
     {
@@ -157,7 +159,7 @@
       "drive_folder_id": "1eh9iLLBu6BE-CUn5EI568muAtRy_B_IF",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 50,
+      "display_order": 32,
       "photographer": "Allison Powers"
     },
     {
@@ -169,7 +171,7 @@
       "drive_folder_id": "156VEvmFFCpPoEooIPXqAGwcT5ogUORvz",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 60,
+      "display_order": 33,
       "photographer": null
     },
     {
@@ -181,7 +183,7 @@
       "drive_folder_id": "12iUzJwzJ2cDsvbXuuhK5faJ1x3FGn4Yv",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 65,
+      "display_order": 36,
       "photographer": null
     },
     {
@@ -193,7 +195,7 @@
       "drive_folder_id": "1GlCG8LKnhXRqlA3tZSws9D6PB8EYjTbZ",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 70,
+      "display_order": 37,
       "photographer": null
     },
     {
@@ -205,7 +207,7 @@
       "drive_folder_id": "16kLWBLAHTQf4F63Xbp_9gZhHfmD1hefX",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 75,
+      "display_order": 35,
       "photographer": null
     },
     {
@@ -217,22 +219,8 @@
       "drive_folder_id": "1droUWVSDmN_J3SZkrdd0eO5fzYdhuJKo",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 90,
+      "display_order": 31,
       "photographer": "Pierre Zah"
-    },
-    {
-      "slug": "dating-dojo-biohacking-conference",
-      "title": "The Dating Dojo — Biohacking Conference",
-      "description": "WeDeepen's Dating Dojo activation at the Biohacking Conference.",
-      "event_date": null,
-      "location": null,
-      "drive_folder_id": "14RucJ1n_d45aAPmJ6_Lc88eHgFjg5mNT",
-      "youtube_ids": [],
-      "event_page_slug": null,
-      "display_order": 36,
-      "photographer": null,
-      "parent_event": "dating-dojo",
-      "parent_event_title": "The Dating Dojo"
     },
     {
       "slug": "dating-dojo-venice",
@@ -243,10 +231,24 @@
       "drive_folder_id": "1xg2Ey4nc08BmcesEJy6fC6wRw0E-zguc",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 37,
+      "display_order": 22,
       "photographer": null,
       "parent_event": "dating-dojo",
       "parent_event_title": "The Dating Dojo"
+    },
+    {
+      "slug": "biohacking-love-may-2025",
+      "title": "Biohacking Love — May 2025",
+      "description": "A one-day intensive blending nervous system science with the practice of love.",
+      "event_date": "2025-05-01",
+      "location": null,
+      "drive_folder_id": null,
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 12,
+      "photographer": "Allison Powers",
+      "parent_event": "biohacking-love",
+      "parent_event_title": "Biohacking Love"
     }
   ]
 }

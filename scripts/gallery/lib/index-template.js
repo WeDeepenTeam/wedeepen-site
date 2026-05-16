@@ -90,14 +90,18 @@ ${pageScripts()}
  * groups things visually.
  */
 function renderGroupedAlbums(albums) {
+  // Albums arrive sorted by display_order. Bucket into groups (preserving
+  // first-seen order) and a standalone list. Then render groups first,
+  // standalones last — per Christina's gallery ordering.
   const standalone = [];
-  const groups = new Map();   // parent_event -> { title, albums: [] }
+  const groups = new Map();   // parent_event -> { title, albums: [], firstOrder }
   for (const a of albums) {
     if (a.parent_event) {
       if (!groups.has(a.parent_event)) {
         groups.set(a.parent_event, {
           title: a.parent_event_title || a.parent_event,
           albums: [],
+          firstOrder: a.display_order ?? 9999,
         });
       }
       groups.get(a.parent_event).albums.push(a);
@@ -108,15 +112,9 @@ function renderGroupedAlbums(albums) {
 
   const sections = [];
 
-  if (standalone.length) {
-    sections.push(`<div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            ${standalone.map(a => renderAlbumCard(a)).join('\n            ')}
-          </div>
-        </div>`);
-  }
-
-  for (const [parentSlug, group] of groups) {
+  // Groups first, ordered by their first member's display_order
+  const orderedGroups = [...groups.entries()].sort((a, b) => a[1].firstOrder - b[1].firstOrder);
+  for (const [, group] of orderedGroups) {
     const totalPhotos = group.albums.reduce((sum, a) => sum + (a.photo_count || 0), 0);
     const eventLabel = group.albums.length === 1 ? 'event' : 'events';
     sections.push(`<div>
@@ -127,6 +125,15 @@ function renderGroupedAlbums(albums) {
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             ${group.albums.map(a => renderAlbumCard(a)).join('\n            ')}
+          </div>
+        </div>`);
+  }
+
+  // Standalone albums last (already in display_order order from fetch)
+  if (standalone.length) {
+    sections.push(`<div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            ${standalone.map(a => renderAlbumCard(a)).join('\n            ')}
           </div>
         </div>`);
   }

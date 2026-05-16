@@ -205,6 +205,30 @@
       "event_page_slug": null,
       "display_order": 90,
       "photographer": "Pierre Zah"
+    },
+    {
+      "slug": "dating-dojo-biohacking-conference",
+      "title": "The Dating Dojo — Biohacking Conference",
+      "description": "WeDeepen's Dating Dojo activation at the Biohacking Conference.",
+      "event_date": null,
+      "location": null,
+      "drive_folder_id": "14RucJ1n_d45aAPmJ6_Lc88eHgFjg5mNT",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 36,
+      "photographer": null
+    },
+    {
+      "slug": "dating-dojo-venice",
+      "title": "The Dating Dojo — Venice",
+      "description": "WeDeepen's Dating Dojo in Venice.",
+      "event_date": null,
+      "location": "Venice",
+      "drive_folder_id": "1xg2Ey4nc08BmcesEJy6fC6wRw0E-zguc",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 37,
+      "photographer": null
     }
   ]
 }

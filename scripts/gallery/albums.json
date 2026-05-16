@@ -249,6 +249,20 @@
       "photographer": "Allison Powers",
       "parent_event": "biohacking-love",
       "parent_event_title": "Biohacking Love"
+    },
+    {
+      "slug": "love-immersion-march-2026",
+      "title": "Love Immersion — March 2026",
+      "description": "Love Immersion retreat, March 2026.",
+      "event_date": "2026-03-21",
+      "location": null,
+      "drive_folder_id": null,
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 7,
+      "photographer": null,
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
     }
   ]
 }

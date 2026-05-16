@@ -213,14 +213,13 @@ async function setCoverIfMissing(albumId, mediaId) {
 }
 
 async function processAlbum(album, dryRun) {
-  if (!album.drive_folder_id) {
-    console.log(`  ⊘ ${album.slug}: no drive_folder_id; skip`);
-    return { skipped: true };
-  }
+  // drive_folder_id is no longer required — we now support manual-zip workflows
+  // where images are placed directly into the album's source dir. If there are
+  // no images on disk, that's the only blocker.
   const dir = path.join(SOURCE_DIR, album.slug);
   const images = await walkImages(dir);
   if (images.length === 0) {
-    console.log(`  ⊘ ${album.slug}: no images found at ${dir}; run download-drive.py first`);
+    console.log(`  ⊘ ${album.slug}: no images found at ${dir}; run download-drive.py or drop files into ${dir}`);
     return { skipped: true };
   }
   console.log(`  → ${album.slug}: ${images.length} images`);

@@ -49,9 +49,6 @@ ${pageNav()}
           <span class="text-white">Photo</span>
           <span class="italic" style="color: #C4577A;">Albums</span>
         </h1>
-        <p class="text-[15px] md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
-          Love Immersion, Biohacking Love, Dating Dojo, and more.
-        </p>
       </div>
     </section>
 

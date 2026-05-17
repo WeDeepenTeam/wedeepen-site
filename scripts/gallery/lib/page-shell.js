@@ -177,7 +177,6 @@ export function pageNav() {
         <a href="/love-immersion/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
-        <a href="/gallery/" class="text-white hover:text-white transition" aria-current="page">Gallery</a>
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
         <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
         <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
@@ -201,7 +200,6 @@ export function pageNav() {
       <a href="/love-immersion/" class="text-white hover:text-gold transition">Love Immersion</a>
       <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
-      <a href="/gallery/" class="text-white hover:text-gold transition">Gallery</a>
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
       <a href="/about/" class="text-white hover:text-gold transition">About</a>
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>

@@ -139,6 +139,20 @@
       "parent_event_title": "The Dating Dojo"
     },
     {
+      "slug": "christinas-bc-talk",
+      "title": "Christina's Biohacking Conference Talk",
+      "description": "Christina Weber on stage at the Biohacking Conference, sharing the science and practice of love.",
+      "event_date": "2025-05-30",
+      "location": null,
+      "drive_folder_id": "1A5knp5Pfh2WpIFi_X9l9OMNDQIR22ceV",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 29,
+      "photographer": null,
+      "parent_event": null,
+      "parent_event_title": null
+    },
+    {
       "slug": "medidating",
       "title": "MediDating",
       "description": "A town hall on love and relationships in the era of psychedelic medicine.",

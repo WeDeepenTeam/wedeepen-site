@@ -109,7 +109,7 @@
       "drive_folder_id": "1R27T9s2O1I2mFgVsBtkncK7IpyKyYxgK",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 38,
+      "display_order": 39,
       "photographer": "Allison Powers"
     },
     {
@@ -121,7 +121,7 @@
       "drive_folder_id": "1n9PB73mpIsvLntOhZ9HsTTXGWwjeXsh3",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 34,
+      "display_order": 35,
       "photographer": null
     },
     {
@@ -171,7 +171,7 @@
       "drive_folder_id": "156VEvmFFCpPoEooIPXqAGwcT5ogUORvz",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 33,
+      "display_order": 34,
       "photographer": null
     },
     {
@@ -183,7 +183,7 @@
       "drive_folder_id": "12iUzJwzJ2cDsvbXuuhK5faJ1x3FGn4Yv",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 36,
+      "display_order": 37,
       "photographer": null
     },
     {
@@ -195,7 +195,7 @@
       "drive_folder_id": "1GlCG8LKnhXRqlA3tZSws9D6PB8EYjTbZ",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 37,
+      "display_order": 38,
       "photographer": null
     },
     {
@@ -207,7 +207,7 @@
       "drive_folder_id": "16kLWBLAHTQf4F63Xbp_9gZhHfmD1hefX",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 35,
+      "display_order": 36,
       "photographer": null
     },
     {
@@ -263,6 +263,20 @@
       "photographer": null,
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
+    },
+    {
+      "slug": "atma-cosmic-heart-ceremony",
+      "title": "ĀTMA Cosmic Heart Ceremony",
+      "description": "A sacred ceremony co-held with ĀTMA. Cosmic heart, deepened presence, embodied connection.",
+      "event_date": "2025-06-01",
+      "location": "Austin, TX",
+      "drive_folder_id": null,
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 33,
+      "photographer": null,
+      "parent_event": null,
+      "parent_event_title": null
     }
   ]
 }

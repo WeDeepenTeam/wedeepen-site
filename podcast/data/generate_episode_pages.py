@@ -8,7 +8,7 @@ Re-run this script any time episodes.json is refreshed.
 import json, re, os, html, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3] / "wedeepen"
+ROOT = Path(__file__).resolve().parents[2]
 EPISODES_FILE = Path(__file__).resolve().parent / "episodes.json"
 OUTPUT_DIR = ROOT / "deepen-with-christina"
 
@@ -44,6 +44,20 @@ def render_episode_page(ep: dict, related: list) -> str:
     date_iso = ep.get("date", "")
     ep_num = ep.get("episode", "")
     audio_url = ep.get("audio", "")
+    youtube_id = ep.get("youtube_id", "")
+
+    # YouTube embed (video episodes) — rendered above the audio player when present.
+    youtube_embed = f"""
+  <!-- VIDEO -->
+  <section class="pb-8 md:pb-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black" style="box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
+        <iframe src="https://www.youtube-nocookie.com/embed/{youtube_id}" title="{title_esc}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+      </div>
+      <p class="text-white/45 text-xs text-center mt-3">Video episode &middot; <a href="https://www.youtube.com/watch?v={youtube_id}" target="_blank" rel="noopener" class="text-gold hover:underline">Watch on YouTube</a></p>
+    </div>
+  </section>
+""" if youtube_id else ""
 
     # Native audio URL from RSS enclosure (reliable, no external embed dependency)
     libsyn_slug = libsyn_embed_slug(ep.get("link", ""))
@@ -231,6 +245,8 @@ def render_episode_page(ep: dict, related: list) -> str:
     </div>
   </section>
 
+
+  {youtube_embed}
 
   <!-- AUDIO PLAYER -->
   <section class="pb-12 md:pb-16 px-6">

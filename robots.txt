@@ -1,0 +1,9 @@
+# wedeepen.com robots.txt
+# Allow all crawlers full access; redirect-only stubs are individually
+# marked with <meta name="robots" content="noindex"> and excluded from
+# the sitemap.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://wedeepen.com/sitemap.xml

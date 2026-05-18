@@ -102,11 +102,14 @@ def render_episode_page(ep: dict, related: list) -> str:
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
 
-  <meta property="og:type" content="music.song">
+  <meta property="og:type" content="article">
   <meta property="og:url" content="https://wedeepen.com{url_path}">
   <meta property="og:title" content="{title_esc}">
   <meta property="og:description" content="{desc_esc}">
   <meta property="og:image" content="{image_abs}">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="1400">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:site_name" content="Deepen with Christina">
 
   <meta name="twitter:card" content="summary_large_image">

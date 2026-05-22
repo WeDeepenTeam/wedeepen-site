@@ -81,6 +81,7 @@ If origin moved while you were editing, `git rebase origin/main` before pushing.
 
 ## Code guards
 
+- **🔒 FAVICON IS LOCKED — DO NOT CHANGE.** The canonical favicon source is `/favicon-source.png` (500×500, WeDeepen circular wave mark). All `favicon-*.png`, `favicon.ico`, `favicon.svg`, and `apple-touch-icon.png` are generated from that source. **Do not regenerate, replace, or "improve" any favicon file without an explicit request from Christina that names the new source image.** If you see what looks like a generic or wrong favicon and feel the urge to "fix" it, stop — verify `favicon-source.png` matches what Christina wants first. This rule exists because multiple agents kept replacing the favicon and undoing each other.
 - **Tailwind via CDN** — no build step, no `tailwind.config.js`. Use utility classes directly. Custom colors are defined inline in the `tailwind.config` script tag at the top of each page.
 - **Paths:** Gallery lives at `/gallery/` — never `/wedeepen/gallery/`. The site is at the domain root, no subpath.
 - **No personal info** in committed HTML (member names, emails, phone numbers, addresses).

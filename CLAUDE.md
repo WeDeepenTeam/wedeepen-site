@@ -19,6 +19,63 @@ There is a sister repo, [`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/
 3. **Run SQL migrations directly** against Supabase, never paste them into chat and ask the user to run them.
 4. **Verify deploy success after every push** via `gh run list --limit 3`.
 5. **Use a feature branch for every non-trivial change.** Never push directly to `main` for content/code changes. Trivial typo fixes on `main` are OK.
+6. **Do the work in a worktree, not the main checkout.** See "Multi-session safety" below — multiple Claude sessions and GitHub Actions agents (`WeDeepenTeam/claude/*`) edit this repo in parallel.
+
+---
+
+## Multi-session safety
+
+Multiple agents (local Claude sessions + Claude Code GitHub Actions on `WeDeepenTeam/claude/*` branches) routinely touch this repo at the same time. Skipping these rules causes lost work, duplicate commits, and stale-state corruption — all of which have happened.
+
+### Preflight check at session start
+
+Before any edit in this repo, run:
+
+```bash
+cd ~/Documents/Codingprojects/wedeepen-site
+git fetch origin
+[ -f .git/index.lock ] && echo "⚠️  STALE LOCK — investigate before any git op"
+git stash list | head -10
+git status --short | head -10
+git log --oneline HEAD..origin/main | head -5
+```
+
+Stop and investigate if you see any of:
+
+- A `.git/index.lock` file (another git op crashed or is mid-flight)
+- Stashes named `wip-*`, `before-*`, or `parallel-*` (another session is mid-task)
+- Uncommitted changes in the working tree you didn't make
+- `HEAD` is more than ~2 commits behind `origin/main`
+
+### Work in a worktree
+
+For anything beyond a one-line copy edit, use a dedicated worktree branched off the latest `origin/main`. Never edit the main checkout if another session might be active there.
+
+```bash
+git fetch origin
+git worktree add ../wedeepen-site-worktrees/<task-slug> \
+    -b claude/<task-slug> origin/main
+cd ../wedeepen-site-worktrees/<task-slug>
+# ... edit, commit, push branch, open PR ...
+git worktree remove ../wedeepen-site-worktrees/<task-slug>
+```
+
+Directory convention: `../wedeepen-site-worktrees/<task-slug>` (sibling to the repo, NOT under `/tmp` which is volatile across reboots).
+
+### Re-fetch immediately before push
+
+Origin moves fast on this repo. A 10-minute editing window can put `origin/main` 3+ commits ahead. Right before pushing:
+
+```bash
+git fetch origin main
+git log --oneline HEAD..origin/main  # empty = clean fast-forward
+```
+
+If origin moved while you were editing, `git rebase origin/main` before pushing.
+
+### Never run destructive ops without explicit confirmation
+
+`git reset --hard`, `git push --force`, `git checkout -- .`, removing stashes you didn't create — these can wipe a parallel session's in-flight work. When in doubt, stash with a clearly-named label (`claude/<task>-<YYYY-MM-DD>`) and ask the user before doing anything destructive.
 
 ---
 
@@ -126,3 +183,16 @@ If a task seems ambiguous about whether it belongs in this repo or `my-app`, ask
 - Both? → Likely two separate PRs, one per repo, linked in their descriptions.
 
 Default to asking before mixing concerns across repos.
+
+---
+
+## Common pitfalls (learned the hard way)
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `git diff` shows 100+ unexpected files | Another session's uncommitted work in the main checkout | Don't edit. Switch to a fresh worktree off `origin/main`. |
+| `pack file ... is far too short` | Interrupted fetch from a previous session | `git fetch origin --prune` to re-download |
+| Local commit duplicates an `origin/main` commit (same message, different SHA) | You committed locally before the PR-based version landed via Actions | Reset to `origin/main` after verifying file contents match — ask user first |
+| `.git/index.lock` exists and is > 1h old | Crashed git op from a prior session | Safe to `rm .git/index.lock` if no `git` process is running |
+| Push rejected: non-fast-forward | Origin moved during your edit window | `git fetch && git rebase origin/main`, then push |
+| Stash list has `wip-*` / `before-*` / `parallel-*` entries you don't recognize | Another session is mid-task | Don't touch those stashes. Coordinate with the user before any destructive op. |

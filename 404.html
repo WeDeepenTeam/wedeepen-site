@@ -11,6 +11,23 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
+  <!-- Case-insensitive aliases for campaign URLs.
+       GitHub Pages serves URLs case-sensitively, but printed posters / QRs
+       can produce uppercase typed URLs (e.g. /BC26 from a postcard).
+       This runs synchronously in <head> before the meta-refresh fires. -->
+  <script>
+    (function () {
+      var path = (location.pathname || '').toLowerCase().replace(/\/+$/, '');
+      var aliases = {
+        '/bc26': '/bc26/'
+        // Add more here as new campaign URLs ship.
+      };
+      if (aliases[path]) {
+        location.replace(aliases[path] + location.search + location.hash);
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --ink: #1A1A1A;

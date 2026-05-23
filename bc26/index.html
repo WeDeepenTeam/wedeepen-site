@@ -234,7 +234,55 @@
       padding: 6px 12px;
       border-radius: 9999px;
       box-shadow: 0 6px 18px rgba(232,51,122,0.4);
+      z-index: 2;
     }
+
+    /* Way-card image header — full-bleed image with a small numeral badge overlay.
+       When a card has .way-media, hide the default big .way-numeral and use the badge. */
+    .way-media {
+      position: relative;
+      margin: -32px -28px 22px;
+      border-radius: 18px 18px 0 0;
+      overflow: hidden;
+      background: #1A0C12;
+    }
+    .way-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .way-card:hover .way-img { transform: scale(1.04); }
+    /* Subtle dark gradient at the bottom of the image for legibility of any text below */
+    .way-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(20,8,14,0.55) 100%);
+      pointer-events: none;
+    }
+    .way-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      width: 42px; height: 42px;
+      border-radius: 9999px;
+      background: rgba(20,8,14,0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    /* When a card has .way-media, suppress the big serif numeral
+       (badge takes its place). */
+    .way-card:has(.way-media) .way-numeral { display: none; }
 
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -426,6 +474,10 @@
 
         <!-- 1 · Biohacking Love -->
         <article class="way-card reveal">
+          <div class="way-media">
+            <img src="/images/bc26/biohacking-love.jpg" alt="Biohacking Love event in Austin" class="way-img" loading="lazy">
+            <div class="way-badge" aria-hidden="true">1</div>
+          </div>
           <div class="way-numeral">1</div>
           <p class="way-eyebrow">Feel it for yourself</p>
           <h3 class="way-title">Biohacking Love</h3>
@@ -441,6 +493,10 @@
 
         <!-- 2 · Love Immersion -->
         <article class="way-card reveal">
+          <div class="way-media">
+            <img src="/images/bc26/love-immersion.jpg" alt="Love Immersion retreat in Austin" class="way-img" loading="lazy">
+            <div class="way-badge" aria-hidden="true">2</div>
+          </div>
           <div class="way-numeral">2</div>
           <p class="way-eyebrow">Go deeper</p>
           <h3 class="way-title">Love Immersion</h3>

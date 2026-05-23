@@ -302,32 +302,26 @@
 <body class="bg-ink text-white">
 
   <!-- ============================
-       MINIMAL HEADER — logo only.
-       This is a single-purpose conversion page; nav would leak attention.
-       ============================ -->
-  <header class="absolute top-0 left-0 right-0 z-30">
-    <div class="max-w-site mx-auto flex items-center px-6 py-5 gap-5 sm:gap-6">
-      <a href="/" class="flex items-center" aria-label="WeDeepen home">
-        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
-      </a>
-      <!-- Thin divider so DEEPEN and BEYOND read as paired-but-distinct brands -->
-      <span class="w-px h-7 bg-white/15" aria-hidden="true"></span>
-      <img src="/images/partners/beyond-biohacking-mark.webp"
-           alt="Dave Asprey BEYOND Biohacking Conference"
-           class="h-10 sm:h-12 w-auto opacity-90"
-           width="220" height="116"
-           loading="eager">
-    </div>
-  </header>
-
-  <!-- ============================
        HERO + FORM
+       (Logos live in the headline column — no fixed header.)
        ============================ -->
-  <section class="bc-hero pt-28 sm:pt-32 pb-20 sm:pb-24 px-5">
+  <section class="bc-hero pt-12 sm:pt-16 pb-20 sm:pb-24 px-5">
     <div class="max-w-site mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
       <!-- Headline column -->
       <div class="reveal">
+        <!-- DEEPEN + BEYOND paired logos, anchoring the page right above the eyebrow -->
+        <div class="flex items-center gap-4 sm:gap-5 mb-6">
+          <a href="/" class="flex items-center" aria-label="WeDeepen home">
+            <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+          </a>
+          <span class="w-px h-7 bg-white/15" aria-hidden="true"></span>
+          <img src="/images/partners/beyond-biohacking-mark.webp"
+               alt="Dave Asprey BEYOND Biohacking Conference"
+               class="h-10 sm:h-12 w-auto opacity-90"
+               width="220" height="116"
+               loading="eager">
+        </div>
         <p class="text-xs sm:text-sm uppercase tracking-[0.28em] accent-gold mb-5 font-medium">
           You just scanned a WeDeepen QR
         </p>
@@ -344,7 +338,7 @@
              role="note"
              aria-label="WeDeepen booth location at the conference">
           <span class="inline-block w-2 h-2 rounded-full bg-[#E8337A] animate-pulse flex-shrink-0" aria-hidden="true"></span>
-          <span><strong class="font-semibold">Come find us at Booth 20</strong> · 3rd floor, next to the main stage</span>
+          <span><strong class="font-semibold">Come visit WeDeepen at Booth 20</strong> · 3rd floor, next to the main stage</span>
         </div>
       </div>
 

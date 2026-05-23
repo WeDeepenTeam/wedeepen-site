@@ -525,39 +525,68 @@
   </section>
 
   <!-- ============================
-       TRUST STRIP
+       TRUST STRIP — Live Google Reviews via Elfsight
        ============================ -->
-  <section class="py-12 px-5 border-t border-white/5 bg-ink">
-    <div class="max-w-site mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-center sm:text-left">
-      <div class="flex items-center gap-3">
-        <span class="stars text-xl text-[#E8337A]" aria-hidden="true">★★★★★</span>
-        <span class="text-white/80 text-sm font-medium">5.0 on Google</span>
-      </div>
-      <span class="hidden sm:inline text-white/20">·</span>
-      <p class="text-white/70 text-sm max-w-xl leading-relaxed">
+  <section class="py-14 sm:py-16 px-5 border-t border-white/5 bg-ink">
+    <div class="max-w-site mx-auto">
+      <!-- Elfsight Google Reviews widget (lazy-loaded; styled by Elfsight) -->
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-2e5e860c-38e2-4529-b2ec-4ad0d886799f" data-elfsight-app-lazy></div>
+
+      <!-- Supporting line: Strategist credibility under the reviews -->
+      <p class="text-center text-white/60 text-sm sm:text-base mt-10 max-w-2xl mx-auto leading-relaxed">
         Guided by the WeDeepen Love Strategists — including
-        <span class="text-white">Dave Asprey</span>,
-        <span class="text-white">Ken Page</span>, and
-        <span class="text-white">Annie Lalla</span>.
+        <span class="text-white/85 font-medium">Dave Asprey</span>,
+        <span class="text-white/85 font-medium">Ken Page</span>, and
+        <span class="text-white/85 font-medium">Annie Lalla</span>.
       </p>
     </div>
   </section>
 
   <!-- ============================
-       FOUNDER NOTE
+       FOUNDER NOTE — photo + pull-quote side-by-side
        ============================ -->
-  <section class="py-20 px-5 bg-[#100509]">
-    <div class="max-w-2xl mx-auto text-center reveal">
-      <p class="text-xs uppercase tracking-[0.28em] accent-gold mb-5 font-semibold">
-        A note from the founder
-      </p>
-      <!-- TODO(christina): replace with 2–3 first-person sentences:
-           why you built WeDeepen, the "love is a skill" belief, a warm personal invitation. -->
-      <blockquote class="font-heading text-2xl sm:text-3xl leading-snug text-white/90 mb-6 italic">
-        "Love is the most consequential skill of a long life — and almost no one is being taught it.
-        That's why I built WeDeepen. If you're here, I'd love to meet you at one of the three doors above."
-      </blockquote>
-      <p class="text-sm text-white/55">— Christina Weber, Founder · WeDeepen</p>
+  <section class="py-20 sm:py-24 px-5 bg-[#100509]">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-10 md:gap-14 items-center">
+
+        <!-- Christina photo with subtle gold/pink ring -->
+        <div class="relative mx-auto md:mx-0 max-w-sm md:max-w-none">
+          <div class="relative rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.5)]
+                      ring-1 ring-white/10">
+            <img src="/images/bc26/christina-weber.jpg"
+                 alt="Christina Weber, founder of WeDeepen"
+                 class="w-full h-auto block"
+                 loading="lazy">
+            <!-- Soft pink glow on the bottom edge to tie into the brand accent -->
+            <div class="absolute inset-x-0 bottom-0 h-24
+                        bg-gradient-to-t from-[#A01B4A]/30 to-transparent pointer-events-none"></div>
+          </div>
+          <!-- Floating accent: a thin gold underline mark like the rest of the site -->
+          <div class="hidden md:block absolute -bottom-3 left-6 w-16 h-[2px] bg-[#C9A277]"></div>
+        </div>
+
+        <!-- Quote -->
+        <div class="text-center md:text-left">
+          <p class="text-xs uppercase tracking-[0.28em] accent-gold mb-5 font-semibold">
+            A note from the founder
+          </p>
+          <!-- Decorative open-quote glyph -->
+          <span class="block font-heading text-[#E8337A] text-6xl leading-none mb-2
+                       md:-ml-1" aria-hidden="true">&ldquo;</span>
+          <!-- TODO(christina): replace with 2–3 first-person sentences:
+               why you built WeDeepen, the "love is a skill" belief, a warm personal invitation. -->
+          <blockquote class="font-heading text-xl sm:text-2xl lg:text-[1.7rem] leading-snug text-white/90 italic mb-6">
+            Love is the most consequential skill of a long life — and almost no one is being taught it.
+            That's why I built WeDeepen. If you're here, I'd love to meet you at one of the three doors above.
+          </blockquote>
+          <p class="text-sm text-white/55">
+            <span class="text-white/80 font-medium">Christina Weber</span>
+            · Founder, WeDeepen
+          </p>
+        </div>
+
+      </div>
     </div>
   </section>
 

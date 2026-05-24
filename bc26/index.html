@@ -633,10 +633,9 @@
     const CIRCLE_ENDPOINT = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/bc26-form';
 
     // 3) Go High Level inbound webhook — handles SMS and CRM contact.
-    //    Tag in GHL workflow: BC2026. Partial leads flagged so SMS doesn't fire
-    //    without consent (see workflow filter step).
-    //    TODO(christina): paste GHL inbound webhook URL once the workflow is built.
-    const GHL_ENDPOINT    = ''; // e.g. 'https://services.leadconnectorhq.com/hooks/...'
+    //    Workflow: "BC26 — Lead Capture & SMS Series" in Christina's GHL.
+    //    Applies tag BC2026; partial leads tagged BC2026-PARTIAL and skip SMS.
+    const GHL_ENDPOINT    = 'https://services.leadconnectorhq.com/hooks/muz6YTj0nspR2xJ2ppQP/webhook-trigger/0e8d219f-b8b7-4aa6-990a-2f9d0c299926';
 
     // GA4 fires automatically via window.gtag if the global is loaded site-wide.
     // ============================================================

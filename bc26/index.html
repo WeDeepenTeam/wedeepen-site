@@ -459,9 +459,9 @@
           Three Ways In
         </p>
         <h2 class="font-heading text-3xl sm:text-5xl font-semibold mb-5 leading-tight">
-          Wherever you're starting from, <span class="accent-pink">there's a door</span>.
+          Love is a skill you can <span class="accent-pink">master</span>.
         </h2>
-        <p class="text-white/65 text-lg">Pick one.</p>
+        <p class="text-white/65 text-lg">Make your move.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -616,16 +616,29 @@
        ============================ -->
   <script>
     // ============================================================
-    //  CONFIG — Christina, fill these in:
+    //  CONFIG — three destinations, fired in parallel on every submission
     // ============================================================
-    // 1) Paste the Apps Script Web App URL once the Sheet endpoint is deployed.
-    //    The deployed Web App should accept POSTs with these fields and append a row.
-    //    See: https://developers.google.com/apps-script/guides/web
-    const APPS_SCRIPT_ENDPOINT = ''; // e.g. 'https://script.google.com/macros/s/AKfycb.../exec'
+    // Each form submission fans out to all three endpoints simultaneously.
+    // Each is independent — if one is offline, the others still go through.
+    // Empty strings disable the corresponding destination silently.
 
-    // 2) GA4 measurement ID is optional. If GA4 is already loaded site-wide
-    //    via gtag, events fire automatically. Otherwise leave gtag undefined
-    //    and tracking is a silent no-op.
+    // 1) Google Sheet backup via Apps Script Web App.
+    //    Source: standalone Apps Script project "BC26 Form Receiver" (Christina's Drive).
+    const SHEET_ENDPOINT  = 'https://script.google.com/macros/s/AKfycbzhiK2daDBKz2DPfhb_f0Kh0V9CMe_xTzEsIasCdBu3vckJzfXqFiJGqoYQhmxdoWCw/exec';
+
+    // 2) Circle membership + welcome email via Supabase Edge Function.
+    //    Source: supabase/functions/bc26-form/index.ts in the my-app repo.
+    //    Applies "bc26", "bc26-welcome-email" (or "bc26-partial"), "sms-consent" tags.
+    //    A Circle Workflow listening for "bc26-welcome-email" fires the welcome email.
+    const CIRCLE_ENDPOINT = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/bc26-form';
+
+    // 3) Go High Level inbound webhook — handles SMS and CRM contact.
+    //    Tag in GHL workflow: BC2026. Partial leads flagged so SMS doesn't fire
+    //    without consent (see workflow filter step).
+    //    TODO(christina): paste GHL inbound webhook URL once the workflow is built.
+    const GHL_ENDPOINT    = ''; // e.g. 'https://services.leadconnectorhq.com/hooks/...'
+
+    // GA4 fires automatically via window.gtag if the global is loaded site-wide.
     // ============================================================
 
     // Footer year
@@ -695,24 +708,39 @@
       setTimeout(() => focusEl && focusEl.focus({ preventScroll: true }), 60);
     }
 
-    // ----- Submit helper: POST to Apps Script -----
-    // Apps Script Web Apps don't return CORS headers for cross-origin fetch.
-    // Posting as text/plain (or form-encoded) avoids the CORS preflight and
-    // works fine for write-only endpoints. We don't read the response.
-    function postToSheet(payload) {
-      if (!APPS_SCRIPT_ENDPOINT) {
-        console.warn('[bc26] APPS_SCRIPT_ENDPOINT not configured — submission not sent.');
-        return Promise.resolve({ ok: false, reason: 'not-configured' });
+    // ----- Submit helper: fan out to all configured endpoints -----
+    // Each endpoint is fired in parallel and treated independently. We use
+    // mode:'no-cors' + text/plain body uniformly — it avoids CORS preflight
+    // (some corp/firewall setups block OPTIONS), works for all three endpoints,
+    // and we never need to read the response (we always show the user success).
+    // keepalive lets partial-lead POSTs survive page navigation.
+    function postEndpoint(label, url, payload) {
+      if (!url) {
+        console.warn('[bc26] endpoint not configured:', label);
+        return Promise.resolve({ label, ok: false, reason: 'not-configured' });
       }
-      return fetch(APPS_SCRIPT_ENDPOINT, {
+      return fetch(url, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
-        keepalive: true, // survive page unload (helps partial-lead capture)
-      }).then(() => ({ ok: true })).catch((err) => {
-        console.warn('[bc26] sheet POST failed', err);
-        return { ok: false, reason: 'network' };
+        keepalive: true,
+      }).then(() => ({ label, ok: true })).catch((err) => {
+        console.warn('[bc26] ' + label + ' POST failed', err);
+        return { label, ok: false, reason: 'network' };
+      });
+    }
+
+    function submitLead(payload) {
+      // allSettled so one slow endpoint never blocks the others; the form UX
+      // never waits on any single endpoint to "succeed."
+      return Promise.allSettled([
+        postEndpoint('sheet',  SHEET_ENDPOINT,  payload),
+        postEndpoint('circle', CIRCLE_ENDPOINT, payload),
+        postEndpoint('ghl',    GHL_ENDPOINT,    payload),
+      ]).then((results) => {
+        const summary = results.map(r => r.status === 'fulfilled' ? r.value : { ok: false, reason: 'rejected' });
+        return { ok: summary.some(r => r.ok), endpoints: summary };
       });
     }
 
@@ -738,8 +766,9 @@
       if (!ok) return;
 
       // Fire partial-lead capture in the background so we don't lose
-      // visitors who bail on step 2. Tagged partial=true.
-      postToSheet(Object.assign(basePayload(), { partial: 'Y' }));
+      // visitors who bail on step 2. Tagged partial=Y so downstream systems
+      // (Circle workflow, GHL workflow) skip the SMS / welcome-email branches.
+      submitLead(Object.assign(basePayload(), { partial: 'Y' }));
       track('bc26_form_step1_complete', { event_category: 'bc26' });
 
       showStep(2);
@@ -770,11 +799,12 @@
 
       const payload = Object.assign(basePayload(), { partial: 'N' });
 
-      postToSheet(payload).then((res) => {
+      submitLead(payload).then((res) => {
         track('bc26_form_submit', {
           event_category: 'bc26',
           has_phone: phoneGiven ? 'yes' : 'no',
-          submission_status: res.ok ? 'ok' : res.reason,
+          submission_status: res.ok ? 'ok' : 'all_failed',
+          endpoints: JSON.stringify(res.endpoints.map(e => ({ label: e.label, ok: e.ok }))),
         });
 
         // Success state — always show, even on network error.

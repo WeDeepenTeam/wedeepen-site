@@ -342,108 +342,33 @@
         </div>
       </div>
 
-      <!-- Form card -->
+      <!-- Form card — Circle-hosted form "BC26" (form uid b0139f65)
+           Managed at: https://circle.wedeepenloveclub.com/settings/emails/forms/15342
+           Style overrides applied in Circle's Properties panel:
+             bg #1A0C12, text #F4EDE0, button bg #E8337A, button text #FFFFFF.
+           Submissions land directly in Circle's BC26 Love Club community; a Circle
+           Workflow on the BC2026 tag should fan out to GHL (SMS) and the welcome
+           email. See /supabase/functions/bc26-form for the prior direct-API path. -->
       <div class="reveal">
+        <p class="text-xs uppercase tracking-[0.22em] accent-gold font-semibold mb-3 text-center sm:text-left">
+          Start here
+        </p>
         <div class="bc-form-card p-6 sm:p-8">
-          <!-- Default state -->
-          <div id="bc-form-state">
-            <p class="text-xs uppercase tracking-[0.22em] accent-gold font-semibold mb-2">
-              Start here
-            </p>
-            <h2 class="font-heading text-2xl sm:text-3xl mb-2">
-              Get your three ways in.
-            </h2>
-            <p class="text-white/65 text-sm mb-6 leading-relaxed">
-              Name, email, city, number — we'll text the links so they don't get lost in the conference shuffle.
-            </p>
-
-            <form id="bc-form" novalidate>
-              <!-- Step indicator -->
-              <p id="bc-step-indicator" class="text-xs uppercase tracking-[0.2em] text-white/45 mb-4">
-                Step 1 of 2
-              </p>
-
-              <!-- Step 1: Name + Email -->
-              <div class="bc-step active" data-step="1">
-                <div class="mb-4">
-                  <label for="bc-name" class="block text-xs text-white/60 mb-1.5">Your name</label>
-                  <input id="bc-name" name="name" type="text" autocomplete="name" required
-                         class="bc-input" placeholder="Alex Rivera">
-                  <p class="bc-field-error" data-error-for="name">Please enter your name.</p>
-                </div>
-                <div class="mb-5">
-                  <label for="bc-email" class="block text-xs text-white/60 mb-1.5">Email</label>
-                  <input id="bc-email" name="email" type="email" inputmode="email"
-                         autocomplete="email" required
-                         class="bc-input" placeholder="you@domain.com">
-                  <p class="bc-field-error" data-error-for="email">Please enter a valid email.</p>
-                </div>
-                <button type="button" id="bc-continue" class="btn-pink">
-                  Continue
-                  <span aria-hidden="true">→</span>
-                </button>
-              </div>
-
-              <!-- Step 2: City + Phone + Consent -->
-              <div class="bc-step" data-step="2">
-                <div class="mb-4">
-                  <label for="bc-city" class="block text-xs text-white/60 mb-1.5">City</label>
-                  <input id="bc-city" name="city" type="text" autocomplete="address-level2"
-                         class="bc-input" placeholder="Austin">
-                </div>
-                <div class="mb-3">
-                  <label for="bc-phone" class="block text-xs text-white/60 mb-1.5">
-                    Mobile number
-                    <span class="text-white/40 font-normal normal-case tracking-normal">— where should we text your links?</span>
-                  </label>
-                  <input id="bc-phone" name="phone" type="tel" inputmode="tel"
-                         autocomplete="tel"
-                         class="bc-input" placeholder="(555) 123-4567">
-                  <p class="bc-field-error" data-error-for="phone">Please enter a valid phone number.</p>
-                </div>
-
-                <!-- SMS consent — TCPA. Required ONLY if a phone number is provided. -->
-                <label class="flex items-start gap-3 text-xs text-white/60 leading-relaxed mb-5 cursor-pointer">
-                  <input id="bc-consent" name="sms_consent" type="checkbox"
-                         class="mt-1 h-4 w-4 rounded border-white/30 bg-white/10 accent-pink-hot flex-shrink-0">
-                  <span>
-                    I agree to receive texts from WeDeepen about my next steps.
-                    Msg &amp; data rates may apply. Reply STOP to opt out.
-                  </span>
-                </label>
-                <p class="bc-field-error mb-3" data-error-for="consent">
-                  Please confirm SMS consent (or leave the phone number blank).
-                </p>
-
-                <button type="submit" id="bc-submit" class="btn-pink">
-                  Show me the 3 ways in
-                  <span aria-hidden="true">→</span>
-                </button>
-
-                <button type="button" id="bc-back"
-                        class="block mx-auto mt-3 text-xs text-white/50 hover:text-white/80 transition">
-                  ← Back
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <!-- Success state (hidden by default) -->
-          <div id="bc-success" class="hidden text-center py-2">
-            <div class="text-4xl mb-3" aria-hidden="true">✦</div>
-            <h2 class="font-heading text-2xl sm:text-3xl mb-3">You're in.</h2>
-            <p id="bc-success-msg" class="text-white/75 leading-relaxed mb-6">
-              Your three ways in are right below. Pick the one that fits.
-            </p>
-            <a href="#ways" class="btn-pink" style="width:auto;display:inline-flex;">
-              See the 3 ways
-              <span aria-hidden="true">↓</span>
-            </a>
-          </div>
+          <div data-is-popup="false" data-circle-form-uid="b0139f65"></div>
+          <script>
+            if (!window.circleFormsScriptLoaded) {
+              window.circleFormsScriptLoaded = true;
+              const s = document.createElement('script');
+              s.src = 'https://circle.wedeepenloveclub.com/external/form-embeds.js';
+              s.defer = true;
+              document.head.appendChild(s);
+            }
+          </script>
         </div>
         <p class="text-[11px] text-white/40 mt-4 text-center px-4 leading-relaxed">
-          We text and email only about WeDeepen offerings.
-          See our <a href="/privacy/" class="underline hover:text-white/70">privacy policy</a>.
+          By submitting, you agree to receive SMS &amp; email from WeDeepen.
+          Reply STOP to opt out. See our
+          <a href="/privacy/" class="underline hover:text-white/70">privacy policy</a>.
         </p>
       </div>
     </div>
@@ -615,30 +540,13 @@
        SCRIPTS
        ============================ -->
   <script>
-    // ============================================================
-    //  CONFIG — three destinations, fired in parallel on every submission
-    // ============================================================
-    // Each form submission fans out to all three endpoints simultaneously.
-    // Each is independent — if one is offline, the others still go through.
-    // Empty strings disable the corresponding destination silently.
-
-    // 1) Google Sheet backup via Apps Script Web App.
-    //    Source: standalone Apps Script project "BC26 Form Receiver" (Christina's Drive).
-    const SHEET_ENDPOINT  = 'https://script.google.com/macros/s/AKfycbzhiK2daDBKz2DPfhb_f0Kh0V9CMe_xTzEsIasCdBu3vckJzfXqFiJGqoYQhmxdoWCw/exec';
-
-    // 2) Circle membership + welcome email via Supabase Edge Function.
-    //    Source: supabase/functions/bc26-form/index.ts in the my-app repo.
-    //    Applies "bc26", "bc26-welcome-email" (or "bc26-partial"), "sms-consent" tags.
-    //    A Circle Workflow listening for "bc26-welcome-email" fires the welcome email.
-    const CIRCLE_ENDPOINT = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/bc26-form';
-
-    // 3) Go High Level inbound webhook — handles SMS and CRM contact.
-    //    Workflow: "BC26 — Lead Capture & SMS Series" in Christina's GHL.
-    //    Applies tag BC2026; partial leads tagged BC2026-PARTIAL and skip SMS.
-    const GHL_ENDPOINT    = 'https://services.leadconnectorhq.com/hooks/muz6YTj0nspR2xJ2ppQP/webhook-trigger/9212c4e0-71bd-4a33-b3af-e66ffcd6c8f2';
-
+    // Lead capture lives in the Circle-hosted form embed above. Submissions land
+    // directly in the BC26 Love Club community; downstream Circle Workflows fan
+    // out to GHL (SMS) and the welcome email. See git history for the prior
+    // direct-fan-out implementation (Sheet + Supabase Edge Function + GHL webhook)
+    // if you want to restore three-endpoint capture.
+    //
     // GA4 fires automatically via window.gtag if the global is loaded site-wide.
-    // ============================================================
 
     // Footer year
     document.getElementById('bc-year').textContent = new Date().getFullYear();
@@ -659,171 +567,6 @@
         }
       } catch (_) { /* never break the form on tracking errors */ }
     }
-
-    // ----- Form logic -----
-    const form         = document.getElementById('bc-form');
-    const stepIndicator= document.getElementById('bc-step-indicator');
-    const step1        = form.querySelector('[data-step="1"]');
-    const step2        = form.querySelector('[data-step="2"]');
-    const continueBtn  = document.getElementById('bc-continue');
-    const backBtn      = document.getElementById('bc-back');
-    const submitBtn    = document.getElementById('bc-submit');
-    const formState    = document.getElementById('bc-form-state');
-    const successState = document.getElementById('bc-success');
-    const successMsg   = document.getElementById('bc-success-msg');
-
-    const nameInput    = document.getElementById('bc-name');
-    const emailInput   = document.getElementById('bc-email');
-    const cityInput    = document.getElementById('bc-city');
-    const phoneInput   = document.getElementById('bc-phone');
-    const consentInput = document.getElementById('bc-consent');
-
-    function setError(name, show) {
-      const err = form.querySelector('[data-error-for="' + name + '"]');
-      if (err) err.classList.toggle('visible', !!show);
-      const input = name === 'consent'
-        ? consentInput
-        : document.getElementById('bc-' + name);
-      if (input && input.setAttribute) {
-        input.setAttribute('aria-invalid', show ? 'true' : 'false');
-      }
-    }
-
-    function isValidEmail(v) {
-      // Pragmatic, not RFC-perfect — keeps weird-but-valid addresses through.
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim());
-    }
-    function isValidPhone(v) {
-      const digits = String(v || '').replace(/\D/g, '');
-      return digits.length >= 10 && digits.length <= 15;
-    }
-
-    function showStep(n) {
-      step1.classList.toggle('active', n === 1);
-      step2.classList.toggle('active', n === 2);
-      stepIndicator.textContent = 'Step ' + n + ' of 2';
-      // Move focus to the first field of the new step for keyboard users.
-      const focusEl = (n === 1) ? nameInput : cityInput;
-      setTimeout(() => focusEl && focusEl.focus({ preventScroll: true }), 60);
-    }
-
-    // ----- Submit helper: fan out to all configured endpoints -----
-    // Each endpoint is fired in parallel and treated independently. We use
-    // mode:'no-cors' + text/plain body uniformly — it avoids CORS preflight
-    // (some corp/firewall setups block OPTIONS), works for all three endpoints,
-    // and we never need to read the response (we always show the user success).
-    // keepalive lets partial-lead POSTs survive page navigation.
-    function postEndpoint(label, url, payload) {
-      if (!url) {
-        console.warn('[bc26] endpoint not configured:', label);
-        return Promise.resolve({ label, ok: false, reason: 'not-configured' });
-      }
-      return fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-        keepalive: true,
-      }).then(() => ({ label, ok: true })).catch((err) => {
-        console.warn('[bc26] ' + label + ' POST failed', err);
-        return { label, ok: false, reason: 'network' };
-      });
-    }
-
-    function submitLead(payload) {
-      // allSettled so one slow endpoint never blocks the others; the form UX
-      // never waits on any single endpoint to "succeed."
-      return Promise.allSettled([
-        postEndpoint('sheet',  SHEET_ENDPOINT,  payload),
-        postEndpoint('circle', CIRCLE_ENDPOINT, payload),
-        postEndpoint('ghl',    GHL_ENDPOINT,    payload),
-      ]).then((results) => {
-        const summary = results.map(r => r.status === 'fulfilled' ? r.value : { ok: false, reason: 'rejected' });
-        return { ok: summary.some(r => r.ok), endpoints: summary };
-      });
-    }
-
-    function basePayload() {
-      return {
-        timestamp: new Date().toISOString(),
-        source:    'bc26',
-        name:      nameInput.value.trim(),
-        email:     emailInput.value.trim(),
-        city:      cityInput.value.trim(),
-        phone:     phoneInput.value.trim(),
-        sms_consent: consentInput.checked ? 'Y' : 'N',
-        user_agent: navigator.userAgent,
-        referrer:   document.referrer || '',
-      };
-    }
-
-    // ----- Step 1 → Step 2 -----
-    continueBtn.addEventListener('click', () => {
-      let ok = true;
-      if (!nameInput.value.trim())  { setError('name', true);  ok = false; } else { setError('name', false); }
-      if (!isValidEmail(emailInput.value)) { setError('email', true); ok = false; } else { setError('email', false); }
-      if (!ok) return;
-
-      // Fire partial-lead capture in the background so we don't lose
-      // visitors who bail on step 2. Tagged partial=Y so downstream systems
-      // (Circle workflow, GHL workflow) skip the SMS / welcome-email branches.
-      submitLead(Object.assign(basePayload(), { partial: 'Y' }));
-      track('bc26_form_step1_complete', { event_category: 'bc26' });
-
-      showStep(2);
-    });
-
-    backBtn.addEventListener('click', () => showStep(1));
-
-    // ----- Final submit -----
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Re-validate step 1 (in case they edited via Back).
-      let ok = true;
-      if (!nameInput.value.trim())  { setError('name', true);  ok = false; } else { setError('name', false); }
-      if (!isValidEmail(emailInput.value)) { setError('email', true); ok = false; } else { setError('email', false); }
-      if (!ok) { showStep(1); return; }
-
-      // Phone is optional, but if provided it must be valid AND consent must be checked.
-      const phoneGiven = phoneInput.value.trim().length > 0;
-      if (phoneGiven && !isValidPhone(phoneInput.value)) {
-        setError('phone', true); return;
-      } else { setError('phone', false); }
-      if (phoneGiven && !consentInput.checked) {
-        setError('consent', true); return;
-      } else { setError('consent', false); }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-
-      const payload = Object.assign(basePayload(), { partial: 'N' });
-
-      submitLead(payload).then((res) => {
-        track('bc26_form_submit', {
-          event_category: 'bc26',
-          has_phone: phoneGiven ? 'yes' : 'no',
-          submission_status: res.ok ? 'ok' : 'all_failed',
-          endpoints: JSON.stringify(res.endpoints.map(e => ({ label: e.label, ok: e.ok }))),
-        });
-
-        // Success state — always show, even on network error.
-        // The user already gave us their info; failing them here would be worse than
-        // a missed row. (Partial capture from step 1 already attempted the email/name.)
-        formState.classList.add('hidden');
-        successState.classList.remove('hidden');
-        if (phoneGiven) {
-          successMsg.textContent = "You're in. We just texted you the links — and your three ways in are right below.";
-        } else {
-          successMsg.textContent = "You're in. Your three ways in are right below — pick the one that fits.";
-        }
-
-        // Smooth-scroll to Three Ways In so a ready buyer sees the doors.
-        setTimeout(() => {
-          const ways = document.getElementById('ways');
-          if (ways) ways.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 400);
-      });
-    });
 
     // ----- Outbound CTA tracking -----
     document.querySelectorAll('[data-cta]').forEach((a) => {

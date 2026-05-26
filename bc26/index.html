@@ -383,74 +383,56 @@
 <body class="bg-ink text-white">
 
   <!-- ============================
-       HERO + FORM
-       (Logos live in the headline column — no fixed header.)
+       HERO — single column, no form. Form is the "Stay close" backstop
+       at the bottom of the page (for visitors who scrolled all the way
+       through the offers without picking a door).
        ============================ -->
   <section class="bc-hero pt-12 sm:pt-16 pb-20 sm:pb-24 px-5">
-    <div class="max-w-site mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-      <!-- Headline column -->
-      <div class="reveal">
-        <!-- DEEPEN + BEYOND paired logos, anchoring the page right above the eyebrow -->
-        <div class="flex items-center gap-4 sm:gap-5 mb-6">
-          <a href="/" class="flex items-center" aria-label="WeDeepen home">
-            <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
-          </a>
-          <span class="w-px h-7 bg-white/15" aria-hidden="true"></span>
-          <img src="/images/partners/beyond-biohacking-mark.webp"
-               alt="Dave Asprey BEYOND Biohacking Conference"
-               class="h-10 sm:h-12 w-auto opacity-90"
-               width="220" height="116"
-               loading="eager">
-        </div>
-        <p class="text-xs sm:text-sm uppercase tracking-[0.28em] accent-gold mb-5 font-medium">
-          You just scanned a WeDeepen QR
-        </p>
-        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl leading-[1.05] font-semibold mb-6">
-          Beyond biohacking, <span class="accent-pink">love is the next frontier</span>.
-        </h1>
-        <p class="text-lg sm:text-xl text-white/75 leading-relaxed mb-8 max-w-xl">
-          You biohacked your body. Now biohack the thing that makes the extra years worth living.
-          <span class="text-white">Love is a skill. You can get really good at it.</span>
-        </p>
-        <!-- Wayfinding callout — visible on every viewport (conference attendees are on phones). -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full
-                    border border-[#E8337A]/45 bg-[#E8337A]/10 text-sm text-white"
-             role="note"
-             aria-label="WeDeepen booth location at the conference">
-          <span class="inline-block w-2 h-2 rounded-full bg-[#E8337A] animate-pulse flex-shrink-0" aria-hidden="true"></span>
-          <span><strong class="font-semibold">Come visit WeDeepen at Booth 20</strong> · 3rd floor, next to the main stage</span>
-        </div>
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <!-- DEEPEN + BEYOND paired logos -->
+      <div class="flex items-center justify-center gap-4 sm:gap-5 mb-6">
+        <a href="/" class="flex items-center" aria-label="WeDeepen home">
+          <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+        </a>
+        <span class="w-px h-7 bg-white/15" aria-hidden="true"></span>
+        <img src="/images/partners/beyond-biohacking-mark.webp"
+             alt="Dave Asprey BEYOND Biohacking Conference"
+             class="h-10 sm:h-12 w-auto opacity-90"
+             width="220" height="116"
+             loading="eager">
       </div>
-
-      <!-- Form card — Circle-hosted form "BC26" (form uid b0139f65)
-           Managed at: https://circle.wedeepenloveclub.com/settings/emails/forms/15342
-           Style overrides applied in Circle's Properties panel:
-             bg #1A0C12, text #F4EDE0, button bg #E8337A, button text #FFFFFF.
-           Submissions land directly in Circle's BC26 Love Club community; a Circle
-           Workflow on the BC2026 tag should fan out to GHL (SMS) and the welcome
-           email. See /supabase/functions/bc26-form for the prior direct-API path. -->
-      <div class="reveal">
-        <p class="text-xs uppercase tracking-[0.22em] accent-gold font-semibold mb-3 text-center sm:text-left">
-          Start here
-        </p>
-        <div class="bc-form-card p-6 sm:p-8">
-          <div data-is-popup="false" data-circle-form-uid="b0139f65"></div>
-          <script>
-            if (!window.circleFormsScriptLoaded) {
-              window.circleFormsScriptLoaded = true;
-              const s = document.createElement('script');
-              s.src = 'https://circle.wedeepenloveclub.com/external/form-embeds.js';
-              s.defer = true;
-              document.head.appendChild(s);
-            }
-          </script>
-        </div>
-        <p class="text-[11px] text-white/40 mt-4 text-center px-4 leading-relaxed">
-          By submitting, you agree to receive SMS &amp; email from WeDeepen.
-          Reply STOP to opt out. See our
-          <a href="/privacy/" class="underline hover:text-white/70">privacy policy</a>.
-        </p>
+      <p class="text-xs sm:text-sm uppercase tracking-[0.28em] accent-gold mb-5 font-medium">
+        You just scanned a WeDeepen QR
+      </p>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl leading-[1.05] font-semibold mb-6">
+        Beyond biohacking, <span class="accent-pink">love is the next frontier</span>.
+      </h1>
+      <p class="text-lg sm:text-xl text-white/75 leading-relaxed mb-8 max-w-2xl mx-auto">
+        You biohacked your body. Now biohack the thing that makes the extra years worth living.
+        <span class="text-white">Love is a skill. You can get really good at it.</span>
+      </p>
+      <!-- Wayfinding callout — visible on every viewport (conference attendees are on phones). -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-2.5 mb-8 rounded-full
+                  border border-[#E8337A]/45 bg-[#E8337A]/10 text-sm text-white"
+           role="note"
+           aria-label="WeDeepen booth location at the conference">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#E8337A] animate-pulse flex-shrink-0" aria-hidden="true"></span>
+        <span><strong class="font-semibold">Come visit WeDeepen at Booth 20</strong> · 3rd floor, next to the main stage</span>
+      </div>
+      <!-- Primary CTA: scroll to the offer cards. -->
+      <div class="flex flex-col items-center gap-3">
+        <a href="#ways"
+           data-cta="hero-see-three-ways"
+           class="btn-pink inline-flex items-center justify-center gap-2 px-8 py-4 text-base"
+           style="width:auto;">
+          See the three ways in
+          <span aria-hidden="true">↓</span>
+        </a>
+        <a href="#stay-close"
+           data-cta="hero-stay-close"
+           class="text-sm text-white/55 hover:text-white/85 transition underline-offset-4 hover:underline">
+          Not ready? Stay close →
+        </a>
       </div>
     </div>
   </section>
@@ -732,6 +714,45 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       STAY CLOSE — email backstop for visitors who scrolled all the way
+       through the offers without picking a door. Reframed from "sign up"
+       to "stay close." Circle-hosted form, uid b0139f65.
+       Managed at: https://circle.wedeepenloveclub.com/settings/emails/forms/15342
+       ============================ -->
+  <section id="stay-close" class="py-20 sm:py-24 px-5 bg-ink border-t border-white/5">
+    <div class="max-w-xl mx-auto reveal">
+      <div class="text-center mb-8">
+        <p class="text-xs uppercase tracking-[0.28em] accent-gold mb-4 font-semibold">
+          The backstop
+        </p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-semibold mb-4 leading-tight">
+          Not ready today? <span class="accent-pink">Stay close.</span>
+        </h2>
+        <p class="text-white/70 text-base sm:text-[1.05rem] leading-relaxed">
+          Drop your email and we'll send Christina's three favorite tools to use this week, plus a short note when the next Love Immersion opens. No drip campaign. No spam. One useful thing at a time.
+        </p>
+      </div>
+      <div class="bc-form-card p-6 sm:p-8">
+        <div data-is-popup="false" data-circle-form-uid="b0139f65"></div>
+        <script>
+          if (!window.circleFormsScriptLoaded) {
+            window.circleFormsScriptLoaded = true;
+            const s = document.createElement('script');
+            s.src = 'https://circle.wedeepenloveclub.com/external/form-embeds.js';
+            s.defer = true;
+            document.head.appendChild(s);
+          }
+        </script>
+      </div>
+      <p class="text-[11px] text-white/40 mt-4 text-center px-4 leading-relaxed">
+        By submitting, you agree to receive SMS &amp; email from WeDeepen.
+        Reply STOP to opt out. See our
+        <a href="/privacy/" class="underline hover:text-white/70">privacy policy</a>.
+      </p>
     </div>
   </section>
 

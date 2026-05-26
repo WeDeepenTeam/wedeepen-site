@@ -211,8 +211,89 @@
     .way-meta {
       font-size: 0.85rem;
       color: rgba(255,255,255,0.55);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Body text expands so the price-block + button always align
+       at the bottom across all three cards regardless of body length. */
+    .way-body {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      flex: 1 1 auto;
+    }
+
+    /* Price block — pinned to the bottom-ish of the card via the body's
+       flex-grow above. Single consistent visual element per card. */
+    .way-price {
       margin-top: auto;
-      margin-bottom: 1.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 0.75rem;
+    }
+    .way-price-row { display: flex; align-items: baseline; gap: 0.5rem; }
+    .way-price-row + .way-price-row { margin-top: 0.3rem; }
+    .way-price-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      flex: 1 1 auto;
+    }
+    .way-price-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #fff;
+      font-weight: 600;
+    }
+    .way-price-strike {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: line-through;
+      margin-left: 0.25rem;
+    }
+    .way-price-solo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: #fff;
+      font-weight: 600;
+    }
+    .way-price-suffix {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-left: 0.4rem;
+    }
+
+    /* Inline promo-code chip (Card 1) */
+    .way-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 6px 10px 6px 12px;
+      border-radius: 9999px;
+      background: rgba(232,51,122,0.10);
+      border: 1px dashed rgba(232,51,122,0.5);
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 0.78rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .way-chip-meta {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0;
+    }
+    .way-chip-group {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Expiration / urgency line */
+    .way-expires {
+      font-size: 0.72rem;
+      color: #E8337A;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
     }
     .way-card.featured {
       border-color: rgba(232,51,122,0.55);
@@ -397,19 +478,22 @@
             <img src="/images/bc26/biohacking-love.jpg" alt="Biohacking Love event in Austin" class="way-img" loading="lazy">
             <div class="way-badge" aria-hidden="true">1</div>
           </div>
-          <div class="way-numeral">1</div>
           <p class="way-eyebrow">Feel it for yourself</p>
           <h3 class="way-title">Biohacking Love</h3>
-          <p class="text-white/70 leading-relaxed mb-5">
-            An afternoon event — a real taste of what WeDeepen does. Learn tools and systems for an extraordinary love life.
+          <p class="way-body">
+            An afternoon event. A real taste of what WeDeepen does. Tools and systems for an extraordinary love life.
           </p>
           <p class="way-meta">Saturday, May 30 · Austin</p>
-          <p class="text-[11px] text-white/55 mb-3 leading-relaxed">
-            Conference codes at Eventbrite checkout:
-            <span class="text-white/90 font-mono">BC50</span> ($50 off GA/VIP) ·
-            <span class="text-white/90 font-mono">BC300</span> ($300 off Ultra VIP).
-            Expires Wed May 27, 12pm.
-          </p>
+
+          <div class="way-price">
+            <p class="text-[0.78rem] text-white/55 mb-1">Conference attendee codes</p>
+            <div class="way-chip-group">
+              <span class="way-chip">BC50 <span class="way-chip-meta">$50 off GA / VIP</span></span>
+              <span class="way-chip">BC300 <span class="way-chip-meta">$300 off Ultra VIP</span></span>
+            </div>
+          </div>
+          <p class="way-expires">Codes expire Wed May 27, 12pm.</p>
+
           <a href="https://www.eventbrite.com/e/may-30-biohacking-love-austin-with-christina-weber-and-more-tickets-1984442524009?aff=oddtdtcreator"
              target="_blank" rel="noopener"
              class="btn-outline text-center w-full"
@@ -424,16 +508,23 @@
             <img src="/images/bc26/love-immersion.jpg" alt="Love Immersion retreat in Austin" class="way-img" loading="lazy">
             <div class="way-badge" aria-hidden="true">2</div>
           </div>
-          <div class="way-numeral">2</div>
           <p class="way-eyebrow">Go deeper</p>
           <h3 class="way-title">Love Immersion</h3>
-          <p class="text-white/70 leading-relaxed mb-5">
-            An intimate 3-day retreat. The fast track — mastermind your love life with top love strategists and bond at the highest level.
+          <p class="way-body">
+            An intimate 3-day retreat. The fast track. Mastermind your love life with top strategists and bond at the highest level.
           </p>
-          <p class="way-meta">June 26–28, 2026 · Austin · $1,995</p>
-          <p class="text-[11px] text-white/55 mb-3 leading-relaxed">
-            Want it for less? It's included with Love Club membership →
-          </p>
+          <p class="way-meta">June 26–28, 2026 · Austin</p>
+
+          <div class="way-price">
+            <div class="way-price-row">
+              <span class="way-price-label">3-day retreat</span>
+              <span class="way-price-solo">$1,995</span>
+            </div>
+            <p class="text-[0.72rem] text-white/45 mt-2 leading-snug">
+              Want it for less? Included free with Love Club &amp; Love Club Plus.
+            </p>
+          </div>
+
           <a href="/love-immersion/june-2026/" class="btn-outline text-center w-full"
              data-cta="love-immersion">
             Reserve my place →
@@ -442,26 +533,36 @@
 
         <!-- 3 · Love Club (featured) -->
         <article class="way-card featured reveal">
-          <span class="way-tag">Best value</span>
+          <span class="way-tag">Recommended</span>
           <div class="way-media">
-            <img src="/images/bc26/love-club.jpg" alt="The Love Club — members dancing at a WeDeepen event" class="way-img" loading="lazy">
+            <img src="/images/bc26/love-club.jpg" alt="The Love Club — members at a WeDeepen event" class="way-img" loading="lazy">
             <div class="way-badge" aria-hidden="true">3</div>
           </div>
-          <div class="way-numeral">3</div>
           <p class="way-eyebrow">Go all the way in</p>
           <h3 class="way-title">The Love Club</h3>
-          <p class="text-white/80 leading-relaxed mb-5">
-            Year-round membership — Biohacking Love and the Love Immersion included, plus ongoing masterminds, coaching, and a private network of people who want to see you thrive in love.
+          <p class="way-body">
+            Year-round membership. Biohacking Love and the Love Immersion are included. Plus monthly masterminds, top-coach access, and a private network of people building extraordinary love lives.
           </p>
-          <p class="way-meta">
-            <span class="text-white">$3,997</span>/year
-            <span class="text-white/45 line-through ml-1">$4,997</span>
-            · or Love Club Plus <span class="text-white">$7,997</span>
-            <span class="text-white/45 line-through ml-1">$9,997</span>
-          </p>
-          <p class="text-[11px] text-[#E8337A] mb-3 leading-relaxed font-medium">
-            Beyond pricing expires Sat May 30, 11pm.
-          </p>
+          <p class="way-meta">Year-round · members worldwide</p>
+
+          <div class="way-price">
+            <div class="way-price-row">
+              <span class="way-price-label">Love Club</span>
+              <span>
+                <span class="way-price-num">$3,997</span><span class="way-price-suffix">/yr</span>
+                <span class="way-price-strike">$4,997</span>
+              </span>
+            </div>
+            <div class="way-price-row">
+              <span class="way-price-label">Love Club <em class="not-italic font-medium text-white/75">Plus</em></span>
+              <span>
+                <span class="way-price-num">$7,997</span><span class="way-price-suffix">/yr</span>
+                <span class="way-price-strike">$9,997</span>
+              </span>
+            </div>
+          </div>
+          <p class="way-expires">Beyond pricing expires Sat May 30, 11pm.</p>
+
           <a href="/love-club/" class="btn-pink text-center w-full"
              data-cta="love-club" style="width:100%;">
             Join the Love Club →

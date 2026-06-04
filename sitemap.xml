@@ -1242,4 +1242,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- gallery:autogen -->
+  <url><loc>https://wedeepen.com/gallery/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-i/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-ii/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-iii/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-iv/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-v/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/love-immersion-march-2026/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/biohacking-love-may-2026/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/biohacking-love/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/biohacking-love-may-2025/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/dating-dojo/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/dating-dojo-venice/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/beyond-connection-biohacking-conference/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/medidating/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/solar-punk-2025/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/atma-cosmic-heart-ceremony/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/christinas-bc-talk/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/aboutly-training/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/heart-flow/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/midnights-with-mary/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/we-play-recess/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/journey-to-connection/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wedeepen.com/gallery/mindful-mingling/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- /gallery:autogen -->
 </urlset>

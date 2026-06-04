@@ -87,6 +87,20 @@
       "parent_event_title": "Love Immersion"
     },
     {
+      "slug": "biohacking-love-may-2026",
+      "title": "Biohacking Love — May 2026",
+      "description": "A one-day intensive blending nervous system science with the practice of love. Austin, TX.",
+      "event_date": "2026-05-30",
+      "location": "Austin, TX",
+      "drive_folder_id": "1TfYMsGRUqkh2ddRnynnU18bl2ig9kqVi",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 10,
+      "photographer": "Allison Powers",
+      "parent_event": "biohacking-love",
+      "parent_event_title": "Biohacking Love"
+    },
+    {
       "slug": "biohacking-love",
       "title": "Biohacking Love — April 2026",
       "description": "A one-day intensive blending nervous system science with the practice of love.",
@@ -109,7 +123,7 @@
       "drive_folder_id": "1R27T9s2O1I2mFgVsBtkncK7IpyKyYxgK",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 39,
+      "display_order": 36,
       "photographer": "Allison Powers"
     },
     {
@@ -121,7 +135,7 @@
       "drive_folder_id": "1n9PB73mpIsvLntOhZ9HsTTXGWwjeXsh3",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 35,
+      "display_order": 32,
       "photographer": null
     },
     {
@@ -161,7 +175,7 @@
       "drive_folder_id": "1Ze3EbS5chsdnG4gq9cCQxtgpxjUYx8Nw",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 30,
+      "display_order": 26,
       "photographer": "Allison Powers"
     },
     {
@@ -173,7 +187,7 @@
       "drive_folder_id": "1eh9iLLBu6BE-CUn5EI568muAtRy_B_IF",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 32,
+      "display_order": 27,
       "photographer": "Allison Powers"
     },
     {
@@ -185,7 +199,7 @@
       "drive_folder_id": "156VEvmFFCpPoEooIPXqAGwcT5ogUORvz",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 34,
+      "display_order": 31,
       "photographer": null
     },
     {
@@ -197,7 +211,7 @@
       "drive_folder_id": "12iUzJwzJ2cDsvbXuuhK5faJ1x3FGn4Yv",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 37,
+      "display_order": 34,
       "photographer": null
     },
     {
@@ -209,7 +223,7 @@
       "drive_folder_id": "1GlCG8LKnhXRqlA3tZSws9D6PB8EYjTbZ",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 38,
+      "display_order": 35,
       "photographer": null
     },
     {
@@ -221,7 +235,7 @@
       "drive_folder_id": "16kLWBLAHTQf4F63Xbp_9gZhHfmD1hefX",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 36,
+      "display_order": 33,
       "photographer": null
     },
     {
@@ -233,7 +247,7 @@
       "drive_folder_id": "1droUWVSDmN_J3SZkrdd0eO5fzYdhuJKo",
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 31,
+      "display_order": 30,
       "photographer": "Pierre Zah"
     },
     {
@@ -287,7 +301,21 @@
       "drive_folder_id": null,
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 33,
+      "display_order": 28,
+      "photographer": "Allison Powers",
+      "parent_event": null,
+      "parent_event_title": null
+    },
+    {
+      "slug": "beyond-connection-biohacking-conference",
+      "title": "Beyond Connection — Biohacking Conference",
+      "description": "WeDeepen's welcome night at the Beyond Biohacking Conference. Deepening connection before the keynotes begin.",
+      "event_date": "2026-05-30",
+      "location": "Austin, TX",
+      "drive_folder_id": "1D_fFxsq_bBarp1yyPoatbkIXRNGxmR5S",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 25,
       "photographer": "Allison Powers",
       "parent_event": null,
       "parent_event_title": null

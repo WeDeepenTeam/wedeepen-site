@@ -141,9 +141,13 @@ function renderGroupedAlbums(albums) {
 function renderAlbumCard(album) {
   const cover = album.cover_thumb_url || album.cover_full_url || '/images/gallery/welcome.jpg';
   const count = album.photo_count;
+  // cover_position overrides the default center crop for portrait cover photos
+  // where the focal point (banner text, faces) sits at top/bottom of the frame.
+  // Valid values: 'top', 'bottom', 'left', 'right', or 'center' (default).
+  const posStyle = album.cover_position ? ` style="object-position: ${album.cover_position};"` : '';
   return `<a href="/gallery/${escapeHtml(album.slug)}/" class="album-card block bg-charcoal/40 rounded-xl overflow-hidden border border-white/5 hover:border-gold/30 transition">
             <div class="aspect-[4/3] overflow-hidden bg-ink">
-              <img src="${escapeHtml(cover)}" alt="${escapeHtml(album.title)}" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600">
+              <img src="${escapeHtml(cover)}" alt="${escapeHtml(album.title)}" class="album-cover w-full h-full object-cover" loading="lazy" width="800" height="600"${posStyle}>
             </div>
             <div class="p-5 md:p-6">
               <h2 class="font-heading text-xl md:text-2xl text-white mb-1 leading-tight">${escapeHtml(album.title)}</h2>

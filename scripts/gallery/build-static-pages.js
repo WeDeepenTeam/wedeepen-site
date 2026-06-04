@@ -40,6 +40,7 @@ async function loadAlbumExtras() {
       photographer: a.photographer || null,
       parent_event: a.parent_event || null,
       parent_event_title: a.parent_event_title || null,
+      cover_position: a.cover_position || null,
     };
   }
   return map;
@@ -99,6 +100,7 @@ async function buildAlbumPage(album, extras) {
     photographer: extra.photographer || null,
     parent_event: extra.parent_event || null,
     parent_event_title: extra.parent_event_title || null,
+    cover_position: extra.cover_position || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);
   await ensureDir(dir);

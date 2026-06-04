@@ -112,7 +112,8 @@
       "display_order": 11,
       "photographer": "Allison Powers",
       "parent_event": "biohacking-love",
-      "parent_event_title": "Biohacking Love"
+      "parent_event_title": "Biohacking Love",
+      "cover_position": "top"
     },
     {
       "slug": "beyond-biohacking-2025",

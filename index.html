@@ -436,29 +436,39 @@
         Most people pick one. The work is learning to hold both.
       </p>
 
-      <!-- Annie Lalla quote + photo — poetic seal of Yes, And.
+      <!-- Annie Lalla quote + photo — editorial pairing.
            Trampoline = spark/novelty (pink). Sanctuary = safety/security (gold).
            Colors deliberately echo the duality cards above.
-           Mobile: photo above quote. Desktop: side-by-side, photo left, quote right. -->
-      <div class="max-w-5xl mx-auto mt-16 md:mt-20">
-        <div class="w-12 h-px bg-gold/40 mx-auto mb-10"></div>
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="order-1">
-            <picture>
-              <source srcset="/images/annie-lalla-coaching.webp" type="image/webp">
-              <img
-                src="/images/annie-lalla-coaching.jpg"
-                alt="Annie Lalla coaching a Love Club member in conversation by a sunlit window"
-                class="w-full h-auto rounded-2xl block"
-                loading="lazy"
-                width="1400" height="1026">
-            </picture>
+           Mobile: photo above quote. Desktop: photo left (5/12), quote right (7/12)
+           so the quote has hero weight. -->
+      <div class="max-w-6xl mx-auto mt-20 md:mt-28 px-2">
+        <div class="w-12 h-px bg-gold/40 mx-auto mb-12 md:mb-16"></div>
+        <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+          <!-- Photo: framed with subtle warm glow + ring + shadow -->
+          <div class="order-1 md:col-span-5">
+            <div class="relative">
+              <div class="absolute -inset-3 bg-gradient-to-br from-gold/20 via-transparent to-pink-hot/15 rounded-3xl blur-2xl" aria-hidden="true"></div>
+              <picture class="relative block">
+                <source srcset="/images/annie-lalla-coaching.webp" type="image/webp">
+                <img
+                  src="/images/annie-lalla-coaching.jpg"
+                  alt="Annie Lalla coaching a Love Club member in conversation by a sunlit window"
+                  class="w-full h-auto rounded-2xl shadow-2xl ring-1 ring-white/10 block"
+                  loading="lazy"
+                  width="1400" height="1026">
+              </picture>
+            </div>
           </div>
-          <div class="order-2 text-center md:text-left">
-            <blockquote class="font-heading italic text-xl md:text-2xl lg:text-3xl text-white/90 mb-5" style="line-height: 1.4; text-wrap: balance;">
-              &ldquo;Be a <span style="color:#E8337A;">trampoline for their&nbsp;dreams</span> and a <span style="color:#C9A277;">sanctuary for their&nbsp;heart</span>.&rdquo;
+          <!-- Quote: ornamental opening mark + larger Playfair body + em-line attribution -->
+          <div class="order-2 md:col-span-7 text-center md:text-left">
+            <div class="font-heading italic text-gold/35 leading-none mb-1 select-none" style="font-size: clamp(4.5rem, 9vw, 7.5rem); line-height: 0.7;" aria-hidden="true">&ldquo;</div>
+            <blockquote class="font-heading italic text-2xl md:text-3xl lg:text-[2.4rem] text-white/95 mb-8 -mt-3 md:-mt-5" style="line-height: 1.3; text-wrap: balance;">
+              Find someone who&rsquo;s a <span style="color:#E8337A;">trampoline for your&nbsp;dreams</span> and a <span style="color:#C9A277;">sanctuary for your&nbsp;heart</span>.
             </blockquote>
-            <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold">&mdash; Annie Lalla</p>
+            <div class="flex items-center gap-4 justify-center md:justify-start">
+              <div class="w-10 h-px bg-gold/50" aria-hidden="true"></div>
+              <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold">Annie Lalla</p>
+            </div>
           </div>
         </div>
       </div>

@@ -218,6 +218,10 @@
         radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
     }
     .mobile-nav.open { transform: translateX(0); }
+
+    /* Typographic polish — balance headings, prevent widow/orphan lines */
+    h1, h2, h3, h4 { text-wrap: balance; }
+    p, li, blockquote { text-wrap: pretty; }
   </style>
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
   <!-- Favicon -->
@@ -246,7 +250,8 @@
         <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
       </nav>
       <div class="flex items-center gap-4">
-        <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-sm !py-2.5 !px-6 hidden sm:inline-block">Login to Love Club</a>
+        <a href="https://wedeepen.ticketspice.com/love-immersion-june-2026" target="_blank" rel="noopener" class="btn-pink text-sm !py-2.5 !px-6 hidden sm:inline-block">Reserve Your Spot</a>
+        <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-sm !py-2.5 !px-6 hidden lg:inline-block">Login to Love Club</a>
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         </button>
@@ -624,6 +629,52 @@
   </section>
 
 
+  <!-- KNOW BEFORE YOU GO -->
+  <section class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="text-center mb-14">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">The Details</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Know Before You Go</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="pillar-card rounded-2xl p-7 md:p-8">
+          <h3 class="font-heading text-2xl text-white mb-5">Schedule, Food &amp; Weather</h3>
+          <ul class="space-y-3 text-white/65 text-sm leading-relaxed">
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Friday, June 26 &middot; 9am&ndash;9pm</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Saturday, June 27 &middot; 9am&ndash;11pm</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Sunday, June 28 &middot; 10am&ndash;2pm</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>All meals and drinks are included</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Austin runs warm in June &mdash; highs around 92&ndash;98&deg;F, evenings 72&ndash;76&deg;F</span></li>
+          </ul>
+        </div>
+        <div class="pillar-card rounded-2xl p-7 md:p-8">
+          <h3 class="font-heading text-2xl text-white mb-5">Travel &amp; Accommodations</h3>
+          <ul class="space-y-3 text-white/65 text-sm leading-relaxed">
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Fly into Austin-Bergstrom (AUS), about 25 mi / 37 min from the venue</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>14 rooms available on-site to book &mdash; limited, added at checkout</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Nearby hotels: Lakeway Resort &amp; Spa and Holiday Inn Express &amp; Suites Lakeway (~10&ndash;12 min)</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Plenty of local Airbnb options</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>On-site parking available</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>A WhatsApp group to coordinate travel, shared after you register</span></li>
+          </ul>
+        </div>
+        <div class="pillar-card rounded-2xl p-7 md:p-8">
+          <h3 class="font-heading text-2xl text-white mb-5">Attire &amp; Packing</h3>
+          <ul class="space-y-3 text-white/65 text-sm leading-relaxed">
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Day 1 &mdash; something joyful and playful you love to wear</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Day 2 &mdash; silk attire (robes, dresses, pants, pajamas, or scarves) for the evening</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Day 3 &mdash; white attire, plus a towel and swimsuit for the flower bath ritual</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Swimwear for the sauna and pool</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>Sneakers for exploring outdoors</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>A light jacket for cooler evenings</span></li>
+            <li class="flex gap-3"><span class="text-gold flex-shrink-0">&#10003;</span><span>A journal &mdash; we&rsquo;ll have a mini one for you too</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- Past Immersions — small gallery -->
   <section class="py-20 md:py-28 px-6 bg-ink">
     <div class="max-w-site mx-auto reveal">
@@ -795,5 +846,12 @@
     });
   </script>
 
+  <!-- Mobile sticky reserve bar -->
+  <div class="h-20 lg:hidden" aria-hidden="true"></div>
+  <a href="https://wedeepen.ticketspice.com/love-immersion-june-2026" target="_blank" rel="noopener"
+     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6"
+     style="background:#E8337A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
+    Reserve Your Spot · June 26&ndash;28 &rarr;
+  </a>
 </body>
 </html>

@@ -2,6 +2,12 @@
 Generate individual Love Immersion event detail pages.
 Shared template — only dates, roman numerals, titles, and checkout URLs differ.
 
+⚠️  TEMPLATE HAS DRIFTED: the committed event pages carry hand-edits (Event
+JSON-LD, dedicated OG images, layout refinements from #183) that are NOT in
+TEMPLATE below. Do not run this script blindly — it will regress the live
+pages. Sync TEMPLATE with a current committed page first, or derive new event
+pages by transforming the latest committed page (as done for october-2026).
+
 Run:  python3 wedeepen/love-immersion/_generate_event_pages.py
 """
 import html as html_module
@@ -11,30 +17,15 @@ ROOT = Path(__file__).resolve().parent
 
 EVENTS = [
     {
-        "slug": "june-2026",
-        "numeral": "VII",
-        "month_year": "June 2026",
-        "date_range_pretty": "June 26–28, 2026",
-        "date_days": "26<span class='text-white/40'>–</span>28",
-        "canonical": "june-2026",
-        "season_copy": "Three days of breakthrough, presence, and embodiment — designed for individuals and couples ready to deepen.",
-        "hook": "This is where love gets practiced. Not talked about. Not theorized. Practiced.",
-        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-june-2026",
-        "venue_name": "HAVAN Estates",
-        "venue_address": "17301 Flint Rock Rd · Austin, TX 78738",
-        "venue_description": "A private, intentional space in the Texas Hill Country — designed for transformation.",
-        "og_image": "/images/love-immersion-spotlight.jpg",
-    },
-    {
-        "slug": "november-2026",
+        "slug": "october-2026",
         "numeral": "VIII",
-        "month_year": "November 2026",
-        "date_range_pretty": "November 6–8, 2026",
-        "date_days": "6<span class='text-white/40'>–</span>8",
-        "canonical": "november-2026",
+        "month_year": "October 2026",
+        "date_range_pretty": "October 16–18, 2026",
+        "date_days": "16<span class='text-white/40'>–</span>18",
+        "canonical": "october-2026",
         "season_copy": "End-of-year retreat — close old chapters and step into 2027 with clarity about the love you're building.",
         "hook": "Before the year ends, come home to what matters most.",
-        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-november-2026",
+        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-october-2026",
         "venue_name": "Venue announcement coming soon",
         "venue_address": "Austin, TX",
         "venue_description": "A curated venue in Austin — details shared closer to the retreat.",

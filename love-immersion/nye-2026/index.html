@@ -1,103 +1,70 @@
-"""
-Generate individual Love Immersion event detail pages.
-Shared template — only dates, roman numerals, titles, and checkout URLs differ.
-
-⚠️  TEMPLATE HAS DRIFTED: the committed event pages carry hand-edits (Event
-JSON-LD, dedicated OG images, layout refinements from #183) that are NOT in
-TEMPLATE below. Do not run this script blindly — it will regress the live
-pages. Sync TEMPLATE with a current committed page first, or derive new event
-pages by transforming the latest committed page (as done for october-2026).
-
-Run:  python3 wedeepen/love-immersion/_generate_event_pages.py
-"""
-import html as html_module
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parent
-
-EVENTS = [
-    {
-        "slug": "october-2026",
-        "numeral": "VIII",
-        "month_year": "October 2026",
-        "date_range_pretty": "October 16–19, 2026",
-        "date_days": "16<span class='text-white/40'>–</span>19",
-        "canonical": "october-2026",
-        "season_copy": "End-of-year retreat — close old chapters and step into 2027 with clarity about the love you're building.",
-        "hook": "Before the year ends, come home to what matters most.",
-        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-october-2026",
-        "venue_name": "Venue announcement coming soon",
-        "venue_address": "Austin, TX",
-        "venue_description": "A curated venue in Austin — details shared closer to the retreat.",
-        "og_image": "/images/love-immersion-spotlight.jpg",
-    },
-    {
-        "slug": "nye-2026",
-        "numeral": "NYE",
-        "month_year": "New Year's Eve 2026–27",
-        "date_range_pretty": "Dec 31, 2026 – Jan 3, 2027",
-        "date_days": "Dec 31<span class='text-white/40'>–</span>Jan 3",
-        "canonical": "nye-2026",
-        "season_copy": "New Year's retreat — close the chapter of 2026, cross the threshold together, and step into 2027 with the love life you actually want.",
-        "hook": "Begin the new year the way you mean to live it.",
-        "checkout_url": "",
-        "venue_name": "Venue announcement coming soon",
-        "venue_address": "Austin, TX",
-        "venue_description": "A curated venue in Austin — details shared closer to the retreat.",
-        "og_image": "/images/love-immersion-spotlight.jpg",
-    },
-    {
-        "slug": "march-2027",
-        "numeral": "IX",
-        "month_year": "March 2027",
-        "date_range_pretty": "March 5–7, 2027",
-        "date_days": "5<span class='text-white/40'>–</span>7",
-        "canonical": "march-2027",
-        "season_copy": "Spring retreat — fresh beginnings, bold commitments, and a reset for the love life you actually want.",
-        "hook": "A new year. A new chapter. A new way of loving.",
-        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-march-2027",
-        "venue_name": "Venue announcement coming soon",
-        "venue_address": "Austin, TX",
-        "venue_description": "A curated venue in Austin — details shared closer to the retreat.",
-        "og_image": "/images/love-immersion-spotlight.jpg",
-    },
-    {
-        "slug": "july-2027",
-        "numeral": "X",
-        "month_year": "July 2027",
-        "date_range_pretty": "July 16–18, 2027",
-        "date_days": "16<span class='text-white/40'>–</span>18",
-        "canonical": "july-2027",
-        "season_copy": "Summer retreat — a grounded, expansive container to soften armor and remember what love feels like.",
-        "hook": "Long days. Open hearts. The work happens here.",
-        "checkout_url": "https://wedeepen.ticketspice.com/love-immersion-july-2027",
-        "venue_name": "Venue announcement coming soon",
-        "venue_address": "Austin, TX",
-        "venue_description": "A curated venue in Austin — details shared closer to the retreat.",
-        "og_image": "/images/love-immersion-spotlight.jpg",
-    },
-]
-
-TEMPLATE = r"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Immersion {numeral} — {date_range_pretty} | WeDeepen</title>
-  <meta name="description" content="Love Immersion {numeral} — {date_range_pretty} in Austin, TX at HAVAN. A 3-day transformational retreat for individuals and couples committed to extraordinary love.">
+  <title>Love Immersion New Year's Edition — Dec 31, 2026 – Jan 3, 2027 | WeDeepen</title>
+  <meta name="description" content="Love Immersion New Year's Edition — December 31, 2026 – January 3, 2027 in Austin, TX. A 3-day transformational retreat for individuals and couples committed to extraordinary love.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://wedeepen.com/love-immersion/{canonical}/">
+  <link rel="canonical" href="https://wedeepen.com/love-immersion/nye-2026/">
 
   <meta property="og:type" content="event">
-  <meta property="og:url" content="https://wedeepen.com/love-immersion/{canonical}/">
-  <meta property="og:title" content="Love Immersion {numeral} — {date_range_pretty}">
-  <meta property="og:description" content="A 3-day transformational retreat in Austin, TX. {season_copy}">
-  <meta property="og:image" content="https://wedeepen.com{og_image}">
+  <meta property="og:url" content="https://wedeepen.com/love-immersion/nye-2026/">
+  <meta property="og:title" content="Love Immersion New Year’s Edition — Dec 31, 2026 – Jan 3, 2027">
+  <meta property="og:description" content="A 3-day transformational retreat in Austin, TX. New Year's retreat — close the chapter of 2026, cross the threshold together, and step into 2027 with the love life you actually want.">
+  <meta property="og:image" content="https://wedeepen.com/images/love-immersion-spotlight.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Love Immersion {numeral} — {date_range_pretty}">
+  <meta name="twitter:title" content="Love Immersion New Year’s Edition — Dec 31, 2026 – Jan 3, 2027">
   <meta name="twitter:description" content="A 3-day transformational retreat in Austin, TX.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/love-immersion-spotlight.jpg">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Love Immersion — New Year's Edition 2026–27",
+    "description": "A 3-day transformational retreat for individuals and couples committed to extraordinary love.",
+    "startDate": "2026-12-31T17:00:00-06:00",
+    "endDate": "2027-01-03T18:00:00-06:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Venue TBA",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      }
+    },
+    "image": "https://wedeepen.com/images/love-immersion-spotlight.jpg",
+    "organizer": {
+      "@type": "Organization",
+      "name": "WeDeepen",
+      "url": "https://wedeepen.com"
+    },
+    "performer": [
+      {
+        "@type": "Person",
+        "name": "Christina Weber"
+      }
+    ],
+    "offers": {
+      "@type": "AggregateOffer",
+      "url": "https://wedeepen.com/love-immersion/nye-2026/",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD"
+    },
+    "url": "https://wedeepen.com/love-immersion/nye-2026/"
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,146 +73,159 @@ TEMPLATE = r"""<!DOCTYPE html>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {{
-      theme: {{
-        extend: {{
-          colors: {{
-            rose:    {{ deep: '#A01B4A', light: '#C4577A' }},
-            pink:    {{ hot: '#E8337A', bright: '#FF4F8C' }},
-            teal:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
-            gold:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#E8337A', bright: '#FF4F8C' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
             charcoal: '#2D2D2D',
             cream:   '#F4EDE0',
             ink:     '#1A1A1A',
             black:   '#1A1A1A',
-          }},
-          fontFamily: {{
+          },
+          fontFamily: {
             heading: ['"Playfair Display"', 'Georgia', 'serif'],
             body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
-          }},
-          maxWidth: {{ site: '1200px' }},
-        }},
-      }},
-    }}
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
   </script>
 
   <style>
     /* Vilonti self-hosted — all weights referenced across site */
-    @font-face {{
+    @font-face {
       font-family: 'Vilonti';
       src: url('/fonts/Vilonti-Regular.ttf') format('truetype');
       font-weight: 400; font-style: normal; font-display: swap;
-    }}
-    @font-face {{
+    }
+    @font-face {
       font-family: 'Vilonti';
       src: url('/fonts/Vilonti-Italic.ttf') format('truetype');
       font-weight: 400; font-style: italic; font-display: swap;
-    }}
-    @font-face {{
+    }
+    @font-face {
       font-family: 'Vilonti';
       src: url('/fonts/Vilonti-Medium.ttf') format('truetype');
       font-weight: 500; font-style: normal; font-display: swap;
-    }}
-    @font-face {{
+    }
+    @font-face {
       font-family: 'Vilonti';
       src: url('/fonts/Vilonti-Bold.ttf') format('truetype');
       font-weight: 700; font-style: normal; font-display: swap;
-    }}
-    @font-face {{
+    }
+    @font-face {
       font-family: 'Vilonti';
       src: url('/fonts/Vilonti-ExtraBlack.ttf') format('truetype');
       font-weight: 900; font-style: normal; font-display: swap;
-    }}
+    }
 
-    html {{ scroll-behavior: smooth; }}
-    body {{ font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }}
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
 
-    .font-vilonti {{
+    .font-vilonti {
       font-family: 'Vilonti', 'Archivo Black', 'Helvetica Neue', sans-serif;
       font-weight: 900;
       letter-spacing: -0.01em;
       line-height: 0.95;
-    }}
+    }
 
-    .cloud-hero {{
+    .cloud-hero {
       background-image:
         linear-gradient(180deg, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.45) 50%, rgba(26,26,26,0.85) 100%),
         url('/images/love-club-cloud-bg.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    }}
+    }
 
-    .wd-header {{
+    .wd-header {
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }}
-    .wd-header.scrolled {{
+    }
+    .wd-header.scrolled {
       background-color: rgba(26,26,26,0.95);
       box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }}
+    }
 
-    .gold-line-center::after {{
+    .gold-line-center::after {
       content: ''; display: block;
       width: 60px; height: 2px;
       background: #C9A277;
       margin: 16px auto 0;
-    }}
+    }
 
-    .btn-pink {{
+    .btn-pink {
       background: #E8337A; color: #fff;
       padding: 14px 32px; border-radius: 12px;
       font-weight: 600; font-size: 0.95rem;
       transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
       display: inline-block; text-decoration: none;
-    }}
-    .btn-pink:hover {{ background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }}
+    }
+    .btn-pink:hover { background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }
 
-    .btn-rose {{
+    .btn-rose {
       background: #A01B4A; color: #fff;
       padding: 14px 32px; border-radius: 9999px;
       font-weight: 600; font-size: 0.95rem;
       transition: background 0.3s, transform 0.2s;
       display: inline-block; text-decoration: none;
-    }}
-    .btn-rose:hover {{ background: #851437; transform: translateY(-1px); }}
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
 
-    .btn-outline {{
+    .btn-outline {
       border: 1.5px solid #C9A277; color: #C9A277;
       padding: 14px 32px; border-radius: 9999px;
       font-weight: 600; font-size: 0.95rem;
       transition: background 0.3s, color 0.3s, transform 0.2s;
       display: inline-block; text-decoration: none;
-    }}
-    .btn-outline:hover {{ background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }}
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
 
-    .pillar-card {{
+    .pillar-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       transition: border-color 0.3s, background 0.3s;
-    }}
-    .pillar-card:hover {{ border-color: rgba(201,162,119,0.3); background: rgba(255,255,255,0.05); }}
+    }
+    .pillar-card:hover { border-color: rgba(201,162,119,0.3); background: rgba(255,255,255,0.05); }
 
-    .day-block {{
+    .day-block {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
       padding: 2rem;
-    }}
+    }
 
-    .faq-answer {{ max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }}
-    .faq-item.open .faq-answer {{ max-height: 600px; }}
-    .faq-item.open .faq-icon {{ transform: rotate(45deg); }}
-    .faq-icon {{ transition: transform 0.3s ease; }}
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
 
-    .reveal {{ opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }}
-    .reveal.visible {{ opacity: 1; transform: translateY(0); }}
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .mobile-nav {{ transform: translateX(100%); transition: transform 0.35s ease; }}
-    .mobile-nav.open {{ transform: translateX(0); }}
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav.open { transform: translateX(0); }
   </style>
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body class="bg-ink text-white">
 
@@ -258,7 +238,17 @@ TEMPLATE = r"""<!DOCTYPE html>
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
         <a href="/" class="text-white/80 hover:text-white transition">Home</a>
         <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
-        <a href="/love-immersion/" class="text-white hover:text-white transition">Love Immersion</a>
+        <div class="relative group">
+          <button type="button" class="text-white hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
+          <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
+            <div class="rounded-xl py-2 min-w-[220px]" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px -12px rgba(0,0,0,0.65);">
+              <a href="/love-immersion/october-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">October 16&ndash;19, 2026</a>
+              <a href="/love-immersion/nye-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">New Year&rsquo;s Eve 2026&ndash;27</a>
+              <a href="/love-immersion/march-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">March 5&ndash;7, 2027</a>
+              <a href="/love-immersion/july-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">July 16&ndash;18, 2027</a>
+            </div>
+          </div>
+        </div>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
@@ -274,20 +264,26 @@ TEMPLATE = r"""<!DOCTYPE html>
     </div>
   </header>
 
-  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] bg-ink/98 flex flex-col pt-20 px-8">
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8">
     <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <nav class="flex flex-col gap-6 text-lg font-medium">
       <a href="/" class="text-white hover:text-gold transition">Home</a>
       <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
-      <a href="/love-immersion/" class="text-white hover:text-gold transition">Love Immersion</a>
+      <div class="flex flex-col gap-4">
+        <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
+        <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
+        <a href="/love-immersion/nye-2026/" class="text-white hover:text-gold transition pl-4 text-base">New Year&rsquo;s Eve 2026&ndash;27</a>
+        <a href="/love-immersion/march-2027/" class="text-white hover:text-gold transition pl-4 text-base">March 5&ndash;7, 2027</a>
+        <a href="/love-immersion/july-2027/" class="text-white hover:text-gold transition pl-4 text-base">July 16&ndash;18, 2027</a>
+      </div>
       <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
       <a href="/about/" class="text-white hover:text-gold transition">About</a>
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
-      <a href="{checkout_url}" target="_blank" rel="noopener" class="btn-rose text-center mt-4">Reserve Your Spot</a>
+      <a href="#waitlist" class="btn-rose text-center mt-4">Join the Waitlist</a>
     </nav>
   </div>
 
@@ -295,31 +291,43 @@ TEMPLATE = r"""<!DOCTYPE html>
   <!-- HERO -->
   <section class="cloud-hero relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-32 md:pt-40 pb-20">
-      <a href="/love-immersion/" class="text-gold text-xs tracking-[0.2em] uppercase hover:underline inline-flex items-center gap-2 mb-6">&larr; All Love Immersions</a>
 
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style="background: rgba(201,162,119,0.12); border: 1px solid rgba(201,162,119,0.35);">
         <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-        <span class="text-gold text-xs tracking-[0.18em] uppercase font-medium">{date_range_pretty} · Austin, TX</span>
+        <span class="text-gold text-xs tracking-[0.18em] uppercase font-medium">Dec 31, 2026 – Jan 3, 2027 · Austin, TX</span>
       </div>
 
-      <h1 class="sr-only">Love Immersion {numeral} — Mastermind Your Love Life</h1>
+      <h1 class="sr-only">Love Immersion New Year's Edition — Mastermind Your Love Life</h1>
       <img
         src="/images/love-immersion-logo.png"
         alt="Love Immersion — Mastermind Your Love Life"
-        class="mx-auto mb-4 w-full max-w-[420px] md:max-w-[560px] h-auto"
+        class="mx-auto mb-4 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[560px] h-auto"
         style="filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));"
       >
       <p class="font-heading italic text-white/80 text-2xl md:text-4xl mb-8 tracking-[0.15em]" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6); color: #C4577A;">
-        {numeral}
+        NYE
       </p>
 
       <p class="text-base md:text-lg text-white/75 max-w-2xl mx-auto mb-10 leading-relaxed font-light italic">
-        {hook}
+        A new year. A new chapter. A new way of loving.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="{checkout_url}" target="_blank" rel="noopener" class="btn-pink text-base !px-10 !py-4">Reserve Your Spot</a>
-      </div>
+      <div id="waitlist" class="max-w-md mx-auto w-full">
+          <p class="text-gold text-xs tracking-[0.28em] uppercase font-semibold mb-3">Booking opens soon</p>
+          <p class="text-white/70 text-sm mb-5">Drop your email &mdash; we&rsquo;ll notify you the moment booking opens for <em>Love Immersion New Year&rsquo;s Edition · Dec 31 &ndash; Jan 3</em>.</p>
+          <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              id="waitlist-email"
+              required
+              placeholder="your@email.com"
+              class="flex-1 px-4 py-3 rounded-full text-sm bg-white/5 border border-white/15 text-white placeholder-white/40 focus:outline-none focus:border-gold transition"
+              style="min-width:0;"
+            >
+            <button type="submit" class="btn-pink !py-3 !px-7 whitespace-nowrap">Join the Waitlist</button>
+          </form>
+          <p id="waitlist-status" class="text-xs text-white/50 mt-3 min-h-[1rem]"></p>
+        </div>
     </div>
   </section>
 
@@ -333,7 +341,7 @@ TEMPLATE = r"""<!DOCTYPE html>
       </h2>
       <div class="space-y-5 text-white/70 text-lg leading-relaxed font-light">
         <p>
-          {season_copy}
+          New Year's retreat — close the chapter of 2026, cross the threshold together, and step into 2027 with the love life you actually want.
         </p>
         <p>
           You'll arrive with whatever you're carrying. You'll leave lighter, clearer, and with a felt sense of what it takes to love at full range.
@@ -413,14 +421,14 @@ TEMPLATE = r"""<!DOCTYPE html>
   <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
     <div class="max-w-3xl mx-auto text-center reveal">
       <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">The Venue</p>
-      <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6">{venue_name}</h2>
-      <p class="text-white/65 text-lg mb-3">{venue_address}</p>
-      <p class="text-white/55 text-sm italic mb-10">{venue_description}</p>
+      <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6">Venue announcement coming soon</h2>
+      <p class="text-white/65 text-lg mb-3">Austin, TX</p>
+      <p class="text-white/55 text-sm italic mb-10">A curated venue in Austin — details shared closer to the retreat.</p>
 
       <div class="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
         <div class="pillar-card rounded-xl p-5 text-center">
           <p class="text-gold text-xs uppercase tracking-wider mb-2">Dates</p>
-          <p class="text-white font-semibold">{date_range_pretty}</p>
+          <p class="text-white font-semibold">Dec 31, 2026 – Jan 3, 2027</p>
         </div>
         <div class="pillar-card rounded-xl p-5 text-center">
           <p class="text-gold text-xs uppercase tracking-wider mb-2">Location</p>
@@ -428,7 +436,7 @@ TEMPLATE = r"""<!DOCTYPE html>
         </div>
         <div class="pillar-card rounded-xl p-5 text-center">
           <p class="text-gold text-xs uppercase tracking-wider mb-2">Edition</p>
-          <p class="text-white font-semibold">Immersion {numeral}</p>
+          <p class="text-white font-semibold">New Year's Edition</p>
         </div>
       </div>
 
@@ -494,7 +502,7 @@ TEMPLATE = r"""<!DOCTYPE html>
             <span class="faq-icon text-gold text-2xl leading-none">+</span>
           </button>
           <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed">
-            No. Lodging is booked separately — we share hotel and Airbnb recommendations near HAVAN when you register.
+            No. Lodging is booked separately — we share hotel and Airbnb recommendations near the venue when you register.
           </div>
         </div>
 
@@ -535,14 +543,14 @@ TEMPLATE = r"""<!DOCTYPE html>
   <!-- FINAL CTA -->
   <section class="py-24 md:py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
     <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
-      <p class="text-gold text-xs tracking-[0.2em] uppercase font-medium mb-4">{date_range_pretty}</p>
+      <p class="text-gold text-xs tracking-[0.2em] uppercase font-medium mb-4">Dec 31, 2026 – Jan 3, 2027</p>
       <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight">
         Three days. <span class="italic" style="color:#C4577A;">One decision.</span>
       </h2>
       <p class="text-white/65 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed font-light">
         Pricing, what's included, and coaching line-up on the registration page.
       </p>
-      <a href="{checkout_url}" target="_blank" rel="noopener" class="btn-pink !text-base !py-4 !px-10">Reserve Your Spot &rarr;</a>
+      <a href="#waitlist" class="btn-pink !text-base !py-4 !px-10">Join the Waitlist &rarr;</a>
       <p class="text-white/35 text-xs mt-6 italic">Questions? Email <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a></p>
     </div>
   </section>
@@ -561,7 +569,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 
   <script>
     const header = document.getElementById('wd-header');
-    window.addEventListener('scroll', () => {{ header.classList.toggle('scrolled', window.scrollY > 50); }});
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileClose = document.getElementById('mobile-close');
     const mobileNav = document.getElementById('mobile-nav');
@@ -570,27 +578,46 @@ TEMPLATE = r"""<!DOCTYPE html>
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
 
     const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {{
-      entries.forEach(entry => {{ if (entry.isIntersecting) {{ entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }} }});
-    }}, {{ threshold: 0.1 }});
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
 
-    document.querySelectorAll('.faq-item').forEach(item => {{
-      item.querySelector('.faq-trigger')?.addEventListener('click', () => {{ item.classList.toggle('open'); }});
-    }});
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-trigger')?.addEventListener('click', () => { item.classList.toggle('open'); });
+    });
   </script>
 
+
+  <script>
+    (function() {
+      var form = document.getElementById('waitlist-form');
+      if (!form) return;
+      var status = document.getElementById('waitlist-status');
+      var endpoint = 'https://script.google.com/macros/s/AKfycbzbch3y_mD55tazCQZRGChz8NtC-yeILGg9I4qVowSgqP3oe-D6_8RlC8zF94vgjHwz/exec';
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('waitlist-email').value.trim();
+        if (!email || !email.includes('@')) { status.textContent = 'Please enter a valid email.'; return; }
+        status.textContent = 'Sending…';
+        var payload = JSON.stringify({
+          email: email,
+          edition: 'Love Immersion New Year\'s Edition',
+          dateRange: 'Dec 31, 2026 – Jan 3, 2027',
+          page: window.location.pathname
+        });
+        fetch(endpoint, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: payload
+        }).then(function() {
+          form.style.display = 'none';
+          status.innerHTML = '<span class="text-gold">You&rsquo;re on the list.</span> We&rsquo;ll be in touch when booking opens November 8, 2026.';
+        }).catch(function() {
+          status.textContent = 'Network error. Please try again or email team@wedeepen.com.';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
-"""
-
-
-def main():
-    for ev in EVENTS:
-        out_dir = ROOT / ev["slug"]
-        out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(TEMPLATE.format(**ev), encoding="utf-8")
-        print(f"✓ {ev['slug']}/index.html — Love Immersion {ev['numeral']} ({ev['date_range_pretty']})")
-
-if __name__ == "__main__":
-    main()

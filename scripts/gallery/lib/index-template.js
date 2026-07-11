@@ -4,12 +4,9 @@ import { pageHead, pageNav, pageFooter, pageScripts } from './page-shell.js';
 const SITE = 'https://wedeepen.com';
 
 export function renderGalleryIndex(albums) {
-  // WhatsApp-safe og:image: prefer a pre-generated JPEG (< 150KB) for the
-  // first album with a cover; falls back to the WebP cover if absent.
-  const firstWithCover = albums.find(a => a.cover_thumb_url || a.cover_full_url);
-  const ogImage = firstWithCover
-    ? `${SITE}/images/og/gallery-${firstWithCover.slug}.jpg`
-    : `${SITE}/images/og-image.jpg`;
+  // Branded gallery thumbnail (matches the Love Immersion design), kept as a
+  // WhatsApp-safe JPEG (< 150KB). Source PNG lives at /images/og/og-gallery.png.
+  const ogImage = `${SITE}/images/og/og-gallery.jpg`;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',

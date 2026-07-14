@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — WeDeepen</title>
+  <meta name="description" content="How WeDeepen collects, uses, shares, and protects your personal information across wedeepen.com, our memberships, events, retreats, podcast, and messaging programs.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wedeepen.com/privacy/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/privacy/">
+  <meta property="og:title" content="Privacy Policy — WeDeepen">
+  <meta property="og:description" content="How WeDeepen collects, uses, shares, and protects your personal information.">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-privacy.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy — WeDeepen">
+  <meta name="twitter:description" content="How WeDeepen collects, uses, shares, and protects your personal information.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/og-privacy.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#E8337A', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+            softgray: '#F5F5F5',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    .wd-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ===== Legal document typography ===== */
+    .legal { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.8; }
+    .legal h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #fff; font-size: 1.65rem; line-height: 1.3;
+      margin-top: 3.25rem; margin-bottom: 1.1rem;
+      padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,0.08);
+      scroll-margin-top: 110px;
+    }
+    .legal h2:first-of-type { border-top: none; padding-top: 0; }
+    .legal h2 .sec-num { color: #C9A277; margin-right: 0.6rem; }
+    .legal h3 {
+      color: #fff; font-weight: 600; font-size: 1.08rem;
+      margin-top: 2rem; margin-bottom: 0.7rem;
+      scroll-margin-top: 110px;
+    }
+    .legal p { margin-bottom: 1.05rem; }
+    .legal ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1.25rem; }
+    .legal ul ul { margin: 0.5rem 0 0.5rem; list-style: circle; }
+    .legal li { margin-bottom: 0.55rem; padding-left: 0.25rem; }
+    .legal li::marker { color: #C9A277; }
+    .legal strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+    .legal a { color: #C9A277; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .legal a:hover { color: #D4B78C; }
+    .legal .callout {
+      background: rgba(201,162,119,0.06);
+      border: 1px solid rgba(201,162,119,0.3);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .legal .callout p:last-child, .legal .callout ul:last-child { margin-bottom: 0; }
+
+    /* Table of contents */
+    .toc a {
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      display: block; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem; transition: color 0.2s;
+    }
+    .toc a:hover { color: #C9A277; }
+    .toc a .toc-num { color: #C9A277; display: inline-block; min-width: 2rem; }
+  </style>
+  <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="bg-ink text-white">
+
+  <!-- ============================
+       STICKY HEADER
+       ============================ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
+        <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
+        <div class="relative group">
+          <button type="button" class="text-white/80 hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
+          <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
+            <div class="rounded-xl py-2 min-w-[220px]" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px -12px rgba(0,0,0,0.65);">
+              <a href="/love-immersion/october-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">October 16&ndash;19, 2026</a>
+              <a href="/love-immersion/nye-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">New Year&rsquo;s Eve 2026&ndash;27</a>
+              <a href="/love-immersion/march-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">March 5&ndash;7, 2027</a>
+              <a href="/love-immersion/july-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">July 16&ndash;18, 2027</a>
+            </div>
+          </div>
+        </div>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
+        <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
+        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-sm !py-2.5 !px-6 hidden sm:inline-block">Login to Love Club</a>
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8 overflow-y-auto">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium pb-12">
+      <a href="/" class="text-white hover:text-gold transition">Home</a>
+      <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
+      <div class="flex flex-col gap-4">
+        <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
+        <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
+        <a href="/love-immersion/nye-2026/" class="text-white hover:text-gold transition pl-4 text-base">New Year&rsquo;s Eve 2026&ndash;27</a>
+        <a href="/love-immersion/march-2027/" class="text-white hover:text-gold transition pl-4 text-base">March 5&ndash;7, 2027</a>
+        <a href="/love-immersion/july-2027/" class="text-white hover:text-gold transition pl-4 text-base">July 16&ndash;18, 2027</a>
+      </div>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
+      <a href="/events/" class="text-white hover:text-gold transition">Events</a>
+      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-center mt-4">Login to Love Club</a>
+    </nav>
+  </div>
+
+
+  <!-- ============================
+       PAGE TITLE
+       ============================ -->
+  <section class="pt-32 md:pt-40 pb-10 md:pb-14 px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Legal</p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.08] mb-6">Privacy Policy</h1>
+      <p class="text-white/50 text-sm">Effective date: July 13, 2026 &nbsp;&middot;&nbsp; Last updated: July 13, 2026</p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       DOCUMENT
+       ============================ -->
+  <section class="pb-20 md:pb-28 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <div class="legal">
+        <p>WeDeepen LLC (&ldquo;WeDeepen,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;) is a Texas limited liability company. This Privacy Policy explains what personal information we collect, why we collect it, how we use and share it, and what choices and rights you have.</p>
+        <p>It applies to wedeepen.com, our two membership tiers (the WeDeepen Membership and the Love Club Membership), our events, retreats, and community programming, our podcast, our email and text messaging programs, our WhatsApp groups, and our social media presence.</p>
+        <p>Please read this alongside our <a href="/terms/">Terms of Use</a>, into which it is incorporated.</p>
+      </div>
+
+      <!-- Table of contents -->
+      <div class="toc mt-10 mb-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
+        <p class="text-white font-semibold text-sm uppercase tracking-[0.2em] mb-4">Contents</p>
+        <div class="grid md:grid-cols-2 md:gap-x-10">
+          <div>
+            <a href="#section-1"><span class="toc-num">1.</span>Summary of what matters most</a>
+            <a href="#section-2"><span class="toc-num">2.</span>Information we collect</a>
+            <a href="#section-3"><span class="toc-num">3.</span>Sensitive and health information</a>
+            <a href="#section-4"><span class="toc-num">4.</span>How we use your information</a>
+            <a href="#section-5"><span class="toc-num">5.</span>Communications and the channels we use</a>
+            <a href="#section-6"><span class="toc-num">6.</span>How we share your information</a>
+            <a href="#section-7"><span class="toc-num">7.</span>Where your information goes</a>
+            <a href="#section-8"><span class="toc-num">8.</span>Cookies and tracking</a>
+          </div>
+          <div>
+            <a href="#section-9"><span class="toc-num">9.</span>How long we keep your information</a>
+            <a href="#section-10"><span class="toc-num">10.</span>Your rights and choices</a>
+            <a href="#section-11"><span class="toc-num">11.</span>Security</a>
+            <a href="#section-12"><span class="toc-num">12.</span>Children</a>
+            <a href="#section-13"><span class="toc-num">13.</span>Third-party sites</a>
+            <a href="#section-14"><span class="toc-num">14.</span>Changes to this policy</a>
+            <a href="#section-15"><span class="toc-num">15.</span>Contact us</a>
+          </div>
+        </div>
+      </div>
+
+      <article class="legal">
+
+        <h2 id="section-1"><span class="sec-num">1.</span>Summary of what matters most</h2>
+        <div class="callout">
+          <ul>
+            <li><strong>We never share your phone number.</strong> Not with facilitators, not with partners, not with anyone, for any purpose. Your SMS consent is never shared either.</li>
+            <li><strong>We do not sell your personal information.</strong></li>
+            <li><strong>We sometimes share your name and email address</strong> with a facilitator, guide, or partner connected to an event you attended, so they can follow up with you. You can opt out by emailing <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>, or by unsubscribing from our email list.</li>
+            <li>We collect sensitive health information for certain programs, and we use it only for safety and suitability screening. We never share it for marketing.</li>
+            <li>You can opt out of any marketing from us at any time.</li>
+          </ul>
+        </div>
+        <p>The rest of this policy explains the detail.</p>
+
+        <h2 id="section-2"><span class="sec-num">2.</span>Information we collect</h2>
+
+        <h3 id="section-2-1">2.1 Information you give us</h3>
+        <ul>
+          <li><strong>Identity and contact information:</strong> name, email address, mobile phone number, mailing address, emergency contact</li>
+          <li><strong>Account and membership information:</strong> Membership status, registration history, preferences</li>
+          <li><strong>Payment information:</strong> processed by our third-party payment processors. We receive confirmation of payment and limited details such as the last four digits and card type. <strong>We do not store your full payment card number.</strong></li>
+          <li><strong>Intake, application, and waiver information:</strong> responses to questionnaires, screening forms, waivers, and releases for events and retreats. For certain immersive programs, this includes <strong>health information</strong>, which may cover physical health, medical conditions, medications, mental health history, and other sensitive personal history.</li>
+          <li><strong>Dietary, accessibility, and accommodation needs</strong></li>
+          <li><strong>Communications:</strong> what you send us by email, text, WhatsApp, social media, or web form</li>
+          <li><strong>Content you submit:</strong> testimonials, reviews, photos, video, community posts</li>
+        </ul>
+
+        <h3 id="section-2-2">2.2 Information we collect automatically</h3>
+        <ul>
+          <li>Device and usage data: IP address, browser type and version, operating system, referring page, pages viewed, links clicked, time on page</li>
+          <li>Approximate location derived from IP address</li>
+          <li>Cookies and similar technologies (see Section 8)</li>
+          <li>Email engagement data: whether you opened an email or clicked a link</li>
+          <li>Podcast download and listening data, in aggregate, from our hosting platform</li>
+        </ul>
+
+        <h3 id="section-2-3">2.3 Information from third parties</h3>
+        <ul>
+          <li>Payment processors (confirmation and limited card details)</li>
+          <li>Event registration and ticketing platforms</li>
+          <li>Social media platforms, where you interact with us publicly or send us a message</li>
+          <li>Facilitators, venues, and partners, where you registered through them</li>
+          <li>Referrals, where an existing member refers you and you consent</li>
+        </ul>
+
+        <h2 id="section-3"><span class="sec-num">3.</span>Sensitive and health information</h2>
+        <p>Some of our intake forms and waivers ask about your physical health, mental health, medication use, substance history, and personal history. <strong>We collect this only to assess suitability and safety for participation in our programs.</strong></p>
+        <ul>
+          <li>We use it for screening, safety planning, and emergency response.</li>
+          <li>We share it only with the specific facilitators, staff, and medical or safety personnel who need it to run that program safely, and only for that purpose.</li>
+          <li><strong>We do not use it for marketing. We do not sell it. We do not share it with advertisers, data brokers, or partners.</strong></li>
+          <li>We retain it only as long as needed for safety, insurance, and legal purposes, and then we delete it.</li>
+        </ul>
+        <p>Screening is not a clinical assessment or a diagnosis, and it is not medical advice. See our <a href="/terms/#section-9">Terms of Use, Section 9</a>.</p>
+        <p><strong>WeDeepen is not a healthcare provider and is not a HIPAA covered entity.</strong> The health information you give us is not protected health information under HIPAA. We nonetheless treat it as confidential and handle it with care.</p>
+
+        <h2 id="section-4"><span class="sec-num">4.</span>How we use your information</h2>
+        <ul>
+          <li>To provide the Services: process registrations, run events and retreats, deliver Membership benefits, send Zoom links and logistics</li>
+          <li>To screen participants for safety and suitability</li>
+          <li>To process payments and keep financial records</li>
+          <li>To communicate with you (see Section 5)</li>
+          <li>To respond to your questions and provide support</li>
+          <li>To keep our community safe, enforce our Terms, and investigate misconduct</li>
+          <li>To operate, secure, and improve our Site and programming</li>
+          <li>To measure the performance of our marketing and understand what our community wants</li>
+          <li>To comply with legal, tax, and insurance obligations</li>
+        </ul>
+
+        <h2 id="section-5"><span class="sec-num">5.</span>Communications and the channels we use</h2>
+
+        <h3 id="section-5-1">5.1 Email</h3>
+        <p>We use your email address to send you transactional messages (confirmations, logistics, receipts, safety notices, account and billing notices) and, if you have consented, marketing messages (event and retreat announcements, podcast releases, community news).</p>
+        <p>You may unsubscribe from marketing email at any time using the link at the bottom of any marketing email, or by emailing <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>. You will still receive transactional and safety messages while you have an active account, membership, or registration.</p>
+        <p>Our email platform collects open and click data so we can understand what is useful to our community.</p>
+        <p>If you are on our email list, we may at times share your name and email address with a facilitator or partner connected to an event you attended. See Section 6. Email <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> if you would rather we did not.</p>
+
+        <h3 id="section-5-2">5.2 SMS and text messaging</h3>
+        <p>If you opt in, we use your mobile number to send you information about our events, retreats, member virtual programming, Zoom links and reminders, guest announcements, and podcast releases. Full terms are in <a href="/terms/#section-16-2">Section 16.2 of our Terms of Use</a>.</p>
+        <p><strong>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with any third parties.</strong> We share your mobile number only with the messaging platform that delivers our messages on our behalf, and only so that it can deliver them.</p>
+        <p>You may join by texting <strong>LOVE</strong> to <strong>833-407-0037</strong>, or through the sign-up form on our Site. You may opt out at any time by replying <strong>STOP</strong>. Message frequency varies. Message and data rates may apply. Reply <strong>HELP</strong> for help.</p>
+
+        <h3 id="section-5-3">5.3 WhatsApp</h3>
+        <p>We use WhatsApp groups for logistics and community for certain events, retreats, and member programming. Joining is voluntary.</p>
+        <p><strong>Important:</strong> when you join a WhatsApp group, <strong>your phone number and profile information are visible to every other person in that group.</strong> We cannot control what other participants do with that information, and we are not responsible for it. If you prefer not to share your number with other participants, do not join the group and tell us, and we will send you the same information by email.</p>
+        <p>WhatsApp is operated by a third party under its own terms and privacy policy. Our use of WhatsApp does not make us responsible for WhatsApp&rsquo;s data practices. You may leave any group at any time.</p>
+
+        <h3 id="section-5-4">5.4 Social media</h3>
+        <p>If you follow, comment, tag, mention, or message us on a social media platform, that interaction is governed by that platform&rsquo;s terms and privacy policy, not by this one. We can see what the platform makes visible to us.</p>
+        <p>We may use social media platforms&rsquo; advertising tools to reach people who are likely to be interested in our programming. This may involve providing a platform with a hashed version of your email address so it can match you to an existing account and either show you our ads or exclude you from them. If you prefer we not do this, email <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> and we will exclude you.</p>
+        <p>We may reshare public content that mentions or tags us. See our <a href="/terms/#section-17">Terms of Use, Section 17</a>.</p>
+
+        <h3 id="section-5-5">5.5 Podcast</h3>
+        <p>Our podcast is distributed through third-party platforms. Those platforms collect their own listener data under their own policies. We receive aggregate, non-identifying statistics.</p>
+
+        <h2 id="section-6"><span class="sec-num">6.</span>How we share your information</h2>
+        <p>We share personal information only in the circumstances below. <strong>We do not sell your personal information, and we do not share it for cross-context behavioral advertising in a way that constitutes a &ldquo;sale&rdquo; or &ldquo;share&rdquo; under applicable law.</strong></p>
+        <p><strong>Facilitators, guides, and venues.</strong> Facilitators teach our programs and events and facilitate at them. We share the information necessary for them to deliver the event you registered for: for example, your name, your registration status, and any accessibility, dietary, or safety information relevant to your participation. Where required for participant safety, we share relevant intake information as described in Section 3.</p>
+        <p><strong>Email addresses.</strong> If you have opted in to our email list, we may from time to time share your <strong>name and email address</strong> with a facilitator, guide, venue, sponsor, or partner connected to an event you attended, so that they can follow up with you about their programs, events, or related work. We do this selectively, not routinely.</p>
+        <p>We operate a single email list with a single consent. <strong>If you do not want your email address shared with facilitators or partners, you have two options:</strong> unsubscribe from our email list entirely using the link in any of our emails, or write to us at <a href="mailto:team@wedeepen.com"><strong>team@wedeepen.com</strong></a> and ask us to exclude you from facilitator and partner sharing while remaining on our list. We will honor either request. Anyone who receives your email address from us is required to give you their own unsubscribe option, and once they have it, their communications with you are governed by their own privacy policy, not ours.</p>
+        <div class="callout">
+          <p><strong>Phone numbers are never shared. Full stop.</strong> We do not share, sell, rent, or disclose your mobile phone number, or your consent to receive text messages, to any facilitator, guide, venue, sponsor, partner, affiliate, advertiser, or other third party, for marketing, promotional, or any other purpose. <strong>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with any third parties.</strong> The only exception is the messaging platform that delivers our texts on our behalf, which may use your number solely to deliver our messages to you.</p>
+          <p>(Note: if you voluntarily join a WhatsApp group, other participants in that group can see your number. That is a function of WhatsApp, not a disclosure by us. See Section 5.3.)</p>
+        </div>
+        <p><strong>Service providers.</strong> We use vendors to run our business, including website hosting, email marketing platforms, SMS platforms, payment processors, form and registration tools, community platforms, scheduling tools, video conferencing, analytics, and customer support. They access your information only to perform services for us and are contractually obligated to protect it and not use it for their own purposes.</p>
+        <p><strong>Other participants.</strong> Where you join a WhatsApp group, a community platform, or a group program, other participants may see the information you choose to share, including your name, profile, and in the case of WhatsApp, your phone number.</p>
+        <p><strong>Legal and safety.</strong> We may disclose information where we believe in good faith that it is required by law, subpoena, or legal process, or where it is necessary to investigate misconduct, enforce our Terms, protect the safety of a participant or the public, or protect our legal rights. In an emergency, we may share your emergency contact and relevant health information with medical or emergency personnel.</p>
+        <p><strong>Business transfers.</strong> If WeDeepen is involved in a merger, acquisition, financing, reorganization, conversion of entity form, sale of assets, or bankruptcy, your information may be transferred as part of that transaction, including during due diligence. Any acquirer will remain bound by this policy for information collected before the transfer, unless you are notified and consent otherwise.</p>
+        <p><strong>Aggregated and de-identified data.</strong> We may share aggregated or de-identified information, which cannot reasonably be used to identify you, for any purpose.</p>
+        <p><strong>With your consent.</strong> Any other sharing, only when you have agreed to it.</p>
+
+        <h2 id="section-7"><span class="sec-num">7.</span>Where your information goes</h2>
+        <p>We are based in the United States and our vendors are primarily US-based. If you access our Services from outside the United States, your information will be transferred to and processed in the United States, where privacy laws may differ from those in your country. By using our Services, you understand this.</p>
+
+        <h2 id="section-8"><span class="sec-num">8.</span>Cookies and tracking</h2>
+        <p>We use cookies and similar technologies to keep the Site working, remember your preferences, understand how the Site is used, and measure our marketing.</p>
+        <ul>
+          <li><strong>Essential cookies</strong> are required for the Site to function.</li>
+          <li><strong>Analytics cookies</strong> help us understand traffic and usage.</li>
+          <li><strong>Marketing cookies</strong> help us measure and target our advertising.</li>
+        </ul>
+        <p>You can configure your browser to refuse cookies, though parts of the Site may not work properly if you do. Where required by law, we will ask for your consent before setting non-essential cookies.</p>
+        <p>We do not currently respond to browser &ldquo;Do Not Track&rdquo; signals. Where required, we honor Global Privacy Control signals as a request to opt out of sale or sharing.</p>
+
+        <h2 id="section-9"><span class="sec-num">9.</span>How long we keep your information</h2>
+        <p>We keep your information for as long as your account or membership is active, and afterward for as long as needed to:</p>
+        <ul>
+          <li>Meet legal, tax, accounting, and insurance obligations</li>
+          <li>Resolve disputes and enforce our agreements</li>
+          <li>Maintain waivers, releases, and safety records, which we retain for the applicable statute of limitations</li>
+        </ul>
+        <p>Sensitive health and intake information is retained only as long as needed for safety, insurance, and legal purposes, and is then deleted.</p>
+
+        <h2 id="section-10"><span class="sec-num">10.</span>Your rights and choices</h2>
+        <p><strong>Everyone can:</strong></p>
+        <ul>
+          <li>Unsubscribe from marketing email using the link in any marketing email</li>
+          <li>Opt out of text messages by replying STOP</li>
+          <li><strong>Ask us not to share your email address with facilitators or partners</strong>, at any time, by emailing <a href="mailto:team@wedeepen.com">team@wedeepen.com</a></li>
+          <li>Leave any WhatsApp group at any time</li>
+          <li>Ask us to exclude you from social media ad matching</li>
+          <li>Request access to, correction of, or deletion of your personal information</li>
+          <li>Ask us a question about this policy</li>
+        </ul>
+        <p>Contact us at <a href="mailto:team@wedeepen.com"><strong>team@wedeepen.com</strong></a> to exercise any of these.</p>
+        <p><strong>Depending on where you live</strong>, you may have additional rights, including the right to know what we collect, the right to obtain a copy, the right to correct or delete, the right to opt out of sale, sharing, or targeted advertising, the right to limit the use of sensitive personal information, the right to appeal a denial, and the right not to be discriminated against for exercising a right. These may arise under the <strong>Texas Data Privacy and Security Act</strong>, the <strong>California Consumer Privacy Act</strong>, the <strong>EU and UK GDPR</strong>, or other applicable laws.</p>
+        <p>We will verify your identity before acting on a request. We will respond within the timeframe the applicable law requires. If we deny your request, you may appeal by replying to our decision, and where applicable you may contact your state attorney general or supervisory authority.</p>
+        <p><strong>If GDPR applies to you</strong>, our legal bases for processing are: performance of a contract (delivering the services you registered for), consent (marketing communications and sensitive health data), legitimate interests (securing and improving our Services, protecting our community), and legal obligation. You may withdraw consent at any time, without affecting processing already carried out.</p>
+
+        <h2 id="section-11"><span class="sec-num">11.</span>Security</h2>
+        <p>We use reasonable administrative, technical, and physical safeguards to protect your information, including access controls limiting sensitive intake data to the staff and facilitators who need it. No system is completely secure, and we cannot guarantee absolute security. Tell us immediately at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> if you believe your account has been compromised.</p>
+
+        <h2 id="section-12"><span class="sec-num">12.</span>Children</h2>
+        <p>Our Services are intended for adults. We do not knowingly collect personal information from anyone under 18 without the consent of a parent or legal guardian. If we learn we have collected such information without consent, we will delete it. Parents or guardians who believe we hold information about their child may contact <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+
+        <h2 id="section-13"><span class="sec-num">13.</span>Third-party sites</h2>
+        <p>Our Site, our emails, and our podcast may link to third-party sites, events, practitioners, and services. <strong>This policy does not apply to them.</strong> We do not control their practices, and listing or recommending them is not an endorsement of their privacy practices. Read their policies before giving them your information.</p>
+
+        <h2 id="section-14"><span class="sec-num">14.</span>Changes to this policy</h2>
+        <p>We may update this policy. We will post the updated version here with a new effective date, and where the changes are material we will make reasonable efforts to notify you by email or through the Site. Your continued use of the Services after the changes take effect constitutes acceptance.</p>
+
+        <h2 id="section-15"><span class="sec-num">15.</span>Contact us</h2>
+        <p><strong>WeDeepen LLC</strong><br>
+        605 W 9th Street<br>
+        Austin, TX 78701<br>
+        United States<br>
+        <a href="mailto:team@wedeepen.com"><strong>team@wedeepen.com</strong></a></p>
+        <p>If you have a question, a request, or a complaint about how we handle your information, write to us. We read every one.</p>
+
+      </article>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer class="bg-ink border-t border-white/10 py-14">
+    <div class="max-w-site mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+        <div>
+          <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+          <p class="text-white/40 text-sm mt-3 leading-relaxed max-w-xs">Your intimacy journey is your life story.</p>
+        </div>
+        <div class="flex gap-5">
+          <a href="https://www.facebook.com/WeDeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@wedeepen" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+          </a>
+          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Spotify">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <p>&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
+          <a href="/terms/" class="hover:text-gold transition">Terms of Use</a>
+          <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a>
+          <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
+          <a href="https://feminineweapon.com" target="_blank" rel="noopener" class="hover:text-gold transition">Philanthropic Initiative</a>
+          <a href="https://www.facebook.com/groups/793115204193690" target="_blank" rel="noopener" class="hover:text-gold transition">Esther Perel Discussion Group</a>
+          <a href="/#contact" class="hover:text-gold transition">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+  </script>
+
+</body>
+</html>

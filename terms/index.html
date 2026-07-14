@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — WeDeepen</title>
+  <meta name="description" content="The Terms of Use for wedeepen.com, the WeDeepen and Love Club Memberships, and all WeDeepen events, retreats, and programming.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wedeepen.com/terms/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/terms/">
+  <meta property="og:title" content="Terms of Use — WeDeepen">
+  <meta property="og:description" content="The Terms of Use for wedeepen.com, the WeDeepen and Love Club Memberships, and all WeDeepen events, retreats, and programming.">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-terms.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Terms of Use — WeDeepen">
+  <meta name="twitter:description" content="The Terms of Use for wedeepen.com and all WeDeepen programming.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/og-terms.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#E8337A', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+            softgray: '#F5F5F5',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    .wd-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ===== Legal document typography ===== */
+    .legal { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.8; }
+    .legal h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #fff; font-size: 1.65rem; line-height: 1.3;
+      margin-top: 3.25rem; margin-bottom: 1.1rem;
+      padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,0.08);
+      scroll-margin-top: 110px;
+    }
+    .legal h2:first-of-type { border-top: none; padding-top: 0; }
+    .legal h2 .sec-num { color: #C9A277; margin-right: 0.6rem; }
+    .legal h3 {
+      color: #fff; font-weight: 600; font-size: 1.08rem;
+      margin-top: 2rem; margin-bottom: 0.7rem;
+      scroll-margin-top: 110px;
+    }
+    .legal p { margin-bottom: 1.05rem; }
+    .legal ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1.25rem; }
+    .legal ul ul { margin: 0.5rem 0 0.5rem; list-style: circle; }
+    .legal li { margin-bottom: 0.55rem; padding-left: 0.25rem; }
+    .legal li::marker { color: #C9A277; }
+    .legal strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+    .legal a { color: #C9A277; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .legal a:hover { color: #D4B78C; }
+    .legal .callout {
+      background: rgba(201,162,119,0.06);
+      border: 1px solid rgba(201,162,119,0.3);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .legal .callout p:last-child { margin-bottom: 0; }
+    .legal .caps { letter-spacing: 0.01em; }
+
+    /* Table of contents */
+    .toc a {
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      display: block; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem; transition: color 0.2s;
+    }
+    .toc a:hover { color: #C9A277; }
+    .toc a .toc-num { color: #C9A277; display: inline-block; min-width: 2rem; }
+  </style>
+  <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="bg-ink text-white">
+
+  <!-- ============================
+       STICKY HEADER
+       ============================ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex items-center">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
+        <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
+        <div class="relative group">
+          <button type="button" class="text-white/80 hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
+          <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
+            <div class="rounded-xl py-2 min-w-[220px]" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px -12px rgba(0,0,0,0.65);">
+              <a href="/love-immersion/october-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">October 16&ndash;19, 2026</a>
+              <a href="/love-immersion/nye-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">New Year&rsquo;s Eve 2026&ndash;27</a>
+              <a href="/love-immersion/march-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">March 5&ndash;7, 2027</a>
+              <a href="/love-immersion/july-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">July 16&ndash;18, 2027</a>
+            </div>
+          </div>
+        </div>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
+        <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
+        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-sm !py-2.5 !px-6 hidden sm:inline-block">Login to Love Club</a>
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8 overflow-y-auto">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium pb-12">
+      <a href="/" class="text-white hover:text-gold transition">Home</a>
+      <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
+      <div class="flex flex-col gap-4">
+        <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
+        <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
+        <a href="/love-immersion/nye-2026/" class="text-white hover:text-gold transition pl-4 text-base">New Year&rsquo;s Eve 2026&ndash;27</a>
+        <a href="/love-immersion/march-2027/" class="text-white hover:text-gold transition pl-4 text-base">March 5&ndash;7, 2027</a>
+        <a href="/love-immersion/july-2027/" class="text-white hover:text-gold transition pl-4 text-base">July 16&ndash;18, 2027</a>
+      </div>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
+      <a href="/events/" class="text-white hover:text-gold transition">Events</a>
+      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-center mt-4">Login to Love Club</a>
+    </nav>
+  </div>
+
+
+  <!-- ============================
+       PAGE TITLE
+       ============================ -->
+  <section class="pt-32 md:pt-40 pb-10 md:pb-14 px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Legal</p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.08] mb-6">Terms of Use</h1>
+      <p class="text-white/50 text-sm">Effective date: July 13, 2026 &nbsp;&middot;&nbsp; Last updated: July 13, 2026</p>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       DOCUMENT
+       ============================ -->
+  <section class="pb-20 md:pb-28 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <div class="legal">
+        <p>Welcome to WeDeepen. Please read these Terms of Use carefully. They are a binding legal agreement between you and WeDeepen LLC. By using our website, creating an account, enrolling in a Membership, registering for an event or retreat, or attending any WeDeepen programming, you agree to these Terms. If you do not agree, do not use our services.</p>
+        <div class="callout">
+          <p><strong>These Terms include a release of liability, an assumption of risk, a media release, a limitation of our liability to you, and a binding arbitration agreement with a class action waiver. Please read Sections 9 through 15 and Section 23 carefully.</strong></p>
+        </div>
+      </div>
+
+      <!-- Table of contents -->
+      <div class="toc mt-10 mb-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
+        <p class="text-white font-semibold text-sm uppercase tracking-[0.2em] mb-4">Contents</p>
+        <div class="grid md:grid-cols-2 md:gap-x-10">
+          <div>
+            <a href="#section-1"><span class="toc-num">1.</span>Definitions</a>
+            <a href="#section-2"><span class="toc-num">2.</span>Who we are and what we do</a>
+            <a href="#section-3"><span class="toc-num">3.</span>Eligibility</a>
+            <a href="#section-4"><span class="toc-num">4.</span>Your account</a>
+            <a href="#section-5"><span class="toc-num">5.</span>Memberships</a>
+            <a href="#section-6"><span class="toc-num">6.</span>Events, retreats, registration, and payment</a>
+            <a href="#section-7"><span class="toc-num">7.</span>Third-party providers, venues, and recommended events</a>
+            <a href="#section-8"><span class="toc-num">8.</span>Nature of our programming</a>
+            <a href="#section-9"><span class="toc-num">9.</span>Health disclosures and screening</a>
+            <a href="#section-10"><span class="toc-num">10.</span>Assumption of risk</a>
+            <a href="#section-11"><span class="toc-num">11.</span>Release of liability</a>
+            <a href="#section-12"><span class="toc-num">12.</span>Indemnification</a>
+            <a href="#section-13"><span class="toc-num">13.</span>Substances and participant responsibility</a>
+          </div>
+          <div>
+            <a href="#section-14"><span class="toc-num">14.</span>Participant conduct and consent</a>
+            <a href="#section-15"><span class="toc-num">15.</span>Photography, video, and media release</a>
+            <a href="#section-16"><span class="toc-num">16.</span>Communications and your consent</a>
+            <a href="#section-17"><span class="toc-num">17.</span>Your content</a>
+            <a href="#section-18"><span class="toc-num">18.</span>Intellectual property</a>
+            <a href="#section-19"><span class="toc-num">19.</span>Prohibited conduct</a>
+            <a href="#section-20"><span class="toc-num">20.</span>Suspension and termination</a>
+            <a href="#section-21"><span class="toc-num">21.</span>Disclaimer of warranties</a>
+            <a href="#section-22"><span class="toc-num">22.</span>Limitation of liability</a>
+            <a href="#section-23"><span class="toc-num">23.</span>Dispute resolution, binding arbitration, and class action waiver</a>
+            <a href="#section-24"><span class="toc-num">24.</span>Governing law and venue</a>
+            <a href="#section-25"><span class="toc-num">25.</span>General</a>
+            <a href="#section-26"><span class="toc-num">26.</span>Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <article class="legal">
+
+        <h2 id="section-1"><span class="sec-num">1.</span>Definitions</h2>
+        <ul>
+          <li><strong>&ldquo;WeDeepen,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;</strong> means WeDeepen LLC, a Texas limited liability company.</li>
+          <li><strong>&ldquo;Site&rdquo;</strong> means wedeepen.com and any related pages, applications, or platforms we operate.</li>
+          <li><strong>&ldquo;Services&rdquo;</strong> means the Site, the Memberships, our Events, our Retreats, our community programming, our podcast, and any other product or service we offer.</li>
+          <li><strong>&ldquo;Memberships&rdquo;</strong> means our two paid membership tiers, the <strong>WeDeepen Membership</strong> and the <strong>Love Club Membership</strong>. Both sit within the WeDeepen ecosystem. <strong>&ldquo;Member&rdquo;</strong> means a person enrolled in either.
+            <ul>
+              <li><strong>&ldquo;WeDeepen Membership&rdquo;</strong> is our foundational tier. It is primarily a virtual membership, and may include in-person activities and gatherings from time to time. It is for people who want to study love and immerse themselves in the practice of it, alongside a community doing the same.</li>
+              <li><strong>&ldquo;Love Club Membership&rdquo;</strong> is our higher tier, for members ready to go deeper. It includes both virtual and in-person events and programming.</li>
+            </ul>
+          </li>
+          <li><strong>&ldquo;Event&rdquo;</strong> means any gathering, class, workshop, immersion, ceremony, or experience listed, hosted, produced, or promoted by WeDeepen, whether in person or virtual.</li>
+          <li><strong>&ldquo;Retreat&rdquo;</strong> means any multi-day immersive program, including the Love Immersion series.</li>
+          <li><strong>&ldquo;Facilitator&rdquo;</strong> means any guide, teacher, practitioner, coach, presenter, performer, or staff member who leads or supports an Event, whether employed by, contracted with, or independent of WeDeepen.</li>
+          <li><strong>&ldquo;Venue&rdquo;</strong> means any property, host, or location where an Event takes place.</li>
+          <li><strong>&ldquo;Third-Party Provider&rdquo;</strong> means any Facilitator, Venue, vendor, sponsor, partner, or other independent party involved in producing, hosting, or delivering an Event, or whose events or services we list, recommend, or promote.</li>
+          <li><strong>&ldquo;You,&rdquo; &ldquo;your,&rdquo; &ldquo;Participant,&rdquo; &ldquo;Member&rdquo;</strong> means the person using the Services.</li>
+        </ul>
+
+        <h2 id="section-2"><span class="sec-num">2.</span>Who we are and what we do</h2>
+        <p>WeDeepen is a relationship wellness company. We produce and host our own Events and Retreats, we operate two membership programs, the WeDeepen Membership and the Love Club Membership, we publish a podcast, and we list, recommend, and promote Events and offerings produced by Third-Party Providers.</p>
+        <p><strong>Our role differs depending on the Event.</strong> For Events we produce ourselves, we are the organizer. For Events produced by Third-Party Providers, and for any event, practitioner, or service we recommend, promote, or list, we act only as a platform and point of connection. We are not the organizer, employer, supervisor, or guarantor of that Third-Party Provider, and we are not responsible for their acts, omissions, services, safety practices, credentials, or conduct. Your relationship in those cases is with the Third-Party Provider directly.</p>
+        <p>Where you are unsure who is producing a given Event, ask us before you register.</p>
+
+        <h2 id="section-3"><span class="sec-num">3.</span>Eligibility</h2>
+        <p>You must be at least 18 years old to create an account, enroll in a Membership, or attend an Event, unless we have expressly designated an Event as open to minors and a parent or legal guardian has signed all required documentation on the minor&rsquo;s behalf. By using the Services, you represent that you are 18 or older, or that you have such consent.</p>
+        <p>Some Retreats and immersive programs have additional eligibility, screening, or health requirements. We may decline or revoke any registration at our discretion.</p>
+
+        <h2 id="section-4"><span class="sec-num">4.</span>Your account</h2>
+        <p>You are responsible for the accuracy of the information you give us, for keeping your login credentials confidential, and for all activity that occurs under your account. Tell us promptly at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> if you believe your account has been compromised.</p>
+
+        <h2 id="section-5"><span class="sec-num">5.</span>Memberships</h2>
+        <p>WeDeepen offers two membership tiers within a single ecosystem.</p>
+        <p><strong>WeDeepen Membership.</strong> Our foundational tier. Primarily virtual, with in-person activities and gatherings offered from time to time. It is for people who want to study love and immerse themselves in the practice of it, in community with others doing the same. <strong>$99 per month</strong>, or an annual rate disclosed at enrollment.</p>
+        <p><strong>Love Club Membership.</strong> Our higher tier, for members ready to go deeper. It includes both virtual and in-person events and programming. <strong>Starting at $5,000</strong>, at the rate and billing interval disclosed at enrollment.</p>
+        <p>The specific benefits, access, pricing, and billing interval of each tier are described at the time of enrollment, and those descriptions are incorporated into these Terms. This Section 5 applies to both tiers unless we say otherwise.</p>
+        <p><strong>Billing.</strong> Each Membership is a paid, recurring subscription. By enrolling, you authorize us and our payment processor to charge your payment method on a recurring basis at the rate and interval disclosed at sign-up, until you cancel.</p>
+        <p><strong>Renewal.</strong> Your Membership renews automatically at the end of each billing period unless you cancel before the renewal date.</p>
+        <p><strong>Cancellation.</strong> You may cancel at any time by contacting <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> or using the cancellation option in your account. Cancellation takes effect at the end of your current billing period. You will retain access through the end of the period you have paid for.</p>
+        <p><strong>Refunds.</strong> Membership fees are non-refundable except where required by law or where we choose to make an exception at our sole discretion.</p>
+        <p><strong>Moving between tiers.</strong> Members may move between the WeDeepen Membership and the Love Club Membership. Contact us at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> and we will arrange the change. Unless we tell you otherwise in writing at the time, a change takes effect at your next renewal date, and amounts already paid for your current billing period are not refunded or prorated.</p>
+        <p><strong>Changes.</strong> We may change the pricing, benefits, or structure of either tier, including renaming, restructuring, or discontinuing a tier. We will give you reasonable notice before a price increase takes effect, and you may cancel before it applies.</p>
+        <p><strong>Member benefits are not guaranteed.</strong> Specific programming, guests, session formats, and community features may change, be rescheduled, or be discontinued.</p>
+
+        <h2 id="section-6"><span class="sec-num">6.</span>Events, retreats, registration, and payment</h2>
+        <p><strong>Registration.</strong> Your spot at an Event or Retreat is confirmed when we confirm it and payment has cleared. Registrations are personal to you and may not be transferred or resold without our written consent.</p>
+        <p><strong>Pricing and payment.</strong> Prices are as listed at the time of registration. Payments are processed by third-party payment processors. We do not store your full payment card details.</p>
+        <p><strong>Deposits.</strong> Some Retreats require a deposit. <strong>Deposits are non-refundable.</strong></p>
+        <p><strong>Cancellation by you. All Event and Retreat fees are non-refundable.</strong> If you cancel, do not attend, arrive late, leave early, or are removed from an Event, you are not entitled to a refund, a credit, or a transfer. We may make an exception at our sole discretion, but we are not obligated to, and any exception we make in one case does not obligate us in another. <strong>Please be certain before you register.</strong></p>
+        <p><strong>Cancellation or changes by us.</strong> We may cancel, reschedule, relocate, or substitute Facilitators, guests, venues, dates, or program content for any Event or Retreat. If we cancel an Event outright and do not offer a comparable alternative, we will offer you a credit or a refund of amounts paid for that Event. Except as stated in this paragraph, we are not responsible for any other costs you incur, including travel, lodging, airfare, time off work, childcare, or other expenses. <strong>We strongly encourage you to purchase travel insurance for Retreats.</strong></p>
+        <p><strong>Guests you bring.</strong> If you bring another person to an Event, you are responsible for ensuring they register, complete all required documentation, and comply with these Terms. You are responsible for their conduct.</p>
+
+        <h2 id="section-7"><span class="sec-num">7.</span>Third-party providers, venues, and recommended events</h2>
+        <p>Third-Party Providers are independent. They are not our employees, agents, or partners unless we expressly say so in writing.</p>
+        <p>We do not control and are not responsible for:</p>
+        <ul>
+          <li>The services, methods, quality, safety, or outcomes of any Third-Party Provider</li>
+          <li>The credentials, licensure, training, background, or conduct of any Facilitator not employed by us</li>
+          <li>The condition, safety, accessibility, or suitability of any Venue</li>
+          <li>The acts or omissions of other Participants</li>
+          <li>Any event, practitioner, product, or service we list, recommend, link to, or promote but do not produce</li>
+        </ul>
+        <p>Any listing, recommendation, promotion, or feature by WeDeepen is not an endorsement, certification, or warranty. You are responsible for evaluating any Third-Party Provider before engaging with them, including checking their credentials and asking about their practices.</p>
+        <p>Third-Party Providers may have their own terms, waivers, policies, and requirements. You may be required to agree to them separately, and they apply in addition to these Terms.</p>
+
+        <h2 id="section-8"><span class="sec-num">8.</span>Nature of our programming</h2>
+        <p>WeDeepen programming is experiential, relational, somatic, and emotionally immersive. It may involve, among other things:</p>
+        <ul>
+          <li>Group discussion and disclosure of personal, intimate, or vulnerable material</li>
+          <li>Guided meditation, breathwork, movement, and somatic practice</li>
+          <li>Exercises involving eye contact, proximity, and consensual physical touch with other Participants</li>
+          <li>Ceremony, ritual, and other contemplative or spiritually oriented practice</li>
+          <li>Emotionally intense or confronting content</li>
+        </ul>
+        <p><strong>WeDeepen is not a healthcare provider.</strong> Our Services are not medical care, psychotherapy, psychiatric care, counseling, crisis intervention, or a substitute for any of them. Our Facilitators are not acting as your therapist, physician, or licensed clinician, and no therapeutic or clinical relationship is created by your participation. Nothing we provide is medical, psychological, or health advice. If you have or suspect you have a medical or mental health condition, consult a qualified professional. If you are experiencing a crisis, seek emergency care.</p>
+        <p>We make no promise, guarantee, or representation regarding any outcome, result, benefit, healing, relationship, or transformation.</p>
+
+        <h2 id="section-9"><span class="sec-num">9.</span>Health disclosures and screening</h2>
+        <p>For certain Events and Retreats, we require you to complete an intake form, questionnaire, or health disclosure. <strong>You agree to answer truthfully and completely, and to promptly update us if your circumstances change before the Event.</strong></p>
+        <p>You represent that you are physically, mentally, and emotionally fit to participate, and that you have consulted a physician or licensed mental health professional if you have any condition, are taking any medication, or have any history that could make participation unsafe.</p>
+        <p>We may, at our sole discretion and without obligation to explain, decline your participation, place conditions on it, or ask you to leave an Event. Screening is for the safety of the group and is not a clinical assessment, a diagnosis, or a determination that participation is safe for you. <strong>The decision to participate is yours, and you accept responsibility for it.</strong></p>
+        <p>Withholding or misrepresenting material information in an intake or health disclosure is a material breach of these Terms and may result in removal without refund.</p>
+
+        <h2 id="section-10"><span class="sec-num">10.</span>Assumption of risk</h2>
+        <p><strong>You understand that participation in WeDeepen programming involves inherent risks, and you knowingly and voluntarily assume all of them.</strong> These risks include, without limitation:</p>
+        <ul>
+          <li>Physical injury, illness, strain, or death, including from movement, breathwork, physical exercises, travel, or conditions at a Venue</li>
+          <li>Emotional or psychological distress, including anxiety, grief, panic, dissociation, re-traumatization, or the surfacing of difficult memories or material</li>
+          <li>Interpersonal conflict, discomfort, boundary violations, or harm caused by other Participants or by Third-Party Providers</li>
+          <li>Adverse effects on your existing relationships</li>
+          <li>Exposure to communicable illness</li>
+          <li>Loss, theft, or damage to your property</li>
+          <li>Risks associated with travel to and from an Event or Retreat, and with the location, terrain, facilities, weather, food, and conditions at any Venue</li>
+        </ul>
+        <p><strong>You are responsible for yourself.</strong> You are responsible for your own physical and emotional wellbeing, your own choices during an Event, your own boundaries and limits, your own medications and medical needs, your own transportation, your own belongings, and your own decisions about what to participate in and what to decline. You may decline or step out of any exercise at any time, and you agree to do so if you feel unsafe or unwell.</p>
+
+        <h2 id="section-11"><span class="sec-num">11.</span>Release of liability</h2>
+        <p><strong>To the fullest extent permitted by law, you release, waive, discharge, and covenant not to sue</strong> WeDeepen LLC and its members, officers, employees, contractors, Facilitators, volunteers, agents, sponsors, Venues, and Third-Party Providers (collectively, the &ldquo;Released Parties&rdquo;) <strong>from any and all claims, demands, damages, liabilities, costs, and causes of action of any kind arising out of or related to your participation in the Services</strong>, including claims arising from the ordinary negligence of any Released Party, and including claims for physical injury, emotional or psychological harm, illness, death, or property loss.</p>
+        <p>This release does not apply to gross negligence, willful misconduct, or any liability that cannot be released under applicable law.</p>
+
+        <h2 id="section-12"><span class="sec-num">12.</span>Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless the Released Parties from any claim, demand, loss, liability, damage, or expense, including reasonable attorneys&rsquo; fees, arising out of your use of the Services, your conduct at any Event, your breach of these Terms, your violation of any law, or your violation of the rights of any other person.</p>
+
+        <h2 id="section-13"><span class="sec-num">13.</span>Substances and participant responsibility</h2>
+        <p><strong>WeDeepen does not serve alcohol at our Events.</strong></p>
+        <p><strong>You are solely responsible for anything you choose to consume, bring, or use</strong> before, during, or after an Event, and for your own conduct, your own wellbeing, and your own transportation.</p>
+        <p>Bringing, using, offering, sharing, or selling to other Participants any substance that is not an expressly authorized element of the program you have registered for is <strong>strictly prohibited</strong>, and is grounds for immediate removal from the Event without refund, termination of your Membership, and a permanent ban.</p>
+        <p><strong>Where a program includes any element governed by its own protocol, screening process, informed consent document, or waiver, that document governs your participation in that element.</strong> You must be provided with it, must read it, and must complete and sign it before participating. If you have not been given such a document and you believe an element of a program calls for one, do not participate, and contact us at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+        <p>Nothing in our general programming, our language, or our Facilitators&rsquo; guidance constitutes medical advice, a prescription, a diagnosis, clinical supervision, or a recommendation regarding any substance. See Section 8.</p>
+
+        <h2 id="section-14"><span class="sec-num">14.</span>Participant conduct and consent</h2>
+        <p>Our Events depend on safety, trust, and consent. You agree to:</p>
+        <ul>
+          <li>Honor the boundaries, consent, and dignity of every other Participant and Facilitator, at all times</li>
+          <li>Ask for and receive clear consent before any physical contact, and stop immediately when consent is withdrawn</li>
+          <li>Keep confidential what other Participants share, and refrain from repeating, publishing, or recording it</li>
+          <li>Refrain from harassment, discrimination, intimidation, sexual misconduct, unwanted advances, violence, or threats</li>
+          <li>Refrain from recording, photographing, or livestreaming other Participants without their express permission</li>
+          <li>Follow all instructions from Facilitators and all rules of the Venue</li>
+          <li>Refrain from soliciting, recruiting, or marketing to other Participants without our written consent</li>
+        </ul>
+        <p><strong>Violation of this section is grounds for immediate removal from an Event, termination of your membership and account, and a permanent ban, without refund.</strong> We may report conduct to law enforcement where appropriate.</p>
+        <p>We are not responsible for the conduct of other Participants. If another Participant harms you, your claim is against that person.</p>
+
+        <h2 id="section-15"><span class="sec-num">15.</span>Photography, video, and media release</h2>
+        <p><strong>By attending any Event, you grant WeDeepen an irrevocable, perpetual, worldwide, royalty-free, fully paid license</strong> to photograph, film, record, and livestream you, and to use, reproduce, edit, publish, distribute, and display your name, likeness, image, voice, and any statements you make, in any medium now known or later developed, for any purpose connected to WeDeepen, including marketing, promotion, advertising, editorial, educational, and archival use, on our Site, on social media, in our podcast, and in any other channel.</p>
+        <p>You waive any right to inspect or approve the finished materials, and you waive any claim for compensation, invasion of privacy, right of publicity, defamation, or false light arising from such use.</p>
+        <p>If you do not wish to appear in media captured at an Event, you must notify us in writing at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> before the Event begins and identify yourself to our staff on arrival. We will make reasonable efforts to accommodate you, but in group and crowd settings we cannot guarantee that you will not appear incidentally.</p>
+        <p>This release also extends to any Third-Party Provider we authorize to capture media at an Event.</p>
+
+        <h2 id="section-16"><span class="sec-num">16.</span>Communications and your consent</h2>
+        <p>By providing your contact information, you consent to receive communications from us as described below. <strong>Consent to receive marketing communications is never a condition of purchasing anything from us.</strong></p>
+
+        <h3 id="section-16-1">16.1 Email</h3>
+        <p>We send transactional email (confirmations, logistics, receipts, account and safety notices) and marketing email (event announcements, retreat listings, podcast releases, community news). You may unsubscribe from marketing email at any time using the link in any marketing email. You cannot unsubscribe from transactional and safety email while you have an active registration, membership, or account.</p>
+
+        <h3 id="section-16-2">16.2 SMS and text messaging</h3>
+        <p>Our text messaging program is governed by the terms in this Section 16.2, which serve as our SMS Terms and Conditions.</p>
+        <p><strong>Program description.</strong> WeDeepen sends subscribers information about our Events, Retreats, member virtual programming, Zoom links and start reminders, special guest announcements, and new podcast episodes.</p>
+        <p><strong>How to opt in.</strong> You may join by submitting your mobile number through the sign-up form on our Site and checking the box consenting to receive text messages, or by texting the keyword <strong>LOVE</strong> to <strong>833-407-0037</strong>. Consent is not a condition of purchase. You must be 18 or older.</p>
+        <p><strong>Message frequency.</strong> Message frequency varies. Expect approximately 2 to 6 messages per month.</p>
+        <p><strong>Rates.</strong> Message and data rates may apply. Charges are billed by and payable to your mobile carrier.</p>
+        <p><strong>How to opt out.</strong> Reply <strong>STOP</strong> to any message. You will receive one confirmation message and no further messages unless you opt in again.</p>
+        <p><strong>How to get help.</strong> Reply <strong>HELP</strong> to any message, or contact <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+        <p><strong>Carrier liability.</strong> Carriers are not liable for delayed or undelivered messages. Delivery is subject to effective transmission by your carrier and is not guaranteed by WeDeepen.</p>
+        <p><strong>Supported carriers.</strong> Supported by major US carriers, including AT&amp;T, Verizon Wireless, T-Mobile, US Cellular, Boost Mobile, MetroPCS, and Google Voice, and by many smaller regional carriers.</p>
+        <p><strong>Privacy.</strong> We do not sell, rent, or share your mobile phone number or your SMS consent with any third party for their marketing purposes. See our <a href="/privacy/">Privacy Policy</a>.</p>
+
+        <h3 id="section-16-3">16.3 WhatsApp</h3>
+        <p>We use WhatsApp groups to coordinate logistics, share links, and support community for certain Events, Retreats, and member programming. Participation is voluntary.</p>
+        <p><strong>Understand before you join:</strong> in a WhatsApp group, <strong>other Participants in that group can see your phone number and your profile information.</strong> We cannot control what other Participants do with it. If you do not want your phone number visible to other Participants, do not join the group, and tell us so we can send you the same information by email.</p>
+        <p>WhatsApp is operated by a third party and is governed by its own terms and privacy policy. We are not responsible for WhatsApp&rsquo;s practices, or for the content other Participants post in a group. You may leave a group at any time. We may remove any Participant from a group for conduct that violates Section 14.</p>
+
+        <h3 id="section-16-4">16.4 Social media</h3>
+        <p>We maintain accounts on social media platforms. If you interact with us there, follow us, comment, tag us, send us a direct message, or post content about our Events, that interaction is subject to the platform&rsquo;s own terms and privacy policy, not ours, and is visible according to that platform&rsquo;s settings.</p>
+        <p>Content you post publicly about WeDeepen, and content you send us on social media, may be reshared or republished by us. See Section 17.</p>
+        <p>We are not responsible for the conduct of other users on social media platforms.</p>
+
+        <h3 id="section-16-5">16.5 Push and in-app notifications</h3>
+        <p>Where offered, you may control these through your device settings.</p>
+
+        <h2 id="section-17"><span class="sec-num">17.</span>Your content</h2>
+        <p>If you post, submit, tag, or send us photos, video, testimonials, reviews, comments, or other content (&ldquo;Your Content&rdquo;), you grant WeDeepen a non-exclusive, worldwide, royalty-free, perpetual, irrevocable, sublicensable license to use, reproduce, adapt, publish, distribute, and display Your Content in connection with WeDeepen and its promotion, in any medium.</p>
+        <p>You represent that you own or have the rights to Your Content, that it does not infringe anyone&rsquo;s rights, and that any identifiable person in it has consented to this use. Do not post content that includes another Participant without that person&rsquo;s permission.</p>
+        <p>We may remove Your Content at any time for any reason.</p>
+
+        <h2 id="section-18"><span class="sec-num">18.</span>Intellectual property</h2>
+        <p>The Site, our programming, curricula, exercises, frameworks, written and recorded materials, podcast, brand, logos, and all related content are owned by WeDeepen or our licensors and are protected by intellectual property law.</p>
+        <p>You may not copy, record, reproduce, distribute, teach, sell, or create derivative works from our programming or materials without our prior written consent. You may not record any Event without our prior written consent.</p>
+
+        <h2 id="section-19"><span class="sec-num">19.</span>Prohibited conduct</h2>
+        <p>You may not use the Services to violate any law, infringe any right, harass or harm any person, misrepresent your identity or health information, scrape or reverse engineer the Site, introduce malicious code, resell access, or interfere with the operation of the Services or with any Event.</p>
+
+        <h2 id="section-20"><span class="sec-num">20.</span>Suspension and termination</h2>
+        <p>We may suspend or terminate your account, membership, or access to any Event at any time, with or without notice, for any violation of these Terms or for any conduct we determine, at our sole discretion, poses a risk to the safety, wellbeing, or trust of our community. Termination for cause does not entitle you to a refund.</p>
+        <p>You may close your account at any time by contacting <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+        <p>Sections 10 through 18, and Sections 21 through 25, survive termination.</p>
+
+        <h2 id="section-21"><span class="sec-num">21.</span>Disclaimer of warranties</h2>
+        <p><strong>The Services are provided &ldquo;as is&rdquo; and &ldquo;as available.&rdquo;</strong> To the fullest extent permitted by law, WeDeepen disclaims all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, title, non-infringement, and any warranty arising from course of dealing or usage of trade.</p>
+        <p>We do not warrant that the Services will be uninterrupted, secure, error-free, or that any content is accurate or complete. We do not warrant or guarantee any Third-Party Provider.</p>
+
+        <h2 id="section-22"><span class="sec-num">22.</span>Limitation of liability</h2>
+        <p><strong>To the fullest extent permitted by law, WeDeepen and the Released Parties will not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages</strong>, or for any loss of profits, revenue, data, goodwill, or relationships, arising out of or related to the Services, whether based in contract, tort, negligence, strict liability, or any other theory, even if we have been advised of the possibility of such damages.</p>
+        <p><strong>Our total aggregate liability to you for any and all claims arising out of or related to the Services will not exceed the greater of (a) the total amount you paid to WeDeepen in the twelve months preceding the event giving rise to the claim, or (b) one hundred US dollars ($100).</strong></p>
+        <p>Some jurisdictions do not allow certain limitations, so some of the above may not apply to you.</p>
+
+        <h2 id="section-23"><span class="sec-num">23.</span>Dispute resolution, binding arbitration, and class action waiver</h2>
+        <div class="callout">
+          <p class="caps"><strong>PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS. IT REQUIRES YOU TO RESOLVE DISPUTES WITH WEDEEPEN THROUGH BINDING INDIVIDUAL ARBITRATION RATHER THAN IN COURT, AND IT WAIVES YOUR RIGHT TO A JURY TRIAL AND YOUR RIGHT TO PARTICIPATE IN A CLASS ACTION.</strong></p>
+        </div>
+
+        <h3 id="section-23-1">23.1 Informal resolution first</h3>
+        <p>Before starting an arbitration, you agree to contact us at <a href="mailto:team@wedeepen.com"><strong>team@wedeepen.com</strong></a> with a written description of the dispute, the relief you are seeking, and your contact information, and to work with us in good faith to resolve it informally for at least <strong>sixty (60) days</strong>. We agree to do the same before bringing a claim against you. This step is a precondition to arbitration. Most disputes can be resolved here, and we would genuinely rather resolve them here.</p>
+
+        <h3 id="section-23-2">23.2 Agreement to arbitrate</h3>
+        <p>If we cannot resolve the dispute informally, <strong>you and WeDeepen agree that any dispute, claim, or controversy arising out of or relating to these Terms, the Services, any Event, Retreat, or Membership, your relationship with WeDeepen, or any communications you receive from us, will be resolved exclusively by final and binding arbitration</strong>, rather than in court, except as set out in Section 23.5.</p>
+        <p>This agreement to arbitrate is governed by the Federal Arbitration Act and survives termination of these Terms. It applies to claims that arose before you accepted these Terms, and it applies to claims brought against WeDeepen&rsquo;s members, officers, employees, contractors, Facilitators, and agents.</p>
+
+        <h3 id="section-23-3">23.3 Arbitration procedure</h3>
+        <p>The arbitration will be administered by the <strong>American Arbitration Association (&ldquo;AAA&rdquo;)</strong> under its <strong>Consumer Arbitration Rules</strong>, as modified by these Terms. The rules are available at <a href="https://www.adr.org" target="_blank" rel="noopener">adr.org</a>.</p>
+        <ul>
+          <li>The arbitration will be conducted by a single, neutral arbitrator.</li>
+          <li>The seat of arbitration is <strong>Travis County, Texas</strong>, but you may elect to participate by telephone or video, or to have the arbitration decided on the documents alone, without an in-person hearing.</li>
+          <li>The arbitrator has exclusive authority to resolve any dispute about the interpretation, applicability, enforceability, or formation of this arbitration agreement, including whether a claim is arbitrable.</li>
+          <li>The arbitrator may award any relief that a court could award to you individually, including declaratory and injunctive relief, and must follow these Terms.</li>
+          <li>The arbitrator&rsquo;s award is final and binding, and judgment on it may be entered in any court of competent jurisdiction.</li>
+          <li>The arbitrator will issue a written decision explaining the essential findings and conclusions.</li>
+        </ul>
+        <p><strong>Fees.</strong> AAA&rsquo;s Consumer Arbitration Rules govern the allocation of filing, administration, and arbitrator fees. Where those rules require you to pay a filing fee that exceeds what you would pay to file in court, WeDeepen will pay the difference. If the arbitrator finds your claim frivolous or brought for an improper purpose, the allocation of fees will be governed by the AAA rules.</p>
+
+        <h3 id="section-23-4">23.4 Class action waiver</h3>
+        <p class="caps"><strong>YOU AND WEDEEPEN AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN AN INDIVIDUAL CAPACITY, AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS, COLLECTIVE, CONSOLIDATED, OR REPRESENTATIVE PROCEEDING.</strong></p>
+        <p>The arbitrator may not consolidate more than one person&rsquo;s claims, may not preside over any form of class or representative proceeding, and may not award relief to anyone other than the individual party seeking relief.</p>
+        <p>If this Section 23.4 is found to be unenforceable as to a particular claim or request for relief, then that claim or request must be brought in court and stayed pending arbitration of the remaining claims, and the rest of this Section 23 remains in full force.</p>
+
+        <h3 id="section-23-5">23.5 Exceptions</h3>
+        <p>This Section 23 does not apply to:</p>
+        <ul>
+          <li><strong>Small claims.</strong> Either party may bring an individual claim in small claims court in Travis County, Texas, if the claim qualifies and remains in that court.</li>
+          <li><strong>Injunctive relief for intellectual property.</strong> Either party may seek injunctive or equitable relief in court to protect intellectual property rights or to prevent unauthorized use of the Services.</li>
+          <li>Any claim that applicable law does not permit to be arbitrated.</li>
+        </ul>
+
+        <h3 id="section-23-6">23.6 Your right to opt out of arbitration</h3>
+        <p><strong>You may opt out of this arbitration agreement.</strong> To do so, send written notice to <a href="mailto:team@wedeepen.com"><strong>team@wedeepen.com</strong></a> with the subject line &ldquo;Arbitration Opt-Out,&rdquo; including your full name, the email address associated with your account, and a clear statement that you wish to opt out of arbitration.</p>
+        <p>You must send this notice <strong>within thirty (30) days</strong> of the date you first accept these Terms. If you opt out, this Section 23 does not apply to you, and disputes will be resolved in court under Section 24. <strong>Opting out will not affect your Membership, your access to Events, or any other aspect of your relationship with us in any way.</strong></p>
+
+        <h3 id="section-23-7">23.7 Changes to this section</h3>
+        <p>If we materially change this Section 23 after you have accepted these Terms, you may reject the change by sending written notice to <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> within thirty (30) days of the change taking effect, in which case the version of this Section 23 you originally accepted continues to apply to you.</p>
+
+        <h3 id="section-23-8">23.8 Time limit</h3>
+        <p><strong>Any claim must be brought within one (1) year</strong> after the claim arises, or it is permanently barred, to the extent permitted by applicable law.</p>
+
+        <h2 id="section-24"><span class="sec-num">24.</span>Governing law and venue</h2>
+        <p>These Terms are governed by the laws of the State of Texas, without regard to its conflict of laws rules. <strong>Subject to the arbitration agreement in Section 23</strong>, and for any dispute not subject to arbitration, you agree that any action will be brought exclusively in the state or federal courts located in Travis County, Texas, and you consent to the personal jurisdiction of those courts and waive any objection to venue there.</p>
+
+        <h2 id="section-25"><span class="sec-num">25.</span>General</h2>
+        <p><strong>Entire agreement.</strong> These Terms, our <a href="/privacy/">Privacy Policy</a>, and any Event-specific waiver, release, or terms you sign, together form the entire agreement between you and WeDeepen. Where an Event-specific waiver conflicts with these Terms, the Event-specific waiver controls for that Event.</p>
+        <p><strong>Severability.</strong> If any provision is held unenforceable, the rest remains in effect, and the unenforceable provision will be enforced to the maximum extent permitted.</p>
+        <p><strong>No waiver.</strong> Our failure to enforce any provision is not a waiver of it.</p>
+        <p><strong>Assignment.</strong> You may not assign these Terms. We may assign them, including in connection with a merger, acquisition, reorganization, conversion of entity form, or sale of assets.</p>
+        <p><strong>Changes.</strong> We may update these Terms. We will post the updated version here with a new effective date, and where the changes are material we will make reasonable efforts to notify you. Your continued use of the Services after changes take effect constitutes acceptance.</p>
+
+        <h2 id="section-26"><span class="sec-num">26.</span>Contact</h2>
+        <p><strong>WeDeepen LLC</strong><br>
+        605 W 9th Street<br>
+        Austin, TX 78701<br>
+        United States<br>
+        <a href="mailto:team@wedeepen.com">team@wedeepen.com</a></p>
+
+        <div class="callout mt-10">
+          <p><em>By using the Services, you acknowledge that you have read, understood, and agreed to these Terms of Use, including the assumption of risk in Section 10, the release of liability in Section 11, the media release in Section 15, and the binding arbitration agreement and class action waiver in Section 23.</em></p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer class="bg-ink border-t border-white/10 py-14">
+    <div class="max-w-site mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+        <div>
+          <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+          <p class="text-white/40 text-sm mt-3 leading-relaxed max-w-xs">Your intimacy journey is your life story.</p>
+        </div>
+        <div class="flex gap-5">
+          <a href="https://www.facebook.com/WeDeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@wedeepen" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+          </a>
+          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Spotify">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <p>&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
+          <a href="/terms/" class="hover:text-gold transition">Terms of Use</a>
+          <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a>
+          <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
+          <a href="https://feminineweapon.com" target="_blank" rel="noopener" class="hover:text-gold transition">Philanthropic Initiative</a>
+          <a href="https://www.facebook.com/groups/793115204193690" target="_blank" rel="noopener" class="hover:text-gold transition">Esther Perel Discussion Group</a>
+          <a href="/#contact" class="hover:text-gold transition">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+  </script>
+
+</body>
+</html>

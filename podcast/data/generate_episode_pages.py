@@ -327,11 +327,13 @@ def render_episode_page(ep: dict, related: list) -> str:
 
 
   <footer class="bg-ink border-t border-white/10 py-12">
+    <div data-wd-optin="footer"></div>
+    <script src="/js/optin.js" defer></script>
     <div class="max-w-site mx-auto px-6 text-center">
       <a href="/" class="inline-block mb-4">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60">
       </a>
-      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved.</p>
+      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
     </div>
   </footer>
 

@@ -149,7 +149,7 @@
     status.style.display = 'none';
 
     var compliance = el('p', { 'class': 'wd-optin-compliance', html:
-      'WeDeepen LLC, 605 W 9th Street, Austin, TX 78701<br>' +
+      'WeDeepen LLC, 605 W 9th Street, Unit #1110, Austin, TX 78701<br>' +
       'Message and data rates may apply. Message frequency varies. Reply STOP to unsubscribe, HELP for help. ' +
       '<a href="/terms/">Terms of Use</a> &middot; <a href="/privacy/">Privacy Policy</a>'
     });

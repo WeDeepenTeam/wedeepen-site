@@ -5,8 +5,9 @@ const SITE = 'https://wedeepen.com';
 
 export function renderGalleryIndex(albums) {
   // Branded gallery thumbnail (matches the Love Immersion design), kept as a
-  // WhatsApp-safe JPEG (< 150KB). Source PNG lives at /images/og/og-gallery.png.
-  const ogImage = `${SITE}/images/og/og-gallery.jpg`;
+  // WhatsApp-safe JPEG (< 150KB). LI VII circle photo; new filename busts CDN and
+  // link-preview caches, bump the suffix if the image changes again.
+  const ogImage = `${SITE}/images/og/og-gallery-li7.jpg`;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',

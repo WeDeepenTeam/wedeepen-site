@@ -174,7 +174,17 @@ export function pageNav() {
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium" aria-label="Primary">
         <a href="/" class="text-white/80 hover:text-white transition">Home</a>
         <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
-        <a href="/love-immersion/" class="text-white/80 hover:text-white transition">Love Immersion</a>
+        <div class="relative group">
+          <button type="button" class="text-white/80 hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
+          <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
+            <div class="rounded-xl py-2 min-w-[220px]" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px -12px rgba(0,0,0,0.65);">
+              <a href="/love-immersion/october-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">October 16&ndash;19, 2026</a>
+              <a href="/love-immersion/nye-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">New Year&rsquo;s Eve 2026&ndash;27</a>
+              <a href="/love-immersion/march-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">March 5&ndash;7, 2027</a>
+              <a href="/love-immersion/july-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">July 16&ndash;18, 2027</a>
+            </div>
+          </div>
+        </div>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
@@ -197,7 +207,13 @@ export function pageNav() {
     <nav class="flex flex-col gap-6 text-lg font-medium" aria-label="Mobile">
       <a href="/" class="text-white hover:text-gold transition">Home</a>
       <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
-      <a href="/love-immersion/" class="text-white hover:text-gold transition">Love Immersion</a>
+      <div class="flex flex-col gap-4">
+        <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
+        <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
+        <a href="/love-immersion/nye-2026/" class="text-white hover:text-gold transition pl-4 text-base">New Year&rsquo;s Eve 2026&ndash;27</a>
+        <a href="/love-immersion/march-2027/" class="text-white hover:text-gold transition pl-4 text-base">March 5&ndash;7, 2027</a>
+        <a href="/love-immersion/july-2027/" class="text-white hover:text-gold transition pl-4 text-base">July 16&ndash;18, 2027</a>
+      </div>
       <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
@@ -210,6 +226,8 @@ export function pageNav() {
 
 export function pageFooter() {
   return `<footer class="bg-ink border-t border-white/10 py-14">
+    <div data-wd-optin="footer"></div>
+    <script src="/js/optin.js" defer></script>
     <div class="max-w-site mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
         <div>
@@ -229,7 +247,7 @@ export function pageFooter() {
         </div>
       </div>
       <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
-        <p>&copy; ${new Date().getFullYear()} WeDeepen. All rights reserved.</p>
+        <p>&copy; ${new Date().getFullYear()} WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
         <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
           <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
           <a href="/about/" class="hover:text-gold transition">About</a>

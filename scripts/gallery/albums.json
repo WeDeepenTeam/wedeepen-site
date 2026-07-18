@@ -3,6 +3,20 @@
   "_drive_parent": "https://drive.google.com/drive/folders/1yvHx-RePRo-yK7YYgDC4uEdkIh_z9HH_",
   "albums": [
     {
+      "slug": "love-immersion-vii",
+      "title": "Love Immersion VII",
+      "description": "The seventh WeDeepen Love Immersion. Three days of deep practice in love, presence, and partnership. June 2026.",
+      "event_date": "2026-06-26",
+      "location": null,
+      "drive_folder_id": "19Ue_cOvpIJko_JK_6L3lA1R6WwzABr2Z",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 1,
+      "photographer": null,
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
+    },
+    {
       "slug": "love-immersion-vi",
       "title": "Love Immersion VI",
       "description": "The sixth WeDeepen Love Immersion. Three days of deep practice in love, presence, and partnership.",
@@ -11,7 +25,7 @@
       "drive_folder_id": "1ER4wXCfrgwEaXTBMRbpynHRG2m2XiVuC",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 6,
+      "display_order": 3,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -25,7 +39,7 @@
       "drive_folder_id": "1TY9CqP_HtaizPkgs1-HHvdcB8tf8pQ1Z",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 5,
+      "display_order": 4,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -39,7 +53,7 @@
       "drive_folder_id": "1sPuuq4XbpwjsZUzbQ2KTtED4DrftU6o0",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 4,
+      "display_order": 5,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -53,7 +67,7 @@
       "drive_folder_id": "1zg2Kg5inzwyvF7gQ8Eev0F7InZQdnDl1",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 3,
+      "display_order": 6,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -67,7 +81,7 @@
       "drive_folder_id": "1fDAzDxunkqvV0v6w-XpVkXdfpNIAOAiI",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 2,
+      "display_order": 7,
       "photographer": "Pierre Zah",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -81,7 +95,7 @@
       "drive_folder_id": "1zXXrsI7evzxwz05SgaH9Zp84w6e1U2_J",
       "youtube_ids": [],
       "event_page_slug": "love-immersion",
-      "display_order": 1,
+      "display_order": 8,
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"
@@ -288,7 +302,7 @@
       "drive_folder_id": null,
       "youtube_ids": [],
       "event_page_slug": null,
-      "display_order": 7,
+      "display_order": 2,
       "photographer": null,
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion"

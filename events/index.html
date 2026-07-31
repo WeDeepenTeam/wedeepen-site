@@ -431,6 +431,7 @@
     // wedeepen.com, route the card to that page instead of the Circle calendar.
     // Matches by case-insensitive substring on event title.
     const EVENT_URL_OVERRIDES = [
+      { match: /wedeepen in-person/i, url: 'https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=oddtdtcreator' },
       { match: /biohacking love/i, url: '/biohacking-love/' },
       { match: /kashf/i,           url: '/kashf/' },
       { match: /love immersion/i,  url: '/love-immersion/october-2026/' },

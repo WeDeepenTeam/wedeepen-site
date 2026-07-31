@@ -692,6 +692,28 @@
           <p class="text-charcoal font-semibold text-sm">Mo M.</p>
           <p class="text-charcoal/50 text-xs">Summit at OMEGA Participant</p>
         </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">I&rsquo;ve been to countless personal growth events, but nothing compares to this. The trust, connection, and transformation were beyond words. If you want to grow in love, this is where you need to be.</p>
+          <p class="text-charcoal font-semibold text-sm">Allan</p>
+          <p class="text-charcoal/50 text-xs">Past Participant</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">In just 72 hours, I felt more belonging than I have in two years. This was the best investment I&rsquo;ve ever made in myself.</p>
+          <p class="text-charcoal font-semibold text-sm">Roza</p>
+          <p class="text-charcoal/50 text-xs">Past Participant</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">I came in afraid that relationships would take something from me. I left knowing they bring abundance. This was the most transformative experience of my life.</p>
+          <p class="text-charcoal font-semibold text-sm">Sara Julian</p>
+          <p class="text-charcoal/50 text-xs">Past Participant</p>
+        </div>
+      </div>
+
+      <div class="text-center mb-10">
+        <button type="button" id="ln-open" class="btn-rose">Read More Love Notes</button>
       </div>
 
       <p class="text-center text-charcoal/60 font-heading text-lg md:text-xl italic">65% of participants return for another Immersion.</p>
@@ -1078,6 +1100,146 @@
   </section>
 
 
+
+  <!-- LOVE NOTES MODAL -->
+  <div id="ln-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4 md:p-8" aria-modal="true" role="dialog" aria-label="Love notes from past Immersions">
+    <div id="ln-backdrop" class="absolute inset-0" style="background: rgba(10,8,9,0.82); backdrop-filter: blur(6px);"></div>
+    <div class="relative w-full max-w-3xl max-h-[85vh] rounded-2xl overflow-hidden flex flex-col" style="background:#1A1A1A; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 40px 120px rgba(0,0,0,0.6);">
+      <div class="flex items-center justify-between px-6 md:px-8 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h3 class="font-heading text-2xl text-white">Love Notes from Past Immersions</h3>
+        <button type="button" id="ln-close" class="text-white/60 hover:text-white p-2 transition" aria-label="Close">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l12 12M16 4L4 16"/></svg>
+        </button>
+      </div>
+      <div class="overflow-y-auto px-6 md:px-8 py-6 space-y-4">
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;Love Club Immersion helped me find the missing piece in my relationship. The experts and community gave us new perspectives, and now we feel more clarity than ever.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Lauri</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;As a seventeen-year-old, I didn&rsquo;t know what to expect, but I left feeling prepared for future relationships. The tools I learned will stay with me for life.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Anna Asprey</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;This experience showed me how we all long for love, and how we can give and receive it more fully. If you want meaningful connections, this is for you.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Honor Chan</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;It felt like &lsquo;love hacking&rsquo;: a deep dive into what love really is and how to bring more of it into your life.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh Kvale</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I never felt so held and supported in my life. In just three days, I felt more love than I ever imagined possible.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Dorota</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I didn&rsquo;t expect much, but this experience changed me. It helped me understand myself and my relationships in a whole new way.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Bo Longo</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;This experience helped me reclaim my worth and step into the love I truly deserve.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Hannah</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;To have love, you need to know and love yourself first. Love Immersion is the perfect place to start.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Savannah Frank</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I walked away with powerful tools to heal, grow, and create deeper love in my life. It was truly transformative.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Adrienne</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve noticed I have a much healthier relationship with my emotions. I&rsquo;m no longer course-correcting them or holding back. I just let myself feel, whether it&rsquo;s love or frustration. It&rsquo;s been liberating.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Jamie</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;Since the immersion, I feel so much freer around dating. I&rsquo;ve let go of the pressure to define every interaction. I&rsquo;m lighter, more playful, and more myself than ever.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve gained tools for when the men I date show emotion. Before, I&rsquo;d try to fix it. Now, I hold space and stay rooted in love.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Kendall</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I used to look for reasons to distrust in relationships. The immersion helped me realize that pattern, and shift into seeing where I could deepen trust instead.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Matt</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;Since the retreat, I&rsquo;ve felt incredibly embodied. I&rsquo;m more attuned to nature, to eye contact, to pleasure. And I&rsquo;ve never been more clear on what I will and won&rsquo;t allow in dating.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Leah</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I was coming out of a period of isolation due to health issues, and this was the best medicine. I feel whole again. Being in a container of such real, vulnerable love gave me hope.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Milena</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve never experienced a group where everyone fell in love with each other platonically. There was total acceptance and genuine, nourishing connection. It filled my cup.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh K.</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I now feel like I have a love family. That weekend gave me a preview of what it&rsquo;s like to live with full-hearted authenticity and support. It changed how I view my relationships forever.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh K.</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;Seeing couples in different stages of doing the work, being honest, growing together, was deeply inspiring. I borrowed love from the community and brought it back to my own partnership.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Kendall</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve become more fearless. I&rsquo;m leading with love and owning my energy, my vulnerability, and my truth.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Philip</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I feel more embodied and accepting of myself than I have in years. I&rsquo;m learning to love myself through the mess, and I&rsquo;m finally okay with things not being perfect.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Laura Lee</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I felt like I belonged. I came in questioning whether I&rsquo;d fit in, but left feeling like I had a new family. It was one of the greatest gifts of my 50th year.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Ava</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;There are very few spaces in the world with this level of depth, duration, potency, and heart. And this one is the real deal.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Juston</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;This experience helped me show up more present with my kids. I&rsquo;m more grounded as a father, more open-hearted, and more willing to love them through the chaos.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Matthew</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;This Immersion has unlocked something between me and Lili that has been so transformational for us both. We&rsquo;ve always had a great relationship, but we are now healing each other.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Laura Lea Reid</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;My experience in the hot seat was profound, allowing me to release a trauma from childhood and the shame I carried. The release and reprogramming I experienced is so profound. I HIGHLY recommend Love Immersion to anyone who wants breakthroughs in their life.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I came in skeptical and left feeling seen, loved, and part of a family.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve spent years in therapy, but these days cracked something open that I could never touch before.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I was nervous about coming alone, but I&rsquo;m leaving with lifelong friends.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;It was the most love-saturated environment I&rsquo;ve ever been in.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;My partner and I have been to other relationship workshops, but this one actually changed the way we communicate at home.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I came thinking I&rsquo;d learn tools. I&rsquo;m leaving with a new way of being.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Love Immersion Participant</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="bg-ink border-t border-white/10 py-12">
     <div class="max-w-site mx-auto px-6 text-center">
@@ -1140,6 +1302,20 @@
         x0 = null;
       });
       paint();
+    })();
+
+
+    // Love notes modal
+    (function () {
+      const modal = document.getElementById('ln-modal');
+      const open = document.getElementById('ln-open');
+      if (!modal || !open) return;
+      function show() { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+      function hide() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+      open.addEventListener('click', show);
+      document.getElementById('ln-close').addEventListener('click', hide);
+      document.getElementById('ln-backdrop').addEventListener('click', hide);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
     })();
 
     document.querySelectorAll('.faq-item').forEach(item => {

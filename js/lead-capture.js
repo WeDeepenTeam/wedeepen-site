@@ -15,7 +15,7 @@
 
   /* == Config ============================================================ */
   // Google Apps Script web app URL (ends in /exec). Empty = SMS fallback mode.
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxTqMV9og1cnFzVI6KE5yLtjYcVD5C81cj0P3cPRcCJMynxIz2YsZHJ52IkvbnEo6s97Q/exec';
   var SMS_NUMBER_DISPLAY = '833-407-0037';
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';

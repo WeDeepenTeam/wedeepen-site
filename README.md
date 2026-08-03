@@ -117,6 +117,7 @@ wedeepen-site/
 | Love Immersion | `/love-immersion/` | `love-immersion/index.html` |
 | Love Strategists | `/love-guides/` | `love-guides/index.html` |
 | Events | `/events/` | `events/index.html` |
+| WeDeepen In-Person (Aug 2026) | `/inperson/` | `inperson/index.html` |
 | Reviews | `/reviews/` | `reviews/index.html` |
 | About | `/about/` | `about/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |

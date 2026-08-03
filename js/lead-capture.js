@@ -60,14 +60,15 @@
     + '#wd-lead-modal button.wd-submit:hover{filter:brightness(1.07);}'
     + '#wd-lead-modal button.wd-submit:disabled{opacity:.6;cursor:wait;}'
     + '#wd-lead-modal .wd-sms-alt{margin:16px 0 0;font-size:13px;text-align:center;color:rgba(244,237,224,.6);}'
-    + '#wd-lead-modal .wd-sms-alt a{color:#C9A277;font-weight:600;text-decoration:none;}'
+    + '#wd-lead-modal .wd-sms-alt a{color:#C9A277;font-weight:600;text-decoration:underline;text-underline-offset:3px;}'
     + '#wd-lead-modal .wd-close{position:absolute;top:14px;right:14px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-modal .wd-close:hover{color:#F4EDE0;}'
     + '#wd-lead-modal .wd-error{display:none;color:#FF8C9E;font-size:13px;margin:0 0 10px;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
-    + '#wd-lead-success a{color:#C9A277;font-weight:600;}';
+    + '#wd-lead-success a{color:#C9A277;font-weight:600;text-decoration:underline;text-underline-offset:3px;}'
+    + '#wd-lead-success a.wd-sms-btn{display:inline-block;margin-top:14px;background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;border-radius:999px;padding:12px 28px;font-size:15px;font-weight:700;text-decoration:none;}';
 
   /* == Announcement bar ================================================== */
   function buildBar() {
@@ -183,7 +184,8 @@
     if (!ENDPOINT) {
       // Backend not wired yet: point them at the SMS list so no lead is lost.
       showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
-        '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.');
+        '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
+        '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
       snooze(LS_POPUP, JOINED_DAYS);
       return;
     }

@@ -1,9 +1,8 @@
 /**
  * WeDeepen lead capture — Google Apps Script web app.
  *
- * Paste this into the Apps Script editor BOUND to the "WeDeepen Leads" sheet
- * (open the sheet → Extensions → Apps Script), then deploy as a web app.
- * Full steps: scripts/lead-capture/README.md
+ * Paste this into an Apps Script project (standalone or bound to the sheet),
+ * then deploy as a web app. Full steps: scripts/lead-capture/README.md
  *
  * Appends one row per popup submission:
  * Timestamp | First Name | Email | Cell Phone | Location | Source Page
@@ -21,7 +20,8 @@ function doPost(e) {
     return json_({ ok: false, error: 'missing fields' });
   }
 
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  var SHEET_ID = '1A34rApBJ3PAKQeEUnmy5Jak2M_KSNkYhit3oXL7yDCg'; // WeDeepen Leads
+  var sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
   sheet.appendRow([
     new Date(),
     String(p.firstName).slice(0, 200),

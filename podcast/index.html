@@ -507,8 +507,10 @@
     let currentFilter = '';
 
     function slugify(title) {
+      // Must match slugify() in podcast/data/generate_episode_pages.py:
+      // Python \w is Unicode-aware, so accented letters (René, Hedoné) stay in the slug.
       return title.toLowerCase()
-        .replace(/[^\w\s-]/g, '')
+        .replace(/[^\p{L}\p{N}_\s-]/gu, '')
         .replace(/[\s_]+/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-+|-+$/g, '');

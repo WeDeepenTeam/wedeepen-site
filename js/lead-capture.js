@@ -65,6 +65,11 @@
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
     + '#wd-lead-bar .wd-bar-number{font-size:14px;padding:8px 20px;font-variant-numeric:tabular-nums;}'
+    + '#wd-lead-bar .wd-bar-stack{display:block;}'
+    + '#wd-lead-bar .wd-bar-line1{display:block;font-size:18px;font-weight:600;letter-spacing:.01em;line-height:1.35;}'
+    + '#wd-lead-bar .wd-bar-line1 strong{color:#C9A277;font-weight:700;}'
+    + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
+    + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
@@ -117,8 +122,10 @@
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
       bar.innerHTML =
-        '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> everything it takes to get really good at love.</span>' +
-        '<a class="wd-bar-join wd-bar-number" href="' + SMS_HREF + '">Text ' + SMS_NUMBER_DISPLAY + '</a>' +
+        '<span class="wd-bar-stack">' +
+          '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
+          '<span class="wd-bar-line2">Get on the list: private invitations from WeDeepen.</span>' +
+        '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =

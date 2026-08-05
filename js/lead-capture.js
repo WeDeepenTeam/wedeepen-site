@@ -116,9 +116,8 @@
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
       bar.innerHTML =
-        '<span>Get on the list: text <strong>' + SMS_KEYWORD + '</strong> to ' +
-        '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
-        '<a class="wd-bar-join" href="' + SMS_HREF + '">Text us</a>' +
+        '<span class="wd-bar-msg">Hear it first: new dates drop by text.</span>' +
+        '<a class="wd-bar-join" href="' + SMS_HREF + '">Count me in</a>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =

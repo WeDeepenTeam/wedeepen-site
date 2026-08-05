@@ -28,6 +28,7 @@
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
+  var LI_URL = '/love-immersion/october-2026/';
   var POPUP_DELAY_MS = 7000;
 
   // Mobile = text-first (SMS CTA + save contact). Desktop = form.
@@ -70,6 +71,9 @@
     + '#wd-lead-bar .wd-bar-line1 strong{color:#C9A277;font-weight:700;}'
     + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
     + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
+    + '#wd-lead-bar a.wd-bar-link{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}'
+    + '#wd-lead-bar a.wd-bar-link-lg{display:inline-block;font-size:15px;margin-top:5px;}'
+    + '#wd-lead-bar.wd-gold a.wd-bar-link{color:#1A1A1A;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
     + '#wd-lead-bar.wd-gold{background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;border-bottom:0;box-shadow:0 1px 8px rgba(0,0,0,.2);}'
     + '#wd-lead-bar.wd-gold .wd-bar-msg{color:#1A1A1A;font-weight:600;}'
@@ -129,15 +133,15 @@
     if (IS_MOBILE) {
       bar.innerHTML =
         '<span class="wd-bar-stack">' +
-          '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
-          '<span class="wd-bar-line2">Get on the list: private invitations from WeDeepen.</span>' +
+          '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
+          '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th.</span>' +
+          '<a class="wd-bar-link wd-bar-link-lg" href="' + LI_URL + '">Sign Up Now &rarr;</a>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.classList.add('wd-gold');
       bar.innerHTML =
-        '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
-        '<button type="button" class="wd-bar-join">Count Me In</button>' +
+        '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th. <a class="wd-bar-link" href="' + LI_URL + '">Sign Up Now</a></span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);

@@ -108,6 +108,21 @@
       background: #1a1030;
       padding-top: 64px; /* clear sticky header on mobile */
     }
+
+    /* Clickable CTA overlaid on the baked-in "GET A TICKET TODAY" text in the banner.
+       Position/size are % of the image so it tracks the artwork at any width. */
+    .hero-banner-cta {
+      position: absolute;
+      left: 49.6%; top: 88%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: clamp(0.6rem, 1.5vw, 1rem);
+      padding: 0.9em 3.2em !important;
+      border-radius: 0.75em;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    }
     @media (min-width: 768px) {
       .hero-flyer-wrap { padding-top: 64px; }
     }
@@ -197,7 +212,6 @@
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
       </a>
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
-        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
 
         <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
@@ -205,7 +219,6 @@
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
         <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
         <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
-        <a href="https://circle.wedeepenloveclub.com/" class="text-white/80 hover:text-white transition whitespace-nowrap">Login</a>
       </nav>
       <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
 
@@ -223,7 +236,6 @@
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <nav class="flex flex-col gap-6 text-lg font-medium">
-      <a href="/" class="text-white hover:text-gold transition">Home</a>
 
       <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
       <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
@@ -242,12 +254,13 @@
        ============================ -->
   <section class="hero-flyer-wrap">
     <h1 class="sr-only">WeDeepen In-Person: Love is a skill. Spend two days getting even better at it. August 22&ndash;23, 2026 in Austin, TX.</h1>
-    <div class="max-w-site mx-auto">
+    <div class="max-w-site mx-auto relative">
       <img
         src="/images/inperson/inperson-banner.jpg"
         alt="WeDeepen In-Person &middot; Aug 22&ndash;23 in Austin, TX &middot; Love is a skill. Spend two days getting even better at it. With Christina Weber, Annie Lalla, Jordan Bowditch, Melissa D., and Rachel Cuthbert."
         class="w-full h-auto block"
         fetchpriority="high">
+      <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink hero-banner-cta">Get a Ticket Today</a>
     </div>
 
     <div class="max-w-4xl mx-auto px-6 py-10 md:py-14 text-center">
@@ -498,6 +511,53 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
           loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAST EVENT GALLERIES -->
+  <section class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="text-center mb-10">
+        <p class="text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5" style="color:#E8337A;">Inside the Room</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4 gold-line-center">Moments from <span class="italic" style="color:#E8337A;">past gatherings</span></h2>
+        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light max-w-xl mx-auto">
+          WeDeepen In-Person grew out of Biohacking Love. Photos by Allison Powers from the last three events.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto">
+        <a href="/gallery/biohacking-love-may-2026/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/thumb/e030ba18d7f3fa0c.webp" alt="Biohacking Love — May 2026" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">May 2026</p>
+            </div>
+          </div>
+        </a>
+        <a href="/gallery/biohacking-love/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_055.webp" alt="Biohacking Love — April 2026" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">Apr 2026</p>
+            </div>
+          </div>
+        </a>
+        <a href="/gallery/biohacking-love-may-2025/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/thumb/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_001.webp" alt="Biohacking Love — May 2025" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">May 2025</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/gallery/" class="btn-outline">See all photo galleries &rarr;</a>
       </div>
     </div>
   </section>

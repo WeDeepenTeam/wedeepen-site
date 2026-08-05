@@ -71,6 +71,12 @@
     + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
     + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
+    + '#wd-lead-bar.wd-gold{background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;border-bottom:0;box-shadow:0 1px 8px rgba(0,0,0,.2);}'
+    + '#wd-lead-bar.wd-gold .wd-bar-msg{color:#1A1A1A;font-weight:600;}'
+    + '#wd-lead-bar.wd-gold .wd-bar-gold{color:#1A1A1A;font-weight:700;}'
+    + '#wd-lead-bar.wd-gold .wd-bar-join{background:#1A1A1A;color:#F4EDE0;}'
+    + '#wd-lead-bar.wd-gold .wd-bar-join:hover{background:#2D2D2D;filter:none;}'
+    + '#wd-lead-bar.wd-gold .wd-bar-x{color:#1A1A1A;}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
     + '#wd-lead-modal{position:relative;width:100%;max-width:430px;background:#1A1A1A;border:1px solid rgba(201,162,119,.35);border-radius:20px;padding:34px 30px 28px;color:#F4EDE0;font-family:"DM Sans",Inter,system-ui,sans-serif;box-shadow:0 24px 64px rgba(0,0,0,.5);max-height:92vh;overflow-y:auto;}'
@@ -128,6 +134,7 @@
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
+      bar.classList.add('wd-gold');
       bar.innerHTML =
         '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
         '<button type="button" class="wd-bar-join">Count Me In</button>' +

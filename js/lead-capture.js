@@ -28,7 +28,19 @@
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
-  var LI_URL = '/love-immersion/october-2026/';
+  var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
+  var PROMO_END = Date.parse('2026-08-10T04:59:59Z'); // Aug 9, 11:59pm Austin
+  var PROMO_ACTIVE = (function () {
+    if (/[?&#]wd-promo=off/.test(location.href)) return false;
+    return Date.now() < PROMO_END;
+  })();
+
+  function promoCountdown() {
+    var d = Math.ceil((PROMO_END - Date.now()) / 864e5);
+    if (d <= 1) return 'ends tonight';
+    if (d === 2) return 'ends tomorrow';
+    return d + ' days left';
+  }
   var POPUP_DELAY_MS = 7000;
 
   // Mobile = text-first (SMS CTA + save contact). Desktop = form.
@@ -131,18 +143,26 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
-      bar.innerHTML =
-        '<span class="wd-bar-stack">' +
-          '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
-          '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th.</span>' +
-          '<a class="wd-bar-link wd-bar-link-lg" href="' + LI_URL + '">Sign Up Now &rarr;</a>' +
-        '</span>' +
-        '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
+      bar.innerHTML = PROMO_ACTIVE
+        ? '<span class="wd-bar-stack">' +
+            '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
+            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 &middot; <strong>' + promoCountdown() + '</strong></span>' +
+            '<a class="wd-bar-link wd-bar-link-lg" href="' + LI_URL + '">Sign Me Up &rarr;</a>' +
+          '</span>' +
+          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
+        : '<span class="wd-bar-stack">' +
+            '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
+            '<span class="wd-bar-line2">Get on the list: private invitations from WeDeepen.</span>' +
+          '</span>' +
+          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.classList.add('wd-gold');
-      bar.innerHTML =
-        '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th. <a class="wd-bar-link" href="' + LI_URL + '">Sign Up Now</a></span>' +
-        '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
+      bar.innerHTML = PROMO_ACTIVE
+        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th &middot; <strong>' + promoCountdown() + '</strong>. <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a></span>' +
+          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
+        : '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
+          '<button type="button" class="wd-bar-join">Count Me In</button>' +
+          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);
 
@@ -175,7 +195,7 @@
     var formPanel =
       '<div id="wd-lead-form-wrap">' +
         '<h2 id="wd-lead-title">Get on the list</h2>' +
-        '<p class="wd-sub">Be the first to hear about Love Immersion dates, events, and new experiences from WeDeepen.</p>' +
+        '<p class="wd-sub">Private invitations, new dates, and first access to everything WeDeepen hosts.</p>' +
         '<form id="wd-lead-form" novalidate>' +
           '<div class="wd-hp" aria-hidden="true"><label for="wd-company">Company</label><input id="wd-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
           '<label for="wd-first">First name</label>' +

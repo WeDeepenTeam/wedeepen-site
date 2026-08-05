@@ -63,6 +63,7 @@
     + '#wd-lead-bar .wd-bar-join:hover{background:#2D2D2D;}'
     + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#1A1A1A;opacity:.55;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
+    + '#wd-lead-bar .wd-bar-msg{font-weight:700;letter-spacing:.01em;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:6px;padding:8px 40px 8px 12px;}}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
@@ -121,8 +122,8 @@
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =
-        '<span>Get on the list: be the first to hear about new dates &amp; events</span>' +
-        '<button type="button" class="wd-bar-join">Join the list</button>' +
+        '<span class="wd-bar-msg">Hear it first: new dates drop by text before they hit the site.</span>' +
+        '<button type="button" class="wd-bar-join">Count me in</button>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);

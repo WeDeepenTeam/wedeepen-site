@@ -211,7 +211,7 @@
           '</div>' +
           '<div class="wd-consent">' +
             '<input id="wd-consent" name="consent" type="checkbox" class="wd-check">' +
-            '<label for="wd-consent">I agree to receive promotional messages from WeDeepen up to 4 Msgs/Month. This agreement isn&#39;t a condition of any purchase. I also agree to the <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms of Service</a> and <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy Policy</a>. Msg &amp; Data rates may apply.</label>' +
+            '<label for="wd-consent">I agree to receive promotional messages from WeDeepen up to 8 Msgs/Month. This agreement isn&#39;t a condition of any purchase. I also agree to the <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms of Service</a> and <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy Policy</a>. Msg &amp; Data rates may apply.</label>' +
           '</div>' +
           '<p class="wd-legal">By submitting this form, I agree that my mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude my text messaging originator opt-in data and consent; this information will not be shared with any third parties, except for the necessary opt-in data required to facilitate the SMS service. Text STOP to opt-out. Text HELP for assistance. team@wedeepen.com</p>' +
           '<p class="wd-error" id="wd-lead-error">Please add your first name and phone number.</p>' +
@@ -379,7 +379,8 @@
     }).then(function (res) {
       if (res.ok) {
         logToSheet(firstName, phone, email, locationStr);
-        showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.');
+        showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.' +
+          '<br><a class="wd-sms-btn" href="https://chat.whatsapp.com/FOK9T50055K97x88VTsY7J" target="_blank" rel="noopener">Join the WhatsApp group</a>');
         snooze(LS_POPUP, JOINED_DAYS);
         return;
       }

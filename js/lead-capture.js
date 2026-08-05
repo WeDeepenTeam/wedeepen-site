@@ -116,13 +116,13 @@
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Get on the list: private invitations, by text.</span>' +
-        '<a class="wd-bar-join" href="' + SMS_HREF + '">Count me in</a>' +
+        '<span class="wd-bar-msg">Get on the list: everything it takes to get really good at love.</span>' +
+        '<a class="wd-bar-join" href="' + SMS_HREF + '">Count Me In</a>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Get on the list: private invitations and new dates land by text first.</span>' +
-        '<button type="button" class="wd-bar-join">Count me in</button>' +
+        '<span class="wd-bar-msg">Get on the list: private invitations, in-person events, and everything it takes to get really good at love.</span>' +
+        '<button type="button" class="wd-bar-join">Count Me In</button>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);
@@ -181,7 +181,7 @@
           '</div>' +
           '<p class="wd-legal">By submitting this form, I agree that my mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude my text messaging originator opt-in data and consent; this information will not be shared with any third parties, except for the necessary opt-in data required to facilitate the SMS service. Text STOP to opt-out. Text HELP for assistance. team@wedeepen.com</p>' +
           '<p class="wd-error" id="wd-lead-error">Please add your first name and phone number.</p>' +
-          '<button type="submit" class="wd-submit">Count me in</button>' +
+          '<button type="submit" class="wd-submit">Count Me In</button>' +
         '</form>' +
         '<p class="wd-sms-alt">Prefer text? Send <strong>' + SMS_KEYWORD + '</strong> to <a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></p>' +
       '</div>';
@@ -313,7 +313,7 @@
 
     function restoreButton() {
       btn.disabled = false;
-      btn.textContent = 'Count me in';
+      btn.textContent = 'Count Me In';
     }
 
     // SMS keeps working even if the API is down: hand them the keyword and log

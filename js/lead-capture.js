@@ -143,18 +143,13 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
-      bar.innerHTML = PROMO_ACTIVE
-        ? '<span class="wd-bar-stack">' +
-            '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
-            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 &middot; <strong>' + promoCountdown() + '</strong></span>' +
-            '<a class="wd-bar-link wd-bar-link-lg" href="' + LI_URL + '">Sign Me Up &rarr;</a>' +
-          '</span>' +
-          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
-        : '<span class="wd-bar-stack">' +
-            '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
-            '<span class="wd-bar-line2">Get on the list: private invitations from WeDeepen.</span>' +
-          '</span>' +
-          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
+      // Mobile always runs list capture: the one-tap number beats a promo link.
+      bar.innerHTML =
+        '<span class="wd-bar-stack">' +
+          '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
+          '<span class="wd-bar-line2">to receive private invitations, event announcements, and the latest from WeDeepen.</span>' +
+        '</span>' +
+        '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.classList.add('wd-gold');
       bar.innerHTML = PROMO_ACTIVE

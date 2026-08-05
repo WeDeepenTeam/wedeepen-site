@@ -65,7 +65,8 @@
     + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#1A1A1A;opacity:.55;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:700;letter-spacing:.01em;}'
-    + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:6px;padding:8px 40px 8px 12px;}}'
+    + '#wd-lead-bar .wd-bar-number{font-size:15px;padding:8px 22px;font-variant-numeric:tabular-nums;}'
+    + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:7px;padding:8px 40px 9px 12px;}}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
     + '#wd-lead-modal{position:relative;width:100%;max-width:430px;background:#1A1A1A;border:1px solid rgba(201,162,119,.35);border-radius:20px;padding:34px 30px 28px;color:#F4EDE0;font-family:"DM Sans",Inter,system-ui,sans-serif;box-shadow:0 24px 64px rgba(0,0,0,.5);max-height:92vh;overflow-y:auto;}'
@@ -118,7 +119,7 @@
     if (IS_MOBILE) {
       bar.innerHTML =
         '<span class="wd-bar-msg">Get on the list: everything it takes to get really good at love.</span>' +
-        '<a class="wd-bar-join" href="' + SMS_HREF + '">Count Me In</a>' +
+        '<a class="wd-bar-join wd-bar-number" href="' + SMS_HREF + '">Text ' + SMS_NUMBER_DISPLAY + '</a>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =

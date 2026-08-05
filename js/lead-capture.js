@@ -194,7 +194,7 @@
 
     var formPanel =
       '<div id="wd-lead-form-wrap">' +
-        '<h2 id="wd-lead-title">Get on the list</h2>' +
+        '<h2 id="wd-lead-title">Train for love.</h2>' +
         '<p class="wd-sub">Private invitations, new dates, and first access to everything WeDeepen hosts.</p>' +
         '<form id="wd-lead-form" novalidate>' +
           '<div class="wd-hp" aria-hidden="true"><label for="wd-company">Company</label><input id="wd-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
@@ -227,7 +227,7 @@
 
     var smsPanel =
       '<div id="wd-lead-form-wrap" class="wd-sms-panel">' +
-        '<h2 id="wd-lead-title">Get on the list</h2>' +
+        '<h2 id="wd-lead-title">Train for love.</h2>' +
         '<p class="wd-sub">Text <strong>' + SMS_KEYWORD + '</strong> to the number below and you&#39;re in. Be the first to hear about Love Immersion dates and events.</p>' +
         '<p class="wd-number"><a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></p>' +
         '<a class="wd-sms-btn" id="wd-sms-cta" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>' +

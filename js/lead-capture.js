@@ -116,12 +116,12 @@
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Hear it first: new dates drop by text.</span>' +
+        '<span class="wd-bar-msg">Get on the list: private invitations, by text.</span>' +
         '<a class="wd-bar-join" href="' + SMS_HREF + '">Count me in</a>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Hear it first: new dates drop by text before they hit the site.</span>' +
+        '<span class="wd-bar-msg">Get on the list: private invitations and new dates land by text first.</span>' +
         '<button type="button" class="wd-bar-join">Count me in</button>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }

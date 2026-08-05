@@ -82,6 +82,12 @@
     + '#wd-lead-modal .wd-close{position:absolute;top:14px;right:14px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-modal .wd-close:hover{color:#F4EDE0;}'
     + '#wd-lead-modal .wd-error{display:none;color:#FF8C9E;font-size:13px;margin:0 0 10px;}'
+    + '#wd-lead-modal .wd-opt{color:rgba(244,237,224,.35);font-weight:400;text-transform:none;letter-spacing:.02em;}'
+    + '#wd-lead-modal .wd-row{display:flex;gap:12px;}'
+    + '#wd-lead-modal .wd-row>div{flex:1;}'
+    + '#wd-lead-modal .wd-row .wd-state{flex:0 0 84px;}'
+    + '#wd-lead-modal .wd-podcast{margin-bottom:2px;}'
+    + '#wd-lead-modal .wd-podcast label{color:rgba(244,237,224,.85);font-size:13px;}'
     + '#wd-lead-modal .wd-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 10px;}'
     + '#wd-lead-modal input.wd-check{appearance:none;-webkit-appearance:none;flex:0 0 18px;width:18px;height:18px;margin:2px 0 0;padding:0;border:1px solid rgba(255,255,255,.3);border-radius:5px;background:#2D2D2D;cursor:pointer;position:relative;}'
     + '#wd-lead-modal input.wd-check:checked{background:linear-gradient(135deg,#A8855C,#C9A277);border-color:#C9A277;}'
@@ -157,6 +163,18 @@
           '<input id="wd-first" name="firstname" type="text" autocomplete="given-name" required placeholder="Your first name">' +
           '<label for="wd-phone">Cell phone</label>' +
           '<input id="wd-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(512) 555-0100">' +
+          '<label for="wd-email">Email <span class="wd-opt">(optional)</span></label>' +
+          '<input id="wd-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">' +
+          '<div class="wd-row">' +
+            '<div><label for="wd-city">City <span class="wd-opt">(optional)</span></label>' +
+            '<input id="wd-city" name="city" type="text" autocomplete="address-level2" placeholder="Austin"></div>' +
+            '<div class="wd-state"><label for="wd-state">State</label>' +
+            '<input id="wd-state" name="state" type="text" autocomplete="address-level1" maxlength="2" placeholder="TX"></div>' +
+          '</div>' +
+          '<div class="wd-consent wd-podcast">' +
+            '<input id="wd-podcast" name="podcast" type="checkbox" class="wd-check">' +
+            '<label for="wd-podcast">Text me new podcast episodes each week.</label>' +
+          '</div>' +
           '<div class="wd-consent">' +
             '<input id="wd-consent" name="consent" type="checkbox" class="wd-check">' +
             '<label for="wd-consent">I agree to receive promotional messages from WeDeepen up to 4 Msgs/Month. This agreement isn&#39;t a condition of any purchase. I also agree to the <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms of Service</a> and <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy Policy</a>. Msg &amp; Data rates may apply.</label>' +
@@ -215,7 +233,11 @@
     if (!overlay) buildPopup();
     overlay.classList.add('wd-open');
     var first = overlay.querySelector('#wd-first');
-    if (first) setTimeout(function () { first.focus(); }, 60);
+    if (first) setTimeout(function () {
+      try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); }
+      var modal = overlay.querySelector('#wd-lead-modal');
+      if (modal) modal.scrollTop = 0;
+    }, 60);
   }
 
   function closePopup(userDismissed) {
@@ -242,14 +264,14 @@
   }
 
   // Fire-and-forget copy to the Google Sheet for page attribution / backup.
-  function logToSheet(firstName, phone) {
+  function logToSheet(firstName, phone, email, locationStr) {
     if (!ENDPOINT) return;
     try {
       fetch(ENDPOINT, {
         method: 'POST', mode: 'no-cors',
         body: new URLSearchParams({
-          firstName: firstName, email: '', phone: phone,
-          location: '', page: location.pathname
+          firstName: firstName, email: email || '', phone: phone,
+          location: locationStr || '', page: location.pathname
         })
       }).catch(function () {});
     } catch (e) { /* never block the signup on the log */ }
@@ -267,6 +289,10 @@
     var firstName = form.firstname.value.trim();
     var phone = form.phone.value.replace(/\D/g, '');
     if (phone.length === 11 && phone.charAt(0) === '1') phone = phone.slice(1);
+    var email = form.email.value.trim();
+    var city = form.city.value.trim();
+    var state = form.state.value.trim().toUpperCase();
+    var podcast = form.podcast.checked ? 'Yes' : 'No';
     var err = overlay.querySelector('#wd-lead-error');
     err.style.display = 'none';
 
@@ -278,6 +304,7 @@
 
     if (!firstName) { showError('Please add your first name.'); return; }
     if (phone.length !== 10) { showError('Please add a 10-digit cell phone number.'); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('That email doesn’t look right (or leave it blank).'); return; }
     if (!form.consent.checked) { showError('Please check the box so we have your OK to text you.'); return; }
 
     var btn = form.querySelector('.wd-submit');
@@ -291,25 +318,33 @@
 
     // SMS keeps working even if the API is down: hand them the keyword and log
     // the lead to the sheet so it isn't lost.
+    var locationStr = city + (city && state ? ', ' : '') + state;
+
     function smsFallback() {
-      logToSheet(firstName, phone);
+      logToSheet(firstName, phone, email, locationStr);
       showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
         '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
         '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
       snooze(LS_POPUP, JOINED_DAYS);
     }
 
+    // SimpleTexting custom-field names come from the web form definition.
+    var fieldValues = { phone: phone, firstname: firstName, Podcasts: podcast };
+    if (email) fieldValues.email = email;
+    if (city) fieldValues.whats_your_city_full_name = city;
+    if (state) fieldValues.answer_with_abbreviation_what_state_are_you_primarily_in_ex_ca = state;
+
     fetch(ST_ENDPOINT + '?r=' + Date.now(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({
         webFormId: ST_WEBFORM_ID,
-        fieldValues: { phone: phone, firstname: firstName },
+        fieldValues: fieldValues,
         listIds: []
       })
     }).then(function (res) {
       if (res.ok) {
-        logToSheet(firstName, phone);
+        logToSheet(firstName, phone, email, locationStr);
         showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.');
         snooze(LS_POPUP, JOINED_DAYS);
         return;

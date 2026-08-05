@@ -56,11 +56,12 @@
 
   /* == Styles ============================================================ */
   var css = ''
-    + '#wd-lead-bar{position:fixed;top:0;left:0;right:0;z-index:60;background:linear-gradient(90deg,#A8855C,#C9A277,#D4B78C);color:#1A1A1A;font-family:"DM Sans",Inter,system-ui,sans-serif;font-size:14px;line-height:1.3;display:flex;align-items:center;justify-content:center;gap:10px;padding:9px 44px 9px 16px;text-align:center;}'
+    + '#wd-lead-bar{position:fixed;top:0;left:0;right:0;z-index:60;background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;font-family:"DM Sans",Inter,system-ui,sans-serif;font-size:15px;line-height:1.35;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 44px 10px 16px;text-align:center;box-shadow:0 1px 10px rgba(0,0,0,.25);}'
     + '#wd-lead-bar strong{font-weight:700;letter-spacing:.02em;}'
     + '#wd-lead-bar a{color:#1A1A1A;font-weight:700;text-decoration:underline;text-underline-offset:2px;}'
-    + '#wd-lead-bar .wd-bar-join{background:#1A1A1A;color:#F4EDE0;border:0;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}'
-    + '#wd-lead-bar .wd-bar-join:hover{background:#2D2D2D;}'
+    + '#wd-lead-bar .wd-bar-join{background:#E8337A;color:#fff;border:0;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;box-shadow:0 2px 10px rgba(232,51,122,.35);animation:wd-nudge 1.6s ease 2.2s 2;}'
+    + '#wd-lead-bar .wd-bar-join:hover{background:#FF4F8C;}'
+    + '@keyframes wd-nudge{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}'
     + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#1A1A1A;opacity:.55;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:700;letter-spacing:.01em;}'

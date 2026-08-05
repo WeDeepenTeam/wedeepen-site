@@ -123,6 +123,11 @@
       border-radius: 0.75em;
       box-shadow: 0 4px 24px rgba(0,0,0,0.45);
     }
+    /* Keep the centering transform on hover — .btn-pink:hover's translateY(-1px)
+       would otherwise replace it and make the button jump. */
+    .btn-pink.hero-banner-cta:hover {
+      transform: translate(-50%, -50%) translateY(-1px);
+    }
     @media (min-width: 768px) {
       .hero-flyer-wrap { padding-top: 64px; }
     }

@@ -30,6 +30,7 @@
   var VCARD_URL = '/wedeepen.vcf';
   var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
   var PROMO_END = Date.parse('2026-08-10T04:59:59Z'); // Aug 9, 11:59pm Austin
+  var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
   var PROMO_ACTIVE = (function () {
     if (/[?&#]wd-promo=off/.test(location.href)) return false;
     return Date.now() < PROMO_END;
@@ -143,8 +144,15 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
-      // Mobile always runs list capture: the one-tap number beats a promo link.
-      bar.innerHTML =
+      // Mobile runs list capture everywhere except LI pages, where the promo
+      // code + countdown is the useful ribbon (reserve CTAs cover the page).
+      bar.innerHTML = (ON_LI_PAGE && PROMO_ACTIVE)
+        ? '<span class="wd-bar-stack">' +
+            '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
+            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 &middot; <strong>' + promoCountdown() + '</strong></span>' +
+          '</span>' +
+          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
+        :
         '<span class="wd-bar-stack">' +
           '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
           '<span class="wd-bar-line2">to receive private invitations, event announcements, and the latest from WeDeepen.</span>' +
@@ -153,7 +161,8 @@
     } else {
       bar.classList.add('wd-gold');
       bar.innerHTML = PROMO_ACTIVE
-        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th &middot; <strong>' + promoCountdown() + '</strong>. <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a></span>' +
+        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th &middot; <strong>' + promoCountdown() + '</strong>.' +
+          (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         : '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
           '<button type="button" class="wd-bar-join">Count Me In</button>' +
@@ -424,7 +433,7 @@
 
     // Auto-open on desktop only. On mobile the bar's one-tap "text us" beats
     // any popup, and Google penalizes auto-interstitials in mobile search.
-    if (!IS_MOBILE && !snoozed(LS_POPUP)) {
+    if (!IS_MOBILE && !ON_LI_PAGE && !snoozed(LS_POPUP)) {
       setTimeout(openPopup, POPUP_DELAY_MS);
     }
   }

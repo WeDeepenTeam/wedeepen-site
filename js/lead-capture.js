@@ -218,10 +218,10 @@
           '<input id="wd-first" name="firstname" type="text" autocomplete="given-name" required placeholder="Your first name">' +
           '<label for="wd-phone">Cell phone</label>' +
           '<input id="wd-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(512) 555-0100">' +
-          '<label for="wd-email">Email <span class="wd-opt">(optional)</span></label>' +
+          '<label for="wd-email">Email</label>' +
           '<input id="wd-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">' +
           '<div class="wd-row">' +
-            '<div><label for="wd-city">City <span class="wd-opt">(optional)</span></label>' +
+            '<div><label for="wd-city">City</label>' +
             '<input id="wd-city" name="city" type="text" autocomplete="address-level2" placeholder="Austin"></div>' +
             '<div class="wd-state"><label for="wd-state">State</label>' +
             '<input id="wd-state" name="state" type="text" autocomplete="address-level1" maxlength="2" placeholder="TX"></div>' +

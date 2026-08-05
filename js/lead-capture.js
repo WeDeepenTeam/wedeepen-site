@@ -56,17 +56,16 @@
 
   /* == Styles ============================================================ */
   var css = ''
-    + '#wd-lead-bar{position:fixed;top:0;left:0;right:0;z-index:60;background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;font-family:"DM Sans",Inter,system-ui,sans-serif;font-size:15px;line-height:1.35;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 44px 10px 16px;text-align:center;box-shadow:0 1px 10px rgba(0,0,0,.25);}'
+    + '#wd-lead-bar{position:fixed;top:0;left:0;right:0;z-index:60;background:#211B16;color:#F4EDE0;border-bottom:1px solid rgba(201,162,119,.4);font-family:"DM Sans",Inter,system-ui,sans-serif;font-size:14.5px;line-height:1.35;display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 44px 10px 16px;text-align:center;}'
     + '#wd-lead-bar strong{font-weight:700;letter-spacing:.02em;}'
-    + '#wd-lead-bar a{color:#1A1A1A;font-weight:700;text-decoration:underline;text-underline-offset:2px;}'
-    + '#wd-lead-bar .wd-bar-join{background:#E8337A;color:#fff;border:0;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;box-shadow:0 2px 10px rgba(232,51,122,.35);animation:wd-nudge 1.6s ease 2.2s 2;}'
-    + '#wd-lead-bar .wd-bar-join:hover{background:#FF4F8C;}'
-    + '@keyframes wd-nudge{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}'
-    + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#1A1A1A;opacity:.55;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
+    + '#wd-lead-bar .wd-bar-gold{color:#C9A277;}'
+    + '#wd-lead-bar .wd-bar-join{background:linear-gradient(90deg,#A8855C,#C9A277,#D4B78C);color:#1A1A1A;border:0;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}'
+    + '#wd-lead-bar .wd-bar-join:hover{filter:brightness(1.08);}'
+    + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#F4EDE0;opacity:.5;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
-    + '#wd-lead-bar .wd-bar-msg{font-weight:700;letter-spacing:.01em;}'
-    + '#wd-lead-bar .wd-bar-number{font-size:15px;padding:8px 22px;font-variant-numeric:tabular-nums;}'
-    + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:7px;padding:8px 40px 9px 12px;}}'
+    + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
+    + '#wd-lead-bar .wd-bar-number{font-size:14px;padding:8px 20px;font-variant-numeric:tabular-nums;}'
+    + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
     + '#wd-lead-modal{position:relative;width:100%;max-width:430px;background:#1A1A1A;border:1px solid rgba(201,162,119,.35);border-radius:20px;padding:34px 30px 28px;color:#F4EDE0;font-family:"DM Sans",Inter,system-ui,sans-serif;box-shadow:0 24px 64px rgba(0,0,0,.5);max-height:92vh;overflow-y:auto;}'
@@ -118,12 +117,12 @@
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Get on the list: everything it takes to get really good at love.</span>' +
+        '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> everything it takes to get really good at love.</span>' +
         '<a class="wd-bar-join wd-bar-number" href="' + SMS_HREF + '">Text ' + SMS_NUMBER_DISPLAY + '</a>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
       bar.innerHTML =
-        '<span class="wd-bar-msg">Get on the list: private invitations, in-person events, and everything it takes to get really good at love.</span>' +
+        '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
         '<button type="button" class="wd-bar-join">Count Me In</button>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }

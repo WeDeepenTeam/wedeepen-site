@@ -2,8 +2,16 @@
 
 `/js/lead-capture.js` injects two things on every page that includes it:
 
-1. **Announcement bar** (top of page): "Get on the list: text COUNT ME IN to 833-407-0037" plus a "Join the list" button that opens the popup. Dismissible; stays hidden 7 days.
-2. **Popup** (after 6 seconds, or via the bar button, or any element with a `data-lead-popup` attribute): collects first name, email, cell phone, and location, and POSTs to a Google Apps Script web app that appends a row to the **WeDeepen Leads** Google Sheet.
+1. **Announcement bar** (top of page). Device-aware:
+   - **Mobile**: "Get on the list: text COUNT ME IN to 833-407-0037" with a "Text us" button. Both open Messages pre-filled with the keyword (one tap, zero typing).
+   - **Desktop**: "Get on the list: be the first to hear about new dates & events" with a "Join the list" button that opens the popup.
+   - Dismissible; stays hidden 7 days.
+2. **Popup** (auto-opens after 7 seconds on **desktop only**; on any device via the bar button or any element with a `data-lead-popup` attribute):
+   - **Desktop**: first name + cell phone + SMS-consent checkbox, submitted directly to the SimpleTexting web form API (`joinContact`, web form "WebSite Pop-up"), which subscribes the contact to the **COUNTMEIN** list, the same list the keyword reaches. A fire-and-forget copy also goes to the **WeDeepen Leads** Google Sheet for page attribution. If SimpleTexting is unreachable, the visitor gets the "text COUNT ME IN" instruction and the lead is still logged to the sheet.
+   - **Mobile**: SMS-first panel with a big "Text COUNT ME IN" button and a "Save WeDeepen to your contacts" vCard link.
+   - Mobile auto-open is intentionally off: the bar's one-tap text beats a popup, and Google penalizes auto-interstitials in mobile search.
+
+QA: append `?wd-view=mobile` or `?wd-view=desktop` to any page URL to force a variant.
 
 Snooze rules (localStorage): popup dismissed = 7 days, popup submitted = 1 year, bar dismissed = 7 days.
 

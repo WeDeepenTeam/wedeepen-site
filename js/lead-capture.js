@@ -178,6 +178,18 @@
     }
     offset();
     window.addEventListener('resize', offset);
+    // The bar grows after first measure (web font swap re-wraps the text,
+    // notably on phones), which left the header sliding under it. Track the
+    // bar's real size instead of trusting the initial measurement.
+    if (window.ResizeObserver) {
+      new ResizeObserver(offset).observe(bar);
+    } else {
+      setTimeout(offset, 600);
+      setTimeout(offset, 1800);
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(offset).catch(function () {});
+    }
 
     var join = bar.querySelector('button.wd-bar-join');
     if (join) join.addEventListener('click', function () { openPopup(); });

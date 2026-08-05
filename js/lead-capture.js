@@ -4,9 +4,12 @@
  * Injected on page load. Self-contained CSS (no Tailwind dependency) so it
  * renders identically on every page it's included on.
  *
- * Submissions POST to a Google Apps Script web app that appends rows to the
- * "WeDeepen Leads" Google Sheet. Until ENDPOINT is set, the popup still works:
- * it falls back to the "text COUNT ME IN" instruction on submit.
+ * Desktop popup submissions go straight to SimpleTexting (joinContact API),
+ * which subscribes the contact to the COUNTMEIN list, the same list people
+ * reach by texting the keyword. A fire-and-forget copy is also logged to the
+ * "WeDeepen Leads" Google Sheet via Apps Script for page attribution.
+ * If SimpleTexting is unreachable, the popup falls back to the
+ * "text COUNT ME IN" instruction plus a sheet log so no lead is lost.
  *
  * Setup docs: scripts/lead-capture/README.md
  */
@@ -14,13 +17,18 @@
   'use strict';
 
   /* == Config ============================================================ */
-  // Google Apps Script web app URL (ends in /exec). Empty = SMS fallback mode.
+  // SimpleTexting web form (Apps > Web Sign-Up Forms > "WebSite Pop-up").
+  var ST_ENDPOINT = 'https://app2.simpletexting.com/join/joinContact';
+  var ST_WEBFORM_ID = '6a725eb22813b371a658bdc9';
+  var ST_TERMS_URL = 'https://app2.simpletexting.com/web-forms/terms/' + ST_WEBFORM_ID;
+  var ST_PRIVACY_URL = 'https://app2.simpletexting.com/web-forms/privacy-policy/' + ST_WEBFORM_ID;
+  // Google Apps Script web app URL (ends in /exec). Backup log only.
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxTqMV9og1cnFzVI6KE5yLtjYcVD5C81cj0P3cPRcCJMynxIz2YsZHJ52IkvbnEo6s97Q/exec';
   var SMS_NUMBER_DISPLAY = '833-407-0037';
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
-  var POPUP_DELAY_MS = 6000;
+  var POPUP_DELAY_MS = 7000;
 
   // Mobile = text-first (SMS CTA + save contact). Desktop = form.
   // ?wd-view=mobile / ?wd-view=desktop override for QA.
@@ -74,6 +82,14 @@
     + '#wd-lead-modal .wd-close{position:absolute;top:14px;right:14px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-modal .wd-close:hover{color:#F4EDE0;}'
     + '#wd-lead-modal .wd-error{display:none;color:#FF8C9E;font-size:13px;margin:0 0 10px;}'
+    + '#wd-lead-modal .wd-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 10px;}'
+    + '#wd-lead-modal input.wd-check{appearance:none;-webkit-appearance:none;flex:0 0 18px;width:18px;height:18px;margin:2px 0 0;padding:0;border:1px solid rgba(255,255,255,.3);border-radius:5px;background:#2D2D2D;cursor:pointer;position:relative;}'
+    + '#wd-lead-modal input.wd-check:checked{background:linear-gradient(135deg,#A8855C,#C9A277);border-color:#C9A277;}'
+    + '#wd-lead-modal input.wd-check:checked:after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1A1A1A;border-width:0 2px 2px 0;transform:rotate(45deg);}'
+    + '#wd-lead-modal .wd-consent label{display:inline;font-size:12.5px;font-weight:400;letter-spacing:0;text-transform:none;color:rgba(244,237,224,.85);line-height:1.55;margin:0;cursor:pointer;}'
+    + '#wd-lead-modal .wd-consent a{color:#C9A277;text-decoration:underline;text-underline-offset:2px;}'
+    + '#wd-lead-modal .wd-legal{font-size:10.5px;line-height:1.55;color:rgba(244,237,224,.45);margin:0 0 6px;}'
+    + '#wd-lead-modal .wd-legal a{color:rgba(244,237,224,.6);}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
@@ -133,21 +149,23 @@
 
     var formPanel =
       '<div id="wd-lead-form-wrap">' +
-        '<h2 id="wd-lead-title">Stay in the loop</h2>' +
+        '<h2 id="wd-lead-title">Get on the list</h2>' +
         '<p class="wd-sub">Be the first to hear about Love Immersion dates, events, and new experiences from WeDeepen.</p>' +
         '<form id="wd-lead-form" novalidate>' +
           '<div class="wd-hp" aria-hidden="true"><label for="wd-company">Company</label><input id="wd-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
           '<label for="wd-first">First name</label>' +
-          '<input id="wd-first" name="firstName" type="text" autocomplete="given-name" required placeholder="Your first name">' +
-          '<label for="wd-email">Email</label>' +
-          '<input id="wd-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">' +
+          '<input id="wd-first" name="firstname" type="text" autocomplete="given-name" required placeholder="Your first name">' +
           '<label for="wd-phone">Cell phone</label>' +
-          '<input id="wd-phone" name="phone" type="tel" autocomplete="tel" placeholder="(512) 555-0100">' +
-          '<label for="wd-location">Location</label>' +
-          '<input id="wd-location" name="location" type="text" autocomplete="address-level2" placeholder="City, State">' +
-          '<p class="wd-error" id="wd-lead-error">Please add your first name and a valid email.</p>' +
+          '<input id="wd-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(512) 555-0100">' +
+          '<div class="wd-consent">' +
+            '<input id="wd-consent" name="consent" type="checkbox" class="wd-check">' +
+            '<label for="wd-consent">I agree to receive promotional messages from WeDeepen up to 4 Msgs/Month. This agreement isn&#39;t a condition of any purchase. I also agree to the <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms of Service</a> and <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy Policy</a>. Msg &amp; Data rates may apply.</label>' +
+          '</div>' +
+          '<p class="wd-legal">By submitting this form, I agree that my mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude my text messaging originator opt-in data and consent; this information will not be shared with any third parties, except for the necessary opt-in data required to facilitate the SMS service. Text STOP to opt-out. Text HELP for assistance. team@wedeepen.com</p>' +
+          '<p class="wd-error" id="wd-lead-error">Please add your first name and phone number.</p>' +
           '<button type="submit" class="wd-submit">Count me in</button>' +
         '</form>' +
+        '<p class="wd-sms-alt">Prefer text? Send <strong>' + SMS_KEYWORD + '</strong> to <a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></p>' +
       '</div>';
 
     var smsPanel =
@@ -177,7 +195,12 @@
     });
 
     var form = overlay.querySelector('#wd-lead-form');
-    if (form) form.addEventListener('submit', onSubmit);
+    if (form) {
+      form.addEventListener('submit', onSubmit);
+      form.querySelector('#wd-phone').addEventListener('input', function () {
+        this.value = formatPhone(this.value);
+      });
+    }
 
     var smsCta = overlay.querySelector('#wd-sms-cta');
     if (smsCta) {
@@ -207,17 +230,44 @@
     s.style.display = 'block';
   }
 
+  function formatPhone(value) {
+    var d = value.replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    d = d.substring(0, 10);
+    var a = d.substring(0, 3), b = d.substring(3, 6), c = d.substring(6, 10);
+    if (!a) return '';
+    if (!b) return '(' + a;
+    if (!c) return '(' + a + ') ' + b;
+    return '(' + a + ') ' + b + '-' + c;
+  }
+
+  // Fire-and-forget copy to the Google Sheet for page attribution / backup.
+  function logToSheet(firstName, phone) {
+    if (!ENDPOINT) return;
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST', mode: 'no-cors',
+        body: new URLSearchParams({
+          firstName: firstName, email: '', phone: phone,
+          location: '', page: location.pathname
+        })
+      }).catch(function () {});
+    } catch (e) { /* never block the signup on the log */ }
+  }
+
+  function showError(msg) {
+    var err = overlay.querySelector('#wd-lead-error');
+    err.textContent = msg;
+    err.style.display = 'block';
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     var form = e.target;
-    var firstName = form.firstName.value.trim();
-    var email = form.email.value.trim();
+    var firstName = form.firstname.value.trim();
+    var phone = form.phone.value.replace(/\D/g, '');
+    if (phone.length === 11 && phone.charAt(0) === '1') phone = phone.slice(1);
     var err = overlay.querySelector('#wd-lead-error');
-
-    if (!firstName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      err.style.display = 'block';
-      return;
-    }
     err.style.display = 'none';
 
     if (form.company.value) { // honeypot: pretend success, send nothing
@@ -226,38 +276,66 @@
       return;
     }
 
-    if (!ENDPOINT) {
-      // Backend not wired yet: point them at the SMS list so no lead is lost.
-      showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
-        '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
-        '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
-      snooze(LS_POPUP, JOINED_DAYS);
-      return;
-    }
+    if (!firstName) { showError('Please add your first name.'); return; }
+    if (phone.length !== 10) { showError('Please add a 10-digit cell phone number.'); return; }
+    if (!form.consent.checked) { showError('Please check the box so we have your OK to text you.'); return; }
 
     var btn = form.querySelector('.wd-submit');
     btn.disabled = true;
     btn.textContent = 'Sending…';
 
-    var body = new URLSearchParams({
-      firstName: firstName,
-      email: email,
-      phone: form.phone.value.trim(),
-      location: form.location.value.trim(),
-      page: location.pathname
-    });
+    function restoreButton() {
+      btn.disabled = false;
+      btn.textContent = 'Count me in';
+    }
 
-    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: body })
-      .then(function () {
-        showSuccess();
-        snooze(LS_POPUP, JOINED_DAYS);
+    // SMS keeps working even if the API is down: hand them the keyword and log
+    // the lead to the sheet so it isn't lost.
+    function smsFallback() {
+      logToSheet(firstName, phone);
+      showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
+        '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
+        '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
+      snooze(LS_POPUP, JOINED_DAYS);
+    }
+
+    fetch(ST_ENDPOINT + '?r=' + Date.now(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({
+        webFormId: ST_WEBFORM_ID,
+        fieldValues: { phone: phone, firstname: firstName },
+        listIds: []
       })
-      .catch(function () {
-        btn.disabled = false;
-        btn.textContent = 'Count me in';
-        err.textContent = 'Something went wrong. You can also text ' + SMS_KEYWORD + ' to ' + SMS_NUMBER_DISPLAY + '.';
-        err.style.display = 'block';
-      });
+    }).then(function (res) {
+      if (res.ok) {
+        logToSheet(firstName, phone);
+        showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.');
+        snooze(LS_POPUP, JOINED_DAYS);
+        return;
+      }
+      if (res.status === 418) {
+        return res.text().then(function (text) {
+          var error = {};
+          try { error = JSON.parse(text); } catch (e2) { /* fall through */ }
+          if (error.code === 'DuplicateContactPhoneException') {
+            showSuccess('Good news: that number is already on the list. We&#39;ll keep the texts coming.');
+            snooze(LS_POPUP, JOINED_DAYS);
+            return;
+          }
+          restoreButton();
+          if (error.code === 'CustomFieldsValidationException' && error.reasons) {
+            var k = Object.keys(error.reasons)[0];
+            showError(k === 'phone'
+              ? 'That phone number doesn’t look right. Try (XXX) XXX-XXXX.'
+              : String(error.reasons[k]));
+          } else {
+            showError('Something went wrong. You can also text ' + SMS_KEYWORD + ' to ' + SMS_NUMBER_DISPLAY + '.');
+          }
+        });
+      }
+      smsFallback();
+    }).catch(smsFallback);
   }
 
   /* == Init ============================================================== */
@@ -274,7 +352,9 @@
       if (t) { e.preventDefault(); openPopup(); }
     });
 
-    if (!snoozed(LS_POPUP)) {
+    // Auto-open on desktop only. On mobile the bar's one-tap "text us" beats
+    // any popup, and Google penalizes auto-interstitials in mobile search.
+    if (!IS_MOBILE && !snoozed(LS_POPUP)) {
       setTimeout(openPopup, POPUP_DELAY_MS);
     }
   }

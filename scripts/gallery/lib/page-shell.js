@@ -168,7 +168,7 @@ export function pageNav() {
 
   <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
     <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
-      <a href="/" class="flex items-center" aria-label="WeDeepen home">
+      <a href="/" class="flex flex-1 items-center" aria-label="WeDeepen home">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
       </a>
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium" aria-label="Primary">

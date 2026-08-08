@@ -179,7 +179,8 @@
     .glance-arrow { color: rgba(201,162,119,0.7); font-size: 0.8rem; }
 
     /* FAQ accordion */
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.4s ease; }
+    .faq-item:not(.open) .faq-answer { padding-bottom: 0; }
     .faq-item.open .faq-answer { max-height: 1400px; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
     .faq-icon { transition: transform 0.3s ease; }
@@ -939,9 +940,9 @@
       <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-3">In Good Company</p>
       <p class="text-white/50 text-sm mb-12">Proudly supported by our in-kind sponsors</p>
       <div class="flex flex-wrap items-center justify-center gap-x-12 md:gap-x-16 gap-y-9">
-        <span class="text-white/55 hover:text-white/90 transition text-lg font-semibold uppercase tracking-wide">Danger Coffee</span>
+        <img src="/images/sponsors/danger-coffee.svg" alt="Danger Coffee" loading="lazy" class="h-7 md:h-8 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
         <img src="/images/sponsors/tru-kava.png" alt="TRU KAVA" loading="lazy" class="h-10 md:h-11 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
-        <span class="text-white/55 hover:text-white/90 transition text-lg font-semibold uppercase tracking-wide">Be LOVE</span>
+        <img src="/images/sponsors/be-love.svg" alt="Be LOVE" loading="lazy" class="h-10 md:h-11 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
         <img src="/images/sponsors/le-lick.svg" alt="Le Lick" loading="lazy" class="h-9 md:h-10 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
       </div>
     </div>
@@ -981,7 +982,7 @@
         You&rsquo;ve optimized everything else. <span class="italic" style="color:#C4577A;">Now it&rsquo;s love&rsquo;s turn.</span>
       </h2>
       <p class="text-white/65 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-        Two days and your focus on the most important aspect of your life.
+        Two days of focus on the most important part of your life.
       </p>
       <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink !text-base !py-4 !px-10">Get Tickets &rarr;</a>
       <p class="text-gold text-sm mt-4 font-medium">First 10 tickets just $39 &middot; then buy one, get one free</p>

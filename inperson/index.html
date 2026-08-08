@@ -169,6 +169,20 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* Auto-scrolling portrait film strip. Track holds the set twice; sliding
+       -50% loops seamlessly. Pauses on hover; static + swipeable when the
+       visitor prefers reduced motion. */
+    .photo-marquee { overflow: hidden; }
+    .pm-track { display: flex; width: max-content; animation: pm-scroll 55s linear infinite; will-change: transform; }
+    .pm-track img { height: 18rem; width: auto; border-radius: 0.75rem; margin-right: 1rem; }
+    @media (min-width: 768px) { .pm-track img { height: 24rem; } }
+    .photo-marquee:hover .pm-track { animation-play-state: paused; }
+    @keyframes pm-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .pm-track { animation: none; }
+      .photo-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    }
+
     .mobile-nav {
       transform: translateX(100%);
       transition: transform 0.35s ease;
@@ -739,6 +753,33 @@
 
 
   <!-- FINAL CTA -->
+  <!-- PHOTO MARQUEE — evening session film strip -->
+  <section class="bg-ink py-8 md:py-12" aria-label="Moments from the evening sessions">
+    <div class="photo-marquee">
+      <div class="pm-track">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_011.webp" alt="The room holding hands in a circle at Biohacking Love" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_040.webp" alt="A conversation during the evening session" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_014.webp" alt="Participants standing together in practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_016.webp" alt="Clasped hands during an evening practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_022.webp" alt="A couple close together during the session" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_027.webp" alt="Hands held to the chest in practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_029.webp" alt="A participant with hands on heart" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_037.webp" alt="Two participants holding hands" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_017.webp" alt="Hands clasped in support" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_011.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_040.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_014.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_016.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_022.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_027.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_029.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_037.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/full/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_017.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      </div>
+    </div>
+  </section>
+
+
   <section class="py-24 md:py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
     <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
       <p class="text-gold text-xs tracking-[0.2em] uppercase font-medium mb-4">August 22&ndash;23, 2026 &middot; Austin, TX</p>

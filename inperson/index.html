@@ -109,24 +109,33 @@
       padding-top: 64px; /* clear sticky header on mobile */
     }
 
-    /* Clickable CTA overlaid on the baked-in "GET A TICKET TODAY" text in the banner.
-       Position/size are % of the image so it tracks the artwork at any width. */
-    .hero-banner-cta {
-      position: absolute;
-      left: 49.6%; top: 88%;
-      transform: translate(-50%, -50%);
+    /* Banner CTA. On phones the flyer is too small to overlay without covering
+       the artwork, so the button sits below the image; from sm up it overlays
+       the baked-in "GET A TICKET TODAY" text (% of the image so it tracks). */
+    .btn-pink.hero-banner-cta {
+      display: block;
+      width: fit-content;
+      margin: 14px auto 0;
       white-space: nowrap;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: clamp(0.6rem, 1.5vw, 1rem);
-      padding: 0.9em 3.2em !important;
       border-radius: 0.75em;
       box-shadow: 0 4px 24px rgba(0,0,0,0.45);
     }
-    /* Keep the centering transform on hover — .btn-pink:hover's translateY(-1px)
-       would otherwise replace it and make the button jump. */
-    .btn-pink.hero-banner-cta:hover {
-      transform: translate(-50%, -50%) translateY(-1px);
+    @media (min-width: 640px) {
+      .btn-pink.hero-banner-cta {
+        position: absolute;
+        left: 49.6%; top: 88%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        font-size: clamp(0.6rem, 1.5vw, 1rem) !important;
+        padding: 0.9em 4.6em !important;
+      }
+      /* Keep the centering transform on hover — .btn-pink:hover's translateY(-1px)
+         would otherwise replace it and make the button jump. */
+      .btn-pink.hero-banner-cta:hover {
+        transform: translate(-50%, -50%) translateY(-1px);
+      }
     }
     @media (min-width: 768px) {
       .hero-flyer-wrap { padding-top: 64px; }
@@ -265,7 +274,7 @@
         alt="WeDeepen In-Person &middot; Aug 22&ndash;23 in Austin, TX &middot; Love is a skill. Spend two days getting even better at it. With Christina Weber, Annie Lalla, Jordan Bowditch, Melissa D., and Rachel Cuthbert."
         class="w-full h-auto block"
         fetchpriority="high">
-      <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink hero-banner-cta">Get a Ticket Today</a>
+      <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink hero-banner-cta">Get My Ticket</a>
     </div>
 
     <div class="max-w-4xl mx-auto px-6 py-10 md:py-14 text-center">

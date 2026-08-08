@@ -178,6 +178,12 @@
     }
     .glance-arrow { color: rgba(201,162,119,0.7); font-size: 0.8rem; }
 
+    /* FAQ accordion */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 1400px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -805,6 +811,83 @@
   </section>
 
 
+  <!-- FAQ -->
+  <section id="faq" class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-3">Questions</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Frequently Asked</h2>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Will I be forced to share?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>No. This is an interactive weekend, but you decide your depth at every step, and you&rsquo;ll never be pushed to share beyond what feels right.</p>
+            <p>Many people arrive a bit guarded. Watching others go first gives them permission to open in their own time.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Who gets a hot seat?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Hot seats are reserved for VIP and Ultra VIP ticket holders first. And even outside the seat, watching live coaching is where many of the biggest breakthroughs happen: the whole room does the work together.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Is it okay to come alone?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Yes, for sure. A big part of every room arrives solo: some come purely for themselves, some are open to dating, some are focused on self-love. The work meets you exactly where your love life is.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What should I wear?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Come comfortable, and dress how you&rsquo;d like to be introduced.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Is food included?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Lunch is included for VIP and Ultra VIP ticket holders. Everyone gets an hour lunch break each day, and Stardust Garage is within a five minute walk of food trucks and plenty of great spots to grab a bite.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What about parking?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Easy. Park right in front of the venue.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What&rsquo;s the refund policy?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Tickets are non-refundable, but they are fully transferable: if your plans change, your ticket can go to someone you love.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- IN-KIND SPONSORS -->
   <section class="bg-ink py-16 md:py-20 px-6">
     <div class="max-w-site mx-auto text-center reveal">
@@ -943,6 +1026,10 @@
   <script>
     const header = document.getElementById('wd-header');
     window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-trigger')?.addEventListener('click', () => { item.classList.toggle('open'); });
+    });
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileClose = document.getElementById('mobile-close');
     const mobileNav = document.getElementById('mobile-nav');

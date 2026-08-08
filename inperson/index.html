@@ -104,41 +104,14 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
 
-    .hero-flyer-wrap {
-      background: #1a1030;
-      padding-top: 64px; /* clear sticky header on mobile */
-    }
-
-    /* Banner CTA. On phones the flyer is too small to overlay without covering
-       the artwork, so the button sits below the image; from sm up it overlays
-       the baked-in "GET A TICKET TODAY" text (% of the image so it tracks). */
-    .btn-pink.hero-banner-cta {
-      display: block;
-      width: fit-content;
-      margin: 14px auto 0;
-      white-space: nowrap;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      border-radius: 0.75em;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
-    }
-    @media (min-width: 640px) {
-      .btn-pink.hero-banner-cta {
-        position: absolute;
-        left: 49.6%; top: 88%;
-        transform: translate(-50%, -50%);
-        margin: 0;
-        font-size: clamp(0.6rem, 1.5vw, 1rem) !important;
-        padding: 0.9em 4.6em !important;
-      }
-      /* Keep the centering transform on hover — .btn-pink:hover's translateY(-1px)
-         would otherwise replace it and make the button jump. */
-      .btn-pink.hero-banner-cta:hover {
-        transform: translate(-50%, -50%) translateY(-1px);
-      }
-    }
-    @media (min-width: 768px) {
-      .hero-flyer-wrap { padding-top: 64px; }
+    .brain-hero {
+      background-image:
+        linear-gradient(180deg, rgba(26,26,26,0.35) 0%, rgba(26,26,26,0.2) 50%, rgba(26,26,26,0.8) 100%),
+        url('/images/inperson/inperson-hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #1a1030;
     }
 
     .wd-header {
@@ -264,48 +237,24 @@
 
 
   <!-- ============================
-       HERO — flyer banner + CTAs
+       HERO — brain graphic, LI style
        ============================ -->
-  <section class="hero-flyer-wrap">
-    <h1 class="sr-only">WeDeepen In-Person: Love is a skill. Spend two days getting even better at it. August 22&ndash;23, 2026 in Austin, TX.</h1>
-    <div class="max-w-site mx-auto relative">
-      <img
-        src="/images/inperson/inperson-banner.jpg"
-        alt="WeDeepen In-Person &middot; Aug 22&ndash;23 in Austin, TX &middot; Love is a skill. Spend two days getting even better at it. With Christina Weber, Annie Lalla, Jordan Bowditch, Melissa D., and Rachel Cuthbert."
-        class="w-full h-auto block"
-        fetchpriority="high">
-      <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink hero-banner-cta">Get My Ticket</a>
-    </div>
+  <section class="brain-hero relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24 md:pt-28 pb-20">
 
-    <div class="max-w-4xl mx-auto px-6 py-10 md:py-14 text-center">
-      <p class="text-white/75 text-base md:text-lg max-w-3xl mx-auto mb-8 leading-relaxed font-light">
-        In two days, you&rsquo;ll interrupt the patterns that keep sabotaging your love life, practice the skills that make love actually work, and leave with tools you&rsquo;ll use for years.
+      <p class="font-heading italic text-white/90 text-base md:text-xl leading-snug mb-8 lg:whitespace-nowrap lg:-mx-16" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">&ldquo;I didn&rsquo;t think I belonged. But within a day, I felt flooded with love. I felt home.&rdquo; <span class="text-gold whitespace-nowrap">&ndash; Eva Mullen</span></p>
+
+      <h1 class="sr-only">WeDeepen In-Person: Love is a skill. Spend two days getting even better at it. August 22&ndash;23, 2026 in Austin, TX.</h1>
+      <div class="mb-6" style="filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));">
+        <p class="text-white font-bold leading-none text-5xl sm:text-6xl md:text-7xl tracking-tight">WeDeepen</p>
+        <p class="font-bold leading-none text-5xl sm:text-6xl md:text-7xl tracking-tight mt-1" style="color:#E8337A;">IN-PERSON</p>
+      </div>
+      <p class="text-white/85 text-sm md:text-base uppercase tracking-[0.25em] font-light mb-8" style="text-shadow: 0 2px 12px rgba(0,0,0,0.5);">
+        Love is a skill. Spend two days getting even better at it.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-white/85 text-sm md:text-base mb-8">
-        <span class="flex items-center gap-2">
-          <svg width="18" height="18" fill="none" stroke="#C9A277" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          August 22&ndash;23, 2026
-        </span>
-        <span class="flex items-center gap-2">
-          <svg width="18" height="18" fill="none" stroke="#C9A277" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Sat 10 AM &ndash; 5 PM &middot; Sun 10 AM &ndash; 4 PM
-        </span>
-        <span class="flex items-center gap-2">
-          <svg width="18" height="18" fill="none" stroke="#C9A277" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          Stardust Garage &middot; Austin, TX
-        </span>
-      </div>
-
-      <div class="flex justify-center items-center">
-        <a href="#why" class="flex items-center gap-2.5 text-white/85 hover:text-white transition font-medium text-base px-5 py-3">
-          Why this weekend
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </a>
-      </div>
-
-      <!-- Press bar -->
-      <div class="mt-12">
+      <!-- Press bar — WeDeepen Featured On (desktop) -->
+      <div class="hidden md:block mt-10 mb-12">
         <p class="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium text-center mb-5">WeDeepen Featured On</p>
         <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10 max-w-4xl mx-auto">
           <img src="/images/press-logos/peacock.webp" alt="Peacock" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
@@ -316,6 +265,29 @@
           <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
         </div>
       </div>
+
+      <p class="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-10 leading-relaxed font-light">
+        In two days, you&rsquo;ll interrupt the patterns that keep sabotaging your love life, practice the skills that make love actually work, and leave with tools you&rsquo;ll use for years.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink text-base !px-10 !py-4">Get My Ticket</a>
+      </div>
+      <p class="text-white/50 text-xs tracking-[0.2em] uppercase mt-5">August 22&ndash;23, 2026 &middot; Stardust Garage &middot; Austin, TX</p>
+
+      <!-- Press bar — mobile (hero bottom) -->
+      <div class="md:hidden mt-12">
+        <p class="text-white/40 text-[10px] uppercase tracking-[0.3em] font-medium text-center mb-5">WeDeepen Featured On</p>
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+          <img src="/images/press-logos/peacock.webp" alt="Peacock" class="press-logo h-5 w-auto" loading="lazy">
+          <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="press-logo h-6 w-auto" loading="lazy">
+          <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="press-logo h-9 w-auto" loading="lazy">
+          <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="press-logo h-8 w-auto" loading="lazy">
+          <img src="/images/press-logos/vice.webp" alt="Vice" class="press-logo h-5 w-auto" loading="lazy">
+          <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="press-logo h-5 w-auto" loading="lazy">
+        </div>
+      </div>
+
     </div>
   </section>
 

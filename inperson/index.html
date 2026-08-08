@@ -166,6 +166,18 @@
       padding: 2rem;
     }
 
+    /* At-a-glance agenda chips */
+    .glance-chip {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.78);
+      white-space: nowrap;
+    }
+    .glance-arrow { color: rgba(201,162,119,0.7); font-size: 0.8rem; }
+
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -380,7 +392,7 @@
         </p>
       </div>
       <div class="text-center mt-10">
-        <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink">Count Me In</a>
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-spend-two-days-getting-even-better-at-love-tickets-1994967088264?aff=wedeepen" target="_blank" rel="noopener" class="btn-pink">Sign Me Up</a>
       </div>
     </div>
   </section>
@@ -430,7 +442,22 @@
       <div class="space-y-8">
         <!-- DAY ONE -->
         <div class="day-block">
-          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-5">Day One &middot; Saturday &middot; 10 AM &ndash; 5 PM</p>
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-4">Day One &middot; Saturday &middot; 10 AM &ndash; 5 PM</p>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-2 mb-6" aria-label="Day One at a glance">
+            <span class="glance-chip">Nervous-system grounding</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Pillar 1: No Attachment to Outcome</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">The Love Industry</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Pillar 2: Radical Ownership</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Neverland + mind-mapping</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Guest teachings</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Live storytelling</span>
+          </div>
           <div class="space-y-4 text-white/70 text-base md:text-lg leading-relaxed font-light">
             <p class="font-heading italic" style="color:#C4577A;">&ldquo;Love is always bestowed as a gift &ndash; freely, willingly and without expectation. We don&rsquo;t love to be loved; we love to love.&rdquo; &mdash; Leo Buscaglia</p>
             <p class="text-white font-medium">Pillar 1, No Attachment to Outcome</p>
@@ -466,7 +493,20 @@
 
         <!-- DAY TWO -->
         <div class="day-block">
-          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-5">Day Two &middot; Sunday &middot; 10 AM &ndash; 4 PM</p>
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-4">Day Two &middot; Sunday &middot; 10 AM &ndash; 4 PM</p>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-2 mb-6" aria-label="Day Two at a glance">
+            <span class="glance-chip">Morning integration</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Pillar 3: All Feelings Are Welcome</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Radical honesty</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Pillar 4: Love Is a Practice</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Hot Seat Coaching</span>
+            <span class="glance-arrow" aria-hidden="true">&rarr;</span>
+            <span class="glance-chip">Closing circle</span>
+          </div>
           <div class="space-y-4 text-white/70 text-base md:text-lg leading-relaxed font-light">
             <p class="font-heading italic" style="color:#C4577A;">&ldquo;Love has come to rule and transform; stay awake, my heart, stay awake.&rdquo; &mdash; Rumi</p>
             <p class="text-white font-medium">Pillar 3, All Feelings Are Welcome</p>
@@ -477,9 +517,22 @@
               You&rsquo;ll learn more about what&rsquo;s available to you through WeDeepen, and receive a presentation to go deeper and keep practicing love.
             </p>
             <p class="text-white font-medium">Pillar 4, Love Is a Practice</p>
-            <p>
-              Then we give most of Sunday to the event highlight: Hot Seat Coaching with master coaches Annie Lalla and Jordan Bowditch. Person after person, you&rsquo;ll watch &ldquo;What would love do here?&rdquo; answered live as outdated relationship patterns get named, claimed, and interrupted.
-            </p>
+            <div class="rounded-xl p-6 md:p-7 my-2" style="background: linear-gradient(135deg, rgba(232,51,122,0.10), rgba(201,162,119,0.06)); border: 1px solid rgba(232,51,122,0.25);">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="flex -space-x-3 flex-shrink-0">
+                  <img src="/images/facilitators/annie-lalla.webp" alt="Annie Lalla" loading="lazy" class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2" style="border-color:#1A1A1A;">
+                  <img src="/images/facilitators/jordan-bowditch.webp" alt="Jordan Bowditch" loading="lazy" class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2" style="border-color:#1A1A1A;">
+                </div>
+                <div>
+                  <p class="text-gold text-[11px] tracking-[0.22em] uppercase font-semibold">The Event Highlight</p>
+                  <p class="text-white font-heading text-xl md:text-2xl leading-tight">Hot Seat Coaching</p>
+                  <p class="text-white/55 text-xs md:text-sm mt-0.5">with master coaches Annie Lalla and Jordan Bowditch</p>
+                </div>
+              </div>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">
+                Most of Sunday belongs to the hot seat. Person after person, you&rsquo;ll watch &ldquo;What would love do here?&rdquo; answered live as outdated relationship patterns get named, claimed, and interrupted.
+              </p>
+            </div>
             <p>
               The weekend ends with you taking home greater acceptance, presence, forgiveness, and stretching your heart into vulnerable territories. We close in circle, and you leave with new resources for life, and a community to practice with.
             </p>
@@ -578,8 +631,8 @@
     <div class="max-w-5xl mx-auto reveal">
       <div class="text-center mb-10">
         <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4 gold-line-center">A Glimpse <span class="italic" style="color:#E8337A;">Inside</span></h2>
-        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light max-w-xl mx-auto">
-          Get a taste of what happens at a Love Immersion.
+        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light max-w-2xl mx-auto">
+          WeDeepen In-Person comes from the team behind Love Immersion and Biohacking Love: this weekend is the next evolution. Here&rsquo;s a taste of what happens in the room.
         </p>
       </div>
       <div class="grid md:grid-cols-2 gap-5 md:gap-6">

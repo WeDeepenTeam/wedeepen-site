@@ -29,7 +29,7 @@
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
   var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
-  var PROMO_END = Date.parse('2026-08-10T04:59:59Z'); // Aug 9, 11:59pm Austin
+  var PROMO_END = Date.parse('2026-08-17T04:59:59Z'); // Aug 16, 11:59pm Austin
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
   var PROMO_ACTIVE = (function () {
     if (/[?&#]wd-promo=off/.test(location.href)) return false;
@@ -149,7 +149,7 @@
       bar.innerHTML = (ON_LI_PAGE && PROMO_ACTIVE)
         ? '<span class="wd-bar-stack">' +
             '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
-            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $800 &middot; <strong>' + promoCountdown() + '</strong></span>' +
+            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $500 &middot; <strong>' + promoCountdown() + '</strong></span>' +
           '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         :
@@ -161,7 +161,7 @@
     } else {
       bar.classList.add('wd-gold');
       bar.innerHTML = PROMO_ACTIVE
-        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $800 through Aug 9th &middot; <strong>' + promoCountdown() + '</strong>.' +
+        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $500 through Aug 16th &middot; <strong>' + promoCountdown() + '</strong>.' +
           (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         : '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +

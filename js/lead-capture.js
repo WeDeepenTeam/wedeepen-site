@@ -228,10 +228,10 @@
           '</div>' +
           '<div class="wd-consent wd-podcast">' +
             '<input id="wd-podcast" name="podcast" type="checkbox" class="wd-check">' +
-            '<label for="wd-podcast">Text me new podcast episodes each week.</label>' +
+            '<label for="wd-podcast">Text me new Mastering Love episodes each week.</label>' +
           '</div>' +
           '<div class="wd-consent">' +
-            '<input id="wd-consent" name="consent" type="checkbox" class="wd-check">' +
+            '<input id="wd-consent" name="consent" type="checkbox" class="wd-check" required>' +
             '<label for="wd-consent">I agree to receive promotional messages from WeDeepen up to 8 Msgs/Month. This agreement isn&#39;t a condition of any purchase. I also agree to the <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms of Service</a> and <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy Policy</a>. Msg &amp; Data rates may apply.</label>' +
           '</div>' +
           '<p class="wd-legal">By submitting this form, I agree that my mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude my text messaging originator opt-in data and consent; this information will not be shared with any third parties, except for the necessary opt-in data required to facilitate the SMS service. Text STOP to opt-out. Text HELP for assistance. team@wedeepen.com</p>' +
@@ -360,7 +360,7 @@
     if (!firstName) { showError('Please add your first name.'); return; }
     if (phone.length !== 10) { showError('Please add a 10-digit cell phone number.'); return; }
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('That email doesn’t look right (or leave it blank).'); return; }
-    if (!form.consent.checked) { showError('Please check the box so we have your OK to text you.'); return; }
+    if (!form.consent.checked) { showError('Please agree to receive texts so we can message you.'); return; }
 
     var btn = form.querySelector('.wd-submit');
     btn.disabled = true;

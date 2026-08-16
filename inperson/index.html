@@ -1137,5 +1137,20 @@
      style="background:#E8337A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Get Tickets · August 22&ndash;23 &rarr;
   </a>
+
+  <!-- Lead-capture announcement bar (COUNT ME IN list), mobile only on this page.
+       Same script as the homepage; the popup stays desktop-only inside the script,
+       so mobile gets just the bar. -->
+  <script>
+    (function () {
+      var mobile = /Android|iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.maxTouchPoints > 1 && /iPad|Macintosh/.test(navigator.userAgent));
+      if (!mobile) return;
+      var s = document.createElement('script');
+      s.src = '/js/lead-capture.js?v=20';
+      s.defer = true;
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

@@ -182,12 +182,11 @@ def render_episode_page(ep: dict, related: list) -> str:
 
   <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
     <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
-      <a href="/" class="flex items-center">
+      <a href="/" class="flex flex-1 items-center">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
       </a>
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
-        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
-        <a href="/love-club/" class="text-white/80 hover:text-white transition">Love Club</a>
+
         <div class="relative group">
           <button type="button" class="text-white/80 hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
           <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
@@ -205,8 +204,10 @@ def render_episode_page(ep: dict, related: list) -> str:
         <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
         <a href="/podcast/" class="text-white hover:text-white transition">Podcast</a>
       </nav>
-      <div class="flex items-center gap-4">
-        <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-sm !py-2.5 !px-6 hidden sm:inline-block">Login to Love Club</a>
+      <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
+
+        <a href="#" data-lead-popup class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">GET PRIVATE INVITES</a>
+
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         </button>
@@ -219,8 +220,7 @@ def render_episode_page(ep: dict, related: list) -> str:
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <nav class="flex flex-col gap-6 text-lg font-medium">
-      <a href="/" class="text-white hover:text-gold transition">Home</a>
-      <a href="/love-club/" class="text-white hover:text-gold transition">Love Club</a>
+
       <div class="flex flex-col gap-4">
         <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
         <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
@@ -233,7 +233,8 @@ def render_episode_page(ep: dict, related: list) -> str:
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
       <a href="/about/" class="text-white hover:text-gold transition">About</a>
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
-      <a href="https://circle.wedeepenloveclub.com/" class="btn-rose text-center mt-4">Login to Love Club</a>
+
+          <a href="#" data-lead-popup class="btn-rose text-center mt-4">GET PRIVATE INVITES</a>
     </nav>
   </div>
 

@@ -38,18 +38,17 @@
           colors: {
             rose:    { deep: '#A01B4A', light: '#C4577A' },
             pink:    { hot: '#E8337A', bright: '#FF4F8C' },
-            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
             gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
             charcoal: '#2D2D2D',
             cream:   '#F4EDE0',
-            ink:     '#1A1A1A',
-            black:   '#1A1A1A',
+            ink:     '#141414',
+            black:   '#141414',
           },
           fontFamily: {
             heading: ['"Playfair Display"', 'Georgia', 'serif'],
             body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
           },
-          maxWidth: { site: '1200px' },
+          maxWidth: { site: '1240px', reading: '680px' },
         },
       },
     }
@@ -57,116 +56,87 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; background: #141414; overflow-x: hidden; }
 
-    .member-hero {
-      background-image:
-        linear-gradient(180deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.60) 45%, rgba(26,26,26,0.94) 100%),
-        url('/images/li-community-1.webp');
-      background-size: cover;
-      background-position: center 40%;
-      background-repeat: no-repeat;
+    /* ---- Type ---- */
+    .display {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
     }
+    .eyebrow {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-weight: 600;
+      color: #C9A277;
+    }
+    .lede { font-size: 1.15rem; line-height: 1.75; }
+    @media (min-width: 768px) { .lede { font-size: 1.25rem; } }
 
-    .wd-header {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .wd-header.scrolled {
-      background-color: rgba(26,26,26,0.95);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
 
-    .gold-line-center::after {
-      content: ''; display: block;
-      width: 60px; height: 2px;
-      background: #C9A277;
-      margin: 16px auto 0;
-    }
+    /* ---- Hairline system (replaces cards entirely) ---- */
+    .hair-dark  { background: rgba(255,255,255,0.13); }
+    .hair-light { background: rgba(20,20,20,0.14); }
 
-    .btn-pink {
+    /* ---- Header ---- */
+    .wd-header { transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .wd-header.scrolled { background-color: rgba(20,20,20,0.97); }
+
+    /* ---- Buttons: exactly two, used sparingly ---- */
+    .btn-primary {
       background: #E8337A; color: #fff;
-      padding: 14px 32px; border-radius: 12px;
-      font-weight: 600; font-size: 0.95rem;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      padding: 17px 40px; border-radius: 2px;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: background 0.25s;
       display: inline-block; text-decoration: none;
     }
-    .btn-pink:hover { background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }
+    .btn-primary:hover { background: #C9265F; }
 
-    .btn-rose {
-      background: #A01B4A; color: #fff;
-      padding: 14px 32px; border-radius: 9999px;
-      font-weight: 600; font-size: 0.95rem;
-      transition: background 0.3s, transform 0.2s;
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.35); color: #fff;
+      padding: 16px 40px; border-radius: 2px;
+      font-weight: 500; font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: border-color 0.25s, background 0.25s;
       display: inline-block; text-decoration: none;
     }
-    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+    .btn-ghost:hover { border-color: #C9A277; background: rgba(201,162,119,0.08); }
 
-    .btn-outline {
-      border: 1.5px solid #C9A277; color: #C9A277;
-      padding: 14px 32px; border-radius: 9999px;
-      font-weight: 600; font-size: 0.95rem;
-      transition: background 0.3s, color 0.3s, transform 0.2s;
-      display: inline-block; text-decoration: none;
+    .link-underline {
+      color: #C9A277; text-decoration: none;
+      border-bottom: 1px solid rgba(201,162,119,0.45);
+      padding-bottom: 2px; transition: border-color 0.25s;
     }
-    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+    .link-underline:hover { border-color: #C9A277; }
 
-    .press-logo { filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.3s; }
-    .press-logo:hover { opacity: 0.9; }
-
-    /* Dark translucent card used across ink sections */
-    .wd-panel {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: border-color 0.3s, background 0.3s;
+    /* ---- Guide portraits: unify wildly different headshot backgrounds ---- */
+    .portrait img {
+      filter: grayscale(100%) contrast(1.04);
+      transition: filter 0.6s ease, transform 0.9s ease;
     }
-    .wd-panel:hover { border-color: rgba(201,162,119,0.3); background: rgba(255,255,255,0.05); }
+    .portrait:hover img { filter: grayscale(0%) contrast(1); }
 
-    /* Light card used across cream sections */
-    .wd-panel-light {
-      background: #FFFCF7;
-      border: 1px solid rgba(45,45,45,0.10);
-      box-shadow: 0 6px 20px rgba(45,45,45,0.05);
-    }
+    /* ---- Full-bleed photography ---- */
+    .bleed { width: 100%; display: block; object-fit: cover; }
 
-    /* Thin-line icon medallion, per the copywriter mockups */
-    .icon-medallion {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 56px; height: 56px; border-radius: 9999px;
-      background: rgba(232,51,122,0.08);
-      color: #A01B4A;
-      flex-shrink: 0;
-    }
-    .icon-medallion.on-dark {
-      background: rgba(232,51,122,0.10);
-      border: 1px solid rgba(232,51,122,0.28);
-      color: #E8337A;
-    }
-
+    /* ---- FAQ ---- */
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .faq-item.open .faq-answer { max-height: 1400px; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-icon { transition: transform 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 900px; }
+    .faq-item.open .faq-plus { transform: rotate(45deg); }
+    .faq-plus { transition: transform 0.3s ease; }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .mobile-nav {
-      transform: translateX(100%);
-      transition: transform 0.35s ease;
-      background-color: #1A1A1A;
-      background-image:
-        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
-        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
-    }
+    .mobile-nav { transform: translateX(100%); transition: transform 0.35s ease; background-color: #141414; }
     .mobile-nav.open { transform: translateX(0); }
-
-    h1, h2, h3, h4 { text-wrap: balance; }
-    p, li, blockquote { text-wrap: pretty; }
   </style>
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -175,490 +145,376 @@
 </head>
 <body class="bg-ink text-white">
 
-  <!-- STICKY HEADER -->
-  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
-    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
-      <a href="/" class="flex flex-1 items-center">
-        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+  <!-- ============ HEADER ============ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,20,20,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 lg:px-10 py-5">
+      <a href="/" class="flex items-center shrink-0">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto">
       </a>
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
-        <a href="/membership/" class="text-white hover:text-white transition">Membership</a>
-        <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
-        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
-        <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
-        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
-        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
-        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+      <nav class="hidden lg:flex items-center gap-8 text-[0.82rem] tracking-wide">
+        <a href="/membership/" class="text-white transition">Membership</a>
+        <a href="/love-immersion/october-2026/" class="text-white/60 hover:text-white transition">Love Immersion</a>
+        <a href="/love-guides/" class="text-white/60 hover:text-white transition">Love Strategists</a>
+        <a href="/events/" class="text-white/60 hover:text-white transition">Events</a>
+        <a href="/reviews/" class="text-white/60 hover:text-white transition">Reviews</a>
+        <a href="/about/" class="text-white/60 hover:text-white transition">About</a>
+        <a href="/podcast/" class="text-white/60 hover:text-white transition">Podcast</a>
       </nav>
-      <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-8 gap-4">
-        <a href="#join" class="btn-pink text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join &middot; $99/mo</a>
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="#join" class="hidden sm:inline-block text-[0.82rem] tracking-wide text-white border border-white/30 hover:border-gold px-6 py-2.5 transition" style="border-radius:2px;">Join</a>
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
         </button>
       </div>
     </div>
   </header>
 
-  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8">
-    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-24 px-8">
+    <button id="mobile-close" class="absolute top-6 right-6 text-white p-2" aria-label="Close menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l12 12M17 5L5 17"/></svg>
     </button>
-    <nav class="flex flex-col gap-6 text-lg font-medium">
-      <a href="/membership/" class="text-white hover:text-gold transition">Membership</a>
-      <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
-      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
-      <a href="/events/" class="text-white hover:text-gold transition">Events</a>
-      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
-      <a href="/about/" class="text-white hover:text-gold transition">About</a>
-      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
-      <a href="#join" class="btn-pink text-center mt-4">Join &middot; $99/mo</a>
+    <nav class="flex flex-col gap-7 text-xl display">
+      <a href="/membership/" class="text-white">Membership</a>
+      <a href="/love-immersion/october-2026/" class="text-white/70 hover:text-white transition">Love Immersion</a>
+      <a href="/love-guides/" class="text-white/70 hover:text-white transition">Love Strategists</a>
+      <a href="/events/" class="text-white/70 hover:text-white transition">Events</a>
+      <a href="/reviews/" class="text-white/70 hover:text-white transition">Reviews</a>
+      <a href="/about/" class="text-white/70 hover:text-white transition">About</a>
+      <a href="/podcast/" class="text-white/70 hover:text-white transition">Podcast</a>
+      <a href="#join" class="btn-primary text-center mt-6">Become a Member</a>
     </nav>
   </div>
 
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <section class="member-hero relative min-h-[88vh] flex items-center justify-center overflow-hidden">
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-28 md:pt-32 pb-20">
-      <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">WeDeepen Membership</p>
-
-      <h1 class="font-heading text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal leading-[1.08] mb-7">
-        Get better at love, <span class="italic" style="color:#E8337A;">one week at a time.</span>
+  <!-- ============ HERO ============ -->
+  <section class="bg-ink px-6 lg:px-10 pt-40 pb-14 md:pt-52 md:pb-16">
+    <div class="max-w-site mx-auto text-center">
+      <p class="eyebrow mb-8">WeDeepen Membership</p>
+      <h1 class="display text-white mb-9" style="font-size: clamp(2.35rem, 6.6vw, 5.6rem);">
+        Get better at love, <br class="hidden sm:inline">one week at a time.
       </h1>
-
-      <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-4">
-        Find out how good love gets when you give it the attention you give everything else.
+      <p class="lede text-white/60 max-w-2xl mx-auto mb-11">
+        An expert-led community for how you date, communicate, handle conflict,
+        build intimacy, and connect. Live online every week, from anywhere.
       </p>
-      <p class="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-9">
-        An expert-led membership community for how you date, communicate, handle conflict, build intimacy, and connect.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#join" class="btn-pink text-base !px-10 !py-4 w-full sm:w-auto">Become a Member &middot; $99/month</a>
-        <a href="#included" class="text-white/75 hover:text-white transition font-medium text-base px-6 py-3">See what&rsquo;s included &darr;</a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+        <a href="#join" class="btn-primary w-full sm:w-auto text-center">Become a Member &middot; $99/month</a>
+        <a href="#included" class="btn-ghost w-full sm:w-auto text-center">What&rsquo;s included</a>
       </div>
-
-      <p class="text-white/50 text-sm mt-6">Live online Tuesdays and Wednesdays. Cancel anytime.</p>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       PRESS BAND
-       ============================================================ -->
-  <section class="bg-ink py-10 md:py-12 px-6 border-b border-white/5">
+  <!-- Hairline fact grid -->
+  <section class="bg-ink px-6 lg:px-10 pb-24 md:pb-28">
     <div class="max-w-site mx-auto">
-      <p class="text-white/35 text-[0.7rem] uppercase tracking-[0.28em] text-center mb-6">As seen in</p>
-      <div class="flex flex-wrap items-center justify-center gap-x-9 gap-y-5 md:gap-x-14">
-        <img src="/images/press-logos/peacock.webp" alt="Peacock" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
-        <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="press-logo h-6 md:h-7 w-auto" loading="lazy">
-        <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="press-logo h-9 md:h-11 w-auto" loading="lazy">
-        <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="press-logo h-8 md:h-10 w-auto" loading="lazy">
-        <img src="/images/press-logos/vice.webp" alt="Vice" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
-        <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px hair-dark">
+        <div class="bg-ink px-6 py-9 text-center">
+          <p class="display text-2xl md:text-3xl text-white mb-2">Weekly</p>
+          <p class="text-white/45 text-[0.78rem] uppercase tracking-[0.16em]">Live sessions</p>
+        </div>
+        <div class="bg-ink px-6 py-9 text-center">
+          <p class="display text-2xl md:text-3xl text-white mb-2">6 PM CT</p>
+          <p class="text-white/45 text-[0.78rem] uppercase tracking-[0.16em]">Tue &amp; Wed</p>
+        </div>
+        <div class="bg-ink px-6 py-9 text-center">
+          <p class="display text-2xl md:text-3xl text-white mb-2">Private</p>
+          <p class="text-white/45 text-[0.78rem] uppercase tracking-[0.16em]">Member community</p>
+        </div>
+        <div class="bg-ink px-6 py-9 text-center">
+          <p class="display text-2xl md:text-3xl text-white mb-2">$99</p>
+          <p class="text-white/45 text-[0.78rem] uppercase tracking-[0.16em]">Per month</p>
+        </div>
       </div>
     </div>
   </section>
 
 
-  <!-- ============================================================
-       AT A GLANCE
-       ============================================================ -->
-  <section class="bg-ink py-16 md:py-20 px-6">
+  <!-- ============ FULL-BLEED PHOTO ============ -->
+  <figure class="reveal">
+    <img src="/images/li-community-2.webp" alt="The WeDeepen community gathered in a close huddle" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="eager">
+  </figure>
+
+
+  <!-- ============ PRESS ============ -->
+  <section class="bg-ink px-6 lg:px-10 py-16 md:py-20">
+    <div class="max-w-site mx-auto">
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-7 md:gap-x-20 opacity-45">
+        <img src="/images/press-logos/peacock.webp" alt="Peacock" class="h-5 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+        <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="h-6 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+        <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="h-9 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+        <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="h-8 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+        <img src="/images/press-logos/vice.webp" alt="Vice" class="h-5 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+        <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="h-5 w-auto" style="filter: brightness(0) invert(1);" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ THE SKILL OF LOVE (cream) ============ -->
+  <section class="bg-cream px-6 lg:px-10 py-28 md:py-40 text-charcoal">
     <div class="max-w-site mx-auto reveal">
-      <h2 class="font-heading text-3xl md:text-4xl font-normal text-center mb-12 gold-line-center">Membership at a glance</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg>
-          </div>
-          <h3 class="font-heading text-xl text-white mb-2">Weekly sessions</h3>
-          <p class="text-white/60 text-sm leading-relaxed">Masterminds, relationship workshops, bonding and integration.</p>
-          <p class="text-gold text-xs mt-3 font-medium">Tuesdays &amp; Wednesdays, 6 PM CT</p>
-        </div>
-
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H6a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-4l-3 3z"/><path d="M12 12.4a2.1 2.1 0 0 1 0-3.1 2.1 2.1 0 0 1 3 3l-3 2.6-3-2.6"/></svg>
-          </div>
-          <h3 class="font-heading text-xl text-white mb-2">Private community</h3>
-          <p class="text-white/60 text-sm leading-relaxed">Circle discussions plus Ask the Experts.</p>
-        </div>
-
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M11 14l3 1.8-3 1.8z"/></svg>
-          </div>
-          <h3 class="font-heading text-xl text-white mb-2">Real-world practice</h3>
-          <p class="text-white/60 text-sm leading-relaxed">A Sunday Dare every week by text and email.</p>
-          <p class="text-gold text-xs mt-3 font-medium">Members only, every Sunday</p>
-        </div>
+      <div class="max-w-3xl mb-16 md:mb-20">
+        <p class="eyebrow mb-8" style="color:#A8855C;">The skill of love</p>
+        <h2 class="display mb-9" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
+          Love has a much messier learning curve than most things we get good at.
+        </h2>
+        <p class="lede text-charcoal/70 mb-5">
+          We develop skills in work, health, and sport through learning, practice, and feedback.
+          Love is usually left to experience.
+        </p>
+        <p class="lede text-charcoal/70">
+          WeDeepen gives you a place to build the skill of love deliberately, including learning
+          to tell the difference between:
+        </p>
       </div>
 
-      <!-- Schedule strip -->
-      <div class="mt-6 rounded-2xl px-6 py-6 md:px-10 md:py-7" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.22);">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px hair-light">
+        <div class="bg-cream px-7 py-12">
+          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">Chemistry</p>
+          <p class="text-charcoal/40 text-sm mb-3">versus</p>
+          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">compatibility</p>
+        </div>
+        <div class="bg-cream px-7 py-12">
+          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">A rough patch</p>
+          <p class="text-charcoal/40 text-sm mb-3">versus</p>
+          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">a repeating pattern</p>
+        </div>
+        <div class="bg-cream px-7 py-12">
+          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">Healthy compromise</p>
+          <p class="text-charcoal/40 text-sm mb-3">versus</p>
+          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">giving too much away</p>
+        </div>
+        <div class="bg-cream px-7 py-12">
+          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">A real concern</p>
+          <p class="text-charcoal/40 text-sm mb-3">versus</p>
+          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">an old fear getting triggered</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FULL-BLEED PHOTO ============ -->
+  <figure class="reveal">
+    <img src="/images/li-experience-1.webp?v=2" alt="A candlelit circle at a WeDeepen gathering" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="lazy">
+  </figure>
+
+
+  <!-- ============ WHAT'S INCLUDED ============ -->
+  <section id="included" class="bg-ink px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-16 md:mb-20">
+        <p class="eyebrow mb-8">The membership</p>
+        <h2 class="display text-white" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
+          What&rsquo;s included
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px hair-dark">
+
+        <div class="bg-ink md:pr-9 py-12 md:py-4">
+          <p class="eyebrow mb-6">01</p>
+          <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Weekly live sessions</h3>
+          <p class="text-white/55 leading-relaxed mb-8">A rotating mix of ways to learn, practice, and integrate.</p>
+          <ul class="space-y-5 text-white/70 leading-relaxed">
+            <li>Love Masterminds built around real relationship questions and situations.</li>
+            <li>Workshops with expert coaches across dating, intimacy, communication, and relationships.</li>
+            <li>Bonding exercises with other members.</li>
+            <li>Integration sessions to unpack what you&rsquo;re learning.</li>
+          </ul>
+        </div>
+
+        <div class="bg-ink md:px-9 py-12 md:py-4">
+          <p class="eyebrow mb-6">02</p>
+          <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Private community</h3>
+          <p class="text-white/55 leading-relaxed mb-8">A place to keep the conversation going between sessions.</p>
+          <ul class="space-y-5 text-white/70 leading-relaxed">
+            <li>Ask the Experts Q&amp;A with WeDeepen&rsquo;s relationship professionals.</li>
+            <li>Private discussions inside Circle.</li>
+            <li>Bring up dating, sex, intimacy, conflict, attraction, or anything you&rsquo;re working through.</li>
+            <li>Connect with members and share what actually helps.</li>
+          </ul>
+        </div>
+
+        <div class="bg-ink md:pl-9 py-12 md:py-4">
+          <p class="eyebrow mb-6">03</p>
+          <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Practice &amp; recordings</h3>
+          <p class="text-white/55 leading-relaxed mb-8">Ways to stay involved outside a session.</p>
+          <ul class="space-y-5 text-white/70 leading-relaxed">
+            <li>A new Sunday Dare by text and email each week, members only.</li>
+            <li>Playful social and connection challenges to try in real life.</li>
+            <li>Recordings of every session held from the time you join.</li>
+            <li>The membership calendar, so you always know what&rsquo;s next.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ THE WEEKLY RHYTHM ============ -->
+  <section class="bg-ink px-6 lg:px-10 pb-28 md:pb-40">
+    <div class="max-w-site mx-auto reveal">
+      <div class="h-px hair-dark mb-16"></div>
+      <div class="grid md:grid-cols-12 gap-10 items-baseline">
+        <div class="md:col-span-4">
+          <p class="eyebrow mb-6">The weekly rhythm</p>
+          <h2 class="display text-white text-3xl md:text-4xl">Two nights a week.</h2>
+        </div>
+        <div class="md:col-span-8 grid sm:grid-cols-2 gap-px hair-dark">
+          <div class="bg-ink sm:pr-9 py-8 sm:py-2">
+            <p class="display text-4xl md:text-5xl text-white mb-3">Tuesdays</p>
+            <p class="text-white/60 leading-relaxed">Alternating weeks, 90 minutes.<br>6:00 PM Central.</p>
+          </div>
+          <div class="bg-ink sm:pl-9 py-8 sm:py-2">
+            <p class="display text-4xl md:text-5xl text-white mb-3">Wednesdays</p>
+            <p class="text-white/60 leading-relaxed">Alternating weeks, 60 minutes.<br>6:00 PM Central.</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-white/35 text-sm mt-12">7 PM Eastern &middot; 5 PM Mountain &middot; 4 PM Pacific. Every session is recorded.</p>
+    </div>
+  </section>
+
+
+  <!-- ============ SKILLS: photo + list ============ -->
+  <section class="bg-cream text-charcoal">
+    <div class="grid lg:grid-cols-2">
+      <div class="order-2 lg:order-1 px-6 lg:px-16 py-24 md:py-32 flex items-center">
+        <div class="reveal w-full">
+          <p class="eyebrow mb-8" style="color:#A8855C;">What you build</p>
+          <h2 class="display mb-12" style="font-size: clamp(2rem, 3.6vw, 3.1rem);">
+            The skills that make love easier to navigate.
+          </h2>
+          <ul class="space-y-0">
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Choose relationships that fit the life you actually want.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Recognize patterns before you repeat them with someone new.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Get clearer on where you stand and what you want.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Speak up sooner about needs, boundaries, and expectations.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Have hard conversations without losing the connection.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Repair conflict before hurt turns into distance.</li>
+            <li class="py-5 border-t border-charcoal/15 text-charcoal/80 leading-relaxed">Keep intimacy, attraction, and play alive over time.</li>
+            <li class="py-5 border-y border-charcoal/15 text-charcoal/80 leading-relaxed">Build trust that can handle change, mistakes, and uncertainty.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <img src="/images/li-experience-2.webp?v=2" alt="Two members in conversation at a WeDeepen gathering" class="bleed h-full" style="min-height: clamp(320px, 50vh, 900px);" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ WHO IT'S FOR ============ -->
+  <section class="bg-ink px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-16 md:mb-20">
+        <p class="eyebrow mb-8">Who it&rsquo;s for</p>
+        <h2 class="display text-white" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
+          Wherever you are with love right now.
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px hair-dark">
+        <div class="bg-ink md:pr-10 py-10 md:py-3">
+          <h3 class="display text-2xl md:text-[1.7rem] text-white mb-4">If you&rsquo;re dating</h3>
+          <p class="text-white/60 leading-relaxed">You want to stop running the same loop, read situations more accurately, and choose from clarity instead of chemistry alone.</p>
+        </div>
+        <div class="bg-ink md:px-10 py-10 md:py-3">
+          <h3 class="display text-2xl md:text-[1.7rem] text-white mb-4">If you&rsquo;re partnered</h3>
+          <p class="text-white/60 leading-relaxed">Things are good and you want them to keep getting better. Tools for conflict, repair, and keeping desire alive over years.</p>
+        </div>
+        <div class="bg-ink md:pl-10 py-10 md:py-3">
+          <h3 class="display text-2xl md:text-[1.7rem] text-white mb-4">If you&rsquo;re between chapters</h3>
+          <p class="text-white/60 leading-relaxed">You&rsquo;re coming out of something, taking stock, and want company and skill before the next chapter starts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FULL-BLEED PHOTO ============ -->
+  <figure class="reveal">
+    <img src="/images/li-experience-cards/hot-seat-coaching.webp" alt="Coaching in the round at a WeDeepen gathering" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="lazy">
+  </figure>
+
+
+  <!-- ============ GUIDES ============ -->
+  <section class="bg-ink px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-16 md:mb-20">
+        <p class="eyebrow mb-8">Your guides</p>
+        <h2 class="display text-white mb-8" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
+          Expert guides, not one house method.
+        </h2>
+        <p class="lede text-white/60">
+          WeDeepen brings together guides across dating, sex, communication, attachment, intimacy,
+          and the nervous system, so you get a range of approaches to test in your own life.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-12">
+
+        <a href="/love-guides/#christina-weber" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/christina-weber.jpg" alt="Christina Weber" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Christina Weber</h3>
+          <p class="text-white/45 text-sm">Founder, Love Strategist</p>
+        </a>
+
+        <a href="/love-guides/#annie-lalla" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/annie-lalla.jpg" alt="Annie Lalla" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Annie Lalla</h3>
+          <p class="text-white/45 text-sm">Cartographer of Love</p>
+        </a>
+
+        <a href="/love-guides/#ken-page" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/ken-page.jpg" alt="Ken Page, LCSW" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Ken Page, LCSW</h3>
+          <p class="text-white/45 text-sm">Author of Deeper Dating</p>
+        </a>
+
+        <a href="/love-guides/#yossef-sagi" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/yossef-sagi.jpg" alt="Yossef Sagi" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Yossef Sagi</h3>
+          <p class="text-white/45 text-sm">Intimacy &amp; Partnership</p>
+        </a>
+
+        <a href="/love-guides/#ariana-hall" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/ariana-hall.jpg" alt="Ariana Hall" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Ariana Hall</h3>
+          <p class="text-white/45 text-sm">Transformation &amp; Clarity</p>
+        </a>
+
+        <a href="/love-guides/#jordan-bowditch" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/jordan-bowditch.jpg" alt="Jordan Bowditch" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Jordan Bowditch</h3>
+          <p class="text-white/45 text-sm">Polarity &amp; Magnetism</p>
+        </a>
+
+        <a href="/love-guides/#dana-arielle" class="group block">
+          <div class="portrait overflow-hidden mb-5" style="aspect-ratio: 3/4;">
+            <img src="/images/strategists/dana-arielle.webp" alt="Dana Arielle" class="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]" loading="lazy">
+          </div>
+          <h3 class="display text-xl text-white mb-1">Dana Arielle</h3>
+          <p class="text-white/45 text-sm">Feminine Embodiment</p>
+        </a>
+
+        <a href="/love-guides/" class="group flex items-center">
           <div>
-            <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-2">The weekly rhythm</p>
-            <p class="text-white text-base md:text-lg leading-relaxed">
-              <strong class="font-semibold">Alternating Tuesdays, 90 minutes.</strong> <span class="text-white/65">Alternating Wednesdays, 60 minutes.</span>
-            </p>
-          </div>
-          <div class="md:text-right shrink-0">
-            <p class="font-heading text-2xl md:text-3xl text-white">6:00 PM Central</p>
-            <p class="text-white/50 text-sm mt-1">7 PM Eastern &middot; 5 PM Mountain &middot; 4 PM Pacific</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       THE SKILL OF LOVE  (mockup: dark section with vs. cards)
-       ============================================================ -->
-  <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
-    <div class="max-w-5xl mx-auto reveal">
-      <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">The skill of love</p>
-
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.14] mb-7">
-        Love has a much <span class="italic" style="color:#C4577A;">messier learning curve</span> than most things we get good at.
-      </h2>
-
-      <p class="text-white/70 text-lg leading-relaxed max-w-3xl mb-4">
-        We develop skills in work, health, sports, and nearly every other part of life through learning, practice, and feedback. Love is usually left to experience.
-      </p>
-      <p class="text-white/70 text-lg leading-relaxed max-w-3xl mb-12">
-        WeDeepen gives you a place to build the skill of love more deliberately, including learning to tell the difference between:
-      </p>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
-          </div>
-          <p class="font-heading text-xl text-white leading-snug">Chemistry</p>
-          <p class="text-white/40 text-sm my-1.5">vs.</p>
-          <p class="font-heading italic text-lg" style="color:#C4577A;">compatibility</p>
-        </div>
-
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 10h7l-2-2M16 14H9l2 2"/></svg>
-          </div>
-          <p class="font-heading text-xl text-white leading-snug">A rough patch</p>
-          <p class="text-white/40 text-sm my-1.5">vs.</p>
-          <p class="font-heading italic text-lg" style="color:#C4577A;">a repeating pattern</p>
-        </div>
-
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8h14M7.5 8l-3 6h6zM16.5 8l-3 6h6zM8 20h8"/></svg>
-          </div>
-          <p class="font-heading text-xl text-white leading-snug">Healthy compromise</p>
-          <p class="text-white/40 text-sm my-1.5">vs.</p>
-          <p class="font-heading italic text-lg" style="color:#C4577A;">giving too much away</p>
-        </div>
-
-        <div class="wd-panel rounded-2xl p-7 text-center">
-          <div class="icon-medallion on-dark mx-auto mb-5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 20v-2.4a5.6 5.6 0 0 0 3.2-5.1 6.2 6.2 0 0 0-12.4-.6L5 14.6h2v2.6a2.2 2.2 0 0 0 2.2 2.2h1.3V20"/><path d="M11.8 11.6a1.6 1.6 0 1 1 1.9 1.6v1.3"/></svg>
-          </div>
-          <p class="font-heading text-xl text-white leading-snug">A real concern</p>
-          <p class="text-white/40 text-sm my-1.5">vs.</p>
-          <p class="font-heading italic text-lg" style="color:#C4577A;">an old fear getting triggered</p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="#join" class="btn-pink text-base !px-10 !py-4">Become a Member &middot; $99/month</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       PHOTO BAND
-       ============================================================ -->
-  <section class="bg-ink px-6 py-6 md:py-10">
-    <div class="max-w-site mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 reveal">
-      <img src="/images/li-experience-1.webp?v=2" alt="A moment of connection at a WeDeepen gathering" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
-      <img src="/images/li-experience-2.webp?v=2" alt="Two members connecting at a WeDeepen gathering" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
-      <img src="/images/li-experience-3.webp?v=2" alt="A playful moment at a WeDeepen gathering" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       BUILD THE SKILLS  (mockup: cream section, 8 items, 2 cols)
-       ============================================================ -->
-  <section class="bg-cream py-20 md:py-28 px-6">
-    <div class="max-w-5xl mx-auto reveal">
-      <p class="text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-5">WeDeepen Membership</p>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal text-charcoal leading-[1.14] mb-12">
-        Build the skills that make love <span class="italic" style="color:#A01B4A;">easier</span> to navigate.
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Choose relationships that fit the life you actually want.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-6 4-9 9-9M13 11c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6zM11 15c-2.2 0-4-1.8-4-4 2.2 0 4 1.8 4 4z"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Recognize patterns before you repeat them with someone new.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.2 8.8l-1.9 4.5-4.5 1.9 1.9-4.5z"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Get clearer on where you stand and what you want.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13a3 3 0 0 1-3 3H9l-4 3.5V7a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3z"/><path d="M9 10h7M9 13h4"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Speak up sooner about needs, boundaries, and expectations.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="2.6"/><circle cx="15.5" cy="8" r="2.6"/><path d="M4 19a4.5 4.5 0 0 1 9 0M11 19a4.5 4.5 0 0 1 9 0"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Have hard conversations without losing the connection.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.4 5.4a3.4 3.4 0 0 1 0 4.8L12 12.8l2.6-2.6a3.4 3.4 0 1 1 4.8 4.8L12 22.4 4.6 15a3.4 3.4 0 0 1 4.8-4.8"/><path d="M12 1.6v6"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Repair conflict before hurt turns into distance.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4z"/><path d="M18 16l.8 2.2 2.2.8-2.2.8L18 22l-.8-2.2-2.2-.8 2.2-.8zM5.5 15l.6 1.6 1.6.6-1.6.6L5.5 19.4l-.6-1.6-1.6-.6 1.6-.6z"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Keep intimacy, attraction, and play alive over time.</p>
-        </div>
-
-        <div class="wd-panel-light rounded-xl p-5 flex items-center gap-5">
-          <div class="icon-medallion">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.7v5.6c0 4.3-2.9 8.1-7 9.4-4.1-1.3-7-5.1-7-9.4V5.7z"/><path d="M12 14.2s-2.8-1.8-2.8-3.7A1.6 1.6 0 0 1 12 9.4a1.6 1.6 0 0 1 2.8 1.1c0 1.9-2.8 3.7-2.8 3.7z"/></svg>
-          </div>
-          <p class="text-charcoal text-base leading-snug">Build trust that can handle change, mistakes, and uncertainty.</p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="#join" class="btn-pink text-base !px-10 !py-4">Become a Member &middot; $99/month</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       WHAT'S INCLUDED  (mockup: three cream cards with checkmarks)
-       ============================================================ -->
-  <section id="included" class="py-20 md:py-28 px-6" style="background:#FAF5EC;">
-    <div class="max-w-site mx-auto reveal">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal text-charcoal text-center mb-14 gold-line-center">
-        What&rsquo;s included in your membership
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Weekly live sessions -->
-        <div class="wd-panel-light rounded-2xl p-8">
-          <div class="icon-medallion mx-auto mb-5" style="width:68px;height:68px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-2.5L11 15.5V13H8a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></svg>
-          </div>
-          <h3 class="font-heading text-2xl text-charcoal text-center mb-3">Weekly live sessions</h3>
-          <div class="w-10 h-px bg-rose-deep/40 mx-auto mb-4"></div>
-          <p class="text-charcoal/70 text-sm text-center leading-relaxed mb-6">A rotating mix of ways to learn, practice, and integrate.</p>
-          <ul class="space-y-3.5 text-charcoal/80 text-sm leading-relaxed border-t border-charcoal/10 pt-6">
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Love Masterminds built around real relationship questions and situations.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Workshops with expert coaches across dating, intimacy, communication, and relationships.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Bonding exercises with other members.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Integration sessions to unpack what you&rsquo;re learning and experiencing.</span></li>
-          </ul>
-        </div>
-
-        <!-- Private member community -->
-        <div class="wd-panel-light rounded-2xl p-8">
-          <div class="icon-medallion mx-auto mb-5" style="width:68px;height:68px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3.2-3H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"/><path d="M12 12.2a1.7 1.7 0 0 1 0-2.5 1.7 1.7 0 0 1 2.4 2.4L12 14.2l-2.4-2.1"/></svg>
-          </div>
-          <h3 class="font-heading text-2xl text-charcoal text-center mb-3">Private member community</h3>
-          <div class="w-10 h-px bg-rose-deep/40 mx-auto mb-4"></div>
-          <p class="text-charcoal/70 text-sm text-center leading-relaxed mb-6">A place to keep the conversation going between sessions.</p>
-          <ul class="space-y-3.5 text-charcoal/80 text-sm leading-relaxed border-t border-charcoal/10 pt-6">
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Ask the Experts Q&amp;A with WeDeepen&rsquo;s relationship professionals.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Private discussions inside Circle.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Bring up dating, sex, intimacy, conflict, attraction, or anything else you&rsquo;re working through.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Connect with members, compare perspectives, and share useful resources.</span></li>
-          </ul>
-        </div>
-
-        <!-- Weekly practice + recordings -->
-        <div class="wd-panel-light rounded-2xl p-8">
-          <div class="icon-medallion mx-auto mb-5" style="width:68px;height:68px;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M10.5 13.2l3.6 2.1-3.6 2.1z"/></svg>
-          </div>
-          <h3 class="font-heading text-2xl text-charcoal text-center mb-3">Weekly practice + recordings</h3>
-          <div class="w-10 h-px bg-rose-deep/40 mx-auto mb-4"></div>
-          <p class="text-charcoal/70 text-sm text-center leading-relaxed mb-6">Ways to stay involved even when you&rsquo;re outside a session.</p>
-          <ul class="space-y-3.5 text-charcoal/80 text-sm leading-relaxed border-t border-charcoal/10 pt-6">
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>A new Sunday Dare delivered by text and email each week.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Playful social and connection challenges to try in real life.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Recordings of sessions held from the time you join forward.</span></li>
-            <li class="flex gap-3"><span class="text-rose-deep mt-0.5 shrink-0">&#10003;</span><span>Access to the membership calendar so you can see what&rsquo;s coming up.</span></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="#join" class="btn-pink text-base !px-10 !py-4">Become a Member &middot; $99/month</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       WHO IT'S FOR
-       ============================================================ -->
-  <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #201519 100%);">
-    <div class="max-w-5xl mx-auto reveal">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal text-center mb-14 gold-line-center">Who this is for</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="wd-panel rounded-2xl p-7">
-          <h3 class="font-heading text-xl text-white mb-3">If you&rsquo;re dating</h3>
-          <p class="text-white/60 text-sm leading-relaxed">You want to stop running the same loop, read situations more accurately, and choose from clarity instead of chemistry alone.</p>
-        </div>
-        <div class="wd-panel rounded-2xl p-7">
-          <h3 class="font-heading text-xl text-white mb-3">If you&rsquo;re partnered</h3>
-          <p class="text-white/60 text-sm leading-relaxed">Things are good, and you want them to keep getting better. You want tools for conflict, repair, and keeping desire alive over years.</p>
-        </div>
-        <div class="wd-panel rounded-2xl p-7">
-          <h3 class="font-heading text-xl text-white mb-3">If you&rsquo;re between chapters</h3>
-          <p class="text-white/60 text-sm leading-relaxed">You&rsquo;re coming out of something, taking stock, and want company and skill-building before the next chapter starts.</p>
-        </div>
-      </div>
-
-      <p class="text-white/55 text-center text-base mt-10 max-w-2xl mx-auto leading-relaxed">
-        High performers in every other area of life are welcome here. Most people arrive good at their work and their health, and honest about love being the gap.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       GUIDES
-       ============================================================ -->
-  <section class="bg-charcoal py-20 md:py-28 px-6">
-    <div class="max-w-site mx-auto reveal">
-      <div class="text-center mb-14">
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-5 gold-line-center">Meet the guides inside the membership</h2>
-        <p class="text-white/60 text-lg max-w-3xl mx-auto leading-relaxed mt-6">
-          WeDeepen brings together expert guides across dating, sex, communication, attachment, intimacy, and the nervous system, giving you a wider range of ideas and approaches to explore in your own life.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <a href="/love-guides/#christina-weber" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/christina-weber.jpg" alt="Christina Weber" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Christina Weber</h3>
-              <p class="text-gold text-sm mt-1">Love Strategist &amp; Founder</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#annie-lalla" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/annie-lalla.jpg" alt="Annie Lalla" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Annie Lalla</h3>
-              <p class="text-gold text-sm mt-1">Cartographer of Love</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#ken-page" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/ken-page.jpg" alt="Ken Page, LCSW" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Ken Page, LCSW</h3>
-              <p class="text-gold text-sm mt-1">Author of Deeper Dating</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#yossef-sagi" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/yossef-sagi.jpg" alt="Yossef Sagi" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Yossef Sagi</h3>
-              <p class="text-gold text-sm mt-1">Intimacy &amp; Embodied Partnership</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#ariana-hall" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/ariana-hall.jpg" alt="Ariana Hall" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Ariana Hall</h3>
-              <p class="text-gold text-sm mt-1">Deep Transformation &amp; Clarity</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#jordan-bowditch" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/jordan-bowditch.jpg" alt="Jordan Bowditch" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Jordan Bowditch</h3>
-              <p class="text-gold text-sm mt-1">Polarity, Masculinity &amp; Magnetic Pull</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/#dana-arielle" class="bg-ink rounded-xl overflow-hidden group relative">
-          <div class="aspect-[3/4] relative">
-            <img src="/images/strategists/dana-arielle.webp" alt="Dana Arielle" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-heading text-xl font-semibold text-white">Dana Arielle</h3>
-              <p class="text-gold text-sm mt-1">Feminine Embodiment</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="/love-guides/" class="bg-ink border border-gold/30 rounded-xl overflow-hidden group flex items-center justify-center aspect-[3/4]">
-          <div class="text-center p-6">
-            <div class="text-gold text-4xl mb-3 group-hover:translate-x-1 transition-transform">&rarr;</div>
-            <p class="font-heading text-lg font-semibold">Meet All Strategists</p>
-            <p class="text-white/50 text-sm mt-2">Explore the full roster</p>
+            <p class="display text-2xl text-white mb-2 group-hover:text-gold transition">See all Love Strategists</p>
+            <p class="text-gold text-sm">35+ across the WeDeepen network &rarr;</p>
           </div>
         </a>
 
@@ -667,376 +523,286 @@
   </section>
 
 
-  <!-- ============================================================
-       CHRISTINA / FOUNDER MOMENT
-       ============================================================ -->
-  <section class="bg-ink py-20 md:py-28 px-6">
-    <div class="max-w-site mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center reveal">
+  <!-- ============ CHRISTINA ============ -->
+  <section class="bg-cream text-charcoal">
+    <div class="grid lg:grid-cols-2">
       <div>
-        <img src="/images/gallery/christina-teaching.jpg" alt="Christina Weber teaching at a WeDeepen gathering" loading="lazy" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl">
+        <img src="/images/gallery/christina-teaching.jpg" alt="Christina Weber teaching at a WeDeepen gathering" class="bleed h-full" style="min-height: clamp(320px, 50vh, 820px); object-position: 60% 35%;" loading="lazy">
       </div>
-      <div>
-        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-5">Founded by Christina Weber</p>
-        <h2 class="font-heading text-3xl md:text-4xl font-normal leading-tight mb-6">
-          Fitness had its moment. Then yoga. Then biohacking. <span class="italic" style="color:#E8337A;">Love is next.</span>
-        </h2>
-        <p class="text-white/70 text-base md:text-lg leading-relaxed mb-5">
-          Christina built WeDeepen because the relationship world is full of brilliant teachers working in isolation, and full of people trying to figure love out alone. The membership is where those two things meet every week.
-        </p>
-        <p class="text-white/70 text-base md:text-lg leading-relaxed mb-8">
-          She hosts, she teaches, and she is in the room. Her work has been featured on Peacock, Real Time with Bill Maher, Los Angeles Magazine, and Vice.
-        </p>
-        <a href="/about/" class="btn-outline text-sm">More about Christina &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       COMMUNITY PHOTO GRID
-       ============================================================ -->
-  <section class="bg-ink pb-20 md:pb-28 px-6">
-    <div class="max-w-site mx-auto reveal">
-      <div class="text-center mb-12">
-        <h2 class="font-heading text-3xl md:text-4xl font-normal mb-4">Real people. Real moments.</h2>
-        <p class="text-white/60 text-lg max-w-2xl mx-auto">Members meet weekly online. Several times a year, they meet in the room.</p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/welcome.jpg" alt="A welcome moment at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/coaches.jpg" alt="Love Strategists coaching at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/circle.jpg" alt="A circle practice at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/group-bonding.jpg" alt="A group bonding moment at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/embodiment.jpg" alt="An embodied practice session at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/li-experience-cards/play-connection.webp?v=2" alt="A joyful circle at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/li-experience-cards/shared-meals.webp?v=2" alt="Members laughing over dinner together" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/sunday.jpg" alt="A closing moment at a WeDeepen gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-      </div>
-
-      <div class="text-center mt-10">
-        <a href="/gallery/" class="btn-outline">See Photo Galleries &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       TESTIMONIALS
-       NOTE: pulled from the WeDeepen community (Immersion + events),
-       since the membership has not launched yet. Heading is worded
-       accordingly. Swap for member quotes once they exist.
-       ============================================================ -->
-  <section class="bg-cream py-20 md:py-28 px-6">
-    <div class="max-w-site mx-auto reveal">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal text-charcoal text-center mb-14 gold-line-center">From the WeDeepen community</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;The WeDeepen community has been a huge support system for me. It is where I met so many of my close friends: women who became my sisters, men who became safe, and the love of my life.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Ilanit Maghen &middot; Los Angeles</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;Christina is genuinely concerned with a better form of communication, a better community, and a more loving and powerful way of connecting. She has valuable insights and exercises that can remove you from your cycle and allow you to see your partner and yourself in a different way.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Gallo &middot; Los Angeles</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;I was deeply skeptical when I first considered a dating coach. Christina focused on developing me: helping me learn my quirks, challenge my shyness, and push me out of my comfort zone. I was skeptical, but she delivered.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Harinath Amarnath &middot; New York City</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;I&rsquo;ve been tapped out from community for a long time. Now I believe again in what&rsquo;s possible with safe, win-win relationships. I feel inspired and connected.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Kendall</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;My partner and I hit a bump in our relationship and we enlisted Christina&rsquo;s coaching. I found a circle of love and openness where no topic was off the table. She&rsquo;s a perfect mix of love coach, therapist, and educator.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Christopher Leyva &middot; San Diego</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;I left feeling lighter, more open, and finally clear on how I want to date. I used to overthink every interaction. Now I can just float, have fun, and be myself.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Josh W.</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;I saw how I was unconsciously looking for reasons to not trust my partner. This helped me catch that pattern, and shift it.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Matt</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;Christina is the quintessential relationship builder and a coach that lives by example. She has an uncanny ability to facilitate and mediate all kinds of points of view.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Indy Rishi Singh &middot; Los Angeles</p>
-        </div>
-        <div class="wd-panel-light rounded-xl p-7">
-          <p class="text-charcoal/80 text-base leading-relaxed mb-4">&ldquo;Christina embraces love dynamics from a deeply insightful, progressive, and caring approach. Her love for Love and conscious relationships is undeniable.&rdquo;</p>
-          <p class="text-rose-deep text-xs tracking-[0.18em] uppercase font-semibold">Kesia Elwin &middot; Los Angeles</p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="/reviews/" class="text-charcoal font-semibold hover:text-rose-deep transition">Read More Reviews &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       PRICE CARD / JOIN
-       ============================================================ -->
-  <section id="join" class="bg-ink py-20 md:py-28 px-6">
-    <div class="max-w-2xl mx-auto reveal">
-      <div class="rounded-2xl p-8 md:p-12 text-center" style="background: rgba(232,51,122,0.06); border: 1px solid rgba(232,51,122,0.28);">
-        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-5">WeDeepen Membership</p>
-
-        <div class="flex items-baseline justify-center gap-2 mb-2">
-          <span class="font-heading text-5xl md:text-6xl font-normal text-white">$99</span>
-          <span class="text-white/60 text-lg">/month</span>
-        </div>
-        <p class="text-white/50 text-sm mb-8">Cancel anytime.</p>
-
-        <ul class="text-left space-y-4 text-white/80 text-base leading-relaxed mb-9 max-w-md mx-auto">
-          <li class="flex gap-3"><span class="text-pink-hot mt-0.5 shrink-0">&#10003;</span><span>Weekly live masterminds, bonding, and integration</span></li>
-          <li class="flex gap-3"><span class="text-pink-hot mt-0.5 shrink-0">&#10003;</span><span>Expert-led sessions on relationships and intimacy</span></li>
-          <li class="flex gap-3"><span class="text-pink-hot mt-0.5 shrink-0">&#10003;</span><span>Private Circle discussions plus Ask the Experts</span></li>
-          <li class="flex gap-3"><span class="text-pink-hot mt-0.5 shrink-0">&#10003;</span><span>Sunday Dares delivered by text and email</span></li>
-          <li class="flex gap-3"><span class="text-pink-hot mt-0.5 shrink-0">&#10003;</span><span>Recordings of sessions held after you join</span></li>
-        </ul>
-
-        <!-- TODO: replace with the real Circle checkout URL before launch -->
-        <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-membership" target="_blank" rel="noopener" class="btn-pink text-base !px-12 !py-4 w-full sm:w-auto">Join Now</a>
-
-        <!-- Annual option -->
-        <div class="mt-8 pt-7 border-t border-white/10">
-          <p class="text-white/70 text-base leading-relaxed mb-1">
-            Prefer to pay for the year? <strong class="text-white font-semibold">$990/year.</strong>
+      <div class="px-6 lg:px-16 py-24 md:py-32 flex items-center">
+        <div class="reveal">
+          <p class="eyebrow mb-8" style="color:#A8855C;">Founded by Christina Weber</p>
+          <h2 class="display mb-9" style="font-size: clamp(2rem, 3.6vw, 3.1rem);">
+            Fitness had its moment. Then yoga. Then biohacking. Love is next.
+          </h2>
+          <p class="lede text-charcoal/70 mb-6">
+            Christina built WeDeepen because the relationship world is full of brilliant teachers
+            working in isolation, and full of people trying to figure love out alone. The membership
+            is where those two things meet every week.
           </p>
-          <p class="text-gold text-sm mb-4">That is two months free.</p>
-          <!-- TODO: replace with the real annual Circle checkout URL before launch -->
-          <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-membership-annual" target="_blank" rel="noopener" class="btn-outline text-sm !py-3 !px-8">Join Annually &middot; $990</a>
+          <p class="lede text-charcoal/70 mb-10">
+            She hosts, she teaches, and she is in the room. Her work has been featured on Peacock,
+            Real Time with Bill Maher, Los Angeles Magazine, and Vice.
+          </p>
+          <a href="/about/" class="link-underline text-[0.95rem]" style="color:#A01B4A; border-color: rgba(160,27,74,0.4);">More about Christina &rarr;</a>
         </div>
-
-        <p class="text-white/40 text-xs mt-8 leading-relaxed">
-          Sessions are virtual. Billing recurs until you cancel. See our <a href="/terms/" class="underline hover:text-gold transition">Terms</a>.
-        </p>
       </div>
     </div>
   </section>
 
 
-  <!-- ============================================================
-       WHERE THIS LEADS  (the platform ladder)
-       ============================================================ -->
-  <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="bg-ink px-6 lg:px-10 py-28 md:py-40">
     <div class="max-w-site mx-auto reveal">
-      <div class="text-center mb-14 max-w-3xl mx-auto">
-        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">Where this leads</p>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-6">
-          WeDeepen is becoming the go-to platform for the <span class="italic" style="color:#E8337A;">love and relationship industry.</span>
-        </h2>
-        <p class="text-white/65 text-lg leading-relaxed">
-          The membership is where it starts. It is not where it ends.
-        </p>
+      <p class="eyebrow mb-16 text-center">From the WeDeepen community</p>
+
+      <div class="max-w-4xl mx-auto space-y-0">
+        <blockquote class="py-14 border-t border-white/12">
+          <p class="display text-white/90 leading-[1.35] mb-7" style="font-size: clamp(1.5rem, 2.9vw, 2.2rem);">
+            &ldquo;The WeDeepen community has been a huge support system for me. It is where I met
+            so many of my close friends: women who became my sisters, men who became safe,
+            and the love of my life.&rdquo;
+          </p>
+          <cite class="not-italic text-gold text-[0.72rem] uppercase tracking-[0.22em]">Ilanit Maghen &middot; Los Angeles</cite>
+        </blockquote>
+
+        <blockquote class="py-14 border-t border-white/12">
+          <p class="display text-white/90 leading-[1.35] mb-7" style="font-size: clamp(1.5rem, 2.9vw, 2.2rem);">
+            &ldquo;I was deeply skeptical when I first considered a dating coach. Christina focused
+            on developing me. I was skeptical, but she delivered.&rdquo;
+          </p>
+          <cite class="not-italic text-gold text-[0.72rem] uppercase tracking-[0.22em]">Harinath Amarnath &middot; New York City</cite>
+        </blockquote>
+
+        <blockquote class="py-14 border-t border-white/12">
+          <p class="display text-white/90 leading-[1.35] mb-7" style="font-size: clamp(1.5rem, 2.9vw, 2.2rem);">
+            &ldquo;I&rsquo;ve been tapped out from community for a long time. Now I believe again in
+            what&rsquo;s possible with safe, win-win relationships.&rdquo;
+          </p>
+          <cite class="not-italic text-gold text-[0.72rem] uppercase tracking-[0.22em]">Kendall</cite>
+        </blockquote>
+
+        <blockquote class="py-14 border-y border-white/12">
+          <p class="display text-white/90 leading-[1.35] mb-7" style="font-size: clamp(1.5rem, 2.9vw, 2.2rem);">
+            &ldquo;She&rsquo;s a perfect mix of love coach, therapist, and educator. I found a circle
+            of love and openness where no topic was off the table.&rdquo;
+          </p>
+          <cite class="not-italic text-gold text-[0.72rem] uppercase tracking-[0.22em]">Christopher Leyva &middot; San Diego</cite>
+        </blockquote>
       </div>
 
-      <!-- Platform scale: the concrete proof that WeDeepen is bigger than $99 -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <a href="/love-guides/" class="wd-panel rounded-xl px-5 py-7 text-center block">
-          <p class="font-heading text-3xl md:text-4xl text-white mb-1">35+</p>
-          <p class="text-white/50 text-xs uppercase tracking-[0.16em]">Love Strategists</p>
-        </a>
-        <a href="/podcast/" class="wd-panel rounded-xl px-5 py-7 text-center block">
-          <p class="font-heading text-3xl md:text-4xl text-white mb-1">143</p>
-          <p class="text-white/50 text-xs uppercase tracking-[0.16em]">Podcast episodes</p>
-        </a>
-        <a href="/gallery/" class="wd-panel rounded-xl px-5 py-7 text-center block">
-          <p class="font-heading text-3xl md:text-4xl text-white mb-1">8</p>
-          <p class="text-white/50 text-xs uppercase tracking-[0.16em]">Love Immersions</p>
-        </a>
-        <a href="/events/" class="wd-panel rounded-xl px-5 py-7 text-center block">
-          <p class="font-heading text-3xl md:text-4xl text-white mb-1">20+</p>
-          <p class="text-white/50 text-xs uppercase tracking-[0.16em]">Events &amp; gatherings</p>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="rounded-2xl p-7" style="background: rgba(232,51,122,0.08); border: 1px solid rgba(232,51,122,0.30);">
-          <p class="text-pink-hot text-xs uppercase tracking-[0.22em] font-semibold mb-3">Start here</p>
-          <h3 class="font-heading text-2xl text-white mb-3">WeDeepen Membership</h3>
-          <p class="text-white/65 text-sm leading-relaxed mb-5">Weekly, virtual, and open. Build the skill of love alongside a community doing the same. $99/month.</p>
-          <a href="#join" class="text-pink-hot text-sm font-semibold hover:underline">Join now &rarr;</a>
-        </div>
-
-        <a href="/love-immersion/october-2026/" class="block rounded-2xl p-7 transition hover:-translate-y-0.5" style="background: rgba(196,87,122,0.08); border: 1px solid rgba(196,87,122,0.30);">
-          <p class="text-rose-light text-xs uppercase tracking-[0.22em] font-semibold mb-3">Go deeper</p>
-          <h3 class="font-heading text-2xl text-white mb-3">Love Immersion</h3>
-          <p class="text-white/65 text-sm leading-relaxed mb-5">Three days in the room together, off-grid in the Texas Hill Country. The work goes further and faster in person.</p>
-          <span class="text-rose-light text-sm font-semibold">See the next Immersion &rarr;</span>
-        </a>
-
-        <a href="/love-club/" class="block rounded-2xl p-7 transition hover:-translate-y-0.5" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.30);">
-          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">All in</p>
-          <h3 class="font-heading text-2xl text-white mb-3">Love Club</h3>
-          <p class="text-white/65 text-sm leading-relaxed mb-5">Our highest tier, for members who want the full year: virtual and in-person programming, small-group work, and the inner network.</p>
-          <span class="text-gold text-sm font-semibold">Explore Love Club &rarr;</span>
-        </a>
-      </div>
-
-      <p class="text-white/45 text-sm text-center mt-8">You can move between tiers at any time.</p>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       FAQ
-       ============================================================ -->
-  <section class="bg-ink py-20 md:py-28 px-6">
-    <div class="max-w-3xl mx-auto reveal">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal text-center mb-14 gold-line-center">Frequently asked</h2>
-
-      <div class="space-y-3">
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">Do I need to be in a relationship?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            No. WeDeepen is for people who are dating, partnered, between relationships, or simply interested in improving the skills that lead to a better love life.
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">When do the sessions happen?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            Sessions run online at <strong class="text-white">6:00 PM Central</strong>, which is 7 PM Eastern, 5 PM Mountain, and 4 PM Pacific.
-            <span class="block mt-3">On alternating <strong class="text-white">Tuesdays</strong>, sessions run 90 minutes. On alternating <strong class="text-white">Wednesdays</strong>, they run 60 minutes at the same time.</span>
-            <span class="block mt-3">Your membership calendar shows exactly what is coming up, and every session is recorded from the time you join forward.</span>
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">How do I know which ideas or approaches actually apply to me?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            Different situations call for different lenses. You will learn from a range of approaches without being asked to commit to one way of thinking about love.
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">How much time do I need to get value from the membership?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            You can join live when it works for you, use the community as questions come up, and catch recordings from the time you join forward. There is no single way you have to participate.
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">Where does everything happen?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            Sessions are virtual. The private community and Ask the Experts discussions are inside Circle. Sunday Dares arrive by text and email.
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">What if I miss a session?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            You will have access to recordings of sessions held from the time you join forward.
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">What are Sunday Dares?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            A new dare arrives by text and email every Sunday, designed to bring more play, spontaneity, and social courage into your week. Some will stretch you a little while others are simply fun, but each one gives you a reason to try something different and keep connection active outside the screen.
-            <span class="block mt-3">Sunday Dares go to <strong class="text-white">members only</strong>, sent from the WeDeepen number.</span>
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">Can I cancel? Is there an annual option?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            You can cancel at any time from your account or by emailing <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a>. Cancellation takes effect at the end of your current billing period, and you keep access through the period you have paid for.
-            <span class="block mt-3">If you would rather pay for the year, the membership is <strong class="text-white">$990/year</strong>, which works out to two months free.</span>
-          </div></div>
-        </div>
-
-        <div class="faq-item wd-panel rounded-xl">
-          <button class="faq-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4">
-            <span class="font-heading text-lg md:text-xl text-white">How is this different from Love Immersion and Love Club?</span>
-            <span class="faq-icon text-gold text-2xl leading-none shrink-0">+</span>
-          </button>
-          <div class="faq-answer"><div class="px-6 pb-6 text-white/70 leading-relaxed">
-            The membership is the weekly, virtual foundation and the place most people start. <a href="/love-immersion/october-2026/" class="text-gold hover:underline">Love Immersion</a> is a three-day in-person retreat. <a href="/love-club/" class="text-gold hover:underline">Love Club</a> is our highest tier, with a full year of virtual and in-person programming. You can move between tiers at any time by emailing <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a>.
-          </div></div>
-        </div>
-
+      <div class="text-center mt-16">
+        <a href="/reviews/" class="link-underline text-[0.95rem]">Read more reviews &rarr;</a>
       </div>
     </div>
   </section>
 
 
-  <!-- ============================================================
-       FINAL CTA
-       ============================================================ -->
-  <section class="py-24 md:py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
-    <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
-      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight">
-        Make love a <span class="italic" style="color:#E8337A;">lifelong practice.</span>
+  <!-- ============ PHOTO PAIR ============ -->
+  <section class="grid sm:grid-cols-2 reveal">
+    <img src="/images/li-experience-cards/play-connection.webp?v=2" alt="Members in a circle at a WeDeepen gathering" class="bleed" style="height: clamp(260px, 44vh, 520px);" loading="lazy">
+    <img src="/images/gallery/group-bonding.jpg" alt="Members laughing together at a WeDeepen gathering" class="bleed" style="height: clamp(260px, 44vh, 520px);" loading="lazy">
+  </section>
+
+
+  <!-- ============ JOIN ============ -->
+  <section id="join" class="bg-ink px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-reading mx-auto text-center reveal">
+      <p class="eyebrow mb-9">WeDeepen Membership</p>
+      <h2 class="display text-white mb-8" style="font-size: clamp(2.4rem, 5.4vw, 4.2rem);">
+        $99 <span class="text-white/35 text-[0.4em] align-middle">/ month</span>
       </h2>
-      <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
-        Keep learning from expert guides, testing what you learn, and developing how you date, communicate, connect, and love.
+      <p class="text-white/55 leading-relaxed mb-12">
+        Cancel anytime. Or pay for the year at <strong class="text-white font-semibold">$990</strong>,
+        which is two months free.
       </p>
-      <a href="#join" class="btn-pink text-base !px-12 !py-4">Become a Member &middot; $99/month</a>
-      <p class="text-white/45 text-sm mt-6">Sessions are virtual. Cancel anytime.</p>
+
+      <div class="h-px hair-dark mb-12"></div>
+
+      <ul class="text-left space-y-5 text-white/70 leading-relaxed mb-14 max-w-md mx-auto">
+        <li class="flex gap-5"><span class="text-gold shrink-0 text-sm pt-1">01</span><span>Weekly live masterminds, bonding, and integration</span></li>
+        <li class="flex gap-5"><span class="text-gold shrink-0 text-sm pt-1">02</span><span>Expert-led sessions on relationships and intimacy</span></li>
+        <li class="flex gap-5"><span class="text-gold shrink-0 text-sm pt-1">03</span><span>Private Circle discussions and Ask the Experts</span></li>
+        <li class="flex gap-5"><span class="text-gold shrink-0 text-sm pt-1">04</span><span>Sunday Dares by text and email, members only</span></li>
+        <li class="flex gap-5"><span class="text-gold shrink-0 text-sm pt-1">05</span><span>Recordings of every session held after you join</span></li>
+      </ul>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+        <!-- TODO: replace with the real Circle checkout URLs before launch -->
+        <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-membership" target="_blank" rel="noopener" class="btn-primary w-full sm:w-auto text-center">Join Monthly &middot; $99</a>
+        <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-membership-annual" target="_blank" rel="noopener" class="btn-ghost w-full sm:w-auto text-center">Join Annually &middot; $990</a>
+      </div>
+
+      <p class="text-white/30 text-xs mt-10 leading-relaxed">
+        Sessions are virtual. Billing recurs until you cancel. See our
+        <a href="/terms/" class="underline hover:text-gold transition">Terms</a>.
+      </p>
     </div>
   </section>
 
 
-  <!-- FOOTER -->
-  <footer class="bg-ink border-t border-white/10 py-12">
-    <div class="max-w-site mx-auto px-6 text-center">
-      <a href="/" class="inline-block mb-4">
-        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60">
+  <!-- ============ WHERE THIS LEADS ============ -->
+  <section class="bg-cream text-charcoal px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-16 md:mb-20">
+        <p class="eyebrow mb-8" style="color:#A8855C;">Where this leads</p>
+        <h2 class="display mb-8" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
+          WeDeepen is becoming the go-to platform for the love and relationship industry.
+        </h2>
+        <p class="lede text-charcoal/70">The membership is where it starts. It is not where it ends.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-px hair-light">
+        <div class="bg-cream md:pr-10 py-10 md:py-3">
+          <p class="eyebrow mb-5" style="color:#A01B4A;">Start here</p>
+          <h3 class="display text-2xl md:text-[1.75rem] mb-4">WeDeepen Membership</h3>
+          <p class="text-charcoal/65 leading-relaxed mb-6">Weekly, virtual, and open. Build the skill of love alongside a community doing the same.</p>
+          <a href="#join" class="link-underline text-sm" style="color:#A01B4A; border-color: rgba(160,27,74,0.4);">Join now &rarr;</a>
+        </div>
+        <div class="bg-cream md:px-10 py-10 md:py-3">
+          <p class="eyebrow mb-5" style="color:#A8855C;">Go deeper</p>
+          <h3 class="display text-2xl md:text-[1.75rem] mb-4">Love Immersion</h3>
+          <p class="text-charcoal/65 leading-relaxed mb-6">Three days in the room together, off-grid in the Texas Hill Country. The work goes further in person.</p>
+          <a href="/love-immersion/october-2026/" class="link-underline text-sm" style="color:#A01B4A; border-color: rgba(160,27,74,0.4);">See the next Immersion &rarr;</a>
+        </div>
+        <div class="bg-cream md:pl-10 py-10 md:py-3">
+          <p class="eyebrow mb-5" style="color:#A8855C;">All in</p>
+          <h3 class="display text-2xl md:text-[1.75rem] mb-4">Love Club</h3>
+          <p class="text-charcoal/65 leading-relaxed mb-6">Our highest tier. A full year of virtual and in-person programming, small-group work, and the inner network.</p>
+          <a href="/love-club/" class="link-underline text-sm" style="color:#A01B4A; border-color: rgba(160,27,74,0.4);">Explore Love Club &rarr;</a>
+        </div>
+      </div>
+
+      <p class="text-charcoal/45 text-sm mt-12">You can move between tiers at any time.</p>
+    </div>
+  </section>
+
+
+  <!-- ============ FAQ ============ -->
+  <section class="bg-ink px-6 lg:px-10 py-28 md:py-40">
+    <div class="max-w-4xl mx-auto reveal">
+      <p class="eyebrow mb-14 text-center">Frequently asked</p>
+
+      <div>
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">Do I need to be in a relationship?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            No. WeDeepen is for people who are dating, partnered, between relationships, or simply interested in improving the skills that lead to a better love life.
+          </p></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">When do the sessions happen?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed">
+            <p>Sessions run online at 6:00 PM Central, which is 7 PM Eastern, 5 PM Mountain, and 4 PM Pacific.</p>
+            <p class="mt-4">On alternating Tuesdays, sessions run 90 minutes. On alternating Wednesdays, they run 60 minutes at the same time.</p>
+            <p class="mt-4">Your membership calendar shows what is coming up, and every session is recorded from the time you join forward.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">How much time do I need to get value?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            You can join live when it works for you, use the community as questions come up, and catch recordings from the time you join forward. There is no single way you have to participate.
+          </p></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">How do I know which approaches apply to me?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            Different situations call for different lenses. You will learn from a range of approaches without being asked to commit to one way of thinking about love.
+          </p></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">Where does everything happen?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            Sessions are virtual. The private community and Ask the Experts discussions are inside Circle. Sunday Dares arrive by text and email, sent from the WeDeepen number to members only.
+          </p></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">What are Sunday Dares?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            A new dare arrives every Sunday, designed to bring more play, spontaneity, and social courage into your week. Some stretch you a little, others are simply fun, but each one gives you a reason to try something different and keep connection active outside the screen.
+          </p></div>
+        </div>
+
+        <div class="faq-item border-t border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">Can I cancel? Is there an annual rate?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed">
+            <p>You can cancel at any time from your account or by emailing <a href="mailto:team@wedeepen.com" class="link-underline">team@wedeepen.com</a>. Cancellation takes effect at the end of your current billing period, and you keep access through the period you have paid for.</p>
+            <p class="mt-4">The annual rate is $990, which works out to two months free.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item border-y border-white/12">
+          <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
+            <span class="display text-xl md:text-2xl text-white">How is this different from Love Immersion and Love Club?</span>
+            <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
+          </button>
+          <div class="faq-answer"><p class="pb-8 pr-10 text-white/60 leading-relaxed">
+            The membership is the weekly, virtual foundation and the place most people start. <a href="/love-immersion/october-2026/" class="link-underline">Love Immersion</a> is a three-day in-person retreat. <a href="/love-club/" class="link-underline">Love Club</a> is our highest tier, with a full year of virtual and in-person programming. You can move between tiers at any time.
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="relative">
+    <img src="/images/li-community.webp" alt="The WeDeepen community together" class="bleed" style="height: clamp(480px, 78vh, 780px);" loading="lazy">
+    <div class="absolute inset-0 flex items-center justify-center px-6" style="background: linear-gradient(180deg, rgba(20,20,20,0.72) 0%, rgba(20,20,20,0.82) 100%);">
+      <div class="text-center max-w-3xl">
+        <h2 class="display text-white mb-9" style="font-size: clamp(2.3rem, 5.4vw, 4.2rem);">
+          Make love a lifelong practice.
+        </h2>
+        <p class="lede text-white/70 mb-11 max-w-xl mx-auto">
+          Keep learning from expert guides, testing what you learn, and developing how you
+          date, communicate, connect, and love.
+        </p>
+        <a href="#join" class="btn-primary">Become a Member &middot; $99/month</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-ink border-t border-white/10 py-14">
+    <div class="max-w-site mx-auto px-6 lg:px-10 text-center">
+      <a href="/" class="inline-block mb-5">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-5 w-auto mx-auto opacity-40">
       </a>
-      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+      <p class="text-white/25 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
     </div>
   </footer>
 
 
   <script>
     const header = document.getElementById('wd-header');
-    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); });
 
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileClose = document.getElementById('mobile-close');
@@ -1046,22 +812,14 @@
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
 
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
-    }, { threshold: 0.1 });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-trigger')?.addEventListener('click', () => { item.classList.toggle('open'); });
+      item.querySelector('.faq-trigger')?.addEventListener('click', () => item.classList.toggle('open'));
     });
   </script>
-
-  <!-- Mobile sticky join bar -->
-  <div class="h-20 lg:hidden" aria-hidden="true"></div>
-  <a href="#join"
-     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6"
-     style="background:#E8337A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
-    Become a Member &middot; $99/month &rarr;
-  </a>
 
   <script src="/js/lead-capture.js?v=20" defer></script>
 </body>

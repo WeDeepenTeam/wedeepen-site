@@ -208,14 +208,15 @@
   <section class="bg-ink px-6 lg:px-10 pb-20 md:pb-24">
     <div class="max-w-site mx-auto">
       <p class="text-white/30 text-[0.68rem] uppercase tracking-[0.3em] text-center mb-9">As seen on</p>
-      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-20 opacity-50">
-        <img src="/images/press-logos/peacock.webp" alt="Peacock" class="h-6 md:h-7 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-        <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="h-7 md:h-8 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-        <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="h-10 md:h-12 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-        <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="h-9 md:h-11 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-        <img src="/images/press-logos/vice.webp" alt="Vice" class="h-6 md:h-7 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-        <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="h-6 md:h-7 w-auto" style="filter: brightness(0) invert(1);" loading="eager">
-      </div>
+      <!-- 6-up grid so the logos always hold one row on desktop; object-contain
+           lets each mark shrink to fit its cell instead of wrapping. -->
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-x-5 lg:gap-x-8 gap-y-10 items-center opacity-50">
+        <div class="flex justify-center"><img src="/images/press-logos/peacock.webp" alt="Peacock" class="max-h-5 md:max-h-6 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
+        <div class="flex justify-center"><img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="max-h-6 md:max-h-7 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
+        <div class="flex justify-center"><img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="max-h-9 md:max-h-10 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
+        <div class="flex justify-center"><img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="max-h-8 md:max-h-9 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
+        <div class="flex justify-center"><img src="/images/press-logos/vice.webp" alt="Vice" class="max-h-5 md:max-h-6 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
+        <div class="flex justify-center"><img src="/images/press-logos/omega.webp" alt="Omega Institute" class="max-h-5 md:max-h-6 max-w-full w-auto object-contain" style="filter: brightness(0) invert(1);" loading="eager"></div>
     </div>
   </section>
 
@@ -229,7 +230,7 @@
   <!-- ============ THE SKILL OF LOVE (cream) ============ -->
   <section class="bg-cream px-6 lg:px-10 py-28 md:py-40 text-charcoal">
     <div class="max-w-site mx-auto reveal">
-      <div class="max-w-3xl mb-16 md:mb-20">
+      <div class="max-w-3xl mb-14 md:mb-16">
         <p class="eyebrow mb-8" style="color:#A8855C;">The skill of love</p>
         <h2 class="display mb-9" style="font-size: clamp(2.1rem, 4.6vw, 3.6rem);">
           Love has a much messier learning curve than most things we get good at.
@@ -244,27 +245,34 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px hair-light">
-        <div class="bg-cream px-7 py-12">
-          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">Chemistry</p>
-          <p class="text-charcoal/40 text-sm mb-3">versus</p>
-          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">compatibility</p>
+      <!-- Ledger: the contrast reads left-to-right, one pair per row, so every
+           term shares a baseline instead of four ragged columns. -->
+      <div class="border-t border-charcoal/20">
+
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
+          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">Chemistry</p>
+          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
+          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">compatibility</p>
         </div>
-        <div class="bg-cream px-7 py-12">
-          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">A rough patch</p>
-          <p class="text-charcoal/40 text-sm mb-3">versus</p>
-          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">a repeating pattern</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
+          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">A rough patch</p>
+          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
+          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">a repeating pattern</p>
         </div>
-        <div class="bg-cream px-7 py-12">
-          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">Healthy compromise</p>
-          <p class="text-charcoal/40 text-sm mb-3">versus</p>
-          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">giving too much away</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
+          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">Healthy compromise</p>
+          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
+          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">giving too much away</p>
         </div>
-        <div class="bg-cream px-7 py-12">
-          <p class="display text-2xl md:text-[1.75rem] leading-snug mb-3">A real concern</p>
-          <p class="text-charcoal/40 text-sm mb-3">versus</p>
-          <p class="display italic text-xl md:text-2xl" style="color:#A01B4A;">an old fear getting triggered</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
+          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">A real concern</p>
+          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
+          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">an old fear getting triggered</p>
         </div>
+
       </div>
     </div>
   </section>

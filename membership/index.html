@@ -114,6 +114,27 @@
     }
     .link-underline:hover { border-color: #C9A277; }
 
+    /* ---- Ledger: one grid for all rows so the three columns share widths ---- */
+    .ledger { display: grid; grid-template-columns: 1fr; max-width: 58rem; }
+    .ledger > * { margin: 0; }
+    .ledger .l-term    { padding-top: 1.6rem; border-top: 1px solid rgba(45,45,45,0.18); }
+    .ledger .l-vs      { padding: 0.35rem 0; }
+    .ledger .l-counter { padding-bottom: 1.6rem; }
+    .ledger > *:nth-last-child(-n+1) { border-bottom: 1px solid rgba(45,45,45,0.18); padding-bottom: 1.6rem; }
+
+    @media (min-width: 768px) {
+      /* column-gap would break the row rules into segments, so the gutters are
+         padding on the cells instead and the borders stay continuous. */
+      .ledger { grid-template-columns: max-content max-content 1fr; column-gap: 0; }
+      /* Cells must stretch, not baseline-align, or each border-top lands at a
+         different height and the row rule breaks into segments. */
+      .ledger > * { align-self: stretch; border-top: 1px solid rgba(45,45,45,0.18); }
+      .ledger .l-term    { padding: 1.9rem 3rem 1.9rem 0; }
+      .ledger .l-vs      { padding: 1.9rem 3rem 1.9rem 0; display: flex; align-items: center; }
+      .ledger .l-counter { padding: 1.9rem 0; }
+      .ledger > *:nth-last-child(-n+3) { border-bottom: 1px solid rgba(45,45,45,0.18); }
+    }
+
     /* ---- Guide portraits: unify wildly different headshot backgrounds ---- */
     .portrait img {
       filter: grayscale(100%) contrast(1.04);
@@ -122,7 +143,8 @@
     .portrait:hover img { filter: grayscale(0%) contrast(1); }
 
     /* ---- Full-bleed photography ---- */
-    .bleed { width: 100%; display: block; object-fit: cover; }
+    .bleed { width: 100%; height: auto; display: block; }
+    .bleed-crop { width: 100%; display: block; object-fit: cover; }
 
     /* ---- FAQ ---- */
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
@@ -224,7 +246,7 @@
 
   <!-- ============ FULL-BLEED PHOTO ============ -->
   <figure class="reveal">
-    <img src="/images/li-community-2.webp" alt="The WeDeepen community gathered in a close huddle" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="eager">
+    <img src="/images/li-community-2.webp" alt="The WeDeepen community gathered in a close huddle" class="bleed" loading="eager">
   </figure>
 
 
@@ -246,34 +268,24 @@
         </p>
       </div>
 
-      <!-- Ledger: the contrast reads left-to-right, one pair per row, so every
-           term shares a baseline instead of four ragged columns. -->
-      <div class="border-t border-charcoal/20">
+      <!-- One grid, twelve cells: columns size to the widest term so all three
+           columns align, and the pair stays close enough to read as a pair. -->
+      <div class="ledger">
+        <p class="l-term display text-[1.7rem] md:text-[2.1rem] leading-tight">Chemistry</p>
+        <p class="l-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="l-counter display italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">compatibility</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
-          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">Chemistry</p>
-          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
-          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">compatibility</p>
-        </div>
+        <p class="l-term display text-[1.7rem] md:text-[2.1rem] leading-tight">A rough patch</p>
+        <p class="l-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="l-counter display italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">a repeating pattern</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
-          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">A rough patch</p>
-          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
-          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">a repeating pattern</p>
-        </div>
+        <p class="l-term display text-[1.7rem] md:text-[2.1rem] leading-tight">Healthy compromise</p>
+        <p class="l-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="l-counter display italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">giving too much away</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
-          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">Healthy compromise</p>
-          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
-          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">giving too much away</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-baseline gap-y-2 md:gap-x-10 py-8 md:py-10 border-b border-charcoal/20">
-          <p class="display text-[1.8rem] md:text-[2.4rem] leading-tight">A real concern</p>
-          <p class="text-charcoal/35 text-[0.7rem] uppercase tracking-[0.28em] py-1 md:py-0">versus</p>
-          <p class="display italic text-[1.8rem] md:text-[2.4rem] leading-tight md:text-right" style="color:#A01B4A;">an old fear getting triggered</p>
-        </div>
-
+        <p class="l-term display text-[1.7rem] md:text-[2.1rem] leading-tight">A real concern</p>
+        <p class="l-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="l-counter display italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">an old fear getting triggered</p>
       </div>
     </div>
   </section>
@@ -281,7 +293,7 @@
 
   <!-- ============ FULL-BLEED PHOTO ============ -->
   <figure class="reveal">
-    <img src="/images/li-experience-1.webp?v=2" alt="A candlelit circle at a WeDeepen gathering" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="lazy">
+    <img src="/images/li-experience-1.webp?v=2" alt="A candlelit circle at a WeDeepen gathering" class="bleed" loading="lazy">
   </figure>
 
 
@@ -300,36 +312,36 @@
         <div class="bg-ink md:pr-9 py-12 md:py-4">
           <p class="eyebrow mb-6">01</p>
           <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Weekly live sessions</h3>
-          <p class="text-white/55 leading-relaxed mb-8">A rotating mix of ways to learn, practice, and integrate.</p>
-          <ul class="space-y-5 text-white/70 leading-relaxed">
-            <li>Love Masterminds built around real relationship questions and situations.</li>
-            <li>Workshops with expert coaches across dating, intimacy, communication, and relationships.</li>
-            <li>Bonding exercises with other members.</li>
-            <li>Integration sessions to unpack what you&rsquo;re learning.</li>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">A rotating mix of ways to learn, practice, and integrate.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Love Masterminds built around real relationship questions and situations.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Workshops with expert coaches across dating, intimacy, communication, and relationships.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Bonding exercises with other members.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Integration sessions to unpack what you&rsquo;re learning.</li>
           </ul>
         </div>
 
         <div class="bg-ink md:px-9 py-12 md:py-4">
           <p class="eyebrow mb-6">02</p>
           <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Private community</h3>
-          <p class="text-white/55 leading-relaxed mb-8">A place to keep the conversation going between sessions.</p>
-          <ul class="space-y-5 text-white/70 leading-relaxed">
-            <li>Ask the Experts Q&amp;A with WeDeepen&rsquo;s relationship professionals.</li>
-            <li>Private discussions inside Circle.</li>
-            <li>Bring up dating, sex, intimacy, conflict, attraction, or anything you&rsquo;re working through.</li>
-            <li>Connect with members and share what actually helps.</li>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">A place to keep the conversation going between sessions.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Ask the Experts Q&amp;A with WeDeepen&rsquo;s relationship professionals.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Private discussions inside Circle.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Bring up dating, sex, intimacy, conflict, attraction, or anything you&rsquo;re working through.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Connect with members and share what actually helps.</li>
           </ul>
         </div>
 
         <div class="bg-ink md:pl-9 py-12 md:py-4">
           <p class="eyebrow mb-6">03</p>
           <h3 class="display text-[1.7rem] md:text-3xl text-white mb-5">Practice &amp; recordings</h3>
-          <p class="text-white/55 leading-relaxed mb-8">Ways to stay involved outside a session.</p>
-          <ul class="space-y-5 text-white/70 leading-relaxed">
-            <li>A new Sunday Dare by text and email each week, members only.</li>
-            <li>Playful social and connection challenges to try in real life.</li>
-            <li>Recordings of every session held from the time you join.</li>
-            <li>The membership calendar, so you always know what&rsquo;s next.</li>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">Ways to stay involved outside a session.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">A new Sunday Dare by text and email each week, members only.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Playful social and connection challenges to try in real life.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Recordings of every session held from the time you join.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">The membership calendar, so you always know what&rsquo;s next.</li>
           </ul>
         </div>
 
@@ -342,23 +354,45 @@
   <section class="bg-ink px-6 lg:px-10 pb-28 md:pb-40">
     <div class="max-w-site mx-auto reveal">
       <div class="h-px hair-dark mb-16"></div>
-      <div class="grid md:grid-cols-12 gap-10 items-baseline">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-12 items-baseline mb-14 md:mb-16">
         <div class="md:col-span-4">
           <p class="eyebrow mb-6">The weekly rhythm</p>
           <h2 class="display text-white text-3xl md:text-4xl">Two nights a week.</h2>
         </div>
-        <div class="md:col-span-8 grid sm:grid-cols-2 gap-px hair-dark">
-          <div class="bg-ink sm:pr-9 py-8 sm:py-2">
+        <div class="md:col-span-8 grid sm:grid-cols-2 gap-8 sm:gap-12">
+          <div>
             <p class="display text-4xl md:text-5xl text-white mb-3">Tuesdays</p>
-            <p class="text-white/60 leading-relaxed">Alternating weeks, 90 minutes.<br>6:00 PM Central.</p>
+            <p class="text-white/60 leading-relaxed">Alternating weeks, 90 minutes.</p>
           </div>
-          <div class="bg-ink sm:pl-9 py-8 sm:py-2">
+          <div>
             <p class="display text-4xl md:text-5xl text-white mb-3">Wednesdays</p>
-            <p class="text-white/60 leading-relaxed">Alternating weeks, 60 minutes.<br>6:00 PM Central.</p>
+            <p class="text-white/60 leading-relaxed">Alternating weeks, 60 minutes.</p>
           </div>
         </div>
       </div>
-      <p class="text-white/35 text-sm mt-12">7 PM Eastern &middot; 5 PM Mountain &middot; 4 PM Pacific. Every session is recorded.</p>
+
+      <!-- Every US time zone given equal weight, rather than Central with the
+           rest demoted to a grey footnote. -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px hair-dark">
+        <div class="bg-ink px-5 py-8 text-center">
+          <p class="display text-2xl md:text-[1.9rem] text-white mb-2">7:00 PM</p>
+          <p class="text-gold/80 text-[0.72rem] uppercase tracking-[0.2em]">Eastern</p>
+        </div>
+        <div class="bg-ink px-5 py-8 text-center">
+          <p class="display text-2xl md:text-[1.9rem] text-white mb-2">6:00 PM</p>
+          <p class="text-gold/80 text-[0.72rem] uppercase tracking-[0.2em]">Central</p>
+        </div>
+        <div class="bg-ink px-5 py-8 text-center">
+          <p class="display text-2xl md:text-[1.9rem] text-white mb-2">5:00 PM</p>
+          <p class="text-gold/80 text-[0.72rem] uppercase tracking-[0.2em]">Mountain</p>
+        </div>
+        <div class="bg-ink px-5 py-8 text-center">
+          <p class="display text-2xl md:text-[1.9rem] text-white mb-2">4:00 PM</p>
+          <p class="text-gold/80 text-[0.72rem] uppercase tracking-[0.2em]">Pacific</p>
+        </div>
+      </div>
+
+      <p class="text-white/45 text-sm mt-8">Every session is recorded, so you can catch it later from anywhere.</p>
     </div>
   </section>
 
@@ -385,7 +419,7 @@
         </div>
       </div>
       <div class="order-1 lg:order-2">
-        <img src="/images/li-experience-2.webp?v=2" alt="Two members in conversation at a WeDeepen gathering" class="bleed h-full" style="min-height: clamp(320px, 50vh, 900px);" loading="lazy">
+        <img src="/images/li-experience-2.webp?v=2" alt="Two members in conversation at a WeDeepen gathering" class="bleed-crop h-full" style="min-height: clamp(320px, 50vh, 900px);" loading="lazy">
       </div>
     </div>
   </section>
@@ -420,7 +454,7 @@
 
   <!-- ============ FULL-BLEED PHOTO ============ -->
   <figure class="reveal">
-    <img src="/images/li-experience-cards/hot-seat-coaching.webp" alt="Coaching in the round at a WeDeepen gathering" class="bleed" style="height: clamp(340px, 62vh, 660px);" loading="lazy">
+    <img src="/images/li-experience-cards/hot-seat-coaching.webp" alt="Coaching in the round at a WeDeepen gathering" class="bleed" loading="lazy">
   </figure>
 
 
@@ -512,7 +546,7 @@
   <section class="bg-cream text-charcoal">
     <div class="grid lg:grid-cols-2">
       <div>
-        <img src="/images/gallery/christina-teaching.jpg" alt="Christina Weber teaching at a WeDeepen gathering" class="bleed h-full" style="min-height: clamp(320px, 50vh, 820px); object-position: 60% 35%;" loading="lazy">
+        <img src="/images/gallery/christina-teaching.jpg" alt="Christina Weber teaching at a WeDeepen gathering" class="bleed-crop h-full" style="min-height: clamp(320px, 50vh, 820px); object-position: 60% 35%;" loading="lazy">
       </div>
       <div class="px-6 lg:px-16 py-24 md:py-32 flex items-center">
         <div class="reveal">
@@ -585,8 +619,8 @@
 
   <!-- ============ PHOTO PAIR ============ -->
   <section class="grid sm:grid-cols-2 reveal">
-    <img src="/images/li-experience-cards/play-connection.webp?v=2" alt="Members in a circle at a WeDeepen gathering" class="bleed" style="height: clamp(260px, 44vh, 520px);" loading="lazy">
-    <img src="/images/gallery/group-bonding.jpg" alt="Members laughing together at a WeDeepen gathering" class="bleed" style="height: clamp(260px, 44vh, 520px);" loading="lazy">
+    <img src="/images/li-experience-cards/play-connection.webp?v=2" alt="Members in a circle at a WeDeepen gathering" class="bleed" loading="lazy">
+    <img src="/images/gallery/group-bonding.jpg" alt="Members laughing together at a WeDeepen gathering" class="bleed" loading="lazy">
   </section>
 
 
@@ -685,7 +719,7 @@
             <span class="faq-plus text-gold text-xl leading-none shrink-0 mt-1">+</span>
           </button>
           <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed">
-            <p>Sessions run online at 6:00 PM Central, which is 7 PM Eastern, 5 PM Mountain, and 4 PM Pacific.</p>
+            <p>Sessions run online at <strong class="text-white">7:00 PM Eastern, 6:00 PM Central, 5:00 PM Mountain, and 4:00 PM Pacific</strong>.</p>
             <p class="mt-4">On alternating Tuesdays, sessions run 90 minutes. On alternating Wednesdays, they run 60 minutes at the same time.</p>
             <p class="mt-4">Your membership calendar shows what is coming up, and every session is recorded from the time you join forward.</p>
           </div></div>
@@ -758,7 +792,7 @@
 
   <!-- ============ FINAL CTA ============ -->
   <section class="relative">
-    <img src="/images/li-community.webp" alt="The WeDeepen community together" class="bleed" style="height: clamp(480px, 78vh, 780px);" loading="lazy">
+    <img src="/images/li-community.webp" alt="The WeDeepen community together" class="bleed-crop" style="height: clamp(520px, 82vh, 820px);" loading="lazy">
     <div class="absolute inset-0 flex items-center justify-center px-6" style="background: linear-gradient(180deg, rgba(20,20,20,0.72) 0%, rgba(20,20,20,0.82) 100%);">
       <div class="text-center max-w-3xl">
         <h2 class="display text-white mb-9" style="font-size: clamp(2.3rem, 5.4vw, 4.2rem);">

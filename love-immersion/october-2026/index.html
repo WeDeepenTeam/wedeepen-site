@@ -1427,6 +1427,48 @@
      style="background:#E8337A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Reserve My Spot · October 17&ndash;19 &rarr;
   </a>
+  <!-- In-person offer pass-through. Guests arriving from /inpersonoffer carry
+       ?ip=INPERSON (one ticket) or ?ip=INPERSON2 (two tickets). We forward that
+       code into the TicketSpice coupon field so it is already filled in at
+       checkout. Everyone else sees this page at full price, which is what keeps
+       the in-person pricing in-person only. Codes are whitelisted, so an
+       arbitrary ?ip= value does nothing. -->
+  <script>
+    (function () {
+      var CODES = {
+        INPERSON:  '$500 off one ticket',
+        INPERSON2: '$1,195 off two tickets'
+      };
+      var FIELD = 'registrants.coupon_code859323033332572';
+
+      var code = new URLSearchParams(window.location.search).get('ip');
+      if (!code) return;
+      code = code.toUpperCase();
+      if (!CODES[code]) return;
+
+      document.querySelectorAll('a[href*="wedeepen.ticketspice.com"]').forEach(function (a) {
+        try {
+          var u = new URL(a.href);
+          u.searchParams.set(FIELD, code);
+          a.href = u.toString();
+        } catch (e) {}
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'fixed bottom-24 lg:bottom-6 left-1/2 -translate-x-1/2 z-40 ' +
+                      'flex items-center gap-3 px-5 py-3 rounded-full text-sm ' +
+                      'max-w-[92vw] shadow-lg';
+      bar.style.cssText += 'background:rgba(26,26,26,0.96);border:1px solid #C9A277;color:#F4EDE0;';
+      bar.innerHTML =
+        '<span>Your in-person pricing is on: <strong style="color:#C9A277">' + CODES[code] +
+        '</strong>. Code <strong style="color:#C9A277">' + code + '</strong> is waiting at checkout.</span>' +
+        '<button type="button" aria-label="Dismiss" ' +
+        'style="color:rgba(244,237,224,0.5);font-size:1.1rem;line-height:1">&times;</button>';
+      bar.querySelector('button').addEventListener('click', function () { bar.remove(); });
+      document.body.appendChild(bar);
+    })();
+  </script>
+
   <script src="/js/lead-capture.js?v=20" defer></script>
 </body>
 </html>

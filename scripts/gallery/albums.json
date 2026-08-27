@@ -308,6 +308,24 @@
       "parent_event_title": "Love Immersion"
     },
     {
+      "slug": "wedeepen-in-person-august-2026",
+      "title": "WeDeepen In-Person — August 2026",
+      "description": "Two days in Austin practicing the skill of love. August 22 and 23, 2026.",
+      "event_date": "2026-08-22",
+      "location": "Austin, TX",
+      "drive_folder_id": "1XkndEETsdz8_Q0rjbtrJjd-WfDi0-3sp",
+      "drive_folder_ids": [
+        "1XkndEETsdz8_Q0rjbtrJjd-WfDi0-3sp",
+        "1jrRrTEyFH9Qe1QI7cvPmwaACG3g9tVAt"
+      ],
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 9,
+      "photographer": null,
+      "parent_event": "wedeepen-in-person",
+      "parent_event_title": "WeDeepen In-Person"
+    },
+    {
       "slug": "atma-cosmic-heart-ceremony",
       "title": "ĀTMA Cosmic Heart Ceremony",
       "description": "A sacred ceremony co-held with ĀTMA. Cosmic heart, deepened presence, embodied connection.",

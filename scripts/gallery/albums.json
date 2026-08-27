@@ -1,5 +1,5 @@
 {
-  "_README": "Album metadata. drive_folder_id is the Google Drive folder ID. Set drive_folder_id to null to skip an album from bulk runs.",
+  "_README": "Album metadata. drive_folder_id is the Google Drive folder ID. Set drive_folder_id to null to skip an album from bulk runs. exclude_hashes lists content hashes of photos pulled from the gallery on purpose; process-and-upload skips them so a re-run cannot restore them.",
   "_drive_parent": "https://drive.google.com/drive/folders/1yvHx-RePRo-yK7YYgDC4uEdkIh_z9HH_",
   "albums": [
     {
@@ -321,9 +321,14 @@
       "youtube_ids": [],
       "event_page_slug": null,
       "display_order": 9,
-      "photographer": null,
+      "photographer": "Allison Powers",
       "parent_event": "wedeepen-in-person",
-      "parent_event_title": "WeDeepen In-Person"
+      "parent_event_title": "WeDeepen In-Person",
+      "exclude_hashes": [
+        "40ca41b8c4a876c5",
+        "1ed14a18d51226b5",
+        "50b4586e6d1b665e"
+      ]
     },
     {
       "slug": "atma-cosmic-heart-ceremony",

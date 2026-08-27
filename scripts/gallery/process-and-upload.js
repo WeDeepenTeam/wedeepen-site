@@ -145,6 +145,11 @@ async function uploadBuffer(storagePath, buffer, contentType) {
 
 async function processOne(albumId, slug, sourcePath, indexInAlbum, album, dryRun) {
   const hash = await fileBytesHash(sourcePath);
+  // Photos pulled from a published gallery on purpose. Without this, a re-run
+  // of the pipeline against the same Drive folder silently restores them.
+  if (album.exclude_hashes?.includes(hash)) {
+    return { mediaId: null, skipped: true, excluded: true };
+  }
   const fullPath = `${slug}/full/${hash}.webp`;
   const thumbPath = `${slug}/thumb/${hash}.webp`;
 

@@ -3,13 +3,1213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3F2GQXR8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BY3F2GQXR8');
+  </script>
+
+  <!-- Meta pixel. Paste the pixel ID on the FB_PIXEL_ID line below and it switches on.
+       Nothing else needs touching: PageView and ViewContent fire here, InitiateCheckout
+       and Lead are already wired to the Eventbrite buttons and the invites popup at the
+       bottom of this file. Empty ID means the pixel never loads, so this is safe to ship. -->
+  <script>
+    var FB_PIXEL_ID = '1541773576982273'; // "WeDeepen Website" dataset, WeDeepen Relationships portfolio
+    if (FB_PIXEL_ID) {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', FB_PIXEL_ID);
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent', {
+        content_name: 'WeDeepen In-Person, September 19-20 2026',
+        content_category: 'Event'
+      });
+    }
+  </script>
+
   <title>WeDeepen In-Person — September 19–20, 2026 | Austin, TX</title>
-  <meta http-equiv="refresh" content="0; url=/inperson/september-2026/">
-  <link rel="canonical" href="https://wedeepen.com/inperson/september-2026/">
-  <meta name="robots" content="noindex">
+  <meta name="description" content="Two days in Austin getting even better at love. Top teachers, live coaching, and connection experiences, plus a taste of the talks happening inside WeDeepen's Love Club. September 19-20, 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wedeepen.com/inperson/">
+
+  <meta property="og:type" content="event">
+  <meta property="og:url" content="https://wedeepen.com/inperson/">
+  <meta property="og:title" content="WeDeepen In-Person — September 19–20, 2026">
+  <meta property="og:description" content="Love is a skill. Spend two days getting better at it. Top teachers, live coaching, and connection experiences in Austin, TX. For individuals and couples.">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-inperson-v8.jpg">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="525">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:site_name" content="WeDeepen">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WeDeepen In-Person — September 19–20, 2026">
+  <meta name="twitter:description" content="Love is a skill. Spend two days getting better at it. Top teachers, live coaching, and connection experiences in Austin, TX.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/og-inperson-v8.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationEvent",
+    "name": "WeDeepen In-Person: Get Even Better at Love",
+    "description": "Top teachers, live coaching and connection experiences, plus a taste of the talks happening inside WeDeepen's Love Club. Two days in Austin.",
+    "startDate": "2026-09-19T10:00:00-05:00",
+    "endDate": "2026-09-20T16:00:00-05:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Stardust Garage",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4319 Terry-O Lane",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78745",
+        "addressCountry": "US"
+      }
+    },
+    "image": "https://wedeepen.com/images/og/og-inperson-v8.jpg",
+    "organizer": {
+      "@type": "Organization",
+      "name": "WeDeepen",
+      "url": "https://wedeepen.com"
+    },
+    "performer": [
+      { "@type": "Person", "name": "Christina Weber" },
+      { "@type": "Person", "name": "Annie Lalla" },
+      { "@type": "Person", "name": "Jordan Bowditch" },
+      { "@type": "Person", "name": "Ariana Hall" },
+      { "@type": "Person", "name": "Bootsy Greenwood" }
+    ],
+    "offers": {
+      "@type": "AggregateOffer",
+      "url": "https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146",
+      "availability": "https://schema.org/InStock",
+      "lowPrice": "99",
+      "highPrice": "1200",
+      "priceCurrency": "USD"
+    },
+    "url": "https://wedeepen.com/inperson/"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#E8337A', bright: '#FF4F8C' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    .brain-hero {
+      background-image:
+        linear-gradient(180deg, rgba(26,26,26,0.35) 0%, rgba(26,26,26,0.2) 50%, rgba(26,26,26,0.8) 100%),
+        url('/images/inperson/inperson-hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #1a1030;
+    }
+
+    .wd-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .gold-line-center::after {
+      content: ''; display: block;
+      width: 60px; height: 2px;
+      background: #C9A277;
+      margin: 16px auto 0;
+    }
+
+    .btn-pink {
+      background: #E8337A; color: #fff;
+      padding: 14px 32px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-pink:hover { background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }
+
+    .btn-outline {
+      border: 1.5px solid #C9A277; color: #C9A277;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+
+    .press-logo { filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.3s; }
+    .press-logo:hover { opacity: 0.9; }
+
+    .pillar-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pillar-card:hover { border-color: rgba(201,162,119,0.3); background: rgba(255,255,255,0.05); }
+
+    .day-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    /* FAQ accordion */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.4s ease; }
+    .faq-item:not(.open) .faq-answer { padding-bottom: 0; }
+    .faq-item.open .faq-answer { max-height: 1400px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Auto-scrolling portrait film strip. Track holds the set twice; sliding
+       -50% loops seamlessly. Pauses on hover; static + swipeable when the
+       visitor prefers reduced motion. Uniform 3:4 tiles keep the rhythm even;
+       edge masks fade the strip out instead of hard-cropping at the viewport. */
+    .photo-marquee {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
+      mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
+    }
+    .pm-track { display: flex; width: max-content; animation: pm-scroll 55s linear infinite; will-change: transform; }
+    .pm-track img { height: 15rem; width: 11.25rem; object-fit: cover; border-radius: 0.75rem; margin-right: 1rem; }
+    @media (min-width: 768px) {
+      .pm-track img { height: 21rem; width: 15.75rem; }
+      .photo-marquee {
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8rem, black calc(100% - 8rem), transparent);
+        mask-image: linear-gradient(to right, transparent, black 8rem, black calc(100% - 8rem), transparent);
+      }
+    }
+    .photo-marquee:hover .pm-track { animation-play-state: paused; }
+    @keyframes pm-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .pm-track { animation: none; }
+      .photo-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    }
+
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* Typographic polish — balance headings, prevent widow/orphan lines */
+    h1, h2, h3, h4 { text-wrap: balance; }
+    p, li, blockquote { text-wrap: pretty; }
+  </style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
 </head>
-<body style="font-family: system-ui, sans-serif; background:#1A1A1A; color:#fff; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0;">
-  <p>WeDeepen In-Person has a new home. <a href="/inperson/september-2026/" style="color:#C9A277;">September 19&ndash;20, 2026 &rarr;</a></p>
-  <script src="/js/lead-capture.js?v=20" defer></script>
+<body class="bg-ink text-white">
+
+  <!-- STICKY HEADER -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex flex-1 items-center">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+        <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
+        <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
+        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+      </nav>
+      <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
+
+        <a href="#" data-lead-popup class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">GET PRIVATE INVITES</a>
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Get Tickets</a>
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium">
+
+      <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
+      <a href="/events/" class="text-white hover:text-gold transition">Events</a>
+      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink text-center mt-4">Get Tickets</a>
+          <a href="#" data-lead-popup class="btn-rose text-center mt-4">GET PRIVATE INVITES</a>
+    </nav>
+  </div>
+
+
+  <!-- ============================
+       HERO — brain graphic, LI style
+       ============================ -->
+  <section class="brain-hero relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24 md:pt-28 pb-20">
+
+      <p class="font-heading italic text-white/90 text-base md:text-xl leading-snug mb-8 lg:whitespace-nowrap lg:-mx-16" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">&ldquo;It was by far the best instant upgrade I&rsquo;ve experienced in my eleven years of biohacking.&rdquo; <span class="text-gold whitespace-nowrap">&ndash; Lizzy</span></p>
+
+      <h1 class="sr-only">WeDeepen In-Person: Love is a skill. Spend two days getting even better at it. September 19&ndash;20, 2026 in Austin, TX.</h1>
+      <div class="mb-8" style="filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));">
+        <p class="text-white font-bold leading-[0.95] text-6xl sm:text-7xl md:text-8xl tracking-tight">WeDeepen</p>
+        <p class="font-bold leading-[0.95] text-6xl sm:text-7xl md:text-8xl tracking-tight" style="color:#E8337A;">IN-PERSON</p>
+        <p class="text-white/85 text-sm sm:text-base md:text-xl uppercase tracking-[0.28em] font-light mt-4" style="text-shadow: 0 2px 12px rgba(0,0,0,0.5);">
+          Get <span class="italic">Even</span> Better at Love
+        </p>
+      </div>
+
+      <!-- Press bar — WeDeepen Featured On (desktop) -->
+      <div class="hidden md:block mt-10 mb-12">
+        <p class="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium text-center mb-5">WeDeepen Featured On</p>
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10 max-w-4xl mx-auto">
+          <img src="/images/press-logos/peacock.webp" alt="Peacock" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+          <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="press-logo h-6 md:h-7 w-auto" loading="lazy">
+          <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="press-logo h-9 md:h-11 w-auto" loading="lazy">
+          <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="press-logo h-8 md:h-10 w-auto" loading="lazy">
+          <img src="/images/press-logos/vice.webp" alt="Vice" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+          <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+        </div>
+      </div>
+
+      <p class="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-10 leading-relaxed font-light">
+        The old way of doing relationships is breaking down, and something better is emerging. In two days, you&rsquo;ll practice the 4 Pillars of conscious love, interrupt the patterns that sabotage your love life, and leave with tools and a community you&rsquo;ll return to for life.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink text-base !px-10 !py-4">Get My Ticket</a>
+      </div>
+      <p class="text-gold text-sm mt-4 font-medium" style="text-shadow: 0 2px 12px rgba(0,0,0,0.5);">Starting at $99. Buy one, get one free now.</p>
+      <p class="text-white/50 text-xs tracking-[0.2em] uppercase mt-3">September 19&ndash;20, 2026 &middot; Stardust Garage &middot; Austin, TX &middot; 100 spots</p>
+
+      <!-- Press bar — mobile (hero bottom) -->
+      <div class="md:hidden mt-12">
+        <p class="text-white/40 text-[10px] uppercase tracking-[0.3em] font-medium text-center mb-5">WeDeepen Featured On</p>
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+          <img src="/images/press-logos/peacock.webp" alt="Peacock" class="press-logo h-5 w-auto" loading="lazy">
+          <img src="/images/press-logos/la-magazine.webp" alt="Los Angeles Magazine" class="press-logo h-6 w-auto" loading="lazy">
+          <img src="/images/press-logos/bill-maher.webp" alt="Real Time with Bill Maher" class="press-logo h-9 w-auto" loading="lazy">
+          <img src="/images/press-logos/biohacking-conference.webp" alt="Biohacking Conference" class="press-logo h-8 w-auto" loading="lazy">
+          <img src="/images/press-logos/vice.webp" alt="Vice" class="press-logo h-5 w-auto" loading="lazy">
+          <img src="/images/press-logos/omega.webp" alt="Omega Institute" class="press-logo h-5 w-auto" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- WHY THIS WEEKEND -->
+  <section id="why" class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <h2 class="font-heading text-4xl md:text-5xl font-normal mb-8 leading-tight">
+        What would it be like if your love life was <span class="italic" style="color:#C4577A;">even better?</span>
+      </h2>
+      <div class="space-y-5 text-white/70 text-lg leading-relaxed font-light text-left max-w-2xl mx-auto">
+        <p>
+          You&rsquo;re optimizing your sleep, your bloodwork, your nervous system. And yet love is still the place that humbles you.
+        </p>
+        <p>
+          <span class="text-white font-medium">If you&rsquo;re partnered:</span> Maybe you&rsquo;re more drained by the person you love than by anyone else, having the same fight you had two years ago, or quietly asking whether to stay or go. Or maybe you&rsquo;re in a new relationship and you want to get it <span class="italic">right</span> this time.
+        </p>
+        <p>
+          <span class="text-white font-medium">If you&rsquo;re solo:</span> Maybe you&rsquo;re tired of dating apps and events that go nowhere, unable to find someone as evolved as you are, or quietly wondering if the person you&rsquo;re looking for even exists. Or maybe you&rsquo;re moving through heartbreak and just want to feel like yourself again.
+        </p>
+        <p>
+          Whatever&rsquo;s true for you, the current paradigm isn&rsquo;t working. Relationships are going through a major redesign. People are unsatisfied in love; people don&rsquo;t know how to make relationships work.
+        </p>
+        <p>
+          And, believe it or not, this is a good thing. Because when systems break down, that&rsquo;s when they change. The breakdown is pushing us toward something better: conscious love. And that&rsquo;s what this invitation is all about.
+        </p>
+        <p class="font-heading italic text-xl md:text-2xl pt-2" style="color:#C4577A;">Beyond biohacking, love is the next frontier.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PHOTO BAND -->
+  <section class="bg-ink px-6 pb-6 md:pb-12">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch reveal">
+      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/4f6809242de18382.webp" alt="A WeDeepen sharing circle in Austin" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/53e9fabe669a9c7d.webp" alt="Live coaching in the circle at a WeDeepen event" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/fe552c62330940dc.webp" alt="Participants laughing together at a WeDeepen gathering" loading="lazy" class="w-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+    </div>
+  </section>
+
+
+  <!-- CONSCIOUS LOVING RELATIONSHIP -->
+  <section class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <h2 class="font-heading text-4xl md:text-5xl font-normal mb-8 leading-tight gold-line-center">
+        So what exactly is a <span class="italic" style="color:#E8337A;">conscious loving relationship?</span>
+      </h2>
+      <div class="space-y-5 text-white/70 text-lg leading-relaxed font-light text-left max-w-2xl mx-auto">
+        <p>
+          It&rsquo;s a relationship that has a purpose, and that purpose is growth.
+        </p>
+        <p class="text-white font-medium">
+          Individual growth. Growth as a couple. Growth that makes the world a better place.
+        </p>
+        <p>
+          As of now, most people get into relationships to satisfy their own personal needs. This might work for a few years, but eventually the relationship fails us, and we end up unsatisfied as a result.
+        </p>
+        <p>
+          But when you come together with the intention of growth, your relationship strives toward something much greater than gratification. Your partnership becomes a journey of evolution, and you have an opportunity to expand more than you could alone. Deep satisfaction and long-term fulfillment arise as a result.
+        </p>
+        <p>
+          So if you&rsquo;re someone who feels called to take love to the next level, WeDeepen was made for you.
+        </p>
+      </div>
+      <div class="text-center mt-10">
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink">Sign Me Up</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- PHOTO BAND — couples -->
+  <section class="bg-ink px-6 pb-8 md:pb-16">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="grid sm:grid-cols-3 gap-4 md:gap-5 items-stretch">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_057.webp" alt="A couple sitting close during a session at Biohacking Love" loading="lazy" class="w-full h-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+        <div class="w-full h-full aspect-[3/2] rounded-2xl shadow-2xl overflow-hidden">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_046.webp" alt="A speaker panel at the salt wall at Biohacking Love" loading="lazy" class="w-full h-full object-cover" style="transform: scale(1.65); transform-origin: 20% 51%;">
+        </div>
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_051.webp" alt="A couple forehead to forehead at Biohacking Love" loading="lazy" class="w-full h-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- AGENDA -->
+  <section id="agenda" class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="text-center mb-10 md:mb-12">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">WeDeepen In-Person</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Spend two days getting <span class="italic" style="color:#E8337A;">even better at love.</span></h2>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-10 md:gap-8 items-center mb-12 md:mb-16">
+        <div class="md:col-span-3 space-y-4 text-white/70 text-base md:text-lg leading-relaxed font-light">
+          <p>
+            Here&rsquo;s what we&rsquo;ll do. Over two days, you&rsquo;ll learn and practice the 4 Pillars of a Conscious Relationship:
+          </p>
+          <ol class="space-y-3 pl-5 list-decimal marker:text-gold">
+            <li><span class="text-white font-medium">No Attachment to Outcome.</span> Growth comes first.</li>
+            <li><span class="text-white font-medium">Radical Ownership.</span> Each person owns their own sh*t.</li>
+            <li><span class="text-white font-medium">All Feelings Are Welcome.</span> No internal process is condemned.</li>
+            <li><span class="text-white font-medium">Love Is a Practice.</span> Partnership, dating, and simply being human here on Earth: they&rsquo;re all places to practice love.</li>
+          </ol>
+          <p class="text-white/45 text-xs md:text-sm pt-2">
+            With gratitude to Shelly Bullard for bringing the 4 Pillars of a Conscious Relationship to life for us to practice and pursue.
+          </p>
+        </div>
+        <img src="/images/inperson/conscious-relationship-illustration.webp" alt="Illustration of two partners sculpting each other into their fullest selves" loading="lazy" class="md:col-span-2 w-full max-w-xs md:max-w-none mx-auto h-auto">
+      </div>
+
+      <div class="space-y-8">
+        <!-- DAY ONE -->
+        <div class="day-block">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-2">Day One &middot; Saturday &middot; 10 AM &ndash; 5 PM</p>
+          <p class="text-white/50 text-sm mb-6">Practicing Pillars 1 and 2: No Attachment to Outcome, and Radical Ownership.</p>
+          <div class="space-y-5">
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">10:00</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Doors open. Danger Coffee, Be LOVE beverages, music, and chill morning vibes. Plus, a live DJ bringing the energy.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">10:30</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Christina Weber, Love Strategist and founder of WeDeepen, opens the weekend with storytelling, agreements, the 4 Pillars, relational activities, and a cacao blessing by CA&Uacute;A Culture.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Midday</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Ariana Hall, master coach for high achievers, on cutting through the stories you have been telling yourself for years, and getting radically clear about what you actually want in love.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Around 1:00</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Lunch break. Great food within a short walk. VIPs, your lunch is included.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Afternoon</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Annie Lalla, known as the Cartographer of Love, answers your questions about love and relationships, followed by Hot Seat Love Coaching with Annie and men&rsquo;s performance and intimacy coach Jordan Bowditch: brave people, real situations, coached live by two Jedi masters.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Late afternoon</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">A live panel with Annie Lalla, Ariana Hall, and Jordan Bowditch, taking your questions on dating, desire, conflict, and what it actually takes to build the relationship you want.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">5:00</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Day One closes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY TWO -->
+        <div class="day-block">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-2">Day Two &middot; Sunday &middot; 10 AM &ndash; 4 PM</p>
+          <p class="text-white/50 text-sm mb-6">Practicing Pillars 3 and 4: All Feelings Are Welcome, and Love Is a Practice.</p>
+          <div class="space-y-5">
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">10:00</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Doors open. Danger Coffee, Be LOVE beverages, music, and chill morning vibes. Plus, a live DJ bringing the energy.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">10:30</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Christina Weber opens the day with morning cacao by CA&Uacute;A Culture, reflections on what Day One brought to light, and love codes for moving through heartbreak, staying true to yourself in love, overcoming conflict, dating, and deepening intimacy.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Late morning</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Annie Lalla answers more of your questions about love and relationships. Trust us, you&rsquo;ll have new ones by Day Two. Then Hot Seat Love Coaching continues with Annie and Jordan Bowditch. Who will take the hot seat today?</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Around 12:30</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Lunch break. VIPs, your lunch is included.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Afternoon</p>
+              <div class="flex items-center gap-3">
+                <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">A relational activity, then Bootsy Greenwood on Reality Transurfing: how to stop chasing what you want in love and start choosing it.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">Late afternoon</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Storytelling with Love Club members, getting personal and open about what&rsquo;s really happening in our love lives and what it takes to keep evolving. We&rsquo;ll peel back more layers of ego, protection, and old patterns so we can see ourselves more clearly, love more freely, and go deeper in our relationships.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 items-center">
+              <p class="text-gold text-sm md:text-base font-semibold w-24 md:w-32 flex-shrink-0">4:00</p>
+              <p class="text-white/70 text-base md:text-lg leading-relaxed font-light">Voil&agrave;. Your love weekend is complete. Until next time. Xo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink">Reserve My Spot</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MOMENTS CAROUSEL -->
+  <section class="bg-ink px-6 py-8 md:py-16">
+    <div class="max-w-3xl mx-auto reveal">
+      <div id="bl-carousel" class="relative rounded-2xl overflow-hidden shadow-2xl mb-4" style="aspect-ratio: 3/2;">
+        <div class="hc-track flex h-full transition-transform duration-500 ease-out" style="will-change: transform;">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/cc587516873f20ce.webp" alt="A teaching session at a WeDeepen event" loading="eager" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/6a2fcb4c6f748ba5.webp" alt="Christina Weber welcoming the room at Biohacking Love" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/12a791f6b061b7c2.webp" alt="A circle conversation during a WeDeepen session" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/37cf4999f4fc545f.webp" alt="Friends laughing together in the circle" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/b0fb04cdfa537f39.webp" alt="Two participants connecting at a WeDeepen event" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/ba62708c5d44e418.webp" alt="Participants meeting during a connection exercise" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/full/9c69655b5e99b711.webp" alt="A hand-on-heart practice moment" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_002.webp" alt="The room raising hands during a session" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
+        </div>
+        <button type="button" class="hc-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition hover:scale-105" style="background: rgba(26,26,26,0.55); backdrop-filter: blur(4px);" aria-label="Previous photo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="hc-next absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition hover:scale-105" style="background: rgba(26,26,26,0.55); backdrop-filter: blur(4px);" aria-label="Next photo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="hc-dots flex items-center justify-center gap-2" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <!-- LINEUP -->
+  <section id="lineup" class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="text-center mb-16">
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Your Guides for This Two-Day <span class="italic" style="color:#E8337A;">Love Adventure</span></h2>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-12 max-w-5xl mx-auto">
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/christina-weber.webp" alt="Christina Weber" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Christina Weber</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Love Strategist and Founder of WeDeepen</p>
+          <p class="text-white/55 text-sm leading-relaxed">A decade curating the world&rsquo;s leading teachers of love, intimacy, and conscious relationship</p>
+        </div>
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/annie-lalla.webp" alt="Annie Lalla" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Annie Lalla</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Cartographer of Love</p>
+          <p class="text-white/55 text-sm leading-relaxed">Helping singles find their life partner and couples resolve the conflicts that erode connection</p>
+        </div>
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/jordan-bowditch.webp" alt="Jordan Bowditch" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Jordan Bowditch</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Men&rsquo;s Performance and Intimacy Coach</p>
+          <p class="text-white/55 text-sm leading-relaxed">Coaching men and couples on confidence, polarity, and conscious connection</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-12 max-w-5xl mx-auto mt-12">
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/ariana-hall.webp" alt="Ariana Hall" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Ariana Hall</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Master Coach for High Achievers</p>
+          <p class="text-white/55 text-sm leading-relaxed">Deep, focused transformation and radical clarity</p>
+        </div>
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/bootsy-greenwood.webp" alt="Bootsy Greenwood" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Bootsy Greenwood</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Reality Transurfing Teacher</p>
+          <p class="text-white/55 text-sm leading-relaxed">Helping you stop chasing what you want and start choosing it</p>
+        </div>
+        <div class="flex flex-col items-center text-center w-56">
+          <img src="/images/facilitators/rachel-cuthbert-2026.jpg" alt="Rachel Cuthbert" loading="lazy" class="w-36 h-36 rounded-full object-cover mb-5" style="box-shadow: 0 10px 30px rgba(0,0,0,0.45);">
+          <h3 class="font-heading text-xl text-white mb-1.5">Rachel Cuthbert</h3>
+          <p class="text-gold text-sm font-medium mb-1.5 leading-snug">Trauma Resolution Specialist</p>
+          <p class="text-white/55 text-sm leading-relaxed">NeuroRewired Specialist, joining us for the weekend</p>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink">Yes, I&rsquo;m In</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- VIDEO -->
+  <section class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-10">
+        <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4 gold-line-center">A Peek <span class="italic" style="color:#E8337A;">Inside</span></h2>
+        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light max-w-2xl mx-auto">
+          WeDeepen In-Person comes from the team behind Love Immersion and Biohacking Love: this weekend is your introduction and return.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5 md:gap-6">
+        <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 30px 80px -20px rgba(232,51,122,0.25), 0 10px 30px -10px rgba(0,0,0,0.6);">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/0vme8zZeEu4?rel=0"
+            title="Love Immersion — A Window In"
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            class="w-full h-full"></iframe>
+        </div>
+        <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 30px 80px -20px rgba(232,51,122,0.25), 0 10px 30px -10px rgba(0,0,0,0.6);">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/OWI8etJFcgA?rel=0"
+            title="Love Immersion — WeDeepen"
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            class="w-full h-full"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAST EVENT GALLERIES -->
+  <section class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="text-center mb-10">
+        <p class="text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5" style="color:#E8337A;">Joyous Hearts</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4 gold-line-center">Moments from <span class="italic" style="color:#E8337A;">past gatherings</span></h2>
+        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light max-w-xl mx-auto">
+          WeDeepen In-Person grew out of Biohacking Love. Photos by Allison Powers from the last three events.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto">
+        <a href="/gallery/biohacking-love-may-2026/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2026/thumb/52372c662959e8a0.webp" alt="Biohacking Love — May 2026" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">May 2026</p>
+            </div>
+          </div>
+        </a>
+        <a href="/gallery/biohacking-love/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_040.webp" alt="Biohacking Love — April 2026" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">Apr 2026</p>
+            </div>
+          </div>
+        </a>
+        <a href="/gallery/biohacking-love-may-2025/" class="group block aspect-square overflow-hidden rounded-xl relative bg-charcoal">
+          <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/thumb/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_028.webp" alt="Biohacking Love — May 2025" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent flex items-end p-3">
+            <div>
+              <p class="text-white font-heading text-sm md:text-base leading-tight">Biohacking Love</p>
+              <p class="text-white/55 text-xs mt-0.5">May 2025</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/gallery/" class="btn-outline">See all photo galleries &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">What People <span class="italic" style="color:#E8337A;">Say</span></h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;I left feeling lighter, more open, and finally clear on how I want to date. I used to overthink every interaction. Now I can just float, have fun, and be myself.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;I used to try to fix the men I dated when they had emotions. Now I just hold space, stay grounded in love, and allow.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Kendall</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;I saw how I was unconsciously looking for reasons to not trust my partner. The coaching helped me catch that pattern and shift it.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Matt</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;In 45 minutes, we navigated conversations my wife and I had never been able to touch. It was one of the most meaningful experiences of my life.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Thomas</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;My partner and I have been to other relationship workshops, but this one actually changed the way we communicate at home.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Gallo</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;This Immersion unlocked something between me and my partner that has been so transformational for us both. We&rsquo;ve always had a great relationship, but we are now healing each other.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Laura Lea</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;Since the event, I&rsquo;ve felt incredibly embodied. And I&rsquo;ve never been more clear on what I will and won&rsquo;t allow in dating.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Leah</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;I used to spiral from shame. But in this space, I felt loved, seen, and powerful. I got to borrow light from others, and now I know what authentic love actually feels like.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Josh K.</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-white/75 text-base leading-relaxed mb-4">&ldquo;This was the biggest gift in my 50th year of life. I asked the universe for transformation, and this experience delivered more than I ever imagined.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Ava</p>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <button type="button" id="ln-open" class="btn-outline">More Testimonials</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PHOTO BAND — community warmth -->
+  <section class="bg-ink px-6 pb-8 md:pb-16">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="grid sm:grid-cols-2 gap-4 md:gap-5 items-stretch">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_027.webp" alt="Christina Weber laughing with participants" loading="lazy" class="w-full h-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love-may-2025/full/WeDeepen_Biohacking_Love_May_2025_Allison_Powers_026.webp" alt="A warm hug between participants" loading="lazy" class="w-full h-full aspect-[3/2] object-cover rounded-2xl shadow-2xl">
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- GOOD TO KNOW -->
+  <section id="details" class="py-20 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">The Details</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-3">When</p>
+          <p class="text-white text-lg font-medium mb-1">September 19&ndash;20, 2026</p>
+          <p class="text-white/60 text-sm leading-relaxed">Saturday 10 AM &ndash; 5 PM<br>Sunday 10 AM &ndash; 4 PM</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-3">Where</p>
+          <p class="text-white text-lg font-medium mb-1">Stardust Garage</p>
+          <p class="text-white/60 text-sm leading-relaxed"><a href="https://maps.google.com/?q=4319+Terry-O+Lane,+Austin,+TX+78745" target="_blank" rel="noopener" class="hover:text-gold transition underline decoration-white/20">4319 Terry-O Lane, Austin, TX 78745</a><br>The room holds just 100 people.</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-3">Tickets</p>
+          <p class="text-white text-lg font-medium mb-1">$99 General Admission to $1,200 Ultra VIP</p>
+          <p class="text-white/60 text-sm leading-relaxed">General Admission starts at $99 and is buy one, get one free right now on <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="hover:text-gold transition underline decoration-white/20">Eventbrite</a>, so bring your partner or a friend. Included for <a href="/love-club/" class="hover:text-gold transition underline decoration-white/20">Love Club Members</a>. No refunds.</p>
+        </div>
+        <div class="pillar-card rounded-xl p-7">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-3">Who It&rsquo;s For</p>
+          <p class="text-white text-lg font-medium mb-1">Individuals and Couples</p>
+          <p class="text-white/60 text-sm leading-relaxed">Come solo or come together. No livestream or replay: it only happens in the room.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TICKET TIERS -->
+  <section id="tickets" class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-3">Tickets</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Choose Your <span class="italic" style="color:#E8337A;">Depth</span></h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+        <div class="pillar-card rounded-xl p-7 flex flex-col">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-2">General Admission</p>
+          <p class="text-white font-heading text-4xl mb-1">$99</p>
+          <p class="text-white/50 text-sm mb-5">The full experience.</p>
+          <ul class="space-y-2.5 text-white/70 text-sm leading-relaxed mb-7">
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Full two-day event access</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Live talks, trainings, and playful sessions</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Networking with coaches, team, and attendees</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>General seating</li>
+          </ul>
+          <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-outline text-center mt-auto">Choose GA</a>
+        </div>
+        <div class="pillar-card rounded-xl p-7 flex flex-col relative" style="border: 1px solid rgba(232,51,122,0.45);">
+          <p class="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.2em] uppercase font-semibold text-white px-3 py-1 rounded-full" style="background:#E8337A;">Most Popular</p>
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-2">VIP</p>
+          <p class="text-white font-heading text-4xl mb-1">$250</p>
+          <p class="text-white/50 text-sm mb-5">Upgrade your access and integration.</p>
+          <ul class="space-y-2.5 text-white/70 text-sm leading-relaxed mb-7">
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Everything in General Admission</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Priority seating at the event</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Lunch both days with Christina and team</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Priority hot seat placement, second-round access</li>
+          </ul>
+          <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink text-center mt-auto">Choose VIP</a>
+        </div>
+        <div class="pillar-card rounded-xl p-7 flex flex-col">
+          <p class="text-gold text-xs tracking-[0.22em] uppercase font-semibold mb-2">Ultra VIP</p>
+          <p class="text-white font-heading text-4xl mb-1">$1,200</p>
+          <p class="text-white/50 text-sm mb-5">Proximity, priority, and personalized guidance.</p>
+          <ul class="space-y-2.5 text-white/70 text-sm leading-relaxed mb-7">
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Everything in VIP</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Priority hot seat placement, first-round access</li>
+            <li class="flex gap-2.5"><span class="text-gold">&#10003;</span>Private 90-minute virtual love strategy session with Christina after the event</li>
+          </ul>
+          <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-outline text-center mt-auto">Choose Ultra VIP</a>
+        </div>
+      </div>
+      <p class="text-center text-gold text-sm font-medium mt-8">Right now on Eventbrite: General Admission is buy one, get one free.</p>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-ink py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-3">Questions</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Frequently Asked</h2>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Will I be forced to share?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>No. This is an interactive weekend, but you decide your depth at every step, and you&rsquo;ll never be pushed to share beyond what feels right.</p>
+            <p>Many people arrive a bit guarded. Watching others go first gives them permission to open in their own time.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Who gets a hot seat?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Hot seats are reserved for VIP and Ultra VIP ticket holders first. And even outside the seat, watching live coaching is where many of the biggest breakthroughs happen: the whole room does the work together.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Is it okay to come alone?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Yes, for sure. A big part of every room arrives solo: some come purely for themselves, some are open to dating, some are focused on self-love. The work meets you exactly where your love life is.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What if I can only come for one day?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Yes, definitely come. We set the ticket price so that even one day is an easy yes, and each day stands on its own. Come for as long as you can: we&rsquo;d rather have you for some of the weekend than none of it.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What should I wear?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Come comfortable, and dress how you&rsquo;d like to be introduced.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">Is food included?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Lunch is included for VIP and Ultra VIP ticket holders. Everyone gets an hour lunch break each day, and Stardust Garage is within a five minute walk of food trucks and plenty of great spots to grab a bite.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What about parking?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Easy. Park right in front of the venue.</p>
+          </div>
+        </div>
+        <div class="faq-item border border-white/10 rounded-xl overflow-hidden" style="background: rgba(255,255,255,0.02);">
+          <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+            <span class="text-white font-medium text-base md:text-lg">What&rsquo;s the refund policy?</span>
+            <span class="faq-icon text-gold text-2xl leading-none">+</span>
+          </button>
+          <div class="faq-answer px-6 pb-6 text-white/65 text-sm leading-relaxed space-y-3">
+            <p>Tickets are non-refundable, but they are fully transferable: if your plans change, your ticket can go to someone you love.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- IN-KIND SPONSORS -->
+  <section class="bg-ink py-16 md:py-20 px-6">
+    <div class="max-w-site mx-auto text-center reveal">
+      <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-3">In Good Company</p>
+      <p class="text-white/50 text-sm mb-12">Proudly supported by our in-kind sponsors</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-12 md:gap-x-16 gap-y-9">
+        <img src="/images/sponsors/danger-coffee.svg" alt="Danger Coffee" loading="lazy" class="h-7 md:h-8 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
+        <img src="/images/sponsors/tru-kava.png" alt="TRU KAVA" loading="lazy" class="h-10 md:h-11 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
+        <img src="/images/sponsors/be-love.svg" alt="Be LOVE" loading="lazy" class="h-10 md:h-11 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
+        <img src="/images/sponsors/le-lick.svg" alt="Le Lick" loading="lazy" class="h-9 md:h-10 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FINAL CTA -->
+  <!-- PHOTO MARQUEE — evening session film strip -->
+  <section class="bg-ink py-8 md:py-12" aria-label="Moments from the evening sessions">
+    <div class="photo-marquee">
+      <div class="pm-track">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_011.webp" alt="The room holding hands in a circle at Biohacking Love" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_040.webp" alt="A conversation during the evening session" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_014.webp" alt="Participants standing together in practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_016.webp" alt="Clasped hands during an evening practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_022.webp" alt="A couple close together during the session" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_029.webp" alt="A participant with hands on heart" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_037.webp" alt="Two participants holding hands" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_027.webp" alt="Hands held to the chest in practice" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_011.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_040.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_014.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_016.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_022.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_029.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_037.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+        <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/biohacking-love/thumb/WeDeepen_Biohacking_Love_April_2026_Allison_Powers_027.webp" alt="" aria-hidden="true" loading="lazy" draggable="false">
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-24 md:py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
+    <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
+      <p class="text-gold text-xs tracking-[0.2em] uppercase font-medium mb-4">September 19&ndash;20, 2026 &middot; Austin, TX</p>
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight">
+        You&rsquo;ve optimized everything else. <span class="italic" style="color:#C4577A;">Now it&rsquo;s love&rsquo;s turn.</span>
+      </h2>
+      <p class="text-white/65 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+        Two days of focus on the most important part of your life.
+      </p>
+      <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener" class="btn-pink !text-base !py-4 !px-10">Get Tickets &rarr;</a>
+      <p class="text-gold text-sm mt-4 font-medium">Starting at $99. Buy one, get one free now.</p>
+      <p class="text-white/60 text-sm mt-2">Just 100 spots available.</p>
+      <p class="text-white/35 text-xs mt-6 italic">Questions? Email <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a></p>
+    </div>
+  </section>
+
+
+  <!-- MORE TESTIMONIALS MODAL -->
+  <div id="ln-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4 md:p-8" aria-modal="true" role="dialog" aria-label="More testimonials">
+    <div id="ln-backdrop" class="absolute inset-0" style="background: rgba(10,8,9,0.82); backdrop-filter: blur(6px);"></div>
+    <div class="relative w-full max-w-3xl max-h-[85vh] rounded-2xl overflow-hidden flex flex-col" style="background:#1A1A1A; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 40px 120px rgba(0,0,0,0.6);">
+      <div class="flex items-center justify-between px-6 md:px-8 py-5" style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h3 class="font-heading text-2xl text-white">More Testimonials</h3>
+        <button type="button" id="ln-close" class="text-white/60 hover:text-white p-2 transition" aria-label="Close">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l12 12M16 4L4 16"/></svg>
+        </button>
+      </div>
+      <div class="overflow-y-auto px-6 md:px-8 py-6 space-y-4">
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve been to countless personal growth events, but nothing compares to this. The trust, connection, and transformation were beyond words. If you want to grow in love, this is where you need to be.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Allan</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I came in afraid that relationships would take something from me. I left knowing they bring abundance. This was the most transformative experience of my life.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Sara Julian</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I never felt so held and supported in my life. I felt more love than I ever imagined possible.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Dorota</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I felt more belonging than I have in two years. This was the best investment I&rsquo;ve ever made in myself.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Roza</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;This experience helped me reclaim my worth and step into the love I truly deserve.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Hannah</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I walked away with powerful tools to heal, grow, and create deeper love in my life. It was truly transformative.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Adrienne</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I have a much healthier relationship with my emotions. I&rsquo;m no longer holding back. I just let myself feel, whether it&rsquo;s love or frustration. It&rsquo;s been liberating.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Jamie</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;ve become more fearless. I&rsquo;m leading with love and owning my energy, my vulnerability, and my truth. Even when the day isn&rsquo;t perfect, I stay grounded in who I am.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Philip</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I didn&rsquo;t expect much, but this experience changed me. It helped me understand myself and my relationships in a whole new way.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Bo</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;I&rsquo;m a better parent because of this. I slow down, I&rsquo;m more present with my kids, and I show up fully. It&rsquo;s had a ripple effect on my whole family.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Matthew</p>
+        </div>
+        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          <p class="text-white/75 text-sm leading-relaxed mb-3">&ldquo;There are very few spaces in the world with this level of depth, duration, potency, and heart. This one is the real deal.&rdquo;</p>
+          <p class="text-gold text-xs tracking-[0.18em] uppercase font-semibold">Juston</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-ink border-t border-white/10 py-12">
+    <div class="max-w-site mx-auto px-6 text-center">
+      <a href="/" class="inline-block mb-4">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60">
+      </a>
+      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-trigger')?.addEventListener('click', () => { item.classList.toggle('open'); });
+    });
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Moments carousel (same pattern as the LI HAVAN carousel)
+    (function () {
+      const root = document.getElementById('bl-carousel');
+      if (!root) return;
+      const track = root.querySelector('.hc-track');
+      const slides = track.children.length;
+      const dotsWrap = document.querySelector('.hc-dots');
+      let i = 0;
+      for (let d = 0; d < slides; d++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'hc-dot w-2 h-2 rounded-full transition';
+        b.addEventListener('click', () => go(d));
+        dotsWrap.appendChild(b);
+      }
+      function paint() {
+        track.style.transform = 'translateX(-' + (i * 100) + '%)';
+        dotsWrap.querySelectorAll('.hc-dot').forEach((d, k) => {
+          d.style.background = k === i ? '#C9A277' : 'rgba(255,255,255,0.25)';
+          d.style.transform = k === i ? 'scale(1.35)' : 'scale(1)';
+        });
+      }
+      function go(n) { i = (n + slides) % slides; paint(); }
+      root.querySelector('.hc-prev').addEventListener('click', () => go(i - 1));
+      root.querySelector('.hc-next').addEventListener('click', () => go(i + 1));
+      let x0 = null;
+      root.addEventListener('pointerdown', e => { x0 = e.clientX; });
+      root.addEventListener('pointerup', e => {
+        if (x0 === null) return;
+        const dx = e.clientX - x0;
+        if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+        x0 = null;
+      });
+      paint();
+    })();
+
+    // More testimonials modal (same pattern as the LI love notes modal)
+    (function () {
+      const modal = document.getElementById('ln-modal');
+      const open = document.getElementById('ln-open');
+      if (!modal || !open) return;
+      function show() { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+      function hide() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+      open.addEventListener('click', show);
+      document.getElementById('ln-close').addEventListener('click', hide);
+      document.getElementById('ln-backdrop').addEventListener('click', hide);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+    })();
+  </script>
+
+  <!-- Mobile sticky ticket bar -->
+  <div class="h-20 lg:hidden" aria-hidden="true"></div>
+  <a href="https://www.eventbrite.com/e/wedeepen-in-person-get-even-better-at-love-tickets-1998940266146?aff=oddtdtcreator" target="_blank" rel="noopener"
+     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6"
+     style="background:#E8337A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
+    Get Tickets · September 19&ndash;20 &rarr;
+  </a>
+
+  <!-- Conversion tracking. We cannot see the Eventbrite purchase from our own domain,
+       so an outbound ticket click is the closest signal we have, and it is the one the
+       ad platforms should optimize toward. Capture phase so it still fires if another
+       handler stops the event. Both calls are no-ops when their tag is not loaded. -->
+  <script>
+    (function () {
+      function ga(event, params) {
+        if (typeof window.gtag === 'function') window.gtag('event', event, params || {});
+      }
+      function fb(event, params) {
+        if (typeof window.fbq === 'function') window.fbq('track', event, params || {});
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest && e.target.closest('a');
+        if (!a) return;
+
+        if (a.href && a.href.indexOf('eventbrite.com') > -1) {
+          ga('ticket_click', { link_text: (a.textContent || '').trim().slice(0, 40) });
+          fb('InitiateCheckout', {
+            content_name: 'WeDeepen In-Person, September 19-20 2026',
+            content_category: 'Event'
+          });
+        }
+
+        if (a.hasAttribute('data-lead-popup')) {
+          ga('lead_popup_open');
+          fb('Lead', { content_name: 'Private invites list' });
+        }
+      }, true);
+    })();
+  </script>
+
+  <!-- Lead-capture announcement bar (COUNT ME IN list), mobile only on this page.
+       Same script as the homepage; the popup stays desktop-only inside the script,
+       so mobile gets just the bar. -->
+  <script>
+    (function () {
+      var mobile = /Android|iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.maxTouchPoints > 1 && /iPad|Macintosh/.test(navigator.userAgent));
+      if (!mobile) return;
+      var s = document.createElement('script');
+      s.src = '/js/lead-capture.js?v=20';
+      s.defer = true;
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

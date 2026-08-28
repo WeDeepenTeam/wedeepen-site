@@ -33,6 +33,9 @@ async function loadAlbumExtras() {
   // - parent_event (slug, used for grouping cards on the gallery index)
   // - parent_event_title (human-readable label for the parent event)
   // - cta_label / cta_href (per-album CTA; falls back to /events/ when absent)
+  // - cta_eyebrow / cta_heading / cta_body (copy for the CTA above the grid)
+  // - cta_image / cta_image_alt (next-event graphic, linked, above the bottom CTA)
+  // - cta_tagline (replaces the generic "next gathering is forming" line)
   const raw = await fs.readFile(ALBUMS_JSON, 'utf-8');
   const data = JSON.parse(raw);
   const map = {};
@@ -44,6 +47,12 @@ async function loadAlbumExtras() {
       cover_position: a.cover_position || null,
       cta_label: a.cta_label || null,
       cta_href: a.cta_href || null,
+      cta_eyebrow: a.cta_eyebrow || null,
+      cta_heading: a.cta_heading || null,
+      cta_body: a.cta_body || null,
+      cta_image: a.cta_image || null,
+      cta_image_alt: a.cta_image_alt || null,
+      cta_tagline: a.cta_tagline || null,
     };
   }
   return map;
@@ -106,6 +115,12 @@ async function buildAlbumPage(album, extras) {
     cover_position: extra.cover_position || null,
     cta_label: extra.cta_label || null,
     cta_href: extra.cta_href || null,
+    cta_eyebrow: extra.cta_eyebrow || null,
+    cta_heading: extra.cta_heading || null,
+    cta_body: extra.cta_body || null,
+    cta_image: extra.cta_image || null,
+    cta_image_alt: extra.cta_image_alt || null,
+    cta_tagline: extra.cta_tagline || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);
   await ensureDir(dir);

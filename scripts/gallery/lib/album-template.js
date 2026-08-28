@@ -72,11 +72,16 @@ ${pageNav()}
     ${album.youtube_ids?.length ? renderVideos(album.youtube_ids) : ''}
 ${album.cta_href ? `
     <!-- Top CTA -->
-    <section class="px-6 pb-10">
+    <section class="px-6 pb-12">
       <div class="max-w-site mx-auto reveal">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <a href="${escapeHtml(album.cta_href)}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
-          <a href="/gallery/" class="text-white/70 hover:text-white transition font-medium">All Galleries &rarr;</a>
+        <div class="rounded-2xl p-7 md:p-9" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+          ${album.cta_eyebrow ? `<p class="text-gold text-xs tracking-[0.2em] uppercase font-medium mb-4">${escapeHtml(album.cta_eyebrow)}</p>` : ''}
+          ${album.cta_heading ? `<h2 class="font-heading text-2xl md:text-3xl lg:text-4xl text-white font-normal leading-snug mb-4 max-w-3xl">${escapeHtml(album.cta_heading)}</h2>` : ''}
+          ${album.cta_body ? `<p class="text-white/60 text-base md:text-lg leading-relaxed font-light mb-7 max-w-3xl">${escapeHtml(album.cta_body)}</p>` : ''}
+          <div class="flex flex-col sm:flex-row items-center gap-4">
+            <a href="${escapeHtml(album.cta_href)}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
+            <a href="/gallery/" class="text-white/70 hover:text-white transition font-medium">All Galleries &rarr;</a>
+          </div>
         </div>
       </div>
     </section>
@@ -115,10 +120,13 @@ ${album.cta_href ? `
 
     <!-- Bottom CTA -->
     <section class="bg-cream text-charcoal py-20 md:py-24 px-6 mt-12">
-      <div class="max-w-3xl mx-auto text-center reveal">
+      <div class="max-w-3xl mx-auto text-center reveal">${album.cta_image && album.cta_href ? `
+        <a href="${escapeHtml(album.cta_href)}" class="block mb-9 rounded-xl overflow-hidden" style="box-shadow: 0 12px 40px rgba(0,0,0,0.25);">
+          <img src="${escapeHtml(album.cta_image)}" alt="${escapeHtml(album.cta_image_alt || album.cta_label || 'The next event')}" class="w-full h-auto" loading="lazy" width="1600" height="800">
+        </a>` : ''}
         <h2 class="font-heading text-3xl md:text-4xl font-normal mb-5">Want to be at the next one?</h2>
         <p class="text-charcoal/70 text-lg leading-relaxed mb-8 font-light">
-          ${escapeHtml(album.title)} happened. The next gathering is forming.
+          ${album.cta_tagline ? escapeHtml(album.cta_tagline) : `${escapeHtml(album.title)} happened. The next gathering is forming.`}
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="${escapeHtml(album.cta_href || '/events/')}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>

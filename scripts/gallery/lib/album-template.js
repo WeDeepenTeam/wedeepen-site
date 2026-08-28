@@ -70,7 +70,17 @@ ${pageNav()}
     </section>
 
     ${album.youtube_ids?.length ? renderVideos(album.youtube_ids) : ''}
-
+${album.cta_href ? `
+    <!-- Top CTA -->
+    <section class="px-6 pb-10">
+      <div class="max-w-site mx-auto reveal">
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <a href="${escapeHtml(album.cta_href)}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
+          <a href="/gallery/" class="text-white/70 hover:text-white transition font-medium">All Galleries &rarr;</a>
+        </div>
+      </div>
+    </section>
+` : ''}
     <!-- Photo grid -->
     <section class="px-4 md:px-6 pb-12">
       <div class="max-w-site mx-auto">
@@ -111,7 +121,7 @@ ${pageNav()}
           ${escapeHtml(album.title)} happened. The next gathering is forming.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/events/" class="btn-rose">View Upcoming Events &rarr;</a>
+          <a href="${escapeHtml(album.cta_href || '/events/')}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
           <a href="/gallery/" class="text-charcoal/70 hover:text-charcoal transition font-medium">All Galleries &rarr;</a>
         </div>
       </div>

@@ -32,6 +32,7 @@ async function loadAlbumExtras() {
   // - photographer (string)
   // - parent_event (slug, used for grouping cards on the gallery index)
   // - parent_event_title (human-readable label for the parent event)
+  // - cta_label / cta_href (per-album CTA; falls back to /events/ when absent)
   const raw = await fs.readFile(ALBUMS_JSON, 'utf-8');
   const data = JSON.parse(raw);
   const map = {};
@@ -41,6 +42,8 @@ async function loadAlbumExtras() {
       parent_event: a.parent_event || null,
       parent_event_title: a.parent_event_title || null,
       cover_position: a.cover_position || null,
+      cta_label: a.cta_label || null,
+      cta_href: a.cta_href || null,
     };
   }
   return map;
@@ -101,6 +104,8 @@ async function buildAlbumPage(album, extras) {
     parent_event: extra.parent_event || null,
     parent_event_title: extra.parent_event_title || null,
     cover_position: extra.cover_position || null,
+    cta_label: extra.cta_label || null,
+    cta_href: extra.cta_href || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);
   await ensureDir(dir);

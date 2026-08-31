@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WeDeepen//WeDeepen Membership//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedeepen-new-member-orientation-20260913@wedeepen.com
+DTSTAMP:20260831T120000Z
+DTSTART:20260913T230000Z
+DTEND:20260914T003000Z
+SUMMARY:WeDeepen New Member Orientation
+DESCRIPTION:Welcome to WeDeepen. Meet the community and get oriented before
+  your first Tuesday session.\n\nJoin here: https://circle.wedeepenloveclub
+ .com/c/events-calendar/new-member-orientation
+LOCATION:Online
+URL:https://circle.wedeepenloveclub.com/c/events-calendar/new-member-orient
+ ation
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:WeDeepen New Member Orientation starts in 30 minutes
+END:VALARM
+END:VEVENT
+END:VCALENDAR

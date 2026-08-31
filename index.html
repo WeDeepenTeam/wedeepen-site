@@ -34,7 +34,7 @@
 
   <title>WeDeepen — Your Intimacy Journey Is Your Life Story</title>
   <meta name="description" content="WeDeepen brings together the world's most extraordinary love and relationship guides. Expert-led coaching, transformative experiences, and a curated network dedicated to helping you find, build, and sustain extraordinary love.">
-  <meta name="keywords" content="WeDeepen, love coaching, relationship coaching Austin, intimacy retreat, love immersion, couples retreat Austin, dating coaching, relationship workshop, Love Club, conscious relationships">
+  <meta name="keywords" content="WeDeepen, love coaching, relationship coaching Austin, intimacy retreat, love immersion, couples retreat Austin, dating coaching, relationship workshop, WeDeepen Membership, conscious relationships">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com/">
 
@@ -297,6 +297,22 @@
       display: inline-block; text-decoration: none;
     }
     .btn-gold:hover { background: #A8855C; transform: translateY(-1px); }
+
+    /* Skill-of-love ledger: one grid so the three columns share widths */
+    .home-ledger { display: grid; grid-template-columns: 1fr; max-width: 58rem; }
+    .home-ledger > * { margin: 0; }
+    .home-ledger .hl-term    { padding-top: 1.6rem; border-top: 1px solid rgba(45,45,45,0.18); }
+    .home-ledger .hl-vs      { padding: 0.35rem 0; }
+    .home-ledger .hl-counter { padding-bottom: 1.6rem; }
+    .home-ledger > *:last-child { border-bottom: 1px solid rgba(45,45,45,0.18); }
+    @media (min-width: 768px) {
+      .home-ledger { grid-template-columns: max-content max-content 1fr; column-gap: 0; }
+      .home-ledger > * { align-self: stretch; border-top: 1px solid rgba(45,45,45,0.18); }
+      .home-ledger .hl-term    { padding: 1.9rem 3rem 1.9rem 0; }
+      .home-ledger .hl-vs      { padding: 1.9rem 3rem 1.9rem 0; display: flex; align-items: center; }
+      .home-ledger .hl-counter { padding: 1.9rem 0; }
+      .home-ledger > *:nth-last-child(-n+3) { border-bottom: 1px solid rgba(45,45,45,0.18); }
+    }
   </style>
   <!-- Share.one tracking -->
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
@@ -436,173 +452,107 @@
 
 
   <!-- ============================
-       SECTION 2: THE BOTH/AND
+       SECTION 2: THE SKILL OF LOVE
        ============================ -->
-  <section class="bg-ink py-24 md:py-32">
-    <div class="max-w-site mx-auto px-6 reveal">
-      <div class="max-w-3xl mx-auto text-center mb-14">
-        <p class="text-pink-hot text-xs uppercase tracking-[0.3em] font-semibold mb-5">Yes, And</p>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight" style="text-wrap: balance;">
-          Every great relationship holds two things at once:<br>
-          <span class="italic" style="color:#C9A277;">safety and spark.</span>
+  <section class="bg-cream py-24 md:py-32 px-6 text-charcoal">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-14 md:mb-16">
+        <p class="text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-7">The skill of love</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.14] mb-8" style="text-wrap: balance;">
+          Love has a much messier learning curve than most things we get good at.
         </h2>
-        <p class="text-lg md:text-xl text-white/75 leading-relaxed font-light">
-          The anchor and the fire. The home and the horizon. Security to open, novelty to stay alive. WeDeepen is built around that duality.
+        <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed mb-5">
+          We develop skills in work, health, and sport through learning, practice, and feedback. Love is usually left to experience.
+        </p>
+        <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed">
+          WeDeepen gives you a place to build the skill of love deliberately, including learning to tell the difference between:
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-        <div class="rounded-xl p-7 md:p-8" style="background: rgba(201,162,119,0.10); border: 1px solid rgba(201,162,119,0.45);">
-          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">Security</p>
-          <p class="font-heading text-xl md:text-2xl text-white mb-3 leading-snug">The anchor that opens you.</p>
-          <p class="text-white/65 text-sm leading-relaxed">Predictability. Reliability. The ground that makes it possible to be vulnerable.</p>
+      <div class="home-ledger">
+        <p class="hl-term font-heading text-[1.7rem] md:text-[2.1rem] leading-tight">Chemistry</p>
+        <p class="hl-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="hl-counter font-heading italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">compatibility</p>
+        <p class="hl-term font-heading text-[1.7rem] md:text-[2.1rem] leading-tight">A rough patch</p>
+        <p class="hl-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="hl-counter font-heading italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">a repeating pattern</p>
+        <p class="hl-term font-heading text-[1.7rem] md:text-[2.1rem] leading-tight">Healthy compromise</p>
+        <p class="hl-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="hl-counter font-heading italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">giving too much away</p>
+        <p class="hl-term font-heading text-[1.7rem] md:text-[2.1rem] leading-tight">A real concern</p>
+        <p class="hl-vs text-charcoal/30 text-[0.65rem] uppercase tracking-[0.26em]">versus</p>
+        <p class="hl-counter font-heading italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">an old fear getting triggered</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       SECTION 2b: WHAT THE MEMBERSHIP INCLUDES
+       ============================ -->
+  <section id="membership" class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl mb-14 md:mb-16">
+        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-7">The membership</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-8" style="text-wrap: balance;">
+          What&rsquo;s included
+        </h2>
+        <p class="text-lg md:text-xl text-white/65 leading-relaxed">
+          An expert-led community for getting better at how you date, communicate, handle conflict, build intimacy, and connect.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px" style="background: rgba(255,255,255,0.13);">
+        <div class="bg-ink md:pr-9 py-10 md:py-4">
+          <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">01</p>
+          <h3 class="font-heading text-2xl md:text-3xl text-white mb-5">Bi-weekly live sessions</h3>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">Love Masterminds taught by leading experts in love, intimacy, conflict resolution, personality types, and more.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Every other Tuesday, 90 minutes, live online.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Bonding exercises with other members.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Integration sessions to unpack what you&rsquo;re learning.</li>
+          </ul>
         </div>
-        <div class="rounded-xl p-7 md:p-8" style="background: rgba(232,51,122,0.08); border: 1px solid rgba(232,51,122,0.45);">
-          <p class="text-pink-hot text-xs uppercase tracking-[0.25em] font-semibold mb-3">Novelty</p>
-          <p class="font-heading text-xl md:text-2xl text-white mb-3 leading-snug">The fire that keeps desire alive.</p>
-          <p class="text-white/65 text-sm leading-relaxed">Risk. Mystery. The unknown. Surprise. What keeps you reaching toward each other.</p>
+        <div class="bg-ink md:px-9 py-10 md:py-4">
+          <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">02</p>
+          <h3 class="font-heading text-2xl md:text-3xl text-white mb-5">Private community</h3>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">A place to keep the conversation going between sessions.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Ask the Experts Q&amp;A with WeDeepen&rsquo;s relationship professionals.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Private discussions inside Circle.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Bring up dating, sex, intimacy, conflict, or anything you&rsquo;re working through.</li>
+          </ul>
+        </div>
+        <div class="bg-ink md:pl-9 py-10 md:py-4">
+          <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6">03</p>
+          <h3 class="font-heading text-2xl md:text-3xl text-white mb-5">Practice &amp; recordings</h3>
+          <p class="text-gold/80 text-[0.95rem] leading-relaxed mb-7">Ways to stay involved outside a session.</p>
+          <ul class="border-t border-white/10">
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">A new Sunday Dare by text and email each week, members only.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">Recordings of every session held from the time you join.</li>
+            <li class="py-4 border-b border-white/10 text-white/70 leading-relaxed">The membership calendar, so you always know what&rsquo;s next.</li>
+          </ul>
         </div>
       </div>
 
-      <p class="text-center text-white/65 text-sm md:text-base italic mt-12 max-w-2xl mx-auto leading-relaxed">
-        Most people pick one. The work is learning to hold both.
-      </p>
-
-      <!-- Annie Lalla quote + photo — editorial pairing.
-           Trampoline = spark/novelty (pink). Sanctuary = safety/security (gold).
-           Colors deliberately echo the duality cards above.
-           Mobile: photo above quote. Desktop: photo left (5/12), quote right (7/12)
-           so the quote has hero weight. -->
-      <div class="max-w-6xl mx-auto mt-20 md:mt-28 px-2">
-        <div class="w-12 h-px bg-gold/40 mx-auto mb-12 md:mb-16"></div>
-        <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-          <!-- Photo: framed with subtle warm glow + ring + shadow -->
-          <div class="order-1 md:col-span-5">
-            <div class="relative">
-              <div class="absolute -inset-3 bg-gradient-to-br from-gold/20 via-transparent to-pink-hot/15 rounded-3xl blur-2xl" aria-hidden="true"></div>
-              <picture class="relative block">
-                <source srcset="/images/annie-lalla-coaching.webp" type="image/webp">
-                <img
-                  src="/images/annie-lalla-coaching.jpg"
-                  alt="Annie Lalla coaching a Love Club member in conversation by a sunlit window"
-                  class="w-full h-auto rounded-2xl shadow-2xl ring-1 ring-white/10 block"
-                  loading="lazy"
-                  width="1400" height="1026">
-              </picture>
-            </div>
+      <!-- Start date + price -->
+      <div class="mt-14 md:mt-16 rounded-sm px-6 py-8 md:px-10 md:py-9" style="background: rgba(232,51,122,0.07); border: 1px solid rgba(232,51,122,0.28);">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div>
+            <p class="text-pink-hot text-[0.68rem] uppercase tracking-[0.28em] font-semibold mb-3">The program starts</p>
+            <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3">Sunday, September 13</p>
+            <p class="text-white/70 text-sm leading-relaxed">New member orientation &middot; 7:00 PM Eastern &middot; 6:00 PM Central &middot; 5:00 PM Mountain &middot; 4:00 PM Pacific</p>
           </div>
-          <!-- Quote: ornamental opening mark + larger Playfair body + em-line attribution -->
-          <div class="order-2 md:col-span-7 text-center md:text-left">
-            <div class="font-heading italic text-gold/35 leading-none mb-1 select-none" style="font-size: clamp(4.5rem, 9vw, 7.5rem); line-height: 0.7;" aria-hidden="true">&ldquo;</div>
-            <blockquote class="font-heading italic text-2xl md:text-3xl lg:text-[2.4rem] text-white/95 mb-8 -mt-3 md:-mt-5" style="line-height: 1.3; text-wrap: balance;">
-              Find someone who&rsquo;s a <span style="color:#E8337A;">trampoline for your&nbsp;dreams</span> and a <span style="color:#C9A277;">sanctuary for your&nbsp;heart</span>.
-            </blockquote>
-            <div class="flex items-center gap-4 justify-center md:justify-start">
-              <div class="w-10 h-px bg-gold/50" aria-hidden="true"></div>
-              <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold">Annie Lalla</p>
-            </div>
+          <div class="shrink-0 lg:text-right">
+            <p class="font-heading text-4xl md:text-5xl text-white mb-1">$99<span class="text-white/40 text-lg"> /month</span></p>
+            <p class="text-white/50 text-sm mb-5">Or $990/year. Cancel anytime.</p>
+            <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose">Become a Member</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-
-  <!-- ============================
-       SECTION 2.4: RECOGNITION — DIAGNOSTIC MIRROR
-       Customer-voice quotes drawn from real Love Immersion testimonials.
-       Each quote speaks to a different reader (couples, lonely singles,
-       achievers, the "I don't know how to receive" person) so almost
-       everyone in the audience finds themselves in at least one line.
-       ============================ -->
-  <section class="bg-ink py-20 md:py-28 px-6">
-    <div class="max-w-3xl mx-auto reveal">
-      <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-6 text-center">What Brings Most People Here</p>
-      <h2 class="font-heading text-2xl md:text-3xl lg:text-4xl font-normal text-white text-center mb-12 leading-snug" style="text-wrap: balance;">
-        Some version of this:
-      </h2>
-
-      <div class="space-y-7 md:space-y-8">
-        <p class="font-heading italic text-lg md:text-xl lg:text-2xl text-white/85 text-center leading-relaxed" style="text-wrap: balance;">
-          &ldquo;We communicate really well. There&rsquo;s still pressure we can&rsquo;t name.&rdquo;
-        </p>
-        <p class="font-heading italic text-lg md:text-xl lg:text-2xl text-white/85 text-center leading-relaxed" style="text-wrap: balance;">
-          &ldquo;I&rsquo;m surrounded by people. I&rsquo;ve never felt more alone.&rdquo;
-        </p>
-        <p class="font-heading italic text-lg md:text-xl lg:text-2xl text-white/85 text-center leading-relaxed" style="text-wrap: balance;">
-          &ldquo;I&rsquo;m a high performer everywhere. Love is still the gap.&rdquo;
-        </p>
-        <p class="font-heading italic text-lg md:text-xl lg:text-2xl text-white/85 text-center leading-relaxed" style="text-wrap: balance;">
-          &ldquo;I don&rsquo;t fully know how to love. Or how to receive it.&rdquo;
-        </p>
-      </div>
-
-      <p class="text-center text-white/55 text-sm md:text-base mt-12 italic">
-        If any of those land, keep reading.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ============================
-       SECTION 2.7: HOT-SEAT MOMENT — VISUAL EXHALE
-       Photo break between philosophy (Yes/And + Annie) and offering (Industry).
-       Shows the actual practice: a hot-seat from a Love Immersion.
-       Natural aspect on mobile (no crop); height-capped on desktop.
-       ============================ -->
-  <section class="bg-ink relative overflow-hidden">
-    <div class="reveal">
-      <picture>
-        <source srcset="/images/love-immersion-group-coaching.webp" type="image/webp">
-        <img
-          src="/images/love-immersion-group-coaching.jpg"
-          alt="A hot-seat coaching moment from a Love Immersion in Austin, TX &mdash; coaches engaging with a participant while others watch"
-          class="w-full block object-cover object-center"
-          style="max-height: 75vh;"
-          loading="lazy"
-          width="1800" height="1200">
-      </picture>
-    </div>
-  </section>
-
-
-  <!-- ============================
-       SECTION 2b: THE LOVE INDUSTRY
-       ============================ -->
-  <section class="py-24 md:py-28 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #201519 100%);">
-    <div class="max-w-5xl mx-auto text-center reveal">
-      <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-5">An Industry. A Network. A Practice.</p>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight" style="text-wrap: balance;">
-        There&rsquo;s an entire industry built around getting better at love. <span class="italic" style="color:#C9A277;">Almost no one finds it in time.</span>
-      </h2>
-      <p class="text-white/70 text-lg leading-relaxed font-light mb-12 max-w-3xl mx-auto">
-        They keep grinding through dating apps. Burning years in the wrong relationships. Hoping the next book, retreat, or therapist will finally be the one.
-      </p>
-      <p class="text-white/70 text-lg leading-relaxed font-light mb-12 max-w-3xl mx-auto">
-        WeDeepen is the room where people stop doing that. Coaches, teachers, and strategists who quietly work with the people you read about. Membership, intensives, a council of guides, and a calendar of gatherings. Built so you can find your fit, again and again.
-      </p>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-        <a href="/love-club/" class="block rounded-xl p-6 transition hover:-translate-y-0.5" style="background: rgba(232,51,122,0.08); border: 1px solid rgba(232,51,122,0.3);">
-          <p class="text-pink-hot text-xs uppercase tracking-[0.2em] font-semibold mb-2">Love Club</p>
-          <p class="font-heading text-white text-lg md:text-xl mb-2 italic">The Membership.</p>
-          <p class="text-white/55 text-sm">Train every week. Coaches, network, and a practice you can actually show up to.</p>
-        </a>
-        <a href="/love-immersion/october-2026/" class="block rounded-xl p-6 transition hover:-translate-y-0.5" style="background: rgba(196,87,122,0.08); border: 1px solid rgba(196,87,122,0.3);">
-          <p class="text-rose-light text-xs uppercase tracking-[0.2em] font-semibold mb-2">Love Immersion</p>
-          <p class="font-heading text-white text-lg md:text-xl mb-2 italic">The Intensive.</p>
-          <p class="text-white/55 text-sm">Three days that change you. Six world-class coaches. Hot-seat work that&rsquo;s impossible to fake.</p>
-        </a>
-        <a href="/love-guides/" class="block rounded-xl p-6 transition hover:-translate-y-0.5" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.3);">
-          <p class="text-gold text-xs uppercase tracking-[0.2em] font-semibold mb-2">Love Strategists</p>
-          <p class="font-heading text-white text-lg md:text-xl mb-2 italic">The Council.</p>
-          <p class="text-white/55 text-sm">Coaches to the top performers on love. A rotating council you can actually access.</p>
-        </a>
-        <a href="/events/" class="block rounded-xl p-6 transition hover:-translate-y-0.5" style="background: rgba(196,162,119,0.06); border: 1px solid rgba(196,162,119,0.3);">
-          <p class="text-teal text-xs uppercase tracking-[0.2em] font-semibold mb-2" style="color:#B8D4C4;">Events &amp; Experiences</p>
-          <p class="font-heading text-white text-lg md:text-xl mb-2 italic">The Calendar.</p>
-          <p class="text-white/55 text-sm">In person and online. Gatherings, retreats, and trainings we produce, plus events we recommend.</p>
-        </a>
+      <div class="text-center mt-10">
+        <a href="/membership/" class="text-gold/80 hover:text-gold transition text-sm font-medium underline-offset-4 hover:underline">See everything in the membership &rarr;</a>
       </div>
     </div>
   </section>
@@ -720,58 +670,6 @@
 
 
   <!-- ============================
-       SECTION 4: LOVE CLUB MEMBERSHIP
-       ============================ -->
-  <section id="membership" class="bg-ink py-20 md:py-28">
-    <div class="max-w-site mx-auto px-6 reveal">
-      <div class="text-center mb-14">
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4 gold-line-center">The Love Club</h2>
-        <p class="text-white/70 text-lg max-w-2xl mx-auto">An annual membership for people who treat their relationships the way they treat their careers &mdash; seriously, with coaches, and with a network that holds the standard.</p>
-      </div>
-
-      <div class="max-w-[560px] mx-auto">
-
-        <!-- Love Club annual membership (Love Club sub-brand: Deep Rose authority) -->
-        <div class="wd-card bg-charcoal rounded-2xl p-8 md:p-10 tier-popular flex flex-col">
-          <p class="text-pink-hot text-sm uppercase tracking-widest font-semibold mb-2">Annual Membership</p>
-          <h3 class="font-heading text-2xl font-semibold mb-1">Love Club</h3>
-          <div class="flex items-baseline gap-1 mb-4">
-            <span class="text-3xl font-bold">$9,997</span>
-            <span class="text-white/50 text-sm">/year</span>
-          </div>
-          <p class="text-white/70 text-sm leading-relaxed mb-8">One year of advanced training, coaching, and matchmaking with direct access to <strong class="font-semibold text-white">Christina Weber</strong>, built to change how you love and not just what you know about it.</p>
-          <ul class="space-y-4 text-white/70 text-sm mb-8 flex-1">
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">One Love Immersion credit ($2,995 value).</strong> Three days off-grid that reset how you hold love, and you come home different. Bring a partner instead if you want, and if the year gets away from you the credit rolls forward.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">Friday office hours with Christina Weber.</strong> Bring the conversation that went sideways, the pattern you keep landing in, the text you don&rsquo;t know how to send, and leave with a move. Every Friday, 12 to 1 Central.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">How to Be in Love with Annie Lalla, included.</strong> Twelve weeks that turn conflict, jealousy, and projection into things you know how to handle, so you stop rerunning the same fight and start designing the relationship you actually want. Thursdays at 6 Central, starting early October.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">Couples Council, every month.</strong> Practice on each other, guided, in a room of people doing the same work. You learn your partner at a depth that talking alone never reaches. Second Sundays at 6 Central, starting October 11.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">Collaborative matchmaking.</strong> Get into the databases and the rooms of leading matchmakers and dating event producers, and host Dating Salons of your own. Doorways to the people you would not have found on your own. First Sundays at 6 Central, starting October 4.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">Member-only invites and Inner Circle perks.</strong> Priority tickets to WeDeepen In-Person, guest passes, and experiences that never get announced, so you are already inside when the good things happen.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">A private member community.</strong> Your soul council, tuned to the same frequency, holding the field with you all year. Support arrives the moment you need it, not at the next scheduled call.</span></li>
-            <li class="flex gap-2"><span class="text-pink-hot mt-1 shrink-0">&#10003;</span><span class="leading-relaxed"><strong class="font-semibold text-white">Everything in the WeDeepen Membership, included.</strong> Biweekly masterminds, biweekly integration sessions, and Sunday Dares that keep you in practice between gatherings, so the year compounds instead of fading.</span></li>
-          </ul>
-          <a href="https://circle.wedeepenloveclub.com/checkout/love-club-inner-circle-annual-membership?coupon_code=INPERSON" class="btn-rose w-full text-center block">Join Love Club</a>
-        </div>
-
-      </div>
-
-      <!-- Partner Duo Callout -->
-      <div class="max-w-3xl mx-auto mt-10">
-        <div class="rounded-2xl px-6 py-4 md:px-7 md:py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left" style="background: linear-gradient(135deg, rgba(232,51,122,0.10) 0%, rgba(201,162,119,0.08) 100%); border: 1px solid rgba(232,51,122,0.35);">
-          <div>
-            <p class="text-pink-hot text-[11px] uppercase tracking-[0.25em] font-semibold mb-1">Partner Duo &middot; $500 Off Each</p>
-            <p class="text-white/80 text-sm leading-snug">Come together. Register with a partner &mdash; significant other, friend, or business partner &mdash; and you both get $500 off.</p>
-          </div>
-          <a href="mailto:team@wedeepen.com?subject=Partner%20Duo%20%E2%80%94%20Love%20Club" class="btn-rose whitespace-nowrap text-sm !py-2.5 !px-5">Email to Register</a>
-        </div>
-      </div>
-
-      <p class="text-center text-white/40 text-sm mt-8">Want to talk it through first? <a href="https://app.acuityscheduling.com/schedule/209c70ea/appointment/25726495/calendar/5850974?categories[]=Christina%20Weber%20x%20WeDeepen" target="_blank" rel="noopener" class="text-gold hover:underline">Let&rsquo;s talk.</a></p>
-    </div>
-  </section>
-
-
-  <!-- ============================
        SECTION 5: LOVE IMMERSION SPOTLIGHT
        ============================ -->
   <section class="relative bg-charcoal py-20 md:py-28 overflow-hidden">
@@ -806,13 +704,13 @@
               <p class="font-semibold">$2,995 <span class="text-white/50 text-xs">per person</span></p>
             </div>
             <div class="bg-ink/60 rounded-xl p-4">
-              <p class="text-gold text-xs uppercase tracking-wider mb-1">Love Club Members</p>
-              <p class="font-semibold text-sm">1 credit included</p>
+              <p class="text-gold text-xs uppercase tracking-wider mb-1">Format</p>
+              <p class="font-semibold text-sm">3 days, in person</p>
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-3">
             <a href="/love-immersion/october-2026/" class="btn-rose">Learn More</a>
-            <a href="#membership" class="btn-outline">Join Love Club &amp; Get This Included</a>
+            <a href="/love-immersion/october-2026/" class="btn-outline">See the Full Weekend</a>
           </div>
         </div>
       </div>
@@ -827,7 +725,7 @@
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-12">
         <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Real People. Real Moments.</h2>
-        <p class="text-white/60 text-lg">What happens inside Love Club and Love Immersion &mdash; connection, laughter, breakthroughs.</p>
+        <p class="text-white/60 text-lg">What happens inside WeDeepen: connection, laughter, breakthroughs.</p>
       </div>
 
       <!-- Photo grid — real retreat moments -->
@@ -1059,7 +957,7 @@
         <div class="order-1 md:order-2">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Free Download</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white font-semibold mb-3 leading-tight">The framework most couples never learn.</h3>
-          <p class="text-white/60 text-sm md:text-base leading-relaxed mb-6">Yours to keep. Same Four Pillars we practice every week inside the Love Club and at every Love Immersion. Drop your email.</p>
+          <p class="text-white/60 text-sm md:text-base leading-relaxed mb-6">Yours to keep. The same Four Pillars we practice inside the membership and at every Love Immersion. Drop your email.</p>
 
           <!-- Circle embedded form -->
           <div data-is-popup="false" data-circle-form-uid="7fbcd363"></div>
@@ -1133,7 +1031,7 @@
       </picture>
       <div class="max-w-3xl mx-auto px-6 py-12 md:py-14 text-center">
         <blockquote class="font-heading italic text-white/90 text-xl md:text-2xl lg:text-[1.7rem] leading-relaxed mb-5" style="text-wrap: balance;">
-          &ldquo;I&rsquo;ve been in the kind of relationship where the connection was undeniable &mdash; and the reality still didn&rsquo;t work. That&rsquo;s the level we work at here.&rdquo;
+          &ldquo;Love is a trainable skill. Almost none of us were taught it, and then we are surprised when it is hard. This is where you practice.&rdquo;
         </blockquote>
         <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold">&mdash; Christina Weber, Founder</p>
       </div>
@@ -1153,9 +1051,9 @@
         You start choosing in it.<br>
         <span class="italic" style="color:#C9A277;">And you finally let yourself be held in it.</span>
       </h2>
-      <p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">Love Club is where the work happens. The erotic. The intellectual. The conversations you can&rsquo;t have anywhere else. The parts of yourself you haven&rsquo;t met yet.</p>
+      <p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">The membership is where the work happens. Every other Tuesday, with expert guides and a community doing the same thing you are. It starts Sunday, September 13.</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-        <a href="#membership" class="btn-rose text-base">Join Love Club</a>
+        <a href="https://circle.wedeepenloveclub.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base">Become a Member &middot; $99/month</a>
         <a href="/love-immersion/october-2026/" class="btn-outline text-base">Attend Love Immersion</a>
       </div>
 
@@ -1192,7 +1090,7 @@
               class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition appearance-none cursor-pointer"
               style="background-image: url(&quot;data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff80' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e&quot;); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px; padding-right: 2.5rem;">
               <option value="">Choose one…</option>
-              <option value="Love Club">Love Club</option>
+              <option value="WeDeepen Membership">WeDeepen Membership</option>
               <option value="Love Immersion">Love Immersion</option>
               <option value="Media / Press">Media / Press</option>
               <option value="Becoming a Love Strategist">Becoming a Love Strategist</option>

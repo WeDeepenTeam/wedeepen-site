@@ -11,12 +11,12 @@ export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3F2GQXR8"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-BY3F2GQXR8');
+    gtag('config', 'G-LZ0EY5X593');
   </script>
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">

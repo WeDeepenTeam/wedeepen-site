@@ -19,6 +19,16 @@ def slugify(title: str) -> str:
     s = re.sub(r"-+", "-", s)
     return s.strip("-")
 
+def show_name(title: str) -> str:
+    """The show a given episode aired under.
+
+    The feed was renamed to Mastering Love with Christina Weber at ML 001.
+    Earlier episodes keep the name they were published and indexed under —
+    they are a real search asset, and relabelling history helps nobody.
+    """
+    return "Mastering Love with Christina Weber" if title.upper().startswith("ML ") else "Deepen with Christina"
+
+
 def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
@@ -36,6 +46,7 @@ def render_episode_page(ep: dict, related: list) -> str:
         if para.strip()
     )
     slug = slugify(ep["title"])
+    show = show_name(ep["title"])
     url_path = f"/deepen-with-christina/{slug}/"
     image = ep.get("image") or "/images/podcast-artwork.png"
     image_abs = image if image.startswith("http") else f"https://wedeepen.com{image}"
@@ -90,8 +101,7 @@ def render_episode_page(ep: dict, related: list) -> str:
         } if audio_url else None,
         "partOfSeries": {
             "@type": "PodcastSeries",
-            "name": "Mastering Love with Christina Weber",
-            "alternateName": "Deepen with Christina",
+            "name": show,
             "url": "https://wedeepen.com/podcast/",
         },
         "image": image_abs,
@@ -114,7 +124,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>{title_esc} — Mastering Love with Christina Weber</title>
+  <title>{title_esc} — {show}</title>
   <meta name="description" content="{desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
@@ -127,7 +137,7 @@ def render_episode_page(ep: dict, related: list) -> str:
   <meta property="og:image:width" content="1400">
   <meta property="og:image:height" content="1400">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:site_name" content="Mastering Love with Christina Weber">
+  <meta property="og:site_name" content="{show}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title_esc}">
@@ -269,7 +279,7 @@ def render_episode_page(ep: dict, related: list) -> str:
         </div>
 
         <div class="md:col-span-2">
-          <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">Mastering Love with Christina Weber</p>
+          <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">{show}</p>
           <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-5">{title_esc}</h1>
           {('<div class="flex items-center gap-4 text-white/55 text-sm mb-6"><span>' + duration + '</span></div>') if duration else ''}
           <div class="flex flex-wrap gap-3">

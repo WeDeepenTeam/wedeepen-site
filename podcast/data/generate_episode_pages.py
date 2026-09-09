@@ -33,9 +33,34 @@ def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
 
+def seo_title(title: str, show: str) -> str:
+    """Title for the <title> tag.
+
+    Search results cut off around 60 characters. The episode title carries the
+    guest name, which is the part people actually search for, so it is never
+    truncated; the show suffix is only appended when it still fits.
+    """
+    suffix = f" \u2014 {show}"
+    return f"{title}{suffix}" if len(title) + len(suffix) <= 60 else title
+
+
+def meta_description(text: str, limit: int = 155) -> str:
+    """Snippet for the description meta tags.
+
+    Feed descriptions are full show notes (median ~1,100 characters), which
+    Google truncates around 160. Cut on a word boundary so the snippet never
+    ends mid-word, and escape afterwards so a slice can never split an HTML
+    entity in half the way the old escape-then-truncate order could.
+    """
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(" ,;:\u2014-") + "\u2026"
+
+
 def render_episode_page(ep: dict, related: list) -> str:
     title_esc = html.escape(ep["title"])
-    desc_esc = html.escape(ep.get("description", ""))[:400]
+    desc_esc = html.escape(meta_description(ep.get("description", "")))
     # Use full description if available, fall back to short
     desc_full_raw = ep.get("description_full") or ep.get("description", "")
     # Convert to HTML: escape, then turn paragraph breaks into <p> tags
@@ -47,6 +72,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     )
     slug = slugify(ep["title"])
     show = show_name(ep["title"])
+    title_seo_esc = html.escape(seo_title(ep["title"], show))
     url_path = f"/deepen-with-christina/{slug}/"
     image = ep.get("image") or "/images/podcast-artwork.png"
     image_abs = image if image.startswith("http") else f"https://wedeepen.com{image}"
@@ -124,7 +150,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>{title_esc} — {show}</title>
+  <title>{title_seo_esc}</title>
   <meta name="description" content="{desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">

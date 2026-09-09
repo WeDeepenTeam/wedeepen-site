@@ -313,6 +313,13 @@
       <div class="text-center mt-10">
         <button id="load-more" class="btn-outline hidden">Load more episodes</button>
       </div>
+
+      <!-- Static, crawlable path to every episode. The list above renders
+           client-side from episodes.json, so without this link the served HTML
+           contains no episode URLs at all. -->
+      <p class="text-center text-white/45 text-sm mt-8">
+        Prefer to browse the whole catalogue? <a href="/podcast/archive/" class="text-gold hover:underline">See every episode</a>.
+      </p>
     </div>
   </section>
 

@@ -1,0 +1,39 @@
+# WeDeepen
+
+> WeDeepen is a curated ecosystem for extraordinary love, founded by Christina Weber. It brings together relationship experts, immersive in-person experiences, and a membership community for people who want to build and sustain remarkable relationships. Based in Austin, Texas, with experiences run nationally.
+
+WeDeepen's work spans four areas: multi-day Love Immersion retreats, a membership community, one-on-one work with vetted relationship experts (called Love Strategists), and a long-running podcast on love, sex, dating, and human connection.
+
+Christina Weber is a Love Industry Pioneer whose work began with Underground Unattached in New York City and continues through WeDeepen in Austin.
+
+## Core pages
+
+- [Home](https://wedeepen.com/): What WeDeepen is and how to get involved
+- [About](https://wedeepen.com/about/): The story of WeDeepen and founder Christina Weber
+- [Love Immersion](https://wedeepen.com/love-immersion/): Multi-day immersive relationship retreats, with upcoming dates
+- [Love Club](https://wedeepen.com/love-club/): The membership community
+- [Love Strategists](https://wedeepen.com/love-guides/): The vetted relationship experts, coaches, and practitioners WeDeepen works with
+- [Events](https://wedeepen.com/events/): Upcoming in-person gatherings
+- [Reviews](https://wedeepen.com/reviews/): First-hand accounts from participants
+- [Photo Gallery](https://wedeepen.com/gallery/): Photography from past events and immersions
+
+## Podcast
+
+The show is now called Mastering Love, formerly Deepen with Christina, hosted by Christina Weber. Long-form conversations with relationship experts, somatic practitioners, authors, and researchers on love, sex, dating, intimacy, and modern relationships.
+
+- [Podcast home](https://wedeepen.com/podcast/): Search and browse episodes
+- [Full episode archive](https://wedeepen.com/podcast/archive/): Every episode, listed by year
+- Individual episodes live at https://wedeepen.com/deepen-with-christina/[episode-slug]/
+
+## Getting in touch
+
+- [Join the list](https://wedeepen.com/join/): Private invites to upcoming experiences
+- [Book a session with Christina](https://wedeepen.com/book-session-with-christina/)
+- [Become a partner](https://wedeepen.com/become-a-partner/)
+
+## Notes for machine readers
+
+- Every indexable page is listed in [the sitemap](https://wedeepen.com/sitemap.xml)
+- Pages carry schema.org structured data: Organization, Event, PodcastEpisode, PodcastSeries, ImageGallery, and Person
+- Retreat dates and pricing change; treat the linked pages as the source of truth rather than any cached summary
+- [Terms of Use](https://wedeepen.com/terms/) and [Privacy Policy](https://wedeepen.com/privacy/)

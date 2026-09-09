@@ -1333,6 +1333,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://wedeepen.com/podcast/archive/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://wedeepen.com/privacy/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>

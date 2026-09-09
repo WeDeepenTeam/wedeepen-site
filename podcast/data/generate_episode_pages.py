@@ -337,8 +337,9 @@ def render_episode_page(ep: dict, related: list) -> str:
       <div class="space-y-3">
         {related_cards}
       </div>
-      <div class="text-center mt-10">
+      <div class="text-center mt-10 flex flex-wrap justify-center gap-4">
         <a href="/podcast/" class="btn-outline">Browse all episodes</a>
+        <a href="/podcast/archive/" class="btn-outline">Full episode archive</a>
       </div>
     </div>
   </section>
@@ -358,7 +359,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     <script src="/js/lead-capture.js?v=20" defer></script>
     <div class="max-w-site mx-auto px-6 text-center">
       <a href="/" class="inline-block mb-4">
-        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60" loading="lazy" decoding="async">
       </a>
       <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
     </div>
@@ -396,9 +397,13 @@ def main():
         if not slug:
             continue
 
-        # Get 3 related episodes (the 3 around this one, excluding itself)
-        others = [e for j, e in enumerate(episodes) if j != i]
-        related = others[:3] if i > 2 else others[3:6]
+        # Link to the immediate neighbours in the feed. The old logic pointed
+        # every page at the same three newest episodes, which left 174 of 182
+        # episodes with zero inbound internal links and made the back catalogue
+        # reachable only via the sitemap. Neighbour links chain the whole
+        # archive together so every episode earns inbound links.
+        window = [j for j in (i - 2, i - 1, i + 1, i + 2) if 0 <= j < len(episodes)]
+        related = [episodes[j] for j in window[:3]]
 
         page_html = render_episode_page(ep, related)
         out_dir = OUTPUT_DIR / slug

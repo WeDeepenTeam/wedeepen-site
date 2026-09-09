@@ -29,6 +29,50 @@ def show_name(title: str) -> str:
     return "Mastering Love with Christina Weber" if title.upper().startswith("ML ") else "Deepen with Christina"
 
 
+# Bare URLs and email addresses in the show notes are rendered as clickable
+# link text rather than raw URLs: instagram.com/foo becomes @foo, everything
+# else becomes host + path with the scheme, www. and trailing slash dropped.
+LINK_TOKEN_RE = re.compile(r'(https?://[^\s<>"]+|\b[\w.+-]+@[\w-]+\.[\w.-]+\b)')
+TRAILING_PUNCT = '.,;:!?)]}\''
+
+
+def link_label(url: str) -> str:
+    """Human-readable text for a URL."""
+    rest = url.split("://", 1)[1] if "://" in url else url
+    host, _, path = rest.partition("/")
+    host = host.lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = "/" + path if path else ""
+    path = path.rstrip("/")
+    if host == "instagram.com" and path:
+        return "@" + path.lstrip("/").split("/")[0]
+    return host + path
+
+
+def linkify(escaped: str) -> str:
+    """Turn bare URLs/emails in already-escaped text into anchors."""
+    def repl(m):
+        token = m.group(0)
+        trail = ""
+        while token and token[-1] in TRAILING_PUNCT:
+            trail = token[-1] + trail
+            token = token[:-1]
+        if not token:
+            return m.group(0)
+        raw = html.unescape(token)
+        if "@" in raw and "://" not in raw:
+            return f'<a href="mailto:{raw}" class="ep-link">{html.escape(raw)}</a>' + trail
+        internal = "wedeepen.com" in raw.split("/")[2].lower() if "://" in raw else False
+        target = "" if internal else ' target="_blank" rel="noopener"'
+        return (
+            f'<a href="{html.escape(raw, quote=True)}"{target} class="ep-link">'
+            f'{html.escape(link_label(raw))}</a>' + trail
+        )
+
+    return LINK_TOKEN_RE.sub(repl, escaped)
+
+
 def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
@@ -41,7 +85,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     # Convert to HTML: escape, then turn paragraph breaks into <p> tags
     desc_full_escaped = html.escape(desc_full_raw)
     desc_long_html = "".join(
-        f"<p>{para.replace(chr(10), '<br>')}</p>"
+        f"<p>{linkify(para).replace(chr(10), '<br>')}</p>"
         for para in desc_full_escaped.split("\n\n")
         if para.strip()
     )
@@ -192,6 +236,8 @@ def render_episode_page(ep: dict, related: list) -> str:
     .line-clamp-2 {{ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
     .episode-body {{ white-space: pre-wrap; }}
     .episode-body p {{ margin-bottom: 1em; }}
+    .ep-link {{ color: #C9A277; text-decoration: none; border-bottom: 1px solid rgba(201,162,119,0.35); transition: color 0.2s, border-color 0.2s; overflow-wrap: anywhere; }}
+    .ep-link:hover {{ color: #E0BE93; border-bottom-color: #E0BE93; }}
   </style>
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
   <!-- Favicon — locked, see CLAUDE.md (do not change without explicit request) -->

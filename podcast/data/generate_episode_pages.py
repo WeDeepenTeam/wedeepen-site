@@ -90,7 +90,8 @@ def render_episode_page(ep: dict, related: list) -> str:
         } if audio_url else None,
         "partOfSeries": {
             "@type": "PodcastSeries",
-            "name": "Deepen with Christina",
+            "name": "Mastering Love with Christina Weber",
+            "alternateName": "Deepen with Christina",
             "url": "https://wedeepen.com/podcast/",
         },
         "image": image_abs,
@@ -103,7 +104,17 @@ def render_episode_page(ep: dict, related: list) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title_esc} — Deepen with Christina</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-LZ0EY5X593');
+  </script>
+
+  <title>{title_esc} — Mastering Love with Christina Weber</title>
   <meta name="description" content="{desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
@@ -116,7 +127,7 @@ def render_episode_page(ep: dict, related: list) -> str:
   <meta property="og:image:width" content="1400">
   <meta property="og:image:height" content="1400">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:site_name" content="Deepen with Christina">
+  <meta property="og:site_name" content="Mastering Love with Christina Weber">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title_esc}">
@@ -258,7 +269,7 @@ def render_episode_page(ep: dict, related: list) -> str:
         </div>
 
         <div class="md:col-span-2">
-          <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">Deepen with Christina</p>
+          <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">Mastering Love with Christina Weber</p>
           <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-5">{title_esc}</h1>
           {('<div class="flex items-center gap-4 text-white/55 text-sm mb-6"><span>' + duration + '</span></div>') if duration else ''}
           <div class="flex flex-wrap gap-3">

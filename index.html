@@ -1443,11 +1443,15 @@
             const d = new Date((e.end_date || e.date) + 'T23:59:59');
             return d >= new Date();
           })
+          .sort((a,b) => (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date))
+          // The function returns every occurrence of a recurring series; keep
+          // only the next one per series so Office Hours doesn't appear 3x.
+          .filter((e, i, arr) => arr.findIndex(x => (x.series || x.id) === (e.series || e.id)) === i)
           // One-off events (In-Person, Love Immersion, orientations) come before
           // recurring member sessions (Office Hours, Integration, Mastermind), so
           // weekly repeats don't crowd the flagship events off the homepage.
           .sort((a,b) => (a.recurring ? 1 : 0) - (b.recurring ? 1 : 0)
-            || new Date(a.date + 'T00:00:00') - new Date(b.date + 'T00:00:00'))
+            || (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date))
           .slice(0, 3);
 
         const grid = document.getElementById('home-events-grid');

@@ -215,6 +215,7 @@
       display: inline-block; text-decoration: none;
     }
     .btn-pink:hover { background: #D02767; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(232,51,122,0.35); }
+    button.btn-pink { border: 0; cursor: pointer; font-family: inherit; }
 
     .btn-rose {
       background: #A01B4A; color: #fff;
@@ -343,6 +344,12 @@
         <div class="events-status col-span-full" id="events-status">Loading events…</div>
       </div>
 
+      <!-- Load more: paginates the grid, then links to the full Circle calendar -->
+      <div id="load-more-wrap" class="text-center mt-12 hidden">
+        <button id="load-more-btn" type="button" class="btn-pink">Load more events</button>
+        <a id="full-calendar-link" href="https://circle.wedeepen.com/c/member-s-calendar" target="_blank" rel="noopener" class="btn-pink hidden">See the full calendar &rarr;</a>
+      </div>
+
     </div>
   </section>
 
@@ -460,6 +467,9 @@
     let allEvents = [];
     let activeFilter = 'all';
     let searchQuery = '';
+    // Grid shows three rows at a time; "Load more" reveals the next three
+    const PAGE_SIZE = 9;
+    let visibleCount = PAGE_SIZE;
 
     async function loadEvents() {
       // Try live Supabase function first, fall back to static JSON if it fails
@@ -475,8 +485,7 @@
               const eventDate = new Date((e.end_date || e.date) + 'T23:59:59');
               return eventDate >= new Date();
             })
-            .sort((a, b) => new Date(a.date + 'T00:00:00') - new Date(b.date + 'T00:00:00'))
-            .slice(0, 12);
+            .sort((a, b) => (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date));
           renderEvents();
           return;
         } catch (err) {
@@ -502,14 +511,29 @@
         return matchesFilter && matchesSearch;
       });
 
-      countEl.textContent = `${filtered.length} event${filtered.length === 1 ? '' : 's'}`;
+      const loadMoreWrap = document.getElementById('load-more-wrap');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      const fullCalLink = document.getElementById('full-calendar-link');
+
+      const visible = filtered.slice(0, visibleCount);
+      const hasMore = filtered.length > visible.length;
+      countEl.textContent = hasMore
+        ? `Showing ${visible.length} of ${filtered.length} events`
+        : `${filtered.length} event${filtered.length === 1 ? '' : 's'}`;
 
       if (filtered.length === 0) {
         grid.innerHTML = '<div class="events-status col-span-full">No events match your filters.</div>';
+        loadMoreWrap.classList.add('hidden');
         return;
       }
 
-      grid.innerHTML = filtered.map(e => {
+      // Button paginates while there are more; once everything is on the
+      // page it becomes a link to the full calendar on Circle.
+      loadMoreWrap.classList.remove('hidden');
+      loadMoreBtn.classList.toggle('hidden', !hasMore);
+      fullCalLink.classList.toggle('hidden', hasMore);
+
+      grid.innerHTML = visible.map(e => {
         const dateLabel = formatDate(e.date);
         const locIcon = e.location_type === 'online'
           ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>'
@@ -559,12 +583,20 @@
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
+      visibleCount = PAGE_SIZE;
       renderEvents();
     });
 
     // Search handler
     document.getElementById('event-search').addEventListener('input', (e) => {
       searchQuery = e.target.value;
+      visibleCount = PAGE_SIZE;
+      renderEvents();
+    });
+
+    // Load more handler
+    document.getElementById('load-more-btn').addEventListener('click', () => {
+      visibleCount += PAGE_SIZE;
       renderEvents();
     });
 

@@ -343,6 +343,7 @@
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
         <!-- nav:links -->
+        <a href="/#membership" class="text-white/80 hover:text-white transition">Membership</a>
         <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
@@ -372,6 +373,7 @@
     <nav class="flex flex-col gap-6 text-lg font-medium">
 
       <!-- nav:links -->
+      <a href="/#membership" class="text-white hover:text-gold transition">Membership</a>
       <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
       <a href="/love-guides/" class="text-white hover:text-gold transition">Faculty</a>
@@ -951,7 +953,7 @@
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-14">
         <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Upcoming Events</h2>
-        <p class="text-white/60 text-lg">Join us live &mdash; in Austin or online.</p>
+        <p class="text-white/60 text-lg">What&rsquo;s on the calendar. Most of it is included with membership.</p>
       </div>
 
       <!-- Events grid — populated from Circle API via events.json -->
@@ -1498,8 +1500,8 @@
               <div class="aspect-[1024/366]" style="${imgStyle}"></div>
               <div class="p-5">
                 <p class="text-gold text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
-                <h3 class="font-semibold text-lg mb-1 line-clamp-1">${e.title}</h3>
-                <p class="text-white/50 text-sm mb-3 line-clamp-1">${loc}</p>
+                <h3 class="font-semibold text-lg mb-1 leading-snug">${e.title}</h3>
+                <p class="text-white/50 text-sm mb-3">${loc}</p>
                 <div class="flex items-center justify-between">
                   ${tagHtml}
                   <span class="text-gold text-sm hover:underline">Details &rarr;</span>

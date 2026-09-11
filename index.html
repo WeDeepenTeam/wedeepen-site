@@ -1250,11 +1250,15 @@
             <select id="dal-subject" name="subject"
               class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition appearance-none cursor-pointer"
               style="background-image: url(&quot;data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff80' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e&quot;); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px; padding-right: 2.5rem;">
+              <!-- Values must match ALLOWED_SUBJECTS in the drop-a-line edge function (christinalweber-site repo).
+                   ?topic=<value> in the URL preselects one, e.g. /?topic=request#contact from Circle. -->
               <option value="">Choose one…</option>
               <option value="WeDeepen Membership">WeDeepen Membership</option>
+              <option value="Love Club">Love Club</option>
               <option value="Love Immersion">Love Immersion</option>
+              <option value="Make a Request">Make a Request</option>
               <option value="Media / Press">Media / Press</option>
-              <option value="Becoming a Love Strategist">Becoming a Love Strategist</option>
+              <option value="Joining the Faculty">Joining the Faculty</option>
               <option value="Other">Other</option>
             </select>
           </div>
@@ -1354,6 +1358,15 @@
     // ========================
     (function initDropALine() {
       const form = document.getElementById('drop-a-line-form');
+
+      // Deep link: /?topic=request#contact preselects the subject so Circle
+      // (or an email) can send someone straight into the right lane.
+      (function preselectSubject() {
+        const want = (new URLSearchParams(location.search).get('topic') || '').toLowerCase();
+        if (!want) return;
+        const opt = [...form.subject.options].find(o => o.value.toLowerCase().includes(want));
+        if (opt) form.subject.value = opt.value;
+      })();
       if (!form) return;
       const status = document.getElementById('dal-status');
       const submit = document.getElementById('dal-submit');

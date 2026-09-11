@@ -1393,7 +1393,7 @@
     })();
 
     // ========================
-    // HOME EVENTS PREVIEW (pulls from Circle via events.json)
+    // HOME EVENTS PREVIEW (pulls from Circle Member's Calendar via circle-events function)
     // ========================
     // Per-event URL overrides — when an event has its own dedicated page on
     // wedeepen.com, route the card to that page instead of the Circle calendar.
@@ -1443,7 +1443,11 @@
             const d = new Date((e.end_date || e.date) + 'T23:59:59');
             return d >= new Date();
           })
-          .sort((a,b) => new Date(a.date + 'T00:00:00') - new Date(b.date + 'T00:00:00'))
+          // One-off events (In-Person, Love Immersion, orientations) come before
+          // recurring member sessions (Office Hours, Integration, Mastermind), so
+          // weekly repeats don't crowd the flagship events off the homepage.
+          .sort((a,b) => (a.recurring ? 1 : 0) - (b.recurring ? 1 : 0)
+            || new Date(a.date + 'T00:00:00') - new Date(b.date + 'T00:00:00'))
           .slice(0, 3);
 
         const grid = document.getElementById('home-events-grid');

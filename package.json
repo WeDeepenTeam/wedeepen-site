@@ -4,6 +4,8 @@
   "type": "module",
   "description": "Source for wedeepen.com — static HTML + Tailwind CDN, deployed via GitHub Pages. Gallery pages are generated from Supabase via the gallery:* scripts.",
   "scripts": {
+    "nav:sync": "node scripts/build-nav.mjs",
+    "nav:check": "node scripts/build-nav.mjs --check",
     "gallery:install": "cd scripts/gallery && npm install",
     "gallery:download": "python3 scripts/gallery/download-drive.py",
     "gallery:process": "cd scripts/gallery && node process-and-upload.js",

@@ -247,6 +247,10 @@ gh run list --limit 5
 
 ---
 
+## Site navigation
+
+The header links on every page are generated from one file, [`scripts/nav/links.json`](./scripts/nav/links.json). Edit it, run `npm run nav:sync`, commit. Each page keeps its own header markup; only the block between `<!-- nav:links -->` and `<!-- /nav:links -->` is rewritten, with the current page marked active. `npm run nav:check` reports drift without writing. The gallery generator imports the same renderer (`scripts/nav/render.mjs`), and the podcast generator copies its shell from `podcast/index.html`, so generated pages can't disagree with hand-written ones.
+
 ## Editorial / voice guidelines
 
 The brand voice is **provocative, intellectual, sensual, direct** — captured in the Brand Bible. When writing or editing copy:

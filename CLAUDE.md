@@ -20,6 +20,7 @@ There is a sister repo, [`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/
 4. **Verify deploy success after every push** via `gh run list --limit 3`.
 5. **Use a feature branch for every non-trivial change.** Never push directly to `main` for content/code changes. Trivial typo fixes on `main` are OK.
 6. **Do the work in a worktree, not the main checkout.** See "Multi-session safety" below — multiple Claude sessions and GitHub Actions agents (`WeDeepenTeam/claude/*`) edit this repo in parallel.
+7. **The site nav is templated.** Never hand-edit nav links in a page. Edit `scripts/nav/links.json`, run `npm run nav:sync`, commit the result. The block between `<!-- nav:links -->` and `<!-- /nav:links -->` in every page is generated; `npm run nav:check` tells you if any page has drifted. The gallery page shell reads the same file, so `gallery:build` output always matches.
 
 ---
 
@@ -142,6 +143,12 @@ Load these only when the task matches:
    ```
 4. Commit only the `gallery/` HTML changes (the photos themselves are in Supabase, not committed)
 5. Push
+
+### Change the site navigation
+
+1. Edit `scripts/nav/links.json` (label, href, order; `activePrefix` if the active state should cover a whole section)
+2. `npm run nav:sync` rewrites the link block in every page and marks the current page active
+3. Commit everything it touched (expect ~230 files) and push
 
 ### Update existing copy
 

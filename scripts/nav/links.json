@@ -1,0 +1,11 @@
+{
+  "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. Order is the display order.",
+  "links": [
+    { "label": "Love Immersion", "href": "/love-immersion/october-2026/", "activePrefix": "/love-immersion/" },
+    { "label": "Events",         "href": "/events/" },
+    { "label": "Faculty",        "href": "/love-guides/" },
+    { "label": "Reviews",        "href": "/reviews/" },
+    { "label": "Podcast",        "href": "/podcast/" },
+    { "label": "About",          "href": "/about/" }
+  ]
+}

@@ -332,11 +332,12 @@
       <!-- Filter row -->
       <div class="flex items-center justify-between flex-wrap gap-4 mb-10">
         <div class="flex flex-wrap gap-3" id="filter-bar">
-          <!-- Filters match Circle topic names on each event (see the circle-events function) -->
+          <!-- data-filter values are Circle topic names (see the circle-events function);
+               the labels are what a visitor shops by. Love Club is a chip, not a filter. -->
           <button class="filter-btn active" data-filter="all">All Events</button>
-          <button class="filter-btn" data-filter="Love Club">Love Club</button>
-          <button class="filter-btn" data-filter="WeDeepen Members">WeDeepen Members</button>
-          <button class="filter-btn" data-filter="In-Person">In-Person</button>
+          <button class="filter-btn hidden" data-filter="Open to Everyone">Open to Everyone</button>
+          <button class="filter-btn" data-filter="WeDeepen Members">Included with Membership</button>
+          <button class="filter-btn" data-filter="In-Person">Austin</button>
         </div>
         <div class="text-sm text-charcoal/60" id="event-count">Loading events…</div>
       </div>
@@ -488,6 +489,9 @@
               return eventDate >= new Date();
             })
             .sort((a, b) => (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date));
+          // Only show the Open to Everyone filter once an event carries that topic
+          const hasOpen = allEvents.some(e => (e.topics || []).includes('Open to Everyone'));
+          document.querySelector('[data-filter="Open to Everyone"]').classList.toggle('hidden', !hasOpen);
           renderEvents();
           return;
         } catch (err) {
@@ -545,9 +549,16 @@
           ? `<span class="chip">${e.location_label}</span>`
           : '';
         const tagChip = e.tag ? `<span class="chip">${e.tag}</span>` : '';
-        // Topic chips mirror the filter buttons so a card shows which filters it belongs to
-        const FILTER_TOPICS = ['Love Club', 'WeDeepen Members', 'In-Person'];
-        const topicChips = (e.topics || []).filter(t => FILTER_TOPICS.includes(t)).map(t => `<span class="chip">${t}</span>`).join('');
+        // One access chip per card, showing the lowest tier that can attend.
+        // Love Club is tagged on everything (Love Club members get it all), so it
+        // only surfaces as a chip when no lower tier has access (Office Hours).
+        const topics = e.topics || [];
+        const accessLabel = topics.includes('Open to Everyone') ? 'Open to Everyone'
+          : topics.includes('WeDeepen Members') ? 'Included with Membership'
+          // Ticketed weekends (In-Person) never read as Love Club-only; anyone can buy a ticket
+          : topics.includes('Love Club') && !topics.includes('In-Person') ? 'Love Club'
+          : '';
+        const topicChips = accessLabel ? `<span class="chip">${accessLabel}</span>` : '';
         // Recurring series are collapsed to their next occurrence by the function
         const recurChip = e.recurring ? `<span class="chip">Recurring</span>` : '';
 

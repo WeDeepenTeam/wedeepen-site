@@ -1477,7 +1477,8 @@
 
           return `
             <a href="${eventUrl}"${external} class="wd-card bg-charcoal rounded-xl overflow-hidden block">
-              <div class="aspect-[16/10]" style="${imgStyle}"></div>
+              <!-- Circle event covers are 1024x366; match the ratio so nothing gets cropped -->
+              <div class="aspect-[1024/366]" style="${imgStyle}"></div>
               <div class="p-5">
                 <p class="text-gold text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
                 <h3 class="font-semibold text-lg mb-1 line-clamp-1">${e.title}</h3>

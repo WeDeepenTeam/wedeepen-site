@@ -43,6 +43,12 @@
     return d + ' days left';
   }
   var POPUP_DELAY_MS = 7000;
+  // Links from inside the Circle community carry ?topic=... (see the Drop a
+  // Line form on the homepage). Those visitors are already members, so skip
+  // the list-building bar, popup, and header button entirely.
+  var MEMBER_LINK = (function () {
+    try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
+  })();
 
   // Mobile = text-first (SMS CTA + save contact). Desktop = form.
   // ?wd-view=mobile / ?wd-view=desktop override for QA.
@@ -434,6 +440,11 @@
     var style = document.createElement('style');
     style.textContent = css;
     document.head.appendChild(style);
+
+    if (MEMBER_LINK) {
+      document.querySelectorAll('[data-lead-popup]').forEach(function (el) { el.style.display = 'none'; });
+      return;
+    }
 
     if (!snoozed(LS_BAR)) buildBar();
 

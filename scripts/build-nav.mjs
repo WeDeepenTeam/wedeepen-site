@@ -16,7 +16,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderNavLinks, START, END } from './nav/render.mjs';
+import { renderNavLinks, renderNavCta, START, END, CTA_START, CTA_END } from './nav/render.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SKIP_DIRS = new Set(['node_modules', 'tmp', '.git', 'scripts']);
@@ -40,13 +40,24 @@ const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // Block already stamped: <indent><!-- nav:links --> ... <!-- /nav:links -->
 const MARKED = new RegExp(`^([ \\t]*)${esc(START)}[\\s\\S]*?${esc(END)}`, 'gm');
+const CTA_MARKED = new RegExp(`^([ \\t]*)${esc(CTA_START)}[\\s\\S]*?${esc(CTA_END)}`, 'gm');
+// Legacy header button, desktop then mobile (document order)
+const LEGACY_CTA = /^([ \t]*)<a href="#" data-lead-popup class="[^"]*">GET PRIVATE INVITES<\/a>/gm;
 
 // Legacy runs, desktop and mobile. Each starts at either the plain Love
 // Immersion link or its dropdown wrapper and ends at the Podcast link.
 const LEGACY_DESKTOP = /^([ \t]*)(?:<a href="\/love-immersion\/[^"]*" class="[^"]*">Love Immersion<\/a>|<div class="relative group">[\s\S]*?\n\1<\/div>)\n(?:[ \t]*<a href="\/[^"]*" class="[^"]*">[^<]*<\/a>\n)*?[ \t]*<a href="\/podcast\/" class="[^"]*">Podcast<\/a>/m;
 const LEGACY_MOBILE = /^([ \t]*)(?:<a href="\/love-immersion\/[^"]*" class="[^"]*">Love Immersion<\/a>|<div class="flex flex-col gap-4">[\s\S]*?\n\1<\/div>)\n(?:[ \t]*<a href="\/[^"]*" class="[^"]*">[^<]*<\/a>\n)*?[ \t]*<a href="\/podcast\/" class="[^"]*">Podcast<\/a>/m;
 
+function stampCta(html) {
+  let n = 0;
+  const marked = html.replace(CTA_MARKED, (_, indent) => renderNavCta(n++ === 0 ? 'desktop' : 'mobile', indent));
+  if (n) return marked;
+  return html.replace(LEGACY_CTA, (_, indent) => renderNavCta(n++ === 0 ? 'desktop' : 'mobile', indent));
+}
+
 function stamp(html, pagePath) {
+  html = stampCta(html);
   let desktopDone = false;
   // Marked blocks: first is desktop, second is mobile (document order).
   let out = html.replace(MARKED, (_, indent) => {

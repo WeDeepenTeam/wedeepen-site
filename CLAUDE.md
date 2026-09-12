@@ -20,7 +20,7 @@ There is a sister repo, [`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/
 4. **Verify deploy success after every push** via `gh run list --limit 3`.
 5. **Use a feature branch for every non-trivial change.** Never push directly to `main` for content/code changes. Trivial typo fixes on `main` are OK.
 6. **Do the work in a worktree, not the main checkout.** See "Multi-session safety" below — multiple Claude sessions and GitHub Actions agents (`WeDeepenTeam/claude/*`) edit this repo in parallel.
-7. **The site nav is templated.** Never hand-edit nav links in a page. Edit `scripts/nav/links.json`, run `npm run nav:sync`, commit the result. The block between `<!-- nav:links -->` and `<!-- /nav:links -->` in every page is generated; `npm run nav:check` tells you if any page has drifted. The gallery page shell reads the same file, so `gallery:build` output always matches.
+7. **The site nav is templated.** Never hand-edit nav links or the header Log In / Join buttons in a page. Edit `scripts/nav/links.json` (`links` for the menu, `cta` for the buttons), run `npm run nav:sync`, commit the result. The blocks between `<!-- nav:links -->` / `<!-- /nav:links -->` and `<!-- nav:cta -->` / `<!-- /nav:cta -->` in every page are generated; `npm run nav:check` tells you if any page has drifted. The gallery page shell reads the same file, so `gallery:build` output always matches.
 
 ---
 

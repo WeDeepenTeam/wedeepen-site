@@ -1,5 +1,5 @@
 {
-  "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. Order is the display order.",
+  "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. `links` is the menu (display order); `cta` is the header button pair.",
   "links": [
     {
       "label": "Membership",
@@ -29,6 +29,18 @@
     {
       "label": "About",
       "href": "/about/"
+    }
+  ],
+  "cta": [
+    {
+      "label": "Log In",
+      "href": "https://circle.wedeepen.com/sign_in",
+      "style": "quiet"
+    },
+    {
+      "label": "Join",
+      "href": "https://circle.wedeepen.com/checkout/wedeepen-club-membership",
+      "style": "primary"
     }
   ]
 }

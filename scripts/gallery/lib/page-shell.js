@@ -5,7 +5,7 @@
  * rest of the site.
  */
 import { escapeHtml } from './escape-html.js';
-import { renderNavLinks } from '../../nav/render.mjs';
+import { renderNavLinks, renderNavCta } from '../../nav/render.mjs';
 
 export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
   return `<!DOCTYPE html>
@@ -180,7 +180,7 @@ ${renderNavLinks('desktop', '/gallery/', '        ')}
       </nav>
       <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
 
-        <a href="#" data-lead-popup class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">GET PRIVATE INVITES</a>
+${renderNavCta('desktop', '        ')}
 
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -197,7 +197,7 @@ ${renderNavLinks('desktop', '/gallery/', '        ')}
 
 ${renderNavLinks('mobile', '/gallery/', '      ')}
 
-          <a href="#" data-lead-popup class="btn-rose text-center mt-4">GET PRIVATE INVITES</a>
+${renderNavCta('mobile', '          ')}
     </nav>
   </div>`;
 }

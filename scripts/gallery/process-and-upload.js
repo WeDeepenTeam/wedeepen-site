@@ -180,7 +180,7 @@ async function processOne(albumId, slug, sourcePath, indexInAlbum, album, dryRun
   const fullUrl = await uploadBuffer(fullPath, fullBuf.data, 'image/webp');
   const thumbUrl = await uploadBuffer(thumbPath, thumbBuf.data, 'image/webp');
 
-  const altText = `${album.title} — photo ${indexInAlbum + 1}`;
+  const altText = `${album.title}, photo ${indexInAlbum + 1}`;
   const { data: media, error: mErr } = await supabase
     .from('gallery_media')
     .insert({

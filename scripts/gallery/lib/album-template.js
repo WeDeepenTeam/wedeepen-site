@@ -39,7 +39,7 @@ export function renderAlbumPage(album, photos) {
   const remainingPhotos = photos.slice(PAGE_SIZE);
 
   return `${pageHead({
-    title: `${album.title} — Photos | WeDeepen`,
+    title: `${album.title} Photos | WeDeepen`,
     description,
     canonical: `${SITE}/gallery/${album.slug}/`,
     ogImage,
@@ -95,7 +95,7 @@ ${album.cta_href ? `
         ${remainingPhotos.length ? `
         <div id="more-container" class="text-center mt-10">
           <button id="load-more" class="btn-outline" data-remaining="${remainingPhotos.length}">
-            Load more &mdash; <span id="remaining-count">${remainingPhotos.length}</span> more
+            Load more &middot; <span id="remaining-count">${remainingPhotos.length}</span> more
           </button>
         </div>
         <template id="more-photos">${remainingPhotos.map((p, i) => renderTile(p, PAGE_SIZE + i)).join('')}</template>

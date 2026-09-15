@@ -155,15 +155,15 @@
     /* Iframe sized relative to its parent (.hero-video-wrap) so it always
        fills the entire hero — even when the hero is taller than viewport
        (because of CTAs, press logos, etc).
-       Oversized 20% so the YouTube embed title (no longer hide-able via
-       API) sits offscreen in the top-left.
-       aspect-ratio: 16/9 keeps the video from being letterboxed inside. */
+       Oversized 40% so the YouTube embed title (top-left) and the caption
+       zone (bottom ~15%) both sit offscreen, whatever YouTube decides to
+       draw. aspect-ratio: 16/9 keeps the video from being letterboxed inside. */
     .hero-video-wrap iframe {
       position: absolute;
       top: 50%; left: 50%;
       aspect-ratio: 16 / 9;
-      min-width: 120%;
-      min-height: 120%;
+      min-width: 140%;
+      min-height: 140%;
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 1;
@@ -1603,7 +1603,7 @@
         wrap.dataset.ytLoaded = 'true';
         const id = wrap.dataset.ytId;
         const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&enablejsapi=1`;
+        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&enablejsapi=1&cc_load_policy=3&iv_load_policy=3`;
         iframe.title = 'WeDeepen background';
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('allow', 'autoplay; encrypted-media');
@@ -1620,7 +1620,10 @@
         const bindPlayer = () => new YT.Player(iframe, {
           events: {
             onReady: (e) => killCaptions(e.target),
-            onApiChange: (e) => killCaptions(e.target)
+            onApiChange: (e) => killCaptions(e.target),
+            // The loop restarts the video and YouTube reloads the module
+            // with it, so kill again on every play.
+            onStateChange: (e) => { if (e.data === 1) killCaptions(e.target); }
           }
         });
         if (window.YT && window.YT.Player) {

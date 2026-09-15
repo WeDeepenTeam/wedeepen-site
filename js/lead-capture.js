@@ -44,6 +44,54 @@
     return d + ' days left';
   }
   var POPUP_DELAY_MS = 7000;
+  var CHECKOUT_URL = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership';
+  // Announcement-bar hooks. Each visitor gets one at random and keeps it for
+  // the session, so the lead log can tell which line pulled. `bar` is the
+  // desktop bar line, `title`/`sub` head the popup, and a hook with `href`
+  // sends the bar button straight there instead of opening the popup.
+  var HOOKS = [
+    { id: 'single-again',
+      bar: '<strong class="wd-bar-gold">Single again?</strong> Here&#39;s how to make sure it works this time.',
+      plain: 'Single again? Here\'s how to make sure it works this time.',
+      title: 'Single again?',
+      sub: 'Private invitations, new dates, and everything it takes to make it work this time.' },
+    { id: 'you-or-them',
+      bar: '<strong class="wd-bar-gold">Is it you, or is it them?</strong> Find out now, or in your next relationship.',
+      plain: 'Is it you, or is it them? Find out now, or in your next relationship.',
+      title: 'Is it you, or is it them?',
+      sub: 'Private invitations, new dates, and the questions that tell you which one it is.' },
+    { id: 'losing-yourself',
+      bar: '<strong class="wd-bar-gold">Stop losing yourself</strong> in relationships.',
+      plain: 'Stop losing yourself in relationships.',
+      title: 'Stop losing yourself in relationships.',
+      sub: 'Private invitations, new dates, and everything it takes to stay yourself in love.' },
+    { id: 'partner-of-dreams',
+      bar: '<strong class="wd-bar-gold">Align with the partner of your dreams.</strong>',
+      plain: 'Align with the partner of your dreams.',
+      title: 'Align with the partner of your dreams.',
+      sub: 'Private invitations, new dates, and everything it takes to find them and keep them.' },
+    { id: 'together-drifting',
+      bar: '<strong class="wd-bar-gold">Together, but drifting?</strong> Desire can be rebuilt.',
+      plain: 'Together, but drifting? Desire can be rebuilt.',
+      title: 'Together, but drifting?',
+      sub: 'Private invitations, new dates, and everything it takes to bring desire back.' },
+    { id: '99-not-alone',
+      bar: '<strong class="wd-bar-gold">$99 a month</strong> to stop doing your love life alone.',
+      plain: '$99 a month to stop doing your love life alone.',
+      title: 'Stop doing your love life alone.',
+      sub: 'Private invitations, new dates, and first access to everything WeDeepen hosts.',
+      cta: 'Join', href: CHECKOUT_URL }
+  ];
+  var HOOK = (function () {
+    var key = 'wd_hook';
+    try {
+      var saved = sessionStorage.getItem(key);
+      for (var i = 0; i < HOOKS.length; i++) if (HOOKS[i].id === saved) return HOOKS[i];
+    } catch (e) { /* storage blocked; just pick one */ }
+    var pick = HOOKS[Math.floor(Math.random() * HOOKS.length)];
+    try { sessionStorage.setItem(key, pick.id); } catch (e) {}
+    return pick;
+  })();
   // Links from inside the Circle community carry ?topic=... (see the Drop a
   // Line form on the homepage). Those visitors are already members, so skip
   // the list-building bar, popup, and header button entirely.
@@ -162,7 +210,7 @@
         :
         '<span class="wd-bar-stack">' +
           '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
-          '<span class="wd-bar-line2">to receive private invitations, event announcements, and the latest from WeDeepen.</span>' +
+          '<span class="wd-bar-line2">' + HOOK.plain + '</span>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
@@ -171,8 +219,10 @@
         ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $500 through Aug 16th &middot; <strong>' + promoCountdown() + '</strong>.' +
           (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
-        : '<span class="wd-bar-msg"><strong class="wd-bar-gold">Get on the list:</strong> private invitations, in-person events, and everything it takes to get really good at love.</span>' +
-          '<button type="button" class="wd-bar-join">Count Me In</button>' +
+        : '<span class="wd-bar-msg">' + HOOK.bar + '</span>' +
+          (HOOK.href
+            ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
+            : '<button type="button" class="wd-bar-join">Count Me In</button>') +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);
@@ -217,8 +267,8 @@
 
     var formPanel =
       '<div id="wd-lead-form-wrap">' +
-        '<h2 id="wd-lead-title">Train for love.</h2>' +
-        '<p class="wd-sub">Private invitations, new dates, and first access to everything WeDeepen hosts.</p>' +
+        '<h2 id="wd-lead-title">' + HOOK.title + '</h2>' +
+        '<p class="wd-sub">' + HOOK.sub + '</p>' +
         '<form id="wd-lead-form" novalidate>' +
           '<div class="wd-hp" aria-hidden="true"><label for="wd-company">Company</label><input id="wd-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
           '<label for="wd-first">First name</label>' +
@@ -250,7 +300,7 @@
 
     var smsPanel =
       '<div id="wd-lead-form-wrap" class="wd-sms-panel">' +
-        '<h2 id="wd-lead-title">Train for love.</h2>' +
+        '<h2 id="wd-lead-title">' + HOOK.title + '</h2>' +
         '<p class="wd-sub">Text <strong>' + SMS_KEYWORD + '</strong> to the number below and you&#39;re in. Be the first to hear about Love Immersion dates and events.</p>' +
         '<p class="wd-number"><a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></p>' +
         '<a class="wd-sms-btn" id="wd-sms-cta" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>' +
@@ -333,7 +383,7 @@
         method: 'POST', mode: 'no-cors',
         body: new URLSearchParams({
           firstName: firstName, email: email || '', phone: phone,
-          location: locationStr || '', page: location.pathname
+          location: locationStr || '', page: location.pathname + ' [' + HOOK.id + ']'
         })
       }).catch(function () {});
     } catch (e) { /* never block the signup on the log */ }

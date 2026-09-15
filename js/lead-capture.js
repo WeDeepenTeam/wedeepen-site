@@ -31,6 +31,7 @@
   var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
   var PROMO_END = Date.parse('2026-08-17T04:59:59Z'); // Aug 16, 11:59pm Austin
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
+  var ON_HOME = /^\/(index\.html)?$/.test(location.pathname);
   var PROMO_ACTIVE = (function () {
     if (/[?&#]wd-promo=off/.test(location.href)) return false;
     return Date.now() < PROMO_END;
@@ -456,7 +457,8 @@
 
     // Auto-open on desktop only. On mobile the bar's one-tap "text us" beats
     // any popup, and Google penalizes auto-interstitials in mobile search.
-    if (!IS_MOBILE && !ON_LI_PAGE && !snoozed(LS_POPUP)) {
+    // The homepage leads with the $99 offer; don't cover it with the popup.
+    if (!IS_MOBILE && !ON_LI_PAGE && !ON_HOME && !snoozed(LS_POPUP)) {
       setTimeout(openPopup, POPUP_DELAY_MS);
     }
   }

@@ -44,11 +44,11 @@
     return d + ' days left';
   }
   var POPUP_DELAY_MS = 7000;
-  var CHECKOUT_URL = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership';
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
-  // desktop bar line, `title`/`sub` head the popup, and a hook with `href`
-  // sends the bar button straight there instead of opening the popup.
+  // desktop bar line, `title`/`sub` head the popup. The bar is list capture
+  // only (the hero sells the $99); a hook with `href` would send the bar
+  // button straight there instead of opening the popup.
   var HOOKS = [
     { id: 'single-again',
       bar: '<strong class="wd-bar-gold">Single again?</strong> Here&#39;s how to make sure it works this time.',
@@ -74,13 +74,7 @@
       bar: '<strong class="wd-bar-gold">Together, but drifting?</strong> Desire can be rebuilt.',
       plain: 'Together, but drifting? Desire can be rebuilt.',
       title: 'Together, but drifting?',
-      sub: 'Private invitations, new dates, and everything it takes to bring desire back.' },
-    { id: '99-not-alone',
-      bar: '<strong class="wd-bar-gold">$99 a month</strong> to stop doing your love life alone.',
-      plain: '$99 a month to stop doing your love life alone.',
-      title: 'Stop doing your love life alone.',
-      sub: 'Private invitations, new dates, and first access to everything WeDeepen hosts.',
-      cta: 'Join', href: CHECKOUT_URL }
+      sub: 'Private invitations, new dates, and everything it takes to bring desire back.' }
   ];
   var HOOK = (function () {
     var key = 'wd_hook';

@@ -25,6 +25,9 @@ const MOBILE = 'text-white hover:text-gold transition';
 
 function isActive(link, pagePath) {
   const prefix = link.activePrefix || link.href;
+  // A link to the homepage is active only on the homepage; "/" is a prefix
+  // of every path, so it can't use the startsWith rule.
+  if (prefix === '/') return pagePath === '/';
   return pagePath !== '/' && pagePath.startsWith(prefix);
 }
 

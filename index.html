@@ -461,7 +461,7 @@
        Sits directly under the hero + press bar: the offer in three beats
        before the page starts making its argument.
        ============================ -->
-  <section class="bg-ink pt-20 pb-24 md:pt-24 md:pb-32 px-6">
+  <section class="bg-ink pt-16 pb-16 md:pt-24 md:pb-32 px-6">
     <div class="max-w-site mx-auto reveal">
       <div class="text-center mb-14 md:mb-16">
         <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.9rem] font-normal leading-tight" style="text-wrap: balance;">
@@ -1230,9 +1230,7 @@
           <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>You can cancel at any time from your account or by emailing <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a>. Cancellation takes effect at the end of your current billing period.</p><p class="mt-4">The annual rate is <strong class="text-white">$990</strong>, which works out to two months free, and it includes an <strong class="text-white">$800 credit toward one Love Immersion</strong> during your membership year. The credit can&rsquo;t be combined with any other discount or offer.</p></div></div>
         </div>
       </div>
-      <div class="text-center mt-14">
-        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base">Become a Member &middot; $99/month</a>
-      </div>
+      
     </div>
   </section>
 
@@ -1544,7 +1542,7 @@
           return;
         }
 
-        grid.innerHTML = upcoming.map(e => {
+        grid.innerHTML = upcoming.map((e, i) => {
           const d = new Date(e.date + 'T00:00:00');
           const dateLabel = e.end_date
             ? `${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})} – ${new Date(e.end_date+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`
@@ -1577,7 +1575,7 @@
           const external = eventUrl.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
 
           return `
-            <a href="${eventUrl}"${external} class="wd-card bg-charcoal rounded-xl overflow-hidden block">
+            <a href="${eventUrl}"${external} class="wd-card bg-charcoal rounded-xl overflow-hidden ${i >= 4 ? 'hidden sm:block' : 'block'}">
               <div class="aspect-video" style="${imgStyle}"></div>
               <div class="p-5">
                 <p class="text-gold text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
@@ -1608,6 +1606,15 @@
       e.target.innerHTML = '<p class="text-gold text-sm py-3">Thanks! We\'ll be in touch.</p>';
       return false;
     }
+
+    // Mobile join bar: the hero already has the same button, so keep the bar
+    // off screen until the hero has scrolled away.
+    (function mobileJoinBar() {
+      const bar = document.getElementById('mobile-join-bar');
+      const hero = document.getElementById('hero');
+      if (!bar || !hero || !('IntersectionObserver' in window)) { bar && bar.classList.remove('translate-y-full'); return; }
+      new IntersectionObserver(([e]) => bar.classList.toggle('translate-y-full', e.isIntersecting), { threshold: 0.1 }).observe(hero);
+    })();
 
     // FAQ accordion (for future use on other pages)
     document.querySelectorAll('.faq-item').forEach(item => {
@@ -1721,8 +1728,8 @@
   <script src="/js/live-dates.js?v=1" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
-  <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener"
-     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6"
+  <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" id="mobile-join-bar"
+     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6 transition-transform duration-300 translate-y-full"
      style="background:#A01B4A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Become a Member &middot; $99/month &rarr;
   </a>

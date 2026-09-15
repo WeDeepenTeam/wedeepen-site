@@ -426,7 +426,7 @@
 
       <!-- CTAs — membership primary, what's-included secondary -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-6">
-        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base flex items-center gap-2 !px-8 sm:!px-10 !py-4 w-full sm:w-auto justify-center">
+        <a data-cta="hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base flex items-center gap-2 !px-8 sm:!px-10 !py-4 w-full sm:w-auto justify-center">
           Become a Member <span class="opacity-70">&middot;</span> $99/month
         </a>
         <a href="#membership" class="flex items-center gap-2.5 text-white/80 hover:text-white transition font-medium text-base px-6 sm:px-7 py-3 sm:py-4">
@@ -482,6 +482,12 @@
           <h3 class="font-heading text-2xl md:text-[1.8rem] text-white mb-4 leading-snug">Real-world practice</h3>
           <p class="text-white/60 leading-relaxed">Weekly Sunday Dares by text + email</p>
         </div>
+      </div>
+
+      <!-- Who it's for: the avatar from the marketing session, gender-neutral -->
+      <div class="max-w-3xl mx-auto text-center mt-16 md:mt-20 pt-10 border-t border-white/10">
+        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-4">Who it&rsquo;s for</p>
+        <p class="font-heading text-xl md:text-2xl text-white/90 leading-relaxed" style="text-wrap: balance;">People dating again after a marriage or a long relationship, who want the next one to work. And couples who feel the spark fading and want it back. Most members are over 40, accomplished, and done guessing. Singles and couples both belong here.</p>
       </div>
     </div>
   </section>
@@ -660,6 +666,7 @@
             <p class="text-gold text-[0.68rem] uppercase tracking-[0.28em] font-semibold mb-3">Start anytime</p>
             <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3">Join today. Come Tuesday at 7pm ET.</p>
             <p class="text-white/70 text-sm leading-relaxed">Live every Tuesday at 7:00 PM Eastern, 6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific. New Member Orientation runs monthly and you don&rsquo;t need to wait for it to start. Next one: <strong class="text-white" data-live="next-orientation">Monday, October 5</strong>.</p>
+            <p class="text-white/85 text-sm leading-relaxed mt-4">Less than one coaching session, for a month of Tuesdays with the faculty and a community that gets it.</p>
             <a href="#calendar" class="inline-block mt-4 text-gold/80 hover:text-gold transition text-sm font-medium underline-offset-4 hover:underline">See who&rsquo;s teaching this month &darr;</a>
           </div>
           <div class="grid sm:grid-cols-2 gap-4 lg:min-w-[30rem]">
@@ -667,7 +674,7 @@
               <p class="text-white/50 text-[0.68rem] uppercase tracking-[0.24em] font-semibold mb-3">Monthly</p>
               <p class="font-heading text-4xl text-white mb-1">$99<span class="text-white/40 text-base"> /month</span></p>
               <p class="text-white/55 text-sm mb-6">Cancel anytime.</p>
-              <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-outline text-sm w-full text-center block mt-auto">Become a Member</a>
+              <a data-cta="membership" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-outline text-sm w-full text-center block mt-auto">Become a Member</a>
             </div>
             <div class="rounded-sm p-6 flex flex-col relative" style="border:1px solid rgba(201,162,119,0.6); background:rgba(201,162,119,0.05);">
               <span class="absolute -top-3 left-5 text-[0.62rem] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full" style="background:#C9A277;color:#1A1A1A;">Best value</span>
@@ -675,11 +682,22 @@
               <p class="font-heading text-4xl text-white mb-1">$990<span class="text-white/40 text-base"> /year</span></p>
               <p class="text-white/55 text-sm mb-3">Two months free. Billed once a year.</p>
               <p class="text-white/80 text-sm mb-6">Bonus: an <strong class="text-white">$800 credit</strong> toward one Love Immersion<a href="#faq-credit" class="text-gold" aria-label="Credit terms">*</a></p>
-              <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-sm w-full text-center block mt-auto">Join for the Year</a>
+              <a data-cta="membership" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-sm w-full text-center block mt-auto">Join for the Year</a>
             </div>
           </div>
         </div>
         <p class="text-white/40 text-xs leading-relaxed mt-6">*The Love Immersion credit is valid for one Immersion during your membership year and can&rsquo;t be combined with any other discount or offer. <a href="#faq-credit" class="underline underline-offset-2 hover:text-white/70">Details in the FAQ</a>.</p>
+      </div>
+
+      <!-- Proof right where the decision happens -->
+      <div class="max-w-3xl mx-auto text-center mt-10">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <span class="text-gold text-base tracking-wide">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-white font-semibold text-sm">5.0</span>
+          <span class="text-white/50 text-sm">Google Reviews</span>
+        </div>
+        <p class="font-heading italic text-white/85 text-lg md:text-xl leading-relaxed">&ldquo;The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.&rdquo;</p>
+        <p class="text-white/50 text-xs uppercase tracking-[0.2em] mt-3">Bo L., Member</p>
       </div>
 
       <div class="text-center mt-8">
@@ -707,7 +725,7 @@
       </div>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
         <a href="/events/" class="text-rose-deep hover:underline font-medium">See the full calendar &rarr;</a>
-        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-sm">Become a Member &middot; $99/month</a>
+        <a data-cta="calendar" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-sm">Become a Member &middot; $99/month</a>
       </div>
     </div>
   </section>
@@ -833,13 +851,14 @@
     <div class="relative z-10 max-w-site mx-auto px-6 reveal">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <!-- Left: Love Immersion image -->
-        <div class="relative aspect-square rounded-2xl overflow-hidden bg-ink">
-          <img src="/images/love-immersion-spotlight.jpg" alt="Love Immersion" class="absolute inset-0 w-full h-full object-contain">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink">
+          <img src="/images/li-community-1.webp" alt="The whole room at a WeDeepen Love Immersion, arms up" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="1800" height="1013">
+          <img src="/images/love-immersion-spotlight.jpg" alt="" class="absolute bottom-4 left-4 w-20 h-20 rounded-lg shadow-lg" loading="lazy" aria-hidden="true">
         </div>
 
         <!-- Right: Info -->
         <div>
-          <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-4">The Flagship Intensive</p>
+          <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-4">Where we get to meet in person</p>
           <h2 class="font-heading font-normal text-white mb-6 leading-[1.05]" style="font-size: clamp(2.5rem, 5.5vw, 4rem);">Love <span class="italic" style="color:#C9A277;">Immersion</span></h2>
           <p class="text-white/70 text-lg leading-relaxed mb-6">
             Three days. Six world-class coaches. Hot-seat work that&rsquo;s honest, precise, and impossible to fake your way through. 70% of participants come back. Couples leave closer. Singles leave clearer. Everyone leaves changed.
@@ -1266,7 +1285,7 @@
           <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:rgba(201,162,119,0.18);"><svg viewBox="0 0 20 20" width="12" height="12" fill="none" stroke="#C9A277" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10.5l3 3L15 7"/></svg></span><span>Recordings of Love Masterminds held after you join</span></div>
         </div>
         <div class="text-center mt-9">
-          <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose">Join Now</a>
+          <a data-cta="final-card" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose">Join Now</a>
         </div>
         <p class="text-center text-white/50 text-xs mt-6">Cancel anytime. Join today, come Tuesday at 7pm ET.</p>
       </div>
@@ -1288,7 +1307,7 @@
       </h2>
       <p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">Keep learning from expert guides, testing what you learn, and developing how you date, communicate, connect, and love. Every Tuesday. Join today, come Tuesday.</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base">Become a Member &middot; $99/month</a>
+        <a data-cta="contact" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base">Become a Member &middot; $99/month</a>
         <a href="/love-immersion/october-2026/" class="btn-outline text-base">Attend Love Immersion</a>
       </div>
     </div>
@@ -1733,6 +1752,11 @@
           fb('InitiateCheckout', { content_category: 'Event' });
         }
 
+        if (a.href && a.href.indexOf('checkout/wedeepen-club-membership') > -1) {
+          ga('join_click', { cta_position: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown'), link_text: (a.textContent || '').trim().slice(0, 40) });
+          fb('InitiateCheckout', { content_category: 'Membership', content_name: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown') });
+        }
+
         if (a.hasAttribute('data-lead-popup')) {
           ga('lead_popup_open');
           fb('Lead', { content_name: 'Private invites list' });
@@ -1741,11 +1765,11 @@
     })();
   </script>
 
-  <script src="/js/lead-capture.js?v=26" defer></script>
+  <script src="/js/lead-capture.js?v=27" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
-  <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" id="mobile-join-bar"
+  <a data-cta="mobile-sticky" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" id="mobile-join-bar"
      class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6 transition-transform duration-300 translate-y-full"
      style="background:#A01B4A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Become a Member &middot; $99/month &rarr;

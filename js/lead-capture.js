@@ -203,8 +203,8 @@
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         :
         '<span class="wd-bar-stack">' +
-          '<span class="wd-bar-line1">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
-          '<span class="wd-bar-line2">' + HOOK.plain + '</span>' +
+          '<span class="wd-bar-line1">' + HOOK.bar + '</span>' +
+          '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {

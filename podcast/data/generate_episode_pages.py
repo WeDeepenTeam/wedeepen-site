@@ -73,11 +73,35 @@ def linkify(escaped: str) -> str:
     return LINK_TOKEN_RE.sub(repl, escaped)
 
 
+DASH_RE = re.compile(r"\s*(?:—|&mdash;)\s*")
+
+def strip_em_dashes(text: str) -> str:
+    """House style: no em dashes. A short label before the dash (show-note
+    bullets like "- Topic — explanation") becomes "Topic: explanation";
+    everything else becomes a comma."""
+    if not text or ("—" not in text and "&mdash;" not in text):
+        return text
+    out = []
+    for line in text.split("\n"):
+        parts = DASH_RE.split(line)
+        if len(parts) == 1:
+            out.append(line); continue
+        head = parts[0]
+        label = head.lstrip("-•* ").strip()
+        colon = (line.lstrip().startswith(("-", "•", "*")) or len(parts) == 2) and 0 < len(label) <= 60 and not re.search(r"[.!?]$", label)
+        s = head + (": " if colon else ", ") + parts[1]
+        for p in parts[2:]:
+            s += ", " + p
+        out.append(s)
+    return "\n".join(out)
+
+
 def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
 
 def render_episode_page(ep: dict, related: list) -> str:
+    ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
     desc_esc = html.escape(ep.get("description", ""))[:400]
     # Use full description if available, fall back to short
@@ -168,7 +192,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>{title_esc} — {show}</title>
+  <title>{title_esc} | {show}</title>
   <meta name="description" content="{desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
@@ -260,26 +284,22 @@ def render_episode_page(ep: dict, related: list) -> str:
       </a>
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
-        <div class="relative group">
-          <button type="button" class="text-white/80 hover:text-white transition flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">Love Immersion<svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 transition-transform duration-200 group-hover:rotate-180"><path d="M1 1l4 4 4-4"/></svg></button>
-          <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-[70]">
-            <div class="rounded-xl py-2 min-w-[220px]" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px -12px rgba(0,0,0,0.65);">
-              <a href="/love-immersion/october-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">October 16&ndash;19, 2026</a>
-              <a href="/love-immersion/nye-2026/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">New Year&rsquo;s Eve 2026&ndash;27</a>
-              <a href="/love-immersion/march-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">March 5&ndash;7, 2027</a>
-              <a href="/love-immersion/july-2027/" class="block px-5 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition whitespace-nowrap">July 16&ndash;18, 2027</a>
-            </div>
-          </div>
-        </div>
-        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Love Strategists</a>
+        <!-- nav:links -->
+        <a href="/" class="text-white hover:text-white transition">Membership</a>
+        <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
         <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
-        <a href="/podcast/" class="text-white hover:text-white transition">Podcast</a>
+        <!-- /nav:links -->
       </nav>
       <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
 
-        <a href="#" data-lead-popup class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">GET PRIVATE INVITES</a>
+        <!-- nav:cta -->
+        <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/80 hover:text-white transition text-sm font-medium whitespace-nowrap hidden sm:inline-block">Log In</a>
+        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join</a>
+        <!-- /nav:cta -->
 
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -294,20 +314,20 @@ def render_episode_page(ep: dict, related: list) -> str:
     </button>
     <nav class="flex flex-col gap-6 text-lg font-medium">
 
-      <div class="flex flex-col gap-4">
-        <span class="text-white/50 text-sm uppercase tracking-[0.15em] font-semibold">Love Immersion</span>
-        <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition pl-4 text-base">October 16&ndash;19, 2026</a>
-        <a href="/love-immersion/nye-2026/" class="text-white hover:text-gold transition pl-4 text-base">New Year&rsquo;s Eve 2026&ndash;27</a>
-        <a href="/love-immersion/march-2027/" class="text-white hover:text-gold transition pl-4 text-base">March 5&ndash;7, 2027</a>
-        <a href="/love-immersion/july-2027/" class="text-white hover:text-gold transition pl-4 text-base">July 16&ndash;18, 2027</a>
-      </div>
-      <a href="/love-guides/" class="text-white hover:text-gold transition">Love Strategists</a>
+      <!-- nav:links -->
+      <a href="/" class="text-white hover:text-gold transition">Membership</a>
+      <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Faculty</a>
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
-      <a href="/about/" class="text-white hover:text-gold transition">About</a>
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <!-- /nav:links -->
 
-          <a href="#" data-lead-popup class="btn-rose text-center mt-4">GET PRIVATE INVITES</a>
+          <!-- nav:cta -->
+          <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose text-center mt-4">Join</a>
+          <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/70 hover:text-white transition text-center">Log In</a>
+          <!-- /nav:cta -->
     </nav>
   </div>
 
@@ -395,8 +415,8 @@ def render_episode_page(ep: dict, related: list) -> str:
   <section class="py-16 md:py-20 px-6" style="background: linear-gradient(135deg, #1A1A1A 0%, #2a1620 100%);">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-heading text-3xl md:text-4xl font-normal mb-5 leading-tight">Love the podcast? <span class="italic" style="color:#C4577A;">Come practice it.</span></h2>
-      <p class="text-white/60 mb-8 leading-relaxed">The conversations here become reality inside the Love Club.</p>
-      <a href="/love-club/" class="btn-rose">Join Love Club</a>
+      <p class="text-white/60 mb-8 leading-relaxed">The conversations here become practice inside the WeDeepen Membership. Live sessions every week, $99 a month.</p>
+      <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose">Become a Member</a>
     </div>
   </section>
 

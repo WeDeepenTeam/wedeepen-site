@@ -693,20 +693,20 @@
        SECTION 2c: THIS MONTH INSIDE THE MEMBERSHIP
        Live from the Circle member calendar (same feed as /events/).
        ============================ -->
-  <section id="calendar" class="bg-ink py-20 md:py-28">
+  <section id="calendar" class="bg-cream text-charcoal py-20 md:py-28">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl mb-12 md:mb-14">
-        <p class="text-gold/70 text-[0.7rem] uppercase tracking-[0.24em] font-semibold mb-5">The member calendar</p>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-5" style="text-wrap: balance;">
-          This month inside <span class="italic" style="color:#C9A277;">the membership.</span>
+        <p class="text-rose-deep text-[0.7rem] uppercase tracking-[0.24em] font-semibold mb-5">The member calendar</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-charcoal leading-tight mb-5" style="text-wrap: balance;">
+          This month inside <span class="italic" style="color:#A01B4A;">the membership.</span>
         </h2>
-        <p class="text-lg text-white/65 leading-relaxed">Every Tuesday at 7pm ET: Love Masterminds with the faculty, alternating with Integration Sessions where you practice what you learned. Plus a New Member Orientation to get you started. Here&rsquo;s what&rsquo;s next.</p>
+        <p class="text-lg text-charcoal/70 leading-relaxed">Every Tuesday at 7pm ET: Love Masterminds with the faculty, alternating with Integration Sessions where you practice what you learned. Plus a New Member Orientation to get you started. Here&rsquo;s what&rsquo;s next.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="home-events-grid">
-        <div class="col-span-full text-center text-white/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
+        <div class="col-span-full text-center text-charcoal/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
       </div>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
-        <a href="/events/" class="text-gold hover:underline font-medium">See the full calendar &rarr;</a>
+        <a href="/events/" class="text-rose-deep hover:underline font-medium">See the full calendar &rarr;</a>
         <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-sm">Become a Member &middot; $99/month</a>
       </div>
     </div>
@@ -1566,10 +1566,10 @@
           const isOrientation = /orientation/i.test(e.title || '');
           const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
           const tagHtml = isOrientation
-            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(232,51,122,0.15);color:#E8337A;">New members</span>'
+            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(160,27,74,0.10);color:#A01B4A;">New members</span>'
             : isIntegration
-            ? '<span class="text-xs bg-white/10 text-white/70 px-3 py-1 rounded-full whitespace-nowrap">Live practice</span>'
-            : '<span class="text-xs bg-gold/15 text-gold px-3 py-1 rounded-full whitespace-nowrap">Live + recorded</span>';
+            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Live practice</span>'
+            : '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(201,162,119,0.22);color:#8A6A3F;">Live + recorded</span>';
           const loc = e.location_type === 'online' ? 'Online' : (e.location_label || 'Austin, TX');
           let timeLabel = '';
           if (e.location_type === 'online' && e.starts_at_iso) {
@@ -1579,23 +1579,23 @@
           }
           const blurb = (e.description || '').replace(/\s+/g, ' ').replace(/👉🏽.*$/, '').trim();
           const blurbHtml = blurb && !/^WeDeepen (In-Person|Love Immersion)/.test(blurb)
-            ? `<p class="text-white/55 text-sm leading-relaxed mb-4">${blurb.length > 120 ? blurb.slice(0, 117).replace(/\s\S*$/, '') + '&hellip;' : blurb}</p>`
+            ? `<p class="text-charcoal/60 text-sm leading-relaxed mb-4">${blurb.length > 120 ? blurb.slice(0, 117).replace(/\s\S*$/, '') + '&hellip;' : blurb}</p>`
             : '';
 
           const eventUrl = resolveHomeEventUrl(e);
           const external = eventUrl.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
 
           return `
-            <a href="${eventUrl}"${external} class="wd-card bg-charcoal rounded-xl overflow-hidden ${i >= 4 ? 'hidden sm:block' : 'block'}">
+            <a href="${eventUrl}"${external} class="wd-card bg-white rounded-xl overflow-hidden ${i >= 4 ? 'hidden sm:block' : 'block'}" style="border:1px solid rgba(44,36,32,0.10);">
               <div class="aspect-video" style="${imgStyle}"></div>
               <div class="p-5">
-                <p class="text-gold text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
-                <h3 class="font-semibold text-lg mb-1 leading-snug">${title}</h3>
-                <p class="text-white/50 text-sm mb-3">${loc}${timeLabel}</p>
+                <p class="text-rose-deep text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
+                <h3 class="font-semibold text-lg mb-1 leading-snug text-charcoal">${title}</h3>
+                <p class="text-charcoal/50 text-sm mb-3">${loc}${timeLabel}</p>
                 ${blurbHtml}
                 <div class="flex items-center justify-between">
                   ${tagHtml}
-                  <span class="text-gold text-sm hover:underline">Details &rarr;</span>
+                  <span class="text-rose-deep text-sm hover:underline">Details &rarr;</span>
                 </div>
               </div>
             </a>

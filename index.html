@@ -433,7 +433,7 @@
           What&rsquo;s included
         </a>
       </div>
-      <p class="text-gold/90 text-sm md:text-base font-medium mb-5">Join today. Come Tuesday at 7pm ET. Next New Member Orientation: Sunday, October 4.</p>
+      <p class="text-gold/90 text-sm md:text-base font-medium mb-5">Join today. Come Tuesday at 7pm ET. Next New Member Orientation: <span data-live="next-orientation">Sunday, October 4</span>.</p>
       <div class="mb-16 px-4">
         <a href="#four-pillars" class="text-gold/80 hover:text-gold transition text-sm font-medium underline-offset-4 hover:underline inline-block">
           Free: The Four Pillars of a Conscious Relationship &rarr;
@@ -628,7 +628,7 @@
           <div>
             <p class="text-pink-hot text-[0.68rem] uppercase tracking-[0.28em] font-semibold mb-3">Start anytime</p>
             <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3">Join today. Come Tuesday at 7pm ET.</p>
-            <p class="text-white/70 text-sm leading-relaxed">Live every Tuesday at 7:00 PM Eastern, 6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific. Next New Member Orientation: <strong class="text-white">Sunday, October 4</strong>.</p>
+            <p class="text-white/70 text-sm leading-relaxed">Live every Tuesday at 7:00 PM Eastern, 6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific. Next New Member Orientation: <strong class="text-white" data-live="next-orientation">Sunday, October 4</strong>.</p>
             <a href="#calendar" class="inline-block mt-4 text-gold/80 hover:text-gold transition text-sm font-medium underline-offset-4 hover:underline">See who&rsquo;s teaching this month &darr;</a>
           </div>
           <div class="grid sm:grid-cols-2 gap-4 lg:min-w-[30rem]">
@@ -1165,9 +1165,9 @@
             <span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span>
           </button>
           <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>Sessions run <strong class="text-white">every Tuesday for 90 minutes</strong> at 7:00 PM Eastern (6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific). Love Masterminds and Integration Sessions alternate, so there is a live session every week.</p>
-            <p class="mt-4">You can join anytime. The next <strong class="text-white">New Member Orientation is Sunday, October 4</strong>, and you don&rsquo;t need to wait for it to start coming on Tuesdays.</p>
+            <p class="mt-4">You can join anytime. The next <strong class="text-white">New Member Orientation is <span data-live="next-orientation">Sunday, October 4</span></strong>, and you don&rsquo;t need to wait for it to start coming on Tuesdays.</p>
             <p class="text-gold/80 text-xs uppercase tracking-[0.2em] font-semibold mt-6 mb-3">Love Mastermind dates</p>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm" data-live="mastermind-dates">
                 <div class="bg-white/5 rounded px-3 py-2 text-center"><span class="text-white">September 15</span></div>
                 <div class="bg-white/5 rounded px-3 py-2 text-center"><span class="text-white">September 29</span></div>
                 <div class="bg-white/5 rounded px-3 py-2 text-center"><span class="text-white">October 13</span></div>
@@ -1184,7 +1184,7 @@
             <span class="font-heading text-xl md:text-2xl text-white">How much time do I need to get value?</span>
             <span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span>
           </button>
-          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>You can join live when it works for you, use the community as questions come up, and catch recordings from the time you join forward. There is no single way you have to participate.</p></div></div>
+          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>You can join live when it works for you, use the community as questions come up, and catch Love Mastermind recordings from the time you join forward. There is no single way you have to participate.</p></div></div>
         </div>
         <div class="faq-item border-t border-white/12">
           <button class="faq-trigger w-full text-left py-7 flex items-start justify-between gap-8">
@@ -1670,6 +1670,7 @@
   </script>
 
   <script src="/js/lead-capture.js?v=22" defer></script>
+  <script src="/js/live-dates.js?v=1" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener"

@@ -1280,7 +1280,7 @@
        ============================ -->
   <section id="contact" class="relative bg-ink py-24 md:py-32 overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/closing-panel.webp');" aria-hidden="true"></div>
-    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(20,16,18,0.62) 0%, rgba(20,16,18,0.84) 45%, #1A1A1A 78%);" aria-hidden="true"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(20,16,18,0.55) 0%, rgba(20,16,18,0.7) 60%, #1A1A1A 100%);" aria-hidden="true"></div>
     <div class="relative z-10 max-w-2xl mx-auto px-6 text-center reveal">
       <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-5">What You Came For</p>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight" style="text-wrap: balance;">
@@ -1291,9 +1291,15 @@
         <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" class="btn-rose text-base">Become a Member &middot; $99/month</a>
         <a href="/love-immersion/october-2026/" class="btn-outline text-base">Attend Love Immersion</a>
       </div>
+    </div>
+  </section>
 
-      <!-- Drop a Line — native contact form, posts to Supabase Edge Function → Circle -->
-      <div class="max-w-lg mx-auto mt-12">
+  <!-- Drop a Line: native contact form, posts to the drop-a-line edge
+       function (email + private table). Its own solid section so the form
+       never sits on top of the photo above. -->
+  <section class="bg-ink py-20 md:py-24">
+    <div class="relative max-w-2xl mx-auto px-6 text-center reveal">
+      <div class="max-w-lg mx-auto">
         <div class="text-center mb-6">
           <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">Drop a Line</p>
           <p class="text-white/60 text-sm">Have a question or want to connect? Reach out.</p>

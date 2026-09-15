@@ -120,6 +120,7 @@ wedeepen-site/
 | WeDeepen In-Person (Aug 2026) | `/inperson/` | `inperson/index.html` |
 | Reviews | `/reviews/` | `reviews/index.html` |
 | About | `/about/` | `about/index.html` |
+| Four Pillars (free guide) | `/four-pillars/` | `four-pillars/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |
 | **Photo Galleries** | `/gallery/` | `gallery/index.html` (generated) |
 | Schedule 15 min | `/schedule-with-christina/` | `schedule-with-christina/index.html` |

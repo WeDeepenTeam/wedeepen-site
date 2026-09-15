@@ -668,9 +668,9 @@
         <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-5" style="text-wrap: balance;">
           This month inside <span class="italic" style="color:#C9A277;">the membership.</span>
         </h2>
-        <p class="text-lg text-white/65 leading-relaxed">Every Tuesday at 7pm ET, plus the in-person events. Here&rsquo;s who&rsquo;s teaching next.</p>
+        <p class="text-lg text-white/65 leading-relaxed">Every Tuesday at 7pm ET. Love Masterminds with the faculty, alternating with Integration Sessions where you practice what you learned. Here&rsquo;s what&rsquo;s next.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="home-events-grid">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="home-events-grid">
         <div class="col-span-full text-center text-white/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
       </div>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
@@ -686,7 +686,7 @@
   <section class="bg-charcoal py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-14">
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Meet the Love Strategists</h2>
+        <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Meet the Faculty</h2>
         <p class="text-white/60 text-lg max-w-2xl mx-auto">Hand-picked by Christina Weber. Each with a distinct specialty. Each extraordinary.</p>
       </div>
 
@@ -781,7 +781,7 @@
         <a href="/love-guides/" class="wd-card bg-ink border border-gold/30 rounded-xl overflow-hidden group flex items-center justify-center aspect-[3/4]">
           <div class="text-center p-6">
             <div class="text-gold text-4xl mb-3 group-hover:translate-x-1 transition-transform">&rarr;</div>
-            <p class="font-heading text-lg font-semibold">Meet All Strategists</p>
+            <p class="font-heading text-lg font-semibold">Meet the Full Faculty</p>
             <p class="text-white/50 text-sm mt-2">Explore the full roster</p>
           </div>
         </a>
@@ -857,7 +857,7 @@
           <img src="/images/gallery/welcome.jpg" alt="Welcome moment at Love Immersion" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
         </div>
         <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/coaches.jpg" alt="Love Strategists coaching at retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+          <img src="/images/gallery/coaches.jpg" alt="WeDeepen faculty coaching at a live event" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
         </div>
         <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
           <img src="/images/gallery/embodiment.jpg" alt="Embodied practice session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
@@ -1490,22 +1490,21 @@
           } catch (_) { /* try next */ }
         }
         if (!data) throw new Error('All event sources failed');
+        // This section is the Tuesday night calls only: Love Masterminds and
+        // Integration Sessions, every occurrence, in order. In-person events
+        // live in the Love Immersion spotlight and on /events/.
+        const isTuesdayCall = e =>
+          (Array.isArray(e.topics) && e.topics.includes('Love Mastermind')) ||
+          /^Integration Session/i.test(e.title || '');
         const upcoming = (data.events || [])
           .filter(e => {
             // Parse date as local time (not UTC) so today's events don't get filtered out
             const d = new Date((e.end_date || e.date) + 'T23:59:59');
             return d >= new Date();
           })
+          .filter(isTuesdayCall)
           .sort((a,b) => (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date))
-          // The function returns every occurrence of a recurring series; keep
-          // only the next one per series so Office Hours doesn't appear 3x.
-          .filter((e, i, arr) => arr.findIndex(x => (x.series || x.id) === (e.series || e.id)) === i)
-          // One-off events (In-Person, Love Immersion, orientations) come before
-          // recurring member sessions (Office Hours, Integration, Mastermind), so
-          // weekly repeats don't crowd the flagship events off the homepage.
-          .sort((a,b) => (a.recurring ? 1 : 0) - (b.recurring ? 1 : 0)
-            || (a.starts_at_iso || a.date).localeCompare(b.starts_at_iso || b.date))
-          .slice(0, 4);
+          .slice(0, 6);
 
         const grid = document.getElementById('home-events-grid');
         if (!upcoming.length) {
@@ -1522,11 +1521,11 @@
           const imgStyle = hasImg
             ? `background-image:url('${e.image_url}');background-size:cover;background-position:center;`
             : `background:linear-gradient(135deg,#A01B4A 0%,#1A1A1A 100%);`;
-          const topics = Array.isArray(e.topics) ? e.topics : [];
-          const openToAll = topics.includes('Open to Everyone');
-          const tagHtml = openToAll
-            ? '<span class="text-xs bg-white/10 text-white/70 px-3 py-1 rounded-full whitespace-nowrap">Open to everyone</span>'
-            : '<span class="text-xs bg-gold/15 text-gold px-3 py-1 rounded-full whitespace-nowrap">Included</span>';
+          const isIntegration = /^Integration Session/i.test(e.title || '');
+          const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
+          const tagHtml = isIntegration
+            ? '<span class="text-xs bg-white/10 text-white/70 px-3 py-1 rounded-full whitespace-nowrap">Live practice</span>'
+            : '<span class="text-xs bg-gold/15 text-gold px-3 py-1 rounded-full whitespace-nowrap">Live + recorded</span>';
           const loc = e.location_type === 'online' ? 'Online' : (e.location_label || 'Austin, TX');
           let timeLabel = '';
           if (e.location_type === 'online' && e.starts_at_iso) {
@@ -1547,7 +1546,7 @@
               <div class="aspect-video" style="${imgStyle}"></div>
               <div class="p-5">
                 <p class="text-gold text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
-                <h3 class="font-semibold text-lg mb-1 leading-snug">${e.title}</h3>
+                <h3 class="font-semibold text-lg mb-1 leading-snug">${title}</h3>
                 <p class="text-white/50 text-sm mb-3">${loc}${timeLabel}</p>
                 ${blurbHtml}
                 <div class="flex items-center justify-between">

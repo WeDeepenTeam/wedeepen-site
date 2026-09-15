@@ -668,7 +668,7 @@
         <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-5" style="text-wrap: balance;">
           This month inside <span class="italic" style="color:#C9A277;">the membership.</span>
         </h2>
-        <p class="text-lg text-white/65 leading-relaxed">Every Tuesday at 7pm ET. Love Masterminds with the faculty, alternating with Integration Sessions where you practice what you learned. Here&rsquo;s what&rsquo;s next.</p>
+        <p class="text-lg text-white/65 leading-relaxed">Every Tuesday at 7pm ET: Love Masterminds with the faculty, alternating with Integration Sessions where you practice what you learned. Plus a New Member Orientation to get you started. Here&rsquo;s what&rsquo;s next.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="home-events-grid">
         <div class="col-span-full text-center text-white/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
@@ -1490,12 +1490,14 @@
           } catch (_) { /* try next */ }
         }
         if (!data) throw new Error('All event sources failed');
-        // This section is the Tuesday night calls only: Love Masterminds and
-        // Integration Sessions, every occurrence, in order. In-person events
-        // live in the Love Immersion spotlight and on /events/.
+        // This section is the member calls only: Love Masterminds, Integration
+        // Sessions, and the New Member Orientation, every occurrence, in
+        // order. In-person events live in the Love Immersion spotlight and on
+        // /events/.
         const isTuesdayCall = e =>
           (Array.isArray(e.topics) && e.topics.includes('Love Mastermind')) ||
-          /^Integration Session/i.test(e.title || '');
+          /^Integration Session/i.test(e.title || '') ||
+          /orientation/i.test(e.title || '');
         const upcoming = (data.events || [])
           .filter(e => {
             // Parse date as local time (not UTC) so today's events don't get filtered out
@@ -1522,8 +1524,11 @@
             ? `background-image:url('${e.image_url}');background-size:cover;background-position:center;`
             : `background:linear-gradient(135deg,#A01B4A 0%,#1A1A1A 100%);`;
           const isIntegration = /^Integration Session/i.test(e.title || '');
+          const isOrientation = /orientation/i.test(e.title || '');
           const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
-          const tagHtml = isIntegration
+          const tagHtml = isOrientation
+            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(232,51,122,0.15);color:#E8337A;">New members</span>'
+            : isIntegration
             ? '<span class="text-xs bg-white/10 text-white/70 px-3 py-1 rounded-full whitespace-nowrap">Live practice</span>'
             : '<span class="text-xs bg-gold/15 text-gold px-3 py-1 rounded-full whitespace-nowrap">Live + recorded</span>';
           const loc = e.location_type === 'online' ? 'Online' : (e.location_label || 'Austin, TX');

@@ -21,6 +21,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Site header only. Preflight is off so Tailwind doesn't reset the Kashf page styles below. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            rose: { deep: '#A01B4A', light: '#C4577A' },
+            gold: { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
   <title>KASHF: Eden Exposed | The Living Goddess Exhibit | May 30, 2026</title>
   <meta name="description" content="KASHF: Eden Exposed, an intimate overnight goddess ceremony of sound, movement, celebration, and solemn awe. Limited to 20 guests. Saturday, May 30, 2026. Three tiers from $1,500.">
   <meta name="keywords" content="KASHF, Eden Exposed, goddess ceremony, overnight event, sacred experience, WeDeepen, Christina Weber, Austin Texas">
@@ -155,9 +173,46 @@
     }
 
     /* ── Nav ──────────────────────────────────────── */
+    /* ── WeDeepen site header (same markup as every other page) ── */
+    :root { --wd-header-h: 61px; }
+    html { scroll-padding-top: calc(var(--wd-header-h) + 56px); }
+    .wd-header {
+      font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header a { text-decoration: none; }
+    .wd-header button, .mobile-nav button { background: none; border: 0; cursor: pointer; line-height: 0; font: inherit; }
+    .wd-header img, .wd-header svg, .mobile-nav svg { display: block; }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+    .mobile-nav {
+      font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav a { text-decoration: none; }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* Kashf section nav sits under the site header */
     .nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: var(--wd-header-h); left: 0; right: 0;
       z-index: 100;
       background: rgba(10, 26, 26, 0.7);
       backdrop-filter: blur(20px) saturate(1.4);
@@ -165,7 +220,7 @@
       border-bottom: 1px solid var(--divider);
       transition: transform 0.35s var(--ease);
     }
-    .nav--hidden { transform: translateY(-100%); }
+    .nav--hidden { transform: translateY(calc(-100% - var(--wd-header-h))); }
     .nav__inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -333,7 +388,7 @@
       align-items: center;
       justify-content: center;
       gap: 0;
-      padding: 6rem 2rem 5rem;
+      padding: calc(var(--wd-header-h) + 56px + 2rem) 2rem 5rem;
       max-width: 900px;
     }
     .hero__candle {
@@ -1255,7 +1310,63 @@
 </head>
 <body>
 
-  <!-- ═══ NAV ═══ -->
+  <!-- ═══ SITE HEADER (templated: edit scripts/nav/links.json, run npm run nav:sync) ═══ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0" style="z-index: 110; background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex flex-1 items-center">
+        <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+        <!-- nav:links -->
+        <a href="/" class="text-white/80 hover:text-white transition">Membership</a>
+        <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
+        <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
+        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
+        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+        <!-- /nav:links -->
+      </nav>
+      <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
+
+        <!-- nav:cta -->
+        <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/80 hover:text-white transition text-sm font-medium whitespace-nowrap hidden sm:inline-block">Log In</a>
+        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join</a>
+        <!-- /nav:cta -->
+
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[120] flex flex-col pt-20 px-8">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium">
+
+      <!-- nav:links -->
+      <a href="/" class="text-white hover:text-gold transition">Membership</a>
+      <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
+      <a href="/events/" class="text-white hover:text-gold transition">Events</a>
+      <a href="/love-guides/" class="text-white hover:text-gold transition">Faculty</a>
+      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
+      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <!-- /nav:links -->
+
+          <!-- nav:cta -->
+          <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose text-center mt-4">Join</a>
+          <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/70 hover:text-white transition text-center">Log In</a>
+          <!-- /nav:cta -->
+    </nav>
+  </div>
+
+  <!-- ═══ KASHF SECTION NAV ═══ -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
       <a href="#top" class="nav__brand">Kashf</a>
@@ -1580,6 +1691,18 @@ in Your Name.</strong>
 
     // ── Nav: hide on scroll down, show on scroll up ──
     (() => {
+      // ── Site header ──
+      const wdHeader = document.getElementById('wd-header');
+      // Keep the Kashf section nav and hero clearance in step with the real header height
+      const syncHeaderHeight = () => document.documentElement.style.setProperty('--wd-header-h', wdHeader.offsetHeight + 'px');
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight, { passive: true });
+      window.addEventListener('scroll', () => { wdHeader.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+      const mobileNav = document.getElementById('mobile-nav');
+      document.getElementById('mobile-toggle').addEventListener('click', () => mobileNav.classList.add('open'));
+      document.getElementById('mobile-close').addEventListener('click', () => mobileNav.classList.remove('open'));
+      mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
       const nav = document.getElementById('mainNav');
       let lastY = 0;
       let ticking = false;

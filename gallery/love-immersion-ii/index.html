@@ -1140,6 +1140,18 @@
 
     function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
 
+    // Retry thumbnails that fail to load (dropped requests when a big batch fires at once).
+    // Up to 3 attempts with backoff; a cache-busting param forces a fresh fetch.
+    grid.addEventListener('error', (e) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement)) return;
+      const tries = Number(img.dataset.retry || 0);
+      if (tries >= 3) return;
+      img.dataset.retry = String(tries + 1);
+      const base = img.src.split('?')[0];
+      setTimeout(() => { img.src = base + '?r=' + (tries + 1) + '-' + Date.now(); }, 800 * (tries + 1));
+    }, true);
+
     function open(index) {
       const all = tiles();
       currentIndex = Math.max(0, Math.min(index, all.length - 1));

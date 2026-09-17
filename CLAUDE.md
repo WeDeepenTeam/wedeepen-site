@@ -14,7 +14,7 @@ There is a sister repo, [`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/
 
 ## Mandatory behaviors
 
-1. **After code changes, deploy by pushing.** GitHub Pages auto-deploys on push to `main` (~30 sec). There is no separate build step for HTML — Tailwind is loaded via CDN.
+1. **After code changes, deploy by pushing.** GitHub Pages auto-deploys on push to `main` (~30 sec). There is no build step for HTML, but if you touched Tailwind classes, run `npm run css:build` first (see below).
 2. **Run gallery builds, never ask the user to.** If a gallery change needs `npm run gallery:build`, run it.
 3. **Run SQL migrations directly** against Supabase, never paste them into chat and ask the user to run them.
 4. **Verify deploy success after every push** via `gh run list --limit 3`.
@@ -83,7 +83,7 @@ If origin moved while you were editing, `git rebase origin/main` before pushing.
 ## Code guards
 
 - **🔒 FAVICON IS LOCKED — DO NOT CHANGE.** The canonical favicon source is `/favicon-source.png` (500×500, WeDeepen circular wave mark). All `favicon-*.png`, `favicon.ico`, `favicon.svg`, and `apple-touch-icon.png` are generated from that source. **Do not regenerate, replace, or "improve" any favicon file without an explicit request from Christina that names the new source image.** If you see what looks like a generic or wrong favicon and feel the urge to "fix" it, stop — verify `favicon-source.png` matches what Christina wants first. This rule exists because multiple agents kept replacing the favicon and undoing each other.
-- **Tailwind via CDN** — no build step, no `tailwind.config.js`. Use utility classes directly. Custom colors are defined inline in the `tailwind.config` script tag at the top of each page.
+- **Tailwind is compiled, not CDN-loaded.** Pages link `/css/wedeepen.css`; the CDN runtime was removed in PR #514 because it blocked first paint on every page. Use utility classes as normal, then run `npm run css:build` before committing, or the class you just used has no rule. `npm run css:check` tells you if the CSS is stale and `npm run css:classes` fails if a class in the markup was never generated. Theme values (colors, fonts, `max-w-site`) live in `scripts/css/themes.mjs` — never inline a `tailwind.config` in a page again. Most pages share the `wedeepen` theme; `/membership/` and `/kashf/` have their own because their values genuinely differ.
 - **Paths:** Gallery lives at `/gallery/` — never `/wedeepen/gallery/`. The site is at the domain root, no subpath.
 - **No personal info** in committed HTML (member names, emails, phone numbers, addresses).
 - **OG images required** for every new top-level page. Generate at 1200×630 and put in `images/og/`.
@@ -108,7 +108,7 @@ Load these only when the task matches:
 
 | | |
 |---|---|
-| **Tech stack** | Static HTML + Tailwind CDN + Vanilla JS |
+| **Tech stack** | Static HTML + compiled Tailwind + Vanilla JS |
 | **Hosting** | GitHub Pages |
 | **CDN / DNS** | Cloudflare |
 | **Backend** | Supabase (gallery data, Edge Functions in sister repo) |
@@ -171,7 +171,7 @@ Common failures: malformed HTML, missing referenced image, GitHub Pages quota (r
 ## Things to never do
 
 - Push secrets, API keys, Supabase service-role keys, or `.env` files. Use `.env.example` only.
-- Add a build step. The site is intentionally zero-build for fast contribution onboarding.
+- Add a build step beyond the existing generators (`css:build`, `nav:sync`, `gallery:build`, the podcast generators). Editing a page is still "open the HTML and type"; keep it that way.
 - Add JavaScript frameworks (React, Vue, etc.). Static HTML + Tailwind only.
 - Modify someone else's branch without coordination.
 - Force-push to `main`.

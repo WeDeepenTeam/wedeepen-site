@@ -4,15 +4,25 @@
   "type": "module",
   "description": "Source for wedeepen.com — static HTML + Tailwind CDN, deployed via GitHub Pages. Gallery pages are generated from Supabase via the gallery:* scripts.",
   "scripts": {
-    "nav:sync": "node scripts/build-nav.mjs",
-    "nav:check": "node scripts/build-nav.mjs --check",
-    "gallery:install": "cd scripts/gallery && npm install",
-    "gallery:download": "python3 scripts/gallery/download-drive.py",
-    "gallery:process": "cd scripts/gallery && node process-and-upload.js",
+    "css:build": "node scripts/build-css.mjs",
+    "css:check": "node scripts/build-css.mjs --check",
+    "css:classes": "node scripts/check-css-classes.mjs",
     "gallery:build": "cd scripts/gallery && node build-static-pages.js",
+    "gallery:download": "python3 scripts/gallery/download-drive.py",
+    "gallery:install": "cd scripts/gallery && npm install",
+    "gallery:process": "cd scripts/gallery && node process-and-upload.js",
     "gallery:smoke": "cd scripts/gallery && node smoke-test.js",
-    "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js"
+    "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js",
+    "nav:check": "node scripts/build-nav.mjs --check",
+    "nav:sync": "node scripts/build-nav.mjs"
   },
-  "keywords": ["wedeepen", "supabase", "github-pages"],
-  "license": "UNLICENSED"
+  "keywords": [
+    "wedeepen",
+    "supabase",
+    "github-pages"
+  ],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
 }

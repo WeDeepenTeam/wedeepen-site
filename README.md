@@ -9,8 +9,8 @@ Founded by Christina Weber · Austin, TX.
 ## Quick facts
 
 - **Live URL:** [wedeepen.com](https://wedeepen.com)
-- **Tech:** Static HTML/CSS/JS (no framework, no build step)
-- **Styling:** Tailwind CSS via CDN (no compilation required)
+- **Tech:** Static HTML/CSS/JS (no framework)
+- **Styling:** Tailwind CSS, compiled to `css/wedeepen.css` by `npm run css:build`
 - **Hosting:** GitHub Pages, deploys automatically on push to `main`
 - **DNS / CDN:** Cloudflare
 - **Backend:** Supabase Edge Functions (TypeScript/Deno)
@@ -44,7 +44,7 @@ git push
 # Changes go live on wedeepen.com in ~1 minute via GitHub Pages
 ```
 
-**You don't need a build step.** Tailwind is loaded via CDN. Edit HTML directly.
+**Edit HTML directly.** The one thing to remember: if you add or change a Tailwind class, run `npm run css:build` before committing. Tailwind only ships rules for classes it finds in the markup, so an unbuilt class silently renders unstyled. `npm run css:classes` catches that if you forget.
 
 ---
 

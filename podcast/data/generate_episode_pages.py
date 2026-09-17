@@ -29,6 +29,44 @@ def show_name(title: str) -> str:
     return "Mastering Love with Christina Weber" if title.upper().startswith("ML ") else "Deepen with Christina"
 
 
+# Search snippets: Google cuts titles at about 60 characters and descriptions
+# at about 155, so anything longer is shown truncated mid-word. The feed's
+# show notes run 200-400 characters.
+TITLE_MAX = 60
+META_DESC_MAX = 155
+OG_DESC_MAX = 200
+ABBREVIATIONS = {"dr", "mr", "mrs", "ms", "st", "vs", "jr", "sr"}
+
+
+def page_title(title: str, show: str) -> str:
+    """Episode title plus show name when that fits; the bare title otherwise.
+
+    Episode titles already carry the DWC/ML prefix, so dropping the suffix
+    keeps the brand without truncating the guest's name.
+    """
+    full = f"{title} | {show}"
+    return full if len(full) <= TITLE_MAX else title
+
+
+def trim_description(text: str, limit: int = META_DESC_MAX) -> str:
+    """Trim show notes to `limit` characters, ending on a sentence when one
+    closes in the back half of the window, otherwise on a word."""
+    text = re.sub(r"\s+", " ", text or "").strip()
+    if len(text) <= limit:
+        return text
+    window = text[: limit + 1]
+    best = -1
+    for m in re.finditer(r"[.!?](?=\s)", window):
+        word = window[: m.start()].rsplit(" ", 1)[-1].lower().strip("(\"'")
+        if word in ABBREVIATIONS:
+            continue
+        best = m.end()
+    if best >= limit * 0.6:
+        return window[:best].strip()
+    words = window[: limit - 1].rsplit(" ", 1)[0]
+    return words.rstrip(",;:") + "\u2026"
+
+
 # Bare URLs and email addresses in the show notes are rendered as clickable
 # link text rather than raw URLs: instagram.com/foo becomes @foo, everything
 # else becomes host + path with the scheme, www. and trailing slash dropped.
@@ -103,7 +141,8 @@ def libsyn_embed_slug(link: str) -> str:
 def render_episode_page(ep: dict, related: list) -> str:
     ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
-    desc_esc = html.escape(ep.get("description", ""))[:400]
+    desc_esc = html.escape(trim_description(ep.get("description", "")))
+    og_desc_esc = html.escape(trim_description(ep.get("description", ""), OG_DESC_MAX))
     # Use full description if available, fall back to short
     desc_full_raw = ep.get("description_full") or ep.get("description", "")
     # Convert to HTML: escape, then turn paragraph breaks into <p> tags
@@ -128,7 +167,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     # Platform buttons deep-link to the episode when we have its URL/id,
     # falling back to the show-level page for the older back catalog.
     spotify_url = ep.get("spotify") or "https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l"
-    apple_url = ep.get("apple") or "https://podcasts.apple.com/us/podcast/deepen-with-christina/id1267527313"
+    apple_url = ep.get("apple") or "https://podcasts.apple.com/us/podcast/mastering-love-with-christina-weber/id1267527313"
     youtube_url = f"https://www.youtube.com/watch?v={youtube_id}" if youtube_id else "https://www.youtube.com/@wedeepen"
 
     # YouTube embed (video episodes) — rendered above the audio player when present.
@@ -192,7 +231,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>{title_esc} | {show}</title>
+  <title>{html.escape(page_title(ep["title"], show))}</title>
   <meta name="description" content="{desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
@@ -200,7 +239,7 @@ def render_episode_page(ep: dict, related: list) -> str:
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://wedeepen.com{url_path}">
   <meta property="og:title" content="{title_esc}">
-  <meta property="og:description" content="{desc_esc}">
+  <meta property="og:description" content="{og_desc_esc}">
   <meta property="og:image" content="{image_abs}">
   <meta property="og:image:width" content="1400">
   <meta property="og:image:height" content="1400">
@@ -209,7 +248,7 @@ def render_episode_page(ep: dict, related: list) -> str:
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title_esc}">
-  <meta name="twitter:description" content="{desc_esc}">
+  <meta name="twitter:description" content="{og_desc_esc}">
   <meta name="twitter:image" content="{image_abs}">
 
   <script type="application/ld+json">
@@ -285,7 +324,7 @@ def render_episode_page(ep: dict, related: list) -> str:
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
         <!-- nav:links -->
-        <a href="/" class="text-white hover:text-white transition">Membership</a>
+        <a href="/" class="text-white/80 hover:text-white transition">Membership</a>
         <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>

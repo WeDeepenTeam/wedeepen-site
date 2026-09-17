@@ -13,6 +13,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
 import { supabase } from './lib/supabase-admin.js';
 import { renderGalleryIndex } from './lib/index-template.js';
 import { renderAlbumPage } from './lib/album-template.js';
@@ -22,7 +23,6 @@ const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..', '..');
 // Output paths default to the wedeepen-site layout (this repo IS wedeepen.com root).
 const GALLERY_DIR = process.env.GALLERY_OUT_DIR || path.join(ROOT, 'gallery');
-const SITEMAP_PATH = process.env.SITEMAP_OUT_PATH || path.join(ROOT, 'sitemap.xml');
 const ALBUMS_JSON = path.join(ROOT, 'scripts', 'gallery', 'albums.json');
 // URL prefix on wedeepen.com — gallery lives at /gallery (no /wedeepen/ prefix).
 const URL_PREFIX = process.env.GALLERY_URL_PREFIX || '/gallery';
@@ -139,30 +139,16 @@ async function buildIndexPage(albumSummaries) {
   await writeFile(path.join(GALLERY_DIR, 'index.html'), html);
 }
 
-async function updateSitemap(albumSlugs) {
-  let sitemap;
-  try { sitemap = await fs.readFile(SITEMAP_PATH, 'utf-8'); }
-  catch { console.log('  ⊘ No sitemap.xml; skip'); return; }
-
-  const sitemapBase = URL_PREFIX.startsWith('/gallery') ? '' : URL_PREFIX.replace(/\/gallery$/, '');
-  const galleryEntries = [
-    `<url><loc>https://wedeepen.com${URL_PREFIX}/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`,
-    ...albumSlugs.map(slug =>
-      `<url><loc>https://wedeepen.com${URL_PREFIX}/${slug}/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>`
-    ),
-  ].join('\n  ');
-
-  const marker = '<!-- gallery:autogen -->';
-  const endMarker = '<!-- /gallery:autogen -->';
-  const startIdx = sitemap.indexOf(marker);
-  if (startIdx !== -1) {
-    const endIdx = sitemap.indexOf(endMarker, startIdx);
-    if (endIdx !== -1) sitemap = sitemap.slice(0, startIdx) + sitemap.slice(endIdx + endMarker.length);
-  }
-  const block = `\n  ${marker}\n  ${galleryEntries}\n  ${endMarker}\n`;
-  sitemap = sitemap.replace('</urlset>', `${block}</urlset>`);
-
-  await writeFile(SITEMAP_PATH, sitemap);
+async function updateSitemap() {
+  // Album pages are committed index.html files, so the site-wide sitemap
+  // builder already picks them up. Regenerating there keeps one source of
+  // truth (the old gallery:autogen block listed every album twice).
+  const builder = path.join(ROOT, 'scripts', 'build-sitemap.mjs');
+  await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [builder], { stdio: 'inherit' });
+    child.on('error', reject);
+    child.on('exit', (code) => code === 0 ? resolve() : reject(new Error(`build-sitemap exited ${code}`)));
+  });
 }
 
 async function main() {
@@ -180,7 +166,7 @@ async function main() {
 
   if (!args.album) {
     await buildIndexPage(summaries);
-    await updateSitemap(summaries.map(s => s.slug));
+    await updateSitemap();
   }
 
   console.log();

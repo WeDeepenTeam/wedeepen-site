@@ -30,7 +30,7 @@ export function renderGalleryIndex(albums) {
 
   return `${pageHead({
     title: 'Photo Galleries | WeDeepen',
-    description: "Photos from WeDeepen events: Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and more. Every gathering, every practice, every moment we've held together.",
+    description: "Photos from WeDeepen events: Love Immersion, Biohacking Love, MediDating, The Dating Dojo, Midnights with Mary, and every gathering in between.",
     canonical: `${SITE}/gallery/`,
     ogImage,
     jsonLd,

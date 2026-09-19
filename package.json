@@ -13,6 +13,8 @@
     "gallery:process": "cd scripts/gallery && node process-and-upload.js",
     "gallery:smoke": "cd scripts/gallery && node smoke-test.js",
     "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js",
+    "li:hub": "node scripts/build-li-hub.mjs",
+    "li:hub:check": "node scripts/build-li-hub.mjs --check",
     "nav:check": "node scripts/build-nav.mjs --check",
     "nav:sync": "node scripts/build-nav.mjs"
   },

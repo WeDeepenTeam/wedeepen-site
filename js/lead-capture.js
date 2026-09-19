@@ -28,7 +28,7 @@
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
-  var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
+  var LI_URL = '/love-immersion/?utm_source=announcement-bar&utm_campaign=li-earlyaccess';
   var PROMO_END = Date.parse('2026-08-17T04:59:59Z'); // Aug 16, 11:59pm Austin
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
   var ON_HOME = /^\/(index\.html)?$/.test(location.pathname) || /^\/four-pillars\//.test(location.pathname);

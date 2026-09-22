@@ -30,7 +30,11 @@
   // my-app/supabase/functions/. Left empty, the ticker runs evergreen only.
   var ENDPOINT = '';
 
-  var START_DELAY_MS = 20000;  // after the lead popup's 7s moment has passed
+  // The blocked() check below already keeps the ticker quiet whenever the lead
+  // popup is open, so this delay only has to clear the page load, not wait out
+  // the popup. At 20s the site's own owner assumed the ticker was broken, which
+  // is a fair proxy for a visitor who has already scrolled past or left.
+  var START_DELAY_MS = 8000;
   var SHOW_MS = 6000;          // how long one cue stays up
   var GAP_MS = 1200;           // dead air between cues
   var PASSES = 2;              // rotations before the ticker retires for the session

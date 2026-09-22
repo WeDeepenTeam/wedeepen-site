@@ -97,7 +97,7 @@ Load these only when the task matches:
 
 | File | Load when… |
 |------|-----------|
-| [`WEBSITE-HANDOFF.md`](./WEBSITE-HANDOFF.md) | **Read at session start when working as a team member.** Who approves what, how to avoid colliding with other sessions, accounts, Cloudflare, recurring tasks, past problems |
+| `WEBSITE-HANDOFF.md` in the private repo `WeDeepenTeam/wedeepen-team-docs` | **Read at session start when working as a team member.** Team coordination rules. If you can't access it, ask Christina to add you |
 | [`README.md`](./README.md) | Onboarding, directory structure, key pages, design system |
 | [`CONTRIBUTING.md`](./CONTRIBUTING.md) | Branch naming, PR workflow, secrets policy, code review bar |
 | [`scripts/gallery/README.md`](./scripts/gallery/README.md) | Anything gallery-related (download, upload, rebuild) |

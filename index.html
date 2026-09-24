@@ -32,6 +32,14 @@
     }
   </script>
 
+  <!-- Reddit pixel. "WeDeepen Inc" ad account. Fires PageVisit here; AddToCart (membership
+       and ticket clicks) and Lead (invites popup) are wired in the conversion tracking below. -->
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jqnveg46gnqn",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init', 'a2_jqnveg46gnqn');
+    rdt('track', 'PageVisit');
+  </script>
+
   <title>WeDeepen | Your Intimacy Journey Is Your Life Story</title>
   <meta name="description" content="WeDeepen brings together the world's most extraordinary love and relationship guides. Expert-led coaching, transformative experiences, and a curated network dedicated to helping you find, build, and sustain extraordinary love.">
   <meta name="keywords" content="WeDeepen, love coaching, relationship coaching Austin, intimacy retreat, love immersion, couples retreat Austin, dating coaching, relationship workshop, WeDeepen Membership, conscious relationships">
@@ -1735,6 +1743,9 @@
       function fb(event, params) {
         if (typeof window.fbq === 'function') window.fbq('track', event, params || {});
       }
+      function rd(event, params) {
+        if (typeof window.rdt === 'function') window.rdt('track', event, params || {});
+      }
       document.addEventListener('click', function (e) {
         var a = e.target && e.target.closest && e.target.closest('a');
         if (!a) return;
@@ -1742,16 +1753,19 @@
         if (a.href && (a.href.indexOf('eventbrite.com') > -1 || a.href.indexOf('/inperson') > -1)) {
           ga('ticket_click', { link_text: (a.textContent || '').trim().slice(0, 40) });
           fb('InitiateCheckout', { content_category: 'Event' });
+          rd('AddToCart');
         }
 
         if (a.href && a.href.indexOf('checkout/wedeepen-club-membership') > -1) {
           ga('join_click', { cta_position: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown'), link_text: (a.textContent || '').trim().slice(0, 40) });
           fb('InitiateCheckout', { content_category: 'Membership', content_name: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown') });
+          rd('AddToCart');
         }
 
         if (a.hasAttribute('data-lead-popup')) {
           ga('lead_popup_open');
           fb('Lead', { content_name: 'Private invites list' });
+          rd('Lead');
         }
       }, true);
     })();

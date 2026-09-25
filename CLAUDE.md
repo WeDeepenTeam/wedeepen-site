@@ -131,6 +131,14 @@ Load these only when the task matches:
 5. Update [README.md](./README.md) "Key pages" table
 6. Commit + push
 
+### Blog (/blog/)
+
+`/blog/` is generated from BabyLoveGrowth articles and is deliberately **not** in the nav. Don't hand-edit anything under `blog/`; the next sync overwrites it.
+
+- `.github/workflows/blog-sync.yml` runs daily: `node scripts/build-blog.mjs` fetches every article over the API (repo secret `BLG_API_KEY`), rewrites `blog/` and the `/blog/` entries in `sitemap.xml`, and commits to `main` if anything changed.
+- To rebuild the pages from the committed `blog/data/articles.json` without the API (e.g. after a shell or nav change): `npm run blog:build`.
+- To sync now: Actions tab → "Blog sync" → Run workflow (or `gh workflow run blog-sync.yml`).
+
 ### Add a new photo gallery album
 
 1. Get the public Google Drive folder URL from the photographer

@@ -1396,4 +1396,22 @@
   <url><loc>https://wedeepen.com/gallery/journey-to-connection/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://wedeepen.com/gallery/mindful-mingling/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <!-- /gallery:autogen -->
+  <url>
+    <loc>https://wedeepen.com/blog/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wedeepen.com/blog/emotional-safety-in-relationships/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wedeepen.com/blog/conflict-resolution-for-couples/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

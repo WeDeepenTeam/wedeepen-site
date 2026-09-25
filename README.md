@@ -123,6 +123,7 @@ wedeepen-site/
 | Four Pillars (free guide) | `/four-pillars/` | `four-pillars/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |
 | **Photo Galleries** | `/gallery/` | `gallery/index.html` (generated) |
+| Blog (not in nav) | `/blog/` | `blog/` (generated daily from BabyLoveGrowth, see `scripts/build-blog.mjs`) |
 | Schedule 15 min | `/schedule-with-christina/` | `schedule-with-christina/index.html` |
 | Private clients | `/book-session-with-christina/` | `book-session-with-christina/index.html` |
 | Zoom redirect | `/zoom/` | `zoom/index.html` |

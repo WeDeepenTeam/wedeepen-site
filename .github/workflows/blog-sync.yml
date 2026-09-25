@@ -1,0 +1,78 @@
+# Pull new BabyLoveGrowth articles into /blog/ once a day.
+#
+# scripts/build-blog.mjs fetches every article over the BabyLoveGrowth API and
+# regenerates blog/ plus the /blog/ entries in sitemap.xml. If anything
+# changed, this job commits the result to main, which GitHub Pages deploys.
+#
+# Needs the repo secret BLG_API_KEY (BabyLoveGrowth → Settings → Publishing →
+# API). Run it by hand from the Actions tab with "Run workflow".
+name: Blog sync
+
+on:
+  schedule:
+    - cron: '17 13 * * *'   # daily, 13:17 UTC (6:17am Pacific)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: blog-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check for the API key
+        env:
+          BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
+        run: |
+          if [ -z "$BLG_API_KEY" ]; then
+            echo "::error::The BLG_API_KEY repo secret is not set. Add it under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      - name: Sync and build the blog
+        env:
+          BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
+        run: node scripts/build-blog.mjs
+
+      - name: Check the nav is still in sync
+        run: node scripts/build-nav.mjs --check
+
+      - name: Commit and push if anything changed
+        id: commit
+        run: |
+          git add blog sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No new or changed articles."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "blog: sync articles from BabyLoveGrowth"
+          # main moves often; replay on top of it rather than fail the push.
+          pushed=false
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then pushed=true; break; fi
+            sleep 5
+          done
+          if [ "$pushed" != true ]; then echo "::error::Could not push the blog update to main."; exit 1; fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Pushes made with GITHUB_TOKEN don't start a Pages build on their own.
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

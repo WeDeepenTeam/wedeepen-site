@@ -11,11 +11,14 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CONFIG = JSON.parse(fs.readFileSync(path.join(HERE, 'links.json'), 'utf8'));
 export const NAV_LINKS = CONFIG.links;
 export const NAV_CTA = CONFIG.cta || [];
+export const FOOTER_LINKS = CONFIG.footer || [];
 
 export const START = '<!-- nav:links -->';
 export const END = '<!-- /nav:links -->';
 export const CTA_START = '<!-- nav:cta -->';
 export const CTA_END = '<!-- /nav:cta -->';
+export const FOOTER_START = '<!-- footer:learn -->';
+export const FOOTER_END = '<!-- /footer:learn -->';
 
 // Classes match the hand-written nav on index.html. The active page gets
 // full-white text on desktop; mobile links are already full white.
@@ -61,4 +64,18 @@ export function renderNavCta(variant, indent = '') {
   const items = variant === 'mobile' ? [...NAV_CTA].sort((a) => (a.style === 'primary' ? -1 : 1)) : NAV_CTA;
   const lines = items.map((c) => `${indent}<a href="${c.href}" class="${classes[c.style] || classes.quiet}">${c.label}</a>`);
   return [`${indent}${CTA_START}`, ...lines, `${indent}${CTA_END}`].join('\n');
+}
+
+// "Learn" row at the top of the footer: the reading pages that aren't in the
+// menu, so every page links to them.
+export function renderFooterLearn(indent = '') {
+  const links = FOOTER_LINKS.map((l) => `${indent}  <a href="${l.href}" class="hover:text-gold transition">${l.label}</a>`);
+  return [
+    `${indent}${FOOTER_START}`,
+    `${indent}<nav aria-label="Learn" class="max-w-site mx-auto px-6 mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/50 text-xs">`,
+    `${indent}  <span class="uppercase tracking-widest text-white/30">Learn</span>`,
+    ...links,
+    `${indent}</nav>`,
+    `${indent}${FOOTER_END}`,
+  ].join('\n');
 }

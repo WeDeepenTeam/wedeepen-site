@@ -5,7 +5,7 @@
  * rest of the site.
  */
 import { escapeHtml } from './escape-html.js';
-import { renderNavLinks, renderNavCta } from '../../nav/render.mjs';
+import { renderNavLinks, renderNavCta, renderFooterLearn } from '../../nav/render.mjs';
 
 export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
   return `<!DOCTYPE html>
@@ -205,6 +205,7 @@ ${renderNavCta('mobile', '          ')}
 
 export function pageFooter() {
   return `<footer class="bg-ink border-t border-white/10 py-14">
+${renderFooterLearn('    ')}
     <div class="max-w-site mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
         <div>

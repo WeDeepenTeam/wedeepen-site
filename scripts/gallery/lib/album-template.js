@@ -9,8 +9,7 @@ export function renderAlbumPage(album, photos) {
   // WhatsApp-safe og:image: JPEG, <150KB. Falls back to the WebP cover if no
   // generated JPEG exists yet (run `node scripts/gallery/generate-og-jpegs.js`).
   const ogImage = `${SITE}/images/og/gallery-${album.slug}.jpg`;
-  const description = album.description
-    || `Photos from ${album.title}${album.event_date ? ' on ' + formatDate(album.event_date) : ''}.`;
+  const description = albumDescription(album, photos.length);
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -259,8 +258,25 @@ function renderVideos(youtubeIds) {
     </section>`;
 }
 
+// Album description for search results. Short custom descriptions ("Heart
+// Flow practice sessions.") are kept and topped up with what the page knows:
+// photo count, photographer, and place/date when the text doesn't say them.
+export function albumDescription(album, count) {
+  const custom = String(album.description || '').trim();
+  if (custom.length >= 70) return custom;
+  const photos = `${count ? `${count} photos` : 'Photos'}${album.photographer ? ` by ${album.photographer}` : ''}`;
+  // No date here: some albums carry a placeholder date (Jan 1 for "2025").
+  const when = '';
+  const where = album.location && !custom.includes(album.location) ? ` in ${album.location}` : '';
+  if (!custom) return `${photos} from ${album.title}, a WeDeepen event${when}${where}.`;
+  const lead = /[.!?]$/.test(custom) ? custom : `${custom}.`;
+  return `${lead} ${photos}${when || where ? `, from WeDeepen${where}${when}` : ''}.`;
+}
+
 function formatDate(iso) {
   const d = new Date(iso);
   if (isNaN(d.getTime())) return '';
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  // Dates are stored as YYYY-MM-DD (UTC midnight); format in UTC so a
+  // US-timezone build doesn't print the day before.
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }

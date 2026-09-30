@@ -7,6 +7,8 @@
  * page as active. Pages keep their own header/wrapper markup; only the block
  * between <!-- nav:links --> and <!-- /nav:links --> is regenerated.
  *
+ * The footer "Learn" row (<!-- footer:learn -->) is stamped the same way.
+ *
  * First run on a page without markers: finds the legacy link run (from the
  * Love Immersion link or dropdown through the Podcast link) and replaces it.
  *
@@ -16,7 +18,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderNavLinks, renderNavCta, START, END, CTA_START, CTA_END } from './nav/render.mjs';
+import { renderNavLinks, renderNavCta, renderFooterLearn, START, END, CTA_START, CTA_END, FOOTER_START, FOOTER_END } from './nav/render.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SKIP_DIRS = new Set(['node_modules', 'tmp', '.git', 'scripts']);
@@ -41,6 +43,9 @@ const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 // Block already stamped: <indent><!-- nav:links --> ... <!-- /nav:links -->
 const MARKED = new RegExp(`^([ \\t]*)${esc(START)}[\\s\\S]*?${esc(END)}`, 'gm');
 const CTA_MARKED = new RegExp(`^([ \\t]*)${esc(CTA_START)}[\\s\\S]*?${esc(CTA_END)}`, 'gm');
+const FOOTER_MARKED = new RegExp(`^([ \\t]*)${esc(FOOTER_START)}[\\s\\S]*?${esc(FOOTER_END)}`, 'm');
+// First run: the row goes right after the opening tag of the site footer.
+const FOOTER_OPEN = /^([ \t]*)<footer class="[^"]*\bbg-ink\b[^"]*">\n/m;
 // Legacy header button, desktop then mobile (document order)
 const LEGACY_CTA = /^([ \t]*)<a href="#" data-lead-popup class="[^"]*">GET PRIVATE INVITES<\/a>/gm;
 
@@ -56,8 +61,14 @@ function stampCta(html) {
   return html.replace(LEGACY_CTA, (_, indent) => renderNavCta(n++ === 0 ? 'desktop' : 'mobile', indent));
 }
 
+// Pages without the standard dark footer (a few landing pages) are left alone.
+function stampFooter(html) {
+  if (FOOTER_MARKED.test(html)) return html.replace(FOOTER_MARKED, (_, indent) => renderFooterLearn(indent));
+  return html.replace(FOOTER_OPEN, (open, indent) => `${open}${renderFooterLearn(indent + '  ')}\n`);
+}
+
 function stamp(html, pagePath) {
-  html = stampCta(html);
+  html = stampFooter(stampCta(html));
   let desktopDone = false;
   // Marked blocks: first is desktop, second is mobile (document order).
   let out = html.replace(MARKED, (_, indent) => {

@@ -1,5 +1,5 @@
 {
-  "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. `links` is the menu (display order); `cta` is the header button pair.",
+  "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. `links` is the menu (display order); `cta` is the header button pair; `footer` is the \"Learn\" row at the top of every footer.",
   "links": [
     {
       "label": "Membership",
@@ -41,6 +41,24 @@
       "label": "Join",
       "href": "https://circle.wedeepen.com/checkout/wedeepen-club-membership",
       "style": "primary"
+    }
+  ],
+  "footer": [
+    {
+      "label": "Blog",
+      "href": "/blog/"
+    },
+    {
+      "label": "Four Pillars",
+      "href": "/four-pillars/"
+    },
+    {
+      "label": "Podcast Archive",
+      "href": "/podcast/archive/"
+    },
+    {
+      "label": "Love Immersion",
+      "href": "/love-immersion/"
     }
   ]
 }

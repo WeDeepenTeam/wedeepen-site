@@ -1,0 +1,65 @@
+# Bake upcoming Circle events into /events/ four times a day.
+#
+# scripts/build-events.mjs reads the public circle-events function and writes
+# static event cards + Event JSON-LD into events/index.html (for crawlers that
+# don't run JavaScript) and refreshes events/events.json. If the function is
+# down it changes nothing, so the last good build stays live. No secrets needed.
+name: Events sync
+
+on:
+  schedule:
+    - cron: '41 */6 * * *'  # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: events-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Bake events into /events/
+        run: node scripts/build-events.mjs
+
+      - name: Check the nav is still in sync
+        run: node scripts/build-nav.mjs --check
+
+      - name: Commit and push if anything changed
+        id: commit
+        run: |
+          git add events/index.html events/events.json
+          if git diff --cached --quiet; then
+            echo "No event changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "events: bake upcoming events from Circle"
+          # main moves often; replay on top of it rather than fail the push.
+          pushed=false
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then pushed=true; break; fi
+            sleep 5
+          done
+          if [ "$pushed" != true ]; then echo "::error::Could not push the events update to main."; exit 1; fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Pushes made with GITHUB_TOKEN don't start a Pages build on their own.
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

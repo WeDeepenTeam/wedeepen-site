@@ -21,6 +21,7 @@ export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
     gtag('js', new Date());
     gtag('config', 'G-LZ0EY5X593');
   </script>
+  <script src="/js/checkout-tracking.js?v=1" defer></script>
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index, follow">

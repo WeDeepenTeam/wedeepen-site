@@ -159,6 +159,8 @@
 
     /* FAQ accordion */
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    /* Closed: drop the bottom padding too, or its 24px shows the answer's first line. */
+    .faq-item:not(.open) .faq-answer { padding-bottom: 0; }
     .faq-item.open .faq-answer { max-height: 600px; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
     .faq-icon { transition: transform 0.3s ease; }

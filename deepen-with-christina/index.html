@@ -16,6 +16,9 @@
   <title>Mastering Love with Christina Weber | WeDeepen</title>
   <meta name="description" content="Deepen with Christina is now Mastering Love with Christina Weber. Same feed, same archive, new name.">
   <meta name="robots" content="noindex, follow">
+  <!-- Redirect keeps the query string so gclid/UTMs reach GA4 on the destination page.
+       Runs before the meta refresh below, which is only the no-JS fallback. -->
+  <script>location.replace('/podcast/' + location.search + location.hash);</script>
   <meta http-equiv="refresh" content="0; url=/podcast/">
   <link rel="canonical" href="https://wedeepen.com/podcast/">
 
@@ -35,7 +38,6 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico">
-  <script>window.location.replace('/podcast/');</script>
 </head>
 <body style="background:#1A1A1A;color:#fff;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0">
   <p>Taking you to <a href="/podcast/" style="color:#C9A277">wedeepen.com/podcast</a>&hellip;</p>

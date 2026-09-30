@@ -13,7 +13,7 @@
     gtag('config', 'G-LZ0EY5X593');
     gtag('config', 'AW-18481553095');
   </script>
-  <script src="/js/checkout-tracking.js?v=1" defer></script>
+  <script src="/js/checkout-tracking.js?v=2" defer></script>
 
   <!-- Meta pixel. Same "WeDeepen Website" dataset the /inperson page uses, so both
        pages feed one retargeting pool. Homepage fires PageView only: ViewContent is
@@ -1957,13 +1957,11 @@
 
         if (a.href && (a.href.indexOf('eventbrite.com') > -1 || a.href.indexOf('/inperson') > -1)) {
           ga('ticket_click', { link_text: (a.textContent || '').trim().slice(0, 40) });
-          fb('InitiateCheckout', { content_category: 'Event' });
           rd('AddToCart');
         }
 
         if (a.href && a.href.indexOf('checkout/wedeepen-club-membership') > -1) {
           ga('join_click', { cta_position: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown'), link_text: (a.textContent || '').trim().slice(0, 40) });
-          fb('InitiateCheckout', { content_category: 'Membership', content_name: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown') });
           rd('AddToCart');
         }
 

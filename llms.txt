@@ -2,20 +2,25 @@
 
 > WeDeepen is a curated ecosystem for extraordinary love, founded by Christina Weber. It brings together relationship experts, immersive in-person experiences, and a membership community for people who want to build and sustain remarkable relationships. Based in Austin, Texas, with experiences run nationally.
 
-WeDeepen's work spans four areas: multi-day Love Immersion retreats, a membership community, one-on-one work with vetted relationship experts (called Love Strategists), and a long-running podcast on love, sex, dating, and human connection.
+WeDeepen's work spans four areas: the WeDeepen Membership ($99/month, live every Tuesday at 7pm ET), multi-day Love Immersion retreats, one-on-one work with vetted relationship experts (called Love Strategists), and a long-running podcast on love, sex, dating, and human connection.
 
 Christina Weber is a Love Industry Pioneer whose work began with Underground Unattached in New York City and continues through WeDeepen in Austin.
 
 ## Core pages
 
-- [Home](https://wedeepen.com/): What WeDeepen is and how to get involved
+- [Home / WeDeepen Membership](https://wedeepen.com/): The $99/month membership: live sessions every Tuesday at 7pm ET with expert faculty, a private community, and a Sunday Dare each week
 - [About](https://wedeepen.com/about/): The story of WeDeepen and founder Christina Weber
 - [Love Immersion](https://wedeepen.com/love-immersion/): Multi-day immersive relationship retreats, with upcoming dates
-- [Love Club](https://wedeepen.com/love-club/): The membership community
+- [Love Club](https://wedeepen.com/love-club/): WeDeepen's inner circle, $9,997 a year. Separate from the $99/month Membership, and includes everything in it
 - [Love Strategists](https://wedeepen.com/love-guides/): The vetted relationship experts, coaches, and practitioners WeDeepen works with
 - [Events](https://wedeepen.com/events/): Upcoming in-person gatherings
 - [Reviews](https://wedeepen.com/reviews/): First-hand accounts from participants
 - [Photo Gallery](https://wedeepen.com/gallery/): Photography from past events and immersions
+
+## Learn
+
+- [Blog](https://wedeepen.com/blog/): Articles on communication, conflict, trust, emotional intimacy, and dating
+- [The Four Pillars](https://wedeepen.com/four-pillars/): WeDeepen's framework for a conscious relationship
 
 ## Podcast
 

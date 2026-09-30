@@ -11,7 +11,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
+const execFileP = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..');
 const SITE = 'https://wedeepen.com';
@@ -69,9 +72,17 @@ function rule(urlPath) {
   return RULES.find(r => r.match(urlPath));
 }
 
+// Date of the file's last commit. File mtimes are useless here: every checkout
+// (and every CI run) resets them, which stamped the whole sitemap with one date.
+// Needs full git history (a shallow CI clone would give every file one date).
+// Falls back to mtime for files that aren't committed yet.
 async function lastmod(file) {
+  try {
+    const { stdout } = await execFileP('git', ['log', '-1', '--format=%cI', '--', file], { cwd: ROOT });
+    if (stdout.trim()) return stdout.trim().slice(0, 10); // YYYY-MM-DD
+  } catch {}
   const st = await fs.stat(file);
-  return st.mtime.toISOString().slice(0, 10); // YYYY-MM-DD
+  return st.mtime.toISOString().slice(0, 10);
 }
 
 async function main() {

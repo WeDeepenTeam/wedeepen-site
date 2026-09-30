@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://wedeepen.com';
-const CORE = ['/', '/about/', '/love-club/', '/love-immersion/october-2026/', '/events/', '/love-guides/',
+const CORE = ['/', '/about/', '/love-club/', '/love-immersion/', '/love-immersion/october-2026/', '/events/', '/love-guides/',
   '/book-session-with-christina/', '/four-pillars/', '/reviews/', '/podcast/'];
 
 const decode = (s) => s.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')

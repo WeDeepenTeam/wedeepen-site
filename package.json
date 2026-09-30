@@ -14,8 +14,16 @@
     "gallery:process": "cd scripts/gallery && node process-and-upload.js",
     "gallery:build": "cd scripts/gallery && node build-static-pages.js",
     "gallery:smoke": "cd scripts/gallery && node smoke-test.js",
-    "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js"
+    "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js",
+    "li:hub": "node scripts/build-li-hub.mjs",
+    "li:hub:check": "node scripts/build-li-hub.mjs --check",
+    "seo:schema": "node scripts/build-seo-schema.mjs",
+    "seo:schema:check": "node scripts/build-seo-schema.mjs --check"
   },
-  "keywords": ["wedeepen", "supabase", "github-pages"],
+  "keywords": [
+    "wedeepen",
+    "supabase",
+    "github-pages"
+  ],
   "license": "UNLICENSED"
 }

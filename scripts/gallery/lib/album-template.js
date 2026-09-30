@@ -18,13 +18,13 @@ export function renderAlbumPage(album, photos) {
     name: album.title,
     description,
     url: `${SITE}/gallery/${album.slug}/`,
-    image: photos.slice(0, 30).map(p => ({
+    image: photos.slice(0, 30).map((p, i) => ({
       '@type': 'ImageObject',
       contentUrl: p.full_url,
       thumbnailUrl: p.thumb_url,
       width: p.width,
       height: p.height,
-      caption: p.alt_text,
+      caption: photoAlt(p, i, album),
     })),
     publisher: {
       '@type': 'Organization',
@@ -90,7 +90,7 @@ ${album.cta_href ? `
     <section class="px-4 md:px-6 pb-12">
       <div class="max-w-site mx-auto">
         <div id="photo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
-          ${initialPhotos.map((p, i) => renderTile(p, i)).join('\n          ')}
+          ${initialPhotos.map((p, i) => renderTile(p, i, album)).join('\n          ')}
         </div>
         ${remainingPhotos.length ? `
         <div id="more-container" class="text-center mt-10">
@@ -98,7 +98,7 @@ ${album.cta_href ? `
             Load more &middot; <span id="remaining-count">${remainingPhotos.length}</span> more
           </button>
         </div>
-        <template id="more-photos">${remainingPhotos.map((p, i) => renderTile(p, PAGE_SIZE + i)).join('')}</template>
+        <template id="more-photos">${remainingPhotos.map((p, i) => renderTile(p, PAGE_SIZE + i, album)).join('')}</template>
         ` : ''}
       </div>
     </section>
@@ -229,9 +229,20 @@ ${pageScripts()}
 </html>`;
 }
 
-function renderTile(p, i) {
-  return `<a href="${escapeHtml(p.full_url)}" class="photo-tile block aspect-square overflow-hidden rounded-md bg-charcoal/40" data-full="${escapeHtml(p.full_url)}" data-alt="${escapeHtml(p.alt_text)}" aria-label="${escapeHtml(p.alt_text)} (open photo ${i + 1})">
-            <img src="${escapeHtml(p.thumb_url)}" alt="${escapeHtml(p.alt_text)}" class="w-full h-full object-cover" loading="lazy" width="400" height="400">
+// Uploads often keep the camera or export filename as alt text
+// ("WeDeepen_Love Immersion I_Allison Powers_002"). Describe those by album
+// instead; real captions are kept as written.
+const FILENAME_ALT = /_|\.(jpe?g|png|webp|heic)$|^(img|dsc|pxl)[\s_-]?\d|\d{3,}$/i;
+export function photoAlt(p, i, album) {
+  const alt = String(p.alt_text || '').trim();
+  if (alt && !FILENAME_ALT.test(alt)) return alt;
+  return `${album.title}, photo ${i + 1}${album.photographer ? ` by ${album.photographer}` : ''}`;
+}
+
+function renderTile(p, i, album) {
+  const alt = photoAlt(p, i, album);
+  return `<a href="${escapeHtml(p.full_url)}" class="photo-tile block aspect-square overflow-hidden rounded-md bg-charcoal/40" data-full="${escapeHtml(p.full_url)}" data-alt="${escapeHtml(alt)}" aria-label="${escapeHtml(alt)} (open photo ${i + 1})">
+            <img src="${escapeHtml(p.thumb_url)}" alt="${escapeHtml(alt)}" class="w-full h-full object-cover" loading="lazy" width="400" height="400">
           </a>`;
 }
 

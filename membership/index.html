@@ -13,11 +13,11 @@
     gtag('config', 'G-LZ0EY5X593');
     gtag('config', 'AW-18481553095');
   </script>
-  <script src="/js/checkout-tracking.js?v=1" defer></script>
+  <script src="/js/checkout-tracking.js?v=2" defer></script>
 
   <!-- Meta pixel. Same "WeDeepen Website" dataset as the homepage and /inperson, so all
        pages feed one retargeting pool. ViewContent here because this page is about one
-       offer; InitiateCheckout (Join clicks) and Lead (invites popup) are wired below. -->
+       offer; Lead (invites popup) is wired below; InitiateCheckout comes from /js/checkout-tracking.js. -->
   <script>
     var FB_PIXEL_ID = '1541773576982273';
     if (FB_PIXEL_ID) {
@@ -949,7 +949,6 @@
         if (a.href && a.href.indexOf('checkout/wedeepen-club-membership') > -1) {
           var position = a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'membership_page');
           ga('join_click', { cta_position: position, link_text: (a.textContent || '').trim().slice(0, 40) });
-          fb('InitiateCheckout', { content_category: 'Membership', content_name: position });
           rd('AddToCart');
         }
 

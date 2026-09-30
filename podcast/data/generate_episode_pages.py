@@ -8,6 +8,7 @@ refreshed, then `npm run nav:sync` (it stamps the nav and footer rows).
 The daily blog-sync workflow does both.
 """
 import json, re, os, html, sys, math
+from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -221,7 +222,9 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
     )
     slug = slugify(ep["title"])
     show = show_name(ep["title"])
-    url_path = f"/deepen-with-christina/{slug}/"
+    # Percent-encode accented slugs (René, Iván) so the canonical matches the
+    # sitemap, which build-sitemap.mjs writes with encodeURI.
+    url_path = quote(f"/deepen-with-christina/{slug}/")
     image = ep.get("image") or "/images/podcast-artwork.png"
     image_abs = image if image.startswith("http") else f"https://wedeepen.com{image}"
     duration = ep.get("duration", "")
@@ -272,7 +275,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 """
 
     related_cards = "\n".join([f"""
-          <a href="/deepen-with-christina/{slugify(r['title'])}/" class="flex gap-4 p-4 rounded-xl transition" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+          <a href="{quote(f"/deepen-with-christina/{slugify(r['title'])}/")}" class="flex gap-4 p-4 rounded-xl transition" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
             <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-charcoal">
               <img src="{r.get('image') or '/images/podcast-artwork.png'}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork.png'">
             </div>

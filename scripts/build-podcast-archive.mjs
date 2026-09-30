@@ -107,7 +107,7 @@ const years = [...byYear.keys()].sort().reverse();
 
 const sections = years.map((year) => {
   const rows = byYear.get(year).map((ep) => {
-    const url = `/deepen-with-christina/${slugify(ep.title)}/`;
+    const url = encodeURI(`/deepen-with-christina/${slugify(ep.title)}/`);
     return `          <li class="border-b border-white/5 last:border-0">
             <a href="${url}" class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3 group">
               <span class="text-white/35 text-xs tabular-nums shrink-0 sm:w-24">${esc(ep.date_pretty || '')}</span>
@@ -151,7 +151,7 @@ const jsonLd = {
       '@type': 'ListItem',
       position: i + 1,
       name: ep.title,
-      url: `https://wedeepen.com/deepen-with-christina/${slugify(ep.title)}/`,
+      url: encodeURI(`https://wedeepen.com/deepen-with-christina/${slugify(ep.title)}/`),
     })),
   },
 };

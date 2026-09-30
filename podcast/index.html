@@ -634,7 +634,7 @@
         const img = e.image || '/images/podcast-artwork.png';
         const dur = formatDuration(e.duration);
         return `
-          <a href="/deepen-with-christina/${slugify(e.title)}/" class="flex gap-4 md:gap-5 p-4 md:p-5 rounded-xl transition hover:bg-white/5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+          <a href="${encodeURI(`/deepen-with-christina/${slugify(e.title)}/`)}" class="flex gap-4 md:gap-5 p-4 md:p-5 rounded-xl transition hover:bg-white/5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
             <div class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden bg-charcoal">
               <img src="${img}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork.png'">
             </div>

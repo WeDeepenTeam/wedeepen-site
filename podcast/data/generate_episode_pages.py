@@ -29,6 +29,12 @@ def show_name(title: str) -> str:
     return "Mastering Love with Christina Weber" if title.upper().startswith("ML ") else "Deepen with Christina"
 
 
+OTHER_SHOW_NAME = {
+    "Mastering Love with Christina Weber": "Deepen with Christina",
+    "Deepen with Christina": "Mastering Love with Christina Weber",
+}
+
+
 # Bare URLs and email addresses in the show notes are rendered as clickable
 # link text rather than raw URLs: instagram.com/foo becomes @foo, everything
 # else becomes host + path with the scheme, www. and trailing slash dropped.
@@ -167,9 +173,13 @@ def render_episode_page(ep: dict, related: list) -> str:
             "@type": "MediaObject",
             "contentUrl": audio_url,
         } if audio_url else None,
+        # One series entity across the rename: episodes keep the name they
+        # aired under, and the @id + alternateName tie both names together.
         "partOfSeries": {
             "@type": "PodcastSeries",
+            "@id": "https://wedeepen.com/podcast/#series",
             "name": show,
+            "alternateName": OTHER_SHOW_NAME[show],
             "url": "https://wedeepen.com/podcast/",
         },
         "image": image_abs,

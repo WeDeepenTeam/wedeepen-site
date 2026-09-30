@@ -102,6 +102,35 @@ def strip_em_dashes(text: str) -> str:
     return "\n".join(out)
 
 
+# Search titles and descriptions. The on-page H1 and og:title keep the full
+# episode title with its number; <title> and the meta description are written
+# for the results page: guest first (that's what people search), 60 characters
+# max, and a description that ends on a whole sentence.
+EP_CODE_RE = re.compile(r"^\s*(?:DWC|YLA|ML)\s*:?\s*\d{0,3}\s*:?\s*", re.I)
+
+def seo_title(title: str, show: str) -> str:
+    core = EP_CODE_RE.sub("", title).strip() or title
+    m = re.match(r"(.+)\s+with\s+(.+)$", core, re.I)
+    if m and len(m.group(2)) <= 40:
+        core = f"{m.group(2).strip()}: {m.group(1).strip().rstrip(':')}"
+    for suffix in (f" | {show}", " | WeDeepen Podcast", ""):
+        if len(core) + len(suffix) <= 60:
+            return core + suffix
+    cut = core[:57].rsplit(" ", 1)[0].rstrip(",:;&-")
+    return cut + "…"
+
+def seo_description(text: str, limit: int = 155) -> str:
+    text = re.sub(r"\s+", " ", text or "").strip()
+    out = ""
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        if len(out) + len(sentence) + (1 if out else 0) > limit:
+            break
+        out = f"{out} {sentence}".strip()
+    if len(out) >= 70:
+        return out
+    return (text[: limit - 1].rsplit(" ", 1)[0].rstrip(",;:") + "…") if len(text) > limit else text
+
+
 def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
@@ -110,6 +139,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
     desc_esc = html.escape(ep.get("description", ""))[:400]
+    seo_desc_esc = html.escape(seo_description(ep.get("description", "")))
     # Use full description if available, fall back to short
     desc_full_raw = ep.get("description_full") or ep.get("description", "")
     # Convert to HTML: escape, then turn paragraph breaks into <p> tags
@@ -202,8 +232,8 @@ def render_episode_page(ep: dict, related: list) -> str:
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>{title_esc} | {show}</title>
-  <meta name="description" content="{desc_esc}">
+  <title>{html.escape(seo_title(ep["title"], show))}</title>
+  <meta name="description" content="{seo_desc_esc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com{url_path}">
 

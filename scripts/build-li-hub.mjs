@@ -15,8 +15,8 @@
  *
  * The retreats are read from the dated pages' own Event JSON-LD rather than a
  * separate list, because a separate list drifts: the EVENTS array in
- * love-immersion/_generate_event_pages.py still says October 16-19 while the
- * page, its schema, and the events feed all say 17-19.
+ * love-immersion/_generate_event_pages.py once said October 16-19 while the
+ * page, its schema, and the events feed all said 17-19.
  *
  *   npm run li:hub          regenerate
  *   npm run li:hub:check    fail if stale (CI)

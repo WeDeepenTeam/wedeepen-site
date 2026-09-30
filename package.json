@@ -7,6 +7,8 @@
     "nav:sync": "node scripts/build-nav.mjs",
     "nav:check": "node scripts/build-nav.mjs --check",
     "blog:build": "node scripts/build-blog.mjs",
+    "faculty:schema": "node scripts/build-faculty-schema.mjs",
+    "llms:full": "node scripts/build-llms-full.mjs",
     "gallery:install": "cd scripts/gallery && npm install",
     "gallery:download": "python3 scripts/gallery/download-drive.py",
     "gallery:process": "cd scripts/gallery && node process-and-upload.js",

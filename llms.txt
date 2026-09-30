@@ -39,6 +39,7 @@ The show is now called Mastering Love, formerly Deepen with Christina, hosted by
 ## Notes for machine readers
 
 - Every indexable page is listed in [the sitemap](https://wedeepen.com/sitemap.xml)
+- The full text of the core pages, blog posts, and episode summaries is in [llms-full.txt](https://wedeepen.com/llms-full.txt)
 - Pages carry schema.org structured data: Organization, Event, PodcastEpisode, PodcastSeries, ImageGallery, and Person
 - Retreat dates and pricing change; treat the linked pages as the source of truth rather than any cached summary
 - [Terms of Use](https://wedeepen.com/terms/) and [Privacy Policy](https://wedeepen.com/privacy/)

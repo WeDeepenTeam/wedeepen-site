@@ -65,7 +65,8 @@ function fileToUrlPath(file) {
   let urlPath = '/' + path.dirname(rel) + '/';
   urlPath = urlPath.replace(/\\/g, '/').replace(/\/+/g, '/');
   if (urlPath === '/.' || urlPath === '/./') urlPath = '/';
-  return urlPath;
+  // Sitemap URLs must be percent-encoded (a few episode slugs carry accents).
+  return encodeURI(urlPath);
 }
 
 function rule(urlPath) {

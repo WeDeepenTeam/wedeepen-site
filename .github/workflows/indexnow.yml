@@ -1,0 +1,35 @@
+# Submit changed pages to IndexNow (Bing, and through it ChatGPT search and
+# Copilot) after every push to main that touches a page. The blog and events
+# syncs push with GITHUB_TOKEN, which doesn't trigger this workflow, so they
+# call scripts/indexnow.mjs themselves.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', 'llms.txt', 'llms-full.txt', 'sitemap.xml']
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # Give GitHub Pages a moment to publish before search engines fetch.
+      - run: sleep 60
+      - name: Submit changed pages
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+            FILES=$(git diff --name-only "$BEFORE" HEAD)
+          else
+            FILES=$(git diff --name-only HEAD~1 HEAD)
+          fi
+          node scripts/indexnow.mjs $FILES

@@ -112,6 +112,7 @@
 
   var LS_POPUP = 'wd_lead_popup_until';
   var LS_BAR = 'wd_lead_bar_until';
+  var SS_BAR_OFF = 'wd_lead_bar_off';  // bar handed off to the bottom sheet this visit
 
   function snoozed(key) {
     try { return Date.now() < Number(localStorage.getItem(key) || 0); }
@@ -258,11 +259,23 @@
     var join = bar.querySelector('button.wd-bar-join');
     if (join) join.addEventListener('click', function () { openPopup(); });
     bar.querySelector('.wd-bar-x').addEventListener('click', function () {
-      bar.remove();
-      if (header) header.style.top = '';
-      document.body.style.marginTop = '';
+      removeBar();
       snooze(LS_BAR, BAR_DISMISS_DAYS);
     });
+  }
+
+  // Take the bar down and give its space back. When the visitor is already
+  // scrolled, shift the scroll by the same amount so the text they're
+  // reading doesn't jump.
+  function removeBar() {
+    var bar = document.getElementById('wd-lead-bar');
+    if (!bar) return;
+    var h = bar.offsetHeight;
+    bar.remove();
+    var header = document.getElementById('wd-header');
+    if (header) header.style.top = '';
+    document.body.style.marginTop = '';
+    if (window.scrollY > h) window.scrollBy(0, -h);
   }
 
   /* == Popup ============================================================= */
@@ -363,6 +376,9 @@
       '<a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>' +
       '<a class="wd-sheet-save" href="' + VCARD_URL + '" download>Save WeDeepen to your contacts</a>';
     document.body.appendChild(sheet);
+    // One prompt at a time: the sheet replaces the top bar for this visit.
+    removeBar();
+    try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
     requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add('wd-open'); }); });
     function close(days) {
       sheet.classList.remove('wd-open');
@@ -540,7 +556,9 @@
       return;
     }
 
-    if (!snoozed(LS_BAR)) buildBar();
+    var barOff = false;
+    try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}
+    if (!snoozed(LS_BAR) && !barOff) buildBar();
 
     // Any element with data-lead-popup opens the popup on click.
     document.addEventListener('click', function (e) {

@@ -62,8 +62,8 @@ const { episodes } = JSON.parse(await fs.readFile(EPISODES, 'utf8'));
 // --- Borrow the shell -------------------------------------------------------
 // Head: everything up to </head>, with the page-identity tags swapped out.
 let head = donor.slice(0, donor.indexOf('</head>'));
-const TITLE = 'Every Episode | Deepen with Christina & Mastering Love Archive';
-const DESC = `Every episode of the WeDeepen podcast in one place: ${episodes.length} conversations on love, sex, dating, and human connection with Christina Weber.`;
+const TITLE = 'Every Episode | Mastering Love Podcast Archive';
+const DESC = `Browse all ${episodes.length} episodes of Mastering Love (formerly Deepen with Christina) by year: love, sex, dating, intimacy, and marriage.`;
 
 head = head
   .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(TITLE)}</title>`)

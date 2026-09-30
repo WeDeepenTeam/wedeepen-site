@@ -57,6 +57,10 @@ jobs:
           if [ "$pushed" != true ]; then echo "::error::Could not push the events update to main."; exit 1; fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+      - name: Tell IndexNow what changed
+        if: steps.commit.outputs.changed == 'true'
+        run: node scripts/indexnow.mjs $(git diff --name-only HEAD~1 HEAD)
+
       # Pushes made with GITHUB_TOKEN don't start a Pages build on their own.
       - name: Request a Pages build
         if: steps.commit.outputs.changed == 'true'

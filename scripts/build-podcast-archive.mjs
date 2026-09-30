@@ -212,6 +212,13 @@ ${footer}
 </html>
 `;
 
+// Keep the exact count on /podcast/ in step with the data ("182 episodes"
+// in its copy and series JSON-LD). Rounded counts like "180+" are left alone.
+const HUB = path.join(ROOT, 'podcast/index.html');
+const hub = await fs.readFile(HUB, 'utf8');
+const hubNext = hub.replace(/\b\d{3} episodes\b/g, `${episodes.length} episodes`);
+if (hubNext !== hub) await fs.writeFile(HUB, hubNext, 'utf8');
+
 await fs.mkdir(OUT_DIR, { recursive: true });
 await fs.writeFile(path.join(OUT_DIR, 'index.html'), page, 'utf8');
 console.log(`Wrote podcast/archive/index.html — ${episodes.length} episodes across ${years.length} years`);

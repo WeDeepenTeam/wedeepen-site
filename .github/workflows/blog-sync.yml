@@ -46,13 +46,16 @@ jobs:
           BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
         run: node scripts/build-blog.mjs
 
+      - name: Rebuild llms-full.txt
+        run: node scripts/build-llms-full.mjs
+
       - name: Check the nav is still in sync
         run: node scripts/build-nav.mjs --check
 
       - name: Commit and push if anything changed
         id: commit
         run: |
-          git add blog sitemap.xml
+          git add blog sitemap.xml llms-full.txt
           if git diff --cached --quiet; then
             echo "No new or changed articles."
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -69,6 +72,10 @@ jobs:
           done
           if [ "$pushed" != true ]; then echo "::error::Could not push the blog update to main."; exit 1; fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Tell IndexNow what changed
+        if: steps.commit.outputs.changed == 'true'
+        run: node scripts/indexnow.mjs $(git diff --name-only HEAD~1 HEAD)
 
       # Pushes made with GITHUB_TOKEN don't start a Pages build on their own.
       - name: Request a Pages build

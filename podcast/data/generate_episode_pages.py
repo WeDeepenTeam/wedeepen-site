@@ -267,7 +267,6 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
       <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-5">Related Reading</p>
       <div class="grid gap-3 md:grid-cols-2">{reading_cards}
       </div>
-      <p class="mt-6 text-sm"><a href="/blog/" class="text-gold hover:underline">More from the WeDeepen blog &rarr;</a></p>
     </div>
   </section>
 """

@@ -101,6 +101,11 @@
     return /Android|iPhone|iPod/i.test(navigator.userAgent) ||
       (navigator.maxTouchPoints > 1 && /iPad|Macintosh/.test(navigator.userAgent));
   })();
+  // Phones get a small bottom sheet instead of a popup, once the visitor has
+  // scrolled this far down the page (Google is fine with banners that leave
+  // the content usable; it penalizes full-screen interstitials on mobile).
+  var SHEET_SCROLL_DEPTH = 0.25;
+  var SHEET_DISMISS_DAYS = 5;  // bottom sheet snooze after close
   var DISMISS_DAYS = 7;    // popup snooze after close
   var JOINED_DAYS = 365;   // popup snooze after successful submit
   var BAR_DISMISS_DAYS = 7;
@@ -175,6 +180,14 @@
     + '#wd-lead-modal .wd-consent a{color:#C9A277;text-decoration:underline;text-underline-offset:2px;}'
     + '#wd-lead-modal .wd-legal{font-size:10.5px;line-height:1.55;color:rgba(244,237,224,.45);margin:0 0 6px;}'
     + '#wd-lead-modal .wd-legal a{color:rgba(244,237,224,.6);}'
+    + '#wd-lead-sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#1A1A1A;color:#F4EDE0;border-top:1px solid rgba(201,162,119,.45);border-radius:18px 18px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.45);padding:18px 20px calc(16px + env(safe-area-inset-bottom));font-family:"DM Sans",Inter,system-ui,sans-serif;text-align:center;transform:translateY(110%);transition:transform .35s ease;}'
+    + '#wd-lead-sheet.wd-open{transform:translateY(0);}'
+    + '#wd-lead-sheet .wd-sheet-grip{width:38px;height:4px;border-radius:2px;background:rgba(244,237,224,.2);margin:0 auto 12px;}'
+    + '#wd-lead-sheet h2{font-family:"Playfair Display",Georgia,serif;font-size:20px;font-weight:600;line-height:1.25;margin:0 28px 6px;color:#F4EDE0;}'
+    + '#wd-lead-sheet p{font-size:13.5px;line-height:1.5;color:rgba(244,237,224,.72);margin:0 0 14px;}'
+    + '#wd-lead-sheet a.wd-sms-btn{display:block;background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;border-radius:999px;padding:13px 20px;font-size:15.5px;font-weight:700;text-decoration:none;}'
+    + '#wd-lead-sheet .wd-sheet-save{display:inline-block;margin-top:10px;font-size:12.5px;color:#C9A277;font-weight:600;text-decoration:underline;text-underline-offset:3px;}'
+    + '#wd-lead-sheet .wd-close{position:absolute;top:10px;right:10px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:8px;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
@@ -333,6 +346,42 @@
         snooze(LS_POPUP, JOINED_DAYS);
       });
     }
+  }
+
+  /* == Mobile bottom sheet ============================================== */
+  function openSheet() {
+    if (document.getElementById('wd-lead-sheet')) return;
+    var sheet = document.createElement('div');
+    sheet.id = 'wd-lead-sheet';
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-labelledby', 'wd-sheet-title');
+    sheet.innerHTML =
+      '<div class="wd-sheet-grip" aria-hidden="true"></div>' +
+      '<button type="button" class="wd-close" aria-label="Close">&times;</button>' +
+      '<h2 id="wd-sheet-title">' + HOOK.title + '</h2>' +
+      '<p>Text <strong>' + SMS_KEYWORD + '</strong> to ' + SMS_NUMBER_DISPLAY + ' for private invitations and new dates.</p>' +
+      '<a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>' +
+      '<a class="wd-sheet-save" href="' + VCARD_URL + '" download>Save WeDeepen to your contacts</a>';
+    document.body.appendChild(sheet);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add('wd-open'); }); });
+    function close(days) {
+      sheet.classList.remove('wd-open');
+      snooze(LS_POPUP, days);
+      setTimeout(function () { sheet.remove(); }, 400);
+    }
+    sheet.querySelector('.wd-close').addEventListener('click', function () { close(SHEET_DISMISS_DAYS); });
+    // They jumped to Messages; count it as joined so it stops asking.
+    sheet.querySelector('.wd-sms-btn').addEventListener('click', function () { close(JOINED_DAYS); });
+  }
+
+  function watchScrollForSheet() {
+    function check() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max < SHEET_SCROLL_DEPTH) return;
+      window.removeEventListener('scroll', check);
+      openSheet();
+    }
+    window.addEventListener('scroll', check, { passive: true });
   }
 
   function openPopup() {
@@ -499,11 +548,13 @@
       if (t) { e.preventDefault(); openPopup(); }
     });
 
-    // Auto-open on desktop only. On mobile the bar's one-tap "text us" beats
-    // any popup, and Google penalizes auto-interstitials in mobile search.
+    // Desktop: the popup opens after a short delay. Phones: a small bottom
+    // sheet with one-tap "text us" slides up after a scroll (no full-screen
+    // popup, which Google penalizes in mobile search).
     // Four Pillars has its own free-guide signup, so the popup stays off there.
-    if (!IS_MOBILE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
-      setTimeout(openPopup, POPUP_DELAY_MS);
+    if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
+      if (IS_MOBILE) watchScrollForSheet();
+      else setTimeout(openPopup, POPUP_DELAY_MS);
     }
   }
 

@@ -31,7 +31,7 @@
   var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
   var PROMO_END = Date.parse('2026-08-17T04:59:59Z'); // Aug 16, 11:59pm Austin
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
-  var ON_HOME = /^\/(index\.html)?$/.test(location.pathname) || /^\/four-pillars\//.test(location.pathname);
+  var ON_FOUR_PILLARS = /^\/four-pillars\//.test(location.pathname);
   var PROMO_ACTIVE = (function () {
     if (/[?&#]wd-promo=off/.test(location.href)) return false;
     return Date.now() < PROMO_END;
@@ -43,7 +43,7 @@
     if (d === 2) return 'ends tomorrow';
     return d + ' days left';
   }
-  var POPUP_DELAY_MS = 7000;
+  var POPUP_DELAY_MS = 4000;
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
   // desktop bar line, `title`/`sub` head the popup. The bar is list capture
@@ -501,8 +501,8 @@
 
     // Auto-open on desktop only. On mobile the bar's one-tap "text us" beats
     // any popup, and Google penalizes auto-interstitials in mobile search.
-    // The homepage leads with the $99 offer; don't cover it with the popup.
-    if (!IS_MOBILE && !ON_LI_PAGE && !ON_HOME && !snoozed(LS_POPUP)) {
+    // Four Pillars has its own free-guide signup, so the popup stays off there.
+    if (!IS_MOBILE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
       setTimeout(openPopup, POPUP_DELAY_MS);
     }
   }

@@ -45,10 +45,6 @@
   ],
   "footer": [
     {
-      "label": "Blog",
-      "href": "/blog/"
-    },
-    {
       "label": "Four Pillars",
       "href": "/four-pillars/"
     },

@@ -217,6 +217,16 @@ def render_episode_page(ep: dict, related: list) -> str:
     }
     json_ld = {k: v for k, v in json_ld.items() if v is not None}
 
+    breadcrumb_ld = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wedeepen.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Podcast", "item": "https://wedeepen.com/podcast/"},
+            {"@type": "ListItem", "position": 3, "name": ep["title"], "item": f"https://wedeepen.com{url_path}"},
+        ],
+    }
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -254,6 +264,9 @@ def render_episode_page(ep: dict, related: list) -> str:
 
   <script type="application/ld+json">
   {json.dumps(json_ld, indent=2)}
+  </script>
+  <script type="application/ld+json">
+  {json.dumps(breadcrumb_ld, indent=2)}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">

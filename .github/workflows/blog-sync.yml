@@ -1,7 +1,8 @@
 # Pull new BabyLoveGrowth articles into /blog/ once a day.
 #
 # scripts/build-blog.mjs fetches every article over the BabyLoveGrowth API and
-# regenerates blog/ plus the /blog/ entries in sitemap.xml. If anything
+# regenerates blog/ plus the /blog/ entries in sitemap.xml, then refreshes the
+# "Related reading" links on the podcast episode pages. If anything
 # changed, this job commits the result to main, which GitHub Pages deploys.
 #
 # Needs the repo secret BLG_API_KEY (BabyLoveGrowth → Settings → Publishing →
@@ -46,6 +47,13 @@ jobs:
           BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
         run: node scripts/build-blog.mjs
 
+      # Episode pages carry a "Related reading" block picked from the blog, so
+      # a new article can change which posts they link to.
+      - name: Refresh the episode pages' related reading
+        run: |
+          python3 podcast/data/generate_episode_pages.py
+          node scripts/build-nav.mjs
+
       - name: Rebuild llms-full.txt
         run: node scripts/build-llms-full.mjs
 
@@ -55,7 +63,7 @@ jobs:
       - name: Commit and push if anything changed
         id: commit
         run: |
-          git add blog sitemap.xml llms-full.txt
+          git add blog sitemap.xml llms-full.txt deepen-with-christina
           if git diff --cached --quiet; then
             echo "No new or changed articles."
             echo "changed=false" >> "$GITHUB_OUTPUT"

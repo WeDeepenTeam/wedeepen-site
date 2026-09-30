@@ -302,7 +302,9 @@ ${cleanHtml(a.content_html, slugs, a.title)}
     </div>
   </section>`;
 
-  return page(shell, { title: `${a.title} | WeDeepen`, description, url, image: a.hero_image_url, type: 'article', lang: a.languageCode },
+  // Google shows about 60 characters; drop the brand suffix before it gets cut.
+  const pageTitle = `${a.title} | WeDeepen`.length <= 60 ? `${a.title} | WeDeepen` : a.title;
+  return page(shell, { title: pageTitle, description, url, image: a.hero_image_url, type: 'article', lang: a.languageCode },
     [articleLd, faqLd, breadcrumb], body);
 }
 

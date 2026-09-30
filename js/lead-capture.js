@@ -23,6 +23,10 @@
   var ST_TERMS_URL = 'https://app2.simpletexting.com/web-forms/terms/' + ST_WEBFORM_ID;
   var ST_PRIVACY_URL = 'https://app2.simpletexting.com/web-forms/privacy-policy/' + ST_WEBFORM_ID;
   // Google Apps Script web app URL (ends in /exec). Backup log only.
+  // René's "WeDeepen Website Sign-ups" sheet: one row per sign-up with date
+  // and time, plus an email to r@wedeepen.com. Apps Script source:
+  // scripts/lead-capture/signups-notify.gs
+  var SIGNUPS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwOrt4wlG4J3zuvwmdaoakHLkv5sJB7NR_OAmlz1qNjnYQzu3QSlhscgijQHdj01Kfysw/exec';
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxTqMV9og1cnFzVI6KE5yLtjYcVD5C81cj0P3cPRcCJMynxIz2YsZHJ52IkvbnEo6s97Q/exec';
   var SMS_NUMBER_DISPLAY = '833-407-0037';
   var SMS_KEYWORD = 'COUNT ME IN';
@@ -448,6 +452,22 @@
     } catch (e) { /* never block the signup on the log */ }
   }
 
+  // Fire-and-forget row in the sign-ups sheet (and the email alert).
+  function notifySignup(f, result) {
+    if (!SIGNUPS_ENDPOINT) return;
+    try {
+      fetch(SIGNUPS_ENDPOINT, {
+        method: 'POST', mode: 'no-cors',
+        body: new URLSearchParams({
+          firstName: f.firstName, phone: formatPhone(f.phone), email: f.email || '',
+          city: f.city || '', state: f.state || '', podcast: f.podcast,
+          page: location.pathname, hook: HOOK.id,
+          device: IS_MOBILE ? 'phone' : 'desktop', result: result
+        })
+      }).catch(function () {});
+    } catch (e) { /* never block the signup on the log */ }
+  }
+
   function showError(msg) {
     var err = overlay.querySelector('#wd-lead-error');
     err.textContent = msg;
@@ -490,9 +510,11 @@
     // SMS keeps working even if the API is down: hand them the keyword and log
     // the lead to the sheet so it isn't lost.
     var locationStr = city + (city && state ? ', ' : '') + state;
+    var signup = { firstName: firstName, phone: phone, email: email, city: city, state: state, podcast: podcast };
 
     function smsFallback() {
       logToSheet(firstName, phone, email, locationStr);
+      notifySignup(signup, 'Asked to text in (SimpleTexting unreachable)');
       showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
         '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
         '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
@@ -516,6 +538,7 @@
     }).then(function (res) {
       if (res.ok) {
         logToSheet(firstName, phone, email, locationStr);
+        notifySignup(signup, 'Added to COUNTMEIN list');
         showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.' +
           '<br><a class="wd-sms-btn" href="https://chat.whatsapp.com/FOK9T50055K97x88VTsY7J" target="_blank" rel="noopener">Join the WhatsApp group</a>');
         snooze(LS_POPUP, JOINED_DAYS);
@@ -526,6 +549,7 @@
           var error = {};
           try { error = JSON.parse(text); } catch (e2) { /* fall through */ }
           if (error.code === 'DuplicateContactPhoneException') {
+            notifySignup(signup, 'Already on the list');
             showSuccess('Good news: that number is already on the list. We&#39;ll keep the texts coming.');
             snooze(LS_POPUP, JOINED_DAYS);
             return;

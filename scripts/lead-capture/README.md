@@ -34,6 +34,23 @@ https://docs.google.com/spreadsheets/d/1A34rApBJ3PAKQeEUnmy5Jak2M_KSNkYhit3oXL7y
 
 Until `ENDPOINT` is set, the popup still works but finishes with a fallback message telling the visitor to text COUNT ME IN to 833-407-0037, so no lead is lost.
 
+## Sign-ups sheet + email alert (René)
+
+Every desktop popup sign-up also goes to **WeDeepen Website Sign-ups**
+(https://docs.google.com/spreadsheets/d/1p9MT4JFCsPyj5S1X-9OzqegnaUMkjd_VCngx5hjWXPE/edit),
+one row with date, time (Central), contact fields, page, headline and the
+SimpleTexting result, and emails r@wedeepen.com. It's handled by the Apps
+Script project "WeDeepen Sign-ups Notifier" in r@wedeepen.com's Drive
+(source: [`signups-notify.gs`](./signups-notify.gs)); its web app URL is
+`SIGNUPS_ENDPOINT` in `/js/lead-capture.js`. After editing the script, use
+Deploy → Manage deployments → edit → New version so the URL stays the same.
+
+Phone visitors text COUNT ME IN directly, so they reach SimpleTexting without
+passing through this form and don't appear in either sheet.
+
+Known gap: the older WeDeepen Leads script requires an email and drops sign-ups
+without one; the sign-ups sheet doesn't.
+
 ## Notes
 
 - Requests are sent `no-cors` (Apps Script web apps don't return CORS headers), so the client treats any network success as a submit. The Apps Script validates and appends server-side.

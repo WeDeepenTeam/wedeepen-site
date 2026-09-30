@@ -67,23 +67,173 @@
 
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "WeDeepen",
-    "url": "https://wedeepen.com",
-    "founder": {
-      "@type": "Person",
-      "name": "Christina Weber",
-      "url": "https://christinalweber.com"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wedeepen.com/#organization",
+      "name": "WeDeepen",
+      "alternateName": "We Deepen",
+      "url": "https://wedeepen.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://wedeepen.com/favicon-512x512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "WeDeepen is an expert-led relationship education company based in Austin, Texas, founded by Christina Weber. It offers a $99/month membership with live sessions every Tuesday, Love Immersion retreats in Austin, private coaching, and the Mastering Love podcast.",
+      "founder": {
+        "@id": "https://wedeepen.com/about/#christina-weber"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.instagram.com/wedeepen/",
+        "https://www.facebook.com/WeDeepen/",
+        "https://www.youtube.com/@wedeepen",
+        "https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l",
+        "https://podcasts.apple.com/us/podcast/deepen-with-christina-by-christina-weber/id1267527313"
+      ]
     },
-    "description": "WeDeepen brings together the world's most extraordinary love and relationship guides. Expert coaching, transformative retreats, and a curated network for extraordinary love.",
-    "sameAs": [
-      "https://www.instagram.com/wedeepen/",
-      "https://www.youtube.com/@wedeepen",
-      "https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l"
-    ]
-  }
+    {
+      "@type": "WebSite",
+      "@id": "https://wedeepen.com/#website",
+      "url": "https://wedeepen.com/",
+      "name": "WeDeepen",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://wedeepen.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://wedeepen.com/#membership",
+      "name": "WeDeepen Membership",
+      "serviceType": "Online relationship education membership",
+      "provider": {
+        "@id": "https://wedeepen.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "description": "A $99/month membership for people who want to get better at love: live sessions every Tuesday at 7pm ET with expert faculty, a private community, and a Sunday Dare each week.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://circle.wedeepen.com/checkout/wedeepen-club-membership",
+        "price": "99.00",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "99.00",
+          "priceCurrency": "USD",
+          "billingDuration": "P1M",
+          "unitText": "month"
+        },
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://wedeepen.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need to be in a relationship?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. WeDeepen is for people who are dating, partnered, between relationships, or simply interested in improving the skills that lead to a better love life. Partners are welcome to join together; each person joins with their own membership."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When do the sessions happen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sessions run every Tuesday for 90 minutes at 7:00 PM Eastern (6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific). Love Masterminds and Integration Sessions alternate, so there is a live session every week. You can join anytime and come to the very next Tuesday. New Member Orientation runs monthly; the next one is Monday, October 5. It’s a welcome, not a prerequisite. Love Mastermind dates September 15 September 29 October 13 October 27 November 10 November 24 December 8 December 22 Integration Sessions fall on the Tuesdays in between. Dates continue into 2027, and the member calendar always shows what is next."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to wait for New Member Orientation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Join today and come to this Tuesday’s session. Orientation runs once a month and is there to help you meet the community and get your bearings, whenever it fits your calendar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much time do I need to get value?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can join live when it works for you, use the community as questions come up, and catch Love Mastermind recordings from the time you join forward. There is no single way you have to participate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know which approaches apply to me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Different situations call for different lenses. You will learn from a range of approaches without being asked to commit to one way of thinking about love."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does everything happen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sessions are virtual. The private community and Ask the Experts discussions are inside Circle. Sunday Dares arrive by text and email, sent from the WeDeepen number to members only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I miss a session?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every Love Mastermind is recorded from the time you join forward, so you can catch it later from anywhere. Integration Sessions are practice, so they are live only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are Sunday Dares?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A new dare arrives every Sunday, designed to bring more play, spontaneity, and social courage into your week. Some stretch you a little, others are simply fun, but each one gives you a reason to try something different and keep connection active outside the screen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is the membership different from Love Immersion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The membership is weekly and online: the place most people start and the foundation everything else builds on. Love Immersion is three days in person in Austin with the full faculty, sold separately at $2,995. Annual members get $800 toward one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the $800 Love Immersion credit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first 20 annual members get an $800 credit toward one Love Immersion retreat, the three-day in-person intensive in Austin ($2,995). The credit is valid for one retreat during your membership year, can’t be combined with any other discount or offer, and isn’t redeemable for cash. To use it, reach out and we’ll send you your code."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime? What about refunds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can cancel anytime on your own inside the Circle community. Your membership stays active through the end of the period you have already paid for, and payments already made are not refunded. Monthly: cancel and you won’t be charged again. Annual: $990 is paid once for the year (two months free, plus the $800 Love Immersion credit above). To avoid being charged for another year, cancel before your renewal date."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <!-- Fonts -->

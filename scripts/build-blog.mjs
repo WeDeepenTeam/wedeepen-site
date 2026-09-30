@@ -44,6 +44,10 @@ const API = process.env.BLG_API_BASE || 'https://api.babylovegrowth.ai/api/integ
 // Where BabyLoveGrowth hosted the blog before. Its articles link to each
 // other through this host; those links are rewritten to our /blog/ pages.
 const OLD_HOSTS = ['blog.wedeepen.com'];
+// Old-site /blog/<slug> URLs that Cloudflare 301-redirects (see the Bulk
+// Redirect list). A redirect fires at the edge before GitHub Pages, so a new
+// article on one of these slugs would be unreachable until its redirect is removed.
+const LEGACY_REDIRECTS = path.join(ROOT, 'scripts/blog/legacy-redirect-slugs.json');
 
 const esc = (s) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -190,8 +194,12 @@ function identify(head, { title, description, url, image, type }) {
 
 // Article HTML comes from a third party. Strip anything that can run code,
 // allow only YouTube embeds, and point old-host links at our own pages.
-function cleanHtml(html, slugs) {
+function cleanHtml(html, slugs, title = '') {
   html = String(html || '')
+    // The page template owns the only <h1>; in-body h1s are section headings.
+    .replace(/<(\/?)h1\b/gi, '<$1h2')
+    // Every image needs alt text; fall back to the article title.
+    .replace(/<img\b(?![^>]*\salt=)/gi, `<img alt="${esc(title)}"`)
     .replace(/<script\b[\s\S]*?<\/script\s*>/gi, '')
     .replace(/<(style|object|embed|form)\b[\s\S]*?<\/\1\s*>/gi, '')
     .replace(/<(link|meta|base)\b[^>]*>/gi, '')
@@ -228,10 +236,13 @@ const tail = `  <script>
 </html>
 `;
 
+const FEED_LINK = `  <link rel="alternate" type="application/rss+xml" title="The WeDeepen Blog" href="${SITE}${URL_PATH}feed.xml">`;
+
 const page = (shell, meta, jsonLds, body) => `<!DOCTYPE html>
 <html lang="${esc(meta.lang || 'en')}">
 <head>
 ${identify(shell.head, meta).trim()}
+${FEED_LINK}
 ${jsonLds.filter(Boolean).map((j) => `
   <script type="application/ld+json">
 ${jsonForScript(j)}
@@ -258,6 +269,7 @@ function articlePage(shell, a, slugs) {
       dateModified: a.updated_at || a.created_at,
       url,
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      author: { '@type': 'Organization', name: 'WeDeepen', url: SITE },
       publisher: { '@type': 'Organization', name: 'WeDeepen', url: SITE },
     };
   const breadcrumb = {
@@ -278,13 +290,14 @@ function articlePage(shell, a, slugs) {
       <a href="${URL_PATH}" class="text-gold text-sm hover:underline inline-flex items-center gap-2 mb-6">&larr; All articles</a>
       <p class="text-white/40 text-xs tracking-[0.25em] uppercase font-semibold mb-3"><time datetime="${esc(a.created_at)}">${esc(prettyDate(a.created_at))}</time></p>
       <h1 class="font-heading text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight">${esc(a.title)}</h1>
+      <p class="text-white/50 text-sm mt-5">By <a href="/about/" class="text-gold hover:underline">WeDeepen</a>${a.updated_at && dateOf({ created_at: a.updated_at }) !== dateOf(a) ? ` &middot; Updated <time datetime="${esc(a.updated_at)}">${esc(prettyDate(a.updated_at))}</time>` : ''}</p>
     </div>
   </section>
 
   <section class="pb-20 md:pb-28 px-4 sm:px-6">
     <div class="max-w-3xl mx-auto bg-white rounded-2xl px-5 py-8 sm:px-10 sm:py-12">
 ${a.hero_image_url ? `      <img src="${esc(a.hero_image_url)}" alt="${esc(a.title)}" class="w-full rounded-xl mb-10" loading="eager">\n` : ''}      <article class="prose prose-gray prose-img:mx-auto prose-img:max-h-[400px] prose-img:object-contain prose-table:my-8 prose-a:text-[#A01B4A] max-w-none">
-${cleanHtml(a.content_html, slugs)}
+${cleanHtml(a.content_html, slugs, a.title)}
       </article>
     </div>
   </section>`;
@@ -295,10 +308,10 @@ ${cleanHtml(a.content_html, slugs)}
 
 function indexPage(shell, articles) {
   const url = `${SITE}${URL_PATH}`;
-  const TITLE = 'The WeDeepen Blog | Relationships, Intimacy & Connection';
+  const TITLE = 'Relationship Advice Blog | Communication, Intimacy, Dating';
   const DESC = 'Research-backed articles from WeDeepen on relationships, intimacy, communication, and building deeper connection.';
   const cards = articles.map((a) => `        <a href="${URL_PATH}${a.slug}/" class="group block rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-gold/40 transition">
-${a.hero_image_url ? `          <img src="${esc(a.hero_image_url)}" alt="" class="w-full aspect-[16/9] object-cover" loading="lazy">\n` : ''}          <div class="p-6">
+${a.hero_image_url ? `          <img src="${esc(a.hero_image_url)}" alt="${esc(a.title)}" class="w-full aspect-[16/9] object-cover" loading="lazy">\n` : ''}          <div class="p-6">
             <p class="text-white/40 text-xs mb-2"><time datetime="${esc(a.created_at)}">${esc(prettyDate(a.created_at))}</time></p>
             <h2 class="font-heading text-xl font-semibold leading-snug group-hover:text-gold transition mb-2">${esc(a.title)}</h2>
             <p class="text-white/60 text-sm leading-relaxed">${esc(a.excerpt || a.meta_description || '')}</p>
@@ -360,6 +373,40 @@ async function updateSitemap(articles) {
   if (out !== xml) await fs.writeFile(SITEMAP, out, 'utf8');
 }
 
+// RSS 2.0 feed of every article, newest first, so crawlers and feed readers
+// pick up new posts without waiting for a sitemap recrawl.
+function feed(articles) {
+  const items = articles.map((a) => `    <item>
+      <title>${esc(a.title)}</title>
+      <link>${SITE}${URL_PATH}${a.slug}/</link>
+      <guid isPermaLink="true">${SITE}${URL_PATH}${a.slug}/</guid>
+      <pubDate>${new Date(a.created_at).toUTCString()}</pubDate>
+      <description>${esc(a.meta_description || a.excerpt || '')}</description>
+    </item>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The WeDeepen Blog</title>
+    <link>${SITE}${URL_PATH}</link>
+    <atom:link href="${SITE}${URL_PATH}feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Research-backed articles from WeDeepen on relationships, intimacy, communication, and connection.</description>
+    <language>en-us</language>
+${items}
+  </channel>
+</rss>
+`;
+}
+
+async function warnOnLegacyCollisions(articles) {
+  let legacy = [];
+  try { legacy = JSON.parse(await fs.readFile(LEGACY_REDIRECTS, 'utf8')); } catch {}
+  const taken = new Set(legacy);
+  for (const a of articles.filter((x) => taken.has(x.slug))) {
+    // ::warning:: surfaces in the GitHub Actions run summary.
+    console.warn(`::warning::blog/${a.slug}/ collides with a legacy Cloudflare redirect. Remove "wedeepen.com/blog/${a.slug}" from the Bulk Redirect list or the article is unreachable.`);
+  }
+}
+
 async function render() {
   const shell = borrowShell(await fs.readFile(DONOR, 'utf8'));
   const articles = (await readData())
@@ -382,7 +429,9 @@ async function render() {
     await fs.mkdir(path.join(BLOG_DIR, a.slug), { recursive: true });
     await fs.writeFile(path.join(BLOG_DIR, a.slug, 'index.html'), articlePage(shell, a, slugs), 'utf8');
   }
+  await fs.writeFile(path.join(BLOG_DIR, 'feed.xml'), feed(articles), 'utf8');
   await updateSitemap(articles);
+  await warnOnLegacyCollisions(articles);
   console.log(`Wrote blog/index.html and ${articles.length} article page${articles.length === 1 ? '' : 's'}`);
 }
 

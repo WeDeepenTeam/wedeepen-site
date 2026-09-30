@@ -13,18 +13,15 @@
     gtag('config', 'G-LZ0EY5X593');
   </script>
 
-  <title>Redirecting | WeDeepen</title>
+  <title>Page Not Found | WeDeepen</title>
   <meta name="robots" content="noindex">
-
-  <!-- Auto-redirect (0.8s — long enough to show a branded splash, fast enough to feel instant) -->
-  <meta http-equiv="refresh" content="0.8; url=/">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <!-- Case-insensitive aliases for campaign URLs.
        GitHub Pages serves URLs case-sensitively, but printed posters / QRs
        can produce uppercase typed URLs (e.g. /BC26 from a postcard).
-       This runs synchronously in <head> before the meta-refresh fires. -->
+       This runs synchronously in <head>, before the page renders. -->
   <script>
     (function () {
       var path = (location.pathname || '').toLowerCase().replace(/\/+$/, '');
@@ -106,6 +103,13 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     a.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,51,122,0.35); }
+    ul.links {
+      list-style: none; padding: 0; margin: 2.5rem 0 0;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 1.5rem;
+      font-family: system-ui, sans-serif; font-size: 0.9rem;
+    }
+    ul.links a { color: var(--gold); text-decoration: none; }
+    ul.links a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -119,15 +123,16 @@
     </div>
     <p class="eyebrow">Page Not Found</p>
     <h1>That page has <em>moved on.</em></h1>
-    <p>We&rsquo;re taking you back to the beginning&hellip;</p>
+    <p>The page you were looking for isn&rsquo;t here anymore. Looking for a podcast episode? Every one is in the <a href="/podcast/archive/" style="color:var(--gold)">full episode archive</a>.</p>
     <a href="/" class="btn">Go to wedeepen.com</a>
+    <ul class="links" aria-label="Popular pages">
+      <li><a href="/">Membership</a></li>
+      <li><a href="/love-immersion/october-2026/">Love Immersion</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/podcast/">Podcast</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/love-guides/">Faculty</a></li>
+    </ul>
   </main>
-
-  <script>
-    // Belt & suspenders: JS redirect in case meta refresh is blocked
-    setTimeout(function() {
-      if (window.location.pathname !== '/') window.location.replace('/');
-    }, 800);
-  </script>
 </body>
 </html>

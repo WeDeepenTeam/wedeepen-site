@@ -3,7 +3,8 @@
   "links": [
     {
       "label": "Membership",
-      "href": "/"
+      "href": "/membership/",
+      "activePrefix": "/membership/"
     },
     {
       "label": "Love Immersion",

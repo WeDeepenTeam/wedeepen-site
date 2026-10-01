@@ -93,6 +93,17 @@
   // Links from inside the Circle community carry ?topic=... (see the Drop a
   // Line form on the homepage). Those visitors are already members, so skip
   // the list-building bar, popup, and header button entirely.
+  // Ad landing mode (?wd-form=1, e.g. the Meta texting-list campaign): every
+  // device gets the sign-up form, opened right away, so ad sign-ups fire the
+  // Lead conversion. Phones normally get the text-us panel, which the pixel
+  // can't confirm. Sticks for the rest of the visit.
+  var AD_FORM = (function () {
+    var key = 'wd_ad_form';
+    try {
+      if (/[?&]wd-form=1(&|$)/.test(location.search)) { sessionStorage.setItem(key, '1'); return true; }
+      return sessionStorage.getItem(key) === '1';
+    } catch (e) { return /[?&]wd-form=1(&|$)/.test(location.search); }
+  })();
   var MEMBER_LINK = (function () {
     try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
   })();
@@ -334,7 +345,7 @@
     overlay.innerHTML =
       '<div id="wd-lead-modal" role="dialog" aria-modal="true" aria-labelledby="wd-lead-title">' +
         '<button type="button" class="wd-close" aria-label="Close">&times;</button>' +
-        (IS_MOBILE ? smsPanel : formPanel) +
+        (IS_MOBILE && !AD_FORM ? smsPanel : formPanel) +
         '<div id="wd-lead-success">' +
           '<h2>You&#39;re on the list</h2>' +
           '<p id="wd-lead-success-msg">We&#39;ll keep you posted on upcoming dates and events.</p>' +
@@ -461,7 +472,7 @@
     var label = 'Website popup sign-up';
     try {
       if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: label, content_category: how });
-      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { lead_source: 'popup', lead_method: how, hook: HOOK.id });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { lead_source: AD_FORM ? 'ad_landing' : 'popup', lead_method: how, hook: HOOK.id });
       if (typeof window.rdt === 'function') window.rdt('track', 'Lead');
     } catch (e) { /* tracking never blocks the signup */ }
   }
@@ -475,7 +486,7 @@
         body: new URLSearchParams({
           firstName: f.firstName, phone: formatPhone(f.phone), email: f.email || '',
           city: f.city || '', state: f.state || '', podcast: f.podcast,
-          page: location.pathname, hook: HOOK.id,
+          page: location.pathname + (AD_FORM ? ' (from ad)' : ''), hook: HOOK.id,
           device: IS_MOBILE ? 'phone' : 'desktop', result: result
         })
       }).catch(function () {});
@@ -610,7 +621,10 @@
     // sheet with one-tap "text us" slides up after a scroll (no full-screen
     // popup, which Google penalizes in mobile search).
     // Four Pillars has its own free-guide signup, so the popup stays off there.
-    if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
+    if (AD_FORM) {
+      // They clicked an ad to join: open the form, even if they closed it before.
+      setTimeout(openPopup, 1200);
+    } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
       if (IS_MOBILE) watchScrollForSheet();
       else setTimeout(openPopup, POPUP_DELAY_MS);
     }

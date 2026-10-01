@@ -21,6 +21,7 @@ There is a sister repo, [`WeDeepenTeam/my-app`](https://github.com/WeDeepenTeam/
 5. **Use a feature branch for every non-trivial change.** Never push directly to `main` for content/code changes. Trivial typo fixes on `main` are OK.
 6. **Do the work in a worktree, not the main checkout.** See "Multi-session safety" below — multiple Claude sessions and GitHub Actions agents (`WeDeepenTeam/claude/*`) edit this repo in parallel.
 7. **The site nav is templated.** Never hand-edit nav links or the header Log In / Join buttons in a page. Edit `scripts/nav/links.json` (`links` for the menu, `cta` for the buttons), run `npm run nav:sync`, commit the result. The blocks between `<!-- nav:links -->` / `<!-- /nav:links -->` and `<!-- nav:cta -->` / `<!-- /nav:cta -->` in every page are generated; `npm run nav:check` tells you if any page has drifted. The gallery page shell reads the same file, so `gallery:build` output always matches.
+8. **`/membership/` is generated from the homepage.** Never edit `membership/index.html`; edit `index.html`. `scripts/build-membership.mjs` copies it (noindex, own canonical/title, Meta ViewContent, no JSON-LD) and the `membership-mirror` workflow reruns it on every push that touches `index.html`.
 
 ---
 

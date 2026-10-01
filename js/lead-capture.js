@@ -391,7 +391,10 @@
     }
     sheet.querySelector('.wd-close').addEventListener('click', function () { close(SHEET_DISMISS_DAYS); });
     // They jumped to Messages; count it as joined so it stops asking.
-    sheet.querySelector('.wd-sms-btn').addEventListener('click', function () { close(JOINED_DAYS); });
+    sheet.querySelector('.wd-sms-btn').addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'phone_sheet', hook: HOOK.id });
+      close(JOINED_DAYS);
+    });
   }
 
   function watchScrollForSheet() {
@@ -450,6 +453,17 @@
         })
       }).catch(function () {});
     } catch (e) { /* never block the signup on the log */ }
+  }
+
+  // Conversion for the ad platforms, once per real sign-up (never on open or
+  // close). Each call no-ops when that tag isn't on the page.
+  function trackLead(how) {
+    var label = 'Website popup sign-up';
+    try {
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: label, content_category: how });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { lead_source: 'popup', lead_method: how, hook: HOOK.id });
+      if (typeof window.rdt === 'function') window.rdt('track', 'Lead');
+    } catch (e) { /* tracking never blocks the signup */ }
   }
 
   // Fire-and-forget row in the sign-ups sheet (and the email alert).
@@ -515,6 +529,7 @@
     function smsFallback() {
       logToSheet(firstName, phone, email, locationStr);
       notifySignup(signup, 'Asked to text in (SimpleTexting unreachable)');
+      trackLead('form');
       showSuccess('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' +
         '<a href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a> and you&#39;re in.' +
         '<br><a class="wd-sms-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>');
@@ -539,6 +554,7 @@
       if (res.ok) {
         logToSheet(firstName, phone, email, locationStr);
         notifySignup(signup, 'Added to COUNTMEIN list');
+        trackLead('form');
         showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.' +
           '<br><a class="wd-sms-btn" href="https://chat.whatsapp.com/FOK9T50055K97x88VTsY7J" target="_blank" rel="noopener">Join the WhatsApp group</a>');
         snooze(LS_POPUP, JOINED_DAYS);

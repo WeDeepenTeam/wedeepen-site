@@ -954,14 +954,13 @@
 
         if (a.hasAttribute('data-lead-popup')) {
           ga('lead_popup_open');
-          fb('Lead', { content_name: 'Private invites list' });
-          rd('Lead');
+          // The Lead conversion fires on an actual sign-up, in /js/lead-capture.js.
         }
       }, true);
     })();
   </script>
 
-  <script src="/js/lead-capture.js?v=32" defer></script>
+  <script src="/js/lead-capture.js?v=33" defer></script>
   <script src="/js/social-proof.js?v=2" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
 </body>

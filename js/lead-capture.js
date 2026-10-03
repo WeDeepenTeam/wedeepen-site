@@ -104,9 +104,9 @@
       return sessionStorage.getItem(key) === '1';
     } catch (e) { return /[?&]wd-form=1(&|$)/.test(location.search); }
   })();
-  // Four Pillars guide: a two-step prompt (one-tap "yes", then email) that
-  // replaces the automatic popup / phone sheet. Leads go to MailerLite, which
-  // emails the guide. Preview-only until GUIDE_LIVE is true: add ?wd-guide=1
+  // Four Pillars guide: a sign-up prompt (name + email, then a one-tap text
+  // bonus) that replaces the automatic popup / phone sheet. Leads go to
+  // MailerLite, which emails the guide. Preview-only until GUIDE_LIVE is true: add ?wd-guide=1
   // to any page to see it (sticks for the visit).
   var GUIDE_LIVE = false;
   var GUIDE_ML_ENDPOINT = ''; // MailerLite form subscribe URL, set at launch
@@ -465,22 +465,14 @@
     g.id = 'wd-guide';
     g.setAttribute('role', 'dialog');
     g.setAttribute('aria-labelledby', 'wd-g-title');
-    g.setAttribute('data-at', '1');
+    g.setAttribute('data-at', '2');
     g.innerHTML =
       '<button type="button" class="wd-close" aria-label="Close">&times;</button>' +
-      // Step 1: one-tap yes
-      '<div data-step="1">' +
-        '<p class="wd-g-eyebrow">Free guide</p>' +
-        '<h2 id="wd-g-title">The Four Pillars of a Conscious Relationship</h2>' +
-        '<p>The framework we practice in every WeDeepen session, from Christina Weber.</p>' +
-        '<button type="button" class="wd-g-btn" data-go="2">Send me the free guide</button>' +
-        '<button type="button" class="wd-g-no">No thanks, I&#39;ll pass</button>' +
-      '</div>' +
       // Step 2: name + email
       '<div data-step="2">' +
         '<div class="wd-g-hero">' +
           '<img src="' + GUIDE_COVER + '" width="240" height="300" alt="The Four Pillars of a Conscious Relationship guide cover">' +
-          '<div><h2>Get the Four Pillars, free</h2>' +
+          '<div><p class="wd-g-eyebrow">Free guide</p><h2 id="wd-g-title">Get the Four Pillars, free</h2>' +
           '<p>Prioritize growth. Own your own sh*t. All feelings are welcome. Practice love.</p></div>' +
         '</div>' +
         '<form class="wd-g-main" novalidate>' +
@@ -491,6 +483,7 @@
           '<button type="submit" class="wd-g-btn">Yes! Send my guide</button>' +
         '</form>' +
         '<p class="wd-g-fine">We&#39;ll email it right away. Unsubscribe anytime.</p>' +
+        '<button type="button" class="wd-g-no wd-g-pass">No thanks, I&#39;ll pass</button>' +
       '</div>' +
       // Step 3: guide right away + optional phone bonus
       '<div data-step="3">' +
@@ -518,7 +511,6 @@
     }
     function go(step) {
       g.setAttribute('data-at', String(step));
-      if (step === 2) setTimeout(function () { try { g.querySelector('input[name=firstname]').focus(); } catch (e) {} }, 350);
     }
     function showErr(scope, msg) {
       var err = scope.querySelector('.wd-g-err');
@@ -529,11 +521,7 @@
     g.querySelector('.wd-close').addEventListener('click', function () {
       close(g.getAttribute('data-at') === '3' ? 0 : dismissDays);
     });
-    g.querySelector('[data-step="1"] .wd-g-no').addEventListener('click', function () { close(dismissDays); });
-    g.querySelector('[data-go="2"]').addEventListener('click', function () {
-      if (typeof window.gtag === 'function') window.gtag('event', 'guide_yes_click', { device: IS_MOBILE ? 'phone' : 'desktop' });
-      go(2);
-    });
+    g.querySelector('.wd-g-pass').addEventListener('click', function () { close(dismissDays); });
     g.querySelector('.wd-g-skip').addEventListener('click', function () { close(0); });
 
     var person = { firstName: '', email: '' };

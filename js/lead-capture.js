@@ -121,6 +121,16 @@
   var MEMBER_LINK = (function () {
     try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
   })();
+  // Clicks from our own emails (?utm_medium=email, e.g. the Four Pillars
+  // MailerLite sequence) are already on the list: no bar or auto popup for
+  // the rest of the visit. Buttons that open the popup on click still work.
+  var FROM_EMAIL = (function () {
+    var key = 'wd_from_email';
+    try {
+      if (/[?&]utm_medium=email(&|$)/.test(location.search)) { sessionStorage.setItem(key, '1'); return true; }
+      return sessionStorage.getItem(key) === '1';
+    } catch (e) { return /[?&]utm_medium=email(&|$)/.test(location.search); }
+  })();
 
   // Mobile = text-first (SMS CTA + save contact). Desktop = form.
   // ?wd-view=mobile / ?wd-view=desktop override for QA.
@@ -779,7 +789,7 @@
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}
-    if (!snoozed(LS_BAR) && !barOff) buildBar();
+    if (!snoozed(LS_BAR) && !barOff && !FROM_EMAIL) buildBar();
 
     // Any element with data-lead-popup opens the popup on click.
     document.addEventListener('click', function (e) {
@@ -797,6 +807,8 @@
     } else if (GUIDE_MODE && /[?&]wd-guide=1(&|$)/.test(location.search)) {
       // Preview link: show the guide right away, ignoring past snoozes.
       setTimeout(openGuide, 800);
+    } else if (FROM_EMAIL) {
+      // Already subscribed: nothing opens on its own.
     } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
       if (IS_MOBILE) watchScrollForGuide();
       else setTimeout(openGuide, POPUP_DELAY_MS);

@@ -135,11 +135,13 @@ Load these only when the task matches:
 
 ### Blog (/blog/)
 
-`/blog/` is generated from BabyLoveGrowth articles and is deliberately **not** in the nav. Don't hand-edit anything under `blog/`; the next sync overwrites it.
+`/blog/` is generated and is deliberately **not** in the nav. Don't hand-edit anything under `blog/` except the data files below; the build overwrites the pages.
 
-- `.github/workflows/blog-sync.yml` runs daily: `node scripts/build-blog.mjs` fetches every article over the API (repo secret `BLG_API_KEY`), rewrites `blog/` and the `/blog/` entries in `sitemap.xml`, and commits to `main` if anything changed.
-- To rebuild the pages from the committed `blog/data/articles.json` without the API (e.g. after a shell or nav change): `npm run blog:build`.
-- To sync now: Actions tab → "Blog sync" → Run workflow (or `gh workflow run blog-sync.yml`).
+- `blog/data/own-articles.json` — WeDeepen's own articles. A daily in-house pipeline appends one article per day (procedure: `blog-engine/EDITORIAL.md` in the private `WeDeepenTeam/wedeepen-team-docs` repo). Every new article must pass `node scripts/blog/check-article.mjs <slug> --links`. Covers come from `scripts/blog/make-cover.py` into `images/blog/<slug>/cover.jpg`.
+- `blog/data/articles.json` — the frozen BabyLoveGrowth archive (Sep 25 – Oct 3, 2026). The BLG API sync is retired; its images are mirrored to `images/blog/`. Own articles win on slug collision.
+- `.github/workflows/blog-sync.yml` ("Blog build") runs on any push to `blog/data/**` (or by hand): it renders `blog/`, the `/blog/` sitemap entries, podcast "Related reading", and `llms-full.txt`, commits, pings IndexNow, and requests a Pages build.
+- FAQPage JSON-LD is derived from each article's visible `<h2>FAQ</h2>` + `<h3>` questions.
+- To rebuild locally from the committed data: `npm run blog:build`.
 
 ### Add a new photo gallery album
 

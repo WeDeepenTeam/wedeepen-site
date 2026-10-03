@@ -1,17 +1,23 @@
-# Pull new BabyLoveGrowth articles into /blog/ once a day.
+# Rebuild /blog/ whenever article data changes.
 #
-# scripts/build-blog.mjs fetches every article over the BabyLoveGrowth API and
-# regenerates blog/ plus the /blog/ entries in sitemap.xml, then refreshes the
-# "Related reading" links on the podcast episode pages. If anything
-# changed, this job commits the result to main, which GitHub Pages deploys.
+# WeDeepen now writes its own articles (the daily in-house pipeline commits one
+# new entry to blog/data/own-articles.json). This job renders blog/ plus the
+# /blog/ entries in sitemap.xml from blog/data/articles.json (the frozen
+# BabyLoveGrowth archive) and blog/data/own-articles.json, refreshes the
+# "Related reading" links on the podcast episode pages, rebuilds llms-full.txt,
+# commits the result to main, pings IndexNow and requests a Pages build.
 #
-# Needs the repo secret BLG_API_KEY (BabyLoveGrowth → Settings → Publishing →
-# API). Run it by hand from the Actions tab with "Run workflow".
-name: Blog sync
+# The BabyLoveGrowth API sync is retired: no BLG_API_KEY is passed, so
+# scripts/build-blog.mjs only renders. To pull from BabyLoveGrowth again, add
+# `BLG_API_KEY: ${{ secrets.BLG_API_KEY }}` back to the build step's env.
+name: Blog build
 
 on:
-  schedule:
-    - cron: '17 13 * * *'   # daily, 13:17 UTC (6:17am Pacific)
+  push:
+    branches: [main]
+    paths:
+      - 'blog/data/**'
+      - 'scripts/build-blog.mjs'
   workflow_dispatch:
 
 permissions:
@@ -33,18 +39,7 @@ jobs:
         with:
           node-version: 24
 
-      - name: Check for the API key
-        env:
-          BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
-        run: |
-          if [ -z "$BLG_API_KEY" ]; then
-            echo "::error::The BLG_API_KEY repo secret is not set. Add it under Settings → Secrets and variables → Actions."
-            exit 1
-          fi
-
-      - name: Sync and build the blog
-        env:
-          BLG_API_KEY: ${{ secrets.BLG_API_KEY }}
+      - name: Build the blog
         run: node scripts/build-blog.mjs
 
       # Episode pages carry a "Related reading" block picked from the blog, so
@@ -63,7 +58,7 @@ jobs:
       - name: Commit and push if anything changed
         id: commit
         run: |
-          git add blog sitemap.xml llms-full.txt deepen-with-christina
+          git add blog images/blog sitemap.xml llms-full.txt deepen-with-christina
           if git diff --cached --quiet; then
             echo "No new or changed articles."
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -71,7 +66,7 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "blog: sync articles from BabyLoveGrowth"
+          git commit -m "blog: rebuild pages from article data"
           # main moves often; replay on top of it rather than fail the push.
           pushed=false
           for i in 1 2 3; do

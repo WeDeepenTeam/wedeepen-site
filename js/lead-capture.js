@@ -118,6 +118,9 @@
       return GUIDE_LIVE || sessionStorage.getItem(key) === '1';
     } catch (e) { return GUIDE_LIVE || /[?&]wd-guide=1(&|$)/.test(location.search); }
   })();
+  // The top bar offers the guide too, until they've signed up for it or
+  // closed it (then it goes back to the text-list offer).
+  var GUIDE_BAR = false; // set in init(), once snoozed() is defined
   var MEMBER_LINK = (function () {
     try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
   })();
@@ -296,7 +299,9 @@
         :
         '<span class="wd-bar-stack">' +
           '<span class="wd-bar-line1">' + HOOK.bar + '</span>' +
-          '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
+          (GUIDE_BAR
+            ? '<span class="wd-bar-line2"><a class="wd-bar-link wd-bar-guide" href="#">Get the free Four Pillars guide</a></span>'
+            : '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>') +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
@@ -306,7 +311,9 @@
           (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         : '<span class="wd-bar-msg">' + HOOK.bar + '</span>' +
-          (HOOK.href
+          (GUIDE_BAR
+            ? '<button type="button" class="wd-bar-join wd-bar-guide">Get the Free Guide</button>'
+            : HOOK.href
             ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
             : '<button type="button" class="wd-bar-join">Count Me In</button>') +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
@@ -334,8 +341,10 @@
       document.fonts.ready.then(offset).catch(function () {});
     }
 
+    var guideLink = bar.querySelector('.wd-bar-guide');
     var join = bar.querySelector('button.wd-bar-join');
-    if (join) join.addEventListener('click', function () { openPopup(); });
+    if (guideLink) guideLink.addEventListener('click', function (e) { e.preventDefault(); openGuide(); });
+    else if (join) join.addEventListener('click', function () { openPopup(); });
     bar.querySelector('.wd-bar-x').addEventListener('click', function () {
       removeBar();
       snooze(LS_BAR, BAR_DISMISS_DAYS);
@@ -472,6 +481,69 @@
   }
 
   /* == Four Pillars guide (two-step) ===================================== */
+  // Subscribe to the MailerLite "Four Pillars guide" group (which starts the
+  // email sequence), log the sign-up, and fire the Lead events.
+  function sendGuide(firstName, email, how, cb) {
+    function done(result) {
+      notifySignup({ firstName: firstName, phone: '', email: email, city: '', state: '', podcast: '' }, result);
+      // Preview submissions (before launch) must not count as ad conversions.
+      if (GUIDE_LIVE) trackLead(how);
+      snooze(LS_POPUP, JOINED_DAYS);
+      cb();
+    }
+    if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
+    var body = new URLSearchParams();
+    body.append('fields[name]', firstName);
+    body.append('fields[email]', email);
+    body.append('ml-submit', '1');
+    body.append('anticsrf', 'true');
+    fetch(GUIDE_ML_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
+      .then(function () { done('Four Pillars guide (MailerLite' + (how === 'guide' ? '' : ', ' + how) + ')'); })
+      .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
+  }
+
+  // The inline form on /four-pillars/ ([data-guide-form]): same sign-up as
+  // the popup, then swaps to its [data-guide-done] block with the text bonus.
+  function wireGuidePageForm() {
+    var form = document.querySelector('form[data-guide-form]');
+    if (!form) return;
+    var doneBox = document.querySelector('[data-guide-done]');
+    var err = form.querySelector('[data-guide-err]');
+    function showErr(msg) { err.textContent = msg; err.style.display = msg ? 'block' : 'none'; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      showErr('');
+      var firstName = form.firstname.value.trim();
+      var email = form.email.value.trim();
+      function finish() {
+        form.style.display = 'none';
+        if (doneBox) {
+          var hi = doneBox.querySelector('[data-guide-hi]');
+          if (hi && firstName) hi.textContent = 'Check your inbox, ' + firstName + '!';
+          doneBox.style.display = 'block';
+        }
+      }
+      if (form.company.value) { finish(); return; } // honeypot
+      if (!firstName) { showErr('Please add your first name.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email address.'); return; }
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      sendGuide(firstName, email, 'guide_page', finish);
+    });
+    var textBtn = doneBox && doneBox.querySelector('[data-guide-text]');
+    if (textBtn) {
+      if (!IS_MOBILE) {
+        textBtn.outerHTML = '<p class="text-white/80">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone.</p>';
+      } else {
+        textBtn.setAttribute('href', SMS_HREF);
+        textBtn.addEventListener('click', function () {
+          if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
+        });
+      }
+    }
+  }
+
   function openGuide() {
     if (document.getElementById('wd-guide')) return;
     var g = document.createElement('div');
@@ -558,24 +630,11 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
       person = { firstName: firstName, email: email };
-      function done(result) {
-        notifySignup({ firstName: firstName, phone: '', email: email, city: '', state: '', podcast: '' }, result);
-        // Preview submissions (before launch) must not count as ad conversions.
-        if (GUIDE_LIVE) trackLead('guide');
-        snooze(LS_POPUP, JOINED_DAYS);
+      sendGuide(firstName, email, 'guide', function () {
         g.querySelector('.wd-g-hi').textContent = 'Check your inbox, ' + firstName + '!';
         g.querySelector('.wd-g-sent').textContent = 'Your Four Pillars guide is on its way to ' + email + '.';
         go(3);
-      }
-      if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
-      var body = new URLSearchParams();
-      body.append('fields[name]', firstName);
-      body.append('fields[email]', email);
-      body.append('ml-submit', '1');
-      body.append('anticsrf', 'true');
-      fetch(GUIDE_ML_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
-        .then(function () { done('Four Pillars guide (MailerLite)'); })
-        .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
+      });
     });
 
     // Bonus: one tap opens Messages with COUNT ME IN typed, to the COUNTMEIN list.
@@ -792,10 +851,14 @@
     style.textContent = css;
     document.head.appendChild(style);
 
+    wireGuidePageForm();
+
     if (MEMBER_LINK) {
       document.querySelectorAll('[data-lead-popup]').forEach(function (el) { el.style.display = 'none'; });
       return;
     }
+
+    GUIDE_BAR = GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP);
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}

@@ -246,7 +246,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
   <section class="pb-8 md:pb-12 px-6">
     <div class="max-w-4xl mx-auto">
       <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black" style="box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-        <iframe src="https://www.youtube-nocookie.com/embed/{youtube_id}" title="{title_esc}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+        <iframe data-yt-src="https://www.youtube-nocookie.com/embed/{youtube_id}" title="{title_esc}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
       </div>
       <p class="text-white/45 text-xs text-center mt-3">Video episode &middot; <a href="https://www.youtube.com/watch?v={youtube_id}" target="_blank" rel="noopener" class="text-gold hover:underline">Watch on YouTube</a></p>
     </div>
@@ -277,7 +277,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
     related_cards = "\n".join([f"""
           <a href="{quote(f"/deepen-with-christina/{slugify(r['title'])}/")}" class="flex gap-4 p-4 rounded-xl transition" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
             <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-charcoal">
-              <img src="{r.get('image') or '/images/podcast-artwork.png'}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork.png'">
+              <img src="{r.get('image') or '/images/podcast-artwork-640.jpg'}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork-640.jpg'">
             </div>
             <div class="flex-1 min-w-0">
               <h4 class="text-white text-sm font-semibold leading-tight line-clamp-2">{html.escape(r['title'])}</h4>
@@ -485,7 +485,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 
         <div class="md:col-span-1">
           <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl max-w-xs mx-auto md:max-w-full" style="box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-            <img src="{image}" alt="{title_esc}" class="w-full h-full object-cover" loading="eager" onerror="this.src='/images/podcast-artwork.png'">
+            <img src="{image}" alt="{title_esc}" class="w-full h-full object-cover" loading="eager" onerror="this.src='/images/podcast-artwork-640.jpg'">
           </div>
         </div>
 
@@ -568,6 +568,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 
   <footer class="bg-ink border-t border-white/10 py-12">
     <script src="/js/lead-capture.js?v=45" defer></script>
+    <script src="/js/mobile-site.js?v=1" defer></script>
     <div class="max-w-site mx-auto px-6 text-center">
       <a href="/" class="inline-block mb-4">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60" loading="lazy" decoding="async">

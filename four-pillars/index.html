@@ -399,9 +399,25 @@
           <h3 class="font-heading text-2xl md:text-3xl text-white font-semibold mb-3 leading-tight">The framework most couples never learn.</h3>
           <p class="text-white/60 text-sm md:text-base leading-relaxed mb-6">Yours to keep. The same Four Pillars we practice inside the membership and at every Love Immersion. Drop your email.</p>
 
-          <!-- Circle embedded form -->
-          <div data-is-popup="false" data-circle-form-uid="7fbcd363"></div>
-          <script>if(!window.circleFormsScriptLoaded){window.circleFormsScriptLoaded=true;const script=document.createElement('script');script.src='https://circle.wedeepen.com/external/form-embeds.js';script.defer=true;document.head.appendChild(script)}</script>
+          <!-- Guide sign-up: wired up by /js/lead-capture.js (MailerLite "Four Pillars guide" group) -->
+          <form data-guide-form novalidate class="space-y-3 max-w-md">
+            <div class="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>
+            <input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
+            <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
+            <p data-guide-err role="alert" class="text-sm text-red-300" style="display:none"></p>
+            <button type="submit" class="btn-rose w-full text-base">Yes! Send my guide</button>
+            <p class="text-white/45 text-xs text-center">We&#39;ll email it right away. Unsubscribe anytime.</p>
+          </form>
+          <div data-guide-done style="display:none" class="max-w-md">
+            <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-2">You&#39;re in</p>
+            <p data-guide-hi class="font-heading text-2xl text-white mb-2">Check your inbox!</p>
+            <p class="text-white/70 mb-6">Your Four Pillars guide is on its way.</p>
+            <div class="border-t border-white/10 pt-5">
+              <p class="font-heading text-lg text-white mb-1">Bonus: private invitations by text</p>
+              <p class="text-white/60 text-sm mb-4">Be first to hear about new dates and live events. A few texts a month.</p>
+              <a data-guide-text href="#" class="btn-rose w-full text-base text-center inline-block">Text COUNT ME IN</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -477,6 +493,6 @@
     revealElements.forEach(el => revealObserver.observe(el));
   </script>
 
-  <script src="/js/lead-capture.js?v=40" defer></script>
+  <script src="/js/lead-capture.js?v=42" defer></script>
 </body>
 </html>

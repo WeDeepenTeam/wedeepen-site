@@ -106,10 +106,11 @@
   })();
   // Four Pillars guide: a sign-up prompt (name + email, then a one-tap text
   // bonus) that replaces the automatic popup / phone sheet. Leads go to
-  // MailerLite, which emails the guide. Preview-only until GUIDE_LIVE is true: add ?wd-guide=1
-  // to any page to see it (sticks for the visit).
-  var GUIDE_LIVE = false;
-  var GUIDE_ML_ENDPOINT = ''; // MailerLite form subscribe URL, set at launch
+  // MailerLite, whose "Four Pillars guide" automation emails the guide plus
+  // two $99 follow-ups. Live since 2026-10-03; set GUIDE_LIVE = false to go
+  // back to the texting popup (?wd-guide=1 then previews the guide).
+  var GUIDE_LIVE = true;
+  var GUIDE_ML_ENDPOINT = 'https://assets.mailerlite.com/jsonp/321715/forms/200340741738726767/subscribe'; // "Four Pillars guide - website popup" form
   var GUIDE_COVER = '/images/four-pillars-thumb.jpg';
   var GUIDE_MODE = (function () {
     var key = 'wd_guide';
@@ -472,6 +473,69 @@
   }
 
   /* == Four Pillars guide (two-step) ===================================== */
+  // Subscribe to the MailerLite "Four Pillars guide" group (which starts the
+  // email sequence), log the sign-up, and fire the Lead events.
+  function sendGuide(firstName, email, how, cb) {
+    function done(result) {
+      notifySignup({ firstName: firstName, phone: '', email: email, city: '', state: '', podcast: '' }, result);
+      // Preview submissions (before launch) must not count as ad conversions.
+      if (GUIDE_LIVE) trackLead(how);
+      snooze(LS_POPUP, JOINED_DAYS);
+      cb();
+    }
+    if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
+    var body = new URLSearchParams();
+    body.append('fields[name]', firstName);
+    body.append('fields[email]', email);
+    body.append('ml-submit', '1');
+    body.append('anticsrf', 'true');
+    fetch(GUIDE_ML_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
+      .then(function () { done('Four Pillars guide (MailerLite' + (how === 'guide' ? '' : ', ' + how) + ')'); })
+      .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
+  }
+
+  // The inline form on /four-pillars/ ([data-guide-form]): same sign-up as
+  // the popup, then swaps to its [data-guide-done] block with the text bonus.
+  function wireGuidePageForm() {
+    var form = document.querySelector('form[data-guide-form]');
+    if (!form) return;
+    var doneBox = document.querySelector('[data-guide-done]');
+    var err = form.querySelector('[data-guide-err]');
+    function showErr(msg) { err.textContent = msg; err.style.display = msg ? 'block' : 'none'; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      showErr('');
+      var firstName = form.firstname.value.trim();
+      var email = form.email.value.trim();
+      function finish() {
+        form.style.display = 'none';
+        if (doneBox) {
+          var hi = doneBox.querySelector('[data-guide-hi]');
+          if (hi && firstName) hi.textContent = 'Check your inbox, ' + firstName + '!';
+          doneBox.style.display = 'block';
+        }
+      }
+      if (form.company.value) { finish(); return; } // honeypot
+      if (!firstName) { showErr('Please add your first name.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email address.'); return; }
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      sendGuide(firstName, email, 'guide_page', finish);
+    });
+    var textBtn = doneBox && doneBox.querySelector('[data-guide-text]');
+    if (textBtn) {
+      if (!IS_MOBILE) {
+        textBtn.outerHTML = '<p class="text-white/80">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone.</p>';
+      } else {
+        textBtn.setAttribute('href', SMS_HREF);
+        textBtn.addEventListener('click', function () {
+          if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
+        });
+      }
+    }
+  }
+
   function openGuide() {
     if (document.getElementById('wd-guide')) return;
     var g = document.createElement('div');
@@ -558,24 +622,11 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
       person = { firstName: firstName, email: email };
-      function done(result) {
-        notifySignup({ firstName: firstName, phone: '', email: email, city: '', state: '', podcast: '' }, result);
-        // Preview submissions (before launch) must not count as ad conversions.
-        if (GUIDE_LIVE) trackLead('guide');
-        snooze(LS_POPUP, JOINED_DAYS);
+      sendGuide(firstName, email, 'guide', function () {
         g.querySelector('.wd-g-hi').textContent = 'Check your inbox, ' + firstName + '!';
         g.querySelector('.wd-g-sent').textContent = 'Your Four Pillars guide is on its way to ' + email + '.';
         go(3);
-      }
-      if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
-      var body = new URLSearchParams();
-      body.append('fields[name]', firstName);
-      body.append('fields[email]', email);
-      body.append('ml-submit', '1');
-      body.append('anticsrf', 'true');
-      fetch(GUIDE_ML_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
-        .then(function () { done('Four Pillars guide (MailerLite)'); })
-        .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
+      });
     });
 
     // Bonus: one tap opens Messages with COUNT ME IN typed, to the COUNTMEIN list.
@@ -792,10 +843,13 @@
     style.textContent = css;
     document.head.appendChild(style);
 
+    wireGuidePageForm();
+
     if (MEMBER_LINK) {
       document.querySelectorAll('[data-lead-popup]').forEach(function (el) { el.style.display = 'none'; });
       return;
     }
+
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}

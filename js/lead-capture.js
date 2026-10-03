@@ -158,9 +158,13 @@
     try { return Date.now() < Number(localStorage.getItem(key) || 0); }
     catch (e) { return false; }
   }
+  // Never shortens a longer snooze (e.g. closing the text form after a guide
+  // sign-up must not cut the year-long one down to 7 days).
   function snooze(key, days) {
-    try { localStorage.setItem(key, String(Date.now() + days * 864e5)); }
-    catch (e) { /* private mode */ }
+    try {
+      var until = Date.now() + days * 864e5;
+      if (until > Number(localStorage.getItem(key) || 0)) localStorage.setItem(key, String(until));
+    } catch (e) { /* private mode */ }
   }
 
   /* == Styles ============================================================ */
@@ -525,15 +529,25 @@
     });
     var textBtn = doneBox && doneBox.querySelector('[data-guide-text]');
     if (textBtn) {
-      // Desktop also spells out the keyword and number, for anyone whose
-      // computer can't send texts; the button still works where it can.
+      // Same as the top bar: phones get the one-tap text, desktop gets the
+      // Count Me In form (prefilled with what they just typed).
       if (!IS_MOBILE) {
         textBtn.insertAdjacentHTML('beforebegin', '<p class="text-white/80 mb-4">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone, or:</p>');
+        textBtn.textContent = 'Count Me In';
+        textBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPopup();
+          var first = overlay.querySelector('#wd-first');
+          var mail = overlay.querySelector('#wd-email');
+          if (first && !first.value) first.value = form.firstname.value.trim();
+          if (mail && !mail.value) mail.value = form.email.value.trim();
+        });
+      } else {
+        textBtn.setAttribute('href', SMS_HREF);
+        textBtn.addEventListener('click', function () {
+          if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
+        });
       }
-      textBtn.setAttribute('href', SMS_HREF);
-      textBtn.addEventListener('click', function () {
-        if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
-      });
     }
   }
 

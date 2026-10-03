@@ -46,7 +46,11 @@ for (const p of CORE) {
   out.push(`---\n\n## ${titleOf(html)}\n\nURL: ${SITE}${p}\n\n${pageText(html)}\n`);
 }
 
-const blog = JSON.parse(await fs.readFile(path.join(ROOT, 'blog/data/articles.json'), 'utf8')).articles || [];
+// The frozen BabyLoveGrowth archive plus WeDeepen's own articles (own wins on slug).
+const readArticles = async (f) => JSON.parse(await fs.readFile(path.join(ROOT, f), 'utf8').catch(() => '{}')).articles || [];
+const ownArticles = await readArticles('blog/data/own-articles.json');
+const ownSlugs = new Set(ownArticles.map((a) => a.slug));
+const blog = [...(await readArticles('blog/data/articles.json')).filter((a) => !ownSlugs.has(a.slug)), ...ownArticles];
 out.push('---\n\n# Blog\n');
 for (const a of blog.sort((x, y) => String(y.created_at).localeCompare(String(x.created_at)))) {
   // Posts often open by repeating their own title as a heading.

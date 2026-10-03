@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 EPISODES_FILE = Path(__file__).resolve().parent / "episodes.json"
 ARTICLES_FILE = ROOT / "blog" / "data" / "articles.json"
+OWN_ARTICLES_FILE = ROOT / "blog" / "data" / "own-articles.json"
 OUTPUT_DIR = ROOT / "deepen-with-christina"
 
 def slugify(title: str) -> str:
@@ -167,6 +168,11 @@ def load_articles() -> list:
     if not ARTICLES_FILE.exists():
         return []
     articles = json.loads(ARTICLES_FILE.read_text(encoding="utf-8")).get("articles", [])
+    # WeDeepen's own articles (daily in-house pipeline) win on slug collision.
+    if OWN_ARTICLES_FILE.exists():
+        own = json.loads(OWN_ARTICLES_FILE.read_text(encoding="utf-8")).get("articles", [])
+        own_slugs = {a.get("slug") for a in own}
+        articles = [a for a in articles if a.get("slug") not in own_slugs] + own
     out = []
     for a in articles:
         if not a.get("slug") or not a.get("title"):

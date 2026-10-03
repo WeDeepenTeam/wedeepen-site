@@ -23,6 +23,9 @@
  * podcast/index.html at build time, the same way build-podcast-archive.mjs
  * does it, so shell changes flow through here and can't drift.
  *
+ * In-house articles live in blog/data/own-articles.json (same fields) and are
+ * merged in at render time; see scripts/blog/EDITORIAL.md.
+ *
  * Run: node scripts/build-blog.mjs          (render from committed data)
  *      BLG_API_KEY=... node scripts/build-blog.mjs   (sync, then render)
  * In CI this runs daily from .github/workflows/blog-sync.yml.
@@ -36,6 +39,10 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DONOR = path.join(ROOT, 'podcast/index.html');
 const BLOG_DIR = path.join(ROOT, 'blog');
 const DATA = path.join(BLOG_DIR, 'data/articles.json');
+// Articles WeDeepen writes itself (the daily in-house pipeline). Kept in a
+// separate file so a BabyLoveGrowth sync can never overwrite them. On a slug
+// collision the in-house article wins.
+const OWN_DATA = path.join(BLOG_DIR, 'data/own-articles.json');
 const SITEMAP = path.join(ROOT, 'sitemap.xml');
 const SITE = 'https://wedeepen.com';
 const URL_PATH = '/blog/';
@@ -124,9 +131,37 @@ const pick = (a) => ({
   faqJsonLd: a.faqJsonLd,
 });
 
-async function readData() {
-  try { return JSON.parse(await fs.readFile(DATA, 'utf8')).articles || []; }
+async function readData(file = DATA) {
+  try { return JSON.parse(await fs.readFile(file, 'utf8')).articles || []; }
   catch (e) { if (e.code === 'ENOENT') return []; throw e; }
+}
+
+// Everything the site renders: the BabyLoveGrowth archive plus our own.
+async function readAll() {
+  const own = (await readData(OWN_DATA)).map((a) => ({ ...a, source: 'wedeepen' }));
+  const ownSlugs = new Set(own.map((a) => safeSlug(a.slug || a.title)));
+  const blg = (await readData(DATA)).filter((a) => !ownSlugs.has(safeSlug(a.slug || a.title)));
+  return [...blg, ...own];
+}
+
+const stripTags = (s) => String(s || '').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ')
+  .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/\s+/g, ' ').trim();
+
+// FAQPage markup built from the FAQ the reader actually sees (an <h2>FAQ</h2>
+// followed by <h3> questions and their answer paragraphs), so the schema can't
+// drift from the page. Returns null when there is no visible FAQ.
+function faqFromHtml(html) {
+  const m = String(html || '').match(/<h2[^>]*>\s*(?:FAQ|FAQs|Frequently asked questions)\s*<\/h2>([\s\S]*?)(?=<h2\b|$)/i);
+  if (!m) return null;
+  const items = [];
+  const re = /<h3[^>]*>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3\b|$)/gi;
+  let q;
+  while ((q = re.exec(m[1]))) {
+    const name = stripTags(q[1]);
+    const text = stripTags(q[2]);
+    if (name && text) items.push({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } });
+  }
+  return items.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items } : null;
 }
 
 // --- 2. Render --------------------------------------------------------------
@@ -281,7 +316,7 @@ function articlePage(shell, a, slugs) {
       { '@type': 'ListItem', position: 2, name: a.title, item: url },
     ],
   };
-  const faqLd = a.faqJsonLd && typeof a.faqJsonLd === 'object' ? a.faqJsonLd : null;
+  const faqLd = a.faqJsonLd && typeof a.faqJsonLd === 'object' ? a.faqJsonLd : faqFromHtml(a.content_html);
 
   const body = `  <!-- ============================
        ARTICLE
@@ -412,7 +447,7 @@ async function warnOnLegacyCollisions(articles) {
 
 async function render() {
   const shell = borrowShell(await fs.readFile(DONOR, 'utf8'));
-  const articles = (await readData())
+  const articles = (await readAll())
     .map((a) => ({ ...a, slug: safeSlug(a.slug || a.title) }))
     .filter((a) => a.slug && a.title && a.content_html && a.slug !== 'data')
     .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));

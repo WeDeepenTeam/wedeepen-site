@@ -240,6 +240,17 @@
     + '#wd-guide .wd-g-hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}'
     + '#wd-guide .wd-g-sms{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);}'
     + '#wd-guide .wd-g-sms a.wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;}'
+    + '#wd-guide input[type=text],#wd-guide input[type=tel]{width:100%;box-sizing:border-box;background:#2D2D2D;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#F4EDE0;font-size:16px;padding:14px 20px;margin:0 0 12px;font-family:inherit;}'
+    + '#wd-guide input[type=text]:focus,#wd-guide input[type=tel]:focus{outline:none;border-color:#C9A277;}'
+    + '#wd-guide .wd-g-bonus{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);text-align:left;}'
+    + '#wd-guide .wd-g-bonus h3{font-family:"Playfair Display",Georgia,serif;font-size:18px;font-weight:600;color:#F4EDE0;margin:0 0 4px;text-align:center;}'
+    + '#wd-guide .wd-g-bonus>p{text-align:center;}'
+    + '#wd-guide .wd-g-consent{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px;}'
+    + '#wd-guide .wd-g-consent input{flex:0 0 18px;width:18px;height:18px;margin:2px 0 0;accent-color:#C9A277;}'
+    + '#wd-guide .wd-g-consent label{font-size:11.5px;line-height:1.5;color:rgba(244,237,224,.6);}'
+    + '#wd-guide .wd-g-consent a{color:#C9A277;}'
+    + '#wd-guide .wd-g-bonus .wd-g-btn{background:transparent;border:1px solid #C9A277;color:#C9A277;}'
+    + '#wd-guide .wd-g-bonus .wd-g-no{display:block;margin:10px auto 0;}'
     + '#wd-guide [data-step]{display:none;}'
     + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
@@ -454,9 +465,6 @@
     g.setAttribute('role', 'dialog');
     g.setAttribute('aria-labelledby', 'wd-g-title');
     g.setAttribute('data-at', '1');
-    var smsCta = IS_MOBILE
-      ? '<a class="wd-g-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>'
-      : '<p style="margin:0">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong></p>';
     g.innerHTML =
       '<button type="button" class="wd-close" aria-label="Close">&times;</button>' +
       // Step 1: one-tap yes
@@ -467,28 +475,38 @@
         '<button type="button" class="wd-g-btn" data-go="2">Send me the free guide</button>' +
         '<button type="button" class="wd-g-no">No thanks, I&#39;ll pass</button>' +
       '</div>' +
-      // Step 2: email
+      // Step 2: name + email
       '<div data-step="2">' +
         '<div class="wd-g-hero">' +
           '<img src="' + GUIDE_COVER + '" width="240" height="300" alt="The Four Pillars of a Conscious Relationship guide cover">' +
           '<div><h2>Get the Four Pillars, free</h2>' +
           '<p>Prioritize growth. Own your own sh*t. All feelings are welcome. Practice love.</p></div>' +
         '</div>' +
-        '<form novalidate>' +
+        '<form class="wd-g-main" novalidate>' +
           '<div class="wd-g-hp" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
-          '<input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" aria-label="Your email address" required>' +
+          '<input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required>' +
+          '<input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>' +
           '<p class="wd-g-err" role="alert"></p>' +
           '<button type="submit" class="wd-g-btn">Yes! Send my guide</button>' +
         '</form>' +
         '<p class="wd-g-fine">We&#39;ll email it right away. Unsubscribe anytime.</p>' +
       '</div>' +
-      // Step 3: done + optional texting list
+      // Step 3: guide right away + optional phone bonus
       '<div data-step="3">' +
         '<p class="wd-g-eyebrow">You&#39;re in</p>' +
-        '<h2>Check your inbox!</h2>' +
+        '<h2 class="wd-g-hi">Check your inbox!</h2>' +
         '<p class="wd-g-sent">Your Four Pillars guide is on its way.</p>' +
-        '<div class="wd-g-sms">' +
-          '<p>Want private invitations and new dates by text too?</p>' + smsCta +
+        '<div class="wd-g-bonus">' +
+          '<h3>Bonus: private invitations by text</h3>' +
+          '<p>Be first to hear about new dates and live events. A few texts a month.</p>' +
+          '<form class="wd-g-phone" novalidate>' +
+            '<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone">' +
+            '<div class="wd-g-consent"><input id="wd-g-consent" name="consent" type="checkbox">' +
+              '<label for="wd-g-consent">I agree to receive promotional texts from WeDeepen, up to 8 msgs/month. Not a condition of purchase. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms</a> &middot; <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy</a></label></div>' +
+            '<p class="wd-g-err" role="alert"></p>' +
+            '<button type="submit" class="wd-g-btn">Add me to the text list</button>' +
+          '</form>' +
+          '<button type="button" class="wd-g-no wd-g-skip">No thanks</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(g);
@@ -503,47 +521,50 @@
     }
     function go(step) {
       g.setAttribute('data-at', String(step));
-      if (step === 2) setTimeout(function () { try { g.querySelector('input[type=email]').focus(); } catch (e) {} }, 350);
+      if (step === 2) setTimeout(function () { try { g.querySelector('input[name=firstname]').focus(); } catch (e) {} }, 350);
+    }
+    function showErr(scope, msg) {
+      var err = scope.querySelector('.wd-g-err');
+      err.textContent = msg;
+      err.style.display = msg ? 'block' : 'none';
     }
     var dismissDays = IS_MOBILE ? SHEET_DISMISS_DAYS : DISMISS_DAYS;
     g.querySelector('.wd-close').addEventListener('click', function () {
       close(g.getAttribute('data-at') === '3' ? 0 : dismissDays);
     });
-    g.querySelector('.wd-g-no').addEventListener('click', function () { close(dismissDays); });
+    g.querySelector('[data-step="1"] .wd-g-no').addEventListener('click', function () { close(dismissDays); });
     g.querySelector('[data-go="2"]').addEventListener('click', function () {
       if (typeof window.gtag === 'function') window.gtag('event', 'guide_yes_click', { device: IS_MOBILE ? 'phone' : 'desktop' });
       go(2);
     });
-    var smsLink = g.querySelector('.wd-g-sms a');
-    if (smsLink) smsLink.addEventListener('click', function () {
-      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_thanks' });
-    });
+    g.querySelector('.wd-g-skip').addEventListener('click', function () { close(0); });
 
-    var form = g.querySelector('form');
+    var person = { firstName: '', email: '' };
+    var form = g.querySelector('form.wd-g-main');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var err = g.querySelector('.wd-g-err');
-      err.style.display = 'none';
+      showErr(form, '');
+      var firstName = form.firstname.value.trim();
       var email = form.email.value.trim();
       if (form.company.value) { go(3); snooze(LS_POPUP, JOINED_DAYS); return; } // honeypot
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        err.textContent = 'Please enter a valid email address.';
-        err.style.display = 'block';
-        return;
-      }
+      if (!firstName) { showErr(form, 'Please add your first name.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr(form, 'Please enter a valid email address.'); return; }
       var btn = form.querySelector('button');
       btn.disabled = true;
       btn.textContent = 'Sending…';
+      person = { firstName: firstName, email: email };
       function done(result) {
-        notifySignup({ firstName: '', phone: '', email: email, city: '', state: '', podcast: '' }, result);
+        notifySignup({ firstName: firstName, phone: '', email: email, city: '', state: '', podcast: '' }, result);
         // Preview submissions (before launch) must not count as ad conversions.
         if (GUIDE_LIVE) trackLead('guide');
         snooze(LS_POPUP, JOINED_DAYS);
+        g.querySelector('.wd-g-hi').textContent = 'Check your inbox, ' + firstName + '!';
         g.querySelector('.wd-g-sent').textContent = 'Your Four Pillars guide is on its way to ' + email + '.';
         go(3);
       }
       if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
       var body = new URLSearchParams();
+      body.append('fields[name]', firstName);
       body.append('fields[email]', email);
       body.append('ml-submit', '1');
       body.append('anticsrf', 'true');
@@ -551,6 +572,40 @@
         .then(function () { done('Four Pillars guide (MailerLite)'); })
         .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
     });
+
+    // Bonus: add their cell to the SimpleTexting COUNTMEIN list.
+    var phoneForm = g.querySelector('form.wd-g-phone');
+    phoneForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      showErr(phoneForm, '');
+      var phone = phoneForm.phone.value.replace(/\D/g, '');
+      if (phone.length === 11 && phone.charAt(0) === '1') phone = phone.slice(1);
+      if (phone.length !== 10) { showErr(phoneForm, 'Please add a 10-digit cell phone number.'); return; }
+      if (!phoneForm.consent.checked) { showErr(phoneForm, 'Please check the box so we can text you.'); return; }
+      var btn = phoneForm.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Adding…';
+      function finish(msg, result) {
+        notifySignup({ firstName: person.firstName, phone: phone, email: person.email, city: '', state: '', podcast: '' }, result);
+        var bonus = g.querySelector('.wd-g-bonus');
+        bonus.innerHTML = '<h3>You&#39;re on the text list</h3><p>' + msg + '</p>';
+      }
+      if (!GUIDE_LIVE) { finish('Watch for a confirmation text from WeDeepen.', 'Text list via guide (preview, not sent)'); return; }
+      var fieldValues = { phone: phone, firstname: person.firstName };
+      if (person.email) fieldValues.email = person.email;
+      fetch(ST_ENDPOINT + '?r=' + Date.now(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ webFormId: ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
+      }).then(function (res) {
+        if (res.ok) return finish('Watch for a confirmation text from WeDeepen.', 'Added to COUNTMEIN list (guide bonus)');
+        if (res.status === 418) return finish('That number is already on the list. We&#39;ll keep the texts coming.', 'Already on the list (guide bonus)');
+        finish('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' + SMS_NUMBER_DISPLAY + '.', 'Asked to text in (guide bonus)');
+      }).catch(function () {
+        finish('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' + SMS_NUMBER_DISPLAY + '.', 'Asked to text in (guide bonus)');
+      });
+    });
+    phoneForm.phone.addEventListener('input', function () { this.value = formatPhone(this.value); });
   }
 
   function watchScrollForGuide() {

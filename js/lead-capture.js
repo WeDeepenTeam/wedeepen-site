@@ -187,6 +187,7 @@
     + '#wd-lead-bar a.wd-bar-link-lg{display:inline-block;font-size:14px;margin-top:4px;}'
     + '#wd-lead-bar.wd-gold a.wd-bar-link{color:#1A1A1A;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
+    + '#wd-lead-bar a.wd-bar-sms{margin-top:7px;padding:6px 18px;font-size:13px;}'
     + '#wd-lead-bar.wd-gold{background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;border-bottom:0;box-shadow:0 1px 8px rgba(0,0,0,.2);}'
     + '#wd-lead-bar.wd-gold .wd-bar-msg{color:#1A1A1A;font-weight:600;}'
     + '#wd-lead-bar.wd-gold .wd-bar-gold{color:#1A1A1A;font-weight:700;}'
@@ -299,9 +300,10 @@
           '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         :
+        // One tap opens Messages with COUNT ME IN typed (same list as desktop).
         '<span class="wd-bar-stack">' +
           '<span class="wd-bar-line1">' + HOOK.bar + '</span>' +
-          '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
+          '<a class="wd-bar-join wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
@@ -341,6 +343,10 @@
 
     var join = bar.querySelector('button.wd-bar-join');
     if (join) join.addEventListener('click', function () { openPopup(); });
+    var sms = bar.querySelector('a.wd-bar-sms');
+    if (sms) sms.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'bar' });
+    });
     bar.querySelector('.wd-bar-x').addEventListener('click', function () {
       removeBar();
       snooze(LS_BAR, BAR_DISMISS_DAYS);

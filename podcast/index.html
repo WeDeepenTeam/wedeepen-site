@@ -286,7 +286,7 @@
         <!-- Podcast artwork -->
         <div class="order-2 md:order-1">
           <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto" style="box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-            <img src="/images/podcast-artwork.png" width="2000" height="2000" alt="Mastering Love with Christina Weber podcast artwork" class="w-full h-full object-cover">
+            <img src="/images/podcast-artwork-640.jpg" width="640" height="640" alt="Mastering Love with Christina Weber podcast artwork" class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -631,12 +631,12 @@
       const toShow = filtered.slice(0, visibleCount);
 
       list.innerHTML = toShow.map(e => {
-        const img = e.image || '/images/podcast-artwork.png';
+        const img = e.image || '/images/podcast-artwork-640.jpg';
         const dur = formatDuration(e.duration);
         return `
           <a href="${encodeURI(`/deepen-with-christina/${slugify(e.title)}/`)}" class="flex gap-4 md:gap-5 p-4 md:p-5 rounded-xl transition hover:bg-white/5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
             <div class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden bg-charcoal">
-              <img src="${img}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork.png'">
+              <img src="${img}" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.src='/images/podcast-artwork-640.jpg'">
             </div>
             <div class="flex-1 min-w-0">
               ${dur ? `<div class="flex items-center gap-3 mb-1.5 text-white/50 text-xs"><span>${dur}</span></div>` : ''}
@@ -679,5 +679,6 @@
   </style>
 
   <script src="/js/lead-capture.js?v=45" defer></script>
+  <script src="/js/mobile-site.js?v=1" defer></script>
 </body>
 </html>

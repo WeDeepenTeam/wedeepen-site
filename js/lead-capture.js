@@ -118,9 +118,6 @@
       return GUIDE_LIVE || sessionStorage.getItem(key) === '1';
     } catch (e) { return GUIDE_LIVE || /[?&]wd-guide=1(&|$)/.test(location.search); }
   })();
-  // The top bar offers the guide too, until they've signed up for it or
-  // closed it (then it goes back to the text-list offer).
-  var GUIDE_BAR = false; // set in init(), once snoozed() is defined
   var MEMBER_LINK = (function () {
     try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
   })();
@@ -299,9 +296,7 @@
         :
         '<span class="wd-bar-stack">' +
           '<span class="wd-bar-line1">' + HOOK.bar + '</span>' +
-          (GUIDE_BAR
-            ? '<span class="wd-bar-line2"><a class="wd-bar-link wd-bar-guide" href="#">Get the free Four Pillars guide</a></span>'
-            : '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>') +
+          '<span class="wd-bar-line2">Text <strong>' + SMS_KEYWORD + '</strong> to <a class="wd-bar-num" href="' + SMS_HREF + '">' + SMS_NUMBER_DISPLAY + '</a></span>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
@@ -311,9 +306,7 @@
           (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
         : '<span class="wd-bar-msg">' + HOOK.bar + '</span>' +
-          (GUIDE_BAR
-            ? '<button type="button" class="wd-bar-join wd-bar-guide">Get the Free Guide</button>'
-            : HOOK.href
+          (HOOK.href
             ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
             : '<button type="button" class="wd-bar-join">Count Me In</button>') +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
@@ -341,10 +334,8 @@
       document.fonts.ready.then(offset).catch(function () {});
     }
 
-    var guideLink = bar.querySelector('.wd-bar-guide');
     var join = bar.querySelector('button.wd-bar-join');
-    if (guideLink) guideLink.addEventListener('click', function (e) { e.preventDefault(); openGuide(); });
-    else if (join) join.addEventListener('click', function () { openPopup(); });
+    if (join) join.addEventListener('click', function () { openPopup(); });
     bar.querySelector('.wd-bar-x').addEventListener('click', function () {
       removeBar();
       snooze(LS_BAR, BAR_DISMISS_DAYS);
@@ -858,7 +849,6 @@
       return;
     }
 
-    GUIDE_BAR = GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP);
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}

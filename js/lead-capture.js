@@ -174,12 +174,12 @@
     + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
     + '#wd-lead-bar .wd-bar-number{font-size:14px;padding:8px 20px;font-variant-numeric:tabular-nums;}'
     + '#wd-lead-bar .wd-bar-stack{display:block;}'
-    + '#wd-lead-bar .wd-bar-line1{display:block;font-size:18px;font-weight:600;letter-spacing:.01em;line-height:1.35;}'
+    + '#wd-lead-bar .wd-bar-line1{display:block;font-size:14px;font-weight:500;letter-spacing:.01em;line-height:1.4;}'
     + '#wd-lead-bar .wd-bar-line1 strong{color:#C9A277;font-weight:700;}'
     + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
     + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
     + '#wd-lead-bar a.wd-bar-link{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}'
-    + '#wd-lead-bar a.wd-bar-link-lg{display:inline-block;font-size:15px;margin-top:5px;}'
+    + '#wd-lead-bar a.wd-bar-link-lg{display:inline-block;font-size:14px;margin-top:4px;}'
     + '#wd-lead-bar.wd-gold a.wd-bar-link{color:#1A1A1A;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
     + '#wd-lead-bar.wd-gold{background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;border-bottom:0;box-shadow:0 1px 8px rgba(0,0,0,.2);}'
@@ -262,6 +262,9 @@
     + '#wd-guide .wd-g-bonus .wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;text-align:center;}'
     + '#wd-guide .wd-g-desk{text-align:center;color:#F4EDE0;font-size:15px;}'
     + '#wd-guide .wd-g-bonus .wd-g-no{display:block;margin:10px auto 0;}'
+    + '#wd-guide.wd-g-passed [data-step="3"]>.wd-g-eyebrow,#wd-guide.wd-g-passed .wd-g-hi,#wd-guide.wd-g-passed .wd-g-sent{display:none;}'
+    + '#wd-guide.wd-g-passed .wd-g-bonus{margin-top:0;padding-top:4px;border-top:0;}'
+    + '#wd-guide.wd-g-passed .wd-g-bonus h3{font-size:22px;margin-bottom:8px;padding:0 28px;}'
     + '#wd-guide [data-step]{display:none;}'
     + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
@@ -531,7 +534,14 @@
     g.querySelector('.wd-close').addEventListener('click', function () {
       close(g.getAttribute('data-at') === '3' ? 0 : dismissDays);
     });
-    g.querySelector('.wd-g-pass').addEventListener('click', function () { close(dismissDays); });
+    // Passing on the guide still offers the text list: same step 3, minus
+    // the "check your inbox" part.
+    g.querySelector('.wd-g-pass').addEventListener('click', function () {
+      snooze(LS_POPUP, dismissDays);
+      g.classList.add('wd-g-passed');
+      g.querySelector('.wd-g-bonus h3').textContent = 'Prefer invitations by text?';
+      go(3);
+    });
     g.querySelector('.wd-g-skip').addEventListener('click', function () { close(0); });
 
     var person = { firstName: '', email: '' };

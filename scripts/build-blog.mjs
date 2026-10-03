@@ -231,7 +231,7 @@ const tail = `  <script>
     mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
-  <script src="/js/lead-capture.js?v=36" defer></script>
+  <script src="/js/lead-capture.js?v=37" defer></script>
 </body>
 </html>
 `;

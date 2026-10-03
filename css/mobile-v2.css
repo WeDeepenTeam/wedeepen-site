@@ -1,0 +1,100 @@
+/* Mobile layout experiment (html.m2, phones + portrait tablets only).
+   Linked with media="(max-width:1023px)" and scoped to html.m2, so desktop
+   and the default phone layout never see any of this. DOM moves and the
+   inserted blocks live in /js/mobile-v2.js. */
+
+/* Swipe rows: long grids become one sideways row of cards. */
+html.m2 .m2-swipe {
+  display: flex !important;
+  gap: 12px !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-left: -24px;
+  margin-right: -24px;
+  padding: 0 24px 6px;
+  scroll-padding: 0 24px;
+}
+html.m2 .m2-swipe::-webkit-scrollbar { display: none; }
+html.m2 .m2-swipe > * { flex: 0 0 84%; scroll-snap-align: start; }
+html.m2 .m2-swipe-narrow > * { flex-basis: 64%; }
+html.m2 .m2-swipe-gallery > * { flex-basis: 72%; }
+html.m2 .m2-hint {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 12px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+html.m2 .bg-cream .m2-hint { color: rgba(26,26,26,.45); }
+html.m2 .m2-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+html.m2 .m2-dots span { width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: .25; transition: opacity .2s, width .2s; }
+html.m2 .m2-dots span.on { opacity: .9; width: 16px; }
+
+/* Testimonials, moved up under the hero: tighter, swipeable. */
+html.m2 [data-m2="testimonials"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+html.m2 [data-m2="testimonials"] .text-center.mb-14 { margin-bottom: 24px !important; }
+html.m2 [data-m2="testimonials"] .m2-swipe > * { display: flex; flex-direction: column; }
+html.m2 [data-m2="testimonials"] .m2-swipe > * p.text-sm { font-size: 15px; flex: 1; }
+
+/* Shorter sections: drop decorative photos and trim padding. */
+html.m2 [data-m2="skill"] .aspect-\[3\/2\],
+html.m2 [data-m2="build"] .aspect-\[4\/5\],
+html.m2 [data-m2="photoband"],
+html.m2 [data-m2="gallery"] .grid > :nth-child(n+7) { display: none !important; }
+html.m2 [data-m2="glance"] { padding-bottom: 40px !important; }
+html.m2 [data-m2="skill"], html.m2 [data-m2="build"] { padding-top: 64px !important; padding-bottom: 56px !important; }
+html.m2 [data-m2="build"] li { padding-top: 14px !important; padding-bottom: 14px !important; }
+html.m2 [data-m2="build"] li span.text-lg { font-size: 16px; }
+html.m2 [data-m2="faculty"] .text-center.mb-14,
+html.m2 [data-m2="gallery"] .text-center.mb-12 { margin-bottom: 28px !important; }
+html.m2 [data-m2="faculty"] .text-center.mb-14 p { font-size: 16px; }
+
+/* "Your first Tuesday" timeline. */
+html.m2 .m2-steps { background: #201519; border-top: 1px solid rgba(201,162,119,.25); border-bottom: 1px solid rgba(201,162,119,.25); padding: 44px 24px 40px; color: #fff; }
+html.m2 .m2-steps h2 { font-family: "Playfair Display", Georgia, serif; font-size: 28px; line-height: 1.2; text-align: center; margin: 0 0 6px; font-weight: 400; }
+html.m2 .m2-steps h2 em { color: #C9A277; }
+html.m2 .m2-steps > p { text-align: center; color: rgba(255,255,255,.6); font-size: 15px; margin: 0 0 26px; }
+html.m2 .m2-steps ol { list-style: none; margin: 0 auto; padding: 0; max-width: 420px; }
+html.m2 .m2-steps li { position: relative; padding: 0 0 22px 52px; }
+html.m2 .m2-steps li:last-child { padding-bottom: 0; }
+html.m2 .m2-steps li::before { content: ""; position: absolute; left: 17px; top: 36px; bottom: 2px; width: 1px; background: rgba(201,162,119,.35); }
+html.m2 .m2-steps li:last-child::before { display: none; }
+html.m2 .m2-steps .n { position: absolute; left: 0; top: 0; width: 35px; height: 35px; border-radius: 999px; border: 1px solid #C9A277; color: #C9A277; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
+html.m2 .m2-steps h3 { font-size: 17px; font-weight: 600; margin: 5px 0 3px; color: #fff; }
+html.m2 .m2-steps li p { margin: 0; color: rgba(255,255,255,.65); font-size: 15px; line-height: 1.5; }
+
+/* Inline join prompts between sections. */
+html.m2 .m2-cta { text-align: center; padding: 34px 0 6px; }
+html.m2 .m2-cta .lead { font-family: "Playfair Display", Georgia, serif; font-size: 22px; line-height: 1.3; margin: 0 0 16px; }
+html.m2 .m2-cta .btn-rose { display: flex; justify-content: center; width: 100%; max-width: 420px; margin: 0 auto; }
+html.m2 .m2-cta .sub { font-size: 13px; margin: 12px 0 0; opacity: .6; }
+html.m2 .bg-cream .m2-cta .lead { color: #1A1A1A; }
+
+/* Objection answers right above the final join button. */
+html.m2 .m2-objections { margin: 30px auto 4px; max-width: 460px; text-align: left; border-top: 1px solid rgba(255,255,255,.12); }
+html.m2 .m2-objections div { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+html.m2 .m2-objections h3 { font-family: "Playfair Display", Georgia, serif; font-size: 18px; color: #fff; margin: 0 0 5px; font-weight: 400; }
+html.m2 .m2-objections p { margin: 0; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.65); }
+
+/* Sticky join bar: two lines (next session + price), out of the way of popups. */
+html.m2 #mobile-join-bar { flex-direction: column; gap: 1px; padding: 10px 20px 12px; line-height: 1.25; }
+html.m2 #mobile-join-bar .m2-bar-next { font-size: 12px; font-weight: 500; letter-spacing: .04em; opacity: .85; }
+html.m2 #mobile-join-bar .m2-bar-main { font-size: 16px; font-weight: 700; }
+html.m2 #mobile-join-bar.m2-hidden { transform: translateY(100%) !important; }
+
+/* Four Pillars: no illustration, pillars as a compact 2x2. */
+html.m2 #four-pillars .lg\:col-span-4 { display: none !important; }
+html.m2 #four-pillars { padding-top: 56px !important; padding-bottom: 48px !important; }
+html.m2 #four-pillars .grid.sm\:grid-cols-2 { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+html.m2 #four-pillars .grid.sm\:grid-cols-2 > div { padding: 16px !important; }
+html.m2 #four-pillars .grid.sm\:grid-cols-2 > div > div:first-child { font-size: 28px !important; margin-bottom: 8px !important; }
+html.m2 #four-pillars .grid.sm\:grid-cols-2 h3 { font-size: 12px !important; margin-bottom: 6px !important; }
+html.m2 #four-pillars .grid.sm\:grid-cols-2 p { font-size: 13px !important; }
+html.m2 #four-pillars p.mb-10 { margin-bottom: 20px !important; }
+
+/* Calendar: events as a swipe row. */
+html.m2 #calendar { padding-top: 56px !important; padding-bottom: 48px !important; }
+html.m2 #calendar .m2-hint, html.m2 #calendar .m2-dots { color: rgba(26,26,26,.45); }
+
+/* Hero: a real photo instead of the YouTube background (lighter on phones). */
+html.m2 .hero-video-wrap { background: #1A1A1A url(/images/li-community-1.webp) center / cover no-repeat; }

@@ -249,7 +249,8 @@
     + '#wd-guide .wd-g-consent input{flex:0 0 18px;width:18px;height:18px;margin:2px 0 0;accent-color:#C9A277;}'
     + '#wd-guide .wd-g-consent label{font-size:11.5px;line-height:1.5;color:rgba(244,237,224,.6);}'
     + '#wd-guide .wd-g-consent a{color:#C9A277;}'
-    + '#wd-guide .wd-g-bonus .wd-g-btn{background:transparent;border:1px solid #C9A277;color:#C9A277;}'
+    + '#wd-guide .wd-g-bonus .wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;text-align:center;}'
+    + '#wd-guide .wd-g-desk{text-align:center;color:#F4EDE0;font-size:15px;}'
     + '#wd-guide .wd-g-bonus .wd-g-no{display:block;margin:10px auto 0;}'
     + '#wd-guide [data-step]{display:none;}'
     + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
@@ -499,13 +500,9 @@
         '<div class="wd-g-bonus">' +
           '<h3>Bonus: private invitations by text</h3>' +
           '<p>Be first to hear about new dates and live events. A few texts a month.</p>' +
-          '<form class="wd-g-phone" novalidate>' +
-            '<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell phone" aria-label="Cell phone">' +
-            '<div class="wd-g-consent"><input id="wd-g-consent" name="consent" type="checkbox">' +
-              '<label for="wd-g-consent">I agree to receive promotional texts from WeDeepen, up to 8 msgs/month. Not a condition of purchase. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms</a> &middot; <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy</a></label></div>' +
-            '<p class="wd-g-err" role="alert"></p>' +
-            '<button type="submit" class="wd-g-btn">Add me to the text list</button>' +
-          '</form>' +
+          (IS_MOBILE
+            ? '<a class="wd-g-btn wd-g-text" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>'
+            : '<p class="wd-g-desk">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone.</p>') +
           '<button type="button" class="wd-g-no wd-g-skip">No thanks</button>' +
         '</div>' +
       '</div>';
@@ -573,39 +570,14 @@
         .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
     });
 
-    // Bonus: add their cell to the SimpleTexting COUNTMEIN list.
-    var phoneForm = g.querySelector('form.wd-g-phone');
-    phoneForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      showErr(phoneForm, '');
-      var phone = phoneForm.phone.value.replace(/\D/g, '');
-      if (phone.length === 11 && phone.charAt(0) === '1') phone = phone.slice(1);
-      if (phone.length !== 10) { showErr(phoneForm, 'Please add a 10-digit cell phone number.'); return; }
-      if (!phoneForm.consent.checked) { showErr(phoneForm, 'Please check the box so we can text you.'); return; }
-      var btn = phoneForm.querySelector('button');
-      btn.disabled = true;
-      btn.textContent = 'Adding…';
-      function finish(msg, result) {
-        notifySignup({ firstName: person.firstName, phone: phone, email: person.email, city: '', state: '', podcast: '' }, result);
-        var bonus = g.querySelector('.wd-g-bonus');
-        bonus.innerHTML = '<h3>You&#39;re on the text list</h3><p>' + msg + '</p>';
-      }
-      if (!GUIDE_LIVE) { finish('Watch for a confirmation text from WeDeepen.', 'Text list via guide (preview, not sent)'); return; }
-      var fieldValues = { phone: phone, firstname: person.firstName };
-      if (person.email) fieldValues.email = person.email;
-      fetch(ST_ENDPOINT + '?r=' + Date.now(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ webFormId: ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
-      }).then(function (res) {
-        if (res.ok) return finish('Watch for a confirmation text from WeDeepen.', 'Added to COUNTMEIN list (guide bonus)');
-        if (res.status === 418) return finish('That number is already on the list. We&#39;ll keep the texts coming.', 'Already on the list (guide bonus)');
-        finish('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' + SMS_NUMBER_DISPLAY + '.', 'Asked to text in (guide bonus)');
-      }).catch(function () {
-        finish('One more step: text <strong>' + SMS_KEYWORD + '</strong> to ' + SMS_NUMBER_DISPLAY + '.', 'Asked to text in (guide bonus)');
-      });
+    // Bonus: one tap opens Messages with COUNT ME IN typed, to the COUNTMEIN list.
+    var textBtn = g.querySelector('.wd-g-text');
+    if (textBtn) textBtn.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_bonus' });
+      setTimeout(function () {
+        g.querySelector('.wd-g-bonus').innerHTML = '<h3>Almost there</h3><p>Just hit send in Messages and you&#39;re on the text list.</p>';
+      }, 400);
     });
-    phoneForm.phone.addEventListener('input', function () { this.value = formatPhone(this.value); });
   }
 
   function watchScrollForGuide() {

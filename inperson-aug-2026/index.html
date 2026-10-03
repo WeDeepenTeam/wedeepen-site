@@ -20,6 +20,8 @@
        /js/checkout-tracking.js. Empty ID means the pixel never loads, so this is safe to ship. -->
   <script>
     var FB_PIXEL_ID = '1541773576982273'; // "WeDeepen Website" dataset, WeDeepen Relationships portfolio
+    // Production only: local/dev/preview hosts (localhost, file://, staging) must not send events to the live dataset.
+    if (!/(^|\.)wedeepen\.com$/.test(location.hostname)) FB_PIXEL_ID = '';
     if (FB_PIXEL_ID) {
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

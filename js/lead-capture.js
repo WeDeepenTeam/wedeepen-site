@@ -178,8 +178,8 @@
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
     + '#wd-lead-bar .wd-bar-number{font-size:14px;padding:8px 20px;font-variant-numeric:tabular-nums;}'
-    + '#wd-lead-bar .wd-bar-stack{display:block;}'
-    + '#wd-lead-bar .wd-bar-line1{display:block;font-size:14px;font-weight:500;letter-spacing:.01em;line-height:1.4;}'
+    + '#wd-lead-bar .wd-bar-stack{display:block;min-width:0;max-width:100%;}'
+    + '#wd-lead-bar .wd-bar-line1{display:block;overflow:hidden;font-size:14px;font-weight:500;letter-spacing:.01em;line-height:1.4;}'
     + '#wd-lead-bar .wd-bar-line1 strong{color:#C9A277;font-weight:700;}'
     + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
     + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
@@ -343,6 +343,23 @@
 
     var join = bar.querySelector('button.wd-bar-join');
     if (join) join.addEventListener('click', function () { openPopup(); });
+    // Phone headline stays on one line: shrink the type until it fits
+    // (14px down to 11px); only the longest hooks on the narrowest phones wrap.
+    var line1 = bar.querySelector('.wd-bar-line1');
+    function fitLine() {
+      if (!line1) return;
+      line1.style.whiteSpace = 'nowrap';
+      var size = 14;
+      line1.style.fontSize = size + 'px';
+      while (line1.scrollWidth > line1.clientWidth && size > 11) {
+        size -= 0.5;
+        line1.style.fontSize = size + 'px';
+      }
+      if (line1.scrollWidth > line1.clientWidth) line1.style.whiteSpace = 'normal';
+    }
+    fitLine();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLine).catch(function () {});
+    window.addEventListener('resize', fitLine);
     var sms = bar.querySelector('a.wd-bar-sms');
     if (sms) sms.addEventListener('click', function () {
       if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'bar' });

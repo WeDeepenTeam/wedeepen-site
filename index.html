@@ -20,6 +20,8 @@
        for pages about a specific thing, and Lead is wired to the invites popup below. -->
   <script>
     var FB_PIXEL_ID = '1541773576982273';
+    // Production only: local/dev/preview hosts (localhost, file://, staging) must not send events to the live dataset.
+    if (!/(^|\.)wedeepen\.com$/.test(location.hostname)) FB_PIXEL_ID = '';
     if (FB_PIXEL_ID) {
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

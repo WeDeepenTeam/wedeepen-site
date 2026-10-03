@@ -21,8 +21,10 @@
   'use strict';
 
   var FB_PIXEL_ID = '1541773576982273'; // "WeDeepen Website" dataset
+  // Production only: never load the pixel on localhost/dev/preview hosts.
+  var IS_PROD = /(^|\.)wedeepen\.com$/.test(location.hostname);
 
-  if (!window.fbq) {
+  if (IS_PROD && !window.fbq) {
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};

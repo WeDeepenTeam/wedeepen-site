@@ -1,0 +1,111 @@
+# Build the standalone sections (/answers/, /facts/) whenever their data changes.
+#
+# Standalone sections work like /blog/: generated from data files, not in the
+# nav, never linked from main-site pages, and found by crawlers through
+# sitemap.xml, llms.txt, llms-full.txt and IndexNow. See
+# scripts/standalone/sections.json and scripts/build-standalone.mjs.
+#
+# On pull requests this only runs the checks (isolation + page quality).
+# On main it renders the pages, refreshes the sitemap and llms-full.txt,
+# commits, pings IndexNow and requests a Pages build.
+name: Standalone build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'answers/data/**'
+      - 'facts/data/**'
+      - 'llms.txt'
+      - 'scripts/build-standalone.mjs'
+      - 'scripts/standalone/**'
+  pull_request:
+    paths:
+      - 'answers/**'
+      - 'facts/**'
+      - 'llms.txt'
+      - 'scripts/build-standalone.mjs'
+      - 'scripts/standalone/**'
+      - '**.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: standalone-build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Main site must not link into standalone sections
+        run: node scripts/standalone/check-isolation.mjs
+      - name: Answer pages pass the quality gate
+        run: node scripts/standalone/check-page.mjs answers --all
+
+  build:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build the standalone sections
+        run: node scripts/build-standalone.mjs
+
+      - name: Rebuild llms-full.txt
+        run: node scripts/build-llms-full.mjs
+
+      - name: Checks
+        run: |
+          node scripts/standalone/check-isolation.mjs
+          node scripts/standalone/check-page.mjs answers --all
+          node scripts/build-nav.mjs --check
+
+      - name: Commit and push if anything changed
+        id: commit
+        run: |
+          git add answers facts images/answers sitemap.xml llms-full.txt
+          if git diff --cached --quiet; then
+            echo "Nothing to rebuild."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            # A data-only push still needs IndexNow for the pages it changed.
+            echo "files=$(git diff --name-only HEAD~1 HEAD | grep -E '^(answers|facts)/.*index\.html$|^llms(-full)?\.txt$' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "standalone: rebuild pages from data"
+          pushed=false
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then pushed=true; break; fi
+            sleep 5
+          done
+          if [ "$pushed" != true ]; then echo "::error::Could not push the standalone update to main."; exit 1; fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "files=$(git diff --name-only HEAD~1 HEAD | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+
+      - name: Tell IndexNow what changed
+        if: steps.commit.outputs.files != ''
+        run: node scripts/indexnow.mjs ${{ steps.commit.outputs.files }}
+
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

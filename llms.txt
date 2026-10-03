@@ -66,6 +66,8 @@ Each Love Immersion page names the faculty teaching that retreat.
 
 - [Blog](https://wedeepen.com/blog/): Articles on communication, conflict, trust, emotional intimacy, and dating
 - [The Four Pillars](https://wedeepen.com/four-pillars/): WeDeepen's framework for a conscious relationship
+- [Answers](https://wedeepen.com/answers/): Answer-first guides to relationship workshops, meeting people, making friends, and dating in Austin
+- [Fact sheet](https://wedeepen.com/facts/): The same facts as a web page, with Organization, Person, and Service structured data
 
 ## Podcast
 

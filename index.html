@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Phone layout (phones + portrait tablets, under 1024px): html.m2 turns on
+       /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
+       ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
+  <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
+  <link rel="stylesheet" href="/css/mobile-v2.css?v=1" media="(max-width:1023px)">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
@@ -647,7 +652,7 @@
        Sits directly under the hero + press bar: the offer in three beats
        before the page starts making its argument.
        ============================ -->
-  <section class="bg-ink pt-16 pb-16 md:pt-24 md:pb-32 px-6">
+  <section data-m2="glance" class="bg-ink pt-16 pb-16 md:pt-24 md:pb-32 px-6">
     <div class="max-w-site mx-auto reveal">
       <div class="text-center mb-14 md:mb-16">
         <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.9rem] font-normal leading-tight" style="text-wrap: balance;">
@@ -680,7 +685,7 @@
   <!-- ============================
        SECTION 2: THE SKILL OF LOVE
        ============================ -->
-  <section class="bg-cream py-24 md:py-32 px-6 text-charcoal">
+  <section data-m2="skill" class="bg-cream py-24 md:py-32 px-6 text-charcoal">
     <div class="max-w-site mx-auto reveal">
       <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-14 md:mb-16">
         <div class="lg:col-span-7">
@@ -723,7 +728,7 @@
        SECTION 2a: WHAT YOU BUILD — outcomes, not features. Editorial like
        the rest of the page: dark ground, hairlines, numbered list, a photo.
        ============================ -->
-  <section class="bg-ink py-24 md:py-32 px-6">
+  <section data-m2="build" class="bg-ink py-24 md:py-32 px-6">
     <div class="max-w-site mx-auto reveal">
       <div class="max-w-3xl mb-14 md:mb-16">
         <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.12]" style="text-wrap: balance;">
@@ -912,7 +917,7 @@
   <!-- ============================
        SECTION 3: MEET THE LOVE GUIDES
        ============================ -->
-  <section class="bg-charcoal py-20 md:py-28">
+  <section data-m2="faculty" class="bg-charcoal py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-14">
         <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Meet the Faculty</h2>
@@ -1023,7 +1028,7 @@
   <!-- ============================
        SECTION 5: LOVE IMMERSION SPOTLIGHT
        ============================ -->
-  <section class="relative bg-charcoal py-20 md:py-28 overflow-hidden">
+  <section data-m2="immersion" class="relative bg-charcoal py-20 md:py-28 overflow-hidden">
     <!-- Ambient gradient background -->
     <div class="absolute inset-0 bg-gradient-to-br from-rose-deep/20 via-ink to-ink"></div>
 
@@ -1074,7 +1079,7 @@
   <!-- ============================
        SECTION 6: PHOTO GALLERY PREVIEW
        ============================ -->
-  <section class="bg-ink py-20 md:py-28">
+  <section data-m2="gallery" class="bg-ink py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-12">
         <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Real People. Real Moments.</h2>
@@ -1119,7 +1124,7 @@
   <!-- ============================
        SECTION 7: TESTIMONIALS
        ============================ -->
-  <section class="bg-cream py-20 md:py-28">
+  <section data-m2="testimonials" class="bg-cream py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="text-center mb-14">
         <h2 class="font-heading text-3xl md:text-4xl font-semibold text-charcoal mb-4">What Members Say</h2>
@@ -1281,7 +1286,7 @@
        The page never introduced Christina before this point. Photo of her
        leading a room, who she is, then the podcast as part of her story.
        ============================ -->
-  <section class="bg-cream text-charcoal py-20 md:py-28">
+  <section data-m2="christina" class="bg-cream text-charcoal py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
       <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div class="lg:col-span-6">
@@ -1455,7 +1460,7 @@
   </section>
 
   <!-- Photo band: one breath between the FAQ and the price card -->
-  <section class="bg-ink px-6 pb-4">
+  <section data-m2="photoband" class="bg-ink px-6 pb-4">
     <div class="max-w-site mx-auto">
       <div class="aspect-[21/9] rounded-sm overflow-hidden">
         <img src="/images/li-community-2.webp" alt="Members in a group embrace at a WeDeepen event" class="w-full h-full object-cover" loading="lazy" width="1400" height="933">
@@ -1467,7 +1472,7 @@
        SECTION 10.7: FINAL CARD (the doc's closing price card; same shape as
        the Love Immersion investment block)
        ============================ -->
-  <section class="bg-ink py-20 md:py-28 px-6">
+  <section data-m2="finalcard" class="bg-ink py-20 md:py-28 px-6">
     <div class="max-w-3xl mx-auto reveal">
       <div class="rounded-2xl p-8 md:p-10" style="background: rgba(201,162,119,0.06); border: 1px solid rgba(201,162,119,0.4);">
         <div class="text-center mb-9">
@@ -1888,6 +1893,8 @@
       // to the brand experience, so we want it loading on most devices.
       const conn = navigator.connection;
       if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
+      // Phone layout (html.m2): keep the page light, photo hero instead.
+      if (document.documentElement.classList.contains('m2')) return;
 
       const inject = () => {
         if (wrap.dataset.ytLoaded === 'true') return;
@@ -1979,6 +1986,7 @@
   <script src="/js/lead-capture.js?v=45" defer></script>
   <script src="/js/social-proof.js?v=2" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
+  <script src="/js/mobile-v2.js?v=1" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <a data-cta="mobile-sticky" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" id="mobile-join-bar"

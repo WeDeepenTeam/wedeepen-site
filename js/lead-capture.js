@@ -104,6 +104,20 @@
       return sessionStorage.getItem(key) === '1';
     } catch (e) { return /[?&]wd-form=1(&|$)/.test(location.search); }
   })();
+  // Four Pillars guide: a two-step prompt (one-tap "yes", then email) that
+  // replaces the automatic popup / phone sheet. Leads go to MailerLite, which
+  // emails the guide. Preview-only until GUIDE_LIVE is true: add ?wd-guide=1
+  // to any page to see it (sticks for the visit).
+  var GUIDE_LIVE = false;
+  var GUIDE_ML_ENDPOINT = ''; // MailerLite form subscribe URL, set at launch
+  var GUIDE_COVER = '/images/four-pillars-thumb.jpg';
+  var GUIDE_MODE = (function () {
+    var key = 'wd_guide';
+    try {
+      if (/[?&]wd-guide=1(&|$)/.test(location.search)) { sessionStorage.setItem(key, '1'); return true; }
+      return GUIDE_LIVE || sessionStorage.getItem(key) === '1';
+    } catch (e) { return GUIDE_LIVE || /[?&]wd-guide=1(&|$)/.test(location.search); }
+  })();
   var MEMBER_LINK = (function () {
     try { return new URLSearchParams(location.search).has('topic'); } catch (e) { return false; }
   })();
@@ -204,6 +218,30 @@
     + '#wd-lead-sheet a.wd-sms-btn{display:block;background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;border-radius:999px;padding:13px 20px;font-size:15.5px;font-weight:700;text-decoration:none;}'
     + '#wd-lead-sheet .wd-sheet-save{display:inline-block;margin-top:10px;font-size:12.5px;color:#C9A277;font-weight:600;text-decoration:underline;text-underline-offset:3px;}'
     + '#wd-lead-sheet .wd-close{position:absolute;top:10px;right:10px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:8px;}'
+    + '#wd-guide{position:fixed;left:0;right:0;bottom:0;z-index:95;background:#1A1A1A;color:#F4EDE0;border-top:1px solid rgba(201,162,119,.45);border-radius:20px 20px 0 0;box-shadow:0 -12px 44px rgba(0,0,0,.5);padding:22px 22px calc(18px + env(safe-area-inset-bottom));font-family:"DM Sans",Inter,system-ui,sans-serif;text-align:center;transform:translateY(110%);transition:transform .38s ease;max-height:92vh;overflow-y:auto;box-sizing:border-box;}'
+    + '#wd-guide.wd-open{transform:translateY(0);}'
+    + '@media (min-width:700px){#wd-guide{left:auto;right:24px;bottom:24px;width:420px;border:1px solid rgba(201,162,119,.45);border-radius:20px;}}'
+    + '#wd-guide .wd-close{position:absolute;top:10px;right:10px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:8px;}'
+    + '#wd-guide .wd-g-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A277;margin:0 0 8px;}'
+    + '#wd-guide h2{font-family:"Playfair Display",Georgia,serif;font-size:23px;font-weight:600;line-height:1.22;margin:0 22px 8px;color:#F4EDE0;}'
+    + '#wd-guide p{font-size:14px;line-height:1.55;color:rgba(244,237,224,.75);margin:0 0 16px;}'
+    + '#wd-guide .wd-g-btn{display:block;width:100%;box-sizing:border-box;background:#A01B4A;color:#fff;border:0;border-radius:999px;padding:15px 20px;font-size:15.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;text-decoration:none;}'
+    + '#wd-guide .wd-g-btn:hover{background:#851437;}'
+    + '#wd-guide .wd-g-btn:disabled{opacity:.6;cursor:wait;}'
+    + '#wd-guide .wd-g-no{display:inline-block;margin-top:12px;background:none;border:0;color:rgba(244,237,224,.55);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;}'
+    + '#wd-guide .wd-g-hero{display:flex;gap:16px;align-items:center;text-align:left;margin:4px 0 16px;}'
+    + '#wd-guide .wd-g-hero img{width:84px;height:105px;object-fit:cover;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.45);flex:0 0 auto;}'
+    + '#wd-guide .wd-g-hero h2{margin:0 0 6px;}'
+    + '#wd-guide .wd-g-hero p{margin:0;font-size:13.5px;}'
+    + '#wd-guide input[type=email]{width:100%;box-sizing:border-box;background:#2D2D2D;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#F4EDE0;font-size:16px;padding:14px 20px;margin:0 0 12px;font-family:inherit;}'
+    + '#wd-guide input[type=email]:focus{outline:none;border-color:#C9A277;}'
+    + '#wd-guide .wd-g-fine{font-size:11.5px;color:rgba(244,237,224,.45);margin:10px 0 0;}'
+    + '#wd-guide .wd-g-err{display:none;color:#FF8C9E;font-size:13px;margin:0 0 10px;}'
+    + '#wd-guide .wd-g-hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}'
+    + '#wd-guide .wd-g-sms{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);}'
+    + '#wd-guide .wd-g-sms a.wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;}'
+    + '#wd-guide [data-step]{display:none;}'
+    + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
@@ -406,6 +444,123 @@
       if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'phone_sheet', hook: HOOK.id });
       close(JOINED_DAYS);
     });
+  }
+
+  /* == Four Pillars guide (two-step) ===================================== */
+  function openGuide() {
+    if (document.getElementById('wd-guide')) return;
+    var g = document.createElement('div');
+    g.id = 'wd-guide';
+    g.setAttribute('role', 'dialog');
+    g.setAttribute('aria-labelledby', 'wd-g-title');
+    g.setAttribute('data-at', '1');
+    var smsCta = IS_MOBILE
+      ? '<a class="wd-g-btn" href="' + SMS_HREF + '">Text ' + SMS_KEYWORD + '</a>'
+      : '<p style="margin:0">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong></p>';
+    g.innerHTML =
+      '<button type="button" class="wd-close" aria-label="Close">&times;</button>' +
+      // Step 1: one-tap yes
+      '<div data-step="1">' +
+        '<p class="wd-g-eyebrow">Free guide</p>' +
+        '<h2 id="wd-g-title">The Four Pillars of a Conscious Relationship</h2>' +
+        '<p>The framework we practice in every WeDeepen session, from Christina Weber.</p>' +
+        '<button type="button" class="wd-g-btn" data-go="2">Send me the free guide</button>' +
+        '<button type="button" class="wd-g-no">No thanks, I&#39;ll pass</button>' +
+      '</div>' +
+      // Step 2: email
+      '<div data-step="2">' +
+        '<div class="wd-g-hero">' +
+          '<img src="' + GUIDE_COVER + '" width="240" height="300" alt="The Four Pillars of a Conscious Relationship guide cover">' +
+          '<div><h2>Get the Four Pillars, free</h2>' +
+          '<p>Prioritize growth. Own your own sh*t. All feelings are welcome. Practice love.</p></div>' +
+        '</div>' +
+        '<form novalidate>' +
+          '<div class="wd-g-hp" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>' +
+          '<input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" aria-label="Your email address" required>' +
+          '<p class="wd-g-err" role="alert"></p>' +
+          '<button type="submit" class="wd-g-btn">Yes! Send my guide</button>' +
+        '</form>' +
+        '<p class="wd-g-fine">We&#39;ll email it right away. Unsubscribe anytime.</p>' +
+      '</div>' +
+      // Step 3: done + optional texting list
+      '<div data-step="3">' +
+        '<p class="wd-g-eyebrow">You&#39;re in</p>' +
+        '<h2>Check your inbox!</h2>' +
+        '<p class="wd-g-sent">Your Four Pillars guide is on its way.</p>' +
+        '<div class="wd-g-sms">' +
+          '<p>Want private invitations and new dates by text too?</p>' + smsCta +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(g);
+    removeBar();
+    try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
+    requestAnimationFrame(function () { requestAnimationFrame(function () { g.classList.add('wd-open'); }); });
+
+    function close(days) {
+      g.classList.remove('wd-open');
+      if (days) snooze(LS_POPUP, days);
+      setTimeout(function () { g.remove(); }, 450);
+    }
+    function go(step) {
+      g.setAttribute('data-at', String(step));
+      if (step === 2) setTimeout(function () { try { g.querySelector('input[type=email]').focus(); } catch (e) {} }, 350);
+    }
+    var dismissDays = IS_MOBILE ? SHEET_DISMISS_DAYS : DISMISS_DAYS;
+    g.querySelector('.wd-close').addEventListener('click', function () {
+      close(g.getAttribute('data-at') === '3' ? 0 : dismissDays);
+    });
+    g.querySelector('.wd-g-no').addEventListener('click', function () { close(dismissDays); });
+    g.querySelector('[data-go="2"]').addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'guide_yes_click', { device: IS_MOBILE ? 'phone' : 'desktop' });
+      go(2);
+    });
+    var smsLink = g.querySelector('.wd-g-sms a');
+    if (smsLink) smsLink.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_thanks' });
+    });
+
+    var form = g.querySelector('form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var err = g.querySelector('.wd-g-err');
+      err.style.display = 'none';
+      var email = form.email.value.trim();
+      if (form.company.value) { go(3); snooze(LS_POPUP, JOINED_DAYS); return; } // honeypot
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        err.textContent = 'Please enter a valid email address.';
+        err.style.display = 'block';
+        return;
+      }
+      var btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      function done(result) {
+        notifySignup({ firstName: '', phone: '', email: email, city: '', state: '', podcast: '' }, result);
+        // Preview submissions (before launch) must not count as ad conversions.
+        if (GUIDE_LIVE) trackLead('guide');
+        snooze(LS_POPUP, JOINED_DAYS);
+        g.querySelector('.wd-g-sent').textContent = 'Your Four Pillars guide is on its way to ' + email + '.';
+        go(3);
+      }
+      if (!GUIDE_ML_ENDPOINT) { done('Four Pillars guide (preview, MailerLite not connected)'); return; }
+      var body = new URLSearchParams();
+      body.append('fields[email]', email);
+      body.append('ml-submit', '1');
+      body.append('anticsrf', 'true');
+      fetch(GUIDE_ML_ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
+        .then(function () { done('Four Pillars guide (MailerLite)'); })
+        .catch(function () { done('Four Pillars guide (MailerLite unreachable)'); });
+    });
+  }
+
+  function watchScrollForGuide() {
+    function check() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max < SHEET_SCROLL_DEPTH) return;
+      window.removeEventListener('scroll', check);
+      openGuide();
+    }
+    window.addEventListener('scroll', check, { passive: true });
   }
 
   function watchScrollForSheet() {
@@ -624,6 +779,12 @@
     if (AD_FORM) {
       // They clicked an ad to join: open the form, even if they closed it before.
       setTimeout(openPopup, 1200);
+    } else if (GUIDE_MODE && /[?&]wd-guide=1(&|$)/.test(location.search)) {
+      // Preview link: show the guide right away, ignoring past snoozes.
+      setTimeout(openGuide, 800);
+    } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
+      if (IS_MOBILE) watchScrollForGuide();
+      else setTimeout(openGuide, POPUP_DELAY_MS);
     } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
       if (IS_MOBILE) watchScrollForSheet();
       else setTimeout(openPopup, POPUP_DELAY_MS);

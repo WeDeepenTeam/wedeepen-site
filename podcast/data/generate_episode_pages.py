@@ -567,7 +567,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 
 
   <footer class="bg-ink border-t border-white/10 py-12">
-    <script src="/js/lead-capture.js?v=34" defer></script>
+    <script src="/js/lead-capture.js?v=35" defer></script>
     <div class="max-w-site mx-auto px-6 text-center">
       <a href="/" class="inline-block mb-4">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60" loading="lazy" decoding="async">

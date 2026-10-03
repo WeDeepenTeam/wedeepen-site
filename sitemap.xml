@@ -1370,9 +1370,15 @@
   </url>
   <url>
     <loc>https://wedeepen.com/blog/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wedeepen.com/blog/sensate-focus-exercises/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://wedeepen.com/blog/relationship-coaching-questions/</loc>
@@ -1382,7 +1388,7 @@
   </url>
   <url>
     <loc>https://wedeepen.com/blog/couples-communication-exercises/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

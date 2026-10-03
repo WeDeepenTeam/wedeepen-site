@@ -525,14 +525,15 @@
     });
     var textBtn = doneBox && doneBox.querySelector('[data-guide-text]');
     if (textBtn) {
+      // Desktop also spells out the keyword and number, for anyone whose
+      // computer can't send texts; the button still works where it can.
       if (!IS_MOBILE) {
-        textBtn.outerHTML = '<p class="text-white/80">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone.</p>';
-      } else {
-        textBtn.setAttribute('href', SMS_HREF);
-        textBtn.addEventListener('click', function () {
-          if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
-        });
+        textBtn.insertAdjacentHTML('beforebegin', '<p class="text-white/80 mb-4">Text <strong>' + SMS_KEYWORD + '</strong> to <strong>' + SMS_NUMBER_DISPLAY + '</strong> from your phone, or:</p>');
       }
+      textBtn.setAttribute('href', SMS_HREF);
+      textBtn.addEventListener('click', function () {
+        if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_page_bonus' });
+      });
     }
   }
 

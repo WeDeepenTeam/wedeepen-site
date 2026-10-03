@@ -106,10 +106,11 @@
   })();
   // Four Pillars guide: a sign-up prompt (name + email, then a one-tap text
   // bonus) that replaces the automatic popup / phone sheet. Leads go to
-  // MailerLite, which emails the guide. Preview-only until GUIDE_LIVE is true: add ?wd-guide=1
-  // to any page to see it (sticks for the visit).
-  var GUIDE_LIVE = false;
-  var GUIDE_ML_ENDPOINT = ''; // MailerLite form subscribe URL, set at launch
+  // MailerLite, whose "Four Pillars guide" automation emails the guide plus
+  // two $99 follow-ups. Live since 2026-10-03; set GUIDE_LIVE = false to go
+  // back to the texting popup (?wd-guide=1 then previews the guide).
+  var GUIDE_LIVE = true;
+  var GUIDE_ML_ENDPOINT = 'https://assets.mailerlite.com/jsonp/321715/forms/200340741738726767/subscribe'; // "Four Pillars guide - website popup" form
   var GUIDE_COVER = '/images/four-pillars-thumb.jpg';
   var GUIDE_MODE = (function () {
     var key = 'wd_guide';

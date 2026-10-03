@@ -338,7 +338,7 @@
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
         <!-- nav:links -->
-        <a href="/membership/" class="text-white hover:text-white transition">Membership</a>
+        <a href="/membership/" class="text-white/80 hover:text-white transition">Membership</a>
         <a href="/love-immersion/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
@@ -1610,12 +1610,13 @@
 
     // Mobile join bar: the hero already has the same button, so keep the bar
     // off screen until the hero has scrolled away.
-    (function mobileJoinBar() {
+    // The bar sits after this script in the page, so wait for the DOM.
+    document.addEventListener('DOMContentLoaded', function mobileJoinBar() {
       const bar = document.getElementById('mobile-join-bar');
       const hero = document.getElementById('hero');
       if (!bar || !hero || !('IntersectionObserver' in window)) { bar && bar.classList.remove('translate-y-full'); return; }
       new IntersectionObserver(([e]) => bar.classList.toggle('translate-y-full', e.isIntersecting), { threshold: 0.1 }).observe(hero);
-    })();
+    });
 
     // FAQ accordion (for future use on other pages)
     document.querySelectorAll('.faq-item').forEach(item => {

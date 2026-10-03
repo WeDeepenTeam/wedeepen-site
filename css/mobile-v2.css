@@ -1,6 +1,6 @@
-/* Mobile layout experiment (html.m2, phones + portrait tablets only).
+/* Phone layout of the homepage (html.m2, phones + portrait tablets only).
    Linked with media="(max-width:1023px)" and scoped to html.m2, so desktop
-   and the default phone layout never see any of this. DOM moves and the
+   never sees any of this. DOM moves and the
    inserted blocks live in /js/mobile-v2.js. */
 
 /* Swipe rows: long grids become one sideways row of cards. */

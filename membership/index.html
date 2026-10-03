@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Mobile layout experiment (phones + portrait tablets only). Preview-only
-       for now: ?m2=1 turns it on for the visit, ?m2=0 turns it off. The
-       layout lives in /css/mobile-v2.css + /js/mobile-v2.js; desktop never
-       gets the class, so it's untouched. -->
-  <script>(function(){try{var k='wd_m2',q=location.search;if(/[?&]m2=1(&|$)/.test(q))sessionStorage.setItem(k,'1');if(/[?&]m2=0(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='1'&&matchMedia('(max-width:1023px)').matches)document.documentElement.classList.add('m2');}catch(e){}})();</script>
+  <!-- Phone layout (phones + portrait tablets, under 1024px): html.m2 turns on
+       /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
+       ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
+  <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
   <link rel="stylesheet" href="/css/mobile-v2.css?v=1" media="(max-width:1023px)">
 
   <!-- Google tag (gtag.js) -->
@@ -1652,7 +1651,7 @@
       // to the brand experience, so we want it loading on most devices.
       const conn = navigator.connection;
       if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
-      // Mobile layout experiment: keep the phone page light (poster only).
+      // Phone layout (html.m2): keep the page light, photo hero instead.
       if (document.documentElement.classList.contains('m2')) return;
 
       const inject = () => {

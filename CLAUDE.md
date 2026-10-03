@@ -89,6 +89,7 @@ If origin moved while you were editing, `git rebase origin/main` before pushing.
 - **No personal info** in committed HTML (member names, emails, phone numbers, addresses).
 - **OG images required** for every new top-level page. Generate at 1200×630 and put in `images/og/`.
 - **Brand voice is canon** — see Editorial section in [README.md](./README.md#editorial--voice-guidelines).
+- **Homepage has its own phone layout.** Under 1024px, `html.m2` turns on `css/mobile-v2.css` + `js/mobile-v2.js`, which reorder and reshape sections tagged `data-m2="..."` in `index.html` (testimonials under the hero, swipe rows, join prompts, sticky bar). Keep those markers when editing the homepage, check changes at phone width too, and never delete content for phones (SEO). `?m2=0` shows the old phone layout for comparison.
 
 ---
 

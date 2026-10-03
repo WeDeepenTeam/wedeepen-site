@@ -1,8 +1,9 @@
 /*
- * mobile-v2.js: the mobile layout experiment for the homepage (and the
- * /membership/ mirror). Runs only when <html> has the "m2" class, which the
- * inline snippet in <head> sets on phones / portrait tablets (< 1024px).
- * Desktop never gets the class. Styles: /css/mobile-v2.css.
+ * mobile-v2.js: the phone layout of the homepage (and the /membership/
+ * mirror). Runs only when <html> has the "m2" class, which the inline
+ * snippet in <head> sets on phones / portrait tablets (< 1024px). Desktop
+ * never gets the class. Styles: /css/mobile-v2.css. Sections it moves or
+ * reshapes carry data-m2="..." markers in index.html; keep them.
  *
  * What it does, in page order:
  *  1. Moves "What Members Say" up under the hero, as a swipe row.

@@ -145,9 +145,17 @@
   // scrolled this far down the page (Google is fine with banners that leave
   // the content usable; it penalizes full-screen interstitials on mobile).
   var SHEET_SCROLL_DEPTH = 0.25;
-  var SHEET_DISMISS_DAYS = 5;  // bottom sheet snooze after close
-  var DISMISS_DAYS = 7;    // popup snooze after close
-  var JOINED_DAYS = 365;   // popup snooze after successful submit
+  var JOINED_DAYS = 36500; // signed up: never ask again on this device
+  // When the guide shows (René, 2026-10-04). First visit vs. returning visitor
+  // (someone who has seen it before): desktop after a delay; phones after a
+  // delay or a short scroll, whichever comes first.
+  var GUIDE_DELAY_MS = 4000, GUIDE_DELAY_RETURNING_MS = 2000;
+  var GUIDE_PHONE_DELAY_MS = 10000, GUIDE_PHONE_DELAY_RETURNING_MS = 5000;
+  var GUIDE_SCROLL_DEPTH = 0.15;
+  // Closing it (x or "No thanks") hides it for the rest of the visit; it
+  // returns next visit. After 3 visits closed in a row, at most once a week.
+  var VISIT_GAP_MS = 30 * 60 * 1000; // 30 min without a page view = new visit
+  var CLOSES_BEFORE_WEEKLY = 3, WEEKLY_DAYS = 7;
   var BAR_DISMISS_DAYS = 7;
 
   var LS_POPUP = 'wd_lead_popup_until';
@@ -165,6 +173,39 @@
       var until = Date.now() + days * 864e5;
       if (until > Number(localStorage.getItem(key) || 0)) localStorage.setItem(key, String(until));
     } catch (e) { /* private mode */ }
+  }
+
+  /* == Visits ============================================================ */
+  // A visit ends after 30 minutes without a page view (same rule as GA), so
+  // reloads, new tabs and moving between pages stay in the same visit.
+  var VISIT = (function () {
+    try {
+      var now = Date.now(), last = Number(localStorage.getItem('wd_last_seen') || 0);
+      var id = localStorage.getItem('wd_visit');
+      if (!id || now - last > VISIT_GAP_MS) { id = String(now); localStorage.setItem('wd_visit', id); }
+      localStorage.setItem('wd_last_seen', String(now));
+      return id;
+    } catch (e) { return ''; }
+  })();
+  function seenBefore() {
+    try { return localStorage.getItem('wd_lead_seen') === '1'; } catch (e) { return false; }
+  }
+  function closedThisVisit() {
+    try { return !!VISIT && localStorage.getItem('wd_lead_closed_visit') === VISIT; } catch (e) { return false; }
+  }
+  // x / "No thanks": gone for this visit. Counts one close per visit; from
+  // the third visit in a row it also snoozes for a week.
+  function dismissForVisit() {
+    try {
+      localStorage.setItem('wd_lead_closed_visit', VISIT);
+      var n = Number(localStorage.getItem('wd_lead_closes') || 0);
+      if (localStorage.getItem('wd_lead_closes_visit') !== VISIT) {
+        n += 1;
+        localStorage.setItem('wd_lead_closes', String(n));
+        localStorage.setItem('wd_lead_closes_visit', VISIT);
+      }
+      if (n >= CLOSES_BEFORE_WEEKLY) snooze(LS_POPUP, WEEKLY_DAYS);
+    } catch (e) { /* storage blocked */ }
   }
 
   /* == Styles ============================================================ */
@@ -278,6 +319,20 @@
     + '#wd-guide.wd-g-passed .wd-g-bonus h3{font-size:22px;margin-bottom:8px;padding:0 28px;}'
     + '#wd-guide [data-step]{display:none;}'
     + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
+    // Compact sizing (René, 2026-10-04): smaller card and sheet, same content.
+    + '#wd-guide{padding:16px 18px calc(14px + env(safe-area-inset-bottom));}'
+    + '@media (min-width:700px){#wd-guide{width:360px;right:20px;bottom:20px;}}'
+    + '#wd-guide h2{font-size:20px;margin-bottom:6px;}'
+    + '#wd-guide p{font-size:13px;margin-bottom:12px;}'
+    + '#wd-guide .wd-g-eyebrow{font-size:10.5px;margin-bottom:6px;}'
+    + '#wd-guide .wd-g-hero{gap:12px;margin:2px 0 12px;}'
+    + '#wd-guide .wd-g-hero img{width:62px;height:78px;}'
+    + '#wd-guide .wd-g-hero p{font-size:12.5px;}'
+    + '#wd-guide input[type=email],#wd-guide input[type=text],#wd-guide input[type=tel]{padding:11px 18px;margin-bottom:9px;}'
+    + '#wd-guide .wd-g-btn{padding:12px 18px;font-size:14.5px;}'
+    + '#wd-guide .wd-g-fine{font-size:11px;margin-top:8px;}'
+    + '#wd-guide .wd-g-no{margin-top:8px;}'
+    + '#wd-guide .wd-g-bonus{margin-top:14px;padding-top:12px;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
@@ -493,10 +548,10 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add('wd-open'); }); });
     function close(days) {
       sheet.classList.remove('wd-open');
-      snooze(LS_POPUP, days);
+      if (days === JOINED_DAYS) snooze(LS_POPUP, days); else dismissForVisit();
       setTimeout(function () { sheet.remove(); }, 400);
     }
-    sheet.querySelector('.wd-close').addEventListener('click', function () { close(SHEET_DISMISS_DAYS); });
+    sheet.querySelector('.wd-close').addEventListener('click', function () { close(0); });
     // They jumped to Messages; count it as joined so it stops asking.
     sheet.querySelector('.wd-sms-btn').addEventListener('click', function () {
       if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'phone_sheet', hook: HOOK.id });
@@ -610,13 +665,14 @@
         '</div>' +
       '</div>';
     document.body.appendChild(g);
+    try { localStorage.setItem('wd_lead_seen', '1'); } catch (e) {}
     removeBar();
     try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
     requestAnimationFrame(function () { requestAnimationFrame(function () { g.classList.add('wd-open'); }); });
 
-    function close(days) {
+    function close(dismissed) {
       g.classList.remove('wd-open');
-      if (days) snooze(LS_POPUP, days);
+      if (dismissed) dismissForVisit();
       setTimeout(function () { g.remove(); }, 450);
     }
     function go(step) {
@@ -627,19 +683,18 @@
       err.textContent = msg;
       err.style.display = msg ? 'block' : 'none';
     }
-    var dismissDays = IS_MOBILE ? SHEET_DISMISS_DAYS : DISMISS_DAYS;
     g.querySelector('.wd-close').addEventListener('click', function () {
-      close(g.getAttribute('data-at') === '3' ? 0 : dismissDays);
+      close(g.getAttribute('data-at') !== '3');
     });
     // Passing on the guide still offers the text list: same step 3, minus
     // the "check your inbox" part.
     g.querySelector('.wd-g-pass').addEventListener('click', function () {
-      snooze(LS_POPUP, dismissDays);
+      dismissForVisit();
       g.classList.add('wd-g-passed');
       g.querySelector('.wd-g-bonus h3').textContent = 'Prefer invitations by text?';
       go(3);
     });
-    g.querySelector('.wd-g-skip').addEventListener('click', function () { close(0); });
+    g.querySelector('.wd-g-skip').addEventListener('click', function () { close(false); });
 
     var person = { firstName: '', email: '' };
     var form = g.querySelector('form.wd-g-main');
@@ -672,14 +727,21 @@
     });
   }
 
-  function watchScrollForGuide() {
-    function check() {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && window.scrollY / max < SHEET_SCROLL_DEPTH) return;
+  // Phones: open after a short scroll or a delay, whichever comes first.
+  function watchScrollForGuide(delayMs) {
+    var timer;
+    function fire() {
       window.removeEventListener('scroll', check);
+      clearTimeout(timer);
       openGuide();
     }
+    function check() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max < GUIDE_SCROLL_DEPTH) return;
+      fire();
+    }
     window.addEventListener('scroll', check, { passive: true });
+    timer = setTimeout(fire, delayMs);
   }
 
   function watchScrollForSheet() {
@@ -705,7 +767,7 @@
 
   function closePopup(userDismissed) {
     overlay.classList.remove('wd-open');
-    if (userDismissed) snooze(LS_POPUP, DISMISS_DAYS);
+    if (userDismissed) dismissForVisit();
   }
 
   function showSuccess(msgHtml) {
@@ -906,10 +968,11 @@
       setTimeout(openGuide, 800);
     } else if (FROM_EMAIL) {
       // Already subscribed: nothing opens on its own.
-    } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
-      if (IS_MOBILE) watchScrollForGuide();
-      else setTimeout(openGuide, POPUP_DELAY_MS);
-    } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP)) {
+    } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP) && !closedThisVisit()) {
+      var back = seenBefore();
+      if (IS_MOBILE) watchScrollForGuide(back ? GUIDE_PHONE_DELAY_RETURNING_MS : GUIDE_PHONE_DELAY_MS);
+      else setTimeout(openGuide, back ? GUIDE_DELAY_RETURNING_MS : GUIDE_DELAY_MS);
+    } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP) && !closedThisVisit()) {
       if (IS_MOBILE) watchScrollForSheet();
       else setTimeout(openPopup, POPUP_DELAY_MS);
     }

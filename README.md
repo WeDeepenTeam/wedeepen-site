@@ -126,6 +126,7 @@ wedeepen-site/
 | Answers (standalone, not in nav) | `/answers/` | `answers/data/pages.json` → `scripts/build-standalone.mjs` |
 | Fact sheet (standalone, not in nav) | `/facts/` | rendered from `llms.txt` by `scripts/build-standalone.mjs` |
 | Schedule 15 min | `/schedule-with-christina/` | `schedule-with-christina/index.html` |
+| Walk with Christina | `/walk-with-christina/` | `walk-with-christina/index.html` |
 | Private clients | `/book-session-with-christina/` | `book-session-with-christina/index.html` |
 | Zoom redirect | `/zoom/` | `zoom/index.html` |
 

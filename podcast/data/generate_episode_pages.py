@@ -61,6 +61,20 @@ def link_label(url: str) -> str:
     return host + path
 
 
+# Show-notes link cleanup (from the 2026-10 site audit). The notes come from the
+# podcast feed, so the fixes live here rather than in episodes.json.
+GLUED_LABEL_RE = re.compile(r"^(https?://\S+?[a-z0-9/])(Instagram|Linkedin|LinkedIn|Facebook|Website|YouTube|Youtube|Twitter|TikTok)$")
+DEAD_LINK_PREFIXES = (
+    "https://network.wedeepen.com",        # retired community domain
+    "https://wedeepen.com/unleash",        # old event pages that now redirect
+    "https://wedeepen.com/guide/",         # back to the episode itself or home
+    "https://wedeepen.com/kash-codes",
+    "https://wedeepen.com/humhum",
+    "https://somaticsexualwholeness.com",  # guest site with a broken certificate
+)
+LINK_UPGRADES = {"http://imarituakli.com": "https://imarituakli.com"}
+
+
 def linkify(escaped: str) -> str:
     """Turn bare URLs/emails in already-escaped text into anchors."""
     def repl(m):
@@ -72,6 +86,14 @@ def linkify(escaped: str) -> str:
         if not token:
             return m.group(0)
         raw = html.unescape(token)
+        # A label glued onto the URL in the feed ("...jbauwdjbInstagram:").
+        glued = GLUED_LABEL_RE.match(raw) if trail.startswith(":") else None
+        if glued:
+            raw, token = glued.group(1), html.escape(glued.group(1))
+            trail = " " + glued.group(2) + trail
+        raw = LINK_UPGRADES.get(raw, raw)
+        if raw.startswith(DEAD_LINK_PREFIXES):
+            return html.escape(link_label(raw)) + trail  # keep the text, drop the dead link
         if "@" in raw and "://" not in raw:
             return f'<a href="mailto:{raw}" class="ep-link">{html.escape(raw)}</a>' + trail
         internal = "wedeepen.com" in raw.split("/")[2].lower() if "://" in raw else False

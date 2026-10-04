@@ -7,7 +7,6 @@
     "nav:sync": "node scripts/build-nav.mjs",
     "nav:check": "node scripts/build-nav.mjs --check",
     "membership:sync": "node scripts/build-membership.mjs && node scripts/build-nav.mjs",
-    "blog:build": "node scripts/build-blog.mjs",
     "standalone:build": "node scripts/build-standalone.mjs",
     "standalone:check": "node scripts/standalone/check-isolation.mjs && node scripts/standalone/check-page.mjs answers --all && node scripts/standalone/check-page.mjs guides --all",
     "faculty:schema": "node scripts/build-faculty-schema.mjs",

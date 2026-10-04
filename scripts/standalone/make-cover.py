@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """make-cover.py — branded cover for a standalone-section page.
 
-Same design as scripts/blog/make-cover.py (ink background, burgundy glow,
+Same design as the retired blog covers (ink background, burgundy glow,
 gold rule, Playfair title, WeDeepen wordmark), written to
 images/<section>/<slug>/cover.jpg with the section's URL in the corner.
 
@@ -14,7 +14,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[2]
-spec = importlib.util.spec_from_file_location("blogcover", ROOT / "scripts" / "blog" / "make-cover.py")
+spec = importlib.util.spec_from_file_location("blogcover", ROOT / "scripts" / "standalone" / "cover-base.py")
 bc = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bc)
 

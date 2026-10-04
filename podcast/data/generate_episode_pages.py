@@ -3,9 +3,10 @@ Generate static HTML pages for every podcast episode.
 Output: /wedeepen/deepen-with-christina/<slug>/index.html — one per episode.
 URL structure matches the existing wedeepen.com pattern for SEO preservation.
 
-Re-run this script any time episodes.json or blog/data/articles.json is
-refreshed, then `npm run nav:sync` (it stamps the nav and footer rows).
-The daily blog-sync workflow does both.
+Re-run this script any time episodes.json is refreshed, then
+`npm run nav:sync` (it stamps the nav and footer rows). The weekly podcast
+sync (scripts/podcast/sync-feed.py) does both. The blog was retired on
+2026-10-04, so the "Related reading" block is empty and omitted.
 """
 import json, re, os, html, sys, math
 from urllib.parse import quote

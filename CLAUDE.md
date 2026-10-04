@@ -133,15 +133,9 @@ Load these only when the task matches:
 5. Update [README.md](./README.md) "Key pages" table
 6. Commit + push
 
-### Blog (/blog/)
+### Blog (retired 2026-10-04)
 
-`/blog/` is generated and is deliberately **not** in the nav. Don't hand-edit anything under `blog/` except the data files below; the build overwrites the pages.
-
-- `blog/data/own-articles.json` — WeDeepen's own articles. A daily in-house pipeline appends one article per day (procedure: `blog-engine/EDITORIAL.md` in the private `WeDeepenTeam/wedeepen-team-docs` repo). Every new article must pass `node scripts/blog/check-article.mjs <slug> --links`. Covers come from `scripts/blog/make-cover.py` into `images/blog/<slug>/cover.jpg`.
-- `blog/data/articles.json` — the frozen BabyLoveGrowth archive (Sep 25 – Oct 3, 2026). The BLG API sync is retired; its images are mirrored to `images/blog/`. Own articles win on slug collision.
-- `.github/workflows/blog-sync.yml` ("Blog build") runs on any push to `blog/data/**` (or by hand): it renders `blog/`, the `/blog/` sitemap entries, podcast "Related reading", and `llms-full.txt`, commits, pings IndexNow, and requests a Pages build.
-- FAQPage JSON-LD is derived from each article's visible `<h2>FAQ</h2>` + `<h3>` questions.
-- To rebuild locally from the committed data: `npm run blog:build`.
+The blog was retired. `blog/` now holds only noindex redirect stubs (the old index and the 11 article addresses) that forward to `/guides/`. Don't add articles or link to `/blog/`; new long-form content goes in `/guides/` (one guide per podcast episode). The daily blog automation and the Blog build workflow are gone, and episode pages no longer have a "Related reading" block.
 
 ### Standalone sections (/answers/, /facts/)
 
@@ -150,7 +144,7 @@ Standalone sections follow the /blog/ pattern on purpose: generated from data, *
 - `scripts/standalone/sections.json` — the list of sections. Add a section here (plus a renderer for its `kind` in `scripts/build-standalone.mjs` if it's a new kind).
 - `answers/data/pages.json` — answer-first pages (short answer, body, `<h2>FAQ</h2>`, `<h2>Sources</h2>`). Every page must pass `node scripts/standalone/check-page.mjs answers <slug> --links`. Covers: `python3 scripts/standalone/make-cover.py answers <slug> "<title>" "<kicker>"`.
 - `/facts/` is rendered from `llms.txt`, so the two can't disagree. Edit `llms.txt` and bump `verified` in `facts/data/facts.json`.
-- `node scripts/standalone/check-isolation.mjs` fails if any main-site page links into a standalone section (or into /blog/, except the podcast episodes' "Related reading"). Never add these sections to `scripts/nav/links.json`, the footer, or the 404 page.
+- `node scripts/standalone/check-isolation.mjs` fails if any main-site page links into a standalone section (or into the retired /blog/; formerly except the podcast episodes' "Related reading"). Never add these sections to `scripts/nav/links.json`, the footer, or the 404 page.
 - `.github/workflows/standalone-build.yml` ("Standalone build") runs the checks on PRs and, on main, renders, updates the sitemap and `llms-full.txt`, commits, pings IndexNow, and requests a Pages build.
 - Rebuild locally: `npm run standalone:build`; check: `npm run standalone:check`.
 

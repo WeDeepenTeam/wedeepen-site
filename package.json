@@ -9,7 +9,7 @@
     "membership:sync": "node scripts/build-membership.mjs && node scripts/build-nav.mjs",
     "blog:build": "node scripts/build-blog.mjs",
     "standalone:build": "node scripts/build-standalone.mjs",
-    "standalone:check": "node scripts/standalone/check-isolation.mjs && node scripts/standalone/check-page.mjs answers --all",
+    "standalone:check": "node scripts/standalone/check-isolation.mjs && node scripts/standalone/check-page.mjs answers --all && node scripts/standalone/check-page.mjs guides --all",
     "faculty:schema": "node scripts/build-faculty-schema.mjs",
     "llms:full": "node scripts/build-llms-full.mjs",
     "gallery:install": "cd scripts/gallery && npm install",

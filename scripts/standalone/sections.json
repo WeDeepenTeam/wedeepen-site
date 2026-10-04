@@ -11,6 +11,15 @@
       "description": "Straight answers to the questions people ask about meeting people, dating, friendship, and relationship workshops in Austin, from WeDeepen."
     },
     {
+      "id": "guides",
+      "path": "/guides/",
+      "kind": "collection",
+      "data": "guides/data/pages.json",
+      "label": "Guides",
+      "title": "Guides: Lessons from the Mastering Love Podcast",
+      "description": "Key ideas and quotes from Christina Weber's conversations with relationship experts on the Mastering Love podcast, formerly Deepen with Christina."
+    },
+    {
       "id": "facts",
       "path": "/facts/",
       "kind": "facts",

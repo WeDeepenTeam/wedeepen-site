@@ -228,3 +228,8 @@ Default to asking before mixing concerns across repos.
 | `.git/index.lock` exists and is > 1h old | Crashed git op from a prior session | Safe to `rm .git/index.lock` if no `git` process is running |
 | Push rejected: non-fast-forward | Origin moved during your edit window | `git fetch && git rebase origin/main`, then push |
 | Stash list has `wip-*` / `before-*` / `parallel-*` entries you don't recognize | Another session is mid-task | Don't touch those stashes. Coordinate with the user before any destructive op. |
+
+## Podcast feed sync
+
+- New episodes come from the Libsyn feed: `python3 scripts/podcast/sync-feed.py` adds any missing episodes to `podcast/data/episodes.json` (never edits existing ones), fills Apple and YouTube links when it can, and inserts the new URLs into `sitemap.xml` in place.
+- Then rebuild: `python3 podcast/data/generate_episode_pages.py && node scripts/build-nav.mjs && node scripts/build-podcast-archive.mjs && node scripts/build-llms-full.mjs`, and open a PR. A weekly Perplexity automation does this.

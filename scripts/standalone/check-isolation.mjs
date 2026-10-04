@@ -10,9 +10,6 @@
  * It also checks that each section is still discoverable by crawlers:
  * present in sitemap.xml and linked from llms.txt.
  *
- * /blog/ was retired on 2026-10-04 (its addresses are noindex redirects to
- * /guides/); it stays protected so nothing on the main site links to it again.
- *
  * Run: node scripts/standalone/check-isolation.mjs   (npm run standalone:check)
  * Exit 0 = clean, 1 = a main-site page links in or a section is undiscoverable.
  */
@@ -25,8 +22,6 @@ const { sections } = JSON.parse(await fs.readFile(path.join(ROOT, 'scripts/stand
 
 const PROTECTED = [
   ...sections.map((s) => ({ path: s.path, allowFrom: [] })),
-  // Retired blog: redirect stubs only. Nothing should link to it.
-  { path: '/blog/', allowFrom: [] },
 ];
 const STANDALONE_DIRS = PROTECTED.map((p) => p.path.slice(1));
 const SKIP_DIRS = new Set(['node_modules', 'scripts', 'tmp', 'images', 'fonts', 'css', 'js', 'supabase', '.git', '.github']);

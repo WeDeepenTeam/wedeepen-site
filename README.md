@@ -123,7 +123,6 @@ wedeepen-site/
 | Four Pillars (free guide) | `/four-pillars/` | `four-pillars/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |
 | **Photo Galleries** | `/gallery/` | `gallery/index.html` (generated) |
-| Blog (retired) | `/blog/` | `blog/` (noindex redirect stubs to `/guides/`) |
 | Answers (standalone, not in nav) | `/answers/` | `answers/data/pages.json` → `scripts/build-standalone.mjs` |
 | Fact sheet (standalone, not in nav) | `/facts/` | rendered from `llms.txt` by `scripts/build-standalone.mjs` |
 | Schedule 15 min | `/schedule-with-christina/` | `schedule-with-christina/index.html` |

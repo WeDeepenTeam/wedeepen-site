@@ -7,7 +7,7 @@
  * The key is public by design: it's served at /00ff8f3e6dd569ed43ecfca151e7cfc5.txt to prove ownership.
  *
  * Usage: node scripts/indexnow.mjs <changed files...>
- *   Maps repo files (e.g. blog/foo/index.html) to URLs and submits them.
+ *   Maps repo files (e.g. answers/foo/index.html) to URLs and submits them.
  *   Non-page files are ignored; with none left it does nothing.
  */
 const KEY = '00ff8f3e6dd569ed43ecfca151e7cfc5';
@@ -15,7 +15,7 @@ const HOST = 'wedeepen.com';
 const toUrl = (f) => {
   if (f === 'index.html') return `https://${HOST}/`;
   if (f.endsWith('/index.html')) return `https://${HOST}/${encodeURI(f.slice(0, -'index.html'.length))}`;
-  if (/^(llms(-full)?\.txt|sitemap\.xml|blog\/feed\.xml)$/.test(f)) return `https://${HOST}/${f}`;
+  if (/^(llms(-full)?\.txt|sitemap\.xml)$/.test(f)) return `https://${HOST}/${f}`;
   return null;
 };
 // Skip noindex stubs and the 404 page; they shouldn't be submitted.

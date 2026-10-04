@@ -3,7 +3,7 @@
  * build-standalone.mjs — generate the standalone sections listed in
  * scripts/standalone/sections.json.
  *
- * Standalone sections follow the /blog/ pattern on purpose:
+ * Standalone sections, on purpose, are:
  *   - generated from committed data files (never hand-edit the HTML),
  *   - carry the normal site header and footer, so they link OUT to the site,
  *   - are NOT in the nav and are never linked FROM main-site pages

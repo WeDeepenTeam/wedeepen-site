@@ -5,11 +5,10 @@
  * before (see "Videos").
  *
  *  - Sticky join bar (next session + $99) on pages that don't have one
- *  - Join prompts where long pages had none (blog, episodes, faculty, events,
+ *  - Join prompts where long pages had none (episodes, faculty, events,
  *    podcast, about) and a $99 option at the end of Love Immersion pages
  *  - Faculty: bios collapse to "Read more"; the council becomes a compact grid
  *  - Love Immersion: guides as a swipe row, day-by-day text collapsed
- *  - Blog: the table of contents collapses
  *  - Four Pillars: a "Get the free guide" jump button near the top
  *  - Videos: YouTube iframes written as data-yt-src load right away on
  *    desktop, and on phones only when tapped (thumbnail + play button)
@@ -207,24 +206,6 @@
     }
   }
 
-  function blog() {
-    var article = $('article.prose');
-    if (!article) return;
-    var toc = $('#table-of-contents', article);
-    var list = toc && toc.nextElementSibling;
-    if (toc && list && /^(UL|OL)$/.test(list.tagName)) {
-      var d = el('<details class="ms-toc"><summary>Table of contents (' + list.children.length + ')</summary></details>');
-      toc.replaceWith(d);
-      d.appendChild(list);
-    }
-    var skip = /^(table-of-contents|sources|faq|recommended)$/;
-    var h2s = $$('h2[id]', article).filter(function (h) { return !skip.test(h.id); });
-    if (h2s.length >= 4) {
-      h2s[Math.floor(h2s.length / 2)].insertAdjacentElement('beforebegin',
-        prompt('blog-mid', 'Reading about it is a start. Practicing it with others is where it sticks.', { light: true }));
-    }
-  }
-
   function episode() {
     var audio = $('audio');
     var video = $('.ms-yt, iframe[data-yt-src], iframe[src*="youtube"]');
@@ -273,7 +254,6 @@
   function run() {
     if (/^\/love-guides\/?$/.test(path)) faculty();
     else if (/^\/love-immersion\/[^/]+\/?$/.test(path)) loveImmersion();
-    else if (/^\/blog\/[^/]+\/?$/.test(path)) blog();
     else if (/^\/deepen-with-christina\/[^/]+\/?$/.test(path)) episode();
     else if (/^\/events\/?$/.test(path)) {
       events();

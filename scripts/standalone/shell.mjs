@@ -1,16 +1,14 @@
 /**
  * shell.mjs — shared page shell for the standalone sections.
  *
- * A "standalone section" works exactly like /blog/: it is generated from a
+ * A "standalone section" is generated from a
  * data file, it carries the normal site header and footer (so every page
  * links out to the main site), but nothing on the main site links in. Search
  * engines and AI tools find it through sitemap.xml, llms.txt, llms-full.txt
  * and IndexNow instead of through the nav.
  *
- * The shell is borrowed from podcast/index.html at build time, the same way
- * scripts/build-blog.mjs does it, so header/footer changes flow through and
- * can't drift. The helpers are copied from build-blog.mjs rather than
- * imported because that script runs its build on import.
+ * The shell is borrowed from podcast/index.html at build time, so
+ * header/footer changes flow through and can't drift.
  */
 import { renderNavLinks, renderNavCta, START, END, CTA_START, CTA_END } from '../nav/render.mjs';
 
@@ -122,7 +120,7 @@ const tail = `  <script>
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
   <script src="/js/lead-capture.js?v=49" defer></script>
-  <script src="/js/mobile-site.js?v=3" defer></script>
+  <script src="/js/mobile-site.js?v=4" defer></script>
 </body>
 </html>
 `;
@@ -141,8 +139,7 @@ ${body}
 
 ${shell.footer}${tail}`;
 
-// Replace this section's sitemap entries in place (same approach as the blog:
-// a full build-sitemap.mjs run would churn every lastmod from CI mtimes).
+// Replace this section's sitemap entries in place (a full build-sitemap.mjs run would churn every lastmod from CI mtimes).
 export function sitemapWithSection(xml, urlPath, entries) {
   const re = new RegExp(`\\s*<url>\\s*<loc>${reEsc(SITE + urlPath)}[\\s\\S]*?<\\/url>`, 'g');
   const kept = xml.replace(re, '');

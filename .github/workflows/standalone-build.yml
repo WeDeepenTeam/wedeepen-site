@@ -1,6 +1,6 @@
 # Build the standalone sections (/answers/, /guides/, /facts/) whenever their data changes.
 #
-# Standalone sections work like /blog/: generated from data files, not in the
+# Standalone sections are generated from data files, not in the
 # nav, never linked from main-site pages, and found by crawlers through
 # sitemap.xml, llms.txt, llms-full.txt and IndexNow. See
 # scripts/standalone/sections.json and scripts/build-standalone.mjs.

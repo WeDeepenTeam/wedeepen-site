@@ -67,6 +67,15 @@ if (faqQs < 4) fail(`FAQ has ${faqQs} questions (want an <h2>FAQ</h2> with 4–6
 const sources = html.match(/<h2[^>]*>\s*Sources\s*<\/h2>([\s\S]*?)(?=<h2\b|$)/i);
 const sourceLinks = sources ? (sources[1].match(/href="https?:\/\//gi) || []).length : 0;
 if (sourceLinks < 3) fail(`Sources section has ${sourceLinks} links (want 3+)`);
+// Original material: Google rates generic articles low-value. Every article carries a
+// "From the podcast" section with a verbatim transcript quote (in a <blockquote>) and a
+// link to the episode page it came from (blog-engine/EDITORIAL.md, step 2).
+const pod = html.match(/<h2[^>]*>\s*From the podcast\b[^<]*<\/h2>([\s\S]*?)(?=<h2\b|$)/i);
+if (!pod) fail('missing <h2>From the podcast: …</h2> section (verbatim transcript quote + episode link)');
+else {
+  if (!/<blockquote\b/i.test(pod[1])) fail('"From the podcast" section has no <blockquote> quote');
+  if (!/href="(?:https:\/\/wedeepen\.com)?\/deepen-with-christina\/[^"]+\/"/i.test(pod[1])) fail('"From the podcast" section does not link to the episode page (/deepen-with-christina/<slug>/)');
+}
 
 // --- Links ------------------------------------------------------------------------
 const hrefs = [...html.matchAll(/href="([^"]+)"/gi)].map((m) => m[1]);

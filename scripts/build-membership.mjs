@@ -10,8 +10,8 @@
  *   - title says Membership, so ad and analytics reports are easy to read
  *   - Meta ViewContent fires after PageView (membership-intent signal)
  *   - no JSON-LD (the homepage owns the Organization/FAQ structured data)
- *   - membership-only conversion copy (hero subhead, first-week strip, price-card
- *     line, closing headline) and no Love Immersion spotlight; homepage unchanged
+ *   - membership-only conversion copy (hero subhead, price-card line,
+ *     closing headline) and no Love Immersion spotlight; homepage unchanged
  *
  * Edit index.html, never membership/index.html. Then run
  * `node scripts/build-membership.mjs` and `npm run nav:sync` (it marks the
@@ -50,11 +50,6 @@ export function buildMembership(home) {
     /It&rsquo;s an expert-led community for getting better at how you date, communicate, handle conflict, build intimacy, and connect\./,
     'Love is a skill. Most of us were never taught it. Here, we practice it out loud, with experts who&rsquo;ve spent their careers on it.',
     'hero subhead');
-  // "Your first week" strip under the hero time line.
-  html = replaceOnce(html,
-    /(<p class="text-gold\/90 text-sm md:text-base font-medium mb-5">Join today\. Come Tuesday at 7pm ET\.<\/p>)/,
-    '$1\n      <p class="text-white/65 text-sm md:text-[15px] max-w-2xl mx-auto mb-5 leading-relaxed" data-mship="first-week">Your first week: join today &rarr; you&rsquo;re inside the private community in minutes &rarr; come Tuesday at 7pm ET &rarr; your first Sunday Dare lands by text.</p>',
-    'first-week strip');
   // Price-card line: lead with value, not fear.
   html = replaceOnce(html,
     /\$99 a month is nothing next to what getting it wrong costs: years of your life, bad dates, divorce, starting over\./,

@@ -30,7 +30,9 @@ html.m2 .m2-dots { display: flex; justify-content: center; gap: 6px; margin-top:
 html.m2 .m2-dots span { width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: .25; transition: opacity .2s, width .2s; }
 html.m2 .m2-dots span.on { opacity: .9; width: 16px; }
 
-/* Testimonials: cards as a swipe row (in their original spot). */
+/* Testimonials, moved up under the hero: tighter, swipeable. */
+html.m2 [data-m2="testimonials"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+html.m2 [data-m2="testimonials"] .text-center.mb-14 { margin-bottom: 24px !important; }
 html.m2 [data-m2="testimonials"] .m2-swipe > * { display: flex; flex-direction: column; }
 
 

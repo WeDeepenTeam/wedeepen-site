@@ -6,15 +6,15 @@
  * reshapes carry data-m2="..." markers in index.html; keep them.
  *
  * What it does, in page order:
- *  1. "What Members Say" cards become a swipe row (section stays in place).
+ *  1. Moves "What Members Say" up under the hero, as a swipe row.
  *  2. Turns long grids into swipe rows (membership cards, faculty, gallery).
  *  3. Adds a join prompt every few screens.
  *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
  *  6. "Your first Tuesday" timeline under "at a glance".
  *
- * Christina's photos, hero video and section order are left exactly as
- * designed (her call, 2026-10-03); this only adds and reshapes grids.
+ * Christina's photos and hero video are left exactly as designed (her call,
+ * 2026-10-03); apart from the testimonials, her section order stays too.
  */
 (function () {
   'use strict';
@@ -63,8 +63,10 @@
 
   function run() {
 
-    // 1. Member quotes as a swipe row, in their original spot.
+    // 1. Member proof right under the hero, as a swipe row (René, 2026-10-03).
+    var hero = $('#hero');
     var testimonials = sec('testimonials');
+    if (hero && testimonials) hero.insertAdjacentElement('afterend', testimonials);
     if (testimonials) swipe($('.grid', testimonials));
 
     // 6. "Your first Tuesday" under "at a glance".

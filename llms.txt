@@ -64,7 +64,6 @@ Each Love Immersion page names the faculty teaching that retreat.
 
 ## Learn
 
-- [Blog](https://wedeepen.com/blog/): Articles on communication, conflict, trust, emotional intimacy, and dating
 - [The Four Pillars](https://wedeepen.com/four-pillars/): WeDeepen's framework for a conscious relationship
 - [Answers](https://wedeepen.com/answers/): Answer-first guides to relationship workshops, couples retreats, dating and intimacy coaching, meeting people, and making friends in Austin, plus what Love Immersion is
 - [Podcast guides](https://wedeepen.com/guides/): Key ideas and quotes from Mastering Love episodes with relationship experts such as Ken Page and Kimi Inch
@@ -88,7 +87,7 @@ The show is now called Mastering Love, formerly Deepen with Christina, hosted by
 ## Notes for machine readers
 
 - Every indexable page is listed in [the sitemap](https://wedeepen.com/sitemap.xml)
-- The full text of the core pages, blog posts, and episode summaries is in [llms-full.txt](https://wedeepen.com/llms-full.txt)
+- The full text of the core pages, answer pages, and episode summaries is in [llms-full.txt](https://wedeepen.com/llms-full.txt)
 - Pages carry schema.org structured data: Organization, WebSite, Person, Event, FAQPage, BreadcrumbList, PodcastEpisode, PodcastSeries, and ImageGallery
 - Retreat dates and pricing change; treat the linked pages as the source of truth rather than any cached summary
 - [Terms of Use](https://wedeepen.com/terms/) and [Privacy Policy](https://wedeepen.com/privacy/)

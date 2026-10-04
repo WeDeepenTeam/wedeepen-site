@@ -3,12 +3,12 @@
  * build-llms-full.mjs — write /llms-full.txt, the plain-text companion to /llms.txt.
  *
  * Follows the llms.txt proposal (https://llmstxt.org/): one Markdown file with
- * the readable text of the core pages, the Four Pillars, every blog post, and
+ * the readable text of the core pages, the Four Pillars, and
  * a one-paragraph summary per podcast episode, so AI tools can read the site
  * without crawling 240 pages. Everything comes from the committed HTML and
  * episode data, so it can't say anything the site doesn't.
  *
- * Run: node scripts/build-llms-full.mjs   (also runs in the daily blog sync)
+ * Run: node scripts/build-llms-full.mjs   (also runs in the Standalone build workflow)
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -39,23 +39,11 @@ const titleOf = (html) => decode((html.match(/<title>([\s\S]*?)<\/title>/) || [,
 const read = (p) => fs.readFile(path.join(ROOT, p === '/' ? 'index.html' : `${p.slice(1)}index.html`), 'utf8');
 
 const out = [`# WeDeepen: full text for language models`,
-  `> Plain-text version of wedeepen.com's core pages, blog, answer pages, and podcast episode summaries. Generated from the live site's HTML; the linked pages are the source of truth. Index: ${SITE}/llms.txt`, ''];
+  `> Plain-text version of wedeepen.com's core pages, answer and guide pages, and podcast episode summaries. Generated from the live site's HTML; the linked pages are the source of truth. Index: ${SITE}/llms.txt`, ''];
 
 for (const p of CORE) {
   const html = await read(p);
   out.push(`---\n\n## ${titleOf(html)}\n\nURL: ${SITE}${p}\n\n${pageText(html)}\n`);
-}
-
-// The frozen BabyLoveGrowth archive plus WeDeepen's own articles (own wins on slug).
-const readArticles = async (f) => JSON.parse(await fs.readFile(path.join(ROOT, f), 'utf8').catch(() => '{}')).articles || [];
-const ownArticles = await readArticles('blog/data/own-articles.json');
-const ownSlugs = new Set(ownArticles.map((a) => a.slug));
-const blog = [...(await readArticles('blog/data/articles.json')).filter((a) => !ownSlugs.has(a.slug)), ...ownArticles];
-out.push('---\n\n# Blog\n');
-for (const a of blog.sort((x, y) => String(y.created_at).localeCompare(String(x.created_at)))) {
-  // Posts often open by repeating their own title as a heading.
-  const body = pageText(a.content_html || '').replace(new RegExp(`^#+ ${a.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*`), '');
-  out.push(`## ${a.title}\n\nURL: ${SITE}/blog/${a.slug}/\nPublished: ${String(a.created_at).slice(0, 10)}\n\n${body}\n`);
 }
 
 // Standalone answer pages (scripts/standalone/sections.json, kind "collection").
@@ -89,4 +77,4 @@ for (const ep of episodes.filter((e) => e.title)) {
 
 const text = out.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
 await fs.writeFile(path.join(ROOT, 'llms-full.txt'), text, 'utf8');
-console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${blog.length} posts, ${answerCount} answers, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);
+console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${answerCount} answers, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);

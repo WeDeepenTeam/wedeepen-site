@@ -6,12 +6,12 @@
  * reshapes carry data-m2="..." markers in index.html; keep them.
  *
  * What it does, in page order:
- *  1. Moves "What Members Say" up, right after Christina's opening argument.
+ *  1. Moves "What Members Say" up under the hero; her argument follows it.
  *  2. Turns long grids into swipe rows (membership cards, faculty, gallery).
  *  3. Adds a join prompt every few screens.
  *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
- *  6. "Your first Tuesday" timeline right before the membership offer.
+ *  6. "Your first Tuesday" timeline right after the membership offer.
  *
  * Christina's photos and hero video are left exactly as designed (her call,
  * 2026-10-03); apart from the testimonials, her section order stays too.
@@ -63,15 +63,16 @@
 
   function run() {
 
-    // Christina's opening argument (at a glance -> learning curve -> skills)
-    // leads, in her order. Our additions come after it.
-    // 1. Member proof right after her argument, as a swipe row.
+    // 1. Member proof right under the hero, as a swipe row (René). Christina's
+    // opening argument (at a glance -> learning curve -> skills) follows it
+    // directly, in her order; our timeline follows the membership offer.
+    var hero = $('#hero');
     var build = sec('build');
     var testimonials = sec('testimonials');
-    if (build && testimonials) build.insertAdjacentElement('afterend', testimonials);
+    if (hero && testimonials) hero.insertAdjacentElement('afterend', testimonials);
     if (testimonials) swipe($('.grid', testimonials));
 
-    // 6. "Your first Tuesday" right before the membership offer.
+    // 6. "Your first Tuesday" right after the membership offer (René).
     var offer = $('#membership');
     if (offer) {
       var steps = el(
@@ -88,7 +89,7 @@
       steps.appendChild(joinPrompt('first-tuesday', '', 'Join today &middot; $99/month'));
       steps.querySelector('.m2-cta .lead').remove();
       steps.querySelector('.m2-cta .sub').remove();
-      offer.insertAdjacentElement('beforebegin', steps);
+      offer.insertAdjacentElement('afterend', steps);
     }
 
     // 2. Swipe rows.

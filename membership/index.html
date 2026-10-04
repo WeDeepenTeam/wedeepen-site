@@ -8,7 +8,7 @@
        /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
-  <link rel="stylesheet" href="/css/mobile-v2.css?v=2" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/mobile-v2.css?v=3" media="(max-width:1023px)">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
@@ -343,7 +343,7 @@
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
         <!-- nav:links -->
-        <a href="/membership/" class="text-white hover:text-white transition">Membership</a>
+        <a href="/membership/" class="text-white/80 hover:text-white transition">Membership</a>
         <a href="/love-immersion/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
         <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
@@ -1644,8 +1644,6 @@
       // to the brand experience, so we want it loading on most devices.
       const conn = navigator.connection;
       if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
-      // Phone layout (html.m2): keep the page light, photo hero instead.
-      if (document.documentElement.classList.contains('m2')) return;
 
       const inject = () => {
         if (wrap.dataset.ytLoaded === 'true') return;
@@ -1738,7 +1736,7 @@
   <script src="/js/mobile-site.js?v=3" defer></script>
   <script src="/js/social-proof.js?v=2" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
-  <script src="/js/mobile-v2.js?v=2" defer></script>
+  <script src="/js/mobile-v2.js?v=3" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <aside aria-label="Join WeDeepen">

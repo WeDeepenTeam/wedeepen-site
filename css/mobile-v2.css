@@ -30,24 +30,9 @@ html.m2 .m2-dots { display: flex; justify-content: center; gap: 6px; margin-top:
 html.m2 .m2-dots span { width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: .25; transition: opacity .2s, width .2s; }
 html.m2 .m2-dots span.on { opacity: .9; width: 16px; }
 
-/* Testimonials, moved up under the hero: tighter, swipeable. */
-html.m2 [data-m2="testimonials"] { padding-top: 48px !important; padding-bottom: 48px !important; }
-html.m2 [data-m2="testimonials"] .text-center.mb-14 { margin-bottom: 24px !important; }
+/* Testimonials: cards as a swipe row (in their original spot). */
 html.m2 [data-m2="testimonials"] .m2-swipe > * { display: flex; flex-direction: column; }
-html.m2 [data-m2="testimonials"] .m2-swipe > * p.text-sm { font-size: 15px; flex: 1; }
 
-/* Shorter sections: drop decorative photos and trim padding. */
-html.m2 [data-m2="skill"] .aspect-\[3\/2\],
-html.m2 [data-m2="build"] .aspect-\[4\/5\],
-html.m2 [data-m2="photoband"],
-html.m2 [data-m2="gallery"] .grid > :nth-child(n+7) { display: none !important; }
-html.m2 [data-m2="glance"] { padding-bottom: 40px !important; }
-html.m2 [data-m2="skill"], html.m2 [data-m2="build"] { padding-top: 64px !important; padding-bottom: 56px !important; }
-html.m2 [data-m2="build"] li { padding-top: 14px !important; padding-bottom: 14px !important; }
-html.m2 [data-m2="build"] li span.text-lg { font-size: 16px; }
-html.m2 [data-m2="faculty"] .text-center.mb-14,
-html.m2 [data-m2="gallery"] .text-center.mb-12 { margin-bottom: 28px !important; }
-html.m2 [data-m2="faculty"] .text-center.mb-14 p { font-size: 16px; }
 
 /* "Your first Tuesday" timeline. */
 html.m2 .m2-steps { background: #201519; border-top: 1px solid rgba(201,162,119,.25); border-bottom: 1px solid rgba(201,162,119,.25); padding: 44px 24px 40px; color: #fff; }
@@ -82,19 +67,7 @@ html.m2 #mobile-join-bar .m2-bar-next { font-size: 12px; font-weight: 500; lette
 html.m2 #mobile-join-bar .m2-bar-main { font-size: 16px; font-weight: 700; }
 html.m2 #mobile-join-bar.m2-hidden { transform: translateY(100%) !important; }
 
-/* Four Pillars: no illustration, pillars as a compact 2x2. */
-html.m2 #four-pillars .lg\:col-span-4 { display: none !important; }
-html.m2 #four-pillars { padding-top: 56px !important; padding-bottom: 48px !important; }
-html.m2 #four-pillars .grid.sm\:grid-cols-2 { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-html.m2 #four-pillars .grid.sm\:grid-cols-2 > div { padding: 16px !important; }
-html.m2 #four-pillars .grid.sm\:grid-cols-2 > div > div:first-child { font-size: 28px !important; margin-bottom: 8px !important; }
-html.m2 #four-pillars .grid.sm\:grid-cols-2 h3 { font-size: 12px !important; margin-bottom: 6px !important; }
-html.m2 #four-pillars .grid.sm\:grid-cols-2 p { font-size: 13px !important; }
-html.m2 #four-pillars p.mb-10 { margin-bottom: 20px !important; }
 
 /* Calendar: events as a swipe row. */
-html.m2 #calendar { padding-top: 56px !important; padding-bottom: 48px !important; }
 html.m2 #calendar .m2-hint, html.m2 #calendar .m2-dots { color: rgba(26,26,26,.7); }
 
-/* Hero: a real photo instead of the YouTube background (lighter on phones). */
-html.m2 .hero-video-wrap { background: #1A1A1A url(/images/li-community-1.webp) center / cover no-repeat; }

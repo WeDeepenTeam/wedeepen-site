@@ -2,9 +2,8 @@
   "_comment": "Site-wide navigation. Edit here, then run `npm run nav:sync` to stamp it into every page. `links` is the menu (display order); `cta` is the header button pair; `footer` is the \"Learn\" row at the top of every footer.",
   "links": [
     {
-      "label": "Membership",
-      "href": "/membership/",
-      "activePrefix": "/membership/"
+      "label": "Home",
+      "href": "/"
     },
     {
       "label": "Love Immersion",

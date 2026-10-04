@@ -1,5 +1,5 @@
 {
-  "_comment": "Standalone sections: generated like /blog/, not in the nav, never linked from main-site pages. Found through sitemap.xml, llms.txt, llms-full.txt and IndexNow. scripts/build-standalone.mjs renders them; scripts/standalone/check-isolation.mjs fails if a main-site page links in. To add a section, add an entry here and a renderer for its kind in build-standalone.mjs.",
+  "_comment": "Standalone sections: generated from data, not in the nav, never linked from main-site pages. Found through sitemap.xml, llms.txt, llms-full.txt and IndexNow. scripts/build-standalone.mjs renders them; scripts/standalone/check-isolation.mjs fails if a main-site page links in. To add a section, add an entry here and a renderer for its kind in build-standalone.mjs.",
   "sections": [
     {
       "id": "answers",

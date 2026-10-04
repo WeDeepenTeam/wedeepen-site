@@ -38,7 +38,7 @@
   }
 
   // Reddit pixel and Google Ads remarketing on every page, so ads can retarget
-  // blog, episode, faculty and retreat visitors too. Pages that load these
+  // episode, faculty and retreat visitors too. Pages that load these
   // inline (homepage, /membership/, /inperson) keep theirs; on those, the
   // page's own handlers send Reddit's AddToCart, so OWN_RDT stays false here.
   var RDT_ID = 'a2_jqnveg46gnqn';     // "WeDeepen Inc" Reddit ad account

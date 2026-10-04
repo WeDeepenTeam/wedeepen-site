@@ -12,3 +12,7 @@ scripts/gallery/.env
 .DS_Store
 Thumbs.db
 .gstack/
+
+# Python bytecode
+__pycache__/
+*.pyc

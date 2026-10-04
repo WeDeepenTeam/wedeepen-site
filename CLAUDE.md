@@ -133,18 +133,14 @@ Load these only when the task matches:
 5. Update [README.md](./README.md) "Key pages" table
 6. Commit + push
 
-### Blog (retired 2026-10-04)
-
-The blog was retired. `blog/` now holds only noindex redirect stubs (the old index and the 11 article addresses) that forward to `/guides/`. Don't add articles or link to `/blog/`; new long-form content goes in `/guides/` (one guide per podcast episode). The daily blog automation and the Blog build workflow are gone, and episode pages no longer have a "Related reading" block.
-
 ### Standalone sections (/answers/, /facts/)
 
-Standalone sections follow the /blog/ pattern on purpose: generated from data, **not** in the nav, and **never linked from main-site pages**. They link out to the main site (shared header/footer); crawlers and AI tools find them through `sitemap.xml`, `llms.txt`, `llms-full.txt` and IndexNow. Don't hand-edit anything under `answers/` or `facts/` except the data files.
+Standalone sections are, on purpose, generated from data, **not** in the nav, and **never linked from main-site pages**. They link out to the main site (shared header/footer); crawlers and AI tools find them through `sitemap.xml`, `llms.txt`, `llms-full.txt` and IndexNow. Don't hand-edit anything under `answers/` or `facts/` except the data files. Long-form content goes in `/guides/` (one guide per podcast episode).
 
 - `scripts/standalone/sections.json` — the list of sections. Add a section here (plus a renderer for its `kind` in `scripts/build-standalone.mjs` if it's a new kind).
 - `answers/data/pages.json` — answer-first pages (short answer, body, `<h2>FAQ</h2>`, `<h2>Sources</h2>`). Every page must pass `node scripts/standalone/check-page.mjs answers <slug> --links`. Covers: `python3 scripts/standalone/make-cover.py answers <slug> "<title>" "<kicker>"`.
 - `/facts/` is rendered from `llms.txt`, so the two can't disagree. Edit `llms.txt` and bump `verified` in `facts/data/facts.json`.
-- `node scripts/standalone/check-isolation.mjs` fails if any main-site page links into a standalone section (or into the retired /blog/; formerly except the podcast episodes' "Related reading"). Never add these sections to `scripts/nav/links.json`, the footer, or the 404 page.
+- `node scripts/standalone/check-isolation.mjs` fails if any main-site page links into a standalone section. Never add these sections to `scripts/nav/links.json`, the footer, or the 404 page.
 - `.github/workflows/standalone-build.yml` ("Standalone build") runs the checks on PRs and, on main, renders, updates the sitemap and `llms-full.txt`, commits, pings IndexNow, and requests a Pages build.
 - Rebuild locally: `npm run standalone:build`; check: `npm run standalone:check`.
 

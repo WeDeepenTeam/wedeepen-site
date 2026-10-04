@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 /**
  * check-page.mjs — quality gate for a page in a standalone collection section
- * (e.g. /answers/). Adapted from scripts/blog/check-article.mjs: same voice
- * rules and price list, but sized for answer-first pages rather than
+ * (e.g. /answers/). Voice rules and price list, but sized for answer-first pages rather than
  * long-form articles.
  *
  *   node scripts/standalone/check-page.mjs answers <slug>           # structure, voice, facts
@@ -22,10 +21,6 @@ const { sections } = JSON.parse(await fs.readFile(path.join(ROOT, 'scripts/stand
 const sec = sections.find((s) => s.id === secId && s.kind === 'collection');
 if (!sec || !slugArg) { console.error('usage: check-page.mjs <collection-section-id> <slug|--all> [--links]'); process.exit(1); }
 const pages = JSON.parse(await fs.readFile(path.join(ROOT, sec.data), 'utf8')).pages || [];
-const blogSlugs = new Set([
-  ...(JSON.parse(await fs.readFile(path.join(ROOT, 'blog/data/articles.json'), 'utf8').catch(() => '{}')).articles || []),
-  ...(JSON.parse(await fs.readFile(path.join(ROOT, 'blog/data/own-articles.json'), 'utf8').catch(() => '{}')).articles || []),
-].map((a) => a.slug));
 const targets = slugArg === '--all' ? pages.map((p) => p.slug) : [slugArg];
 
 const SIGNATURE = [
@@ -63,7 +58,6 @@ for (const slug of targets) {
   }
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) fail(`slug is not URL-safe: ${slug}`);
   if (pages.filter((x) => x.slug === slug).length > 1) fail('slug appears more than once');
-  if (blogSlugs.has(slug)) warn('slug is also a blog slug; consider a distinct slug to avoid duplicate-topic pages');
   if (Number.isNaN(Date.parse(a.created_at))) fail('created_at is not an ISO date');
 
   const html = String(a.content_html || '');

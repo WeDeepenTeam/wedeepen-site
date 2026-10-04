@@ -13,8 +13,8 @@
  *
  * Output goes between <!-- seo:schema --> and <!-- /seo:schema --> markers,
  * inserted just before </head> the first time. Episode pages get their
- * breadcrumb from podcast/data/generate_episode_pages.py; blog posts from
- * build-blog.mjs; /podcast/archive/ from build-podcast-archive.mjs.
+ * breadcrumb from podcast/data/generate_episode_pages.py; /podcast/archive/
+ * from build-podcast-archive.mjs.
  *
  *   npm run seo:schema          regenerate
  *   npm run seo:schema:check    fail if any page is stale

@@ -5,17 +5,14 @@ URL structure matches the existing wedeepen.com pattern for SEO preservation.
 
 Re-run this script any time episodes.json is refreshed, then
 `npm run nav:sync` (it stamps the nav and footer rows). The weekly podcast
-sync (scripts/podcast/sync-feed.py) does both. The blog was retired on
-2026-10-04, so the "Related reading" block is empty and omitted.
+sync (scripts/podcast/sync-feed.py) does both.
 """
-import json, re, os, html, sys, math
+import json, re, os, html, sys
 from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 EPISODES_FILE = Path(__file__).resolve().parent / "episodes.json"
-ARTICLES_FILE = ROOT / "blog" / "data" / "articles.json"
-OWN_ARTICLES_FILE = ROOT / "blog" / "data" / "own-articles.json"
 OUTPUT_DIR = ROOT / "deepen-with-christina"
 
 def slugify(title: str) -> str:
@@ -187,79 +184,7 @@ def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
 
-# Words too common in this catalogue to say anything about topic.
-STOPWORDS = set("""a an and are as at be but by can do for from get has have how i if in into is it its
-me my no not of on or our out so than that the their them they this to up us was we what when
-where who why will with you your yours about after all also am any been being both did does each
-episode ep ml dwc yla podcast christina weber welcome mastering deepen love loving accomplice join
-today show just more most one other over some such then there these those through very way ways
-like make want need really know dont let lets new tips ideas guide""".split())
-
-
-def topic_words(text: str) -> set:
-    words = set()
-    for w in re.findall(r"[a-z]+", text.lower()):
-        if len(w) < 4 or w in STOPWORDS:
-            continue
-        # Crude stemming so "fights"/"fight" and "dating"/"date" meet.
-        for suffix in ("ing", "es", "s"):
-            if w.endswith(suffix) and len(w) - len(suffix) >= 4:
-                w = w[: -len(suffix)]
-                break
-        words.add(w)
-    return words
-
-
-def load_articles() -> list:
-    """Blog posts with their topic words, newest first."""
-    if not ARTICLES_FILE.exists():
-        return []
-    articles = json.loads(ARTICLES_FILE.read_text(encoding="utf-8")).get("articles", [])
-    # WeDeepen's own articles (daily in-house pipeline) win on slug collision.
-    if OWN_ARTICLES_FILE.exists():
-        own = json.loads(OWN_ARTICLES_FILE.read_text(encoding="utf-8")).get("articles", [])
-        own_slugs = {a.get("slug") for a in own}
-        articles = [a for a in articles if a.get("slug") not in own_slugs] + own
-    out = []
-    for a in articles:
-        if not a.get("slug") or not a.get("title"):
-            continue
-        kw = a.get("keywords") or ""
-        kw = " ".join(kw) if isinstance(kw, list) else str(kw)
-        out.append({
-            "slug": a["slug"],
-            "title": a["title"],
-            "blurb": a.get("meta_description") or "",
-            "created_at": a.get("created_at") or "",
-            "words": topic_words(a["title"] + " " + kw),
-        })
-    out.sort(key=lambda a: a["created_at"], reverse=True)
-    return out
-
-
-def related_articles(ep: dict, articles: list, weights: dict, limit: int = 2) -> list:
-    """The blog posts that share the most distinctive topic words with this
-    episode. Words are weighted by rarity across the episode catalogue, so
-    show-note boilerplate ("relationship", "intimacy journey") counts for
-    almost nothing. Falls back to the newest posts so every episode still
-    links into the blog."""
-    words = topic_words(ep.get("title", "") + " " + ep.get("description", ""))
-    scored = [(sum(weights.get(w, 0) for w in words & a["words"]), -i, a) for i, a in enumerate(articles)]
-    scored.sort(key=lambda t: (t[0], t[1]), reverse=True)
-    return [a for _, _, a in scored[:limit]]
-
-
-def word_weights(episodes: list) -> dict:
-    """Inverse document frequency of each topic word across all episodes."""
-    df = {}
-    for ep in episodes:
-        for w in topic_words(ep.get("title", "") + " " + ep.get("description", "")):
-            df[w] = df.get(w, 0) + 1
-    n = len(episodes)
-    return {w: math.log(n / c) for w, c in df.items()}
-
-
-def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
+def render_episode_page(ep: dict, related: list) -> str:
     ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
     desc_esc = html.escape(ep.get("description", ""))[:400]
@@ -308,24 +233,6 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 
     # Native audio URL from RSS enclosure (reliable, no external embed dependency)
     libsyn_slug = libsyn_embed_slug(ep.get("link", ""))
-
-    reading_section = ""
-    if reading:
-        reading_cards = "\n".join(f"""
-          <a href="/blog/{html.escape(a['slug'])}/" class="block rounded-xl p-5 transition hover:bg-white/[0.06]" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
-            <p class="font-heading text-lg text-white leading-snug">{html.escape(a['title'])}</p>
-            <p class="text-white/55 text-sm mt-2 leading-relaxed">{html.escape(a['blurb'])}</p>
-          </a>""" for a in reading)
-        reading_section = f"""
-  <!-- RELATED READING -->
-  <section class="pb-16 md:pb-20 px-6" style="background: #221618;">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-5">Related Reading</p>
-      <div class="grid gap-3 md:grid-cols-2">{reading_cards}
-      </div>
-    </div>
-  </section>
-"""
 
     related_cards = "\n".join([f"""
           <a href="{quote(f"/deepen-with-christina/{slugify(r['title'])}/")}" class="flex gap-4 p-4 rounded-xl transition" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
@@ -589,7 +496,6 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
       <div class="text-white/75 text-base leading-relaxed episode-body">{desc_long_html}</div>
     </div>
   </section>
-{reading_section}
 
   <!-- RELATED -->
   <section class="py-16 md:py-20 px-6 bg-ink">
@@ -654,10 +560,6 @@ def main():
     episodes = data["episodes"]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Each episode links to the 1-2 closest blog posts.
-    articles = load_articles()
-    weights = word_weights(episodes)
-
     generated = 0
     for i, ep in enumerate(episodes):
         if not ep.get("title"):
@@ -674,7 +576,7 @@ def main():
         window = [j for j in (i - 2, i - 1, i + 1, i + 2) if 0 <= j < len(episodes)]
         related = [episodes[j] for j in window[:3]]
 
-        page_html = render_episode_page(ep, related, related_articles(ep, articles, weights))
+        page_html = render_episode_page(ep, related)
         out_dir = OUTPUT_DIR / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(ensure_main(page_html), encoding="utf-8")

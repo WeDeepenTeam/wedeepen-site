@@ -13,7 +13,7 @@ channel feed when the episode code (e.g. "ML 002") appears in a video title.
 Spotify has no public lookup, so new entries leave it blank and the page falls
 back to the show link; add the episode URL by hand if wanted.
 
-After running it, rebuild (same steps as the Blog build workflow):
+After running it, rebuild:
     python3 podcast/data/generate_episode_pages.py && node scripts/build-nav.mjs
     node scripts/build-podcast-archive.mjs && node scripts/build-llms-full.mjs
 """

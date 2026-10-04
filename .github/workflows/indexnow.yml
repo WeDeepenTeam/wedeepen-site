@@ -1,6 +1,6 @@
 # Submit changed pages to IndexNow (Bing, and through it ChatGPT search and
-# Copilot) after every push to main that touches a page. The blog and events
-# syncs push with GITHUB_TOKEN, which doesn't trigger this workflow, so they
+# Copilot) after every push to main that touches a page. The events
+# sync pushes with GITHUB_TOKEN, which doesn't trigger this workflow, so they
 # call scripts/indexnow.mjs themselves.
 name: IndexNow
 

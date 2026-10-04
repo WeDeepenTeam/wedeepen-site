@@ -51,6 +51,11 @@ const API = process.env.BLG_API_BASE || 'https://api.babylovegrowth.ai/api/integ
 // Where BabyLoveGrowth hosted the blog before. Its articles link to each
 // other through this host; those links are rewritten to our /blog/ pages.
 const OLD_HOSTS = ['blog.wedeepen.com'];
+// Broken links inside BLG articles -> the working address (found in the site audit).
+const LINK_FIXES = {
+  // Real paper (Hammonds, Ribarsky & Soares 2020), fabricated Cambridge article id.
+  'https://www.cambridge.org/core/journals/journal-of-relationships-research/article/attached-and-apart-attachment-styles-and-selfdisclosure-in-longdistance-romantic-relationships/3A733333333333333333333333333333': 'https://doi.org/10.1017/jrr.2020.10',
+};
 // Old-site /blog/<slug> URLs that Cloudflare 301-redirects (see the Bulk
 // Redirect list). A redirect fires at the edge before GitHub Pages, so a new
 // article on one of these slugs would be unreachable until its redirect is removed.
@@ -242,6 +247,16 @@ function cleanHtml(html, slugs, title = '') {
       /\ssrc="https:\/\/(?:www\.)?(?:youtube\.com|youtube-nocookie\.com)\/embed\//i.test(m) ? m : '')
     .replace(/\son[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
     .replace(/(href|src)\s*=\s*(["'])\s*(?:javascript|vbscript|data):[^"']*\2/gi, '$1="#"');
+  // Links BabyLoveGrowth got wrong; corrected here so a re-sync can't bring them back.
+  for (const [bad, good] of Object.entries(LINK_FIXES)) html = html.split(`href="${bad}"`).join(`href="${good}"`);
+  // Table of contents: BLG sometimes numbers the headings ("1-topics…") but not
+  // the links to them ("#topics…"). Point each link at the heading it meant.
+  const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  html = html.replace(/href="#([^"]+)"/g, (m, frag) => {
+    if (ids.has(frag)) return m;
+    const match = [...ids].find((id) => id.replace(/^\d+-/, '') === frag);
+    return match ? `href="#${match}"` : m;
+  });
   for (const host of OLD_HOSTS) {
     const re = new RegExp(`href="https?://${host.replace(/\./g, '\\.')}(?:/blog)?/([a-z0-9-]+)/?"`, 'gi');
     html = html.replace(re, (m, slug) => (slugs.has(slug) ? `href="${URL_PATH}${slug}/"` : m));

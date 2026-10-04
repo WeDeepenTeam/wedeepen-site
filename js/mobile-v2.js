@@ -6,13 +6,15 @@
  * reshapes carry data-m2="..." markers in index.html; keep them.
  *
  * What it does, in page order:
- *  1. Moves "What Members Say" up under the hero, as a swipe row.
+ *  1. "What Members Say" cards become a swipe row (section stays in place).
  *  2. Turns long grids into swipe rows (membership cards, faculty, gallery).
  *  3. Adds a join prompt every few screens.
  *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
  *  6. "Your first Tuesday" timeline under "at a glance".
- *  7. Speed: no YouTube hero video (handled in index.html), fewer photos.
+ *
+ * Christina's photos, hero video and section order are left exactly as
+ * designed (her call, 2026-10-03); this only adds and reshapes grids.
  */
 (function () {
   'use strict';
@@ -60,14 +62,10 @@
   }
 
   function run() {
-    var hero = $('#hero');
 
-    // 1. Member proof right under the hero.
+    // 1. Member quotes as a swipe row, in their original spot.
     var testimonials = sec('testimonials');
-    if (hero && testimonials) {
-      hero.insertAdjacentElement('afterend', testimonials);
-      swipe($('.grid', testimonials));
-    }
+    if (testimonials) swipe($('.grid', testimonials));
 
     // 6. "Your first Tuesday" under "at a glance".
     var glance = sec('glance');

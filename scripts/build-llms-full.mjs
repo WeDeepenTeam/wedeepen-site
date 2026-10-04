@@ -39,7 +39,7 @@ const titleOf = (html) => decode((html.match(/<title>([\s\S]*?)<\/title>/) || [,
 const read = (p) => fs.readFile(path.join(ROOT, p === '/' ? 'index.html' : `${p.slice(1)}index.html`), 'utf8');
 
 const out = [`# WeDeepen: full text for language models`,
-  `> Plain-text version of wedeepen.com's core pages, blog, and podcast episode summaries. Generated from the live site's HTML; the linked pages are the source of truth. Index: ${SITE}/llms.txt`, ''];
+  `> Plain-text version of wedeepen.com's core pages, blog, answer pages, and podcast episode summaries. Generated from the live site's HTML; the linked pages are the source of truth. Index: ${SITE}/llms.txt`, ''];
 
 for (const p of CORE) {
   const html = await read(p);
@@ -56,6 +56,19 @@ for (const a of blog.sort((x, y) => String(y.created_at).localeCompare(String(x.
   // Posts often open by repeating their own title as a heading.
   const body = pageText(a.content_html || '').replace(new RegExp(`^#+ ${a.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*`), '');
   out.push(`## ${a.title}\n\nURL: ${SITE}/blog/${a.slug}/\nPublished: ${String(a.created_at).slice(0, 10)}\n\n${body}\n`);
+}
+
+// Standalone answer pages (scripts/standalone/sections.json, kind "collection").
+const sections = JSON.parse(await fs.readFile(path.join(ROOT, 'scripts/standalone/sections.json'), 'utf8').catch(() => '{}')).sections || [];
+let answerCount = 0;
+for (const sec of sections.filter((x) => x.kind === 'collection')) {
+  const pages = JSON.parse(await fs.readFile(path.join(ROOT, sec.data), 'utf8').catch(() => '{}')).pages || [];
+  if (!pages.length) continue;
+  out.push(`---\n\n# ${sec.label}\n`);
+  for (const a of pages) {
+    answerCount++;
+    out.push(`## ${a.title}\n\nURL: ${SITE}${sec.path}${a.slug}/\nPublished: ${String(a.created_at).slice(0, 10)}\n\nShort answer: ${a.short_answer}\n\n${pageText(a.content_html || '')}\n`);
+  }
 }
 
 // Episode URLs come from the generated pages themselves, matched by title.
@@ -76,4 +89,4 @@ for (const ep of episodes.filter((e) => e.title)) {
 
 const text = out.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
 await fs.writeFile(path.join(ROOT, 'llms-full.txt'), text, 'utf8');
-console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${blog.length} posts, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);
+console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${blog.length} posts, ${answerCount} answers, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);

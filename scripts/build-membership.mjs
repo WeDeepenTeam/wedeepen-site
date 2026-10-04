@@ -47,7 +47,7 @@ export function buildMembership(home) {
   // ---- Membership-only copy (ad landing page). The homepage keeps its own copy. ----
   // Hero subhead echoes the ads ("love is a trainable skill").
   html = replaceOnce(html,
-    /It&rsquo;s an expert-led community for getting better at how you date, communicate, handle conflict, build intimacy, and connect\./,
+    /WeDeepen is where you go to master dating, intimacy, and relationships alongside leading experts and a community committed to practicing love\./,
     'Love is a skill. Most of us were never taught it. Here, we practice it out loud, with experts who&rsquo;ve spent their careers on it.',
     'hero subhead');
   // Price-card line: lead with value, not fear.

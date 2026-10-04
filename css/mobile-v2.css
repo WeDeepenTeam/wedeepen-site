@@ -23,9 +23,9 @@ html.m2 .m2-swipe-gallery > * { flex-basis: 72%; }
 html.m2 .m2-hint {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   margin-top: 12px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
-  color: rgba(255,255,255,.45);
+  color: rgba(255,255,255,.65);
 }
-html.m2 .bg-cream .m2-hint { color: rgba(26,26,26,.45); }
+html.m2 .bg-cream .m2-hint { color: rgba(26,26,26,.7); }
 html.m2 .m2-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
 html.m2 .m2-dots span { width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: .25; transition: opacity .2s, width .2s; }
 html.m2 .m2-dots span.on { opacity: .9; width: 16px; }
@@ -94,7 +94,7 @@ html.m2 #four-pillars p.mb-10 { margin-bottom: 20px !important; }
 
 /* Calendar: events as a swipe row. */
 html.m2 #calendar { padding-top: 56px !important; padding-bottom: 48px !important; }
-html.m2 #calendar .m2-hint, html.m2 #calendar .m2-dots { color: rgba(26,26,26,.45); }
+html.m2 #calendar .m2-hint, html.m2 #calendar .m2-dots { color: rgba(26,26,26,.7); }
 
 /* Hero: a real photo instead of the YouTube background (lighter on phones). */
 html.m2 .hero-video-wrap { background: #1A1A1A url(/images/li-community-1.webp) center / cover no-repeat; }

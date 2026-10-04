@@ -37,6 +37,24 @@
     window.fbq('track', 'PageView');
   }
 
+  // Reddit pixel and Google Ads remarketing on every page, so ads can retarget
+  // blog, episode, faculty and retreat visitors too. Pages that load these
+  // inline (homepage, /membership/, /inperson) keep theirs; on those, the
+  // page's own handlers send Reddit's AddToCart, so OWN_RDT stays false here.
+  var RDT_ID = 'a2_jqnveg46gnqn';     // "WeDeepen Inc" Reddit ad account
+  var ADS_ID = 'AW-18481553095';
+  var OWN_RDT = false;
+  if (IS_PROD && !window.rdt) {
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    window.rdt('init', RDT_ID);
+    window.rdt('track', 'PageVisit');
+    OWN_RDT = true;
+  }
+  if (IS_PROD && typeof window.gtag === 'function') {
+    var hasAds = (window.dataLayer || []).some(function (x) { return x && x[0] === 'config' && x[1] === ADS_ID; });
+    if (!hasAds) window.gtag('config', ADS_ID);
+  }
+
   // First match wins. `type` becomes checkout_type in GA4 and content_category in Meta.
   // `value` is sent only where the price is fixed.
   var DESTINATIONS = [
@@ -74,6 +92,8 @@
         if (d.value) { fbParams.value = d.value; fbParams.currency = 'USD'; }
         window.fbq('track', 'InitiateCheckout', fbParams);
       }
+
+      if (OWN_RDT) window.rdt('track', 'AddToCart');
       return;
     }
   }, true);

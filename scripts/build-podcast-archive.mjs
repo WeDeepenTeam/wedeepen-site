@@ -18,6 +18,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ensureMain } from './lib/ensure-main.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DONOR = path.join(ROOT, 'podcast/index.html');
@@ -81,7 +82,8 @@ head = head
 // Split on the section tag, not the comment banner above it: the header itself
 // is introduced by an identical banner, so a comment-based split silently
 // returned an empty shell.
-let shellTop = slice(donor, '<body class="bg-ink text-white">', '\n  <section');
+// The donor's own <main> wrapper is page content, not shell: drop it (ensureMain adds one per page).
+let shellTop = slice(donor, '<body class="bg-ink text-white">', '\n  <section').replace(/\s*<main\b[^>]*>/, '');
 // Drop only the trailing comment banner that introduced the removed section.
 // The comment body is tempered so it cannot run past its own '-->' and
 // swallow the header, which is exactly what a lazy [\s\S]*? did here.
@@ -208,7 +210,7 @@ ${footer}
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
   <script src="/js/lead-capture.js?v=47" defer></script>
-  <script src="/js/mobile-site.js?v=1" defer></script>
+  <script src="/js/mobile-site.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -221,5 +223,5 @@ const hubNext = hub.replace(/\b\d{3} episodes\b/g, `${episodes.length} episodes`
 if (hubNext !== hub) await fs.writeFile(HUB, hubNext, 'utf8');
 
 await fs.mkdir(OUT_DIR, { recursive: true });
-await fs.writeFile(path.join(OUT_DIR, 'index.html'), page, 'utf8');
+await fs.writeFile(path.join(OUT_DIR, 'index.html'), ensureMain(page), 'utf8');
 console.log(`Wrote podcast/archive/index.html — ${episodes.length} episodes across ${years.length} years`);

@@ -34,6 +34,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderNavLinks, renderNavCta, START, END, CTA_START, CTA_END } from './nav/render.mjs';
+import { ensureMain } from './lib/ensure-main.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DONOR = path.join(ROOT, 'podcast/index.html');
@@ -200,7 +201,8 @@ function borrowShell(donor) {
   if (!head.includes('plugins=typography')) {
     throw new Error('build-blog: could not enable the Tailwind typography plugin; the donor\'s Tailwind <script> tag changed.');
   }
-  let top = slice(donor, '<body class="bg-ink text-white">', '\n  <section');
+  // The donor's own <main> wrapper is page content, not shell: drop it (ensureMain adds one per page).
+  let top = slice(donor, '<body class="bg-ink text-white">', '\n  <section').replace(/\s*<main\b[^>]*>/, '');
   top = stampNav(top.replace(/\s*<!--(?:(?!-->)[\s\S])*-->\s*$/, '\n'));
   for (const needle of ['id="wd-header"', 'id="mobile-nav"', 'id="mobile-toggle"']) {
     if (!top.includes(needle)) throw new Error(`build-blog: borrowed shell is missing ${needle}. The donor layout changed; update the split markers.`);
@@ -282,7 +284,7 @@ const tail = `  <script>
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
   <script src="/js/lead-capture.js?v=47" defer></script>
-  <script src="/js/mobile-site.js?v=1" defer></script>
+  <script src="/js/mobile-site.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -477,10 +479,10 @@ async function render() {
   }
 
   await fs.mkdir(BLOG_DIR, { recursive: true });
-  await fs.writeFile(path.join(BLOG_DIR, 'index.html'), indexPage(shell, articles), 'utf8');
+  await fs.writeFile(path.join(BLOG_DIR, 'index.html'), ensureMain(indexPage(shell, articles)), 'utf8');
   for (const a of articles) {
     await fs.mkdir(path.join(BLOG_DIR, a.slug), { recursive: true });
-    await fs.writeFile(path.join(BLOG_DIR, a.slug, 'index.html'), articlePage(shell, a, slugs), 'utf8');
+    await fs.writeFile(path.join(BLOG_DIR, a.slug, 'index.html'), ensureMain(articlePage(shell, a, slugs)), 'utf8');
   }
   await fs.writeFile(path.join(BLOG_DIR, 'feed.xml'), feed(articles), 'utf8');
   await updateSitemap(articles);

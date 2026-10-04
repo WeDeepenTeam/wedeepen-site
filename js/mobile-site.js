@@ -68,7 +68,7 @@
     + '.ms-pad{height:72px;}'
     + '.ms-swipe{display:flex !important;flex-wrap:nowrap !important;justify-content:flex-start !important;gap:14px !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-24px;margin-right:-24px;padding:0 24px 6px;scroll-padding:0 24px;}'
     + '.ms-swipe::-webkit-scrollbar{display:none;}.ms-swipe>*{flex:0 0 62%;scroll-snap-align:start;}'
-    + '.ms-hint{text-align:center;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.45;}'
+    + '.ms-hint{text-align:center;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;}'
     + '.ms-clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}'
     + '.ms-more{background:none;border:0;padding:6px 0;margin-top:4px;color:#C9A277;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;}'
     + '.ms-hide{display:none !important;}'
@@ -101,6 +101,11 @@
   function swipe(row) {
     if (!row) return;
     row.classList.add('ms-swipe');
+    // Keyboard users can focus the row and scroll it with the arrow keys.
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'region');
+    var h = row.closest('section') && row.closest('section').querySelector('h2');
+    row.setAttribute('aria-label', (h ? h.textContent.trim() : 'Cards') + ' (scrolls sideways)');
     var hint = el('<p class="ms-hint" aria-hidden="true">Swipe &rarr;</p>');
     row.insertAdjacentElement('afterend', hint);
     row.addEventListener('scroll', function () { if (row.scrollLeft > 20) hint.style.visibility = 'hidden'; }, { passive: true });
@@ -142,7 +147,9 @@
       '</a>'
     );
     document.body.appendChild(el('<div class="ms-pad" aria-hidden="true"></div>'));
-    document.body.appendChild(bar);
+    var aside = el('<aside aria-label="Join WeDeepen"></aside>');
+    aside.appendChild(bar);
+    document.body.appendChild(aside);
     var scrolled = false, popup = false;
     function paint() { bar.classList.toggle('on', scrolled && !popup); }
     window.addEventListener('scroll', function () {

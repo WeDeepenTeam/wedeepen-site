@@ -73,7 +73,7 @@ export function renderFooterLearn(indent = '') {
   return [
     `${indent}${FOOTER_START}`,
     `${indent}<nav aria-label="Learn" class="max-w-site mx-auto px-6 mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/50 text-xs">`,
-    `${indent}  <span class="uppercase tracking-widest text-white/30">Learn</span>`,
+    `${indent}  <span class="uppercase tracking-widest text-white/55">Learn</span>`,
     ...links,
     `${indent}</nav>`,
     `${indent}${FOOTER_END}`,

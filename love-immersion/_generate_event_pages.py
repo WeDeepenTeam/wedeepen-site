@@ -111,7 +111,7 @@ TEMPLATE = r"""<!DOCTYPE html>
         extend: {{
           colors: {{
             rose:    {{ deep: '#A01B4A', light: '#C4577A' }},
-            pink:    {{ hot: '#E8337A', bright: '#FF4F8C' }},
+            pink:    {{ hot: '#D92B6F', bright: '#FF4F8C' }},
             teal:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
             gold:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
             charcoal: '#2D2D2D',
@@ -194,7 +194,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     }}
 
     .btn-pink {{
-      background: #E8337A; color: #fff;
+      background: #D92B6F; color: #fff;
       padding: 14px 32px; border-radius: 12px;
       font-weight: 600; font-size: 0.95rem;
       transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
@@ -449,22 +449,22 @@ TEMPLATE = r"""<!DOCTYPE html>
           <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="text-charcoal/80 text-sm leading-relaxed mb-4">The hot seats were 10/10 &mdash; and not just mine. I learned just as much watching others. I'd never experienced anything like that.</p>
           <p class="text-charcoal font-semibold text-sm">Joshua W.</p>
-          <p class="text-charcoal/50 text-xs">Austin Entrepreneur</p>
+          <p class="text-charcoal/70 text-xs">Austin Entrepreneur</p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-sm">
           <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="text-charcoal/80 text-sm leading-relaxed mb-4">The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with.</p>
           <p class="text-charcoal font-semibold text-sm">Krista &amp; Thomas</p>
-          <p class="text-charcoal/50 text-xs">Couple of 15 Years</p>
+          <p class="text-charcoal/70 text-xs">Couple of 15 Years</p>
         </div>
         <div class="bg-white rounded-xl p-6 shadow-sm">
           <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="text-charcoal/80 text-sm leading-relaxed mb-4">Seeing everyone as 'the one' changed my life. Christina said it once during the immersion, and it opened my heart in a way I'll never forget.</p>
           <p class="text-charcoal font-semibold text-sm">Mo M.</p>
-          <p class="text-charcoal/50 text-xs">Summit at OMEGA Participant</p>
+          <p class="text-charcoal/70 text-xs">Summit at OMEGA Participant</p>
         </div>
       </div>
-      <p class="text-center text-charcoal/50 text-sm italic mt-8">70% of participants return for another Immersion.</p>
+      <p class="text-center text-charcoal/70 text-sm italic mt-8">70% of participants return for another Immersion.</p>
     </div>
   </section>
 
@@ -554,7 +554,7 @@ TEMPLATE = r"""<!DOCTYPE html>
       <a href="/" class="inline-block mb-4">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60">
       </a>
-      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved.</p>
+      <p class="text-white/55 text-xs">&copy; 2026 WeDeepen. All rights reserved.</p>
     </div>
   </footer>
 

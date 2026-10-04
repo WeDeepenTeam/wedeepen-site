@@ -1,4 +1,4 @@
-# Build the standalone sections (/answers/, /facts/) whenever their data changes.
+# Build the standalone sections (/answers/, /guides/, /facts/) whenever their data changes.
 #
 # Standalone sections work like /blog/: generated from data files, not in the
 # nav, never linked from main-site pages, and found by crawlers through
@@ -15,6 +15,7 @@ on:
     branches: [main]
     paths:
       - 'answers/data/**'
+      - 'guides/data/**'
       - 'facts/data/**'
       - 'llms.txt'
       - 'scripts/build-standalone.mjs'
@@ -22,6 +23,7 @@ on:
   pull_request:
     paths:
       - 'answers/**'
+      - 'guides/**'
       - 'facts/**'
       - 'llms.txt'
       - 'scripts/build-standalone.mjs'
@@ -50,7 +52,7 @@ jobs:
       - name: Main site must not link into standalone sections
         run: node scripts/standalone/check-isolation.mjs
       - name: Answer pages pass the quality gate
-        run: node scripts/standalone/check-page.mjs answers --all
+        run: node scripts/standalone/check-page.mjs answers --all && node scripts/standalone/check-page.mjs guides --all
 
   build:
     if: github.event_name != 'pull_request'
@@ -74,18 +76,18 @@ jobs:
       - name: Checks
         run: |
           node scripts/standalone/check-isolation.mjs
-          node scripts/standalone/check-page.mjs answers --all
+          node scripts/standalone/check-page.mjs answers --all && node scripts/standalone/check-page.mjs guides --all
           node scripts/build-nav.mjs --check
 
       - name: Commit and push if anything changed
         id: commit
         run: |
-          git add answers facts images/answers sitemap.xml llms-full.txt
+          git add answers guides facts images/answers images/guides sitemap.xml llms-full.txt
           if git diff --cached --quiet; then
             echo "Nothing to rebuild."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             # A data-only push still needs IndexNow for the pages it changed.
-            echo "files=$(git diff --name-only HEAD~1 HEAD | grep -E '^(answers|facts)/.*index\.html$|^llms(-full)?\.txt$' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+            echo "files=$(git diff --name-only HEAD~1 HEAD | grep -E '^(answers|guides|facts)/.*index\.html$|^llms(-full)?\.txt$' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name 'github-actions[bot]'

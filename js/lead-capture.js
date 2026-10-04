@@ -54,30 +54,30 @@
   // only (the hero sells the $99); a hook with `href` would send the bar
   // button straight there instead of opening the popup.
   var HOOKS = [
-    { id: 'single-again',
-      bar: '<strong class="wd-bar-gold">Single again?</strong> Here&#39;s how to make sure it works this time.',
-      plain: 'Single again? Here\'s how to make sure it works this time.',
-      title: 'Single again?',
-      sub: 'Private invitations, new dates, and everything it takes to make it work this time.' },
-    { id: 'you-or-them',
-      bar: '<strong class="wd-bar-gold">Is it you, or is it them?</strong> Find out before the next one.',
-      plain: 'Is it you, or is it them? Find out before the next one.',
-      title: 'Is it you, or is it them?',
-      sub: 'Private invitations, new dates, and the questions that tell you which one it is.' },
-    { id: 'losing-yourself',
-      bar: '<strong class="wd-bar-gold">Stop losing yourself</strong> in relationships.',
-      plain: 'Stop losing yourself in relationships.',
-      title: 'Stop losing yourself in relationships.',
+    { id: 'not-alone',
+      bar: 'Don&#39;t do your love life alone.',
+      plain: 'Don\'t do your love life alone.',
+      title: 'Don&#39;t do your love life alone.',
+      sub: 'Private invitations, new dates, and a room full of people learning love together.' },
+    { id: 'trainable-skill',
+      bar: 'Love is a trainable skill. Train with us.',
+      plain: 'Love is a trainable skill. Train with us.',
+      title: 'Love is a trainable skill.',
+      sub: 'Private invitations, new dates, and everything it takes to practice it.' },
+    { id: 'stay-yourself',
+      bar: 'Learn to stay yourself in love.',
+      plain: 'Learn to stay yourself in love.',
+      title: 'Learn to stay yourself in love.',
       sub: 'Private invitations, new dates, and everything it takes to stay yourself in love.' },
-    { id: 'partner-of-dreams',
-      bar: '<strong class="wd-bar-gold">Align with the partner of your dreams.</strong>',
-      plain: 'Align with the partner of your dreams.',
-      title: 'Align with the partner of your dreams.',
-      sub: 'Private invitations, new dates, and everything it takes to find them and keep them.' },
-    { id: 'together-drifting',
-      bar: '<strong class="wd-bar-gold">Together, but drifting?</strong> Desire can be rebuilt.',
-      plain: 'Together, but drifting? Desire can be rebuilt.',
-      title: 'Together, but drifting?',
+    { id: 'couples-study',
+      bar: 'Strong couples study love. Join them.',
+      plain: 'Strong couples study love. Join them.',
+      title: 'Strong couples study love.',
+      sub: 'Private invitations, new dates, and a room of couples who take love seriously.' },
+    { id: 'desire-rebuilt',
+      bar: 'Desire can be rebuilt. Learn how.',
+      plain: 'Desire can be rebuilt. Learn how.',
+      title: 'Desire can be rebuilt.',
       sub: 'Private invitations, new dates, and everything it takes to bring desire back.' }
   ];
   var HOOK = (function () {
@@ -194,6 +194,11 @@
     + '#wd-lead-bar.wd-gold .wd-bar-join{background:#1A1A1A;color:#F4EDE0;}'
     + '#wd-lead-bar.wd-gold .wd-bar-join:hover{background:#2D2D2D;filter:none;}'
     + '#wd-lead-bar.wd-gold .wd-bar-x{color:#1A1A1A;}'
+    + '#wd-lead-bar.wd-slim{font-size:13px;padding:8px 44px 8px 16px;}'
+    + '#wd-lead-bar.wd-slim .wd-bar-msg,#wd-lead-bar.wd-slim .wd-bar-line1{font-weight:400;color:#F4EDE0;}'
+    + '#wd-lead-bar a.wd-bar-cta,#wd-lead-bar button.wd-bar-cta{display:inline;background:none;border:0;border-radius:0;margin:0;padding:0 2px;color:#C9A277;font:inherit;font-weight:700;letter-spacing:.01em;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;cursor:pointer;white-space:nowrap;}'
+    + '#wd-lead-bar a.wd-bar-cta:hover,#wd-lead-bar button.wd-bar-cta:hover{color:#E9CDA0;filter:none;}'
+    + '@media (max-width:640px){#wd-lead-bar.wd-slim{padding:8px 34px 8px 12px;}}'
     + '#wd-lead-overlay{position:fixed;inset:0;z-index:100;background:rgba(10,8,9,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;}'
     + '#wd-lead-overlay.wd-open{display:flex;}'
     + '#wd-lead-modal{position:relative;width:100%;max-width:430px;background:#1A1A1A;border:1px solid rgba(201,162,119,.35);border-radius:20px;padding:34px 30px 28px;color:#F4EDE0;font-family:"DM Sans",Inter,system-ui,sans-serif;box-shadow:0 24px 64px rgba(0,0,0,.5);max-height:92vh;overflow-y:auto;}'
@@ -291,6 +296,7 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
     if (IS_MOBILE) {
+      if (!(ON_LI_PAGE && PROMO_ACTIVE)) bar.classList.add('wd-slim');
       // Mobile runs list capture everywhere except LI pages, where the promo
       // code + countdown is the useful ribbon (reserve CTAs cover the page).
       bar.innerHTML = (ON_LI_PAGE && PROMO_ACTIVE)
@@ -302,20 +308,19 @@
         :
         // One tap opens Messages with COUNT ME IN typed (same list as desktop).
         '<span class="wd-bar-stack">' +
-          '<span class="wd-bar-line1">' + HOOK.bar + '</span>' +
-          '<a class="wd-bar-join wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a>' +
+          '<span class="wd-bar-line1">' + HOOK.bar + ' <a class="wd-bar-cta wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a></span>' +
         '</span>' +
         '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     } else {
-      bar.classList.add('wd-gold');
+      bar.classList.add(PROMO_ACTIVE ? 'wd-gold' : 'wd-slim');
       bar.innerHTML = PROMO_ACTIVE
         ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $500 through Aug 16th &middot; <strong>' + promoCountdown() + '</strong>.' +
           (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
-        : '<span class="wd-bar-msg">' + HOOK.bar + '</span>' +
+        : '<span class="wd-bar-msg">' + HOOK.bar + ' ' +
           (HOOK.href
             ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
-            : '<button type="button" class="wd-bar-join">Count Me In</button>') +
+            : '<button type="button" class="wd-bar-join wd-bar-cta">Count Me In</button>') + '</span>' +
           '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     }
     document.body.insertBefore(bar, document.body.firstChild);
@@ -344,12 +349,12 @@
     var join = bar.querySelector('button.wd-bar-join');
     if (join) join.addEventListener('click', function () { openPopup(); });
     // Phone headline stays on one line: shrink the type until it fits
-    // (14px down to 11px); only the longest hooks on the narrowest phones wrap.
+    // (13px down to 11px); only the longest hooks on the narrowest phones wrap.
     var line1 = bar.querySelector('.wd-bar-line1');
     function fitLine() {
       if (!line1) return;
       line1.style.whiteSpace = 'nowrap';
-      var size = 14;
+      var size = 13;
       line1.style.fontSize = size + 'px';
       while (line1.scrollWidth > line1.clientWidth && size > 11) {
         size -= 0.5;

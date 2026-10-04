@@ -7,7 +7,7 @@
        /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
-  <link rel="stylesheet" href="/css/mobile-v2.css?v=1" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/mobile-v2.css?v=2" media="(max-width:1023px)">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
@@ -18,7 +18,7 @@
     gtag('config', 'G-LZ0EY5X593');
     gtag('config', 'AW-18481553095');
   </script>
-  <script src="/js/checkout-tracking.js?v=2" defer></script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
 
   <!-- Meta pixel. Same "WeDeepen Website" dataset the /inperson page uses, so both
        pages feed one retargeting pool. Homepage fires PageView only: ViewContent is
@@ -282,7 +282,7 @@
           colors: {
             // Love Club sub-brand accents
             rose:    { deep: '#A01B4A', light: '#C4577A' },
-            pink:    { hot: '#E8337A', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            pink:    { hot: '#D92B6F', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
             // WeDeepen parent platform — Teal is the signature thread
             teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
             gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }, // alias to teal during migration
@@ -463,7 +463,7 @@
     .btn-rose:hover { background: #851437; transform: translateY(-1px); }
 
     .btn-pink {
-      background: #E8337A; color: #fff;
+      background: #D92B6F; color: #fff;
       padding: 14px 32px; border-radius: 12px;
       font-weight: 600; font-size: 0.95rem;
       transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
@@ -584,6 +584,7 @@
   </div>
 
 
+  <main id="main">
   <!-- ============================
        SECTION 1: HERO
        ============================ -->
@@ -1131,7 +1132,7 @@
         <div class="flex items-center justify-center gap-2 mb-2">
           <div class="flex text-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <span class="text-charcoal font-semibold">5.0</span>
-          <span class="text-charcoal/50 text-sm">Google Reviews</span>
+          <span class="text-charcoal/70 text-sm">Google Reviews</span>
         </div>
       </div>
 
@@ -1146,7 +1147,7 @@
             <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Bo L.</p>
-              <p class="text-charcoal/50 text-xs">Retired Entrepreneur &amp; Love Club Member</p>
+              <p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Love Club Member</p>
             </div>
           </div>
         </div>
@@ -1160,7 +1161,7 @@
             <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">P</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Phil G.</p>
-              <p class="text-charcoal/50 text-xs">CPA from Miami, Member &amp; Love Immersion Participant</p>
+              <p class="text-charcoal/70 text-xs">CPA from Miami, Member &amp; Love Immersion Participant</p>
             </div>
           </div>
         </div>
@@ -1174,7 +1175,7 @@
             <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">K</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Krista &amp; Thomas</p>
-              <p class="text-charcoal/50 text-xs">Couple of 15 Years &amp; Love Immersion Participants</p>
+              <p class="text-charcoal/70 text-xs">Couple of 15 Years &amp; Love Immersion Participants</p>
             </div>
           </div>
         </div>
@@ -1188,7 +1189,7 @@
             <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">J</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Joshua W.</p>
-              <p class="text-charcoal/50 text-xs">Austin Entrepreneur &amp; Love Immersion Participant</p>
+              <p class="text-charcoal/70 text-xs">Austin Entrepreneur &amp; Love Immersion Participant</p>
             </div>
           </div>
         </div>
@@ -1202,7 +1203,7 @@
             <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">K</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Karolina &amp; John</p>
-              <p class="text-charcoal/50 text-xs">Austin Couple &amp; Love Immersion Participants</p>
+              <p class="text-charcoal/70 text-xs">Austin Couple &amp; Love Immersion Participants</p>
             </div>
           </div>
         </div>
@@ -1216,7 +1217,7 @@
             <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">M</div>
             <div>
               <p class="text-charcoal font-semibold text-sm">Mo M.</p>
-              <p class="text-charcoal/50 text-xs">WeDeepen Summit at OMEGA Participant</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit at OMEGA Participant</p>
             </div>
           </div>
         </div>
@@ -1588,10 +1589,11 @@
   <!-- ============================
        FOOTER
        ============================ -->
+  </main>
   <footer class="bg-ink border-t border-white/10 py-14">
     <!-- footer:learn -->
     <nav aria-label="Learn" class="max-w-site mx-auto px-6 mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/50 text-xs">
-      <span class="uppercase tracking-widest text-white/30">Learn</span>
+      <span class="uppercase tracking-widest text-white/55">Learn</span>
       <a href="/four-pillars/" class="hover:text-gold transition">Four Pillars</a>
       <a href="/podcast/archive/" class="hover:text-gold transition">Podcast Archive</a>
       <a href="/love-immersion/" class="hover:text-gold transition">Love Immersion</a>
@@ -1601,24 +1603,24 @@
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
         <div>
           <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto">
-          <p class="text-white/40 text-sm mt-3 leading-relaxed max-w-xs">Your intimacy journey is your life story.</p>
+          <p class="text-white/60 text-sm mt-3 leading-relaxed max-w-xs">Your intimacy journey is your life story.</p>
         </div>
         <div class="flex gap-5">
-          <a href="https://www.facebook.com/WeDeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Facebook">
+          <a href="https://www.facebook.com/WeDeepen/" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Facebook">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Instagram">
+          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Instagram">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
-          <a href="https://www.youtube.com/@WeDeepen/videos" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="YouTube">
+          <a href="https://www.youtube.com/@WeDeepen/videos" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="YouTube">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
           </a>
-          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="text-white/40 hover:text-gold transition" aria-label="Spotify">
+          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Spotify">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
           </a>
         </div>
       </div>
-      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/60 text-xs">
         <p>&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
         <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
           <a href="/book-session-with-christina/" class="hover:text-gold transition">Book a Session</a>
@@ -1806,7 +1808,7 @@
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(160,27,74,0.10);color:#A01B4A;">New members</span>'
             : isIntegration
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Live practice</span>'
-            : '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(201,162,119,0.22);color:#8A6A3F;">Live + recorded</span>';
+            : '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(201,162,119,0.22);color:#7A5C34;">Live + recorded</span>';
           const loc = e.location_type === 'online' ? 'Online' : (e.location_label || 'Austin, TX');
           let timeLabel = '';
           if (e.location_type === 'online' && e.starts_at_iso) {
@@ -1816,7 +1818,7 @@
           }
           const blurb = (e.description || '').replace(/\s+/g, ' ').replace(/👉🏽.*$/, '').trim();
           const blurbHtml = blurb && !/^WeDeepen (In-Person|Love Immersion)/.test(blurb)
-            ? `<p class="text-charcoal/60 text-sm leading-relaxed mb-4">${blurb.length > 120 ? blurb.slice(0, 117).replace(/\s\S*$/, '') + '&hellip;' : blurb}</p>`
+            ? `<p class="text-charcoal/75 text-sm leading-relaxed mb-4">${blurb.length > 120 ? blurb.slice(0, 117).replace(/\s\S*$/, '') + '&hellip;' : blurb}</p>`
             : '';
 
           const eventUrl = resolveHomeEventUrl(e);
@@ -1828,7 +1830,7 @@
               <div class="p-5">
                 <p class="text-rose-deep text-xs uppercase tracking-wider mb-1">${dateLabel}</p>
                 <h3 class="font-semibold text-lg mb-1 leading-snug text-charcoal">${title}</h3>
-                <p class="text-charcoal/50 text-sm mb-3">${loc}${timeLabel}</p>
+                <p class="text-charcoal/70 text-sm mb-3">${loc}${timeLabel}</p>
                 ${blurbHtml}
                 <div class="flex items-center justify-between">
                   ${tagHtml}
@@ -1845,15 +1847,6 @@
       }
     })();
 
-    // Email signup handler (placeholder)
-    function handleEmailSignup(e) {
-      e.preventDefault();
-      const email = e.target.querySelector('input[type="email"]').value;
-      // TODO: Wire to email service (ConvertKit, Mailchimp, etc.)
-      console.log('Email signup:', email);
-      e.target.innerHTML = '<p class="text-gold text-sm py-3">Thanks! We\'ll be in touch.</p>';
-      return false;
-    }
 
     // Mobile join bar: the hero already has the same button, so keep the bar
     // off screen until the hero has scrolled away.
@@ -1984,17 +1977,19 @@
   </script>
 
   <script src="/js/lead-capture.js?v=47" defer></script>
-  <script src="/js/mobile-site.js?v=1" defer></script>
+  <script src="/js/mobile-site.js?v=3" defer></script>
   <script src="/js/social-proof.js?v=2" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
-  <script src="/js/mobile-v2.js?v=1" defer></script>
+  <script src="/js/mobile-v2.js?v=2" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
+  <aside aria-label="Join WeDeepen">
   <a data-cta="mobile-sticky" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" target="_blank" rel="noopener" id="mobile-join-bar"
      class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 text-white font-semibold py-4 px-6 transition-transform duration-300 translate-y-full"
      style="background:#A01B4A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Become a Member &middot; $99/month &rarr;
   </a>
+  </aside>
 
 </body>
 </html>

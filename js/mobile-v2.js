@@ -38,6 +38,11 @@
   function swipe(grid, extraClass) {
     if (!grid) return;
     grid.classList.add('m2-swipe');
+    // Keyboard users can focus the row and scroll it with the arrow keys.
+    grid.setAttribute('tabindex', '0');
+    grid.setAttribute('role', 'region');
+    var h = grid.closest('section') && grid.closest('section').querySelector('h2');
+    grid.setAttribute('aria-label', (h ? h.textContent.trim() : 'Cards') + ' (scrolls sideways)');
     if (extraClass) grid.classList.add(extraClass);
     var n = grid.children.length;
     var dots = el('<div class="m2-dots" aria-hidden="true"></div>');

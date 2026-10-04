@@ -78,7 +78,8 @@ export function borrowShell(donor, urlPath) {
   if (!head.includes('plugins=typography')) {
     throw new Error('standalone shell: could not enable the Tailwind typography plugin; the donor\'s Tailwind <script> tag changed.');
   }
-  let top = slice(donor, '<body class="bg-ink text-white">', '\n  <section');
+  // The donor's own <main> wrapper is page content, not shell: drop it (ensure-main adds one per page).
+  let top = slice(donor, '<body class="bg-ink text-white">', '\n  <section').replace(/\s*<main\b[^>]*>/, '');
   top = stampNav(top.replace(/\s*<!--(?:(?!-->)[\s\S])*-->\s*$/, '\n'), urlPath);
   for (const needle of ['id="wd-header"', 'id="mobile-nav"', 'id="mobile-toggle"']) {
     if (!top.includes(needle)) throw new Error(`standalone shell: borrowed shell is missing ${needle}. The donor layout changed.`);
@@ -121,7 +122,7 @@ const tail = `  <script>
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
   <script src="/js/lead-capture.js?v=47" defer></script>
-  <script src="/js/mobile-site.js?v=1" defer></script>
+  <script src="/js/mobile-site.js?v=3" defer></script>
 </body>
 </html>
 `;

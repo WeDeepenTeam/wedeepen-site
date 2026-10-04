@@ -75,6 +75,30 @@ DEAD_LINK_PREFIXES = (
 LINK_UPGRADES = {"http://imarituakli.com": "https://imarituakli.com"}
 
 
+def ensure_main(page: str) -> str:
+    """Wrap the content in <main id="main"> (accessibility landmark). Same logic as
+    scripts/lib/ensure-main.mjs; safe to run more than once."""
+    footer = page.rfind("<footer")
+    if footer == -1:
+        return page
+    line_start = lambda i: page.rfind("\n", 0, i) + 1
+    if not re.search(r"<main\b", page):
+        nav = page.find('id="mobile-nav"')
+        first = page.find("<section", 0 if nav == -1 else nav)
+        if first == -1 or first > footer:
+            return page
+        a = line_start(first)
+        before = page[:a].rstrip()
+        if before.endswith("-->"):  # keep a section's comment banner with it
+            a = line_start(before.rfind("<!--"))
+        b = line_start(footer)
+        return page[:a] + '  <main id="main">\n' + page[a:b] + "  </main>\n" + page[b:]
+    if "</main>" not in page:
+        b = line_start(footer)
+        return page[:b] + "  </main>\n" + page[b:]
+    return page
+
+
 def linkify(escaped: str) -> str:
     """Turn bare URLs/emails in already-escaped text into anchors."""
     def repl(m):
@@ -360,7 +384,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
     gtag('js', new Date());
     gtag('config', 'G-LZ0EY5X593');
   </script>
-  <script src="/js/checkout-tracking.js?v=1" defer></script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
 
   <title>{html.escape(seo_title(ep["title"], show))}</title>
   <meta name="description" content="{seo_desc_esc}">
@@ -400,7 +424,7 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
         extend: {{
           colors: {{
             rose:    {{ deep: '#A01B4A', light: '#C4577A' }},
-            pink:    {{ hot: '#E8337A', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' }},
+            pink:    {{ hot: '#D92B6F', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' }},
             teal:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
             gold:    {{ DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' }},
             charcoal: '#2D2D2D',
@@ -596,12 +620,12 @@ def render_episode_page(ep: dict, related: list, reading: list = ()) -> str:
 
   <footer class="bg-ink border-t border-white/10 py-12">
     <script src="/js/lead-capture.js?v=47" defer></script>
-    <script src="/js/mobile-site.js?v=1" defer></script>
+    <script src="/js/mobile-site.js?v=3" defer></script>
     <div class="max-w-site mx-auto px-6 text-center">
       <a href="/" class="inline-block mb-4">
         <img src="/images/deepen-logo-white.png" alt="DeePeN" class="h-6 w-auto mx-auto opacity-60" loading="lazy" decoding="async">
       </a>
-      <p class="text-white/30 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+      <p class="text-white/55 text-xs">&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
     </div>
   </footer>
 
@@ -652,7 +676,7 @@ def main():
         page_html = render_episode_page(ep, related, related_articles(ep, articles, weights))
         out_dir = OUTPUT_DIR / slug
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(page_html, encoding="utf-8")
+        (out_dir / "index.html").write_text(ensure_main(page_html), encoding="utf-8")
         generated += 1
 
     print(f"Generated {generated} episode pages into {OUTPUT_DIR}")

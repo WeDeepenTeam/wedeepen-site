@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """make-cover.py — branded cover for a standalone-section page.
 
-Same design as the retired blog covers (scripts/standalone/cover-base.py) (ink background, burgundy glow,
+Same design as the retired blog covers (ink background, burgundy glow,
 gold rule, Playfair title, WeDeepen wordmark), written to
 images/<section>/<slug>/cover.jpg with the section's URL in the corner.
 

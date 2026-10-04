@@ -6,12 +6,12 @@
  * reshapes carry data-m2="..." markers in index.html; keep them.
  *
  * What it does, in page order:
- *  1. Moves "What Members Say" up under the hero, as a swipe row.
+ *  1. Moves "What Members Say" up, right after Christina's opening argument.
  *  2. Turns long grids into swipe rows (membership cards, faculty, gallery).
  *  3. Adds a join prompt every few screens.
  *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
- *  6. "Your first Tuesday" timeline under "at a glance".
+ *  6. "Your first Tuesday" timeline right before the membership offer.
  *
  * Christina's photos and hero video are left exactly as designed (her call,
  * 2026-10-03); apart from the testimonials, her section order stays too.
@@ -63,15 +63,17 @@
 
   function run() {
 
-    // 1. Member proof right under the hero, as a swipe row (René, 2026-10-03).
-    var hero = $('#hero');
+    // Christina's opening argument (at a glance -> learning curve -> skills)
+    // leads, in her order. Our additions come after it.
+    // 1. Member proof right after her argument, as a swipe row.
+    var build = sec('build');
     var testimonials = sec('testimonials');
-    if (hero && testimonials) hero.insertAdjacentElement('afterend', testimonials);
+    if (build && testimonials) build.insertAdjacentElement('afterend', testimonials);
     if (testimonials) swipe($('.grid', testimonials));
 
-    // 6. "Your first Tuesday" under "at a glance".
-    var glance = sec('glance');
-    if (glance) {
+    // 6. "Your first Tuesday" right before the membership offer.
+    var offer = $('#membership');
+    if (offer) {
       var steps = el(
         '<section class="m2-steps" aria-label="Your first Tuesday">' +
           '<h2>Your <em>first Tuesday</em></h2>' +
@@ -86,7 +88,7 @@
       steps.appendChild(joinPrompt('first-tuesday', '', 'Join today &middot; $99/month'));
       steps.querySelector('.m2-cta .lead').remove();
       steps.querySelector('.m2-cta .sub').remove();
-      glance.insertAdjacentElement('afterend', steps);
+      offer.insertAdjacentElement('beforebegin', steps);
     }
 
     // 2. Swipe rows.
@@ -110,7 +112,6 @@
     }
 
     // 3. Join prompts every few screens.
-    var build = sec('build');
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this Tuesday.'));
     if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));
     var pillars = $('#four-pillars');

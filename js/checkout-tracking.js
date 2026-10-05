@@ -56,7 +56,9 @@
   }
 
   // First match wins. `type` becomes checkout_type in GA4 and content_category in Meta.
-  // `value` is sent only where the price is fixed.
+  // `value` is the fixed price where we know it; elsewhere Meta still gets
+  // value 0 + USD, which it needs to read the event (Events Manager flagged
+  // missing price/currency, 2026-10-05).
   var DESTINATIONS = [
     { type: 'membership', value: 99, test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/wedeepen-club-membership') === 0; } },
     { type: 'membership', test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/') === 0; } },
@@ -88,8 +90,7 @@
       }
 
       if (typeof window.fbq === 'function') {
-        var fbParams = { content_category: d.type, content_name: checkoutUrl };
-        if (d.value) { fbParams.value = d.value; fbParams.currency = 'USD'; }
+        var fbParams = { content_category: d.type, content_name: checkoutUrl, value: d.value || 0, currency: 'USD' };
         window.fbq('track', 'InitiateCheckout', fbParams);
       }
 

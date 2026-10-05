@@ -920,7 +920,7 @@
   function trackLead(how) {
     var label = 'Website popup sign-up';
     try {
-      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: label, content_category: how });
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: label, content_category: how, value: 0, currency: 'USD' });
       if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { lead_source: AD_FORM ? 'ad_landing' : 'popup', lead_method: how, hook: HOOK.id });
       if (typeof window.rdt === 'function') window.rdt('track', 'Lead');
     } catch (e) { /* tracking never blocks the signup */ }

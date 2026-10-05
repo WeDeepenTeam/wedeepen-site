@@ -19,7 +19,21 @@ on:
       - 'facts/data/**'
       - 'llms.txt'
       - 'scripts/build-standalone.mjs'
+      - 'scripts/build-llms-full.mjs'
       - 'scripts/standalone/**'
+      # llms-full.txt quotes these pages and the episode list, so rebuild it
+      # when they change (the retired Blog build used to do this daily).
+      - 'index.html'
+      - 'about/index.html'
+      - 'love-club/index.html'
+      - 'love-immersion/**/index.html'
+      - 'events/index.html'
+      - 'love-guides/index.html'
+      - 'book-session-with-christina/index.html'
+      - 'four-pillars/index.html'
+      - 'reviews/index.html'
+      - 'podcast/index.html'
+      - 'podcast/data/episodes.json'
   pull_request:
     paths:
       - 'answers/**'

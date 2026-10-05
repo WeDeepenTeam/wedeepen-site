@@ -16,7 +16,11 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://wedeepen.com';
-const CORE = ['/', '/about/', '/love-club/', '/love-immersion/october-2026/', '/events/', '/love-guides/',
+// /love-immersion/ is a redirect stub that points at the current retreat page,
+// so follow it rather than hardcoding a date that goes stale.
+const retreat = ((await fs.readFile(path.join(ROOT, 'love-immersion/index.html'), 'utf8').catch(() => ''))
+  .match(/location\.replace\('(\/love-immersion\/[a-z0-9-]+\/)'/) || [, '/love-immersion/october-2026/'])[1];
+const CORE = ['/', '/about/', '/love-club/', retreat, '/events/', '/love-guides/',
   '/book-session-with-christina/', '/four-pillars/', '/reviews/', '/podcast/'];
 
 const decode = (s) => s.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
@@ -77,4 +81,4 @@ for (const ep of episodes.filter((e) => e.title)) {
 
 const text = out.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
 await fs.writeFile(path.join(ROOT, 'llms-full.txt'), text, 'utf8');
-console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${answerCount} answers, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);
+console.log(`Wrote llms-full.txt: ${CORE.length} pages, ${answerCount} answer and guide pages, ${episodes.length} episodes, ${Math.round(text.length / 1024)} KB`);

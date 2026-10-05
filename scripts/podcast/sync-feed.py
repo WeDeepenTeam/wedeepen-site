@@ -5,6 +5,10 @@ podcast/data/episodes.json, so generate_episode_pages.py can build their pages.
 
     python3 scripts/podcast/sync-feed.py            # update episodes.json, print what was added
     python3 scripts/podcast/sync-feed.py --dry-run  # print only
+    python3 scripts/podcast/sync-feed.py --build    # update, rebuild, run checks
+
+The last line of output is always `RESULT {json}` (new episodes with their
+live URLs and missing links), so automations can read one line.
 
 Matching is by Libsyn episode link (falls back to normalized title), so it is
 safe to run repeatedly: existing entries are never modified or removed.
@@ -17,7 +21,7 @@ After running it, rebuild:
     python3 podcast/data/generate_episode_pages.py && node scripts/build-nav.mjs
     node scripts/build-podcast-archive.mjs && node scripts/build-llms-full.mjs
 """
-import html, json, re, sys, time, urllib.request
+import html, json, re, subprocess, sys, time, urllib.request
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -87,6 +91,8 @@ def main():
 
     feed = get(FEED)
     items = feed.split("<item>")[1:]
+    if not items:
+        sys.exit("error: the feed has no <item> entries (not RSS?)")
     new = []
     for raw in items:
         it = raw.split("</item>")[0]
@@ -114,6 +120,7 @@ def main():
 
     if not new:
         print("No new episodes.")
+        print("RESULT " + json.dumps({"new": []}))
         return
 
     # Apple Podcasts links (best effort).
@@ -142,6 +149,7 @@ def main():
     for e in new:
         print(f"NEW {e['date']} | {e['title']} | apple={'yes' if e['apple'] else 'no'} | youtube={e['youtube_id'] or 'no'}")
     if dry:
+        print("RESULT " + json.dumps({"new": [e["title"] for e in new], "dry_run": True}))
         return
     eps.extend(new)
     eps.sort(key=lambda e: e.get("date", ""), reverse=True)
@@ -150,6 +158,32 @@ def main():
     EPISODES.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Added {len(new)} episode(s); episodes.json now has {len(eps)}.")
     add_to_sitemap(new)
+    if "--build" in sys.argv:
+        build()
+    print("RESULT " + json.dumps({"new": [{
+        "title": e["title"],
+        "url": f"https://wedeepen.com/deepen-with-christina/{slugify(e['title'])}/",
+        "youtube_id": e["youtube_id"],
+        "missing": [k for k in ("apple", "spotify", "youtube_id") if not e[k]],
+    } for e in new]}, ensure_ascii=False))
+
+
+BUILD = [
+    ["python3", "podcast/data/generate_episode_pages.py"],
+    ["node", "scripts/build-nav.mjs"],
+    ["node", "scripts/build-podcast-archive.mjs"],
+    ["node", "scripts/build-llms-full.mjs"],
+    ["node", "scripts/build-nav.mjs", "--check"],
+    ["node", "scripts/standalone/check-isolation.mjs"],
+]
+
+
+def build():
+    for cmd in BUILD:
+        r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+        if r.returncode:
+            sys.exit(f"error: {' '.join(cmd)} failed:\n{(r.stdout + r.stderr)[-1500:]}")
+    print("build: pages, nav, archive and llms-full.txt rebuilt; checks pass")
 
 
 def slugify(title):

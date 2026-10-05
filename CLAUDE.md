@@ -221,5 +221,5 @@ Default to asking before mixing concerns across repos.
 
 ## Podcast feed sync
 
-- New episodes come from the Libsyn feed: `python3 scripts/podcast/sync-feed.py` adds any missing episodes to `podcast/data/episodes.json` (never edits existing ones), fills Apple and YouTube links when it can, and inserts the new URLs into `sitemap.xml` in place.
-- Then rebuild: `python3 podcast/data/generate_episode_pages.py && node scripts/build-nav.mjs && node scripts/build-podcast-archive.mjs && node scripts/build-llms-full.mjs`, and open a PR. A weekly Perplexity automation does this.
+- `python3 scripts/podcast/sync-feed.py --build` adds any new Libsyn feed episodes to `podcast/data/episodes.json` (never edits existing ones), fills Apple and YouTube links when it can, inserts the new URLs into `sitemap.xml` in place, rebuilds episode pages, nav, archive and `llms-full.txt`, and runs the checks. The last line is `RESULT {json}`. Open a PR with the changes; a weekly Perplexity automation does this.
+- YouTube blocks caption downloads from servers, so transcripts are added by hand to the Perplexity project folder.

@@ -106,12 +106,14 @@
     var wrap = el('div', { 'class': 'wd-optin wd-optin--' + variant });
     var inner = el('div', { 'class': 'wd-optin-inner' });
 
-    // Heading block
+    // Heading block. On a full page that already has its own h1 (/join/),
+    // skip ours so the headline doesn't show twice.
+    var ownHeading = !(variant === 'page' && document.querySelector('h1'));
     var headBlock = el('div', {}, [
-      el(variant === 'page' ? 'h1' : 'h2', { 'class': 'wd-optin-heading', text: 'Train for an amazing love life.' }),
+      ownHeading ? el(variant === 'page' ? 'h1' : 'h2', { 'class': 'wd-optin-heading', text: 'Train for an amazing love life.' }) : null,
       el('p', { 'class': 'wd-optin-sub', text: 'Get invited to events and immersions. Tools and tips for love. New podcast episodes. Straight to you.' }),
       el('p', { 'class': 'wd-optin-keyword', html: 'Prefer to text? Text <strong>LOVE</strong> to <strong>833&#8209;407&#8209;0037</strong>.' })
-    ]);
+    ].filter(Boolean));
 
     // Form
     var form = el('form', { 'class': 'wd-optin-form', novalidate: 'novalidate' });

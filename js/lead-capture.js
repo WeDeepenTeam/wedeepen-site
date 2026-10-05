@@ -354,7 +354,7 @@
     // Step 3 (Christina, 2026-10-05): one ask, a phone box, short consent.
     + '#wd-guide [data-step="3"] .wd-g-bonus{margin-top:0;padding-top:0;border-top:0;text-align:center;}'
     + '#wd-guide .wd-g-ask{color:#F4EDE0;font-size:15px;}'
-    + '#wd-guide .wd-g-miss{font-size:12.5px;color:rgba(244,237,224,.6);margin:-2px 0 4px;}'
+    + '#wd-guide .wd-g-miss{color:#F4EDE0;font-size:15px;margin:0 0 2px;}'
     + '#wd-guide .wd-g-name{display:none;}'
     + '#wd-guide .wd-g-bonus .wd-g-fine{text-align:center;line-height:1.5;}'
     + '#wd-guide .wd-g-fine a{color:rgba(244,237,224,.6);text-decoration:underline;}'

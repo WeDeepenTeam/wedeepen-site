@@ -354,10 +354,11 @@
     // Step 3 (Christina, 2026-10-05): one ask, a phone box, short consent.
     + '#wd-guide [data-step="3"] .wd-g-bonus{margin-top:0;padding-top:0;border-top:0;text-align:center;}'
     + '#wd-guide .wd-g-ask{color:#F4EDE0;font-size:15px;}'
+    + '#wd-guide .wd-g-miss{font-size:12.5px;color:rgba(244,237,224,.6);margin:-2px 0 4px;}'
     + '#wd-guide .wd-g-name{display:none;}'
     + '#wd-guide .wd-g-bonus .wd-g-fine{text-align:center;line-height:1.5;}'
     + '#wd-guide .wd-g-fine a{color:rgba(244,237,224,.6);text-decoration:underline;}'
-    + '#wd-guide.wd-g-passed .wd-g-ask{display:none;}'
+    + '#wd-guide.wd-g-passed .wd-g-ask,#wd-guide.wd-g-passed .wd-g-miss{display:none;}'
     + '#wd-guide.wd-g-passed .wd-g-name{display:block;}'
     + '#wd-guide [data-step]{display:none;}'
     + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
@@ -696,7 +697,8 @@
       '<div data-step="3">' +
         '<h2 class="wd-g-hi">Awesome, you&#39;re in.</h2>' +
         '<div class="wd-g-bonus">' +
-          '<p class="wd-g-ask">People miss emails. Want exclusive event invites by text?</p>' +
+          '<p class="wd-g-miss">People miss emails.</p>' +
+          '<p class="wd-g-ask">Want exclusive event invites by text?</p>' +
           '<form class="wd-g-phone" novalidate>' +
             '<input name="firstname" type="text" class="wd-g-name" autocomplete="given-name" placeholder="First name" aria-label="First name">' +
             '<input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Cell phone" aria-label="Cell phone">' +

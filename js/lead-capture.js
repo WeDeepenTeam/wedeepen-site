@@ -693,19 +693,21 @@
         '<p class="wd-g-fine">We&#39;ll email it right away. Unsubscribe anytime.</p>' +
         '<button type="button" class="wd-g-no wd-g-pass">No thanks, I&#39;ll pass</button>' +
       '</div>' +
-      // Step 3: one ask, the phone number (straight to the COUNTMEIN list)
+      // Step 3: one ask. Phones: one tap opens Messages with COUNT ME IN typed.
+      // Desktop can't send a text, so it gets the phone box (straight to the
+      // COUNTMEIN list).
       '<div data-step="3">' +
         '<h2 class="wd-g-hi">Awesome, you&#39;re in.</h2>' +
         '<div class="wd-g-bonus">' +
           '<p class="wd-g-miss">People miss emails.</p>' +
           '<p class="wd-g-ask">Want exclusive event invites by text?</p>' +
-          '<form class="wd-g-phone" novalidate>' +
+          (IS_MOBILE ? '<a class="wd-g-btn wd-g-text" href="' + SMS_HREF + '">Count Me In</a>' : '<form class="wd-g-phone" novalidate>' +
             '<input name="firstname" type="text" class="wd-g-name" autocomplete="given-name" placeholder="First name" aria-label="First name">' +
             '<input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Cell phone" aria-label="Cell phone">' +
             '<p class="wd-g-err" role="alert"></p>' +
             '<button type="submit" class="wd-g-btn">Text me</button>' +
             '<p class="wd-g-fine">By tapping Text me, you agree to up to 8 promotional texts a month from WeDeepen. Not a condition of purchase. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="' + ST_TERMS_URL + '" target="_blank" rel="noopener">Terms</a> &middot; <a href="' + ST_PRIVACY_URL + '" target="_blank" rel="noopener">Privacy</a></p>' +
-          '</form>' +
+          '</form>') +
           '<button type="button" class="wd-g-no wd-g-skip">No thanks</button>' +
         '</div>' +
       '</div>';
@@ -758,10 +760,20 @@
       sendGuide(firstName, email, 'guide', function () { go(3); });
     });
 
-    // Bonus: the phone number goes straight to SimpleTexting (COUNTMEIN list),
-    // same web form as the desktop popup.
-    var phoneForm = g.querySelector('form.wd-g-phone');
+    // Bonus on phones: one tap opens Messages with COUNT ME IN typed.
     var bonus = g.querySelector('.wd-g-bonus');
+    var textBtn = g.querySelector('.wd-g-text');
+    if (textBtn) textBtn.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_bonus' });
+      setTimeout(function () {
+        bonus.innerHTML = '<p class="wd-g-ask">Almost there: just hit send in Messages and you&#39;re in.</p>';
+      }, 400);
+    });
+
+    // Bonus on desktop: the phone number goes straight to SimpleTexting
+    // (COUNTMEIN list), same web form as the desktop popup.
+    var phoneForm = g.querySelector('form.wd-g-phone');
+    if (!phoneForm) return;
     function bonusDone(html) {
       bonus.innerHTML = '<p class="wd-g-ask">' + html + '</p>';
       snooze(LS_POPUP, JOINED_DAYS);

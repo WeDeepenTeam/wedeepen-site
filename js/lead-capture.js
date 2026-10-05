@@ -32,21 +32,8 @@
   var SMS_KEYWORD = 'COUNT ME IN';
   var SMS_HREF = 'sms:+18334070037?&body=COUNT%20ME%20IN';
   var VCARD_URL = '/wedeepen.vcf';
-  var LI_URL = '/love-immersion/october-2026/?utm_source=announcement-bar&utm_campaign=li-oct26-earlyaccess';
-  var PROMO_END = Date.parse('2026-08-17T04:59:59Z'); // Aug 16, 11:59pm Austin
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
   var ON_FOUR_PILLARS = /^\/four-pillars\//.test(location.pathname);
-  var PROMO_ACTIVE = (function () {
-    if (/[?&#]wd-promo=off/.test(location.href)) return false;
-    return Date.now() < PROMO_END;
-  })();
-
-  function promoCountdown() {
-    var d = Math.ceil((PROMO_END - Date.now()) / 864e5);
-    if (d <= 1) return 'ends tonight';
-    if (d === 2) return 'ends tomorrow';
-    return d + ' days left';
-  }
   /* == First-touch attribution ========================================== */
   // GA4 loses the traffic source when someone comes back to an open tab after
   // the session times out, so those sign-ups land in "Unassigned". Remember
@@ -250,29 +237,16 @@
   var css = ''
     + '#wd-lead-bar{position:fixed;top:0;left:0;right:0;z-index:60;background:#211B16;color:#F4EDE0;border-bottom:1px solid rgba(201,162,119,.4);font-family:"DM Sans",Inter,system-ui,sans-serif;font-size:14.5px;line-height:1.35;display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 44px 10px 16px;text-align:center;}'
     + '#wd-lead-bar strong{font-weight:700;letter-spacing:.02em;}'
-    + '#wd-lead-bar .wd-bar-gold{color:#C9A277;}'
     + '#wd-lead-bar .wd-bar-join{background:linear-gradient(90deg,#A8855C,#C9A277,#D4B78C);color:#1A1A1A;border:0;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}'
     + '#wd-lead-bar .wd-bar-join:hover{filter:brightness(1.08);}'
     + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#F4EDE0;opacity:.5;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
-    + '#wd-lead-bar .wd-bar-number{font-size:14px;padding:8px 20px;font-variant-numeric:tabular-nums;}'
     + '#wd-lead-bar .wd-bar-stack{display:block;min-width:0;max-width:100%;}'
     + '#wd-lead-bar .wd-bar-line1{display:block;overflow:hidden;font-size:14px;font-weight:500;letter-spacing:.01em;line-height:1.4;}'
     + '#wd-lead-bar .wd-bar-line1 strong{color:#C9A277;font-weight:700;}'
-    + '#wd-lead-bar a.wd-bar-num{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;font-variant-numeric:tabular-nums;padding:2px 2px;white-space:nowrap;}'
-    + '#wd-lead-bar .wd-bar-line2{display:block;font-size:12.5px;font-weight:500;color:rgba(244,237,224,.65);margin-top:3px;}'
-    + '#wd-lead-bar a.wd-bar-link{color:#C9A277;font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}'
-    + '#wd-lead-bar a.wd-bar-link-lg{display:inline-block;font-size:14px;margin-top:4px;}'
-    + '#wd-lead-bar.wd-gold a.wd-bar-link{color:#1A1A1A;}'
     + '@media (max-width:640px){#wd-lead-bar{font-size:13px;flex-wrap:wrap;gap:8px;padding:9px 40px 10px 12px;}}'
     + '#wd-lead-bar a.wd-bar-sms{margin-top:7px;padding:6px 18px;font-size:13px;}'
-    + '#wd-lead-bar.wd-gold{background:linear-gradient(90deg,#C9A277,#E9CDA0,#D4B78C);color:#1A1A1A;border-bottom:0;box-shadow:0 1px 8px rgba(0,0,0,.2);}'
-    + '#wd-lead-bar.wd-gold .wd-bar-msg{color:#1A1A1A;font-weight:600;}'
-    + '#wd-lead-bar.wd-gold .wd-bar-gold{color:#1A1A1A;font-weight:700;}'
-    + '#wd-lead-bar.wd-gold .wd-bar-join{background:#1A1A1A;color:#F4EDE0;}'
-    + '#wd-lead-bar.wd-gold .wd-bar-join:hover{background:#2D2D2D;filter:none;}'
-    + '#wd-lead-bar.wd-gold .wd-bar-x{color:#1A1A1A;}'
     + '#wd-lead-bar.wd-slim{font-size:13px;padding:8px 44px 8px 16px;}'
     + '#wd-lead-bar.wd-slim .wd-bar-msg,#wd-lead-bar.wd-slim .wd-bar-line1{font-weight:400;color:#F4EDE0;}'
     + '#wd-lead-bar a.wd-bar-cta,#wd-lead-bar button.wd-bar-cta{display:inline;background:none;border:0;border-radius:0;margin:0;padding:0 2px;color:inherit;font:inherit;font-weight:700;letter-spacing:.01em;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;cursor:pointer;white-space:nowrap;}'
@@ -318,64 +292,36 @@
     + '#wd-lead-sheet a.wd-sms-btn{display:block;background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;border-radius:999px;padding:13px 20px;font-size:15.5px;font-weight:700;text-decoration:none;}'
     + '#wd-lead-sheet .wd-sheet-save{display:inline-block;margin-top:10px;font-size:12.5px;color:#C9A277;font-weight:600;text-decoration:underline;text-underline-offset:3px;}'
     + '#wd-lead-sheet .wd-close{position:absolute;top:10px;right:10px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:8px;}'
-    + '#wd-guide{position:fixed;left:0;right:0;bottom:0;z-index:95;background:#1A1A1A;color:#F4EDE0;border-top:1px solid rgba(201,162,119,.45);border-radius:20px 20px 0 0;box-shadow:0 -12px 44px rgba(0,0,0,.5);padding:22px 22px calc(18px + env(safe-area-inset-bottom));font-family:"DM Sans",Inter,system-ui,sans-serif;text-align:center;transform:translateY(110%);transition:transform .38s ease;max-height:92vh;overflow-y:auto;box-sizing:border-box;}'
+    // Compact card (René, 2026-10-04); step 3 = one ask (Christina, 2026-10-05).
+    + '#wd-guide{position:fixed;left:0;right:0;bottom:0;z-index:95;background:#1A1A1A;color:#F4EDE0;border-top:1px solid rgba(201,162,119,.45);border-radius:20px 20px 0 0;box-shadow:0 -12px 44px rgba(0,0,0,.5);padding:16px 18px calc(14px + env(safe-area-inset-bottom));font-family:"DM Sans",Inter,system-ui,sans-serif;text-align:center;transform:translateY(110%);transition:transform .38s ease;max-height:92vh;overflow-y:auto;box-sizing:border-box;}'
     + '#wd-guide.wd-open{transform:translateY(0);}'
-    + '@media (min-width:700px){#wd-guide{left:auto;right:24px;bottom:24px;width:420px;border:1px solid rgba(201,162,119,.45);border-radius:20px;}}'
+    + '@media (min-width:700px){#wd-guide{left:auto;right:20px;bottom:20px;width:360px;border:1px solid rgba(201,162,119,.45);border-radius:20px;}}'
     + '#wd-guide .wd-close{position:absolute;top:10px;right:10px;background:none;border:0;color:rgba(244,237,224,.5);font-size:22px;line-height:1;cursor:pointer;padding:8px;}'
-    + '#wd-guide .wd-g-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A277;margin:0 0 8px;}'
-    + '#wd-guide h2{font-family:"Playfair Display",Georgia,serif;font-size:23px;font-weight:600;line-height:1.22;margin:0 22px 8px;color:#F4EDE0;}'
-    + '#wd-guide p{font-size:14px;line-height:1.55;color:rgba(244,237,224,.75);margin:0 0 16px;}'
-    + '#wd-guide .wd-g-btn{display:block;width:100%;box-sizing:border-box;background:#A01B4A;color:#fff;border:0;border-radius:999px;padding:15px 20px;font-size:15.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;text-decoration:none;}'
+    + '#wd-guide .wd-g-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A277;margin:0 0 6px;}'
+    + '#wd-guide h2{font-family:"Playfair Display",Georgia,serif;font-size:20px;font-weight:600;line-height:1.22;margin:0 22px 6px;color:#F4EDE0;}'
+    + '#wd-guide p{font-size:13px;line-height:1.55;color:rgba(244,237,224,.75);margin:0 0 12px;}'
+    + '#wd-guide .wd-g-btn{display:block;width:100%;box-sizing:border-box;background:#A01B4A;color:#fff;border:0;border-radius:999px;padding:12px 18px;font-size:14.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;text-decoration:none;}'
     + '#wd-guide .wd-g-btn:hover{background:#851437;}'
     + '#wd-guide .wd-g-btn:disabled{opacity:.6;cursor:wait;}'
-    + '#wd-guide .wd-g-no{display:inline-block;margin-top:12px;background:none;border:0;color:rgba(244,237,224,.55);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;}'
-    + '#wd-guide .wd-g-hero{display:flex;gap:16px;align-items:center;text-align:left;margin:4px 0 16px;}'
-    + '#wd-guide .wd-g-hero img{width:84px;height:105px;object-fit:cover;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.45);flex:0 0 auto;}'
+    + '#wd-guide .wd-g-no{display:inline-block;margin-top:8px;background:none;border:0;color:rgba(244,237,224,.55);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;}'
+    + '#wd-guide .wd-g-hero{display:flex;gap:12px;align-items:center;text-align:left;margin:2px 0 12px;}'
+    + '#wd-guide .wd-g-hero img{width:62px;height:78px;object-fit:cover;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.45);flex:0 0 auto;}'
     + '#wd-guide .wd-g-hero h2{margin:0 0 6px;}'
-    + '#wd-guide .wd-g-hero p{margin:0;font-size:13.5px;}'
-    + '#wd-guide input[type=email]{width:100%;box-sizing:border-box;background:#2D2D2D;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#F4EDE0;font-size:16px;padding:14px 20px;margin:0 0 12px;font-family:inherit;}'
-    + '#wd-guide input[type=email]:focus{outline:none;border-color:#C9A277;}'
-    + '#wd-guide .wd-g-fine{font-size:11.5px;color:rgba(244,237,224,.45);margin:10px 0 0;}'
+    + '#wd-guide .wd-g-hero p{margin:0;font-size:12.5px;}'
+    + '#wd-guide input{width:100%;box-sizing:border-box;background:#2D2D2D;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#F4EDE0;font-size:16px;padding:11px 18px;margin:0 0 9px;font-family:inherit;}'
+    + '#wd-guide input:focus{outline:none;border-color:#C9A277;}'
+    + '#wd-guide .wd-g-fine{font-size:11px;color:rgba(244,237,224,.45);margin:8px 0 0;}'
+    + '#wd-guide .wd-g-fine a{color:rgba(244,237,224,.6);text-decoration:underline;}'
     + '#wd-guide .wd-g-err{display:none;color:#FF8C9E;font-size:13px;margin:0 0 10px;}'
     + '#wd-guide .wd-g-hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}'
-    + '#wd-guide .wd-g-sms{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);}'
-    + '#wd-guide .wd-g-sms a.wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;}'
-    + '#wd-guide input[type=text],#wd-guide input[type=tel]{width:100%;box-sizing:border-box;background:#2D2D2D;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#F4EDE0;font-size:16px;padding:14px 20px;margin:0 0 12px;font-family:inherit;}'
-    + '#wd-guide input[type=text]:focus,#wd-guide input[type=tel]:focus{outline:none;border-color:#C9A277;}'
-    + '#wd-guide .wd-g-bonus{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);text-align:left;}'
-    + '#wd-guide .wd-g-bonus h3{font-family:"Playfair Display",Georgia,serif;font-size:18px;font-weight:600;color:#F4EDE0;margin:0 0 4px;text-align:center;}'
-    + '#wd-guide .wd-g-bonus>p{text-align:center;}'
-    + '#wd-guide .wd-g-consent{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px;}'
-    + '#wd-guide .wd-g-consent input{flex:0 0 18px;width:18px;height:18px;margin:2px 0 0;accent-color:#C9A277;}'
-    + '#wd-guide .wd-g-consent label{font-size:11.5px;line-height:1.5;color:rgba(244,237,224,.6);}'
-    + '#wd-guide .wd-g-consent a{color:#C9A277;}'
-    + '#wd-guide .wd-g-bonus .wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;text-align:center;}'
+    + '#wd-guide .wd-g-bonus .wd-g-btn{background:linear-gradient(90deg,#A8855C,#C9A277);color:#1A1A1A;}'
     + '#wd-guide .wd-g-bonus .wd-g-no{display:block;margin:10px auto 0;}'
-    // Step 3 (Christina, 2026-10-05): one ask, a phone box, short consent.
-    + '#wd-guide [data-step="3"] .wd-g-bonus{margin-top:0;padding-top:0;border-top:0;text-align:center;}'
-    + '#wd-guide .wd-g-ask{color:#F4EDE0;font-size:15px;}'
-    + '#wd-guide .wd-g-miss{color:#F4EDE0;font-size:15px;margin:0 0 2px;}'
-    + '#wd-guide .wd-g-name{display:none;}'
-    + '#wd-guide .wd-g-bonus .wd-g-fine{text-align:center;line-height:1.5;}'
-    + '#wd-guide .wd-g-fine a{color:rgba(244,237,224,.6);text-decoration:underline;}'
-    + '#wd-guide.wd-g-passed .wd-g-ask,#wd-guide.wd-g-passed .wd-g-miss{display:none;}'
+    + '#wd-guide .wd-g-ask,#wd-guide .wd-g-miss,#wd-guide .wd-g-done{color:#F4EDE0;font-size:15px;}'
+    + '#wd-guide .wd-g-miss{margin:0 0 2px;}'
+    + '#wd-guide .wd-g-name,#wd-guide.wd-g-passed .wd-g-ask,#wd-guide.wd-g-passed .wd-g-miss{display:none;}'
     + '#wd-guide.wd-g-passed .wd-g-name{display:block;}'
     + '#wd-guide [data-step]{display:none;}'
-    + '#wd-guide[data-at="1"] [data-step="1"],#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
-    // Compact sizing (René, 2026-10-04): smaller card and sheet, same content.
-    + '#wd-guide{padding:16px 18px calc(14px + env(safe-area-inset-bottom));}'
-    + '@media (min-width:700px){#wd-guide{width:360px;right:20px;bottom:20px;}}'
-    + '#wd-guide h2{font-size:20px;margin-bottom:6px;}'
-    + '#wd-guide p{font-size:13px;margin-bottom:12px;}'
-    + '#wd-guide .wd-g-eyebrow{font-size:10.5px;margin-bottom:6px;}'
-    + '#wd-guide .wd-g-hero{gap:12px;margin:2px 0 12px;}'
-    + '#wd-guide .wd-g-hero img{width:62px;height:78px;}'
-    + '#wd-guide .wd-g-hero p{font-size:12.5px;}'
-    + '#wd-guide input[type=email],#wd-guide input[type=text],#wd-guide input[type=tel]{padding:11px 18px;margin-bottom:9px;}'
-    + '#wd-guide .wd-g-btn{padding:12px 18px;font-size:14.5px;}'
-    + '#wd-guide .wd-g-fine{font-size:11px;margin-top:8px;}'
-    + '#wd-guide .wd-g-no{margin-top:8px;}'
-    + '#wd-guide .wd-g-bonus{margin-top:14px;padding-top:12px;}'
+    + '#wd-guide[data-at="2"] [data-step="2"],#wd-guide[data-at="3"] [data-step="3"]{display:block;}'
     + '#wd-lead-success{display:none;text-align:center;padding:12px 0 6px;}'
     + '#wd-lead-success h2{margin-bottom:10px;}'
     + '#wd-lead-success p{font-size:14.5px;line-height:1.6;color:rgba(244,237,224,.78);margin:0 0 6px;}'
@@ -393,34 +339,15 @@
     bar.id = 'wd-lead-bar';
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
-    if (IS_MOBILE) {
-      if (!(ON_LI_PAGE && PROMO_ACTIVE)) bar.classList.add('wd-slim');
-      // Mobile runs list capture everywhere except LI pages, where the promo
-      // code + countdown is the useful ribbon (reserve CTAs cover the page).
-      bar.innerHTML = (ON_LI_PAGE && PROMO_ACTIVE)
-        ? '<span class="wd-bar-stack">' +
-            '<span class="wd-bar-line1">Next <strong>Love Immersion</strong>: Oct 17&ndash;19 &middot; Austin, TX</span>' +
-            '<span class="wd-bar-line2">Use <strong>EARLYACCESS</strong> code to save $500 &middot; <strong>' + promoCountdown() + '</strong></span>' +
-          '</span>' +
-          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
-        :
-        // One tap opens Messages with COUNT ME IN typed (same list as desktop).
-        '<span class="wd-bar-stack">' +
-          '<span class="wd-bar-line1">' + HOOK.bar + ' <a class="wd-bar-cta wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a></span>' +
-        '</span>' +
-        '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
-    } else {
-      bar.classList.add(PROMO_ACTIVE ? 'wd-gold' : 'wd-slim');
-      bar.innerHTML = PROMO_ACTIVE
-        ? '<span class="wd-bar-msg"><strong>Next Love Immersion</strong> is Oct 17&ndash;19 in Austin, TX. Use <strong>EARLYACCESS</strong> code to save $500 through Aug 16th &middot; <strong>' + promoCountdown() + '</strong>.' +
-          (ON_LI_PAGE ? '' : ' <a class="wd-bar-link" href="' + LI_URL + '">Sign Me Up</a>') + '</span>' +
-          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
-        : '<span class="wd-bar-msg">' + HOOK.bar + ' ' +
-          (HOOK.href
-            ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
-            : '<button type="button" class="wd-bar-join wd-bar-cta">Count Me In</button>') + '</span>' +
-          '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
-    }
+    bar.classList.add('wd-slim');
+    bar.innerHTML = (IS_MOBILE
+      // Phones: one tap opens Messages with COUNT ME IN typed (same list as desktop).
+      ? '<span class="wd-bar-stack"><span class="wd-bar-line1">' + HOOK.bar + ' <a class="wd-bar-cta wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a></span></span>'
+      : '<span class="wd-bar-msg">' + HOOK.bar + ' ' +
+        (HOOK.href
+          ? '<a class="wd-bar-join" href="' + HOOK.href + '" target="_blank" rel="noopener">' + HOOK.cta + '</a>'
+          : '<button type="button" class="wd-bar-join wd-bar-cta">Count Me In</button>') + '</span>') +
+      '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>';
     document.body.insertBefore(bar, document.body.firstChild);
 
     var header = document.getElementById('wd-header');
@@ -766,7 +693,7 @@
     if (textBtn) textBtn.addEventListener('click', function () {
       if (typeof window.gtag === 'function') window.gtag('event', 'sms_signup_click', { lead_source: 'guide_bonus' });
       setTimeout(function () {
-        bonus.innerHTML = '<p class="wd-g-ask">Almost there: just hit send in Messages and you&#39;re in.</p>';
+        bonus.innerHTML = '<p class="wd-g-done">Almost there: just hit send in Messages and you&#39;re in.</p>';
       }, 400);
     });
 
@@ -775,7 +702,7 @@
     var phoneForm = g.querySelector('form.wd-g-phone');
     if (!phoneForm) return;
     function bonusDone(html) {
-      bonus.innerHTML = '<p class="wd-g-ask">' + html + '</p>';
+      bonus.innerHTML = '<p class="wd-g-done">' + html + '</p>';
       snooze(LS_POPUP, JOINED_DAYS);
     }
     phoneForm.phone.addEventListener('input', function () {
@@ -809,35 +736,45 @@
 
       var fieldValues = { phone: phone, firstname: firstName, Podcasts: 'No' };
       if (person.email) fieldValues.email = person.email;
-      fetch(ST_ENDPOINT + '?r=' + Date.now(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ webFormId: ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
-      }).then(function (res) {
-        if (res.ok) {
+      stJoin(fieldValues, {
+        ok: function () {
           joined('Added to COUNTMEIN list');
           bonusDone('Done! Watch your phone for a text from WeDeepen.');
-          return;
-        }
-        if (res.status === 418) {
-          return res.text().then(function (text) {
-            var error = {};
-            try { error = JSON.parse(text); } catch (e2) { /* fall through */ }
-            if (error.code === 'DuplicateContactPhoneException') {
-              notifySignup(signup, 'Already on the list');
-              bonusDone('You&#39;re already on the text list. You&#39;re all set.');
-              return;
-            }
-            btn.disabled = false;
-            btn.textContent = 'Text me';
-            showErr(phoneForm, error.code === 'CustomFieldsValidationException' && error.reasons && error.reasons.phone
-              ? 'That phone number doesn’t look right. Try (XXX) XXX-XXXX.'
-              : 'Something went wrong. You can also text ' + SMS_KEYWORD + ' to ' + SMS_NUMBER_DISPLAY + '.');
-          });
-        }
-        fallback();
-      }).catch(fallback);
+        },
+        dup: function () {
+          notifySignup(signup, 'Already on the list');
+          bonusDone('You&#39;re already on the text list. You&#39;re all set.');
+        },
+        bad: function (msg) {
+          btn.disabled = false;
+          btn.textContent = 'Text me';
+          showErr(phoneForm, msg);
+        },
+        down: fallback
+      });
     });
+  }
+
+  // POST to the SimpleTexting web form (adds to the COUNTMEIN list). Calls
+  // exactly one of on.ok / on.dup / on.bad(message) / on.down.
+  function stJoin(fieldValues, on) {
+    fetch(ST_ENDPOINT + '?r=' + Date.now(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ webFormId: ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
+    }).then(function (res) {
+      if (res.ok) return on.ok();
+      if (res.status !== 418) return on.down();
+      return res.text().then(function (text) {
+        var error = {};
+        try { error = JSON.parse(text); } catch (e) { /* generic error below */ }
+        if (error.code === 'DuplicateContactPhoneException') return on.dup();
+        var k = error.code === 'CustomFieldsValidationException' && error.reasons && Object.keys(error.reasons)[0];
+        on.bad(k === 'phone' ? 'That phone number doesn’t look right. Try (XXX) XXX-XXXX.'
+          : k ? String(error.reasons[k])
+          : 'Something went wrong. You can also text ' + SMS_KEYWORD + ' to ' + SMS_NUMBER_DISPLAY + '.');
+      });
+    }, on.down);
   }
 
   // Phones: open after a short scroll or a delay, whichever comes first.
@@ -976,11 +913,6 @@
     btn.disabled = true;
     btn.textContent = 'Sending…';
 
-    function restoreButton() {
-      btn.disabled = false;
-      btn.textContent = 'Count Me In';
-    }
-
     // SMS keeps working even if the API is down: hand them the keyword and log
     // the lead to the sheet so it isn't lost.
     var locationStr = city + (city && state ? ', ' : '') + state;
@@ -1002,47 +934,23 @@
     if (city) fieldValues.whats_your_city_full_name = city;
     if (state) fieldValues.answer_with_abbreviation_what_state_are_you_primarily_in_ex_ca = state;
 
-    fetch(ST_ENDPOINT + '?r=' + Date.now(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({
-        webFormId: ST_WEBFORM_ID,
-        fieldValues: fieldValues,
-        listIds: []
-      })
-    }).then(function (res) {
-      if (res.ok) {
+    stJoin(fieldValues, {
+      ok: function () {
         logToSheet(firstName, phone, email, locationStr);
         notifySignup(signup, 'Added to COUNTMEIN list');
         trackLead('form');
         showSuccess('Watch your phone: a text from WeDeepen is on its way to confirm you&#39;re in.' +
           '<br><a class="wd-sms-btn" href="https://chat.whatsapp.com/FOK9T50055K97x88VTsY7J" target="_blank" rel="noopener">Join the WhatsApp group</a>');
         snooze(LS_POPUP, JOINED_DAYS);
-        return;
-      }
-      if (res.status === 418) {
-        return res.text().then(function (text) {
-          var error = {};
-          try { error = JSON.parse(text); } catch (e2) { /* fall through */ }
-          if (error.code === 'DuplicateContactPhoneException') {
-            notifySignup(signup, 'Already on the list');
-            showSuccess('Good news: that number is already on the list. We&#39;ll keep the texts coming.');
-            snooze(LS_POPUP, JOINED_DAYS);
-            return;
-          }
-          restoreButton();
-          if (error.code === 'CustomFieldsValidationException' && error.reasons) {
-            var k = Object.keys(error.reasons)[0];
-            showError(k === 'phone'
-              ? 'That phone number doesn’t look right. Try (XXX) XXX-XXXX.'
-              : String(error.reasons[k]));
-          } else {
-            showError('Something went wrong. You can also text ' + SMS_KEYWORD + ' to ' + SMS_NUMBER_DISPLAY + '.');
-          }
-        });
-      }
-      smsFallback();
-    }).catch(smsFallback);
+      },
+      dup: function () {
+        notifySignup(signup, 'Already on the list');
+        showSuccess('Good news: that number is already on the list. We&#39;ll keep the texts coming.');
+        snooze(LS_POPUP, JOINED_DAYS);
+      },
+      bad: function (msg) { btn.disabled = false; btn.textContent = 'Count Me In'; showError(msg); },
+      down: smsFallback
+    });
   }
 
   /* == Init ============================================================== */

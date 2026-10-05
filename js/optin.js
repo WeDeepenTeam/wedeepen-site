@@ -112,7 +112,7 @@
     var headBlock = el('div', {}, [
       ownHeading ? el(variant === 'page' ? 'h1' : 'h2', { 'class': 'wd-optin-heading', text: 'Train for an amazing love life.' }) : null,
       el('p', { 'class': 'wd-optin-sub', text: 'Get invited to events and immersions. Tools and tips for love. New podcast episodes. Straight to you.' }),
-      el('p', { 'class': 'wd-optin-keyword', html: 'Prefer to text? Text <strong>LOVE</strong> to <strong>833&#8209;407&#8209;0037</strong>.' })
+      el('p', { 'class': 'wd-optin-keyword', html: 'Prefer to text? Text <strong>COUNT ME IN</strong> to <strong>833&#8209;407&#8209;0037</strong>.' })
     ].filter(Boolean));
 
     // Form
@@ -229,7 +229,7 @@
         console.error('Opt-in submit failed:', err);
         btn.textContent = 'Count me in';
         btn.disabled = false;
-        showStatus('Something went wrong on our end. Text LOVE to 833-407-0037 to join by phone, or email team@wedeepen.com.', false);
+        showStatus('Something went wrong on our end. Text COUNT ME IN to 833-407-0037 to join by phone, or email team@wedeepen.com.', false);
       });
     });
   }

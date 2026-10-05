@@ -7,6 +7,11 @@
  * alongside the older WeDeepen Leads log.
  *
  * Each sign-up adds one row and emails NOTIFY_EMAIL.
+ *
+ * Columns M-R hold first-touch attribution (First source, First medium,
+ * First campaign, First landing page, First click ID, First seen). After
+ * editing, redeploy: Deploy > Manage deployments > Edit > Version: New version,
+ * so the /exec URL stays the same.
  */
 
 var SHEET_ID = '1p9MT4JFCsPyj5S1X-9OzqegnaUMkjd_VCngx5hjWXPE'; // WeDeepen Website Sign-ups
@@ -32,7 +37,14 @@ function doPost(e) {
     clip(p.page),
     clip(p.hook, 60),
     clip(p.device, 20),
-    clip(p.result, 60)
+    clip(p.result, 60),
+    // First-touch attribution from /js/lead-capture.js (columns M-R).
+    clip(p.firstSource, 100),
+    clip(p.firstMedium, 60),
+    clip(p.firstCampaign, 100),
+    clip(p.firstLanding),
+    clip(p.firstClickId, 20),
+    clip(p.firstSeen, 10)
   ];
 
   var lock = LockService.getScriptLock();
@@ -56,6 +68,8 @@ function doPost(e) {
         'Location: ' + [row[5], row[6]].filter(String).join(', '),
         'Podcast texts: ' + row[7],
         'Page: ' + row[8],
+        'First came from: ' + ([row[12], row[13]].filter(String).join(' / ') || '(unknown)') +
+          (row[14] ? ' (' + row[14] + ')' : '') + (row[17] ? ', first visit ' + row[17] : ''),
         'When: ' + row[0] + ' ' + row[1] + ' Central',
         '',
         'All sign-ups: https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit'

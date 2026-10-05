@@ -47,6 +47,44 @@
     if (d === 2) return 'ends tomorrow';
     return d + ' days left';
   }
+  /* == First-touch attribution ========================================== */
+  // GA4 loses the traffic source when someone comes back to an open tab after
+  // the session times out, so those sign-ups land in "Unassigned". Remember
+  // where each visitor first arrived from (kept 90 days, first visit wins) and
+  // send it with every sign-up so the Sign-ups sheet always shows the source.
+  var ATTR_KEY = 'wd_first_touch';
+  var ATTR_DAYS = 90;
+  var ATTR = (function () {
+    try {
+      var saved = JSON.parse(localStorage.getItem(ATTR_KEY) || 'null');
+      if (saved && saved.t && Date.now() - saved.t < ATTR_DAYS * 864e5) return saved;
+      var q = new URLSearchParams(location.search);
+      var ref = '';
+      try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+      if (/(^|\.)wedeepen\.com$/.test(ref)) ref = ''; // our own pages and circle.wedeepen.com
+      var click = q.get('gclid') ? 'gclid' : q.get('fbclid') ? 'fbclid' : q.get('rdt_cid') ? 'rdt_cid' : '';
+      var a = {
+        t: Date.now(),
+        source: q.get('utm_source') || (click === 'gclid' ? 'google' : '') || ref || '(direct)',
+        medium: q.get('utm_medium') || (click === 'gclid' ? 'cpc' : ref ? 'referral' : '(none)'),
+        campaign: q.get('utm_campaign') || '',
+        landing: location.pathname,
+        click: click
+      };
+      localStorage.setItem(ATTR_KEY, JSON.stringify(a));
+      return a;
+    } catch (e) { return null; } // storage blocked: sign-ups still work, just untagged
+  })();
+  function attrFields() {
+    var a = ATTR || {};
+    var d = '';
+    try { d = a.t ? new Date(a.t).toISOString().slice(0, 10) : ''; } catch (e) {}
+    return {
+      firstSource: a.source || '', firstMedium: a.medium || '', firstCampaign: a.campaign || '',
+      firstLanding: a.landing || '', firstClickId: a.click || '', firstSeen: d
+    };
+  }
+
   var POPUP_DELAY_MS = 4000;
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
@@ -819,12 +857,12 @@
     try {
       fetch(SIGNUPS_ENDPOINT, {
         method: 'POST', mode: 'no-cors',
-        body: new URLSearchParams({
+        body: new URLSearchParams(Object.assign({
           firstName: f.firstName, phone: formatPhone(f.phone), email: f.email || '',
           city: f.city || '', state: f.state || '', podcast: f.podcast,
           page: location.pathname + (AD_FORM ? ' (from ad)' : ''), hook: HOOK.id,
           device: IS_MOBILE ? 'phone' : 'desktop', result: result
-        })
+        }, attrFields()))
       }).catch(function () {});
     } catch (e) { /* never block the signup on the log */ }
   }

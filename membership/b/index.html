@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- /membership/b/: variant B of the membership sales page for an A/B test.
+     Hand-written (not generated). Same look as /membership/, different copy and
+     structure: logo-only header, no nav, minimal footer, one action.
+     noindex + canonical to /membership/, so it stays out of search, the sitemap
+     builder and seo:schema. nav:sync skips it (no nav markers).
+     Checkout links pre-select the plan via Circle's paywall price IDs:
+       ?price_id=368281 = $99 monthly, ?price_id=368282 = $990 annual.
+       (Without it, the checkout opens on annual.) -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js). content_group tells B apart from /membership/ in GA4. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // Ad-review crawlers and headless browsers load pages too; skip GA4 for them.
+    if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership B', page_variant: 'B' });
+    gtag('config', 'AW-18481553095');
+  </script>
+  <!-- Join clicks: begin_checkout (GA4) + InitiateCheckout (Meta) with data-cta="b-*". -->
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
+
+  <!-- Meta pixel ("WeDeepen Website" dataset). ViewContent is named B so it reports apart from A. -->
+  <script>
+    var FB_PIXEL_ID = '1541773576982273';
+    if (!/(^|\.)wedeepen\.com$/.test(location.hostname)) FB_PIXEL_ID = '';
+    if (FB_PIXEL_ID) {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', FB_PIXEL_ID);
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent', { content_name: 'WeDeepen Membership B', content_category: 'Membership' });
+    }
+  </script>
+
+  <!-- Reddit pixel -->
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jqnveg46gnqn",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init', 'a2_jqnveg46gnqn');
+    rdt('track', 'PageVisit');
+  </script>
+
+  <title>WeDeepen Membership | How&rsquo;s your love life?</title>
+  <meta name="description" content="Every Tuesday, study and practice love live with WeDeepen&rsquo;s faculty. 90 minutes a week, online. Come partnered, dating, or solo.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://wedeepen.com/membership/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/membership/">
+  <meta property="og:title" content="WeDeepen Membership | How&rsquo;s your love life?">
+  <meta property="og:description" content="Every Tuesday, study and practice love live with WeDeepen&rsquo;s faculty. 90 minutes a week, online. Come partnered, dating, or solo.">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-home.jpg?v=5">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN, same config as /membership/ -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#D92B6F', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+            softgray: '#F5F5F5',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    .wd-header { transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+    .wd-header.scrolled { background-color: rgba(26,26,26,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    .press-logo { filter: brightness(0) invert(1); opacity: 0.55; }
+
+    /* Hero video background (same treatment as /membership/): oversized so the
+       YouTube title and caption zones sit off screen. */
+    .hero-video-wrap { position: absolute; inset: 0; overflow: hidden; }
+    .hero-video-wrap iframe {
+      position: absolute; top: 50%; left: 50%;
+      aspect-ratio: 16 / 9; min-width: 140%; min-height: 140%;
+      transform: translate(-50%, -50%); pointer-events: none;
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid #C9A277; color: #C9A277;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+
+    /* Contrast ledger, same treatment as the /membership/ "chemistry vs alignment" rows */
+    .ledger { display: grid; grid-template-columns: 1fr; max-width: 52rem; }
+    .ledger > * { margin: 0; }
+    .ledger .l-term    { padding-top: 1.4rem; border-top: 1px solid rgba(45,45,45,0.18); }
+    .ledger .l-vs      { padding: 0.3rem 0; }
+    .ledger .l-counter { padding-bottom: 1.4rem; }
+    .ledger > *:last-child { border-bottom: 1px solid rgba(45,45,45,0.18); }
+    @media (min-width: 768px) {
+      .ledger { grid-template-columns: 1fr max-content 1fr; }
+      .ledger > * { align-self: stretch; border-top: 1px solid rgba(45,45,45,0.18); }
+      .ledger .l-term    { padding: 1.6rem 2.5rem 1.6rem 0; }
+      .ledger .l-vs      { padding: 1.6rem 2.5rem 1.6rem 0; display: flex; align-items: center; }
+      .ledger .l-counter { padding: 1.6rem 0; }
+      .ledger > *:nth-last-child(-n+3) { border-bottom: 1px solid rgba(45,45,45,0.18); }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="bg-ink text-white">
+
+  <!-- Logo only: no nav, no exits -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-site mx-auto flex items-center justify-center md:justify-start px-6 py-4">
+      <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto">
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- 1. HERO -->
+  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+    <!-- Photo paints first; the same YouTube background as /membership/ loads on top after page load -->
+    <img src="/images/li-community-2.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,26,26,0.78) 0%, rgba(26,26,26,0.66) 45%, rgba(26,26,26,0.92) 100%);"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-32 pb-20 md:pt-40 md:pb-28">
+      <img src="/images/deepen-icon-favicon-white.png" width="500" height="500" alt="" aria-hidden="true" class="w-14 h-14 md:w-16 md:h-16 opacity-95 mx-auto mb-10">
+      <h1 class="font-heading text-[2.4rem] sm:text-[3rem] md:text-[4rem] lg:text-[4.6rem] font-normal leading-[1.08] mb-7" style="text-wrap: balance;">How&rsquo;s your love life?</h1>
+      <p class="text-base md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed md:font-light" style="text-wrap: pretty;">
+        Every Tuesday, study and practice love live with experts I&rsquo;ve trusted with my own heart. 90 minutes a week, online. Come partnered, dating, or solo.
+      </p>
+      <a data-cta="b-hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4 w-full sm:w-auto">Save my seat for Tuesday</a>
+      <p class="text-gold/90 text-sm md:text-base font-medium mt-6">Founding member rate: $99/month.</p>
+      <!-- Early proof: same rating /membership/ shows -->
+      <p class="flex items-center justify-center gap-2 mt-8 text-sm">
+        <span class="text-gold tracking-wide" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="text-white font-semibold">5.0</span>
+        <span class="text-white/60">on Google Reviews</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. THE SCENES -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <div class="space-y-6 font-heading text-2xl md:text-[2rem] leading-snug text-white/90">
+        <p>It&rsquo;s 11pm. You just got home from a date you can&rsquo;t quite read.</p>
+        <p>Or it&rsquo;s the morning after a conversation with your partner that went&hellip; sideways.</p>
+        <p>Maybe you&rsquo;ve caught yourself shrinking again. Saying yes when you meant something else.</p>
+        <p>Maybe you&rsquo;re back in the dating world after a long marriage, and this time you want to get it right.</p>
+        <p>Maybe it&rsquo;s the old pattern, showing up with a brand-new person.</p>
+        <p>Or everything is going beautifully, and you&rsquo;re curious how much better it could get.</p>
+      </div>
+      <p class="font-heading italic text-3xl md:text-4xl mt-12" style="color:#C4577A;">Anyone else?</p>
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed mt-10 pt-10 border-t border-white/10">Wherever you are, the skills underneath are the same. And you get to practice them.</p>
+    </div>
+  </section>
+
+  <!-- The room: a photo break between the scenes and the reframe -->
+  <section class="bg-ink px-6 pb-24 md:pb-32" aria-hidden="true">
+    <div class="max-w-site mx-auto aspect-[16/9] md:aspect-[21/9] rounded-md overflow-hidden reveal">
+      <img src="/images/li-experience-1.webp" width="1200" height="800" alt="" class="w-full h-full object-cover" loading="lazy">
+    </div>
+  </section>
+
+  <!-- 3. THE REFRAME -->
+  <section class="bg-cream text-charcoal py-24 md:py-32 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <div class="max-w-3xl">
+        <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed mb-6">You studied for your career. You trained your body. Love, we were told, should just happen.</p>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.14] mb-12" style="text-wrap: balance;">You are not behind. You are not broken. You were just never taught.</h2>
+        <p class="text-charcoal/80 text-lg mb-2">Inside WeDeepen, we practice telling the difference between:</p>
+      </div>
+      <div class="ledger font-heading text-xl md:text-2xl">
+        <p class="l-term">Chemistry</p><p class="l-vs text-sm font-body uppercase tracking-[0.2em] text-rose-deep">and</p><p class="l-counter">alignment</p>
+        <p class="l-term">A rough patch</p><p class="l-vs text-sm font-body uppercase tracking-[0.2em] text-rose-deep">and</p><p class="l-counter">a repeating pattern</p>
+        <p class="l-term">Healthy compromise</p><p class="l-vs text-sm font-body uppercase tracking-[0.2em] text-rose-deep">and</p><p class="l-counter">shrinking</p>
+        <p class="l-term">A real concern</p><p class="l-vs text-sm font-body uppercase tracking-[0.2em] text-rose-deep">and</p><p class="l-counter">an old fear getting triggered</p>
+      </div>
+      <div class="max-w-3xl mt-12">
+        <p class="text-lg md:text-xl text-charcoal/75 leading-relaxed">Love gets better when we stop treating it like something we should already know and start treating it like a skill we get to develop.</p>
+        <p class="font-heading italic text-2xl md:text-3xl text-rose-deep mt-6">So, let&rsquo;s practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WHAT WE PRACTICE TOGETHER -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-4xl mx-auto reveal">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-12 text-center" style="text-wrap: balance;">What we practice together</h2>
+      <ul class="space-y-5">
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Choosing someone who fits the life you actually want, not just the chemistry.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Catching your old pattern while it&rsquo;s happening, instead of three months in.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Staying yourself in a relationship. No more shrinking.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Saying what you need sooner, with kindness, without the speech you rehearsed for a week.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Telling the difference between someone choosing you and someone keeping you around.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Staying close through a hard conversation, and repairing before hurt turns into distance.</span></li>
+        <li class="flex gap-4 text-white/85 text-lg leading-relaxed"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true" class="shrink-0 mt-1"><circle cx="10" cy="10" r="10" fill="#C9A277"/><path d="M6 10.5l2.6 2.5L14 7.5" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Keeping desire alive: missing each other and reuniting, seeing your partner through new eyes, accomplishing something together.</span></li>
+      </ul>
+      <p class="font-heading italic text-2xl md:text-3xl text-gold text-center mt-14">That&rsquo;s how you expand your range.</p>
+    </div>
+  </section>
+
+  <!-- 5. HOW IT WORKS (Starter Vault line left out until it exists) -->
+  <section class="bg-cream text-charcoal py-24 md:py-32 px-6">
+    <div class="max-w-site mx-auto reveal">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-14 text-center">How it works</h2>
+      <div class="grid md:grid-cols-3 gap-10 md:gap-12">
+        <div>
+          <p class="text-rose-deep text-xs uppercase tracking-[0.28em] font-semibold mb-4">Tuesday, 7pm ET</p>
+          <p class="text-charcoal/80 text-lg leading-relaxed">Live with the WeDeepen faculty. One week is a Love Mastermind built around real situations. The next is an Integration Session, where you get to tell us how it went. Including the part where you forgot everything you meant to say.</p>
+        </div>
+        <div>
+          <p class="text-rose-deep text-xs uppercase tracking-[0.28em] font-semibold mb-4">Between sessions</p>
+          <p class="text-charcoal/80 text-lg leading-relaxed">Our private community and Ask the Experts. Something comes up Monday night, and by Tuesday you have a room full of people who care about this as much as you do.</p>
+        </div>
+        <div>
+          <p class="text-rose-deep text-xs uppercase tracking-[0.28em] font-semibold mb-4">Sunday</p>
+          <p class="text-charcoal/80 text-lg leading-relaxed">A Dare lands by text and email. Small. A little brave. Designed to get the idea off the screen and in front of another human being.</p>
+        </div>
+      </div>
+      <p class="font-heading italic text-2xl md:text-3xl text-rose-deep text-center mt-16">Learn it. Live it. Bring it back.</p>
+
+      <!-- Faces of the faculty (no links: nothing to wander off to) -->
+      <div class="mt-20 pt-14 border-t border-charcoal/15">
+        <p class="text-center text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-10">Who you&rsquo;ll learn with</p>
+        <ul class="flex flex-wrap justify-center gap-y-8 max-w-5xl mx-auto text-center">
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/christina-weber.jpg" width="800" height="1000" alt="Christina Weber" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Christina Weber</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Love Strategist &amp; Founder</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/annie-lalla.jpg" width="480" height="720" alt="Annie Lalla" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Annie Lalla</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Cartographer of Love</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/ken-page.jpg" width="800" height="1000" alt="Ken Page, LCSW" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Ken Page, LCSW</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Author of Deeper Dating</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/yossef-sagi.jpg" width="1365" height="2048" alt="Yossef Sagi" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Yossef Sagi</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Intimacy &amp; Embodied Partnership</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/ariana-hall.jpg" width="2400" height="1600" alt="Ariana Hall" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Ariana Hall</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Deep Transformation &amp; Clarity</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/jordan-bowditch.jpg" width="2400" height="1600" alt="Jordan Bowditch" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Jordan Bowditch</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Polarity, Masculinity &amp; Magnetic Pull</p></li>
+          <li class="w-1/3 sm:w-1/4 lg:w-[14.28%] px-2"><img src="/images/strategists/dana-arielle.webp" width="2500" height="1667" alt="Dana Arielle" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3" loading="lazy"><p class="font-semibold text-sm text-charcoal leading-tight">Dana Arielle</p><p class="text-xs text-charcoal/65 mt-1 leading-snug">Feminine Embodiment</p></li>
+        </ul>
+      </div>
+
+      <!-- Mid-page button (desktop has no sticky bar) -->
+      <div class="text-center mt-16">
+        <a data-cta="b-mid" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4">Save my seat for Tuesday</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PROOF: press logos, then Bo L. -->
+  <section class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-4xl mx-auto reveal text-center">
+      <p class="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium mb-6">As seen in</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10 mb-20">
+        <img src="/images/press-logos/peacock.webp" width="229" height="70" alt="Peacock" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+        <img src="/images/press-logos/la-magazine.webp" width="298" height="70" alt="Los Angeles Magazine" class="press-logo h-6 md:h-7 w-auto" loading="lazy">
+        <img src="/images/press-logos/bill-maher.webp" width="300" height="138" alt="Real Time with Bill Maher" class="press-logo h-9 md:h-11 w-auto" loading="lazy">
+        <img src="/images/press-logos/biohacking-conference.webp" width="239" height="66" alt="Biohacking Conference" class="press-logo h-8 md:h-10 w-auto" loading="lazy">
+        <img src="/images/press-logos/vice.webp" width="204" height="65" alt="Vice" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+        <img src="/images/press-logos/omega.webp" width="226" height="50" alt="Omega Institute" class="press-logo h-5 md:h-6 w-auto" loading="lazy">
+      </div>
+      <p class="text-white/60 text-lg mb-8">I could tell you what happens on Tuesdays. I&rsquo;d rather let a member tell you.</p>
+      <blockquote class="font-heading italic text-white/90 text-2xl md:text-3xl leading-relaxed" style="text-wrap: pretty;">&ldquo;The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.&rdquo;</blockquote>
+      <p class="text-white/50 text-xs uppercase tracking-[0.2em] mt-6">Bo L., Member</p>
+    </div>
+  </section>
+
+  <!-- 7. A NOTE FROM CHRISTINA -->
+  <section class="bg-cream text-charcoal py-24 md:py-32 px-6">
+    <div class="max-w-site mx-auto reveal grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div class="lg:col-span-5">
+        <div class="aspect-[4/5] rounded-sm overflow-hidden">
+          <picture>
+            <source srcset="/images/christina-founder.webp" type="image/webp">
+            <img src="/images/christina-founder.jpg" alt="Christina Weber, founder of WeDeepen" class="w-full h-full object-cover" loading="lazy" width="1800" height="1200">
+          </picture>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <p class="text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-6">A note from Christina</p>
+        <div class="space-y-5 text-charcoal/80 text-lg leading-relaxed">
+          <p class="font-heading text-2xl md:text-3xl text-charcoal">Everyone was swiping. I was hosting.</p>
+          <p>It was 2014, New York City. The plan was simple: get dope people in a room. Connect deeply. Live happily ever after.</p>
+          <p>At every event, I heard the same stories. Heartbreak. Broken expectations. Pressure. And truthfully, I was living them too.</p>
+          <p>The plan evolved. The mission never did.</p>
+          <p>Since 2014, I&rsquo;ve gathered the best teachers I could find. Not one teacher, one modality, one system. No gurus here. Just a room where love gets studied out loud.</p>
+          <p>Come in. Own your own sh*t. Bring every feeling. Practice with us.</p>
+          <p>Your intimacy journey is your life story.</p>
+          <p class="font-heading italic text-2xl text-charcoal pt-2">Christina</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PRICE -->
+  <section id="join" class="bg-ink py-24 md:py-32 px-6">
+    <div class="max-w-4xl mx-auto reveal">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.6rem] font-normal leading-tight text-center mb-14" style="text-wrap: balance;">You&rsquo;ve spent years getting good at your work. This is 90 minutes a week for the thing that shapes everything else.</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-md p-7 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.14); background: linear-gradient(135deg, #1F1B1C 0%, #241419 100%);">
+          <p class="text-white/55 text-[0.68rem] uppercase tracking-[0.24em] font-semibold mb-3">Monthly &middot; Founding member rate</p>
+          <p class="font-heading text-5xl text-white mb-4">$99<span class="text-white/40 text-lg"> /month</span></p>
+          <p class="text-white/70 leading-relaxed mb-8">Every Tuesday, the community, Ask the Experts, Sunday Dares, recordings.</p>
+          <a data-cta="b-monthly" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose w-full text-center mt-auto">Save my seat for Tuesday</a>
+        </div>
+        <div class="rounded-md p-7 md:p-8 flex flex-col relative" style="border:1px solid rgba(201,162,119,0.6); background:rgba(201,162,119,0.06);">
+          <span class="absolute -top-3 left-6 text-[0.62rem] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full" style="background:#C9A277;color:#1A1A1A;">Two months free</span>
+          <p class="text-gold text-[0.68rem] uppercase tracking-[0.24em] font-semibold mb-3">Annual</p>
+          <p class="font-heading text-5xl text-white mb-4">$990<span class="text-white/40 text-lg"> /year</span></p>
+          <p class="text-white/75 leading-relaxed mb-3">Two months free, plus $800 toward Love Immersion, three days together in Austin where we mastermind our love lives.</p>
+          <p class="text-gold text-sm font-medium mb-8">Limited credits available for the next Love Immersion.</p>
+          <a data-cta="b-annual" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368282" target="_blank" rel="noopener" class="btn-outline w-full text-center mt-auto">Join for the year</a>
+        </div>
+      </div>
+      <p class="text-white/40 text-xs leading-relaxed mt-5 text-center">The $800 Love Immersion credit is valid for one retreat during your membership year and can&rsquo;t be combined with any other discount or offer.</p>
+
+      <!-- What happens after you click -->
+      <ol class="grid sm:grid-cols-3 gap-6 sm:gap-4 mt-12 text-center">
+        <li><span class="inline-flex w-9 h-9 rounded-full items-center justify-center text-sm font-semibold mb-3" style="border:1px solid rgba(201,162,119,0.6);color:#C9A277;">1</span><p class="text-white/80 leading-snug">Choose your plan.</p></li>
+        <li><span class="inline-flex w-9 h-9 rounded-full items-center justify-center text-sm font-semibold mb-3" style="border:1px solid rgba(201,162,119,0.6);color:#C9A277;">2</span><p class="text-white/80 leading-snug">You&rsquo;re in the member community right away, with Tuesday on your calendar.</p></li>
+        <li><span class="inline-flex w-9 h-9 rounded-full items-center justify-center text-sm font-semibold mb-3" style="border:1px solid rgba(201,162,119,0.6);color:#C9A277;">3</span><p class="text-white/80 leading-snug">See you Tuesday at 7pm ET.</p></li>
+      </ol>
+      <p class="font-heading italic text-white/80 text-xl md:text-2xl text-center leading-relaxed mt-12" style="text-wrap: balance;">$99 is not a lot to not feel alone, and to be in a community of people who understand you.</p>
+    </div>
+  </section>
+
+  <!-- 9. REAL QUESTIONS -->
+  <section class="bg-ink pb-24 md:pb-32 px-6">
+    <div class="max-w-3xl mx-auto reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-normal leading-tight text-center mb-10">Real questions</h2>
+      <div class="faq-item border-t border-white/12">
+        <button class="faq-trigger w-full text-left py-6 flex items-start justify-between gap-8"><span class="font-heading text-xl md:text-2xl text-white">Do I need to be in a relationship?</span><span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span></button>
+        <div class="faq-answer"><p class="pb-7 pr-10 text-white/65 leading-relaxed">No. Come partnered, dating, or solo. Come as you are.</p></div>
+      </div>
+      <div class="faq-item border-t border-white/12">
+        <button class="faq-trigger w-full text-left py-6 flex items-start justify-between gap-8"><span class="font-heading text-xl md:text-2xl text-white">Will I have to share on camera?</span><span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span></button>
+        <div class="faq-answer"><p class="pb-7 pr-10 text-white/65 leading-relaxed">Only when you want to. I&rsquo;m not handing you a microphone on day one. Plenty of members read along for a while.</p></div>
+      </div>
+      <div class="faq-item border-t border-white/12">
+        <button class="faq-trigger w-full text-left py-6 flex items-start justify-between gap-8"><span class="font-heading text-xl md:text-2xl text-white">Is this therapy?</span><span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span></button>
+        <div class="faq-answer"><p class="pb-7 pr-10 text-white/65 leading-relaxed">No. It&rsquo;s relationship education and coaching. Many members do both.</p></div>
+      </div>
+      <div class="faq-item border-t border-white/12">
+        <button class="faq-trigger w-full text-left py-6 flex items-start justify-between gap-8"><span class="font-heading text-xl md:text-2xl text-white">I&rsquo;m busy. Will I keep up?</span><span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span></button>
+        <div class="faq-answer"><p class="pb-7 pr-10 text-white/65 leading-relaxed">Please don&rsquo;t turn love into homework. Missing a Tuesday doesn&rsquo;t make you behind. Love Mastermind recordings are there when you want them.</p></div>
+      </div>
+      <div class="faq-item border-t border-b border-white/12">
+        <button class="faq-trigger w-full text-left py-6 flex items-start justify-between gap-8"><span class="font-heading text-xl md:text-2xl text-white">What if it&rsquo;s not for me?</span><span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span></button>
+        <div class="faq-answer"><p class="pb-7 pr-10 text-white/65 leading-relaxed">Cancel anytime inside Circle. You keep access through the end of the period you&rsquo;ve paid for.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FINAL CALL -->
+  <section class="relative bg-ink py-24 md:py-32 px-6 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/closing-panel.webp');" aria-hidden="true"></div>
+    <div class="absolute inset-0" style="background: rgba(26,26,26,0.78);" aria-hidden="true"></div>
+    <div class="relative max-w-2xl mx-auto text-center reveal">
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal leading-tight mb-8">Come play with us.</h2>
+      <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-5">Plot twist: this whole page, I&rsquo;ve been courting you.</p>
+      <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-10">Your intimacy journey is your life story. Most of it gets written on very ordinary days. Like Tuesday.</p>
+      <a data-cta="b-final" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4">Save my seat for Tuesday</a>
+      <p class="font-heading italic text-white/75 text-xl mt-10">See you in the room, Christina</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Minimal footer -->
+  <footer class="bg-ink border-t border-white/10 py-10 pb-28 lg:pb-10">
+    <div class="max-w-site mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/55 text-xs">
+      <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-5 w-auto opacity-80">
+      <p>&copy; <span id="b-year">2026</span> WeDeepen &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky: straight to the monthly checkout, shown once the hero scrolls away -->
+  <a data-cta="b-sticky" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" id="b-sticky"
+     class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center text-white font-semibold py-4 px-6 transition-transform duration-300 translate-y-full"
+     style="background:#A01B4A; box-shadow:0 -4px 24px rgba(0,0,0,0.45); padding-bottom: calc(1rem + env(safe-area-inset-bottom));">
+    Save my seat for Tuesday
+  </a>
+
+  <script>
+    document.getElementById('b-year').textContent = new Date().getFullYear();
+
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); reveal.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-trigger').addEventListener('click', () => item.classList.toggle('open'));
+    });
+
+    // Reddit AddToCart on every Join click, matching /membership/'s own handler
+    // (checkout-tracking.js only sends it on pages where it loaded the Reddit pixel itself).
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a[data-cta]') && typeof window.rdt === 'function') window.rdt('track', 'AddToCart');
+    }, true);
+
+    // Hero YouTube background, same video and loader as /membership/: injected
+    // ~1.2s after load (the photo stays the LCP), skipped on save-data / 2g.
+    // Captions are unloaded via the IFrame API because muted autoplay forces them on.
+    (function () {
+      const wrap = document.getElementById('hero-video-wrap');
+      const conn = navigator.connection;
+      if (!wrap || (conn && (conn.saveData || /2g/.test(conn.effectiveType || '')))) return;
+      const inject = () => {
+        const id = wrap.dataset.ytId;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&enablejsapi=1&cc_load_policy=3&iv_load_policy=3`;
+        iframe.title = 'WeDeepen background';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay; encrypted-media');
+        wrap.appendChild(iframe);
+        const killCaptions = (p) => { try { p.unloadModule('captions'); p.unloadModule('cc'); } catch (e) {} };
+        const bind = () => new YT.Player(iframe, { events: {
+          onReady: (e) => killCaptions(e.target),
+          onApiChange: (e) => killCaptions(e.target),
+          onStateChange: (e) => { if (e.data === 1) killCaptions(e.target); }
+        } });
+        if (window.YT && window.YT.Player) return bind();
+        const prev = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => { if (prev) prev(); bind(); };
+        const api = document.createElement('script');
+        api.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(api);
+      };
+      const start = () => setTimeout(inject, 1200);
+      if (document.readyState === 'complete') start(); else window.addEventListener('load', start, { once: true });
+    })();
+
+    // Sticky bar stays off screen while the hero (with its own button) is visible.
+    (function () {
+      const bar = document.getElementById('b-sticky'), hero = document.getElementById('hero');
+      if (!('IntersectionObserver' in window)) { bar.classList.remove('translate-y-full'); return; }
+      new IntersectionObserver(([e]) => bar.classList.toggle('translate-y-full', e.isIntersecting), { threshold: 0.1 }).observe(hero);
+    })();
+  </script>
+</body>
+</html>

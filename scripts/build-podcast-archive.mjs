@@ -194,7 +194,7 @@ ${sections}
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-heading text-3xl md:text-4xl font-normal mb-5 leading-tight">Love the podcast? <span class="italic" style="color:#C4577A;">Come practice it.</span></h2>
       <p class="text-white/60 mb-8 leading-relaxed">The conversations here become practice inside the WeDeepen Membership. Live sessions every week, $99 a month.</p>
-      <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership" class="btn-rose">Become a Member</a>
+      <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" class="btn-rose">Become a Member</a>
     </div>
   </section>
 

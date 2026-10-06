@@ -21,7 +21,7 @@
   var root = document.documentElement;
   if (!root.classList.contains('m2')) return;
 
-  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership';
+  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281';
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function sec(name) { return $('[data-m2="' + name + '"]'); }
   function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }

@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-10-04T06:19:30.592Z",
+  "last_updated": "2026-10-06T00:19:09.390Z",
   "source": "circle.wedeepen.com",
   "event_count": 54,
   "events": [
-    {
-      "id": "new-member-orientation-4babe5",
-      "title": "New Member Orientation",
-      "date": "2026-10-05",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-10-05T23:00:00.000Z",
-      "ends_at_iso": "2026-10-06T00:00:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "WeDeepen Members",
-        "Member Orientation"
-      ],
-      "recurring": true,
-      "series": "new-member-orientation",
-      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
-      "image_url": "https://assets-v2.circle.so/5mbwlsfa352djolmg9ng7hzicexz",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5"
-    },
     {
       "id": "integration-session-practice-what-you-learned-bff9df",
       "title": "Integration Session: Practice What You Learned",
@@ -47,26 +25,25 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-bff9df"
     },
     {
-      "id": "love-mastermind-with-dianne-a-allen",
-      "title": "Love Mastermind: Dianne A. Allen, MA",
+      "id": "integration-session-practice-what-you-learned-a99e69",
+      "title": "Integration Session: Practice What You Learned",
       "date": "2026-10-13",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2026-10-13T23:00:00.000Z",
-      "ends_at_iso": "2026-10-14T00:30:00.000Z",
+      "ends_at_iso": "2026-10-14T00:00:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": false,
-      "series": "love-mastermind-with-dianne-a-allen",
-      "description": "Different Minds, Different Love: Understanding Processing Styles in Relationships  We don’t all think, feel, communicate, or experience connection in the same way. Relationship struggles often arise w",
-      "image_url": "https://assets-v2.circle.so/uaiiktbq500zz65blagm8rp69bnj",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-with-dianne-a-allen"
+      "recurring": true,
+      "series": "integration-session-practice-what-you-learned",
+      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
+      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-a99e69"
     },
     {
       "id": "love-immersion-october-17-19",
@@ -92,25 +69,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-immersion-october-17-19"
     },
     {
-      "id": "integration-session-practice-what-you-learned-a99e69",
-      "title": "Integration Session: Practice What You Learned",
+      "id": "love-mastermind-with-dianne-a-allen",
+      "title": "Love Mastermind: Different Minds in Love: Dianne A. Allen, MA",
       "date": "2026-10-20",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2026-10-20T23:00:00.000Z",
-      "ends_at_iso": "2026-10-21T00:00:00.000Z",
+      "ends_at_iso": "2026-10-21T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-a99e69"
+      "recurring": false,
+      "series": "love-mastermind-with-dianne-a-allen",
+      "description": "Different Minds, Different Love: Understanding Processing Styles in Relationships  We don’t all think, feel, communicate, or experience connection in the same way. Relationship struggles often arise w",
+      "image_url": "https://assets-v2.circle.so/5vsofe98nnllm4keio8cefgtwheu",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-with-dianne-a-allen"
     },
     {
       "id": "love-mastermind-no-faculty-yet-053b16",
@@ -1165,6 +1143,27 @@
       "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
       "image_url": "https://assets-v2.circle.so/vppsld5ggnd5e6iegfnsg0abh1uh",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-79d7c0"
+    },
+    {
+      "id": "integration-session-practice-what-you-learned-1347f3",
+      "title": "Integration Session: Practice What You Learned",
+      "date": "2027-10-05",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-10-05T23:00:00.000Z",
+      "ends_at_iso": "2027-10-06T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members"
+      ],
+      "recurring": true,
+      "series": "integration-session-practice-what-you-learned",
+      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
+      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-1347f3"
     }
   ]
 }

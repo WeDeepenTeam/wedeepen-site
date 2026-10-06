@@ -60,7 +60,8 @@
   // value 0 + USD, which it needs to read the event (Events Manager flagged
   // missing price/currency, 2026-10-05).
   var DESTINATIONS = [
-    { type: 'membership', value: 99, test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/wedeepen-club-membership') === 0; } },
+    // Circle price IDs: 368282 = $990 annual; anything else (368281 or none) is the $99 monthly.
+    { type: 'membership', value: function (u) { return u.searchParams.get('price_id') === '368282' ? 990 : 99; }, test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/wedeepen-club-membership') === 0; } },
     { type: 'membership', test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/') === 0; } },
     { type: 'event', test: function (u) { return /(^|\.)ticketspice\.com$/.test(u.hostname) || /(^|\.)eventbrite\.com$/.test(u.hostname); } },
     { type: 'booking', test: function (u) { return /(^|\.)acuityscheduling\.com$/.test(u.hostname); } }
@@ -90,7 +91,8 @@
       }
 
       if (typeof window.fbq === 'function') {
-        var fbParams = { content_category: d.type, content_name: checkoutUrl, value: d.value || 0, currency: 'USD' };
+        var value = typeof d.value === 'function' ? d.value(url) : (d.value || 0);
+        var fbParams = { content_category: d.type, content_name: checkoutUrl, value: value, currency: 'USD' };
         window.fbq('track', 'InitiateCheckout', fbParams);
       }
 

@@ -290,7 +290,9 @@ def render_episode_page(ep: dict, related: list) -> str:
     window.dataLayer = window.dataLayer || [];
     function gtag(){{dataLayer.push(arguments);}}
     gtag('js', new Date());
-    gtag('config', 'G-LZ0EY5X593');
+    // Ad-review crawlers and headless browsers load pages too; skip GA4 for them so they
+    // don't show up as (not set) / Unassigned sessions.
+    if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593');
   </script>
   <script src="/js/checkout-tracking.js?v=3" defer></script>
 

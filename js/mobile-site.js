@@ -18,7 +18,7 @@
 
   var PHONE = window.matchMedia && matchMedia('(max-width:1023px)').matches;
   var path = location.pathname;
-  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership';
+  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281';
 
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }

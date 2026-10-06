@@ -113,6 +113,15 @@
 
     .press-logo { filter: brightness(0) invert(1); opacity: 0.55; }
 
+    /* Hero video background (same treatment as /membership/): oversized so the
+       YouTube title and caption zones sit off screen. */
+    .hero-video-wrap { position: absolute; inset: 0; overflow: hidden; }
+    .hero-video-wrap iframe {
+      position: absolute; top: 50%; left: 50%;
+      aspect-ratio: 16 / 9; min-width: 140%; min-height: 140%;
+      transform: translate(-50%, -50%); pointer-events: none;
+    }
+
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -167,7 +176,9 @@
 
   <!-- 1. HERO -->
   <section id="hero" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+    <!-- Photo paints first; the same YouTube background as /membership/ loads on top after page load -->
     <img src="/images/li-community-2.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4"></div>
     <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(26,26,26,0.78) 0%, rgba(26,26,26,0.66) 45%, rgba(26,26,26,0.92) 100%);"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-32 pb-20 md:pt-40 md:pb-28">
       <img src="/images/deepen-icon-favicon-white.png" width="500" height="500" alt="" aria-hidden="true" class="w-14 h-14 md:w-16 md:h-16 opacity-95 mx-auto mb-10">
@@ -397,6 +408,38 @@
     document.querySelectorAll('.faq-item').forEach(item => {
       item.querySelector('.faq-trigger').addEventListener('click', () => item.classList.toggle('open'));
     });
+
+    // Hero YouTube background, same video and loader as /membership/: injected
+    // ~1.2s after load (the photo stays the LCP), skipped on save-data / 2g.
+    // Captions are unloaded via the IFrame API because muted autoplay forces them on.
+    (function () {
+      const wrap = document.getElementById('hero-video-wrap');
+      const conn = navigator.connection;
+      if (!wrap || (conn && (conn.saveData || /2g/.test(conn.effectiveType || '')))) return;
+      const inject = () => {
+        const id = wrap.dataset.ytId;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&enablejsapi=1&cc_load_policy=3&iv_load_policy=3`;
+        iframe.title = 'WeDeepen background';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay; encrypted-media');
+        wrap.appendChild(iframe);
+        const killCaptions = (p) => { try { p.unloadModule('captions'); p.unloadModule('cc'); } catch (e) {} };
+        const bind = () => new YT.Player(iframe, { events: {
+          onReady: (e) => killCaptions(e.target),
+          onApiChange: (e) => killCaptions(e.target),
+          onStateChange: (e) => { if (e.data === 1) killCaptions(e.target); }
+        } });
+        if (window.YT && window.YT.Player) return bind();
+        const prev = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => { if (prev) prev(); bind(); };
+        const api = document.createElement('script');
+        api.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(api);
+      };
+      const start = () => setTimeout(inject, 1200);
+      if (document.readyState === 'complete') start(); else window.addEventListener('load', start, { once: true });
+    })();
 
     // Sticky bar stays off screen while the hero (with its own button) is visible.
     (function () {

@@ -4,8 +4,9 @@
      structure: logo-only header, no nav, minimal footer, one action.
      noindex + canonical to /membership/, so it stays out of search, the sitemap
      builder and seo:schema. nav:sync skips it (no nav markers).
-     Checkout links are placeholders until the B checkouts exist:
-       [B MONTHLY CHECKOUT LINK]  [B ANNUAL CHECKOUT LINK] -->
+     Checkout links pre-select the plan via Circle's paywall price IDs:
+       ?price_id=368281 = $99 monthly, ?price_id=368282 = $990 annual.
+       (Without it, the checkout opens on annual.) -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,8 +22,7 @@
     if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership B', page_variant: 'B' });
     gtag('config', 'AW-18481553095');
   </script>
-  <!-- Join clicks: begin_checkout (GA4) + InitiateCheckout (Meta) with data-cta="b-*".
-       Fires once the placeholder links are real Circle checkout URLs. -->
+  <!-- Join clicks: begin_checkout (GA4) + InitiateCheckout (Meta) with data-cta="b-*". -->
   <script src="/js/checkout-tracking.js?v=3" defer></script>
 
   <!-- Meta pixel ("WeDeepen Website" dataset). ViewContent is named B so it reports apart from A. -->
@@ -186,7 +186,7 @@
       <p class="text-base md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed md:font-light" style="text-wrap: pretty;">
         Every Tuesday, study and practice love live with experts I&rsquo;ve trusted with my own heart. 90 minutes a week, online. Come partnered, dating, or solo.
       </p>
-      <a data-cta="b-hero" href="[B MONTHLY CHECKOUT LINK]" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4 w-full sm:w-auto">Save my seat for Tuesday</a>
+      <a data-cta="b-hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4 w-full sm:w-auto">Save my seat for Tuesday</a>
       <p class="text-gold/90 text-sm md:text-base font-medium mt-6">Founding member rate: $99/month.</p>
     </div>
   </section>
@@ -321,7 +321,7 @@
           <p class="text-white/55 text-[0.68rem] uppercase tracking-[0.24em] font-semibold mb-3">Monthly &middot; Founding member rate</p>
           <p class="font-heading text-5xl text-white mb-4">$99<span class="text-white/40 text-lg"> /month</span></p>
           <p class="text-white/70 leading-relaxed mb-8">Every Tuesday, the community, Ask the Experts, Sunday Dares, recordings.</p>
-          <a data-cta="b-monthly" href="[B MONTHLY CHECKOUT LINK]" target="_blank" rel="noopener" class="btn-rose w-full text-center mt-auto">Save my seat for Tuesday</a>
+          <a data-cta="b-monthly" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose w-full text-center mt-auto">Save my seat for Tuesday</a>
         </div>
         <div class="rounded-md p-7 md:p-8 flex flex-col relative" style="border:1px solid rgba(201,162,119,0.6); background:rgba(201,162,119,0.06);">
           <span class="absolute -top-3 left-6 text-[0.62rem] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full" style="background:#C9A277;color:#1A1A1A;">Two months free</span>
@@ -329,7 +329,7 @@
           <p class="font-heading text-5xl text-white mb-4">$990<span class="text-white/40 text-lg"> /year</span></p>
           <p class="text-white/75 leading-relaxed mb-3">Two months free, plus $800 toward Love Immersion, three days together in Austin where we mastermind our love lives.</p>
           <p class="text-gold text-sm font-medium mb-8">Limited credits available for the next Love Immersion.</p>
-          <a data-cta="b-annual" href="[B ANNUAL CHECKOUT LINK]" target="_blank" rel="noopener" class="btn-outline w-full text-center mt-auto">Join for the year</a>
+          <a data-cta="b-annual" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368282" target="_blank" rel="noopener" class="btn-outline w-full text-center mt-auto">Join for the year</a>
         </div>
       </div>
       <p class="text-white/40 text-xs leading-relaxed mt-5 text-center">The $800 Love Immersion credit is valid for one retreat during your membership year and can&rsquo;t be combined with any other discount or offer.</p>
@@ -372,7 +372,7 @@
       <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal leading-tight mb-8">Come play with us.</h2>
       <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-5">Plot twist: this whole page, I&rsquo;ve been courting you.</p>
       <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-10">Your intimacy journey is your life story. Most of it gets written on very ordinary days. Like Tuesday.</p>
-      <a data-cta="b-final" href="[B MONTHLY CHECKOUT LINK]" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4">Save my seat for Tuesday</a>
+      <a data-cta="b-final" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" class="btn-rose text-base !px-10 !py-4">Save my seat for Tuesday</a>
       <p class="font-heading italic text-white/75 text-xl mt-10">See you in the room, Christina</p>
     </div>
   </section>
@@ -388,7 +388,7 @@
   </footer>
 
   <!-- Mobile sticky: straight to the monthly checkout, shown once the hero scrolls away -->
-  <a data-cta="b-sticky" href="[B MONTHLY CHECKOUT LINK]" target="_blank" rel="noopener" id="b-sticky"
+  <a data-cta="b-sticky" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" target="_blank" rel="noopener" id="b-sticky"
      class="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center text-white font-semibold py-4 px-6 transition-transform duration-300 translate-y-full"
      style="background:#A01B4A; box-shadow:0 -4px 24px rgba(0,0,0,0.45); padding-bottom: calc(1rem + env(safe-area-inset-bottom));">
     Save my seat for Tuesday
@@ -408,6 +408,12 @@
     document.querySelectorAll('.faq-item').forEach(item => {
       item.querySelector('.faq-trigger').addEventListener('click', () => item.classList.toggle('open'));
     });
+
+    // Reddit AddToCart on every Join click, matching /membership/'s own handler
+    // (checkout-tracking.js only sends it on pages where it loaded the Reddit pixel itself).
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a[data-cta]') && typeof window.rdt === 'function') window.rdt('track', 'AddToCart');
+    }, true);
 
     // Hero YouTube background, same video and loader as /membership/: injected
     // ~1.2s after load (the photo stays the LCP), skipped on save-data / 2g.

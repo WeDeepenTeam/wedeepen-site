@@ -137,6 +137,11 @@ const schema = {
 };
 
 let html = await fs.readFile(HUB, 'utf-8');
+// The hub is currently a redirect stub to the next retreat (no markers): nothing to build.
+if (!html.includes('<!-- li:autogen -->')) {
+  console.log('li:hub: love-immersion/index.html is a redirect stub; skipped');
+  process.exit(0);
+}
 const next = replaceBlock(
   replaceBlock(html, 'li:autogen', cards),
   'li:schema',

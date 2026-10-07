@@ -1,29 +1,8 @@
 {
-  "last_updated": "2026-10-06T00:19:09.390Z",
+  "last_updated": "2026-10-07T06:26:46.350Z",
   "source": "circle.wedeepen.com",
-  "event_count": 54,
+  "event_count": 53,
   "events": [
-    {
-      "id": "integration-session-practice-what-you-learned-bff9df",
-      "title": "Integration Session: Practice What You Learned",
-      "date": "2026-10-06",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-10-06T23:00:00.000Z",
-      "ends_at_iso": "2026-10-07T00:00:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "WeDeepen Members"
-      ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/chxgjyh0afi69lejtqom73rza1sv",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-bff9df"
-    },
     {
       "id": "integration-session-practice-what-you-learned-a99e69",
       "title": "Integration Session: Practice What You Learned",

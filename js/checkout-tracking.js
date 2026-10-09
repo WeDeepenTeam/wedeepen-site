@@ -23,6 +23,10 @@
   var FB_PIXEL_ID = '1541773576982273'; // "WeDeepen Website" dataset
   // Production only: never load the pixel on localhost/dev/preview hosts.
   var IS_PROD = /(^|\.)wedeepen\.com$/.test(location.hostname);
+  // Automated browsers (QA scripts, Lighthouse, crawlers) must not send checkout
+  // events: a test run on Oct 6, 2026 logged ~86 fake InitiateCheckouts in Meta.
+  // Same test the GA4 config uses in each page head.
+  var IS_BOT = !!navigator.webdriver || /bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent);
 
   if (IS_PROD && !window.fbq) {
     !function(f,b,e,v,n,t,s)
@@ -68,6 +72,7 @@
   ];
 
   document.addEventListener('click', function (e) {
+    if (IS_BOT) return;
     var a = e.target && e.target.closest && e.target.closest('a[href]');
     if (!a) return;
 

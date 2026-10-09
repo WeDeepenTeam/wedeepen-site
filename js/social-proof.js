@@ -55,16 +55,14 @@
     if (!force && sessionStorage.getItem(DISMISS_KEY)) return;
   } catch (e) {}
 
-  // Every figure below is published elsewhere on the site, or confirmed by
-  // René (member count from Circle, Oct 2026). Keep it that way: the ticker is
-  // a pointer to proof, not a place where new claims appear.
+  // Every figure below is published elsewhere on the site. Keep it that way:
+  // the ticker is a pointer to proof, not a place where new claims appear.
   var EVERGREEN = [
     { text: 'Rated <strong>9.6 out of 10</strong> by Love Immersion participants.', href: '/love-immersion/october-2026/' },
     { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/october-2026/' },
     { text: 'More than <strong>40,000 people</strong> have joined a WeDeepen experience.', href: '/about/' },
     { text: '<strong>183 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
-    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' },
-    { text: '<strong>135 members</strong> practice together in the WeDeepen community.', href: '/membership/' }
+    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' }
   ];
 
   // Trimmed from the testimonials on /reviews/, with the same attribution.

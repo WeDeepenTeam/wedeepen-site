@@ -1435,6 +1435,19 @@
         if (!want) return;
         const opt = [...form.subject.options].find(o => o.value.toLowerCase().includes(want));
         if (opt) form.subject.value = opt.value;
+
+        // The page is long and smooth-scrolled, so the native #contact jump
+        // stalls short while lazy images above it load. Land on the form
+        // itself, re-aiming as the layout settles, until the visitor scrolls.
+        if (location.hash !== '#contact') return;
+        let stop = false;
+        const quit = () => { stop = true; };
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev => addEventListener(ev, quit, { once: true, passive: true }));
+        form.closest('.reveal')?.classList.add('visible');
+        const aim = () => { if (!stop) form.scrollIntoView({ behavior: 'instant', block: 'center' }); };
+        const settle = () => [0, 400, 1200, 2500].forEach(t => setTimeout(aim, t));
+        document.readyState === 'complete' ? settle() : addEventListener('load', settle, { once: true });
+        aim();
       })();
       if (!form) return;
       const status = document.getElementById('dal-status');

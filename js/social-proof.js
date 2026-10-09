@@ -1,10 +1,11 @@
 /**
  * social-proof.js — the rotating proof ticker in the bottom-left corner.
  *
- * Two kinds of cue share one rotation:
+ * Three kinds of cue share one rotation:
  *
  *   evergreen  facts that are already published elsewhere on the site, so the
  *              ticker always has something true to show.
+ *   quotes     short testimonials trimmed from /reviews/, alternated with facts.
  *   live       recent activity from ENDPOINT. Optional. If the endpoint is
  *              unset, unreachable, empty, or stale, those cues are simply
  *              absent from the rotation.
@@ -37,7 +38,7 @@
   var START_DELAY_MS = 8000;
   var SHOW_MS = 6000;          // how long one cue stays up
   var GAP_MS = 1200;           // dead air between cues
-  var PASSES = 2;              // rotations before the ticker retires for the session
+  var PASSES = 1;              // rotations before the ticker retires for the session
   var MAX_AGE_HOURS = 72;      // older activity is dropped, not shown as "recent"
   var DISMISS_KEY = 'wd-proof-dismissed';
 
@@ -54,15 +55,30 @@
     if (!force && sessionStorage.getItem(DISMISS_KEY)) return;
   } catch (e) {}
 
-  // Every figure below is published elsewhere on the site. Keep it that way:
-  // the ticker is a pointer to proof, not a place where new claims appear.
+  // Every figure below is published elsewhere on the site, or confirmed by
+  // René (member count from Circle, Oct 2026). Keep it that way: the ticker is
+  // a pointer to proof, not a place where new claims appear.
   var EVERGREEN = [
     { text: 'Rated <strong>9.6 out of 10</strong> by Love Immersion participants.', href: '/love-immersion/october-2026/' },
-    { text: '<strong>65%</strong> come back for another Love Immersion.', href: '/love-immersion/october-2026/' },
+    { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/october-2026/' },
     { text: 'More than <strong>40,000 people</strong> have joined a WeDeepen experience.', href: '/about/' },
-    { text: '<strong>182 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
-    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' }
+    { text: '<strong>183 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
+    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' },
+    { text: '<strong>135 members</strong> practice together in the WeDeepen community.', href: '/membership/' }
   ];
+
+  // Trimmed from the testimonials on /reviews/, with the same attribution.
+  // Only quote people who already appear there.
+  var QUOTES = [
+    ['The love masterminding has been life-changing.', 'Bo L., Love Club member'],
+    ['The hot seats were 10/10, and not just mine.', 'Joshua W., Love Immersion'],
+    ['The quality of the coaches is unmatched.', 'Krista &amp; Thomas, together 15 years'],
+    ['Being in a room with people who want to grow was priceless.', 'Karolina &amp; John, Love Immersion'],
+    ['The Love Club gives me foundation. The immersions bring it all to life.', 'Phil G., Love Immersion'],
+    ['Seeing everyone as \u2018the one\u2019 changed my life.', 'Mo M., WeDeepen Summit']
+  ].map(function (q) {
+    return { text: '<em>\u201c' + q[0] + '\u201d</em><span class="wd-proof-by">' + q[1] + '</span>', href: '/reviews/' };
+  });
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -115,6 +131,8 @@
       + '#wd-proof.wd-in{opacity:1;pointer-events:auto;}'
       + '#wd-proof a{color:inherit;text-decoration:none;flex:1;font-size:13.5px;line-height:1.45;}'
       + '#wd-proof a strong{color:#C9A277;font-weight:600;}'
+      + '#wd-proof a em{font-style:italic;}'
+      + '#wd-proof .wd-proof-by{display:block;margin-top:4px;font-size:12px;color:#C9A277;}'
       + '#wd-proof a:hover{text-decoration:underline;text-decoration-color:rgba(201,162,119,.5);text-underline-offset:3px;}'
       + '#wd-proof .wd-proof-dot{flex:none;width:7px;height:7px;margin-top:6px;border-radius:50%;'
       + 'background:#C9A277;box-shadow:0 0 0 3px rgba(201,162,119,.18);}'
@@ -194,7 +212,17 @@
     return a;
   }
 
+  // Alternate a fact with a quote so neither kind bunches up.
+  function blend(facts, quotes) {
+    var out = [];
+    for (var i = 0; i < Math.max(facts.length, quotes.length); i++) {
+      if (facts[i]) out.push(facts[i]);
+      if (quotes[i]) out.push(quotes[i]);
+    }
+    return out;
+  }
+
   fetchLive().then(function (live) {
-    run(live.concat(shuffle(EVERGREEN.slice())));
+    run(live.concat(blend(shuffle(EVERGREEN.slice()), shuffle(QUOTES.slice()))));
   });
 })();

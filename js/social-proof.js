@@ -55,14 +55,18 @@
     if (!force && sessionStorage.getItem(DISMISS_KEY)) return;
   } catch (e) {}
 
-  // Every figure below is published elsewhere on the site. Keep it that way:
-  // the ticker is a pointer to proof, not a place where new claims appear.
+  // Every figure below is published elsewhere on the site or approved by René
+  // (10+ years, 1,850+ events, 96% satisfaction: Oct 2026, from the WeDeepen
+  // deck). Never add a figure nobody has signed off on.
   var EVERGREEN = [
     { text: 'Rated <strong>9.6 out of 10</strong> by Love Immersion participants.', href: '/love-immersion/october-2026/' },
     { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/october-2026/' },
     { text: 'More than <strong>40,000 people</strong> have joined a WeDeepen experience.', href: '/about/' },
     { text: '<strong>183 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
-    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' }
+    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' },
+    { text: 'A global community creating spaces for human connection and growth for <strong>10+ years</strong>.', href: '/about/' },
+    { text: '<strong>1,850+ events</strong> and experiences hosted so far.', href: '/events/' },
+    { text: '<strong>96%</strong> member satisfaction.', href: '/reviews/' }
   ];
 
   // Trimmed from the testimonials on /reviews/, with the same attribution.

@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-14T05:22:17.315Z",
+  "last_updated": "2026-10-14T17:35:46.909Z",
   "source": "circle.wedeepen.com",
-  "event_count": 61,
+  "event_count": 65,
   "events": [
     {
       "id": "love-immersion-october-17-19",
@@ -999,6 +999,28 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-ee55b2"
     },
     {
+      "id": "new-member-orientation-4babe5-41ecf0-7962b3-71d243",
+      "title": "New Member Orientation",
+      "date": "2027-07-05",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-07-05T23:00:00.000Z",
+      "ends_at_iso": "2027-07-06T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members",
+        "Member Orientation"
+      ],
+      "recurring": true,
+      "series": "new-member-orientation-4babe5-41ecf0-7962b3",
+      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
+      "image_url": "https://assets-v2.circle.so/cvc3v9r819d3i9nok3on6p4kn5ms",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-71d243"
+    },
+    {
       "id": "love-mastermind-no-faculty-yet-d6e8fe",
       "title": "Love Mastermind: Faculty Announced Soon",
       "date": "2027-07-06",
@@ -1083,6 +1105,28 @@
       "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
       "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-f6fd8b"
+    },
+    {
+      "id": "new-member-orientation-4babe5-41ecf0-7962b3-43d587",
+      "title": "New Member Orientation",
+      "date": "2027-08-02",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-08-02T23:00:00.000Z",
+      "ends_at_iso": "2027-08-03T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members",
+        "Member Orientation"
+      ],
+      "recurring": true,
+      "series": "new-member-orientation-4babe5-41ecf0-7962b3",
+      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
+      "image_url": "https://assets-v2.circle.so/acajl4ct5tc9tu3o9etz82y9t9b3",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-43d587"
     },
     {
       "id": "love-mastermind-no-faculty-yet-3161c4",
@@ -1214,6 +1258,28 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-4b4ad6"
     },
     {
+      "id": "new-member-orientation-4babe5-41ecf0-7962b3-0772c8",
+      "title": "New Member Orientation",
+      "date": "2027-09-13",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-09-13T23:00:00.000Z",
+      "ends_at_iso": "2027-09-14T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members",
+        "Member Orientation"
+      ],
+      "recurring": true,
+      "series": "new-member-orientation-4babe5-41ecf0-7962b3",
+      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
+      "image_url": "https://assets-v2.circle.so/my34fcvvmc64ym8o6xav0vc9lq8n",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-0772c8"
+    },
+    {
       "id": "love-mastermind-no-faculty-yet-c8a04b",
       "title": "Love Mastermind: Faculty Announced Soon",
       "date": "2027-09-14",
@@ -1277,6 +1343,28 @@
       "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
       "image_url": "https://assets-v2.circle.so/vppsld5ggnd5e6iegfnsg0abh1uh",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-79d7c0"
+    },
+    {
+      "id": "new-member-orientation-4babe5-41ecf0-7962b3-0ae277",
+      "title": "New Member Orientation",
+      "date": "2027-10-04",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-10-04T23:00:00.000Z",
+      "ends_at_iso": "2027-10-05T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members",
+        "Member Orientation"
+      ],
+      "recurring": true,
+      "series": "new-member-orientation-4babe5-41ecf0-7962b3",
+      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
+      "image_url": "https://assets-v2.circle.so/rl109dtb5nckga4vfwml9deq29n9",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-0ae277"
     },
     {
       "id": "integration-session-practice-what-you-learned-1347f3",

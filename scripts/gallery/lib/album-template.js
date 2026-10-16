@@ -152,16 +152,36 @@ ${pageScripts()}
 
     function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
 
-    // Retry thumbnails that fail to load (dropped requests when a big batch fires at once).
-    // Up to 3 attempts with backoff; a cache-busting param forces a fresh fetch.
+    // Retry thumbnails that fail to load. Supabase Storage rate-limits (429) when a big
+    // album fires hundreds of requests at once, and the limit can last several seconds.
+    // Up to 8 attempts with exponential backoff + jitter, and at most 4 retries in flight
+    // so the retries themselves don't trip the limit again.
+    const MAX_TRIES = 8, MAX_INFLIGHT = 4;
+    const retryQueue = [];
+    let inflight = 0;
+    function pump() {
+      while (inflight < MAX_INFLIGHT && retryQueue.length) {
+        const img = retryQueue.shift();
+        inflight++;
+        const done = () => {
+          img.removeEventListener('load', done);
+          img.removeEventListener('error', done);
+          inflight--;
+          pump();
+        };
+        img.addEventListener('load', done);
+        img.addEventListener('error', done);
+        img.src = img.src.split('?')[0] + '?r=' + img.dataset.retry + '-' + Date.now();
+      }
+    }
     grid.addEventListener('error', (e) => {
       const img = e.target;
       if (!(img instanceof HTMLImageElement)) return;
       const tries = Number(img.dataset.retry || 0);
-      if (tries >= 3) return;
+      if (tries >= MAX_TRIES) return;
       img.dataset.retry = String(tries + 1);
-      const base = img.src.split('?')[0];
-      setTimeout(() => { img.src = base + '?r=' + (tries + 1) + '-' + Date.now(); }, 800 * (tries + 1));
+      const delay = Math.min(20000, 1000 * 2 ** tries) + Math.random() * 1000;
+      setTimeout(() => { retryQueue.push(img); pump(); }, delay);
     }, true);
 
     function open(index) {

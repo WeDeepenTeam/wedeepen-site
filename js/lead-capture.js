@@ -568,7 +568,7 @@
         form.style.display = 'none';
         if (doneBox) {
           var hi = doneBox.querySelector('[data-guide-hi]');
-          if (hi && firstName) hi.textContent = 'Check your inbox, ' + firstName + '!';
+          if (hi && firstName) hi.textContent = 'Check your inbox, ' + firstName + '.';
           doneBox.style.display = 'block';
         }
       }

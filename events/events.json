@@ -1,31 +1,8 @@
 {
-  "last_updated": "2026-10-14T17:35:46.909Z",
+  "last_updated": "2026-10-19T22:37:43.988Z",
   "source": "circle.wedeepen.com",
-  "event_count": 65,
+  "event_count": 64,
   "events": [
-    {
-      "id": "love-immersion-october-17-19",
-      "title": "Love Immersion VIII: October 17-19, Austin",
-      "date": "2026-10-17",
-      "end_date": "2026-10-19",
-      "time": "9:00 AM",
-      "starts_at_iso": "2026-10-17T14:00:00.000Z",
-      "ends_at_iso": "2026-10-19T19:00:00.000Z",
-      "location_type": "austin",
-      "location_label": "17301 Flint Rock Rd, Austin, TX 78738",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "In-Person",
-        "Love Immersion",
-        "Open to Everyone"
-      ],
-      "recurring": false,
-      "series": "love-immersion-october-17-19",
-      "description": "WeDeepen Love Immersion VIII October 17–19 · Austin, TX  Find all the details and complete your reservation on the event page. 👉🏽 Click here.",
-      "image_url": "https://assets-v2.circle.so/5n89hcioes13mag7za22nv5ukddf",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-immersion-october-17-19"
-    },
     {
       "id": "love-mastermind-with-dianne-a-allen",
       "title": "Love Mastermind: Different Minds in Love: Dianne A. Allen, MA",

@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-19T22:37:43.988Z",
+  "last_updated": "2026-10-20T05:15:43.916Z",
   "source": "circle.wedeepen.com",
-  "event_count": 64,
+  "event_count": 65,
   "events": [
     {
       "id": "love-mastermind-with-dianne-a-allen",
@@ -1385,6 +1385,27 @@
       "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
       "image_url": "https://assets-v2.circle.so/vppsld5ggnd5e6iegfnsg0abh1uh",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-f2b66a"
+    },
+    {
+      "id": "integration-session-practice-what-you-learned-baeaf6",
+      "title": "Integration Session: Practice What You Learned",
+      "date": "2027-10-19",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-10-19T23:00:00.000Z",
+      "ends_at_iso": "2027-10-20T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members"
+      ],
+      "recurring": true,
+      "series": "integration-session-practice-what-you-learned",
+      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
+      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-baeaf6"
     }
   ]
 }

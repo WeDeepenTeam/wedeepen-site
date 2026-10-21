@@ -59,8 +59,8 @@
   // (10+ years, 1,850+ events, 96% satisfaction: Oct 2026, from the WeDeepen
   // deck). Never add a figure nobody has signed off on.
   var EVERGREEN = [
-    { text: 'Rated <strong>9.6 out of 10</strong> by Love Immersion participants.', href: '/love-immersion/october-2026/' },
-    { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/october-2026/' },
+    { text: 'Rated <strong>9.6 out of 10</strong> by Love Immersion participants.', href: '/love-immersion/' },
+    { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/' },
     { text: 'More than <strong>40,000 people</strong> have joined a WeDeepen experience.', href: '/about/' },
     { text: '<strong>183 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
     { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' },
@@ -103,7 +103,7 @@
     if ((Date.now() - new Date(ev.at).getTime()) / 3600000 > MAX_AGE_HOURS) return null;
     var where = ev.city ? ' in ' + esc(ev.city) : '';
     if (ev.type === 'immersion') {
-      return { text: 'Someone' + where + ' booked a seat at Love Immersion, <strong>' + when + '</strong>.', href: '/love-immersion/october-2026/' };
+      return { text: 'Someone' + where + ' booked a seat at Love Immersion, <strong>' + when + '</strong>.', href: '/love-immersion/' };
     }
     if (ev.type === 'join') {
       return { text: 'Someone' + where + ' joined the membership, <strong>' + when + '</strong>.', href: '/membership/' };

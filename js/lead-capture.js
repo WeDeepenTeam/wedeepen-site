@@ -594,6 +594,68 @@
     }
   }
 
+  // Love Immersion waitlist (/love-immersion/ while no retreat is on sale):
+  // same SimpleTexting web form as the popup, so people land on the
+  // COUNTMEIN list; the sign-ups sheet row says "Love Immersion waitlist" so
+  // the team can pull the waitlist when dates are set.
+  function wireWaitlistForm() {
+    var form = document.querySelector('form[data-waitlist-form]');
+    if (!form) return;
+    var doneBox = document.querySelector('[data-waitlist-done]');
+    var err = form.querySelector('[data-waitlist-err]');
+    var btn = form.querySelector('button[type=submit]');
+    var btnText = btn.textContent;
+    function showErr(msg) { err.innerHTML = msg; err.style.display = msg ? 'block' : 'none'; }
+    form.phone.addEventListener('input', function () { form.phone.value = formatPhone(form.phone.value); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      showErr('');
+      var firstName = form.firstname.value.trim();
+      var phone = form.phone.value.replace(/\D/g, '');
+      if (phone.length === 11 && phone.charAt(0) === '1') phone = phone.slice(1);
+      var email = form.email.value.trim();
+      function finish(hi) {
+        form.style.display = 'none';
+        if (doneBox) {
+          var h = doneBox.querySelector('[data-waitlist-hi]');
+          if (h && hi) h.innerHTML = hi;
+          doneBox.style.display = 'block';
+        }
+        snooze(LS_POPUP, JOINED_DAYS);
+      }
+      if (form.company.value) { finish(); return; } // honeypot
+      if (!firstName) { showErr('Please add your first name.'); return; }
+      if (phone.length !== 10) { showErr('Please add a 10-digit cell phone number.'); return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('That email doesn’t look right (or leave it blank).'); return; }
+      if (!form.consent.checked) { showErr('Please agree to receive texts so we can tell you when dates are set.'); return; }
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      var signup = { firstName: firstName, phone: phone, email: email, city: '', state: '', podcast: 'No' };
+      var fieldValues = { phone: phone, firstname: firstName, Podcasts: 'No' };
+      if (email) fieldValues.email = email;
+      stJoin(fieldValues, {
+        ok: function () {
+          logToSheet(firstName, phone, email, '');
+          notifySignup(signup, 'Love Immersion waitlist (added to COUNTMEIN list)');
+          trackLead('waitlist');
+          finish('You&#39;re in, ' + firstName.replace(/[<>&"]/g, '') + '.');
+        },
+        dup: function () {
+          notifySignup(signup, 'Love Immersion waitlist (already on COUNTMEIN list)');
+          trackLead('waitlist');
+          finish('You&#39;re in, ' + firstName.replace(/[<>&"]/g, '') + '.');
+        },
+        bad: function (msg) { btn.disabled = false; btn.textContent = btnText; showErr(msg); },
+        down: function () {
+          // Keep the name on the sheet and hand them the keyword so they can still get on the list.
+          logToSheet(firstName, phone, email, '');
+          notifySignup(signup, 'Love Immersion waitlist (SimpleTexting unreachable, asked to text in)');
+          finish('One more step: text <a href="' + SMS_HREF + '" class="text-gold underline">' + SMS_KEYWORD + '</a> to ' + SMS_NUMBER_DISPLAY + '.');
+        }
+      });
+    });
+  }
+
   function openGuide() {
     if (document.getElementById('wd-guide')) return;
     var g = document.createElement('div');
@@ -960,6 +1022,7 @@
     document.head.appendChild(style);
 
     wireGuidePageForm();
+    wireWaitlistForm();
 
     if (MEMBER_LINK) {
       document.querySelectorAll('[data-lead-popup]').forEach(function (el) { el.style.display = 'none'; });

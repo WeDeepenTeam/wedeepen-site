@@ -16,10 +16,10 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://wedeepen.com';
-// /love-immersion/ is a redirect stub that points at the current retreat page,
-// so follow it rather than hardcoding a date that goes stale.
+// /love-immersion/ is either the waitlist page or a redirect stub that points
+// at the current retreat page; follow the stub when there is one.
 const retreat = ((await fs.readFile(path.join(ROOT, 'love-immersion/index.html'), 'utf8').catch(() => ''))
-  .match(/location\.replace\('(\/love-immersion\/[a-z0-9-]+\/)'/) || [, '/love-immersion/october-2026/'])[1];
+  .match(/location\.replace\('(\/love-immersion\/[a-z0-9-]*\/?)'/) || [, '/love-immersion/'])[1];
 const CORE = ['/', '/about/', '/love-club/', retreat, '/events/', '/love-guides/',
   '/book-session-with-christina/', '/four-pillars/', '/reviews/', '/podcast/'];
 

@@ -43,7 +43,6 @@ const PAGES = [
   { path: '/biohacking-love/', name: 'Biohacking Love' },
   { path: '/inperson/', name: 'WeDeepen In-Person' },
   { path: '/love-immersion/', name: 'Love Immersion', faq: true },
-  { path: '/love-immersion/october-2026/', name: 'Love Immersion VIII: October 2026', parent: LI, faq: true },
   { path: '/love-immersion/nye-2026/', name: "Love Immersion New Year's Edition 2026–27", parent: LI },
   { path: '/love-immersion/march-2027/', name: 'Love Immersion IX: March 2027', parent: LI },
   { path: '/love-immersion/july-2027/', name: 'Love Immersion X: July 2027', parent: LI },

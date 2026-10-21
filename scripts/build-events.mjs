@@ -35,7 +35,7 @@ const EVENT_URL_OVERRIDES = [
   { match: /wedeepen in-person/i, url: '/inperson/' },
   { match: /biohacking love/i, url: '/biohacking-love/' },
   { match: /kashf/i, url: '/kashf/' },
-  { match: /love immersion/i, url: '/love-immersion/october-2026/' },
+  { match: /love immersion/i, url: '/love-immersion/' },
 ];
 const resolveUrl = (e) => (EVENT_URL_OVERRIDES.find((o) => o.match.test(e.title || '')) || {}).url || e.url;
 const absUrl = (u) => (u.startsWith('http') ? u : `${SITE}${u}`);

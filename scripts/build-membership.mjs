@@ -13,7 +13,12 @@
  *   - membership-only conversion copy (hero subhead, price-card line,
  *     closing headline) and no Love Immersion spotlight; homepage unchanged
  *
- * Edit index.html, never membership/index.html. Then run
+ * It also writes membership/b/index.html: the same page, told apart only for
+ * the A/B test (GA4 content_group 'Membership B', Meta ViewContent name,
+ * utm_content=membership-b on checkout links, og:url). Canonical stays on
+ * /membership/.
+ *
+ * Edit index.html, never membership/index.html or membership/b/index.html. Then run
  * `node scripts/build-membership.mjs` and `npm run nav:sync` (it marks the
  * active menu item). The membership-mirror workflow does both on push.
  * Add --check to exit non-zero if membership/index.html is out of date.
@@ -25,6 +30,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'index.html');
 const OUT = path.join(ROOT, 'membership', 'index.html');
+const OUT_B = path.join(ROOT, 'membership', 'b', 'index.html');
 const URL = 'https://wedeepen.com/membership/';
 const TITLE = 'WeDeepen Membership | Get better at love, one week at a time';
 
@@ -74,15 +80,32 @@ export function buildMembership(home) {
   return html;
 }
 
+// /membership/b/: the A/B test twin. Same page; only the measurement differs.
+export function buildMembershipB(membership) {
+  let html = membership;
+  html = replaceOnce(html, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${URL}b/">`, 'og:url (B)');
+  html = replaceOnce(html, /gtag\('config', 'G-LZ0EY5X593'\);/,
+    "gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership B', page_variant: 'B' });", 'GA4 config (B)');
+  html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership B'", 'ViewContent name (B)');
+  html = replaceOnce(html, /(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"', 'checkout links (B)');
+  html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (B: see buildMembershipB). -->', 'generated note (B)');
+  return html;
+}
+
 const CHECK = process.argv.includes('--check');
 const next = buildMembership(fs.readFileSync(SRC, 'utf8'));
-if (CHECK) {
-  // nav:sync rewrites the menu block afterwards, so compare outside it.
-  const strip = (s) => s.replace(/<!-- nav:links -->[\s\S]*?<!-- \/nav:links -->/g, '');
-  const current = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
-  if (strip(current) !== strip(next)) { console.log('membership: out of date with index.html'); process.exit(1); }
-  console.log('membership: in sync');
-} else {
-  fs.writeFileSync(OUT, next);
-  console.log('membership: rebuilt from index.html');
+const outputs = [[OUT, next, 'membership'], [OUT_B, buildMembershipB(next), 'membership/b']];
+// nav:sync rewrites the menu block afterwards, so compare outside it.
+const strip = (s) => s.replace(/<!-- nav:links -->[\s\S]*?<!-- \/nav:links -->/g, '');
+let stale = false;
+for (const [file, html, label] of outputs) {
+  if (CHECK) {
+    const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+    if (strip(current) !== strip(html)) { console.log(`${label}: out of date with index.html`); stale = true; }
+    else console.log(`${label}: in sync`);
+  } else {
+    fs.writeFileSync(file, html);
+    console.log(`${label}: rebuilt from index.html`);
+  }
 }
+if (stale) process.exit(1);

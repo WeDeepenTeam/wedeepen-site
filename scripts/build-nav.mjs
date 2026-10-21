@@ -96,7 +96,12 @@ let changed = 0, same = 0;
 const skipped = [];
 for await (const file of walk(ROOT)) {
   const html = await fs.readFile(file, 'utf8');
-  const next = stamp(html, pagePathOf(file));
+  let next = stamp(html, pagePathOf(file));
+  // The /membership/b/ A/B twin tags every checkout link, nav buttons included
+  // (see scripts/build-membership.mjs).
+  if (next && pagePathOf(file).startsWith('/membership/b/')) {
+    next = next.replace(/(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"');
+  }
   if (next === null) { skipped.push(path.relative(ROOT, file)); continue; }
   if (next === html) { same++; continue; }
   changed++;

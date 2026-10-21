@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-10-20T05:15:43.916Z",
+  "last_updated": "2026-10-21T05:17:38.231Z",
   "source": "circle.wedeepen.com",
-  "event_count": 65,
+  "event_count": 64,
   "events": [
-    {
-      "id": "love-mastermind-with-dianne-a-allen",
-      "title": "Love Mastermind: Different Minds in Love: Dianne A. Allen, MA",
-      "date": "2026-10-20",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-10-20T23:00:00.000Z",
-      "ends_at_iso": "2026-10-21T00:30:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Mastermind",
-        "Love Club",
-        "WeDeepen Members"
-      ],
-      "recurring": false,
-      "series": "love-mastermind-with-dianne-a-allen",
-      "description": "Different Minds, Different Love: Understanding Processing Styles in Relationships  We don’t all think, feel, communicate, or experience connection in the same way. Relationship struggles often arise w",
-      "image_url": "https://assets-v2.circle.so/5vsofe98nnllm4keio8cefgtwheu",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-with-dianne-a-allen"
-    },
     {
       "id": "love-mastermind-briana-cribeyer",
       "title": "Love Mastermind: Relationships & Intimacy with Briana Cribeyer",

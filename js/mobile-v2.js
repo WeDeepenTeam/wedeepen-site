@@ -86,7 +86,7 @@
           '</ol>' +
         '</section>'
       );
-      steps.appendChild(joinPrompt('first-tuesday', '', 'Join today &middot; $99/month'));
+      steps.appendChild(joinPrompt('first-tuesday', '', 'Start my 14 free days'));
       steps.querySelector('.m2-cta .lead').remove();
       steps.querySelector('.m2-cta .sub').remove();
       offer.insertAdjacentElement('afterend', steps);
@@ -116,7 +116,7 @@
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this Tuesday.'));
     if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));
     var pillars = $('#four-pillars');
-    if (pillars) pillars.firstElementChild.appendChild(joinPrompt('pillars', 'This is what we practice every Tuesday.'));
+    if (pillars) pillars.firstElementChild.appendChild(joinPrompt('pillars', 'This is what we practice together.'));
 
     // 5. Objections above the final join button.
     var card = sec('finalcard');
@@ -136,7 +136,7 @@
     if (bar) {
       bar.innerHTML =
         '<span class="m2-bar-next">Next live session: ' + nextTuesday() + ' &middot; 7pm ET</span>' +
-        '<span class="m2-bar-main">Join &middot; $99/month &rarr;</span>';
+        '<span class="m2-bar-main">Start my 14 free days &rarr;</span>';
       var check = function () {
         var open = document.querySelector('#wd-guide.wd-open, #wd-lead-sheet.wd-open, #wd-lead-overlay.wd-open');
         bar.classList.toggle('m2-hidden', !!open);

@@ -20,6 +20,9 @@
   // SimpleTexting web form (Apps > Web Sign-Up Forms > "WebSite Pop-up").
   var ST_ENDPOINT = 'https://app2.simpletexting.com/join/joinContact';
   var ST_WEBFORM_ID = '6a725eb22813b371a658bdc9';
+  // "Love Immersion Waitlist" form: adds to the Love Immersion Waitlist and
+  // COUNTMEIN lists and texts a waitlist confirmation after they reply YES.
+  var ST_WAITLIST_FORM_ID = '6adaa941375ffe4586fcb976';
   var ST_TERMS_URL = 'https://app2.simpletexting.com/web-forms/terms/' + ST_WEBFORM_ID;
   var ST_PRIVACY_URL = 'https://app2.simpletexting.com/web-forms/privacy-policy/' + ST_WEBFORM_ID;
   // Google Apps Script web app URL (ends in /exec). Backup log only.
@@ -595,9 +598,9 @@
   }
 
   // Love Immersion waitlist (/love-immersion/ while no retreat is on sale):
-  // same SimpleTexting web form as the popup, so people land on the
-  // COUNTMEIN list; the sign-ups sheet row says "Love Immersion waitlist" so
-  // the team can pull the waitlist when dates are set.
+  // its own SimpleTexting form (ST_WAITLIST_FORM_ID), so signups land on the
+  // Love Immersion Waitlist list and get a waitlist confirmation text. The
+  // sign-ups sheet row also says "Love Immersion waitlist".
   function wireWaitlistForm() {
     var form = document.querySelector('form[data-waitlist-form]');
     if (!form) return;
@@ -631,17 +634,17 @@
       btn.disabled = true;
       btn.textContent = 'Sending…';
       var signup = { firstName: firstName, phone: phone, email: email, city: '', state: '', podcast: 'No' };
-      var fieldValues = { phone: phone, firstname: firstName, Podcasts: 'No' };
+      var fieldValues = { phone: phone, firstname: firstName };
       if (email) fieldValues.email = email;
       stJoin(fieldValues, {
         ok: function () {
           logToSheet(firstName, phone, email, '');
-          notifySignup(signup, 'Love Immersion waitlist (added to COUNTMEIN list)');
+          notifySignup(signup, 'Love Immersion waitlist (added; waitlist text after they reply YES)');
           trackLead('waitlist');
           finish('You&#39;re in, ' + firstName.replace(/[<>&"]/g, '') + '.');
         },
         dup: function () {
-          notifySignup(signup, 'Love Immersion waitlist (already on COUNTMEIN list)');
+          notifySignup(signup, 'Love Immersion waitlist (number already in SimpleTexting)');
           trackLead('waitlist');
           finish('You&#39;re in, ' + firstName.replace(/[<>&"]/g, '') + '.');
         },
@@ -652,7 +655,7 @@
           notifySignup(signup, 'Love Immersion waitlist (SimpleTexting unreachable, asked to text in)');
           finish('One more step: text <a href="' + SMS_HREF + '" class="text-gold underline">' + SMS_KEYWORD + '</a> to ' + SMS_NUMBER_DISPLAY + '.');
         }
-      });
+      }, ST_WAITLIST_FORM_ID);
     });
   }
 
@@ -817,13 +820,13 @@
     });
   }
 
-  // POST to the SimpleTexting web form (adds to the COUNTMEIN list). Calls
+  // POST to a SimpleTexting web form (the popup form by default). Calls
   // exactly one of on.ok / on.dup / on.bad(message) / on.down.
-  function stJoin(fieldValues, on) {
+  function stJoin(fieldValues, on, formId) {
     fetch(ST_ENDPOINT + '?r=' + Date.now(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ webFormId: ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
+      body: JSON.stringify({ webFormId: formId || ST_WEBFORM_ID, fieldValues: fieldValues, listIds: [] })
     }).then(function (res) {
       if (res.ok) return on.ok();
       if (res.status !== 418) return on.down();

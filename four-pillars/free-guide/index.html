@@ -194,7 +194,7 @@
 <body class="bg-ink text-white">
   <!-- Ad landing page for the Four Pillars guide (opt-in only; the full framework lives at /four-pillars/). Not indexed. -->
   <header class="px-6 py-5 flex justify-center border-b border-white/5">
-    <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto">
+    <a href="/" aria-label="WeDeepen home" class="inline-block py-2 -my-2"><img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto"></a>
   </header>
   <main id="main">
   <section class="bg-ink pt-10 md:pt-16 pb-16 md:pb-24">
@@ -204,14 +204,14 @@
         <h1 class="font-heading text-3xl md:text-5xl text-white font-semibold mb-4 leading-tight">The Four Pillars of a <em style="color:#E8A0B4">Conscious Relationship</em></h1>
         <p class="text-white/70 text-base md:text-lg leading-relaxed mb-5">Love is a skill. These are the four pillars we practice together at WeDeepen. Drop your name and email and the guide lands in your inbox.</p>
         <ul class="text-white/80 text-base space-y-2 mb-7">
-          <li><span class="text-gold font-semibold mr-2">1</span>Prioritize growth</li>
-          <li><span class="text-gold font-semibold mr-2">2</span>Own your own sh*t</li>
-          <li><span class="text-gold font-semibold mr-2">3</span>All feelings are welcome</li>
-          <li><span class="text-gold font-semibold mr-2">4</span>Practice love</li>
+          <li><label for="fpg-firstname" class="cursor-pointer"><span class="text-gold font-semibold mr-2">1</span>Prioritize growth</label></li>
+          <li><label for="fpg-firstname" class="cursor-pointer"><span class="text-gold font-semibold mr-2">2</span>Own your own sh*t</label></li>
+          <li><label for="fpg-firstname" class="cursor-pointer"><span class="text-gold font-semibold mr-2">3</span>All feelings are welcome</label></li>
+          <li><label for="fpg-firstname" class="cursor-pointer"><span class="text-gold font-semibold mr-2">4</span>Practice love</label></li>
         </ul>
           <form data-guide-form novalidate class="space-y-3 max-w-md">
             <div class="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>
-            <input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
+            <input id="fpg-firstname" name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
             <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
             <p data-guide-err role="alert" class="text-sm text-red-300" style="display:none"></p>
             <button type="submit" class="btn-rose w-full text-base">Yes! Send my guide</button>
@@ -230,9 +230,9 @@
         <p class="text-white/40 text-xs" style="margin-top:24px">Based on the original teachings of Shelly Bullard, MFT. Adapted by Christina Weber for WeDeepen.</p>
       </div>
       <div class="fpg-cover">
-        <div class="fpg-img">
+        <label for="fpg-firstname" class="fpg-img block cursor-pointer">
           <img src="/images/four-pillars.png" width="1080" height="1350" alt="The Four Pillars of a Conscious Relationship, WeDeepen free guide" class="w-full h-full object-cover">
-        </div>
+        </label>
       </div>
     </div>
   </section>

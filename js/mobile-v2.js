@@ -21,7 +21,8 @@
   var root = document.documentElement;
   if (!root.classList.contains('m2')) return;
 
-  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281';
+  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281' +
+    (/^\/membership\/b\//.test(location.pathname) ? '&utm_content=membership-b' : '');
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function sec(name) { return $('[data-m2="' + name + '"]'); }
   function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
@@ -30,7 +31,7 @@
     return el(
       '<div class="m2-cta">' +
         '<p class="lead">' + lead + '</p>' +
-        '<a data-cta="m2-' + key + '" href="' + CHECKOUT + '" target="_blank" rel="noopener" class="btn-rose text-base !py-4">' + (label || 'Become a Member &middot; $99/month') + '</a>' +
+        '<a data-cta="m2-' + key + '" href="' + CHECKOUT + '" class="btn-rose text-base !py-4">' + (label || 'Start my 14 free days') + '</a>' +
         '<p class="sub">Join today. Come Tuesday at 7pm ET.</p>' +
       '</div>'
     );

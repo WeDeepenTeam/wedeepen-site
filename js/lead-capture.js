@@ -37,6 +37,9 @@
   var VCARD_URL = '/wedeepen.vcf';
   var ON_LI_PAGE = /^\/love-immersion\//.test(location.pathname);
   var ON_FOUR_PILLARS = /^\/four-pillars\//.test(location.pathname);
+  // Membership sales page: nothing competes with the join buttons (no SMS bar,
+  // no list popup or phone sheet), so visitors head for checkout.
+  var ON_MEMBERSHIP = /^\/membership\//.test(location.pathname);
   /* == First-touch attribution ========================================== */
   // GA4 loses the traffic source when someone comes back to an open tab after
   // the session times out, so those sign-ups land in "Unassigned". Remember
@@ -1035,7 +1038,7 @@
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}
-    if (!snoozed(LS_BAR) && !barOff && !FROM_EMAIL) buildBar();
+    if (!snoozed(LS_BAR) && !barOff && !FROM_EMAIL && !ON_MEMBERSHIP) buildBar();
 
     // Any element with data-lead-popup opens the popup on click.
     document.addEventListener('click', function (e) {
@@ -1055,11 +1058,11 @@
       setTimeout(openGuide, 800);
     } else if (FROM_EMAIL) {
       // Already subscribed: nothing opens on its own.
-    } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP) && !closedThisVisit()) {
+    } else if (GUIDE_MODE && !ON_LI_PAGE && !ON_FOUR_PILLARS && !ON_MEMBERSHIP && !snoozed(LS_POPUP) && !closedThisVisit()) {
       var back = seenBefore();
       if (IS_MOBILE) watchScrollForGuide(back ? GUIDE_PHONE_DELAY_RETURNING_MS : GUIDE_PHONE_DELAY_MS);
       else setTimeout(openGuide, back ? GUIDE_DELAY_RETURNING_MS : GUIDE_DELAY_MS);
-    } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !snoozed(LS_POPUP) && !closedThisVisit()) {
+    } else if (!ON_LI_PAGE && !ON_FOUR_PILLARS && !ON_MEMBERSHIP && !snoozed(LS_POPUP) && !closedThisVisit()) {
       if (IS_MOBILE) watchScrollForSheet();
       else setTimeout(openPopup, POPUP_DELAY_MS);
     }

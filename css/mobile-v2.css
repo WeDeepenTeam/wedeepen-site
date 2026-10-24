@@ -116,3 +116,18 @@ html.m2 #hero .m2-next .n {
   display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
 }
 html.m2 #hero .m2-next li small { display: block; margin-top: 2px; font-size: 12px; color: rgba(201,162,119,.9); }
+
+/* Folded on phones behind "Read more" (content stays in the page). */
+html.m2 .m2-folded { display: none !important; }
+html.m2 .m2-fold-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin: 18px auto 0; padding: 10px 22px; border-radius: 9999px;
+  border: 1px solid currentColor; background: transparent;
+  font-size: 15px; font-weight: 600; color: #C9A277;
+}
+html.m2 .bg-cream .m2-fold-btn { color: #A01B4A; }
+html.m2 [data-m2="skill"] .m2-fold-btn { margin-left: 0; }
+html.m2 [data-m2="skill"] .grid:has(.m2-folded) { margin-bottom: 0 !important; }
+
+/* The three worries right under the "In short" summary. */
+html.m2 .m2-objections-offer { margin: 0 auto 32px; }

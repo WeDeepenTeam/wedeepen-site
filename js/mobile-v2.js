@@ -105,7 +105,7 @@
     if (priceLine && priceLine.tagName === 'P') {
       priceLine.insertAdjacentElement('afterend', el(
         '<ol class="m2-next" aria-label="What happens after you join">' +
-          '<li><span class="n">1</span>Join today</li>' +
+          '<li><span class="n">1</span>Join today<small>Takes 2 minutes</small></li>' +
           '<li><span class="n">2</span>Find Tuesday on the calendar</li>' +
           '<li><span class="n">3</span>Show up Tuesday at 7pm ET</li>' +
         '</ol>'

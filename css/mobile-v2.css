@@ -101,3 +101,17 @@ html.m2 .m2-offer-price { color: rgba(201,162,119,.95); font-size: 15px; font-we
 html.m2 .m2-offer .btn-rose { display: flex; justify-content: center; width: 100%; padding-top: 16px; padding-bottom: 16px; }
 html.m2 .m2-offer-more { display: block; text-align: center; margin-top: 14px; padding: 6px 0; color: rgba(255,255,255,.75); font-size: 14px; font-weight: 500; }
 html.m2 #m2-plans { scroll-margin-top: 112px; }
+
+/* Hero: "what happens next" in three short steps under the price line. */
+html.m2 #hero .m2-next {
+  list-style: none; margin: 4px auto 0; padding: 0; max-width: 420px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+}
+html.m2 #hero .m2-next li {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 13px; line-height: 1.3; color: rgba(255,255,255,.8); text-align: center;
+}
+html.m2 #hero .m2-next .n {
+  width: 26px; height: 26px; border-radius: 999px; border: 1px solid #C9A277; color: #C9A277;
+  display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
+}

@@ -14,6 +14,8 @@
  *  6. "Your first Tuesday" timeline right after the membership offer.
  *  7. Hero "What's included" is a button that lands on a short summary
  *     (what you get, price, join) at the top of the membership section.
+ *  8. A compact "what happens next" (join, find Tuesday, show up) right under
+ *     the hero price line, where most phone visitors make the call.
  *
  * Christina's photos and hero video are left exactly as designed (her call,
  * 2026-10-03); apart from the testimonials, her section order stays too.
@@ -93,6 +95,21 @@
       steps.querySelector('.m2-cta .lead').remove();
       steps.querySelector('.m2-cta .sub').remove();
       offer.insertAdjacentElement('afterend', steps);
+    }
+
+    // 8. "What happens next" in the hero: most phone visitors decide without
+    // scrolling far, so the three first-Tuesday steps sit under the price line
+    // (same words as the full timeline further down) (René, 2026-10-24).
+    var heroCta = $('#hero a[data-cta="hero"]');
+    var priceLine = heroCta && heroCta.parentElement && heroCta.parentElement.nextElementSibling;
+    if (priceLine && priceLine.tagName === 'P') {
+      priceLine.insertAdjacentElement('afterend', el(
+        '<ol class="m2-next" aria-label="What happens after you join">' +
+          '<li><span class="n">1</span>Join today</li>' +
+          '<li><span class="n">2</span>Find Tuesday on the calendar</li>' +
+          '<li><span class="n">3</span>Show up Tuesday at 7pm ET</li>' +
+        '</ol>'
+      ));
     }
 
     // 7. "What's included" in the hero becomes a real button on phones and

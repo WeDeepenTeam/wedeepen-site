@@ -40,6 +40,21 @@
   // Membership sales page: nothing competes with the join buttons (no SMS bar,
   // no list popup or phone sheet), so visitors head for checkout.
   var ON_MEMBERSHIP = /^\/membership\//.test(location.pathname);
+  // Someone who taps a join button or "What's included" is already heading
+  // for the membership: no free-guide popup or phone sheet for the rest of the
+  // visit (René, 2026-10-24). Click buttons that open the popup still work.
+  var SS_JOIN_INTENT = 'wd_join_intent';
+  function joinIntent() {
+    try { return sessionStorage.getItem(SS_JOIN_INTENT) === '1'; } catch (e) { return false; }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest && e.target.closest('a');
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('checkout/wedeepen-club-membership') > -1 || /^#(membership|m2-offer|m2-plans)$/.test(h)) {
+      try { sessionStorage.setItem(SS_JOIN_INTENT, '1'); } catch (err) {}
+    }
+  }, true);
   /* == First-touch attribution ========================================== */
   // GA4 loses the traffic source when someone comes back to an open tab after
   // the session times out, so those sign-ups land in "Unassigned". Remember
@@ -505,7 +520,7 @@
 
   /* == Mobile bottom sheet ============================================== */
   function openSheet() {
-    if (document.getElementById('wd-lead-sheet')) return;
+    if (document.getElementById('wd-lead-sheet') || joinIntent()) return;
     var sheet = document.createElement('div');
     sheet.id = 'wd-lead-sheet';
     sheet.setAttribute('role', 'dialog');
@@ -664,6 +679,7 @@
 
   function openGuide() {
     if (document.getElementById('wd-guide')) return;
+    if (joinIntent() && !/[?&]wd-guide=1(&|$)/.test(location.search)) return;
     var g = document.createElement('div');
     g.id = 'wd-guide';
     g.setAttribute('role', 'dialog');

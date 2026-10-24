@@ -16,6 +16,9 @@
  *     (what you get, price, join) at the top of the membership section.
  *  8. A compact "what happens next" (join, find Tuesday, show up) right under
  *     the hero price line, where most phone visitors make the call.
+ *  9. The three usual worries answered right under the "In short" summary.
+ * 10. The two argument sections (learning curve, skills) fold after their
+ *     opening behind "Read more", so the offer comes sooner. Nothing deleted.
  *
  * Christina's photos and hero video are left exactly as designed (her call,
  * 2026-10-03); apart from the testimonials, her section order stays too.
@@ -39,6 +42,33 @@
         '<p class="sub">Join today. Come Tuesday at 7pm ET.</p>' +
       '</div>'
     );
+  }
+
+  // Three short answers to the usual worries (used above the final join button
+  // and under the "In short" summary).
+  function objections(extraClass) {
+    return el(
+      '<div class="m2-objections' + (extraClass ? ' ' + extraClass : '') + '">' +
+        '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
+        '<div><h3>What if I can&rsquo;t make Tuesday?</h3><p>Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.</p></div>' +
+        '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
+      '</div>'
+    );
+  }
+
+  // Phones: show the start of a long section and fold the rest behind a
+  // "Read more" button. Nothing is removed from the page (SEO); tapping opens it.
+  function fold(section, nodes, label, after) {
+    nodes = nodes.filter(Boolean);
+    if (!section || !nodes.length) return;
+    nodes.forEach(function (n) { n.classList.add('m2-folded'); });
+    var btn = el('<button type="button" class="m2-fold-btn" aria-expanded="false">' + label + ' &darr;</button>');
+    var last = after || nodes[nodes.length - 1];
+    (last.tagName === 'LI' ? last.parentElement : last).insertAdjacentElement('afterend', btn);
+    btn.addEventListener('click', function () {
+      nodes.forEach(function (n) { n.classList.remove('m2-folded'); });
+      btn.remove();
+    });
   }
 
   // Swipe row with a hint and position dots under it.
@@ -97,6 +127,21 @@
       offer.insertAdjacentElement('afterend', steps);
     }
 
+    // 10. Shorter path to the offer on phones: the two argument sections show
+    // their opening and fold the rest behind "Read more" (René, approved by
+    // Christina, 2026-10-24). Desktop shows everything as before.
+    var skill = sec('skill');
+    if (skill) {
+      var skillPs = skill.querySelectorAll('h2 ~ p');
+      var skillImg = skill.querySelector('.aspect-\\[3\\/2\\]');
+      fold(skill, [skillPs[1] || null, skillImg && skillImg.parentElement, $('.home-ledger', skill)], 'Read more', skillPs[1] || skillPs[0]);
+    }
+    if (build) {
+      var buildItems = Array.prototype.slice.call(build.querySelectorAll('ul > li'), 3);
+      var buildImg = build.querySelector('.aspect-\\[4\\/5\\]');
+      fold(build, [buildImg && buildImg.parentElement].concat(buildItems), 'See all 8 skills');
+    }
+
     // 8. "What happens next" in the hero: most phone visitors decide without
     // scrolling far, so the three first-Tuesday steps sit under the price line
     // (same words as the full timeline further down) (René, 2026-10-24).
@@ -137,6 +182,8 @@
       var inclHead = $('.text-center', incl);
       if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
       else incl.firstElementChild.insertAdjacentElement('afterbegin', summary);
+      // 9. The three usual worries, answered right under the summary (René, 2026-10-24).
+      summary.insertAdjacentElement('afterend', objections('m2-objections-offer'));
       // Smooth scrolls can get cut short while the page is still settling
       // (lazy images, reveals), so check where it landed and correct once.
       var jump = function (link, target) {
@@ -190,13 +237,7 @@
     var card = sec('finalcard');
     var joinNow = card && $('a[data-cta="final-card"]', card);
     if (joinNow) {
-      joinNow.parentElement.insertAdjacentElement('beforebegin', el(
-        '<div class="m2-objections">' +
-          '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
-          '<div><h3>What if I can&rsquo;t make Tuesday?</h3><p>Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.</p></div>' +
-          '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
-        '</div>'
-      ));
+      joinNow.parentElement.insertAdjacentElement('beforebegin', objections());
     }
 
     // 4. Sticky bar: next session + price, hidden while a popup is open.

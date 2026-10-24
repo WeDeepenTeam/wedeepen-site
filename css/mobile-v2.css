@@ -73,3 +73,31 @@ html.m2 #mobile-join-bar.m2-hidden { transform: translateY(100%) !important; }
 /* Calendar: events as a swipe row. */
 html.m2 #calendar .m2-hint, html.m2 #calendar .m2-dots { color: rgba(26,26,26,.7); }
 
+
+/* Hero: "What's included" as a real button under the join button, no dead gap. */
+html.m2 #hero .m2-more {
+  width: 100%; max-width: 420px; justify-content: center;
+  border: 1.5px solid rgba(201,162,119,.75); border-radius: 9999px;
+  color: #C9A277; font-weight: 600; padding: 13px 24px !important;
+}
+html.m2 #hero .m2-more::after { content: "\2193"; font-weight: 400; }
+html.m2 #hero div:has(> a[data-cta="hero"]) { gap: 10px !important; }
+
+/* Short summary at the top of the membership section (target of the hero button). */
+html.m2 .m2-offer {
+  scroll-margin-top: 112px; /* header (~72px) + the section's 30px reveal slide */
+  margin: 0 auto 28px; max-width: 460px; padding: 26px 22px 24px;
+  border: 1px solid rgba(201,162,119,.45); border-radius: 8px;
+  background: linear-gradient(135deg, #1F1B1C 0%, #241419 100%);
+  text-align: left;
+}
+html.m2 .m2-offer-kicker { color: #C9A277; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; margin: 0 0 14px; }
+html.m2 .m2-offer ul { list-style: none; margin: 0 0 18px; padding: 0; }
+html.m2 .m2-offer li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+html.m2 .m2-offer li:first-child { padding-top: 0; }
+html.m2 .m2-offer li b { display: block; font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-size: 19px; color: #fff; margin-bottom: 2px; }
+html.m2 .m2-offer li span { color: rgba(255,255,255,.65); font-size: 15px; line-height: 1.45; }
+html.m2 .m2-offer-price { color: rgba(201,162,119,.95); font-size: 15px; font-weight: 500; line-height: 1.5; margin: 0 0 16px; }
+html.m2 .m2-offer .btn-rose { display: flex; justify-content: center; width: 100%; padding-top: 16px; padding-bottom: 16px; }
+html.m2 .m2-offer-more { display: block; text-align: center; margin-top: 14px; padding: 6px 0; color: rgba(255,255,255,.75); font-size: 14px; font-weight: 500; }
+html.m2 #m2-plans { scroll-margin-top: 112px; }

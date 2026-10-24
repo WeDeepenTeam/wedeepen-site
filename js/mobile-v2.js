@@ -12,6 +12,8 @@
  *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
  *  6. "Your first Tuesday" timeline right after the membership offer.
+ *  7. Hero "What's included" is a button that lands on a short summary
+ *     (what you get, price, join) at the top of the membership section.
  *
  * Christina's photos and hero video are left exactly as designed (her call,
  * 2026-10-03); apart from the testimonials, her section order stays too.
@@ -91,6 +93,54 @@
       steps.querySelector('.m2-cta .lead').remove();
       steps.querySelector('.m2-cta .sub').remove();
       offer.insertAdjacentElement('afterend', steps);
+    }
+
+    // 7. "What's included" in the hero becomes a real button on phones and
+    // lands on a short summary (what you get, price, join) at the top of the
+    // membership section; the full cards and both plans follow (René, 2026-10-24).
+    var incl = $('#membership');
+    if (incl) {
+      var planBtn = $('a[data-cta="membership"]', incl);
+      var plansPanel = planBtn && planBtn.closest('.rounded-md');
+      if (plansPanel) plansPanel.id = 'm2-plans';
+      var summary = el(
+        '<div class="m2-offer" id="m2-offer">' +
+          '<p class="m2-offer-kicker">In short</p>' +
+          '<ul>' +
+            '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
+            '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
+            '<li><b>Real-world practice</b><span>Weekly Sunday Dares by text + email</span></li>' +
+            '<li><b>Recordings</b><span>Every Love Mastermind from the time you join</span></li>' +
+          '</ul>' +
+          '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +
+          '<a data-cta="m2-offer" href="' + CHECKOUT + '" class="btn-rose">Start my 14 free days</a>' +
+          (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '') +
+        '</div>'
+      );
+      var inclHead = $('.text-center', incl);
+      if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
+      else incl.firstElementChild.insertAdjacentElement('afterbegin', summary);
+      // Smooth scrolls can get cut short while the page is still settling
+      // (lazy images, reveals), so check where it landed and correct once.
+      var jump = function (link, target) {
+        if (!link || !target) return;
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(function () {
+            var top = target.getBoundingClientRect().top;
+            if (top < 60 || top > 160) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+          }, 900);
+          try { history.replaceState(null, '', '#' + target.id); } catch (err) {}
+        });
+      };
+      var more = $('#hero a[href="#membership"]');
+      if (more) {
+        more.setAttribute('href', '#m2-offer');
+        more.classList.add('m2-more');
+        jump(more, summary);
+      }
+      jump($('.m2-offer-more', summary), plansPanel);
     }
 
     // 2. Swipe rows.

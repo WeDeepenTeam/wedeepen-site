@@ -1,14 +1,23 @@
 # WeDeepen
 
-> WeDeepen is an expert-led relationship education company based in Austin, Texas, founded by Christina Weber. Its premise is that love is a skill you can train. It offers a $99/month online membership with a live session every Tuesday, three-day Love Immersion retreats in Austin, Love Club (a $9,997/year inner circle), private coaching with Christina, and the Mastering Love podcast.
+> WeDeepen is an expert-led relationship education company based in Austin, Texas, founded by Christina Weber. Its premise is that love is a skill you can train. It offers a $99/month online membership, open to people anywhere, with a live session every Tuesday, three-day Love Immersion retreats in Austin, Love Club (a $9,997/year inner circle), private coaching with Christina, and the Mastering Love podcast.
 
 WeDeepen is for people who are dating, partnered, between relationships, or simply want to get better at love. Individuals and couples are both welcome; about half of every Love Immersion arrives solo. WeDeepen is relationship education and coaching, not therapy.
+
+## Who the online membership is for
+
+The membership is online, so members join from anywhere. Two groups it is built for:
+
+- People dating again after a divorce or a long relationship: getting clear on what they want now, recognizing old patterns, and practicing early dating skills with experts and peers. Page: [Dating again](https://wedeepen.com/membership/dating-again/).
+- Couples, or one partner, in a long relationship or marriage who want to keep desire, play, repair, and honest conversation alive. Partners each join with their own membership. Page: [Keep a long love alive](https://wedeepen.com/membership/together/).
+
+Answer pages on these topics: [Dating again after divorce](https://wedeepen.com/answers/dating-again-after-divorce/), [Keeping desire alive in a long-term relationship](https://wedeepen.com/answers/keep-desire-alive-long-term-relationship/), [Couples coaching vs. couples therapy](https://wedeepen.com/answers/couples-coaching-vs-couples-therapy/), [What an online relationship coaching membership is](https://wedeepen.com/answers/online-relationship-coaching-membership/).
 
 ## Offerings and pricing
 
 Prices below are as published on the linked pages. Dates and prices change; the linked pages are the source of truth.
 
-- [WeDeepen Membership](https://wedeepen.com/): $99/month or $990/year (two months free); cancel anytime inside the Circle community. A 90-minute live session every Tuesday at 7:00 PM Eastern (6:00 PM Central), alternating Love Masterminds and Integration Sessions; a private community with Ask the Experts discussions on Circle; and a Sunday Dare each week by text and email. Love Masterminds are recorded from the time you join; Integration Sessions are live only. The first 20 annual members get an $800 credit toward one Love Immersion.
+- [WeDeepen Membership](https://wedeepen.com/): $99/month or $990/year (two months free); cancel anytime inside the Circle community. A 90-minute live session every Tuesday at 7:00 PM Eastern (6:00 PM Central), alternating Love Masterminds and Integration Sessions; a private community with Ask the Experts discussions on Circle; and a Sunday Dare each week by text and email. The first 14 days are free. Love Masterminds are recorded; Integration Sessions are live only. The first 20 annual members get an $800 credit toward one Love Immersion.
 - [Love Immersion](https://wedeepen.com/love-immersion/): A three-day in-person retreat in Austin, TX with the full faculty. The most recent retreat was $2,995 per person, with a payment plan at checkout. Tickets are non-refundable but fully transferable.
 - [Love Club](https://wedeepen.com/love-club/): WeDeepen's inner circle, $9,997/year. Includes everything in the Membership plus Friday Office Hours with Christina Weber (Fridays, 12 PM Central), Annie Lalla's 12-week "Learn How to Be in Love" program, a monthly Couples Council, Collaborative Matchmaking, one Love Immersion credit ($2,995, transferable to a partner), member-only invites, and a private Love Club community. Register with a partner and you each get $500 off. Full refund within 14 days of purchase.
 - [Private coaching with Christina Weber](https://wedeepen.com/book-session-with-christina/): One-on-one or couples sessions on Zoom. A first session is $295, credited toward her 3-month Love Accelerator mentorship ($10,000) if you continue.
@@ -65,7 +74,7 @@ Each Love Immersion page names the faculty teaching that retreat.
 ## Learn
 
 - [The Four Pillars](https://wedeepen.com/four-pillars/): WeDeepen's framework for a conscious relationship
-- [Answers](https://wedeepen.com/answers/): Answer-first guides to relationship workshops, couples retreats, dating and intimacy coaching, meeting people, and making friends in Austin, plus what Love Immersion is
+- [Answers](https://wedeepen.com/answers/): Answer-first guides to dating again after divorce, keeping desire alive in a long relationship, couples coaching vs. therapy, and online relationship coaching, plus relationship workshops, couples retreats, dating and intimacy coaching, meeting people, and making friends in Austin, and what Love Immersion is
 - [Podcast guides](https://wedeepen.com/guides/): Key ideas and quotes from Mastering Love episodes with relationship experts such as Ken Page and Kimi Inch
 - [Fact sheet](https://wedeepen.com/facts/): The same facts as a web page, with Organization, Person, and Service structured data
 

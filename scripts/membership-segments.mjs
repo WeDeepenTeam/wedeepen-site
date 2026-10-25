@@ -45,13 +45,13 @@ function ledger(pairs) {
         <p class="hl-counter font-heading italic text-[1.7rem] md:text-[2.1rem] leading-tight" style="color:#A01B4A;">${b}</p>`).join('\n');
 }
 
-// Testimonial video row. Files live in /videos/testimonials/<file>.mp4 (+ .jpg
-// poster). A tile whose video can't load hides itself; if none load, the whole
+// Testimonial video row: the vertical Membership99 ad spots, in
+// /videos/testimonials/<file>.mp4 (+ .jpg poster). A tile whose video can't load hides itself; if none load, the whole
 // section hides, so the page never shows an empty player.
 function videoSection(seg) {
-  const tiles = seg.videos.map((v) => `        <figure class="wd-vt rounded-md overflow-hidden shrink-0 w-[82%] sm:w-auto snap-center" style="background:#000;border:1px solid rgba(255,255,255,0.08);">
-          <video class="w-full block aspect-video object-cover" controls playsinline preload="metadata" poster="/videos/testimonials/${v.file}.jpg">
-            <source src="/videos/testimonials/${v.file}.mp4#t=0.5" type="video/mp4">
+  const tiles = seg.videos.map((v) => `        <figure class="wd-vt rounded-md overflow-hidden shrink-0 w-[68%] sm:w-auto snap-center" style="background:#000;border:1px solid rgba(255,255,255,0.08);">
+          <video class="w-full block aspect-[9/16] object-cover" controls playsinline preload="none" poster="/videos/testimonials/${v.file}.jpg">
+            <source src="/videos/testimonials/${v.file}.mp4" type="video/mp4">
           </video>
           <figcaption class="px-4 py-3 text-white/70 text-sm">${v.name}</figcaption>
         </figure>`).join('\n');
@@ -65,7 +65,7 @@ function videoSection(seg) {
         <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-4" style="text-wrap: balance;">${seg.videoHeading}</h2>
         <p class="text-white/60 text-lg max-w-2xl mx-auto">${seg.videoSub}</p>
       </div>
-      <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-6 px-6 sm:mx-0 sm:px-0 pb-2">
+      <div class="flex sm:grid sm:grid-cols-${Math.min(3, seg.videos.length)} lg:grid-cols-${seg.videos.length > 4 ? 3 : seg.videos.length} gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-6 px-6 sm:mx-0 sm:px-0 pb-2">
 ${tiles}
       </div>
       <p class="sm:hidden text-center text-white/40 text-xs uppercase tracking-[0.25em] mt-4">Swipe &rarr;</p>
@@ -119,15 +119,15 @@ export const SEGMENTS = [
       'Choose yourself, and let the right people rise to meet you.',
     ],
     videoHeading: 'In their <span class="italic" style="color:#C4577A;">words.</span>',
-    videoSub: 'People from the WeDeepen community on what changed for them.',
-    // Individuals (from the Drive testimonial folder). Confirm with Rene.
+    videoSub: 'Real people from the WeDeepen community, and a look inside a session. Tap to play with sound.',
+    // The Membership99 ad spots (trial versions), web-compressed in /videos/testimonials/.
     videos: [
-      { file: 'bo', name: 'Bo' },
-      { file: 'dorota', name: 'Dorota' },
-      { file: 'josh', name: 'Josh' },
-      { file: 'matthew', name: 'Matt' },
-      { file: 'laurie', name: 'Laurie' },
-      { file: 'honor', name: 'Honor' },
+      { file: 'hotseat', name: 'Inside a Love Mastermind' },
+      { file: 'results', name: 'Better at love looks like this' },
+      { file: 'people', name: 'Finding your people' },
+      { file: 'alone', name: 'A network, meaning and direction' },
+      { file: 'empty', name: 'Great at work, running on empty' },
+      { file: 'experts', name: 'Who teaches it' },
     ],
     removeCards: ['Krista &amp; Thomas', 'Karolina &amp; John'],
   },
@@ -156,14 +156,13 @@ export const SEGMENTS = [
       'Build trust that can handle change, mistakes, and uncertainty.',
     ],
     videoHeading: 'In their <span class="italic" style="color:#C4577A;">words.</span>',
-    videoSub: 'Couples from the WeDeepen community on what changed for them.',
-    // Couples (from the Drive testimonial folder). Confirm with Rene.
+    videoSub: 'Couples and members of the WeDeepen community, and a look inside a session. Tap to play with sound.',
+    // The Membership99 spots that feature couples (A, E), plus the session and faculty spots.
     videos: [
-      { file: 'sara-julian', name: 'Sara &amp; Julian' },
-      { file: 'savannah-frank', name: 'Savannah &amp; Frank' },
-      { file: 'rod-sujey', name: 'Rod &amp; Sujey' },
-      { file: 'khanh-david', name: 'Khanh &amp; David' },
-      { file: 'jamie-lauri', name: 'Jamie &amp; Lauri' },
+      { file: 'heart', name: 'Is your heart ready to open?' },
+      { file: 'feel', name: 'What it feels like to be taught love' },
+      { file: 'hotseat', name: 'Inside a Love Mastermind' },
+      { file: 'experts', name: 'Who teaches it' },
     ],
     removeCards: ['Bo L.', 'Phil G.', 'Joshua W.', 'Mo M.'],
     priceQuote: {

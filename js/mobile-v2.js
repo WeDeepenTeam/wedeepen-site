@@ -29,7 +29,11 @@
   if (!root.classList.contains('m2')) return;
 
   var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281' +
-    (/^\/membership\/b\//.test(location.pathname) ? '&utm_content=membership-b' : '');
+    (/^\/membership\/b\//.test(location.pathname) ? '&utm_content=membership-b' :
+     /^\/membership\/dating-again\//.test(location.pathname) ? '&utm_content=membership-dating-again' :
+     /^\/membership\/together\//.test(location.pathname) ? '&utm_content=membership-together' : '');
+  // Audience pages (scripts/membership-segments.mjs) open the recording library from day one.
+  var LIBRARY = root.getAttribute('data-recordings') === 'library';
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function sec(name) { return $('[data-m2="' + name + '"]'); }
   function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
@@ -50,7 +54,7 @@
     return el(
       '<div class="m2-objections' + (extraClass ? ' ' + extraClass : '') + '">' +
         '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
-        '<div><h3>What if I can&rsquo;t make Tuesday?</h3><p>Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.</p></div>' +
+        '<div><h3>What if I can&rsquo;t make Tuesday?</h3><p>' + (LIBRARY ? 'Love Masterminds are recorded, and the whole library opens on your first day. Integration Sessions are live practice.' : 'Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.') + '</p></div>' +
         '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
       '</div>'
     );
@@ -172,7 +176,7 @@
             '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
             '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
             '<li><b>Real-world practice</b><span>Weekly Sunday Dares by text + email</span></li>' +
-            '<li><b>Recordings</b><span>Every Love Mastermind from the time you join</span></li>' +
+            '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>' +
           '</ul>' +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +
           '<a data-cta="m2-offer" href="' + CHECKOUT + '" class="btn-rose">Start my 14 free days</a>' +

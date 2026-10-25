@@ -29,6 +29,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SEGMENTS, buildSegment } from './membership-segments.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'index.html');
@@ -121,6 +122,10 @@ export function buildMembershipRedirect() {
 const CHECK = process.argv.includes('--check');
 const next = buildMembership(fs.readFileSync(SRC, 'utf8'));
 const outputs = [[OUT, buildMembershipRedirect(), 'membership'], [OUT_B, buildMembershipB(next), 'membership/b']];
+// Audience landing pages (scripts/membership-segments.mjs), built from the same page.
+for (const seg of SEGMENTS) {
+  outputs.push([path.join(ROOT, 'membership', seg.slug, 'index.html'), buildSegment(next, seg), `membership/${seg.slug}`]);
+}
 // nav:sync rewrites the menu block afterwards, so compare outside it.
 const strip = (s) => s.replace(/<!-- nav:links -->[\s\S]*?<!-- \/nav:links -->/g, '');
 let stale = false;
@@ -130,6 +135,7 @@ for (const [file, html, label] of outputs) {
     if (strip(current) !== strip(html)) { console.log(`${label}: out of date with index.html`); stale = true; }
     else console.log(`${label}: in sync`);
   } else {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, html);
     console.log(`${label}: rebuilt from index.html`);
   }

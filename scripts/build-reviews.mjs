@@ -8,9 +8,14 @@
  * reviews/index.html. The copy around them (including the summary card) is
  * hand-written; leave it alone.
  *
- * New Google review? Add it to reviews.json with source "google", the review's
- * url, its date, and category "google", then run this. Order in the file is
- * the order on the page.
+ * New Google reviews arrive on their own: the "Google reviews" workflow runs
+ * scripts/reviews/sync-google.mjs daily, then this. To add one by hand, put it
+ * in reviews.json with source "google", the review's url, its date, and
+ * category "google". Order in the file is the order on the page.
+ *
+ * The rating panel uses Google's own average and total from
+ * reviews/data/google.json when the sync has written it (Google's total also
+ * counts star-only reviews, which aren't shown), else the cards' numbers.
  *
  *   node scripts/build-reviews.mjs           regenerate
  *   node scripts/build-reviews.mjs --check   fail if stale (CI)
@@ -22,6 +27,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PAGE = path.join(ROOT, 'reviews', 'index.html');
 const DATA = path.join(ROOT, 'reviews', 'data', 'reviews.json');
+const GOOGLE_SUMMARY = path.join(ROOT, 'reviews', 'data', 'google.json');
 const CHECK = process.argv.includes('--check');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -71,7 +77,9 @@ function replaceBetween(html, name, inner) {
 
 const reviews = JSON.parse(await fs.readFile(DATA, 'utf-8'));
 const google = reviews.filter((r) => r.source === 'google');
-const googleAvg = (google.reduce((s, r) => s + r.rating, 0) / google.length).toFixed(1);
+const summary = JSON.parse(await fs.readFile(GOOGLE_SUMMARY, 'utf-8').catch(() => '{}'));
+const googleAvg = Number(summary.averageRating ?? google.reduce((s, r) => s + r.rating, 0) / google.length).toFixed(1);
+const googleTotal = summary.totalReviewCount ?? google.length;
 const counts = { all: reviews.length };
 for (const r of reviews) counts[r.category] = (counts[r.category] || 0) + 1;
 
@@ -79,7 +87,7 @@ let html = await fs.readFile(PAGE, 'utf-8');
 const before = html;
 html = replaceBetween(html, 'cards', reviews.map(card).join('') + '\n        ');
 html = replaceBetween(html, 'google-rating', googleAvg);
-html = replaceBetween(html, 'google-count', String(google.length));
+html = replaceBetween(html, 'google-count', String(googleTotal));
 for (const [cat, n] of Object.entries(counts)) {
   if (html.includes(`<!-- reviews:count-${cat} -->`)) html = replaceBetween(html, `count-${cat}`, String(n));
 }
@@ -89,5 +97,5 @@ if (CHECK) {
   console.log('reviews/index.html is up to date.');
 } else {
   await fs.writeFile(PAGE, html);
-  console.log(`Wrote ${reviews.length} reviews (${google.length} from Google, ${googleAvg} avg).`);
+  console.log(`Wrote ${reviews.length} reviews (${google.length} from Google; panel says ${googleAvg} from ${googleTotal}).`);
 }

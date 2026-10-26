@@ -145,12 +145,55 @@
     }
     .mobile-nav.open { transform: translateX(0); }
 
-    /* Elfsight container padding normalization */
-    .elfsight-app-2e5e860c-38e2-4529-b2ec-4ad0d886799f,
-    .elfsight-app-56199c15-de8d-4e83-93c5-b0a1365d826d {
-      max-width: 100%;
-      margin: 0 auto;
+    /* Review wall (cards rendered by scripts/build-reviews.mjs) */
+    .rv-summary, .rv-rating {
+      background: #fff; border-radius: 16px; padding: 28px;
+      box-shadow: 0 1px 2px rgba(45,45,45,0.04), 0 8px 30px rgba(160,27,74,0.06);
     }
+    .rv-summary { border: 1px solid rgba(201,162,119,0.35); background: linear-gradient(160deg, #fff 60%, #FBF4EE 100%); }
+    .rv-rating { display: flex; flex-direction: column; justify-content: center; }
+    .rv-fact { position: relative; padding-left: 28px; }
+    .rv-fact::before {
+      content: ''; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 9999px;
+      background: rgba(160,27,74,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A01B4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 11px no-repeat;
+    }
+    .rv-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px; }
+    .rv-chip {
+      border: 1px solid rgba(45,45,45,0.15); background: #fff; color: #2D2D2D;
+      padding: 8px 16px; border-radius: 9999px; font-size: 0.85rem; font-weight: 500;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .rv-chip span { opacity: 0.55; margin-left: 4px; }
+    .rv-chip:hover { border-color: #A01B4A; }
+    .rv-chip.is-active { background: #A01B4A; border-color: #A01B4A; color: #fff; }
+    .rv-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); align-items: start; }
+    .rv-card {
+      background: #fff; border-radius: 14px; padding: 22px;
+      box-shadow: 0 1px 2px rgba(45,45,45,0.05); display: flex; flex-direction: column;
+    }
+    .rv-card.rv-hide { display: none; }
+    .rv-av {
+      width: 38px; height: 38px; border-radius: 9999px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.875rem;
+    }
+    .rv-av-rose { background: rgba(160,27,74,0.1); color: #A01B4A; }
+    .rv-av-gold { background: rgba(201,162,119,0.18); color: #A8855C; }
+    .rv-stars { color: #C9A277; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 10px; }
+    .rv-star-off { color: rgba(45,45,45,0.15); }
+    .rv-text { color: rgba(45,45,45,0.82); font-size: 0.9rem; line-height: 1.65; }
+    .rv-text p + p { margin-top: 0.7em; }
+    .rv-card.rv-clamp .rv-text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+    .rv-card.rv-clamp .rv-text p + p { margin-top: 0; }
+    .rv-card.rv-clamp .rv-text p + p::before { content: ' '; }
+    .rv-card.rv-clamp .rv-text p { display: inline; }
+    .rv-more { align-self: flex-start; margin-top: 8px; color: #A01B4A; font-size: 0.8rem; font-weight: 600; }
+    .rv-more:hover { text-decoration: underline; }
+    .rv-source {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding-top: 12px;
+      border-top: 1px solid rgba(45,45,45,0.08); color: rgba(45,45,45,0.6); font-size: 0.75rem; font-weight: 500;
+    }
+    .rv-source:hover { color: #A01B4A; }
+    .rv-ask { text-align: center; margin: 64px auto 0; max-width: 560px; padding-top: 48px; border-top: 1px solid rgba(45,45,45,0.1); }
   </style>
   <!-- Share.one tracking -->
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
@@ -300,133 +343,1388 @@
 
 
   <!-- ============================
-       GOOGLE REVIEWS (Elfsight #1)
+       REVIEWS (generated cards: scripts/build-reviews.mjs)
        ============================ -->
-  <section class="pt-6 pb-16 md:pt-8 md:pb-24 px-6 bg-ink">
-    <div class="max-w-6xl mx-auto reveal">
-      <div class="text-center mb-12">
-        <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">Google Reviews</p>
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold gold-line-center">What People Say Publicly</h2>
-      </div>
-      <!-- Elfsight Google Reviews widget -->
-      <script src="https://elfsightcdn.com/platform.js" async></script>
-      <div class="elfsight-app-2e5e860c-38e2-4529-b2ec-4ad0d886799f" data-elfsight-app-lazy></div>
-    </div>
-  </section>
-
-
-  <!-- ============================
-       TESTIMONIALS SLIDER (Elfsight #2)
-       ============================ -->
-  <section class="py-16 md:py-24 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
-    <div class="max-w-6xl mx-auto reveal">
-      <div class="text-center mb-12">
-        <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">From Our Network</p>
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold gold-line-center">Testimonials</h2>
-      </div>
-      <!-- Elfsight testimonials widget -->
-      <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-      <div class="elfsight-app-56199c15-de8d-4e83-93c5-b0a1365d826d" data-elfsight-app-lazy></div>
-    </div>
-  </section>
-
-
-  <!-- ============================
-       WRITTEN TESTIMONIALS
-       ============================ -->
-  <section class="bg-cream py-20 md:py-28 px-6">
-    <div class="max-w-site mx-auto reveal">
-      <div class="text-center mb-14">
-        <p class="text-rose-deep text-xs tracking-[0.25em] uppercase font-semibold mb-3">Members &amp; Participants</p>
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold text-charcoal mb-4 gold-line-center">What Members Say</h2>
+  <section id="reviews" class="bg-cream py-20 md:py-28 px-5 sm:px-6">
+    <div class="max-w-site mx-auto">
+      <div class="text-center mb-12 reveal">
+        <p class="text-rose-deep text-xs tracking-[0.25em] uppercase font-semibold mb-3">Members, Participants &amp; Google Reviews</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-semibold text-charcoal gold-line-center">What People Say</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_340px] gap-5 max-w-5xl mx-auto mb-12 reveal">
+        <!-- Summary of the Google reviews (Google's AI summary, Oct 2026). Hand-written: update when the reviews shift. -->
+        <div class="rv-summary">
+          <p class="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-semibold text-rose-deep mb-4">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9L12 2zm7 11l.9 2.6 2.6.9-2.6.9L19 20l-.9-2.6-2.6-.9 2.6-.9L19 13zM5 14l.7 1.8 1.8.7-1.8.7L5 19l-.7-1.8-1.8-.7 1.8-.7L5 14z"/></svg>
+            AI summary of our reviews
           </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Bo L.</p>
+          <h3 class="font-heading text-2xl md:text-[1.7rem] text-charcoal leading-snug mb-3">Transformative love and growth experiences</h3>
+          <p class="text-charcoal/75 text-[15px] leading-relaxed mb-5">These reviews celebrate deeply transformative experiences centered on love, healing, and personal growth. Christina and the WeDeepen team are praised for creating a safe, welcoming, and heart-led space where people feel seen, supported, and inspired. Many reviewers also highlight the lasting friendships, stronger relationships, and renewed sense of peace and authenticity they gained.</p>
+          <ul class="space-y-2.5 text-charcoal/80 text-sm leading-relaxed">
+            <li class="rv-fact">Christina is frequently praised as a compassionate, intuitive, and heart-centered guide.</li>
+            <li class="rv-fact">The events and retreats are described as safe, supportive spaces that foster healing and emotional breakthroughs.</li>
+            <li class="rv-fact">Reviewers consistently mention meaningful connections, new friendships, and stronger relationships as major outcomes.</li>
+          </ul>
+        </div>
+
+        <div class="rv-rating">
+          <div class="flex items-center gap-2 text-charcoal/70 text-sm font-medium mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg>
+            WeDeepen on Google
+          </div>
+          <div class="flex items-end gap-3 mb-1">
+            <span class="font-heading text-6xl text-charcoal leading-none"><!-- reviews:google-rating -->5.0<!-- /reviews:google-rating --></span>
+            <span class="text-gold text-2xl tracking-wide pb-1" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-charcoal/70 text-sm mb-6">Based on <!-- reviews:google-count -->24<!-- /reviews:google-count --> Google reviews</p>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJ-4tMYmv4gKoRAiK1nxauEEo" target="_blank" rel="noopener" class="btn-rose w-full text-center">Review us on Google</a>
+          <a href="https://www.google.com/maps/place/WeDeepen+Relationships/@46.423669,-129.9427085,3z/data=!3m1!4b1!4m6!3m5!1s0xaa80f86b624c8bfb:0x4a10ae169fb52202!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11xryrltcy?hl=en-US" target="_blank" rel="noopener" class="block text-center text-rose-deep text-sm font-semibold mt-4 hover:underline">Read them on Google</a>
+        </div>
+      </div>
+
+      <div class="rv-filters" role="group" aria-label="Filter reviews">
+        <button type="button" class="rv-chip is-active" data-filter="all" aria-pressed="true">All <span><!-- reviews:count-all -->112<!-- /reviews:count-all --></span></button>
+        <button type="button" class="rv-chip" data-filter="google" aria-pressed="false">Google <span><!-- reviews:count-google -->24<!-- /reviews:count-google --></span></button>
+        <button type="button" class="rv-chip" data-filter="immersion" aria-pressed="false">Love Immersion <span><!-- reviews:count-immersion -->32<!-- /reviews:count-immersion --></span></button>
+        <button type="button" class="rv-chip" data-filter="summit" aria-pressed="false">Summits <span><!-- reviews:count-summit -->7<!-- /reviews:count-summit --></span></button>
+        <button type="button" class="rv-chip" data-filter="community" aria-pressed="false">Love Club &amp; Events <span><!-- reviews:count-community -->49<!-- /reviews:count-community --></span></button>
+      </div>
+
+      <div id="rv-grid" class="rv-grid">
+        <!-- reviews:cards -->
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">B</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Bo L.</p>
               <p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Love Club Member</p>
             </div>
           </div>
-        </div>
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The hot seats were 10/10, and not just mine. I learned just as much watching other people. I'd never experienced anything like that. The whole container felt magical.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">J</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Joshua W.</p>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Joshua W.</p>
               <p class="text-charcoal/70 text-xs">Austin Entrepreneur &amp; Love Immersion Participant</p>
             </div>
           </div>
-        </div>
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with. That level of expertise isn't easy to find.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">K</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Krista &amp; Thomas</p>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The hot seats were 10/10, and not just mine. I learned just as much watching other people. I'd never experienced anything like that. The whole container felt magical.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Krista &amp; Thomas</p>
               <p class="text-charcoal/70 text-xs">Couple of 15 Years &amp; Love Immersion Participants</p>
             </div>
           </div>
-        </div>
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Being in a room with people who want to grow was priceless. The connections didn't stop after the weekend. We remain in touch and genuinely support each other's growth.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">K</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Karolina &amp; John</p>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with. That level of expertise isn't easy to find.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Karolina &amp; John</p>
               <p class="text-charcoal/70 text-xs">Austin Couple &amp; Love Immersion Participants</p>
             </div>
           </div>
-        </div>
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Being with the people I'd been learning with on Zoom was incredible. The Love Club gives me foundation. The immersions bring it all to life.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">P</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Phil G.</p>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Being in a room with people who want to grow was priceless. The connections didn't stop after the weekend. We remain in touch and genuinely support each other's growth.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">P</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Phil G.</p>
               <p class="text-charcoal/70 text-xs">CPA from Miami &amp; Love Immersion Participant</p>
             </div>
           </div>
-        </div>
-
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Seeing everyone as 'the one' changed my life. Christina said it once during the immersion, and it opened my heart in a way I'll never forget.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">M</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Mo M.</p>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Being with the people I'd been learning with on Zoom was incredible. The Love Club gives me foundation. The immersions bring it all to life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Mo M.</p>
               <p class="text-charcoal/70 text-xs">WeDeepen Summit at OMEGA Participant</p>
             </div>
           </div>
-        </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Seeing everyone as 'the one' changed my life. Christina said it once during the immersion, and it opened my heart in a way I'll never forget.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Stefanie Chafin</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Remarkable experiences with grounded people! Love being apart of the Love Club!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/place/WeDeepen+Relationships/@46.423669,-129.9427085,3z/data=!3m1!4b1!4m6!3m5!1s0xaa80f86b624c8bfb:0x4a10ae169fb52202!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11xryrltcy?hl=en-US" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Mary Parker</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Quite an experience! Recommend highly!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/place/WeDeepen+Relationships/@46.423669,-129.9427085,3z/data=!3m1!4b1!4m6!3m5!1s0xaa80f86b624c8bfb:0x4a10ae169fb52202!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11xryrltcy?hl=en-US" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">H</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">H G</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Aug 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I attended a weekend (August 22-23) event at WEDEEPEN and my mind was blown!</p><p>I am now using the tools with corporate clients and businesses. My corporate emotional intelligence has reach expert level because I learned to put love into everything I create, manifest, corporate risks, quantum, AI and natural philosophy.</p><p>As a computer forensics and cybersecurity risk compliance officer who can remediate and problem-solve risks, along with my discernment and real-life experience, I can mitigate and strengthen relationships across the workplace and personal life.</p><p>These tools will definitely help encourage future generations; Gen Z and Alphas by bringing positivity and purpose into the corporate world!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2kwd1VGOTRPWFpWWjNWd1J6bGZhVWxLVEdJdFFWRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOi0wUF94OXZVZ3VwRzlfaUlKTGItQVE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Sergio Lira</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Aug 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina and team are amazing curators of love. From the jump, the environment was welcoming and the coaches and speakers offered a wide range of tools to deepen ways to embody love. Def will plan to attend future events!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2taMlZYTkdRbFp1TXpsUGNHMXlYM1pUWDFVeVRrRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOkZ2VXNGQlZuMzlPcG1yX3ZTX1UyTkE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">C</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Colleen Schell</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Aug 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Wow! What a powerful experience! I got so much out of it. Having experts surrounding everyone in their commitment to growth and expansion in the realm of love is so powerful. The skills I learned and practiced I can use to create more beauty and understanding in my relationships and life. So glad I invested the time and money. I feel so free!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tNNGFtTlVkRjlDVGxKSldHdzFXbEp3T1c1YWNGRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOkM4amNUdF9CTlJJWGw1WlJwOW5acFE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">R</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Rachel Cuthbert</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Jul 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Loved every minute! Beautiful retreat❤️</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xCUWMyRkZkVUpHU0ZwMFgwTmlWa2RNVjJSU1RHYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOlBQc2FFdUJGSFp0X0NiVkdMV2RSTGc%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Angenique Naquin</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Jul 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>A heartwarming and loving experience that truly words cannot express. You just need to go and experience for yourself!😜</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21scE9HRjVPVVJpZUZjNVNGQnBjazVpUnpaR2IwRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOmlpOGF5OURieFc5SFBpck5iRzZGb0E%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Stephanie Blanchette</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Jul 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I didn’t have to think about attending too much, something just told me to go. It’s only been a couple days since the weekend and I feel shifted in ways I haven’t before. I’ve been to a lot of trainings/retreats &amp; this was deep, transformational &amp; profoundly aligned. Don’t think, just go.💖</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25aSGVUSjBla1ZWUTNCWGFGbHpha3R2WTI5bWRVRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOnZHeTJ0ekVVQ3BXaFlzaktvY29mdUE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">F</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">F. Scott Yeager</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Jun 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The WeDeepen Love Club which includes the Love Immersion, is a life-transforming weekend experience that I wish I had been able to attend many years ago. It is for singles and couples, and the fact that both are in the room helps everyone open up and see other perspectives. This helps you overcome your own issues and help others with theirs in a kind and loving manner. I highly recommend joining the WeDeepen Love Club and attending the Love Immersion weekend!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tsSk5uRlpTV2c0YVUxcmEzTkRVRUUyYkVoSFZuYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOklJNnFZSWg4aU1ra3NDUEE2bEhHVnc%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Sara Julian</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Feb 2026</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I joined the Love Club in 2024 after meeting Christina at the 2024 Biohacking Conference. While in the Love Club, I learned a lot from the masterminds, particularly the one led by Ken Page. I participated in Visionary Love Mastery and an immersion as well that year, all of which brought things back online that had become hidden and masked. The growth and transformation had such an impact that I knew I wanted to be a founding member of the Angel Group in 2025, which further accelerated growth, transformation, and practicing interacting with men in different ways. Now, I am able to identify men who feel aligned and interact with them authentically and with a regulated nervous system. I love, trust, and respect Christina – she is very important to me and I am thankful I took the leap to follow her.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2s5VFQwSTVjWEpzTURSMFUwWk1ZelpzWkdJNVNWRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOk9TT0I5cXJsMDR0U0ZMYzZsZGI5SVE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">E</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Eva Mullen</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Nov 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Wow! This experience is a must for growth and expansion! It helped me see love in a completely new way. I realized that before I could truly love others, I needed to learn how to love myself. Along the way, I found a community that felt like family, people who really see you, support you, and remind you that you’re not alone in your growth. Christina's kindness and authenticity made it safe for me to open up and become more of who I really am, and she has a magical way of bringing in the perfect team to create this space for deepening your life in Love. I'm still learning each day to open up to life and the Love Immersions have been invaluable in that journey!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pSeVYxSnlMVXd0T0daUldta3lWSFExYzJoblNYYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOjRyV1JyLUwtOGZRWmkyVHQ1c2hnSXc%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">L</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Lilith Reid</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina’s containers have been a huge part of my healing and awakening journey. She leads with heart, presence, and PLAY.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2poMll6UjVWVTVHYmpCR00xTkxVMmRCWmpoc2MxRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOjh2YzR5VU5GbjBGM1NLU2dBZjhsc1E%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">R</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Rex Loyer</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Amazing, amazing coaches, container, and community.</p><p>At the beginning of my journey with WeDeepen, I was looking to lead my company and relationship with more love. Except I was trying to solve love coming from my head.</p><p>After going to a love immersion with Christina and integrating with the local community, I learned to accept myself and the others in my life with my HEART. ♥️</p><p>As a result my clients, employees, and friends asked me what changed-- I felt more vulnerable and also more grounded.</p><p>If you're on the fence, I can't recommend joining us enough. I brought my skepticsm with me and reached out anyway-- and I'm so glad I did. ☺️🙏</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xkcFMxcHhRa1l4ZUY5bFZHTnRiVnBuUVZSV1RWRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOldpS1pxQkYxeF9lVGNtbVpnQVRWTVE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Ashley Ashida Dixon</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina is a powerful and compassionate guide for love and relationships. I have first hand experienced her passion for deepening Intimacy to enhance the lives of anyone she encounters. In her presence you will see and be seen and cared for. She’s been dedicated to this work for a very long time and it shows. I say this, as someone who has experienced her energy And has watched how she has extended that to the people around her and in her groups.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2s5aWJFWlNUa1ZrVm5sQ01saDRjRGhrTlVoM1VrRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOk9ibEZSTkVkVnlCMlh4cDhkNUh3UkE%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">C</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Christine Smith</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The Love Immersion retreat was deeply meaningful for me and has led to so many connections filled with unconditional love and new friendships and opportunities. I was actually really grateful it wasn’t forced matchmaking as I was just healing from a breakup. To have a space filled with highly intelligent, highly conscious people, open to letting me actually process instead of having to shrug it off to fit into society and people’s capacity was some of my deepest healing. Christina and the coaches were pivotal in seeing my hidden patterns I was trapped by, while providing models and a framework of what healthy relationships are. Getting to watch couples decades ahead of my work through their triggers was enlightening in a way you usually only learn from family, but this model was actually healthy - like energetic downloads for my learning. Thank you to the Love Club for the beautiful space it holds and work it’s doing for people’s soul evolution! And the party at the end was just the best time! I left with resources, books, friends, feeling comfortable and close with everyone, and many openings for future connections!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pBeFFUbG9lVTFIUmpORVNUVnJaa1pDWlV0clpuYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOjAxQTloeU1HRjNESTVrZkZCZUtrZnc%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Dorota Klimowicz</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>My experience with Kristina and WeDeepen has been truly transformational. The work she brings into the world is a profound study of love—real, embodied, relational love—and its power to shape every area of life. Each event I’ve attended has been carefully curated with remarkable facilitators and coaches who create a space of safety, truth, and deep emotional awakening. I always leave changed—expanded, more connected, and more aligned with what truly matters. In a world that needs more genuine love, this work is not only meaningful, it’s essential. Grateful to be part of this journey.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT205NlF6bGFTM1JSUTNFMmFrWkhOa1pFU21oWlMwRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOm96QzlaS3RRQ3E2akZHNkZESmhZS0E%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Jordan Maurice Bowditch (Conscious Bro)</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Some of the best work in the love/intimacy space, and I’ve experienced quite a bit. Highly recommend</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT210MVgzRmpVRzg1UVZKM1l6SkdhMVp4ZERrMFJHYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOmt1X3FjUG85QVJ3YzJGa1ZxdDk0RGc%7C%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">R</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Raamon Newman</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>WeDeepen is a profound love-based community led my Christina Weber, from my experience she and the community have created a nourishing connected environment in which to support relationships evolving and prospering. It's help me find a great partner that I have created a family with.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25Sb1NrUk9NRE5TV1d4UFkwaHpUak54VWs5M2JuYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOnRoSkROMDNSWWxPY0hzTjNxUk93bnc%7C0d-K-TjFzHQ%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">N</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Nicole</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina is such a radiant and inspiring woman. I have attended a couple events while she was still in Los Angeles and it was always beautiful.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2twTFJXNVpRMTlvY0RoVGFXMWtaV2s1YjFacFRuYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOkpLRW5ZQ19ocDhTaW1kZWk5b1ZpTnc%7C0d-JL3659JI%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Karolina Stachniuk</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level. The container was safe and deeply supportive allowing me to feel and release what had been buried for years. I left with a sense of peace and clarity I’d been seeking a long time. As well as a group of incredible new friends!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tSbWQwSk5jMHB4TjJwSWVXMUlTMlZrU0ZWV01rRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOkRmd0JNc0pxN2pIeW1IS2VkSFVWMkE%7C0d-GkMbNuf2%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">E</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">E Owsley</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina of WeDeepen</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21kR09HMVFVa3BqUWxVM05VTnViMWxuVVhONE5GRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOmdGOG1QUkpjQlU3NUNub1lnUXN4NFE%7C0cz1XUQWfQq%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Debra Lynn Alt</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>WeDeepen is a beautiful exploration of love and relationships, with the emphasis on relationships with ourselves and bringing that richness to others</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xaSGFqSXRUV2xsWmtkU1ZFbzNVMDFvVkhSWmNXYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOlZHajItTWllZkdSVEo3U01oVHRZcWc%7C0cyzdP-jcs4%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">H</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Hayley Foster</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>What an amazing weekend with Christina and Dave, going deeper into our hearts and learning more about love and the relationship with ourselves as well as with others. They were really able to get the group to connect with each other. We came as total strangers and left as friends with deep connections. Highly recommend this for singles, couples and anyone willing to open their hearts and minds.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25WTlIzRnlWMFpNTUZkek0wcHJjMUpLVHpWMVdWRRAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOnVNR3FyV0ZMMFdzM0prc1JKTzV1WVE%7C0cyNIMnj8wI%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="google">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Jessica Cohen</p>
+              <p class="text-charcoal/70 text-xs">Google review &middot; Oct 2025</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina is incredibly talented and intuitive. She helped me improve my relationship with myself and my fiancée. Highly recommended.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+          <a class="rv-source" href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2s1VUxWUnZNbGhZVTFkV1kyUmpWRWx6VFZNNFNIYxAB!2m1!1s0x0:0x4a10ae169fb52202!3m1!1s2@1:CAIQACodChtycF9oOk5ULVRvMlhYU1dWY2RjVElzTVM4SHc%7C0ctjmboI9ij%7C" target="_blank" rel="noopener"><svg class="w-4 h-4 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg><span>Posted on Google</span></a>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I came thinking I’d learn tools. I’m leaving with a new way of being.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This was more than an event—it was a turning point in my life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>My partner and I have been to other relationship workshops, but this one actually changed the way we communicate at home.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The space you created allowed me to feel safe enough to share truths I’ve held for decades.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I was nervous about coming alone, but I’m leaving with lifelong friends.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I’ve spent years in therapy, but these four days cracked something open that I could never touch before.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The Immersion gave me language for my needs and desires in a way that feels empowering instead of scary.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This weekend was like a reboot for my heart. I feel open again in a way I didn’t think was possible.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The breakthroughs I've had in my relationship are breathtaking and mind blowing! We're creating an epic partnership and enjoying our love life, which effects the other areas of our life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I felt safe, able to realign my energy and finally drop into the real me, the part of myself that had been pushed to the side. And amazingly, I awakened a powerful being that had been dormant inside. My true identity has come alive, and I’m genuinely excited to see what this version of me will do to help transform the world.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>My experience in “the hot seat“ was a profound experience allowing me to release a trauma from my childhood regarding anger and the shame I carried about this emotion. The coaches expertly led me through understanding what had happened, and what I made it mean. They then facilitated a process of forgiving the antagonist from my childhood and forgiving myself.</p><p>The release and reprogramming I experienced is so profound.</p><p>Thank you for this incredible retreat with such talented facilitators and loving participants.</p><p>I HIGHLY recommend the Love Immersion event to anyone who wants breakthroughs in their life</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Matthew</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This experience helped me show up more present with my kids. I’m more grounded as a father, more open-hearted, and more willing to love them through the chaos</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">L</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Leah</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Since the retreat, I’ve felt incredibly embodied. I’m more attuned to nature, to eye contact, to pleasure. And I’ve never been more clear on what I will and won’t allow in dating.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Josh</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Since the immersion, I feel so much freer around dating. I’ve let go of the pressure to define every interaction. I’m lighter, more playful, and more myself than ever.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The coaches were amazing! They held space, called us on our BS in a loving way, and guided the collective us to new levels of vulnerability where more of our authentic selves could shine!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Kendall</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I’ve gained tools for when the men I date show emotion. Before, I’d try to fix it. Now, I hold space and stay rooted in love. Also, I feel a renewed trust in community and in what's possible for safe, loving connection.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Jamie</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I’ve noticed I have a much healthier relationship with my emotions. I’m no longer course-correcting them or holding back. I just let myself feel—whether it’s love or frustration. It’s been liberating.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Adrienne</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I walked away with powerful tools to heal, grow, and create deeper love in my life. It was truly transformative.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Savannah Frank</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>To have love, you need to know and love yourself first. Love Club Immersion is the perfect place to start.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">H</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Hannah</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This experience helped me reclaim my worth and step into the love I truly deserve.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">R</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Roza J.</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>In just 72 hours, I felt more belonging than I have in two years. This was the best investment I’ve ever made in myself.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Dorota</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I never felt so held and supported in my life. In just three days, I felt more love than I ever imagined possible.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Josh Kvale</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Love Club Immersion felt like 'love hacking'—a deep dive into what love really is and how to bring more of it into your life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">H</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Honor Chan</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This experience showed me how we all long for love—and how we can give and receive it more fully. If you want meaningful connections, this is for you.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Sara Julian</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I came in afraid that relationships would take something from me. I left knowing they bring abundance. This was the most transformative experience of my life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anna A.</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>As a 17-year-old, I didn’t know what to expect, but I left feeling prepared for future relationships. The tools I learned will stay with me for life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Allan H.</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I've been to countless personal growth events, but nothing compares to this. The trust, connection, and transformation were beyond words. If you want to grow in love, this is where you need to be.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="immersion">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">L</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Lauri K</p>
+              <p class="text-charcoal/70 text-xs">Love Immersion</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Love Club Immersion helped me find the missing piece in my relationship. The experts and community gave us new perspectives, and now we feel more clarity than ever.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I loved the Hot Seat coaching sessions and felt Christina did a great job at asking the right questions and Dave was amazing and providing the science and feedback to really help people to make the changes they need to make. He made people feel empowered and confident.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I went into this experience with no knowledge of Christina or Dave. By the time this workshop was done I felt like I was a part of their family. The level of knowledge that the both hold and the authenticity in which they showed up made this work shop a masterpiece.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina has a beautiful presence about her. Accepting and loving energy, no judgement. It was very apparent that she has done and continues to do “the work”. She was very welcoming, and I would feel comfortable attending her immersions. It was fun to hear Dave’s perspective on love and relationships as a male and more science based person. Christina and Dave have a lovely dynamic and offered a great balance to the workshop. It’s like having 1 foot in the Spiritual realm (Christina), and 1 foot in physical (Dave), which I love!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Their way of teaching and integrity really inspired me, especially seeing how radiant and beautiful Christina was in how and what she was teaching. It felt like she wasn’t just teaching concepts but sharing parts of her truth and story so openly but with so much passion and joy and that really inspired me to share my own story and be more vulnerable in my life and relationships.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">L</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Lisa Coltman</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Authentic relationship, friendship bridge between heart &amp; bio hack synergy! Christina &amp; Dave pathing the way raw real</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="summit">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+              <p class="text-charcoal/70 text-xs">WeDeepen Summit with Christina Weber &amp; Dave Asprey</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I loved how they each brought their vulnerability and mastery and together alchemized it into a field of love. The “ hot seat “ coaching in that combo was exquisite to watch snd super effective.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Daria Salih</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I met Christina in person at Dave Asprey’s Biohacking Conference and when we connected on Zoom, I instantly felt the radiant frequency of someone not just building a brand. A woman embodying a mission with heart, depth, and integrity. That kind of resonance is rare, especially in the spiritual/wellness space</p><p>What initially inspired me to work with Christina was her presence and heart. It wasn’t flashy or performative. It was real. Devotional. Like a woman who has walked through the fire and returned with wisdom to share, not from a pedestal but from deep love. She called forward a version of me that was more expressed, more embodied, more heartled, more visionary</p><p>She creates from her heart and she sees you.. really sees you. Being in her presence made me feel softer, safe to expand, to play, to deepen into my heart with grace. Working with Christina is like stepping into your queendom, barefoot, heart open, surrounded by women who remember who they are</p><p>I am forever changed by The Love Club and by her.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">I</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Ilanit M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina has a gift in bringing people together and created intentional, connective, magical experiences. The WeDeepen community has been a huge support system for me. It is where I met so many of my close friends.. women who became my sisters, men who became safe, and the love of my life. Each experience that she led or curated was infused with so much depth, that there was no way one could not be impacted by the space that was created. Many of tears have been shed in those spaces, many heart connections, lifetime friendships, and communities have expanded. I'm so grateful for her relentless pursuit towards diving deep into the important conversations - those of the heart, of the soul, of our need to be seen and recognized. My life has been forever impacted in such a beautiful and positive way by the space she continues to create.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">I</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Indy Rishi</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Christina is the quintessential relationship builder and a coach that lives by example. she has an uncanny ability to facilitate and meditate all kinds of points of views and continues to amaze me with how her leadership supports the growth and success of others.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Alyssa C.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The best facilitator of community I know!!!!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">B</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Brigita</p>
+              <p class="text-charcoal/70 text-xs">Dating Dojo</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Casual, friendly, open</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">C</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Chris L.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>WeDeepen experiences are my favorite!! I'm impressed with how they've transitioned into the online space. It's a whole new world and I'm appreciating how deep and connected they all still feel. I've tried Yes, And..., Real Talk, Unleash!, Mind Sports debates, Nightcap Nidra, and Ignite. They're all so good. Go!! Try them!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Max B.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>WeDeepen allows for free-thinking and open discussion, and in these chaotic times, that's what we need.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Sadie M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I think everyone needs this kind of experience in their life, we all have so much to let go that we don't even know. Thank you for this beautiful opportunity and guidance for growth.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Katya D.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Made amazing connections and felt community within the group - what more could one ask for?!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Dale T.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I love how experiences include people from all over the world. They're interactive and the people don't seem like-minded. Rather they tend to be open-minded and value authentic relating. I'll be back!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Matthew S.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Had fun. Opened my mind to new experiences.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">C</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Charlotte M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>It was a really nice event with a really great group of authentic, friendly people. A very unique experience in our modern times!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">N</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Nadine D.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Everything you guys put out is great, and the way you put it out!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Angelei S.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>It was a transformative experience.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Aviva M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Cat was a great facilitator and it was a warm, welcoming space.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Shawn A.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Incredible people, teachers, and community.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Megan N.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Finding WeDeepen's Clown Church helped me realize that maybe I'm not so alone after all. There are other people looking for genuine experience and connection, who are just as strange and weird and unique as me, struggling to justify their existence in a world trying so hard to discount us and make us feel like less than worthy beings.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">I</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Ian T.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Amazing people, meaningful connection, and a unique environment on the beach.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">J</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Jonathan T.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="4 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;</span></div>
+          <div class="rv-text"><p>I did invite friends, one attended and mostly liked it. The panelists had a refreshing, constructive perspective and led the discussion to interesting places. On the downside, there's a gap where there could be opportunities for action at this historic moment and a gap where some participants voice vitriol against others without the put downs being addressed.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Audrey G.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I feel like I definitely found my tribe. I really resonated with most of what was shared. I wish I had shared. Breakouts might have been a good idea so we each had time to be heard.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Asma K.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Yari!! Her energy, her embodiment, and her team - the music. It was fantastic!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Mo S.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Joseph Faust was excellent and I highly recommend him.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Shelby S.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>This was a very positive and relaxing experience! I enjoyed the instructor and found her direction to be smooth and deliberate. I felt like I slept better last night than I have in a long time. I think that trying something new could be nerve-wracking, but the way the experience was guided was great for someone who is new to yoga.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">P</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Paulette R.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Such a welcoming and inspiring environment.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">E</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Eileen B.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Great moderators, interesting questions, good speakers, and discussion, felt welcoming.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Sadie M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>If I could put a higher number I would!!! This was such an amazing experience!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">E</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Eiji M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Love Indy's passion and at times felt it was a little too much or distracted from the convo. But overall it was great.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Kendra B.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Great way to connect and interact safely as well as get information, share thoughts and learn something new.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Andre A.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>You organize very informative and fun events!!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">E</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">ElizaBeth M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Because I love Nadine!!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">S</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Salma Z.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Nadine's Nidra was so perfect. Her voice is so soothing. The Nidra had so much intention and love. Promoting, self-love, ownership, and just your being-ness.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="4 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;</span></div>
+          <div class="rv-text"><p>I thought it was a great topic and the dialogue was handled appropriately. I like that everyone has the opportunity to participate and the group was very diverse.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="3 out of 5 stars"><span>&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I thought it was a juicy topic and so appreciated of thoughts and ideas were heard. I have been on many zoom calls and have done used it as part of my business for four years. Just got a little unwieldy with having chat and speakers talking at the same time. It was great that as promised we laughed many times. Also felt that there wasn't any censoring and a true desire to express without trying to be politically correct. Keep doing them please I will definitely come again.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The class was a great second experience.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Love you guys!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Kelley N.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>The class was great! One of the WeDeepen team was there so it made it feel like not only do they promote healthy things, they also take part in it. It feels like a community vs sales platform.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="3 out of 5 stars"><span>&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Lack of factual/valid info. Predominantly perspective/feeling based.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">D</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">David D.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Love the open dialogue and how you guys create a safe space to explore various intimate topics.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">I</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Isla M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I deeply appreciate the work this whole alliance of people are bringing forth. Cutting edge conversations.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Mariana K.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="4 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;</span></div>
+          <div class="rv-text"><p>Solid content shared.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">K</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Kaori M.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Very thought provoking :)</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Mateo D.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="4 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;</span><span class="rv-star-off">&#9733;</span></div>
+          <div class="rv-text"><p>It was really good, I didn't realize it was being live-streamed and recorded and put up on YouTube, I maybe agreed to that somewhere when I signed up (?) but it could have been a little more prominent than it was going to be on YouTube later. (of course, if that was prominent in the registration and I missed it, shame on me.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">V</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Velvela L.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I love WeDeepen!!</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">A</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Avani K.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Yoga Nidra with Nadine is the most amazing experience. I was thankful that it was easy to jump into the class last minute.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">C</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Christine</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>Overall, I thoroughly enjoyed Humhum. For anyone looking for this kind of thoughtful engagement, I would highly recommend it. I felt well prepared, relaxed, and taken care of. I found the structure to be excellently well considered. I especially appreciated the emphasis on thinking about it as a practice.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">&#9829;</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Anonymous</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I really appreciated the intentionality behind every piece of the experience. The guidelines and expectations were quite clear and our guide, Alexandria, was clear, graceful &amp; supportive from pre to post-experience. I liked seeing so many others seeking conscious connection!! That's so cool! I can tell the conversation prompts were chosen carefully. I appreciated the movement and breathing aspects too.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-rose" aria-hidden="true">T</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Tristan D.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>I thought the event leader was great. Terrific energy. Managed the group well. Kept it light, and fun but left us with key insights and lessons to apply in our everyday life.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <article class="rv-card" data-cat="community">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="rv-av rv-av-gold" aria-hidden="true">M</div>
+            <div class="min-w-0">
+              <p class="text-charcoal font-semibold text-sm truncate">Maya A.</p>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5 out of 5 stars"><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="rv-text"><p>That participation was more than encouraged, it was dragged out of us. I liked it though! Made me engage more and pay attention to on-going verbal and written communications.</p></div>
+          <button type="button" class="rv-more" hidden>Read more</button>
+        </article>
+        <!-- /reviews:cards -->
+      </div>
 
+      <div class="text-center mt-10">
+        <button type="button" id="rv-show-more" class="btn-outline !text-rose-deep !border-rose-deep hover:!bg-rose-deep hover:!text-white" hidden>Show more reviews</button>
+      </div>
+
+      <div class="rv-ask">
+        <p class="font-heading text-2xl md:text-3xl text-charcoal mb-2">Been to a WeDeepen experience?</p>
+        <p class="text-charcoal/70 mb-6">Your review helps the next person find this work.</p>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJ-4tMYmv4gKoRAiK1nxauEEo" target="_blank" rel="noopener" class="btn-rose">Review us on Google</a>
       </div>
     </div>
   </section>
@@ -525,6 +1823,55 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Review wall: filter chips, "Show more", and "Read more" on long reviews.
+    // Every card is in the HTML; this only hides the overflow so crawlers and
+    // no-JS visitors still get all of them.
+    (() => {
+      const grid = document.getElementById('rv-grid');
+      if (!grid) return;
+      const cards = [...grid.querySelectorAll('.rv-card')];
+      const chips = [...document.querySelectorAll('.rv-chip')];
+      const more = document.getElementById('rv-show-more');
+      const PAGE = window.matchMedia('(max-width: 640px)').matches ? 8 : 18;
+      let filter = 'all', shown = PAGE;
+
+      function render() {
+        const matching = cards.filter(c => filter === 'all' || c.dataset.cat === filter);
+        cards.forEach(c => c.classList.add('rv-hide'));
+        matching.slice(0, shown).forEach(c => c.classList.remove('rv-hide'));
+        more.hidden = matching.length <= shown;
+        clampVisible();
+      }
+
+      function clampVisible() {
+        cards.forEach(c => {
+          if (c.classList.contains('rv-hide') || c.dataset.clamped) return;
+          c.dataset.clamped = '1';
+          c.classList.add('rv-clamp');
+          const text = c.querySelector('.rv-text');
+          const btn = c.querySelector('.rv-more');
+          if (text.scrollHeight > text.clientHeight + 2) {
+            btn.hidden = false;
+            btn.addEventListener('click', () => {
+              const open = c.classList.toggle('rv-clamp');
+              btn.textContent = open ? 'Read more' : 'Show less';
+            });
+          } else {
+            c.classList.remove('rv-clamp');
+          }
+        });
+      }
+
+      chips.forEach(chip => chip.addEventListener('click', () => {
+        filter = chip.dataset.filter;
+        shown = PAGE;
+        chips.forEach(c => { const on = c === chip; c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', on); });
+        render();
+      }));
+      more.addEventListener('click', () => { shown += PAGE; render(); });
+      render();
+    })();
   </script>
 
   <script src="/js/lead-capture.js?v=50" defer></script>

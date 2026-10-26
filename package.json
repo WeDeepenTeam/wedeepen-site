@@ -19,6 +19,8 @@
     "gallery:test": "cd scripts/gallery && node --test lib/escape-html.test.js",
     "li:hub": "node scripts/build-li-hub.mjs",
     "li:hub:check": "node scripts/build-li-hub.mjs --check",
+    "reviews:build": "node scripts/build-reviews.mjs",
+    "reviews:check": "node scripts/build-reviews.mjs --check",
     "seo:schema": "node scripts/build-seo-schema.mjs",
     "seo:schema:check": "node scripts/build-seo-schema.mjs --check"
   },

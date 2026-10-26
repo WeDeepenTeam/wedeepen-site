@@ -444,6 +444,8 @@
       <p class="text-gold/90 text-sm md:text-base font-medium mb-5">Your first 14 days are free. After that it&rsquo;s $99/month, our founding member rate. Cancel anytime.</p>
       <!-- Worries answered before they reach Circle (Oct 26, 2026: Clarity showed checkout visitors stall without typing) -->
       <p class="text-white/70 text-xs md:text-sm max-w-xl mx-auto mb-5 leading-relaxed">Camera off is fine &middot; Come solo, dating, or partnered &middot; We&rsquo;ll email you before your free days end</p>
+      <!-- Fallback ask for visitors not ready to join (Clarity, Oct 26, 2026: phones leave the sales page after ~20s / ~20% scroll). Opens the free-guide sign-up via js/lead-capture.js; href is the no-JS fallback. -->
+      <p class="text-sm mb-5"><a data-guide-popup data-cta="hero-guide" href="/four-pillars/free-guide/" class="text-white/70 hover:text-white underline underline-offset-4 decoration-white/30 transition">Not ready to join? Get the free Four Pillars guide &rarr;</a></p>
       <div class="mb-10"></div>
 
       <!-- Press Bar — As Seen In (logos) -->
@@ -1748,6 +1750,10 @@
           rd('AddToCart');
         }
 
+        if (a.hasAttribute('data-guide-popup')) {
+          ga('guide_link_open', { cta_position: a.getAttribute('data-cta') || 'unknown' });
+        }
+
         if (a.hasAttribute('data-lead-popup')) {
           ga('lead_popup_open');
           // The Lead conversion fires on an actual sign-up, in /js/lead-capture.js.
@@ -1756,7 +1762,7 @@
     })();
   </script>
 
-  <script src="/js/lead-capture.js?v=54" defer></script>
+  <script src="/js/lead-capture.js?v=55" defer></script>
   <script src="/js/mobile-site.js?v=4" defer></script>
   <script src="/js/social-proof.js?v=4" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>

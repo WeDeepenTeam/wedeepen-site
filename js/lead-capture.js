@@ -677,9 +677,11 @@
     });
   }
 
-  function openGuide() {
+  // force: the visitor asked for it (a [data-guide-popup] link), so the
+  // join-intent rule doesn't apply.
+  function openGuide(force) {
     if (document.getElementById('wd-guide')) return;
-    if (joinIntent() && !/[?&]wd-guide=1(&|$)/.test(location.search)) return;
+    if (force !== true && joinIntent() && !/[?&]wd-guide=1(&|$)/.test(location.search)) return;
     var g = document.createElement('div');
     g.id = 'wd-guide';
     g.setAttribute('role', 'dialog');
@@ -1047,7 +1049,7 @@
     wireWaitlistForm();
 
     if (MEMBER_LINK) {
-      document.querySelectorAll('[data-lead-popup]').forEach(function (el) { el.style.display = 'none'; });
+      document.querySelectorAll('[data-lead-popup],[data-guide-popup]').forEach(function (el) { el.style.display = 'none'; });
       return;
     }
 
@@ -1060,6 +1062,15 @@
     document.addEventListener('click', function (e) {
       var t = e.target.closest && e.target.closest('[data-lead-popup]');
       if (t) { e.preventDefault(); openPopup(); }
+    });
+    // Any element with data-guide-popup opens the free-guide sign-up on click
+    // (e.g. "Not ready to join?" under the sales-page hero, René 2026-10-26:
+    // phone visitors leave after ~20s and ~20% scroll, so the fallback ask has
+    // to sit in the first screen). Its href is the free-guide page, so the link
+    // still works if this script doesn't run or the guide is switched off.
+    if (GUIDE_LIVE) document.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('[data-guide-popup]');
+      if (t) { e.preventDefault(); openGuide(true); }
     });
 
     // Desktop: the popup opens after a short delay. Phones: a small bottom

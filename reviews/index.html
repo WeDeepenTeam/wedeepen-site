@@ -157,6 +157,13 @@
       content: ''; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 9999px;
       background: rgba(160,27,74,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A01B4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 11px no-repeat;
     }
+    .rv-msg { border-radius: 20px; padding: 18px 18px 16px; box-shadow: 0 1px 2px rgba(45,45,45,0.05), 0 10px 30px rgba(45,45,45,0.06); }
+    .rv-msg-whatsapp { background: #EFE7DD; }
+    .rv-msg-imessage { background: #fff; border: 1px solid rgba(45,45,45,0.06); }
+    .rv-msg-meta { text-align: center; color: rgba(45,45,45,0.55); font-size: 0.72rem; font-weight: 500; margin-bottom: 12px; }
+    .rv-msg-img { display: block; width: 88%; height: auto; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.08)); }
+    .rv-msg-who { margin-top: 12px; color: rgba(45,45,45,0.7); font-size: 0.8rem; }
+    .rv-msg-who strong { color: #2D2D2D; font-weight: 600; margin-right: 6px; }
     .rv-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px; }
     .rv-chip {
       border: 1px solid rgba(45,45,45,0.15); background: #fff; color: #2D2D2D;
@@ -380,6 +387,25 @@
           <p class="text-charcoal/70 text-sm mb-6">Based on <!-- reviews:google-count -->24<!-- /reviews:google-count --> Google reviews</p>
           <a href="https://search.google.com/local/writereview?placeid=ChIJ-4tMYmv4gKoRAiK1nxauEEo" target="_blank" rel="noopener" class="btn-rose w-full text-center">Review us on Google</a>
           <a href="https://www.google.com/maps/place/WeDeepen+Relationships/@46.423669,-129.9427085,3z/data=!3m1!4b1!4m6!3m5!1s0xaa80f86b624c8bfb:0x4a10ae169fb52202!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11xryrltcy?hl=en-US" target="_blank" rel="noopener" class="block text-center text-rose-deep text-sm font-semibold mt-4 hover:underline">Read them on Google</a>
+        </div>
+      </div>
+
+      <!-- From our inbox: real messages, cropped from screenshots in images/reviews/. Hand-written; add new ones here. -->
+      <div class="max-w-4xl mx-auto mb-14 reveal">
+        <p class="text-center text-rose-deep text-xs tracking-[0.25em] uppercase font-semibold mb-6">From our inbox</p>
+        <div class="grid md:grid-cols-2 gap-5 items-start">
+          <figure class="rv-msg rv-msg-whatsapp">
+            <p class="rv-msg-meta">WhatsApp &middot; Oct 19, 2026</p>
+            <img src="/images/reviews/angela-w.webp" width="672" height="872" loading="lazy" class="rv-msg-img"
+                 alt="Text message from Angela W.: Hi Christina, thank you for sharing what you've created with Jeff and I. We are tickled to be part of your vision. Jeff and I committed to each other to attend one Love Immersion each year to continue to grow together. It was so lovely to be around beautiful women who were not competitive, wanting what's best for each other and willing to share their hearts. It's the first time I've been in a space like that. You are changing lives and saving lives with your work. We are so proud of you.">
+            <figcaption class="rv-msg-who"><strong>Angela W.</strong> Love Immersion participant</figcaption>
+          </figure>
+          <figure class="rv-msg rv-msg-imessage">
+            <p class="rv-msg-meta">iMessage &middot; Oct 23, 2026</p>
+            <img src="/images/reviews/david-s.webp" width="628" height="598" loading="lazy" class="rv-msg-img"
+                 alt="Text message from David S.: On the eve of my actual birthday, the surprise on the last day of the immersion has already made this one of the best birthdays I can remember. I loved every moment of it and can not ever remember feeling more loved. I have missed you and all the participants very much this week and I can't wait for Monday integration!">
+            <figcaption class="rv-msg-who"><strong>David S.</strong> Love Immersion participant</figcaption>
+          </figure>
         </div>
       </div>
 

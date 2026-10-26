@@ -669,13 +669,40 @@
   </section>
 
   <!-- ============================
-       TRUST STRIP — Live Google Reviews via Elfsight
+       TRUST STRIP — Google reviews (rating/count kept current by scripts/build-reviews.mjs)
        ============================ -->
   <section class="py-14 sm:py-16 px-5 border-t border-white/5 bg-ink">
     <div class="max-w-site mx-auto">
-      <!-- Elfsight Google Reviews widget (lazy-loaded; styled by Elfsight) -->
-      <script src="https://elfsightcdn.com/platform.js" async></script>
-      <div class="elfsight-app-2e5e860c-38e2-4529-b2ec-4ad0d886799f" data-elfsight-app-lazy></div>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2 mb-8 text-center">
+        <span class="inline-flex items-center gap-2 text-white/80 text-sm font-medium"><svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg> WeDeepen on Google</span>
+        <span class="inline-flex items-center gap-2">
+          <span class="font-heading text-3xl text-white leading-none"><!-- reviews:google-rating -->5.0<!-- /reviews:google-rating --></span>
+          <span class="text-[#C9A277] text-lg tracking-wide" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </span>
+        <span class="text-white/60 text-sm"><!-- reviews:google-count -->24<!-- /reviews:google-count --> Google reviews</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 sm:gap-5">
+        <figure class="rounded-2xl p-6 bg-white/[0.04] border border-white/10">
+          <div class="text-[#C9A277] text-sm tracking-wide mb-3" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote class="text-white/80 text-sm leading-relaxed">I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level. The container was safe and deeply supportive allowing me to feel and release what had been buried for years.</blockquote>
+          <figcaption class="mt-4 flex items-center gap-2 text-white text-sm font-medium"><svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg> Karolina Stachniuk</figcaption>
+        </figure>
+        <figure class="rounded-2xl p-6 bg-white/[0.04] border border-white/10">
+          <div class="text-[#C9A277] text-sm tracking-wide mb-3" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote class="text-white/80 text-sm leading-relaxed">It&rsquo;s only been a couple days since the weekend and I feel shifted in ways I haven&rsquo;t before. I&rsquo;ve been to a lot of trainings/retreats &amp; this was deep, transformational &amp; profoundly aligned. Don&rsquo;t think, just go.</blockquote>
+          <figcaption class="mt-4 flex items-center gap-2 text-white text-sm font-medium"><svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg> Stephanie Blanchette</figcaption>
+        </figure>
+        <figure class="rounded-2xl p-6 bg-white/[0.04] border border-white/10">
+          <div class="text-[#C9A277] text-sm tracking-wide mb-3" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote class="text-white/80 text-sm leading-relaxed">At the beginning of my journey with WeDeepen, I was looking to lead my company and relationship with more love. Except I was trying to solve love coming from my head. After going to a love immersion with Christina and integrating with the local community, I learned to accept myself and the others in my life with my HEART.</blockquote>
+          <figcaption class="mt-4 flex items-center gap-2 text-white text-sm font-medium"><svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg> Rex Loyer</figcaption>
+        </figure>
+      </div>
+
+      <p class="text-center mt-6">
+        <a href="/reviews/" class="text-[#D92B6F] hover:text-white transition text-sm font-medium">Read all the reviews &rarr;</a>
+      </p>
 
       <!-- Supporting line: WeDeepen network credibility + Dave Asprey avatar -->
       <div class="mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4 sm:gap-5 text-center sm:text-left">

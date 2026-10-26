@@ -29,6 +29,8 @@ const PAGE = path.join(ROOT, 'reviews', 'index.html');
 const DATA = path.join(ROOT, 'reviews', 'data', 'reviews.json');
 const GOOGLE_SUMMARY = path.join(ROOT, 'reviews', 'data', 'google.json');
 const CHECK = process.argv.includes('--check');
+// Other pages that show the Google rating and count between the same markers.
+const RATING_PAGES = [path.join(ROOT, 'bc26', 'index.html')];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -92,10 +94,20 @@ for (const [cat, n] of Object.entries(counts)) {
   if (html.includes(`<!-- reviews:count-${cat} -->`)) html = replaceBetween(html, `count-${cat}`, String(n));
 }
 
+const others = [];
+for (const file of RATING_PAGES) {
+  const was = await fs.readFile(file, 'utf-8');
+  const now = replaceBetween(replaceBetween(was, 'google-rating', googleAvg), 'google-count', String(googleTotal));
+  others.push({ file, was, now });
+}
+
 if (CHECK) {
+  const stale = others.filter((o) => o.now !== o.was).map((o) => path.relative(ROOT, o.file));
+  if (stale.length) { console.error(`Stale Google rating on: ${stale.join(', ')}. Run: node scripts/build-reviews.mjs`); process.exit(1); }
   if (html !== before) { console.error('reviews/index.html is stale. Run: node scripts/build-reviews.mjs'); process.exit(1); }
   console.log('reviews/index.html is up to date.');
 } else {
   await fs.writeFile(PAGE, html);
+  for (const o of others) if (o.now !== o.was) await fs.writeFile(o.file, o.now);
   console.log(`Wrote ${reviews.length} reviews (${google.length} from Google; panel says ${googleAvg} from ${googleTotal}).`);
 }

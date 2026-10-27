@@ -14,7 +14,19 @@
       "display_order": 0,
       "photographer": null,
       "parent_event": "love-immersion",
-      "parent_event_title": "Love Immersion"
+      "parent_event_title": "Love Immersion",
+      "exclude_hashes": [
+        "d764b746da8ba480",
+        "b94e502de78ac7e8",
+        "fe51b31ced290c92",
+        "539ac3821c55714b",
+        "bb19da1c5b020f93",
+        "cba21355394f3264",
+        "c5ea982486b70772",
+        "fd0d65bf3c0207e0",
+        "3b71d63eed9f5497",
+        "caa94f691e03cea0"
+      ]
     },
     {
       "slug": "love-immersion-vii",

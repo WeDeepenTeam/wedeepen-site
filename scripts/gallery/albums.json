@@ -16,6 +16,7 @@
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
       "exclude_hashes": [
+        "9ff4344b61925e09",
         "0ebdf833340e4bda",
         "6323ce30aca044ec",
         "d764b746da8ba480",

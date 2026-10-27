@@ -1446,7 +1446,9 @@
     // Retry thumbnails that fail to load. Supabase Storage rate-limits (429) when a big
     // album fires hundreds of requests at once, and the limit can last several seconds.
     // Up to 8 attempts with exponential backoff + jitter, and at most 4 retries in flight
-    // so the retries themselves don't trip the limit again.
+    // so the retries themselves don't trip the limit again. Retries reuse the plain URL:
+    // the CDN caches it after one success, while a cache-busting param would send every
+    // retry back to Supabase.
     const MAX_TRIES = 8, MAX_INFLIGHT = 4;
     const retryQueue = [];
     let inflight = 0;
@@ -1462,7 +1464,7 @@
         };
         img.addEventListener('load', done);
         img.addEventListener('error', done);
-        img.src = img.src.split('?')[0] + '?r=' + img.dataset.retry + '-' + Date.now();
+        img.src = img.src.split('?')[0];
       }
     }
     grid.addEventListener('error', (e) => {
@@ -1475,10 +1477,22 @@
       setTimeout(() => { retryQueue.push(img); pump(); }, delay);
     }, true);
 
+    // Same retry for the full-size photo in the lightbox.
+    lbImg.addEventListener('error', () => {
+      const src = lbImg.getAttribute('src');
+      if (!src) return;
+      const tries = Number(lbImg.dataset.retry || 0);
+      if (tries >= MAX_TRIES) return;
+      lbImg.dataset.retry = String(tries + 1);
+      const delay = Math.min(20000, 1000 * 2 ** tries) + Math.random() * 1000;
+      setTimeout(() => { if (lbImg.getAttribute('src') === src) lbImg.src = src; }, delay);
+    });
+
     function open(index) {
       const all = tiles();
       currentIndex = Math.max(0, Math.min(index, all.length - 1));
       const t = all[currentIndex];
+      lbImg.dataset.retry = '0';
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;

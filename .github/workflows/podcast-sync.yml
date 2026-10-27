@@ -1,0 +1,79 @@
+# Add new Mastering Love episodes from the Libsyn feed, every day.
+#
+# scripts/podcast/sync-feed.py --build appends new feed episodes to
+# podcast/data/episodes.json, fills empty Apple / Spotify / YouTube links on new
+# episodes and the 12 newest existing ones (Spotify and YouTube often lag
+# Libsyn by a day), then regenerates episode pages, nav, the archive, the
+# sitemap entries and llms-full.txt and runs the checks. This job commits the
+# result to main, pings IndexNow and requests a Pages build.
+# Episode pages only ever change through the generator.
+name: Podcast sync
+
+on:
+  schedule:
+    - cron: '20 16 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/podcast-sync.yml'
+      - 'scripts/podcast/sync-feed.py'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: podcast-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Sync episodes and links from the feed
+        run: python3 scripts/podcast/sync-feed.py --build
+
+      - name: Commit and push if anything changed
+        id: commit
+        run: |
+          git add podcast deepen-with-christina sitemap.xml llms-full.txt
+          git add -u   # pages build-nav touched
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "podcast: sync episodes and links from the feed"
+          pushed=false
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then pushed=true; break; fi
+            sleep 5
+          done
+          if [ "$pushed" != true ]; then echo "::error::Could not push the podcast sync to main."; exit 1; fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "files=$(git diff --name-only HEAD~1 HEAD | grep -E 'index\.html$|^llms(-full)?\.txt$' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+
+      - name: Tell IndexNow what changed
+        if: steps.commit.outputs.files != ''
+        continue-on-error: true
+        run: node scripts/indexnow.mjs ${{ steps.commit.outputs.files }}
+
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

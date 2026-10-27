@@ -294,6 +294,14 @@ def render_episode_page(ep: dict, related: list) -> str:
     // don't show up as (not set) / Unassigned sessions.
     if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593');
   </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){{
+      c[a]=c[a]||function(){{(c[a].q=c[a].q||[]).push(arguments)}};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    }})(window, document, "clarity", "script", "z2chqpt354");
+  </script>
   <script src="/js/checkout-tracking.js?v=3" defer></script>
 
   <title>{html.escape(seo_title(ep["title"], show))}</title>

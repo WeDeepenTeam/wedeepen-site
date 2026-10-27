@@ -3,6 +3,20 @@
   "_drive_parent": "https://drive.google.com/drive/folders/1yvHx-RePRo-yK7YYgDC4uEdkIh_z9HH_",
   "albums": [
     {
+      "slug": "love-immersion-viii",
+      "title": "Love Immersion VIII",
+      "description": "The eighth WeDeepen Love Immersion. Three days of deep practice in love, presence, and partnership. October 2026.",
+      "event_date": "2026-10-17",
+      "location": null,
+      "drive_folder_id": "1LVmOugtSgY5JekycB7o07LBAZQRSeJL9",
+      "youtube_ids": [],
+      "event_page_slug": null,
+      "display_order": 0,
+      "photographer": null,
+      "parent_event": "love-immersion",
+      "parent_event_title": "Love Immersion"
+    },
+    {
       "slug": "love-immersion-vii",
       "title": "Love Immersion VII",
       "description": "The seventh WeDeepen Love Immersion. Three days of deep practice in love, presence, and partnership. June 2026.",

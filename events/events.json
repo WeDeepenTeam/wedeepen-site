@@ -1,11 +1,11 @@
 {
-  "last_updated": "2026-10-22T21:54:51.212Z",
+  "last_updated": "2026-10-27T05:34:45.671Z",
   "source": "circle.wedeepen.com",
-  "event_count": 64,
+  "event_count": 65,
   "events": [
     {
       "id": "love-mastermind-briana-cribeyer",
-      "title": "Love Mastermind: Relationships & Intimacy with Briana Cribeyer",
+      "title": "Love Mastermind: Sex, Love and the Spaces Between with Briana Cribeyer",
       "date": "2026-10-27",
       "end_date": null,
       "time": "6:00 PM",
@@ -21,8 +21,8 @@
       ],
       "recurring": false,
       "series": "love-mastermind-briana-cribeyer",
-      "description": "Founder of Sacred Sexuality Rising, a lead trainer for Intuitive Tantra, speaker and facilitator for The Ohio State University on the topic of sacred sexuality, and Executive Director of the Columbus",
-      "image_url": "https://assets-v2.circle.so/lbkjgr50aos6js9ya04sewhwunre",
+      "description": "Sex, Love & the Spaces Between  Exploring Desire, Attachment & the Art of Erotic Connection  What if our sexuality is one of the most powerful gateways into deeper intimacy, freedom, and self-discover",
+      "image_url": "https://assets-v2.circle.so/ulijd30wm81wspaagxhxgylofifl",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-briana-cribeyer"
     },
     {
@@ -1384,6 +1384,28 @@
       "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
       "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-baeaf6"
+    },
+    {
+      "id": "love-mastermind-no-faculty-yet-d4a94c",
+      "title": "Love Mastermind: Faculty Announced Soon",
+      "date": "2027-10-26",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-10-26T23:00:00.000Z",
+      "ends_at_iso": "2027-10-27T00:30:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Mastermind",
+        "Love Club",
+        "WeDeepen Members"
+      ],
+      "recurring": true,
+      "series": "love-mastermind-no-faculty-yet",
+      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "image_url": "https://assets-v2.circle.so/vppsld5ggnd5e6iegfnsg0abh1uh",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-d4a94c"
     }
   ]
 }

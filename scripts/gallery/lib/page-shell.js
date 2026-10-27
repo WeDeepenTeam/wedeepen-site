@@ -31,7 +31,7 @@ export function pageHead({ title, description, canonical, ogImage, jsonLd }) {
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "z2chqpt354");
   </script>
-  <script src="/js/checkout-tracking.js?v=1" defer></script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index, follow">

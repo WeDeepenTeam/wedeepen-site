@@ -372,8 +372,11 @@
     document.body.insertBefore(bar, document.body.firstChild);
 
     var header = document.getElementById('wd-header');
+    var lastH = -1;
     function offset() {
       var h = bar.offsetHeight;
+      if (h === lastH) return; // nothing to move
+      lastH = h;
       if (header) header.style.top = h + 'px';
       document.body.style.marginTop = h + 'px';
     }
@@ -382,8 +385,11 @@
     // The bar grows after first measure (web font swap re-wraps the text,
     // notably on phones), which left the header sliding under it. Track the
     // bar's real size instead of trusting the initial measurement.
+    // The move waits for the next frame: changing layout inside the observer
+    // callback caused "ResizeObserver loop completed with undelivered
+    // notifications" errors (about half of the site's Clarity errors, Oct 2026).
     if (window.ResizeObserver) {
-      new ResizeObserver(offset).observe(bar);
+      new ResizeObserver(function () { window.requestAnimationFrame(offset); }).observe(bar);
     } else {
       setTimeout(offset, 600);
       setTimeout(offset, 1800);

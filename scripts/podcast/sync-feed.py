@@ -11,11 +11,23 @@ The last line of output is always `RESULT {json}` (new episodes with their
 live URLs and missing links), so automations can read one line.
 
 Matching is by Libsyn episode link (falls back to normalized title), so it is
-safe to run repeatedly: existing entries are never modified or removed.
-Fills Apple Podcasts links from the iTunes lookup API and YouTube ids from the
-channel feed when the episode code (e.g. "ML 002") appears in a video title.
-Spotify has no public lookup, so new entries leave it blank and the page falls
-back to the show link; add the episode URL by hand if wanted.
+safe to run repeatedly: existing entries are never removed, and the only field
+it ever changes on them is an EMPTY apple / spotify / youtube_id.
+
+fill_links() looks up:
+  - Apple Podcasts links from the iTunes lookup API (by title),
+  - Spotify episode links from the show's embed page (by title; it lists the
+    newest episodes only, so a daily run catches each one as it appears),
+  - YouTube ids from the channel feed when the episode code (e.g. "ML 002")
+    appears in a video title.
+Each lookup is best effort: on failure it warns and leaves the field empty
+(the page falls back to the show link). It runs on new episodes plus the 12
+newest existing ones that still miss a link, because Spotify and YouTube often
+lag Libsyn by a day. A run writes and rebuilds if there are new episodes OR
+newly filled links.
+
+The "Podcast sync" GitHub Action (.github/workflows/podcast-sync.yml) runs
+`--build` daily and commits the result to main.
 
 After running it, rebuild:
     python3 podcast/data/generate_episode_pages.py && node scripts/build-nav.mjs
@@ -31,6 +43,9 @@ EPISODES = ROOT / "podcast/data/episodes.json"
 FEED = "https://feeds.libsyn.com/yourloveaccomplice/rss"
 ITUNES = "https://itunes.apple.com/lookup?id=1267527313&entity=podcastEpisode&limit=50"
 YT_FEED = "https://www.youtube.com/feeds/videos.xml?channel_id=UCh93E8Kx0oiAa--pPIXvHLg"
+SPOTIFY_EMBED = "https://open.spotify.com/embed/show/1Aq7R8l77roUrzY9q4DO1l"
+LINK_FIELDS = ("apple", "spotify", "youtube_id")
+BACKFILL = 12  # newest existing episodes re-checked for missing links
 UA = {"User-Agent": "Mozilla/5.0"}
 
 
@@ -118,54 +133,103 @@ def main():
             "youtube_id": "",
         })
 
-    if not new:
-        print("No new episodes.")
-        print("RESULT " + json.dumps({"new": []}))
-        return
-
-    # Apple Podcasts links (best effort).
-    try:
-        res = json.loads(get(ITUNES)).get("results", [])
-        apple = {norm(r.get("trackName", "")): r.get("trackViewUrl", "").replace("&uo=4", "") for r in res if r.get("kind") == "podcast-episode"}
-        for e in new:
-            e["apple"] = apple.get(norm(e["title"]), "")
-    except Exception as ex:  # noqa: BLE001
-        print(f"warn: Apple lookup failed: {ex}")
-
-    # YouTube ids by episode code in the video title (best effort).
-    try:
-        yt = get(YT_FEED)
-        vids = re.findall(r"<yt:videoId>([^<]+)</yt:videoId>\s*.*?<title>([^<]+)</title>", yt, re.S)
-        for e in new:
-            show, num = code_of(e["title"])
-            if not show:
-                continue
-            pat = re.compile(rf"\b{show}\s*:?\s*0*{int(num)}\b", re.I)
-            hit = next((v for v, t in vids if pat.search(html.unescape(t))), "")
-            e["youtube_id"] = hit
-    except Exception as ex:  # noqa: BLE001
-        print(f"warn: YouTube lookup failed: {ex}")
+    eps.sort(key=lambda e: e.get("date", ""), reverse=True)
+    backfill = [e for e in eps[:BACKFILL] if any(not e.get(k) for k in LINK_FIELDS)]
+    filled = fill_links(new + backfill)
+    filled_old = [f for f in filled if f["title"] not in {e["title"] for e in new}]
 
     for e in new:
-        print(f"NEW {e['date']} | {e['title']} | apple={'yes' if e['apple'] else 'no'} | youtube={e['youtube_id'] or 'no'}")
+        print(f"NEW {e['date']} | {e['title']} | apple={'yes' if e['apple'] else 'no'} | spotify={'yes' if e['spotify'] else 'no'} | youtube={e['youtube_id'] or 'no'}")
+    for f in filled_old:
+        print(f"FILLED {f['title']} | {', '.join(f['fields'])}")
+    if not new and not filled_old:
+        print("No new episodes or links.")
+        print("RESULT " + json.dumps({"new": [], "filled": []}))
+        return
     if dry:
-        print("RESULT " + json.dumps({"new": [e["title"] for e in new], "dry_run": True}))
+        print("RESULT " + json.dumps({"new": [e["title"] for e in new], "filled": filled_old, "dry_run": True}, ensure_ascii=False))
         return
     eps.extend(new)
     eps.sort(key=lambda e: e.get("date", ""), reverse=True)
     data["episodes"] = eps
     data["count"] = len(eps)
     EPISODES.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Added {len(new)} episode(s); episodes.json now has {len(eps)}.")
-    add_to_sitemap(new)
+    print(f"Added {len(new)} episode(s), filled links on {len(filled_old)} existing; episodes.json now has {len(eps)}.")
+    if new:
+        add_to_sitemap(new)
     if "--build" in sys.argv:
         build()
     print("RESULT " + json.dumps({"new": [{
         "title": e["title"],
         "url": f"https://wedeepen.com/deepen-with-christina/{slugify(e['title'])}/",
         "youtube_id": e["youtube_id"],
-        "missing": [k for k in ("apple", "spotify", "youtube_id") if not e[k]],
-    } for e in new]}, ensure_ascii=False))
+        "spotify": e["spotify"],
+        "missing": [k for k in LINK_FIELDS if not e[k]],
+    } for e in new], "filled": filled_old}, ensure_ascii=False))
+
+
+def fill_links(episodes):
+    """Fill EMPTY apple / spotify / youtube_id fields in place; never overwrite
+    a set one. Returns [{"title", "fields"}] for each episode that changed."""
+    if not episodes:
+        return []
+    found = {k: {} for k in LINK_FIELDS}  # id(e) -> value
+
+    try:
+        res = json.loads(get(ITUNES)).get("results", [])
+        apple = {norm(r.get("trackName", "")): r.get("trackViewUrl", "").replace("&uo=4", "") for r in res if r.get("kind") == "podcast-episode"}
+        for e in episodes:
+            found["apple"][id(e)] = apple.get(norm(e["title"]), "")
+    except Exception as ex:  # noqa: BLE001
+        print(f"warn: Apple lookup failed: {ex}")
+
+    try:
+        spotify = spotify_episodes()
+        for e in episodes:
+            found["spotify"][id(e)] = spotify.get(norm(e["title"]), "")
+    except Exception as ex:  # noqa: BLE001
+        print(f"warn: Spotify lookup failed: {ex}")
+
+    try:
+        yt = get(YT_FEED)
+        vids = re.findall(r"<yt:videoId>([^<]+)</yt:videoId>\s*.*?<title>([^<]+)</title>", yt, re.S)
+        for e in episodes:
+            show, num = code_of(e["title"])
+            if not show:
+                continue
+            pat = re.compile(rf"\b{show}\s*:?\s*0*{int(num)}\b", re.I)
+            found["youtube_id"][id(e)] = next((v for v, t in vids if pat.search(html.unescape(t))), "")
+    except Exception as ex:  # noqa: BLE001
+        print(f"warn: YouTube lookup failed: {ex}")
+
+    changed = []
+    for e in episodes:
+        fields = []
+        for k in LINK_FIELDS:
+            v = found[k].get(id(e), "")
+            if v and not e.get(k):
+                e[k] = v
+                fields.append(k)
+        if fields:
+            changed.append({"title": e["title"], "fields": fields})
+    return changed
+
+
+def spotify_episodes():
+    """{normalized title: episode URL} from the show's Spotify embed page. Each
+    episode is a JSON object holding "uri":"spotify:episode:<id>" and its
+    "title"; read both from the same object."""
+    page = get(SPOTIFY_EMBED)
+    out = {}
+    for m in re.finditer(r'"uri":"spotify:episode:([A-Za-z0-9]+)"', page):
+        start = page.rfind("{", 0, m.start())
+        end = page.find("}", m.end())
+        t = re.search(r'"title":"((?:[^"\\]|\\.)*)"', page[start:end])
+        if t:
+            out[norm(json.loads(f'"{t.group(1)}"'))] = f"https://open.spotify.com/episode/{m.group(1)}"
+    if not out:
+        raise ValueError("no episodes found on the embed page")
+    return out
 
 
 BUILD = [

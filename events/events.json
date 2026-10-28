@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-10-27T05:34:45.671Z",
+  "last_updated": "2026-10-28T06:16:14.760Z",
   "source": "circle.wedeepen.com",
-  "event_count": 65,
+  "event_count": 64,
   "events": [
-    {
-      "id": "love-mastermind-briana-cribeyer",
-      "title": "Love Mastermind: Sex, Love and the Spaces Between with Briana Cribeyer",
-      "date": "2026-10-27",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-10-27T23:00:00.000Z",
-      "ends_at_iso": "2026-10-28T00:30:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Mastermind",
-        "Love Club",
-        "WeDeepen Members"
-      ],
-      "recurring": false,
-      "series": "love-mastermind-briana-cribeyer",
-      "description": "Sex, Love & the Spaces Between  Exploring Desire, Attachment & the Art of Erotic Connection  What if our sexuality is one of the most powerful gateways into deeper intimacy, freedom, and self-discover",
-      "image_url": "https://assets-v2.circle.so/ulijd30wm81wspaagxhxgylofifl",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-briana-cribeyer"
-    },
     {
       "id": "new-member-orientation-4babe5-41ecf0",
       "title": "New Member Orientation",

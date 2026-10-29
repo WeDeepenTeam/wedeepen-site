@@ -42,10 +42,16 @@ jobs:
       - name: Re-render /reviews/
         run: node scripts/build-reviews.mjs
 
+      # The homepage shows the Google count too, and the membership pages are
+      # built from it. A push from this workflow doesn't trigger the
+      # membership-mirror workflow, so rebuild them here.
+      - name: Rebuild membership pages from the homepage
+        run: node scripts/build-membership.mjs && node scripts/build-nav.mjs
+
       - name: Commit and push if anything changed
         id: commit
         run: |
-          git add reviews bc26
+          git add reviews bc26 index.html membership
           if git diff --cached --quiet; then
             echo "No new reviews."
             echo "changed=false" >> "$GITHUB_OUTPUT"

@@ -24,24 +24,24 @@
   </script>
   
   <title>A Bangin' Love-Filled New Year's | Sober NYE in Austin | WeDeepen</title>
-  <meta name="description" content="A completely sober New Year&#39;s for 30 people at the Gatsby Mansion in Austin, Dec 30 to Jan 1. Choose your 2027 and slide in high on life. Book your spot.">
+  <meta name="description" content="A completely sober New Year&#39;s for 30 people at the Gatsby Mansion in Austin, Dec 30 to Jan 1. Get high on life and slide into 2027 open-hearted and clear-minded. Book your spot.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com/nye/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wedeepen.com/nye/">
-  <meta property="og:title" content="A Bangin&#39; Love-Filled New Year&#39;s: High on life. Slide sober into 2027.">
+  <meta property="og:title" content="A Bangin&#39; Love-Filled New Year&#39;s: Get high on life.">
   <meta property="og:description" content="30 people, one new year. Settle your nervous system, get clear on what you truly desire, and choose your 2027 with people whose dreams are coming true. Opening night Dec 30, then New Year&#39;s Eve straight through to a sunrise closing circle at the Gatsby Mansion, Austin. Completely sober, fully alive. Only 30 spots: book your ticket now.">
-  <meta property="og:image" content="https://wedeepen.com/images/og/nye.jpg?v=2">
+  <meta property="og:image" content="https://wedeepen.com/images/og/nye.jpg?v=3">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="A Bangin&#39; Love-Filled New Year&#39;s: High on life. Slide sober into 2027.">
+  <meta name="twitter:title" content="A Bangin&#39; Love-Filled New Year&#39;s: Get high on life.">
   <meta name="twitter:description" content="30 people, one new year. Settle your nervous system, get clear on what you truly desire, and choose your 2027 with people whose dreams are coming true. Opening night Dec 30, then New Year&#39;s Eve straight through to a sunrise closing circle at the Gatsby Mansion, Austin. Completely sober, fully alive. Only 30 spots: book your ticket now.">
-  <meta name="twitter:image" content="https://wedeepen.com/images/og/nye.jpg?v=2">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/nye.jpg?v=3">
 
 
   <!-- Fonts -->
@@ -112,6 +112,13 @@
       line-height: 0.95;
     }
 
+    .nye-roses {
+      position: absolute; left: 0; bottom: 0; width: 100%;
+      aspect-ratio: 2400 / 560; height: auto; min-height: 110px;
+      object-fit: cover; object-position: center top;
+      pointer-events: none; z-index: 1;
+    }
+    @media (max-width: 767px) { .nye-roses { aspect-ratio: 1200 / 640; min-height: 0; } }
     .cloud-hero {
       background-image:
         linear-gradient(180deg, rgba(5,8,28,0.35) 0%, rgba(5,8,28,0.25) 50%, rgba(7,11,31,0.92) 100%),
@@ -237,7 +244,7 @@
     "name": "The Gatsby Mansion",
     "address": { "@type": "PostalAddress", "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US" }
   },
-  "image": "https://wedeepen.com/images/og/nye.jpg?v=2",
+  "image": "https://wedeepen.com/images/og/nye.jpg?v=3",
   "organizer": { "@type": "Organization", "name": "WeDeepen", "url": "https://wedeepen.com/" },
   "maximumAttendeeCapacity": 30
 }
@@ -367,17 +374,19 @@
   <main id="main">
   <!-- HERO -->
   <section class="cloud-hero relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-28 md:pt-32 pb-20">
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-28 md:pt-32 pb-36 md:pb-52">
       <p class="text-gold text-xs md:text-sm tracking-[0.22em] uppercase font-medium mb-6" style="text-shadow: 0 2px 12px rgba(0,0,0,0.6);">Dec 30 &ndash; Jan 1 &middot; The Gatsby Mansion &middot; Austin, TX</p>
       <h1 class="font-vilonti uppercase text-cream mb-6" style="text-shadow: 0 6px 30px rgba(0,0,0,0.5);">
         <span class="block text-xl sm:text-3xl md:text-5xl tracking-[0.06em] mb-2" style="font-weight:700;">A Bangin&rsquo; Love-Filled</span>
         <span class="block text-5xl sm:text-7xl md:text-8xl">New Year&rsquo;s</span>
       </h1>
-      <p class="font-heading italic text-white text-xl md:text-3xl leading-snug mb-2" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">High on life. Slide sober into 2027.</p>
+      <p class="font-heading italic text-white text-2xl md:text-4xl leading-snug mb-2" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Get high on life.</p>
+      <p class="font-heading italic text-white/90 text-lg md:text-2xl leading-snug mb-3" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Open-hearted, clear-minded, sexy slide into 2027.</p>
       <p class="text-white/70 text-sm md:text-base mb-10">(a completely sober New Year&rsquo;s party)</p>
       <a href="#tickets" class="btn-pink text-base">Sign Me Up</a>
       <p class="text-white/70 text-sm mt-5">30 spots. Open to singles and couples.</p>
     </div>
+    <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true"></picture>
   </section>
 
   <!-- THE NIGHT -->
@@ -660,11 +669,12 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="cloud-hero py-24 md:py-32 px-6 text-center">
-    <div class="max-w-2xl mx-auto reveal">
+  <section class="cloud-hero relative overflow-hidden pt-24 md:pt-32 pb-40 md:pb-56 px-6 text-center">
+    <div class="relative z-10 max-w-2xl mx-auto reveal">
       <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">2027 starts in the room <span class="italic">you choose.</span></h2>
       <a href="#tickets" class="btn-pink text-base">Sign Me Up</a>
     </div>
+    <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true" loading="lazy"></picture>
   </section>
 
 

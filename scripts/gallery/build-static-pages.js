@@ -86,7 +86,10 @@ async function fetchAlbumPhotos(albumId) {
     .from('gallery_media')
     .select('id, full_url, thumb_url, alt_text, width, height, display_order')
     .eq('album_id', albumId)
-    .order('display_order', { ascending: true });
+    .order('display_order', { ascending: true })
+    // Tie-breaker so photos sharing a display_order keep the same order (and the
+    // same first photo, which is the cover) from one build to the next.
+    .order('id', { ascending: true });
   if (error) throw error;
   return data;
 }

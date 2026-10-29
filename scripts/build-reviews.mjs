@@ -30,7 +30,9 @@ const DATA = path.join(ROOT, 'reviews', 'data', 'reviews.json');
 const GOOGLE_SUMMARY = path.join(ROOT, 'reviews', 'data', 'google.json');
 const CHECK = process.argv.includes('--check');
 // Other pages that show the Google rating and count between the same markers.
-const RATING_PAGES = [path.join(ROOT, 'bc26', 'index.html')];
+// index.html is the homepage; the membership pages are built from it, so the
+// reviews workflow reruns build-membership.mjs after this.
+const RATING_PAGES = [path.join(ROOT, 'bc26', 'index.html'), path.join(ROOT, 'index.html')];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

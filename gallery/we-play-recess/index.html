@@ -480,5 +480,137 @@
     }
   })();
 </script>
+<script>
+  // Download mode (?download=1, for the WeDeepen team): dragging a photo to the desktop,
+  // or the lightbox "Save JPEG" button, saves a JPEG instead of the WebP the page shows.
+  // The file name and the embedded EXIF copyright mark it as WeDeepen's.
+  (function() {
+    if (new URLSearchParams(location.search).get('download') !== '1') return;
+    const grid = document.getElementById('photo-grid');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCounter = document.getElementById('lightbox-counter');
+    if (!grid || !lightbox) return;
+
+    const albumName = (document.querySelector('h1') || {}).textContent || 'WeDeepen';
+    const base = albumName.trim().replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const year = new Date().getFullYear();
+    const COPYRIGHT = 'Copyright ' + year + ' WeDeepen. All rights reserved. Not for resale. wedeepen.com';
+
+    function fileName(n) {
+      return base + '-' + String(n).padStart(3, '0') + '-Copyright-WeDeepen-All-Rights-Reserved.jpg';
+    }
+
+    // EXIF APP1 segment with ImageDescription, Artist and Copyright (ASCII, little-endian TIFF).
+    function exifSegment(description) {
+      const ascii = (s) => { const b = new Uint8Array(s.length + 1); for (let i = 0; i < s.length; i++) b[i] = s.charCodeAt(i) & 0x7f; return b; };
+      const fields = [[0x010e, ascii(description)], [0x013b, ascii('WeDeepen')], [0x8298, ascii(COPYRIGHT)]];
+      let dataOff = 8 + 2 + fields.length * 12 + 4;
+      const size = dataOff + fields.reduce((a, f) => a + (f[1].length > 4 ? f[1].length : 0), 0);
+      const tiff = new Uint8Array(size);
+      const dv = new DataView(tiff.buffer);
+      tiff.set([0x49, 0x49, 0x2a, 0x00, 8, 0, 0, 0]);
+      dv.setUint16(8, fields.length, true);
+      fields.forEach((f, i) => {
+        const o = 10 + i * 12;
+        dv.setUint16(o, f[0], true);
+        dv.setUint16(o + 2, 2, true);
+        dv.setUint32(o + 4, f[1].length, true);
+        if (f[1].length <= 4) tiff.set(f[1], o + 8);
+        else { dv.setUint32(o + 8, dataOff, true); tiff.set(f[1], dataOff); dataOff += f[1].length; }
+      });
+      const header = [0x45, 0x78, 0x69, 0x66, 0, 0]; // "Exif" + two NULs
+      const len = 2 + header.length + tiff.length;
+      const seg = new Uint8Array(2 + len);
+      seg.set([0xff, 0xe1, len >> 8, len & 0xff]);
+      seg.set(header, 4);
+      seg.set(tiff, 4 + header.length);
+      return seg;
+    }
+
+    async function fetchWithRetry(url) {
+      for (let t = 0; ; t++) {
+        const res = await fetch(url);
+        if (res.ok) return res.blob();
+        if (t >= 5) throw new Error('HTTP ' + res.status);
+        await new Promise((r) => setTimeout(r, 1000 * 2 ** t));
+      }
+    }
+
+    // full-size URL -> Promise<blob: URL of the JPEG>; ready holds finished ones for dragstart.
+    const pending = new Map();
+    const ready = new Map();
+    function jpegFor(url, n) {
+      if (!pending.has(url)) {
+        pending.set(url, (async () => {
+          const bmp = await createImageBitmap(await fetchWithRetry(url));
+          const canvas = document.createElement('canvas');
+          canvas.width = bmp.width;
+          canvas.height = bmp.height;
+          canvas.getContext('2d').drawImage(bmp, 0, 0);
+          const jpg = new Uint8Array(await (await new Promise((r) => canvas.toBlob(r, 'image/jpeg', 0.92))).arrayBuffer());
+          const exif = exifSegment(albumName.trim() + ', photo ' + n + '. ' + COPYRIGHT);
+          const blobUrl = URL.createObjectURL(new Blob([jpg.subarray(0, 2), exif, jpg.subarray(2)], { type: 'image/jpeg' }));
+          ready.set(url, blobUrl);
+          return blobUrl;
+        })().catch((err) => { pending.delete(url); throw err; }));
+      }
+      return pending.get(url);
+    }
+
+    function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
+    function tileInfo(tile) { return { url: tile.dataset.full, n: tiles().indexOf(tile) + 1 }; }
+    function lightboxInfo() {
+      const n = parseInt(lbCounter.textContent, 10);
+      return { url: lbImg.getAttribute('src'), n: n };
+    }
+
+    // Convert ahead of time (on hover / when the lightbox shows a photo) so the
+    // JPEG is ready by the time the drag starts; dragstart can't wait for it.
+    grid.addEventListener('pointerover', (e) => {
+      const tile = e.target.closest('.photo-tile');
+      if (tile) { const t = tileInfo(tile); jpegFor(t.url, t.n).catch(() => {}); }
+    });
+    function setDownload(e, info) {
+      const blobUrl = ready.get(info.url);
+      if (!blobUrl) { jpegFor(info.url, info.n).catch(() => {}); return; }
+      e.dataTransfer.setData('DownloadURL', 'image/jpeg:' + fileName(info.n) + ':' + blobUrl);
+    }
+    grid.addEventListener('dragstart', (e) => {
+      const tile = e.target.closest('.photo-tile');
+      if (tile) setDownload(e, tileInfo(tile));
+    });
+    lbImg.setAttribute('draggable', 'true');
+    lbImg.addEventListener('dragstart', (e) => setDownload(e, lightboxInfo()));
+    lbImg.addEventListener('load', () => { const i = lightboxInfo(); if (i.url) jpegFor(i.url, i.n).catch(() => {}); });
+
+    // Click fallback (works in any browser).
+    const save = document.createElement('button');
+    save.type = 'button';
+    save.className = 'lightbox-btn';
+    save.textContent = 'Save JPEG';
+    save.style.cssText = 'top:20px;left:20px;width:auto;padding:0 18px;border-radius:999px;font-size:14px;';
+    save.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const info = lightboxInfo();
+      save.textContent = 'Preparing...';
+      try {
+        const a = document.createElement('a');
+        a.href = await jpegFor(info.url, info.n);
+        a.download = fileName(info.n);
+        a.click();
+        save.textContent = 'Save JPEG';
+      } catch (err) {
+        save.textContent = 'Try again';
+      }
+    });
+    lightbox.appendChild(save);
+
+    const note = document.createElement('div');
+    note.textContent = 'Download mode: drag any photo to your desktop to save it as a JPEG.';
+    note.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:60;background:#c2185b;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;box-shadow:0 6px 24px rgba(0,0,0,.35);';
+    document.body.appendChild(note);
+  })();
+</script>
 </body>
 </html>

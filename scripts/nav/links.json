@@ -15,6 +15,11 @@
       "href": "/events/"
     },
     {
+      "label": "Gallery",
+      "href": "/gallery/",
+      "activePrefix": "/gallery/"
+    },
+    {
       "label": "Faculty",
       "href": "/love-guides/"
     },

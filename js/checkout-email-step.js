@@ -61,6 +61,7 @@
       '#wd-es input:focus{outline:2px solid #A01B4A;outline-offset:1px}' +
       '#wd-es .wd-es-go{width:100%;border:0;border-radius:9999px;background:#A01B4A;color:#fff;font-weight:600;font-size:1rem;padding:15px 20px;cursor:pointer}' +
       '#wd-es .wd-es-go:hover{background:#851437}' +
+      '#wd-es .wd-es-err{color:#A01B4A;font-size:.9rem;margin:-4px 0 10px;text-align:left}' +
       '#wd-es .wd-es-fine{text-align:center;font-size:.85rem;color:#777;margin-top:10px}' +
       '#wd-es .wd-es-skip{display:block;margin:12px auto 0;background:none;border:0;color:#777;font-size:.85rem;text-decoration:underline;cursor:pointer}' +
       '#wd-es .wd-es-x{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.6rem;line-height:1;color:#999;cursor:pointer}';
@@ -83,6 +84,7 @@
       '<form novalidate>' +
       '<label for="wd-es-email" style="position:absolute;left:-9999px">Email</label>' +
       '<input id="wd-es-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>' +
+      '<p class="wd-es-err" role="alert" aria-live="polite" hidden></p>' +
       '<button type="submit" class="wd-es-go">Continue to my free 14 days &rarr;</button>' +
       '</form>' +
       '<p class="wd-es-fine">$0 today &middot; cancel inside Circle anytime</p>' +
@@ -93,6 +95,8 @@
 
     var input = sheet.querySelector('input');
     var form = sheet.querySelector('form');
+    var err = sheet.querySelector('.wd-es-err');
+    var badTries = 0;
 
     function close() {
       sheet.classList.remove('open'); bd.classList.remove('open');
@@ -109,8 +113,18 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = (input.value || '').trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); input.setCustomValidity('Please enter your email'); input.reportValidity(); return; }
-      input.setCustomValidity('');
+      // In-app browsers (Facebook, Instagram) often hide the native validation
+      // bubble, so the button looked dead. Show the error as text instead, and
+      // never block twice: a second tap goes on to checkout.
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        badTries++;
+        if (badTries >= 2) { track('skipped'); go(); return; }
+        err.textContent = email ? 'That email doesn\u2019t look quite right. Check it and tap again, or skip below.' : 'Add your email, or skip below.';
+        err.hidden = false;
+        input.focus();
+        return;
+      }
+      err.hidden = true;
       var btn = form.querySelector('button');
       btn.disabled = true; btn.textContent = 'One moment…';
       track('submitted');
@@ -125,7 +139,7 @@
       } catch (err) { finish(); }
       setTimeout(finish, 1500);
     });
-    input.addEventListener('input', function () { input.setCustomValidity(''); });
+    input.addEventListener('input', function () { err.hidden = true; });
 
     // Size and place the sheet against what the visitor actually sees. If a
     // page ever overflows sideways (seen once in Clarity, Oct 24), the layout

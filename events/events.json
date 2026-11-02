@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-28T06:16:14.760Z",
+  "last_updated": "2026-11-02T06:48:10.742Z",
   "source": "circle.wedeepen.com",
-  "event_count": 64,
+  "event_count": 65,
   "events": [
     {
       "id": "new-member-orientation-4babe5-41ecf0",
@@ -1384,6 +1384,28 @@
       "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
       "image_url": "https://assets-v2.circle.so/vppsld5ggnd5e6iegfnsg0abh1uh",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-d4a94c"
+    },
+    {
+      "id": "new-member-orientation-4babe5-41ecf0-7962b3-6223e2",
+      "title": "New Member Orientation",
+      "date": "2027-11-01",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-11-01T23:00:00.000Z",
+      "ends_at_iso": "2027-11-02T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members",
+        "Member Orientation"
+      ],
+      "recurring": true,
+      "series": "new-member-orientation-4babe5-41ecf0-7962b3",
+      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
+      "image_url": "https://assets-v2.circle.so/mo8dcb5znslienlf11swwql7iu2a",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-6223e2"
     }
   ]
 }

@@ -131,3 +131,16 @@ html.m2 [data-m2="skill"] .grid:has(.m2-folded) { margin-bottom: 0 !important; }
 
 /* The three worries right under the "In short" summary. */
 html.m2 .m2-objections-offer { margin: 0 auto 32px; }
+
+/* Hero first screen (Nov 1, 2026). Clarity, 7 days on /membership/dating-again/
+   (133 phone views): 66% never scrolled past the first screen or two, ~10s on page.
+   The first phone screen was ~40% empty space plus the wave icon (the header
+   already carries the DEEPEN logo), and the join button sat at the bottom edge
+   with the "first 14 days free" line below the fold. Phones only, no copy change:
+   drop the icon, pull the content up so headline, join button, price line and
+   "what happens next" fit on one screen. Desktop untouched. */
+html.m2 #hero { min-height: 0; align-items: flex-start; }
+html.m2 #hero > div.relative.z-10 { padding-top: 96px; }
+html.m2 #hero > div.relative.z-10 > div:has(> img[src*="deepen-icon-favicon-white"]) { display: none; }
+html.m2 #hero h1 { margin-top: 0; margin-bottom: 14px; }
+html.m2 #hero h1 + p { margin-bottom: 22px; }

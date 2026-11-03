@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-11-02T06:48:10.742Z",
+  "last_updated": "2026-11-03T07:13:43.561Z",
   "source": "circle.wedeepen.com",
   "event_count": 65,
   "events": [
-    {
-      "id": "new-member-orientation-4babe5-41ecf0",
-      "title": "New Member Orientation",
-      "date": "2026-11-02",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-11-03T00:00:00.000Z",
-      "ends_at_iso": "2026-11-03T01:00:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "WeDeepen Members",
-        "Member Orientation"
-      ],
-      "recurring": false,
-      "series": "new-member-orientation-4babe5",
-      "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
-      "image_url": "https://assets-v2.circle.so/imtm9rz9solmz175v7mqc9osh8kj",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0"
-    },
     {
       "id": "integration-session-practice-what-you-learned-415da6",
       "title": "Integration Session: Practice What You Learned",
@@ -1406,6 +1384,27 @@
       "description": "Welcome to WeDeepen. Christina will personally welcome you in, walk you through everything included in your membership, show you where everything lives, and help you get clear on how to make the most",
       "image_url": "https://assets-v2.circle.so/mo8dcb5znslienlf11swwql7iu2a",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-6223e2"
+    },
+    {
+      "id": "integration-session-practice-what-you-learned-4b92d1",
+      "title": "Integration Session: Practice What You Learned",
+      "date": "2027-11-02",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-11-02T23:00:00.000Z",
+      "ends_at_iso": "2027-11-03T00:00:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Club",
+        "WeDeepen Members"
+      ],
+      "recurring": true,
+      "series": "integration-session-practice-what-you-learned",
+      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
+      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-4b92d1"
     }
   ]
 }

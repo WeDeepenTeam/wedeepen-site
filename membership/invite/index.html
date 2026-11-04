@@ -1071,6 +1071,8 @@
     }
 
     (async function loadHomeEvents() {
+      // This page has no events grid; skip the fetch instead of throwing.
+      if (!document.getElementById('home-events-grid')) return;
       const SOURCES = [
         'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/circle-events',
         '/events/events.json',

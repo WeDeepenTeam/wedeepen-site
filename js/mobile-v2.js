@@ -149,10 +149,12 @@
     // 8. "What happens next" in the hero: most phone visitors decide without
     // scrolling far, so the three first-Tuesday steps sit under the price line
     // (same words as the full timeline further down) (René, 2026-10-24).
+    // Since Nov 4, 2026 there is no price line under the buttons, so the steps
+    // sit right after the button row.
     var heroCta = $('#hero a[data-cta="hero"]');
-    var priceLine = heroCta && heroCta.parentElement && heroCta.parentElement.nextElementSibling;
-    if (priceLine && priceLine.tagName === 'P') {
-      priceLine.insertAdjacentElement('afterend', el(
+    var ctaRow = heroCta && heroCta.parentElement;
+    if (ctaRow) {
+      ctaRow.insertAdjacentElement('afterend', el(
         '<ol class="m2-next" aria-label="What happens after you join">' +
           '<li><span class="n">1</span>Join today<small>Takes 2 minutes</small></li>' +
           '<li><span class="n">2</span>Find Tuesday on the calendar</li>' +

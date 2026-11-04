@@ -8,7 +8,7 @@
        /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
-  <link rel="stylesheet" href="/css/mobile-v2.css?v=9" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/mobile-v2.css?v=10" media="(max-width:1023px)">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
@@ -430,25 +430,21 @@
         <span class="text-white">Keep a long love <span class="italic" style="color:#C4577A;">alive.</span></span>
       </h1>
 
+      <!-- First screen rewritten Nov 4, 2026 (Christina + René, Nov 3 call): lead with the problem, talk to "you".
+           The trial, cancel and Four Pillars lines moved off the first screen; they live in "Start anytime", the price card and the FAQ. -->
       <p class="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-normal md:font-light" style="text-wrap: pretty;">
         In the beginning, love runs on novelty. Years in, it runs on what you practice. Here, you practice desire, repair, and real conversation out loud, with experts who&rsquo;ve spent their careers on it.
       </p>
 
       <!-- CTAs — membership primary, what's-included secondary -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-6">
-        <a data-cta="hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-together" class="btn-rose text-base flex flex-col sm:flex-row items-center gap-0.5 sm:gap-2 !px-8 sm:!px-10 !py-3.5 sm:!py-4 w-full sm:w-auto justify-center leading-tight">
-          <span class="whitespace-nowrap">Start my 14 free days</span><span class="hidden sm:inline opacity-70">&middot;</span><span class="whitespace-nowrap text-sm sm:text-base font-normal sm:font-semibold opacity-80 sm:opacity-100">then $99/month</span>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-16">
+        <a data-cta="hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-together" class="btn-rose text-base flex items-center !px-8 sm:!px-10 !py-3.5 sm:!py-4 w-full sm:w-auto justify-center leading-tight">
+          <span class="whitespace-nowrap">Start my 14 free days</span>
         </a>
         <a href="#membership" class="flex items-center gap-2.5 text-white/80 hover:text-white transition font-medium text-base px-6 sm:px-7 py-3 sm:py-4">
-          What&rsquo;s included
+          See what&rsquo;s included
         </a>
       </div>
-      <p class="text-gold/90 text-sm md:text-base font-medium mb-5">Live Tuesday Love Masterminds on Zoom with Christina Weber and expert faculty. Your first 14 days are free, then $99/month, our founding member rate.</p>
-      <!-- Worries answered before they reach Circle (Oct 26, 2026: Clarity showed checkout visitors stall without typing) -->
-      <p class="text-white/70 text-xs md:text-sm max-w-xl mx-auto mb-5 leading-relaxed">Come solo, dating, or partnered &middot; We email you 3 days before your free days end &middot; Cancel yourself in Circle anytime, no calls or forms</p>
-      <!-- Fallback ask for visitors not ready to join (Clarity, Oct 26, 2026: phones leave the sales page after ~20s / ~20% scroll). Opens the free-guide sign-up via js/lead-capture.js; href is the no-JS fallback. -->
-      <p class="text-sm mb-5"><a data-guide-popup data-cta="hero-guide" href="/four-pillars/free-guide/" class="text-white/70 hover:text-white underline underline-offset-4 decoration-white/30 transition">Not ready to join? Get the free Four Pillars guide &rarr;</a></p>
-      <div class="mb-10"></div>
 
       <!-- Press Bar — As Seen In (logos) -->
       <div class="pb-0">
@@ -1774,7 +1770,7 @@
   <script src="/js/mobile-site.js?v=4" defer></script>
   <script src="/js/social-proof.js?v=4" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
-  <script src="/js/mobile-v2.js?v=13" defer></script>
+  <script src="/js/mobile-v2.js?v=14" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <aside aria-label="Join WeDeepen">

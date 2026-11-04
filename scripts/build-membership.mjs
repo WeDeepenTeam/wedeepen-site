@@ -55,11 +55,8 @@ export function buildMembership(home) {
     'Meta PageView');
 
   // ---- Membership-only copy (ad landing page). The homepage keeps its own copy. ----
-  // Hero subhead echoes the ads ("love is a trainable skill").
-  html = replaceOnce(html,
-    /WeDeepen is where you go to master dating, intimacy, and relationships alongside leading experts and a community committed to practicing love\./,
-    'Love is a skill. Most of us were never taught it. Here, we practice it out loud, with experts who&rsquo;ve spent their careers on it.',
-    'hero subhead');
+  // Hero: since Nov 4, 2026 the ad landing page uses the homepage hero as is
+  // (Christina + René: lead with the problem, most ad traffic only sees the first screen).
   // Price-card line: lead with value, not fear.
   html = replaceOnce(html,
     /\$99 a month is nothing next to what getting it wrong costs: years of your life, bad dates, divorce, starting over\./,

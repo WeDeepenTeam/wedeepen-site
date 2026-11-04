@@ -1,29 +1,8 @@
 {
-  "last_updated": "2026-11-03T07:13:43.561Z",
+  "last_updated": "2026-11-04T06:57:44.430Z",
   "source": "circle.wedeepen.com",
   "event_count": 65,
   "events": [
-    {
-      "id": "integration-session-practice-what-you-learned-415da6",
-      "title": "Integration Session: Practice What You Learned",
-      "date": "2026-11-03",
-      "end_date": null,
-      "time": "6:00 PM",
-      "starts_at_iso": "2026-11-04T00:00:00.000Z",
-      "ends_at_iso": "2026-11-04T01:00:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "WeDeepen Members"
-      ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-415da6"
-    },
     {
       "id": "love-mastermind-mikaal-bates",
       "title": "Love Mastermind: Mikaal Bates",
@@ -217,6 +196,27 @@
       "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
       "image_url": "https://assets-v2.circle.so/bzavvg3n63gww1zt7nzds4d7m0y3",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-b58733"
+    },
+    {
+      "id": "a-bangin-love-filled-new-year-s",
+      "title": "A Bangin' Love-Filled New Year's",
+      "date": "2026-12-30",
+      "end_date": "2027-01-01",
+      "time": "6:00 PM",
+      "starts_at_iso": "2026-12-31T00:00:00.000Z",
+      "ends_at_iso": "2027-01-01T16:00:00.000Z",
+      "location_type": "austin",
+      "location_label": "Austin, TX",
+      "tag": "",
+      "topics": [
+        "In-Person",
+        "Open to Everyone"
+      ],
+      "recurring": false,
+      "series": "a-bangin-love-filled-new-year-s",
+      "description": "Get high on life. Take flight into 2027.  Ring in the new year with love, play, and people who light you up, at a private Austin mansion. Completely sober. Wildly alive.  Hosted by Christina Weber, Yo",
+      "image_url": "https://assets-v2.circle.so/16u9t89ognds8aeslgl8h2vbwfhl",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/a-bangin-love-filled-new-year-s"
     },
     {
       "id": "new-member-orientation-4babe5-41ecf0-10b955",

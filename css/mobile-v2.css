@@ -102,9 +102,10 @@ html.m2 .m2-offer .btn-rose { display: flex; justify-content: center; width: 100
 html.m2 .m2-offer-more { display: block; text-align: center; margin-top: 14px; padding: 6px 0; color: rgba(255,255,255,.75); font-size: 14px; font-weight: 500; }
 html.m2 #m2-plans { scroll-margin-top: 112px; }
 
-/* Hero: "what happens next" in three short steps under the price line. */
+/* Hero: "what happens next" in three short steps right under the buttons (Nov 4, 2026). */
+html.m2 #hero div:has(> a[data-cta="hero"]) { margin-bottom: 22px !important; }
 html.m2 #hero .m2-next {
-  list-style: none; margin: 4px auto 0; padding: 0; max-width: 420px;
+  list-style: none; margin: 0 auto 48px; padding: 0; max-width: 420px;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
 }
 html.m2 #hero .m2-next li {

@@ -113,6 +113,13 @@
       line-height: 0.95;
     }
 
+    .nye-strip li {
+      font-size: 0.8rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.9);
+      padding: 0.45rem 0.9rem; border-radius: 9999px;
+      background: rgba(7,11,31,0.55); border: 1px solid rgba(224,188,120,0.45);
+      backdrop-filter: blur(4px);
+    }
+    @media (min-width: 768px) { .nye-strip li { font-size: 0.9rem; } }
     .nye-roses {
       position: absolute; left: 0; bottom: 0; width: 100%;
       aspect-ratio: 2400 / 560; height: auto; min-height: 110px;
@@ -402,9 +409,16 @@
       </h1>
       <p class="font-heading italic text-white text-2xl md:text-4xl leading-snug mb-5" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Get high on life. Take flight&nbsp;into&nbsp;2027.</p>
       <p class="text-white/85 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-2" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Ring in 2027 clear-headed, fully awake, and activated into the life you truly&nbsp;want.</p>
-      <p class="text-white/75 text-sm md:text-base tracking-wide leading-relaxed max-w-xl mx-auto mt-3 mb-10" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Substance-free. Wildly&nbsp;alive.</p>
+      <p class="text-white/75 text-sm md:text-base tracking-wide leading-relaxed max-w-xl mx-auto mt-3 mb-8" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Substance-free. Wildly&nbsp;alive.</p>
+      <ul class="nye-strip flex flex-wrap justify-center gap-2 md:gap-3 max-w-3xl mx-auto mb-9">
+        <li>Two nights at a private mansion</li>
+        <li>3 expert guides</li>
+        <li>4 meals together</li>
+        <li>30 people max</li>
+      </ul>
       <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
-      <p class="text-white/70 text-sm mt-5">Only 30&nbsp;spots.</p>
+      <p class="text-white/80 text-sm mt-5">From $1,995 &middot; Only 30&nbsp;spots</p>
+      <p class="mt-3"><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
     </div>
     <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true"></picture>
   </section>
@@ -420,7 +434,7 @@
         <p>We believe long-term fulfillment is worth celebrating. So let&rsquo;s close out 2026 with gratitude, play our hearts out, and welcome 2027 with&nbsp;intention.</p>
         <p class="text-white text-xl md:text-2xl font-heading italic">Love is the key. Fun is the&nbsp;way.</p>
       </div>
-      <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Count Me In</button></div>
+      <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
     </div>
   </section>
 
@@ -458,7 +472,7 @@
       <div class="text-center mt-12 max-w-2xl mx-auto">
         <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-3">The practices</p>
         <p class="text-white/65 text-sm md:text-base leading-relaxed">Drawing on Tantra, Tibetan meditation, Reality Transurfing, somatic and energy practices, emotional release, movement, and consent&nbsp;education.</p>
-        <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">I&rsquo;m In</button></div>
+        <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
       </div>
     </div>
   </section>
@@ -490,19 +504,32 @@
     <div class="max-w-site mx-auto reveal">
       <div class="text-center mb-10">
         <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">Love Notes from Past Gatherings</p>
+        <p><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
       </div>
       <div class="grid md:grid-cols-3 gap-5 items-stretch max-w-5xl mx-auto">
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I was nervous about coming alone, but I&rsquo;m leaving with lifelong friends.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Love Immersion participant</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;The party at the end was just the best time! I left with resources, books, friends, feeling comfortable and close with everyone.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Christine Smith, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;We came as total strangers and left as friends with deep connections. Highly recommend this for singles, couples and anyone willing to open their hearts and minds.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Hayley Foster, Google review</figcaption>
+        </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
           <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I didn&rsquo;t think I belonged. But within a day, I felt flooded with love. I felt home.&rdquo;</blockquote>
           <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Eva Mullen</figcaption>
         </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
-          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;In just 72 hours, I felt more belonging than I have in two years after moving to a new city. This was the best investment I&rsquo;ve ever made in myself.&rdquo;</blockquote>
-          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Roza, Dallas, TX</figcaption>
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I&rsquo;m lighter, more playful, and more myself than ever.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Josh, Love Immersion participant</figcaption>
         </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
-          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;It reminded me how rare this level of space and connection is. It reinvigorated my excitement around relating and partnership.&rdquo;</blockquote>
-          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Juston, past participant</figcaption>
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;In just 72 hours, I felt more belonging than I have in two years after moving to a new city. This was the best investment I&rsquo;ve ever made in myself.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Roza, Dallas, TX</figcaption>
         </figure>
       </div>
     </div>
@@ -595,7 +622,7 @@
           </div>
         </div>
       </div>
-      <div class="text-center mt-12"><button type="button" class="ag-trigger btn-pink text-base">Sign Up</button></div>
+      <div class="text-center mt-12"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
     </div>
   </section>
 
@@ -779,25 +806,42 @@
         <p class="text-white/55 text-base mt-4">The night lasts until sunrise. What you choose at midnight lasts all year.</p>
         <p class="text-white/55 text-base mt-2">Only 30 spots, and when they&rsquo;re gone, they&rsquo;re&nbsp;gone.</p>
       </div>
+      <div class="grid md:grid-cols-2 gap-5 mb-10">
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Karolina Stachniuk, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;100% recommend for both singles and couples&hellip; You find it quite easy to feel at home, and you are amongst people that genuinely care&hellip; Half or more come back!&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Yarixa Ferrao, Google review</figcaption>
+        </figure>
+      </div>
       <div class="rounded-2xl p-8 md:p-10" style="background: rgba(159,180,255,0.06); border: 1px solid rgba(159,180,255,0.35);">
         <div class="text-center mb-9">
           <div class="font-heading text-5xl md:text-6xl text-white mb-2">$1,995</div>
           <p class="text-white/55 text-xs uppercase tracking-[0.22em]">Per Person</p>
         </div>
         <div class="w-12 h-px bg-white/15 mx-auto mb-6"></div>
-        <p class="text-center text-white/60 text-sm mb-5">Your experience includes:</p>
-        <div class="grid sm:grid-cols-2 gap-x-10 gap-y-4 max-w-xl mx-auto text-left">
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Welcome dinner and opening night, Dec 30</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Breakfast, lunch, and dinner on Dec 31</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Yossef&rsquo;s four-stage experience</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Play, dancing, and Truth or Dare all night</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Communal lounge to rest on New Year&rsquo;s night</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Sunrise closing circle on Jan 1</span></div>
+        <p class="text-center text-gold text-xs tracking-[0.2em] uppercase font-medium mb-6">What your ticket includes</p>
+        <ul class="space-y-5 max-w-xl mx-auto text-left">
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Two nights at The Gatsby Mansion</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">A private Austin estate with a pool, hot tub, casino room, theater, and game room. Ours from Dec 30 to Jan 1.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Three expert guides</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Christina Weber, Yossef Sagi, and Melissa D. lead every part of the experience.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Yossef&rsquo;s four-stage experience</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">From inner union to the dance floor: get clear on what you want and feel your 2027 in your body.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Four meals together</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Welcome dinner on Dec 30. Breakfast, lunch, and a celebration dinner on Dec 31.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">A room of 30 people who are all in</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Everyone says yes to the same agreements: substance-free, consent-first, present from start to finish.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">The celebration, start to sunrise</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Games, Truth or Dare, dancing, midnight together, a communal lounge all night, and a sunrise closing circle on Jan 1.</p></div></li>
+        </ul>
+        <div class="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto mt-9 text-center">
+          <div class="rounded-xl px-4 py-4" style="background: rgba(224,188,120,0.08); border: 1px solid rgba(224,188,120,0.35);"><p class="text-white font-semibold">Coming with someone?</p><p class="text-white/65 text-sm mt-1">Two tickets for $3,790. Save&nbsp;$200.</p></div>
+          <div class="rounded-xl px-4 py-4" style="background: rgba(224,188,120,0.08); border: 1px solid rgba(224,188,120,0.35);"><p class="text-white font-semibold">Want to stay over?</p><p class="text-white/65 text-sm mt-1">Private rooms from $695 for both nights. Most sleep&nbsp;two.</p></div>
         </div>
-        <p class="text-center text-white/50 text-xs mt-7">Want your own room for Dec 30, Dec 31, or both? Private bedrooms are available as an add-on at&nbsp;checkout.</p>
-        <p class="text-center font-heading italic text-white text-xl md:text-2xl mt-8">Get high on life. Take flight into&nbsp;2027.</p>
+        <figure class="max-w-lg mx-auto text-center mt-10">
+          <blockquote class="font-heading italic text-white text-xl md:text-2xl leading-snug">&ldquo;Something just told me to go&hellip; Don&rsquo;t think, just&nbsp;go.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-3">Stephanie Blanchette, Google review</figcaption>
+        </figure>
         <div class="text-center mt-6">
           <button type="button" id="ag-open" class="ag-trigger btn-pink text-base">Sign Me Up</button>
+          <p class="mt-4"><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
         </div>
       </div>
     </div>
@@ -863,7 +907,7 @@
   <section class="cloud-hero relative overflow-hidden pt-24 md:pt-32 pb-40 md:pb-56 px-6 text-center">
     <div class="relative z-10 max-w-2xl mx-auto reveal">
       <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">2027 starts in the room <span class="italic">you choose.</span></h2>
-      <button type="button" class="ag-trigger btn-pink text-base">I&rsquo;m In</button>
+      <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
     </div>
     <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true" loading="lazy"></picture>
   </section>

@@ -599,6 +599,36 @@
           <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Roza, Dallas, TX</figcaption>
         </figure>
       </div>
+      <div id="more-notes" class="hidden grid md:grid-cols-3 gap-5 items-stretch max-w-5xl mx-auto mt-5">
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;It is where I met so many of my close friends&hellip; women who became my sisters, men who became safe, and the love of my life.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Ilanit M.</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I brought my skepticism with me and reached out anyway, and I&rsquo;m so glad I did.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Rex Loyer, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I&rsquo;ve been to countless personal growth events, but nothing compares to this. The trust, connection, and transformation were beyond words.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Allan H., Love Immersion participant</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;Wow! What a powerful experience!&hellip; So glad I invested the time and money. I feel so free!&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Colleen Schell, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I never felt so held and supported in my life. In just three days, I felt more love than I ever imagined possible.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Dorota, Love Immersion participant</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;Some of the best work in the love/intimacy space, and I&rsquo;ve experienced quite a bit.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Jordan Maurice Bowditch, Google review</figcaption>
+        </figure>
+      </div>
+      <div class="text-center mt-10">
+        <button type="button" id="more-notes-btn" aria-controls="more-notes" aria-expanded="false" class="inline-flex items-center gap-2 rounded-full border border-[#E0BC78]/60 text-[#E0BC78] hover:bg-[#E0BC78]/10 text-sm font-semibold px-6 py-3 transition">Read more love notes</button>
+        <p class="mt-4"><a href="/reviews/" target="_blank" rel="noopener" class="text-white/60 hover:text-white text-sm underline underline-offset-4">See all 114 reviews &rarr;</a></p>
+      </div>
     </div>
   </section>
 
@@ -1102,6 +1132,19 @@
       }
       tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
       show(0);
+    })();
+
+    // More love notes, revealed in place
+    (function () {
+      const btn = document.getElementById('more-notes-btn');
+      const more = document.getElementById('more-notes');
+      if (!btn || !more) return;
+      btn.addEventListener('click', () => {
+        const open = more.classList.contains('hidden');
+        more.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Show fewer' : 'Read more love notes';
+      });
     })();
 
     // Agreements gate before TicketSpice checkout

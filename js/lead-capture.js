@@ -40,6 +40,9 @@
   // Membership sales page: nothing competes with the join buttons (no SMS bar,
   // no list popup or phone sheet), so visitors head for checkout.
   var ON_MEMBERSHIP = /^\/membership\//.test(location.pathname);
+  // <script ... data-quiet>: tracking only. Records first-touch source and
+  // join intent but shows no bar, popup or phone sheet (NYE, René 2026-11-05).
+  var QUIET = !!(document.currentScript && document.currentScript.hasAttribute('data-quiet'));
   // Someone who taps a join button or "What's included" is already heading
   // for the membership: no free-guide popup or phone sheet for the rest of the
   // visit (René, 2026-10-24). Click buttons that open the popup still work.
@@ -1067,6 +1070,8 @@
 
     wireGuidePageForm();
     wireWaitlistForm();
+
+    if (QUIET) return;
 
     if (MEMBER_LINK) {
       document.querySelectorAll('[data-lead-popup],[data-guide-popup]').forEach(function (el) { el.style.display = 'none'; });

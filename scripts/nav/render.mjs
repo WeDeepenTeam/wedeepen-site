@@ -27,11 +27,43 @@ const DESKTOP_ACTIVE = 'text-white hover:text-white transition';
 const MOBILE = 'text-white hover:text-gold transition';
 
 function isActive(link, pagePath) {
-  const prefix = link.activePrefix || link.href;
-  // A link to the homepage is active only on the homepage; "/" is a prefix
-  // of every path, so it can't use the startsWith rule.
-  if (prefix === '/') return pagePath === '/';
-  return pagePath !== '/' && pagePath.startsWith(prefix);
+  // activePrefix may be one path or a list (a menu is active on any of its pages).
+  const prefixes = [].concat(link.activePrefix || link.href);
+  return prefixes.some((prefix) => {
+    // A link to the homepage is active only on the homepage; "/" is a prefix
+    // of every path, so it can't use the startsWith rule.
+    if (prefix === '/') return pagePath === '/';
+    return pagePath !== '/' && pagePath.startsWith(prefix);
+  });
+}
+
+// A link with `children` is a menu. Desktop: the label still links to its own
+// href, and the panel opens on hover or keyboard focus (focus also covers a
+// tap on tablets). Mobile: the label becomes a small heading over the items.
+const BADGE = 'ml-2 inline-block align-middle rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold text-ink';
+const label = (c) => c.badge ? `${c.label}<span class="${BADGE}">${c.badge}</span>` : c.label;
+const CHEVRON = '<svg class="w-3 h-3 opacity-70 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
+
+function renderMenu(variant, l, pagePath, indent) {
+  if (variant === 'mobile') {
+    return [
+      `${indent}<div class="flex flex-col gap-3">`,
+      `${indent}  <span class="text-white/45 text-xs uppercase tracking-[0.2em]">${l.label}</span>`,
+      ...l.children.map((c) => `${indent}  <a href="${c.href}" class="${MOBILE} pl-4">${label(c)}</a>`),
+      `${indent}</div>`,
+    ].join('\n');
+  }
+  const cls = isActive(l, pagePath) ? DESKTOP_ACTIVE : DESKTOP;
+  return [
+    `${indent}<div class="relative group">`,
+    `${indent}  <a href="${l.href}" class="${cls} inline-flex items-center gap-1" aria-haspopup="true">${l.label}${CHEVRON}</a>`,
+    `${indent}  <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block z-50">`,
+    `${indent}    <div class="min-w-[230px] rounded-xl border border-white/10 bg-ink shadow-2xl py-2">`,
+    ...l.children.map((c) => `${indent}      <a href="${c.href}" class="flex items-center px-5 py-2.5 whitespace-nowrap ${isActive(c, pagePath) ? 'text-white' : 'text-white/75'} hover:text-white hover:bg-white/5 transition">${label(c)}</a>`),
+    `${indent}    </div>`,
+    `${indent}  </div>`,
+    `${indent}</div>`,
+  ].join('\n');
 }
 
 /**
@@ -41,6 +73,7 @@ function isActive(link, pagePath) {
  */
 export function renderNavLinks(variant, pagePath = '/', indent = '') {
   const lines = NAV_LINKS.map((l) => {
+    if (l.children) return renderMenu(variant, l, pagePath, indent);
     const cls = variant === 'mobile' ? MOBILE : isActive(l, pagePath) ? DESKTOP_ACTIVE : DESKTOP;
     return `${indent}<a href="${l.href}" class="${cls}">${l.label}</a>`;
   });

@@ -135,11 +135,11 @@
     }
 
     h1.insertAdjacentElement('afterend', el(
-      '<p class="m2-synopsis">Live weekly sessions with expert guides on desire, conflict, communication and dating. Plus a private community and a new dare every Sunday.</p>'
+      '<p class="m2-synopsis">Live weekly sessions with expert guides on dating, romance, desire, conflict, communication and jumping timelines. Ask the experts anytime in the private community, plus a new dare every Sunday.</p>'
     ));
 
     row.insertAdjacentElement('afterend', el(
-      '<p class="m2-reassure">Less than one private coaching session. Cancel anytime, on your own.</p>'
+      '<p class="m2-reassure">Way less than one private coaching session. Cancel anytime, on your own.</p>'
     ));
 
     // The secondary "See what's included" link gives way to the checklist.

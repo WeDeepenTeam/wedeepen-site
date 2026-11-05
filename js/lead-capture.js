@@ -368,8 +368,8 @@
     bar.classList.add('wd-slim');
     bar.innerHTML = NYE_PROMO
       ? (IS_MOBILE
-        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Sober NYE: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> til Nov 18 <a class="wd-bar-cta" href="/nye/">See it</a></span></span>'
-        : '<span class="wd-bar-msg">A sober New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="wd-bar-join" href="/nye/">See NYE</a></span>')
+        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>$200 off</strong> with <strong>EARLYBIRD</strong> til Nov 18 <a class="wd-bar-cta" href="/nye/">See it</a></span></span>'
+        : '<span class="wd-bar-msg">Get high on life this New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="wd-bar-join" href="/nye/">See NYE</a></span>')
         + '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
       : (IS_MOBILE
       // Phones: one tap opens Messages with COUNT ME IN typed (same list as desktop).

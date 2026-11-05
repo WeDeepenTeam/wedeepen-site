@@ -9,13 +9,16 @@
  *  1. Moves "What Members Say" up under the hero; her argument follows it.
  *  2. Turns long grids into swipe rows (membership cards, faculty, gallery).
  *  3. Adds a join prompt every few screens.
- *  4. Two-line sticky join bar (next session + price) that steps aside for popups.
+ *  4. Two-line sticky join bar (weekly sessions + join) that steps aside for popups.
  *  5. Three objection answers right above the final join button.
- *  6. "Your first Tuesday" timeline right after the membership offer.
+ *  6. "Your first session" timeline right after the membership offer.
  *  7. Hero "What's included" is a button that lands on a short summary
  *     (what you get, price, join) at the top of the membership section.
- *  8. A compact "what happens next" (join, find Tuesday, show up) right under
- *     the hero price line, where most phone visitors make the call.
+ *  8. Homepage hero (Christina, Nov 5, 2026): "Love is the key. Fun is the way.",
+ *     a one-line synopsis, the join button with a reassurance line, and a
+ *     "What brings you to WeDeepen?" checklist that opens matching skills and
+ *     a join button. The two intro paragraphs move to the top of "At a glance".
+ *     Only on the homepage hero; the audience pages keep their own.
  *  9. The three usual worries answered right under the "In short" summary.
  * 10. The two argument sections (learning curve, skills) fold after their
  *     opening behind "Read more", so the offer comes sooner. Nothing deleted.
@@ -43,7 +46,7 @@
       '<div class="m2-cta">' +
         '<p class="lead">' + lead + '</p>' +
         '<a data-cta="m2-' + key + '" href="' + CHECKOUT + '" class="btn-rose text-base !py-4">' + (label || 'Start my 14 free days') + '</a>' +
-        '<p class="sub">Join today. Come Tuesday at 7pm ET.</p>' +
+        '<p class="sub">Join today. Come to the next live session.</p>' +
       '</div>'
     );
   }
@@ -54,7 +57,7 @@
     return el(
       '<div class="m2-objections' + (extraClass ? ' ' + extraClass : '') + '">' +
         '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
-        '<div><h3>What if I can&rsquo;t make Tuesday?</h3><p>' + (LIBRARY ? 'Love Masterminds are recorded, and the whole library opens on your first day. Integration Sessions are live practice.' : 'Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.') + '</p></div>' +
+        '<div><h3>What if I can&rsquo;t make a session live?</h3><p>' + (LIBRARY ? 'Love Masterminds are recorded, and the whole library opens on your first day. Integration Sessions are live practice.' : 'Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.') + '</p></div>' +
         '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
       '</div>'
     );
@@ -100,7 +103,102 @@
     }, { passive: true });
   }
 
+  // 8. Homepage hero on phones (Christina, Nov 5, 2026).
+  var QUIZ = [
+    { key: 'long-love', label: 'I want to keep a long love alive', skills: [6, 7] },
+    { key: 'intimacy', label: 'I want more intimacy and desire', skills: [6, 3] },
+    { key: 'conflict', label: 'I want to handle conflict without losing connection', skills: [4, 5] },
+    { key: 'dating', label: 'I&rsquo;m dating and want to choose better', skills: [0, 1] },
+    { key: 'patterns', label: 'I want to understand my own patterns', skills: [1, 2] }
+  ];
+  function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
+
+  function heroV2() {
+    var hero = $('#hero');
+    var h1 = hero && $('h1', hero);
+    if (!h1 || !/Get\s+even\s+better at love/i.test(h1.textContent)) return;
+    var cta = $('a[data-cta="hero"]', hero);
+    var row = cta && cta.parentElement;
+    if (!row) return;
+    hero.classList.add('m2-hero-v2');
+
+    h1.innerHTML = '<span class="text-white">Love is the key.<br>Fun is the way.</span>';
+
+    // Move the two intro paragraphs (not deleted) to the top of "At a glance".
+    var intro = Array.prototype.slice.call(hero.querySelectorAll('h1 ~ p'));
+    var glance = sec('glance');
+    var glanceInner = glance && glance.firstElementChild;
+    if (glanceInner && intro.length) {
+      var box = el('<div class="m2-intro"></div>');
+      intro.forEach(function (p) { box.appendChild(p); });
+      glanceInner.insertAdjacentElement('afterbegin', box);
+    }
+
+    h1.insertAdjacentElement('afterend', el(
+      '<p class="m2-synopsis">Live weekly sessions with expert guides on desire, conflict, communication and dating. Plus a private community and a new dare every Sunday.</p>'
+    ));
+
+    row.insertAdjacentElement('afterend', el(
+      '<p class="m2-reassure">Less than one private coaching session. Cancel anytime, on your own.</p>'
+    ));
+
+    // The secondary "See what's included" link gives way to the checklist.
+    var more = $('a[href="#membership"]', row);
+    if (more) more.remove();
+
+    var skillLis = sec('build') ? sec('build').querySelectorAll('ul > li') : [];
+    var skillText = function (i) {
+      var li = skillLis[i];
+      return li ? li.textContent.replace(/^\s*0?\d+\s*/, '').trim() : '';
+    };
+    var quote = 'The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.';
+
+    var quiz = el(
+      '<form class="m2-quiz" novalidate>' +
+        '<h2>What brings you to WeDeepen?</h2>' +
+        '<p class="m2-quiz-sub">Dating, partnered, or solo. Pick all that fit.</p>' +
+        '<div class="m2-quiz-opts">' +
+          QUIZ.map(function (q) {
+            return '<label class="m2-quiz-opt"><input type="checkbox" name="why" value="' + q.key + '"><span class="box" aria-hidden="true"></span><span class="t">' + q.label + '</span></label>';
+          }).join('') +
+        '</div>' +
+        '<button type="submit" class="m2-quiz-go" disabled>Continue</button>' +
+        '<div class="m2-quiz-result" hidden></div>' +
+      '</form>'
+    );
+    row.parentElement.insertBefore(quiz, $('.m2-reassure', hero).nextSibling);
+
+    var go = $('.m2-quiz-go', quiz);
+    var result = $('.m2-quiz-result', quiz);
+    quiz.addEventListener('change', function () {
+      go.disabled = !quiz.querySelector('input:checked');
+    });
+    quiz.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
+      if (!picked.length) return;
+      var idx = [];
+      QUIZ.forEach(function (q) {
+        if (picked.indexOf(q.key) === -1) return;
+        q.skills.forEach(function (n) { if (idx.indexOf(n) === -1) idx.push(n); });
+      });
+      var items = idx.slice(0, 3).map(skillText).filter(Boolean);
+      result.innerHTML =
+        '<p class="m2-quiz-kicker">Here&rsquo;s what you&rsquo;ll practice</p>' +
+        '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Love Club Member</cite></blockquote>' +
+        '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
+        '<p class="m2-reassure">Cancel anytime, on your own.</p>';
+      result.hidden = false;
+      go.textContent = 'Update';
+      track('quiz_complete', { choices: picked.join(','), page: location.pathname });
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   function run() {
+
+    heroV2();
 
     // 1. Member proof right under the hero, as a swipe row (René). Christina's
     // opening argument (at a glance -> learning curve -> skills) follows it
@@ -111,17 +209,17 @@
     if (hero && testimonials) hero.insertAdjacentElement('afterend', testimonials);
     if (testimonials) swipe($('.grid', testimonials));
 
-    // 6. "Your first Tuesday" right after the membership offer (René).
+    // 6. "Your first session" right after the membership offer (René).
     var offer = $('#membership');
     if (offer) {
       var steps = el(
-        '<section class="m2-steps" aria-label="Your first Tuesday">' +
-          '<h2>Your <em>first Tuesday</em></h2>' +
+        '<section class="m2-steps" aria-label="Your first session">' +
+          '<h2>Your <em>first session</em></h2>' +
           '<p>Here&rsquo;s what happens after you join.</p>' +
           '<ol>' +
             '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes, and you&rsquo;re in the private member community right away.</p></li>' +
-            '<li><span class="n">2</span><h3>Find Tuesday on the calendar</h3><p>This week&rsquo;s session is waiting on the member calendar inside the community.</p></li>' +
-            '<li><span class="n">3</span><h3>Show up Tuesday at 7pm ET</h3><p>90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
+            '<li><span class="n">2</span><h3>Find a session on the calendar</h3><p>The next live sessions are waiting on the member calendar inside the community.</p></li>' +
+            '<li><span class="n">3</span><h3>Show up live</h3><p>90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
           '</ol>' +
         '</section>'
       );
@@ -217,7 +315,7 @@
     }
 
     // 3. Join prompts every few screens.
-    if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this Tuesday.'));
+    if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));
     if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));
     var pillars = $('#four-pillars');
     if (pillars) pillars.firstElementChild.appendChild(joinPrompt('pillars', 'This is what we practice together.'));
@@ -233,7 +331,7 @@
     var bar = $('#mobile-join-bar');
     if (bar) {
       bar.innerHTML =
-        '<span class="m2-bar-next">Next live session: ' + nextTuesday() + ' &middot; 7pm ET</span>' +
+        '<span class="m2-bar-next">Live sessions every week</span>' +
         '<span class="m2-bar-main">Start my 14 free days &rarr;</span>';
       var check = function () {
         var open = document.querySelector('#wd-guide.wd-open, #wd-lead-sheet.wd-open, #wd-lead-overlay.wd-open');
@@ -243,19 +341,6 @@
     }
   }
 
-  // "Tue, Oct 6": today if it's Tuesday before 7pm Eastern, else next Tuesday.
-  function nextTuesday() {
-    try {
-      var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', hour12: false }).formatToParts(new Date());
-      var wd = '', hr = 0;
-      parts.forEach(function (p) { if (p.type === 'weekday') wd = p.value; if (p.type === 'hour') hr = Number(p.value); });
-      var dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(wd);
-      var add = (2 - dow + 7) % 7;
-      if (add === 0 && hr >= 19) add = 7;
-      var d = new Date(Date.now() + add * 864e5);
-      return new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' }).format(d);
-    } catch (e) { return 'Tuesday'; }
-  }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();

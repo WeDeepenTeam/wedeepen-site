@@ -92,7 +92,7 @@
       '<div class="ms-cta' + (opts.light ? ' ms-light' : '') + '">' +
         '<p class="ms-lead">' + lead + '</p>' +
         '<a class="ms-btn" data-cta="ms-' + key + '" href="' + CHECKOUT + '" target="_blank" rel="noopener">' + (opts.label || 'Become a Member &middot; $99/month') + '</a>' +
-        '<p class="ms-sub">' + (opts.sub || 'Join today. Come Tuesday at 7pm ET.') + '</p>' +
+        '<p class="ms-sub">' + (opts.sub || 'Join today. Come to the next live session.') + '</p>' +
       '</div>'
     );
   }
@@ -126,22 +126,12 @@
   }
 
   /* == Sticky join bar ====================================================== */
-  function nextTuesday() {
-    try {
-      var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', hour12: false }).formatToParts(new Date());
-      var wd = '', hr = 0;
-      parts.forEach(function (p) { if (p.type === 'weekday') wd = p.value; if (p.type === 'hour') hr = Number(p.value); });
-      var add = (2 - ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(wd) + 7) % 7;
-      if (add === 0 && hr >= 19) add = 7;
-      return new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(Date.now() + add * 864e5));
-    } catch (e) { return 'Tuesday'; }
-  }
   function stickyBar() {
     // Pages with their own bottom bar: the homepage/membership and Love Immersion.
     if ($('#mobile-join-bar') || /^\/love-immersion\//.test(path) || /^\/join\//.test(path)) return;
     var bar = el(
       '<a id="ms-bar" data-cta="ms-sticky" href="' + CHECKOUT + '" target="_blank" rel="noopener">' +
-        '<span class="n">Next live session: ' + nextTuesday() + ' &middot; 7pm ET</span>' +
+        '<span class="n">Live sessions every week</span>' +
         '<span class="m">Join &middot; $99/month &rarr;</span>' +
       '</a>'
     );
@@ -173,7 +163,7 @@
       if (img) img.style.maxWidth = '220px';
     });
     var ken = $('#ken-page');
-    if (ken) ken.firstElementChild.appendChild(prompt('faculty', 'Learn from all of them, every Tuesday.'));
+    if (ken) ken.firstElementChild.appendChild(prompt('faculty', 'Learn from all of them, every week.'));
     var council = $('#full-council .grid');
     if (council) {
       council.classList.add('ms-council');
@@ -199,7 +189,7 @@
     var reserves = $$('main a[href*="ticketspice"], body > section a[href*="ticketspice"]').filter(function (a) { return a.offsetParent && !a.closest('.fixed'); });
     var last = reserves[reserves.length - 1];
     if (last) {
-      last.closest('section').firstElementChild.appendChild(prompt('li-alt', 'Not ready for three days? Start with Tuesdays.', {
+      last.closest('section').firstElementChild.appendChild(prompt('li-alt', 'Not ready for three days? Start with the weekly sessions.', {
         label: 'Join the Membership &middot; $99/month',
         sub: 'Weekly live sessions with the faculty. The first 20 annual members get $800 toward a Love Immersion.'
       }));
@@ -212,7 +202,7 @@
     var anchor = (audio && audio.closest('section')) || (video && video.closest('section'));
     if (!anchor) return;
     var wrap = el('<div class="px-6"></div>');
-    wrap.appendChild(prompt('episode', 'Love this conversation? Practice it live every Tuesday.'));
+    wrap.appendChild(prompt('episode', 'Love this conversation? Practice it live every week.'));
     anchor.insertAdjacentElement('afterend', wrap);
   }
 
@@ -232,13 +222,13 @@
   function podcast() {
     var h = $$('h2').filter(function (x) { return /All Episodes/.test(x.textContent); })[0];
     var sec = h && h.closest('section');
-    if (sec) sec.insertAdjacentElement('afterend', el('<div class="px-6 bg-ink"></div>')).appendChild(prompt('podcast', 'Love the podcast? Come practice it every Tuesday.'));
+    if (sec) sec.insertAdjacentElement('afterend', el('<div class="px-6 bg-ink"></div>')).appendChild(prompt('podcast', 'Love the podcast? Come practice it every week.'));
   }
 
   function about() {
     var h = $$('h2').filter(function (x) { return /^Christina Weber$/.test(x.textContent.trim()); })[0];
     var sec = h && h.closest('section');
-    if (sec) sec.firstElementChild.appendChild(prompt('about', 'Practice with Christina and the faculty every Tuesday.'));
+    if (sec) sec.firstElementChild.appendChild(prompt('about', 'Practice with Christina and the faculty every week.'));
   }
 
   function fourPillars() {

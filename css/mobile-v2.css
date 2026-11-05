@@ -36,7 +36,7 @@ html.m2 [data-m2="testimonials"] .text-center.mb-14 { margin-bottom: 24px !impor
 html.m2 [data-m2="testimonials"] .m2-swipe > * { display: flex; flex-direction: column; }
 
 
-/* "Your first Tuesday" timeline. */
+/* "Your first session" timeline. */
 html.m2 .m2-steps { background: #201519; border-top: 1px solid rgba(201,162,119,.25); border-bottom: 1px solid rgba(201,162,119,.25); padding: 44px 24px 40px; color: #fff; }
 html.m2 .m2-steps h2 { font-family: "Playfair Display", Georgia, serif; font-size: 28px; line-height: 1.2; text-align: center; margin: 0 0 6px; font-weight: 400; }
 html.m2 .m2-steps h2 em { color: #C9A277; }
@@ -130,3 +130,39 @@ html.m2 #hero > div.relative.z-10 > div:has(> img[src*="deepen-icon-favicon-whit
 html.m2 #hero h1 { margin-top: 0; margin-bottom: 14px; }
 html.m2 #hero h1 + p { margin-bottom: 12px; }
 html.m2 #hero h1 + p + p { margin-bottom: 22px; }
+
+/* Homepage hero v2 on phones (Christina, Nov 5, 2026): the video gets the top
+   of the screen, the copy sits lower, and the checklist replaces "See what's included". */
+html.m2 #hero.m2-hero-v2 > div.relative.z-10 { padding-top: max(150px, calc(100svh - 560px)); }
+html.m2 #hero.m2-hero-v2 h1 { font-size: 2.35rem; line-height: 1.12; margin-bottom: 14px; }
+html.m2 #hero.m2-hero-v2 .m2-synopsis { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.55; max-width: 34rem; margin: 0 auto 22px; text-wrap: pretty; }
+html.m2 #hero.m2-hero-v2 div:has(> a[data-cta="hero"]) { margin-bottom: 10px !important; }
+html.m2 .m2-reassure { color: rgba(201,162,119,.95); font-size: 13.5px; line-height: 1.45; margin: 0 auto 30px; text-align: center; }
+
+html.m2 .m2-quiz { text-align: left; max-width: 440px; margin: 6px auto 44px; padding: 22px 18px 18px; border-radius: 14px; background: rgba(20,14,16,.72); border: 1px solid rgba(201,162,119,.28); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+html.m2 .m2-quiz h2 { font-family: "Playfair Display", Georgia, serif; font-size: 22px; line-height: 1.25; color: #fff; margin: 0 0 4px; font-weight: 400; }
+html.m2 .m2-quiz-sub { color: rgba(255,255,255,.6); font-size: 13.5px; margin: 0 0 14px; }
+html.m2 .m2-quiz-opts { display: grid; gap: 8px; }
+html.m2 .m2-quiz-opt { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); color: #fff; font-size: 15px; line-height: 1.35; cursor: pointer; }
+html.m2 .m2-quiz-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+html.m2 .m2-quiz-opt .box { flex: 0 0 20px; height: 20px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,.55); display: flex; align-items: center; justify-content: center; }
+html.m2 .m2-quiz-opt input:checked + .box { background: #A01B4A; border-color: #A01B4A; }
+html.m2 .m2-quiz-opt input:checked + .box::after { content: ""; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: translateY(-1px) rotate(45deg); }
+html.m2 .m2-quiz-opt:has(input:checked) { border-color: rgba(160,27,74,.8); background: rgba(160,27,74,.16); }
+html.m2 .m2-quiz-opt input:focus-visible + .box { outline: 2px solid #C9A277; outline-offset: 2px; }
+html.m2 .m2-quiz-go { margin-top: 14px; width: 100%; padding: 13px 18px; border-radius: 9999px; border: 1px solid #C9A277; background: transparent; color: #C9A277; font-weight: 600; font-size: 15px; }
+html.m2 .m2-quiz-go:disabled { opacity: .4; }
+html.m2 .m2-quiz-result { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(201,162,119,.25); scroll-margin-top: 90px; }
+html.m2 .m2-quiz-kicker { color: #C9A277; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 10px; }
+html.m2 .m2-quiz-result ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
+html.m2 .m2-quiz-result li { position: relative; padding-left: 20px; color: #fff; font-size: 15px; line-height: 1.45; }
+html.m2 .m2-quiz-result li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 7px; height: 7px; border-radius: 999px; background: #A01B4A; }
+html.m2 .m2-quiz-result blockquote { margin: 0 0 16px; color: rgba(255,255,255,.75); font-size: 14px; line-height: 1.55; font-style: italic; }
+html.m2 .m2-quiz-result cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: rgba(255,255,255,.5); }
+html.m2 .m2-quiz-result .btn-rose { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 13px 18px; text-align: center; line-height: 1.25; }
+html.m2 .m2-quiz-result .btn-rose span { font-size: 13px; font-weight: 400; opacity: .85; margin-top: 2px; }
+html.m2 .m2-quiz-result .m2-reassure { margin: 10px 0 0; }
+
+/* The two hero intro paragraphs, moved to the top of "At a glance". */
+html.m2 .m2-intro { text-align: center; margin: 0 auto 36px; max-width: 36rem; }
+html.m2 .m2-intro p { margin: 0 auto 12px !important; }

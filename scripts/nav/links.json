@@ -6,13 +6,29 @@
       "href": "/"
     },
     {
-      "label": "Love Immersion",
-      "href": "/love-immersion/",
-      "activePrefix": "/love-immersion/"
-    },
-    {
       "label": "Events",
-      "href": "/events/"
+      "href": "/events/",
+      "activePrefix": [
+        "/events/",
+        "/love-immersion/",
+        "/nye/"
+      ],
+      "children": [
+        {
+          "label": "NYE",
+          "href": "/nye/",
+          "badge": "New"
+        },
+        {
+          "label": "Love Immersion",
+          "href": "/love-immersion/",
+          "activePrefix": "/love-immersion/"
+        },
+        {
+          "label": "Live Sessions",
+          "href": "/events/"
+        }
+      ]
     },
     {
       "label": "Gallery",

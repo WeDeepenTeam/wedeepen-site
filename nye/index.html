@@ -231,10 +231,6 @@
     .nye-tile img.nye-flip { transform: scaleX(-1); }
     .nye-tile:hover img.nye-flip { transform: scaleX(-1) scale(1.06); }
     .nye-time { flex-shrink:0; width:6.5rem; color:#E0BC78; font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; padding-top:0.15rem; }
-    .nye-marquee { animation: nye-scroll 60s linear infinite; }
-    .nye-marquee:hover { animation-play-state: paused; }
-    @keyframes nye-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .nye-marquee { animation: none; } }
     /* Typographic polish — balance headings, prevent widow/orphan lines */
     h1, h2, h3, h4 { text-wrap: balance; }
     p, li, blockquote { text-wrap: pretty; }
@@ -515,7 +511,7 @@
           <p class="font-heading italic text-lg" style="color:#9FB4FF;">What do you really want?</p><p class="text-white/65 text-sm leading-relaxed mt-3">Beyond what you think you should want. Beyond what&rsquo;s familiar.</p><p class="text-white/65 text-sm leading-relaxed mt-3">Be specific. Name your desires out loud, widen your sense of what&rsquo;s possible, and claim your right to have it.</p>
         </div>
         <div class="pillar-card rounded-2xl p-6 md:p-8 text-left">
-          <div class="nye-tile h-44 mb-6"><img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/full/0f1c541156c25b57.webp" alt="A group cracking up on the couches" loading="lazy"></div>
+          <div class="nye-tile h-44 mb-6"><img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/full/8859cfdc847d41ef.webp" style="object-position: center 30%;" alt="A quiet, meditative moment" loading="lazy"></div>
           <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-2">Stage 3 &middot; The Chrysalis</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-3">Clearing the Field</h3>
           <p class="font-heading italic text-lg" style="color:#9FB4FF;">What are you ready to leave in 2026?</p><p class="text-white/65 text-sm leading-relaxed mt-3">Reflect, release, and make room for what matters most.</p><p class="text-white/65 text-sm leading-relaxed mt-3">Then feel your 2027 as if it&rsquo;s already unfolding, in your body and in the eyes of the people around you.</p>
@@ -774,28 +770,6 @@
         </ol>
       </div>
       <p class="font-heading italic text-white text-xl md:text-2xl text-center mt-10">The magic is in what you create&nbsp;together.</p>
-    </div>
-  </section>
-
-  <!-- PHOTO MARQUEE -->
-  <section class="bg-ink py-6 overflow-hidden" aria-label="Moments from past WeDeepen events">
-    <div class="nye-marquee flex gap-4 w-max">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/b33e3874d0348039.webp" alt="A couple kissing" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/4b64cd416d550add.webp" alt="A group hug" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/fecd92f22e63e297.webp" alt="Two friends laughing together" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/dbec6f94d2fccce1.webp" alt="A big smile" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/411f9fc3cc0dd901.webp" alt="Friends together on the couch" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/ddd1746b35f5a802.webp" alt="Pool time" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/59133f5c0616ac1c.webp" alt="A couple dancing" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/c956831ce74db61f.webp" alt="Two friends laughing" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/b33e3874d0348039.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/4b64cd416d550add.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/fecd92f22e63e297.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/dbec6f94d2fccce1.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/411f9fc3cc0dd901.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/ddd1746b35f5a802.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/59133f5c0616ac1c.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
-      <img aria-hidden="true" src="https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/love-immersion-viii/thumb/c956831ce74db61f.webp" alt="" loading="lazy" class="h-40 md:h-52 w-auto rounded-xl object-cover">
     </div>
   </section>
 

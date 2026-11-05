@@ -153,6 +153,7 @@ html.m2 .m2-quiz-opt input:focus-visible + .box { outline: 2px solid #C9A277; ou
 html.m2 .m2-quiz-go { margin-top: 14px; width: 100%; padding: 13px 18px; border-radius: 9999px; border: 1px solid #C9A277; background: transparent; color: #C9A277; font-weight: 600; font-size: 15px; }
 html.m2 .m2-quiz-go:disabled { opacity: .4; }
 html.m2 .m2-quiz-result { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(201,162,119,.25); scroll-margin-top: 90px; }
+html.m2 .m2-quiz-lead { color: rgba(255,255,255,.9); font-size: 15.5px; line-height: 1.55; margin: 0 0 16px; }
 html.m2 .m2-quiz-kicker { color: #C9A277; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 10px; }
 html.m2 .m2-quiz-result ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
 html.m2 .m2-quiz-result li { position: relative; padding-left: 20px; color: #fff; font-size: 15px; line-height: 1.45; }

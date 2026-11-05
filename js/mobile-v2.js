@@ -186,6 +186,7 @@
       });
       var items = idx.slice(0, 3).map(skillText).filter(Boolean);
       result.innerHTML =
+        (picked.indexOf('skills') !== -1 ? '<p class="m2-quiz-lead">You get the frameworks, tools and practices behind a healthy love, from faculty across dating, sex, communication, attachment, intimacy and the nervous system. Keep what fits you.</p>' : '') +
         '<p class="m2-quiz-kicker">Here&rsquo;s what you&rsquo;ll practice</p>' +
         '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
         '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Member</cite></blockquote>' +

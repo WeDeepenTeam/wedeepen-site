@@ -113,6 +113,13 @@
       line-height: 0.95;
     }
 
+    .nye-strip li {
+      font-size: 0.8rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.9);
+      padding: 0.45rem 0.9rem; border-radius: 9999px;
+      background: rgba(7,11,31,0.55); border: 1px solid rgba(224,188,120,0.45);
+      backdrop-filter: blur(4px);
+    }
+    @media (min-width: 768px) { .nye-strip li { font-size: 0.9rem; } }
     .nye-roses {
       position: absolute; left: 0; bottom: 0; width: 100%;
       aspect-ratio: 2400 / 560; height: auto; min-height: 110px;
@@ -308,7 +315,7 @@
       "name": "Where do I sleep?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Opening night wraps at 10pm, so you can head home or stay in a private bedroom. On New Year’s night the party goes until morning, and a communal lounge is open the whole time for resting, cuddling up, or a nap. Bring a pillow and blanket if you like. Private bedrooms are available for an additional cost for either night."
+        "text": "Opening night wraps at 10pm, so you can head home or stay in a private bedroom. On New Year’s night the party goes until morning, and a communal lounge is open the whole time for resting, cuddling up, or a nap. Bring a pillow and blanket if you like. Private bedrooms are available as an add-on, from $695 for both nights. Most sleep two."
       }
     },
     {
@@ -316,7 +323,31 @@
       "name": "Do I need to bring a partner?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Each ticket is for one person, so couples need two."
+        "text": "No. Each ticket is for one person. Coming with someone? The pair ticket is two for $3,790, which saves $200."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I wear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Come comfortable for the day and bring a swimsuit for the pool. For New Year’s night our dress code is velvet or silk. Nothing is required: wear whatever makes you feel gorgeous."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a payment plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Choose a payment plan at checkout and spread the cost out in monthly payments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I can’t make it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tickets are non-refundable, but they are transferable. If plans change, you can pass your spot to someone else. Email team@wedeepen.com and we’ll move it over."
       }
     },
     {
@@ -402,9 +433,17 @@
       </h1>
       <p class="font-heading italic text-white text-2xl md:text-4xl leading-snug mb-5" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Get high on life. Take flight&nbsp;into&nbsp;2027.</p>
       <p class="text-white/85 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-2" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Ring in 2027 clear-headed, fully awake, and activated into the life you truly&nbsp;want.</p>
-      <p class="text-white/75 text-sm md:text-base tracking-wide leading-relaxed max-w-xl mx-auto mt-3 mb-10" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Substance-free. Wildly&nbsp;alive.</p>
+      <p class="text-white/75 text-sm md:text-base tracking-wide leading-relaxed max-w-xl mx-auto mt-3 mb-8" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Substance-free. Wildly&nbsp;alive.</p>
+      <ul class="nye-strip flex flex-wrap justify-center gap-2 md:gap-3 max-w-3xl mx-auto mb-9">
+        <li>Two nights at a private mansion</li>
+        <li>3 expert guides</li>
+        <li>4 meals together</li>
+        <li>30 people max</li>
+      </ul>
       <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
-      <p class="text-white/70 text-sm mt-5">Only 30&nbsp;spots.</p>
+      <p class="text-white/80 text-sm mt-5">From $1,995 &middot; Only 30&nbsp;spots</p>
+      <p class="eb-only text-sm mt-2" style="color:#E0BC78;">Early bird: $200 off with code <strong>EARLYBIRD</strong> until Nov&nbsp;18 &middot; <span class="eb-countdown"></span></p>
+      <p class="mt-3"><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
     </div>
     <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true"></picture>
   </section>
@@ -420,7 +459,7 @@
         <p>We believe long-term fulfillment is worth celebrating. So let&rsquo;s close out 2026 with gratitude, play our hearts out, and welcome 2027 with&nbsp;intention.</p>
         <p class="text-white text-xl md:text-2xl font-heading italic">Love is the key. Fun is the&nbsp;way.</p>
       </div>
-      <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Count Me In</button></div>
+      <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
     </div>
   </section>
 
@@ -458,7 +497,7 @@
       <div class="text-center mt-12 max-w-2xl mx-auto">
         <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-3">The practices</p>
         <p class="text-white/65 text-sm md:text-base leading-relaxed">Drawing on Tantra, Tibetan meditation, Reality Transurfing, somatic and energy practices, emotional release, movement, and consent&nbsp;education.</p>
-        <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">I&rsquo;m In</button></div>
+        <div class="mt-10"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
       </div>
     </div>
   </section>
@@ -485,24 +524,52 @@
     </div>
   </section>
 
+  <!-- VIDEO -->
+  <section class="bg-ink px-6 pb-16 md:pb-24">
+    <div class="max-w-4xl mx-auto reveal grid md:grid-cols-2 gap-10 items-center">
+      <div class="text-center md:text-left">
+        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">Feel the vibe</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal leading-tight">This is what a WeDeepen room <span class="italic" style="color:#9FB4FF;">sounds&nbsp;like.</span></h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed font-light mt-6">A few seconds from a recent gathering. Now picture it in a mansion, on New Year&rsquo;s&nbsp;Eve.</p>
+        <div class="mt-8 hidden md:block"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
+      </div>
+      <div class="mx-auto w-full max-w-[300px] rounded-2xl overflow-hidden" style="aspect-ratio: 9 / 16; border: 1px solid rgba(224,188,120,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/_7Zx-du47yM?rel=0&amp;playsinline=1" title="The vibe of the WeDeepen community" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section id="love-notes" class="bg-ink px-6 pb-20 md:pb-28">
     <div class="max-w-site mx-auto reveal">
       <div class="text-center mb-10">
         <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">Love Notes from Past Gatherings</p>
+        <p><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
       </div>
       <div class="grid md:grid-cols-3 gap-5 items-stretch max-w-5xl mx-auto">
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I was nervous about coming alone, but I&rsquo;m leaving with lifelong friends.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Love Immersion participant</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;The party at the end was just the best time! I left with resources, books, friends, feeling comfortable and close with everyone.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Christine Smith, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;We came as total strangers and left as friends with deep connections. Highly recommend this for singles, couples and anyone willing to open their hearts and minds.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Hayley Foster, Google review</figcaption>
+        </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
           <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I didn&rsquo;t think I belonged. But within a day, I felt flooded with love. I felt home.&rdquo;</blockquote>
           <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Eva Mullen</figcaption>
         </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
-          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;In just 72 hours, I felt more belonging than I have in two years after moving to a new city. This was the best investment I&rsquo;ve ever made in myself.&rdquo;</blockquote>
-          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Roza, Dallas, TX</figcaption>
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I&rsquo;m lighter, more playful, and more myself than ever.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Josh, Love Immersion participant</figcaption>
         </figure>
         <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
-          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;It reminded me how rare this level of space and connection is. It reinvigorated my excitement around relating and partnership.&rdquo;</blockquote>
-          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Juston, past participant</figcaption>
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;In just 72 hours, I felt more belonging than I have in two years after moving to a new city. This was the best investment I&rsquo;ve ever made in myself.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Roza, Dallas, TX</figcaption>
         </figure>
       </div>
     </div>
@@ -537,7 +604,7 @@
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">11:00am</span><div><p class="text-white font-semibold">The Caterpillar</p><p class="text-white/60 text-sm leading-relaxed mt-1">Name what you truly desire, then give yourself permission to have it.</p></div></li>
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">2:00pm</span><div><p class="text-white font-semibold">Lunch</p></div></li>
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">3:00pm</span><div><p class="text-white font-semibold">The Chrysalis</p><p class="text-white/60 text-sm leading-relaxed mt-1">Clear the field. Envision your 2027 in the present tense and bring it to life through embodied practices, alone and with a partner.</p></div></li>
-          <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">5:30pm</span><div><p class="text-white font-semibold">Time to recharge and get gorgeous</p><p class="text-white/60 text-sm leading-relaxed mt-1">Pool, nap, glam. Your call.</p></div></li>
+          <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">5:30pm</span><div><p class="text-white font-semibold">Time to recharge and get gorgeous</p><p class="text-gold text-sm mt-1">New Year&rsquo;s night dress code: velvet or silk.</p><p class="text-white/60 text-sm leading-relaxed mt-1">Pool, nap, glam. Your call.</p></div></li>
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">8:00pm</span><div><p class="text-white font-semibold">Celebration dinner</p><p class="text-white/60 text-sm leading-relaxed mt-1">A feast together!</p></div></li>
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">9:30pm</span><div><p class="text-white font-semibold">The Butterfly</p><p class="text-white/60 text-sm leading-relaxed mt-1">Games, Truth or Dare, and dancing.</p></div></li>
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">Midnight</span><div><p class="text-white font-semibold">Take flight</p><p class="text-white/60 text-sm leading-relaxed mt-1">Welcome 2027 together with presence and intention.</p></div></li>
@@ -595,7 +662,7 @@
           </div>
         </div>
       </div>
-      <div class="text-center mt-12"><button type="button" class="ag-trigger btn-pink text-base">Sign Up</button></div>
+      <div class="text-center mt-12"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
     </div>
   </section>
 
@@ -779,25 +846,48 @@
         <p class="text-white/55 text-base mt-4">The night lasts until sunrise. What you choose at midnight lasts all year.</p>
         <p class="text-white/55 text-base mt-2">Only 30 spots, and when they&rsquo;re gone, they&rsquo;re&nbsp;gone.</p>
       </div>
+      <div class="grid md:grid-cols-2 gap-5 mb-10">
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Karolina Stachniuk, Google review</figcaption>
+        </figure>
+        <figure class="pillar-card rounded-2xl p-6 md:p-8 text-left flex flex-col justify-between">
+          <blockquote class="font-heading italic text-white/90 text-lg leading-snug">&ldquo;100% recommend for both singles and couples&hellip; You find it quite easy to feel at home, and you are amongst people that genuinely care&hellip; Half or more come back!&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-5">Yarixa Ferrao, Google review</figcaption>
+        </figure>
+      </div>
       <div class="rounded-2xl p-8 md:p-10" style="background: rgba(159,180,255,0.06); border: 1px solid rgba(159,180,255,0.35);">
+        <div class="eb-only text-center rounded-xl px-4 py-4 mb-8" style="background: rgba(224,188,120,0.12); border: 1px solid rgba(224,188,120,0.55);">
+          <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold">Early bird &middot; Ends Nov 18</p>
+          <p class="text-white text-lg mt-1">Save $200 with code <strong>EARLYBIRD</strong></p>
+          <p class="text-white/65 text-sm mt-1">The code is filled in for you at checkout. Tap Apply. <span class="eb-countdown text-gold"></span></p>
+        </div>
         <div class="text-center mb-9">
           <div class="font-heading text-5xl md:text-6xl text-white mb-2">$1,995</div>
           <p class="text-white/55 text-xs uppercase tracking-[0.22em]">Per Person</p>
         </div>
         <div class="w-12 h-px bg-white/15 mx-auto mb-6"></div>
-        <p class="text-center text-white/60 text-sm mb-5">Your experience includes:</p>
-        <div class="grid sm:grid-cols-2 gap-x-10 gap-y-4 max-w-xl mx-auto text-left">
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Welcome dinner and opening night, Dec 30</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Breakfast, lunch, and dinner on Dec 31</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Yossef&rsquo;s four-stage experience</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Play, dancing, and Truth or Dare all night</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Communal lounge to rest on New Year&rsquo;s night</span></div>
-          <div class="flex items-center gap-3 text-white/80 text-sm"><span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><span>Sunrise closing circle on Jan 1</span></div>
+        <p class="text-center text-gold text-xs tracking-[0.2em] uppercase font-medium mb-6">What your ticket includes</p>
+        <ul class="space-y-5 max-w-xl mx-auto text-left">
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Two nights at The Gatsby Mansion</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">A private Austin estate with a pool, hot tub, casino room, theater, and game room. Ours from Dec 30 to Jan 1.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Three expert guides</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Christina Weber, Yossef Sagi, and Melissa D. lead every part of the experience.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Yossef&rsquo;s four-stage experience</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">From inner union to the dance floor: get clear on what you want and feel your 2027 in your body.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">Four meals together</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Welcome dinner on Dec 30. Breakfast, lunch, and a celebration dinner on Dec 31.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">A room of 30 people who are all in</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Everyone says yes to the same agreements: substance-free, consent-first, present from start to finish.</p></div></li>
+          <li class="flex gap-4"><span class="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold" style="background:#C9A277;color:#070B1F;">&#10003;</span><div><p class="text-white font-semibold">The celebration, start to sunrise</p><p class="text-white/60 text-sm leading-relaxed mt-0.5">Games, Truth or Dare, dancing, midnight together, a communal lounge all night, and a sunrise closing circle on Jan 1.</p></div></li>
+        </ul>
+        <div class="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto mt-9 text-center">
+          <div class="rounded-xl px-4 py-4" style="background: rgba(224,188,120,0.08); border: 1px solid rgba(224,188,120,0.35);"><p class="text-white font-semibold">Coming with someone?</p><p class="text-white/65 text-sm mt-1">Two tickets for $3,790. Save&nbsp;$200.</p></div>
+          <div class="rounded-xl px-4 py-4" style="background: rgba(224,188,120,0.08); border: 1px solid rgba(224,188,120,0.35);"><p class="text-white font-semibold">Want to stay over?</p><p class="text-white/65 text-sm mt-1">Private rooms from $695 for both nights. Most sleep&nbsp;two.</p></div>
         </div>
-        <p class="text-center text-white/50 text-xs mt-7">Want your own room for Dec 30, Dec 31, or both? Private bedrooms are available as an add-on at&nbsp;checkout.</p>
-        <p class="text-center font-heading italic text-white text-xl md:text-2xl mt-8">Get high on life. Take flight into&nbsp;2027.</p>
+        <p class="text-center text-white/60 text-sm mt-6">Payment plans available at checkout. No refunds, and tickets are transferable to another person: email <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a>.</p>
+        <figure class="max-w-lg mx-auto text-center mt-10">
+          <blockquote class="font-heading italic text-white text-xl md:text-2xl leading-snug">&ldquo;Something just told me to go&hellip; Don&rsquo;t think, just&nbsp;go.&rdquo;</blockquote>
+          <figcaption class="text-gold text-xs tracking-[0.18em] uppercase font-medium mt-3">Stephanie Blanchette, Google review</figcaption>
+        </figure>
         <div class="text-center mt-6">
           <button type="button" id="ag-open" class="ag-trigger btn-pink text-base">Sign Me Up</button>
+          <p class="mt-4"><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
         </div>
       </div>
     </div>
@@ -845,11 +935,23 @@
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Where do I sleep?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
-          <div class="faq-answer pb-6 text-white/65 leading-relaxed">Opening night wraps at 10pm, so you can head home or stay in a private bedroom. On New Year&rsquo;s night the party goes until morning, and a communal lounge is open the whole time for resting, cuddling up, or a nap. Bring a pillow and blanket if you like. Private bedrooms are available for an additional cost for either night.</div>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">Opening night wraps at 10pm, so you can head home or stay in a private bedroom. On New Year&rsquo;s night the party goes until morning, and a communal lounge is open the whole time for resting, cuddling up, or a nap. Bring a pillow and blanket if you like. Private bedrooms are available as an add-on, from $695 for both nights. Most sleep two.</div>
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Do I need to bring a partner?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
-          <div class="faq-answer pb-6 text-white/65 leading-relaxed">No. Each ticket is for one person, so couples need two.</div>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">No. Each ticket is for one person. Coming with someone? The pair ticket is two for $3,790, which saves&nbsp;$200.</div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">What do I wear?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">Come comfortable for the day and bring a swimsuit for the pool. For New Year&rsquo;s night our dress code is velvet or silk. Nothing is required: wear whatever makes you feel gorgeous.</div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Is there a payment plan?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">Yes. Choose a payment plan at checkout and spread the cost out in monthly payments.</div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">What if I can&rsquo;t make it?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">Tickets are non-refundable, but they are transferable. If plans change, you can pass your spot to someone else. Email <a href="mailto:team@wedeepen.com" class="text-gold hover:underline">team@wedeepen.com</a> and we&rsquo;ll move it over.</div>
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Do I need to be a WeDeepen member?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
@@ -863,7 +965,7 @@
   <section class="cloud-hero relative overflow-hidden pt-24 md:pt-32 pb-40 md:pb-56 px-6 text-center">
     <div class="relative z-10 max-w-2xl mx-auto reveal">
       <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">2027 starts in the room <span class="italic">you choose.</span></h2>
-      <button type="button" class="ag-trigger btn-pink text-base">I&rsquo;m In</button>
+      <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
     </div>
     <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true" loading="lazy"></picture>
   </section>
@@ -946,7 +1048,23 @@
     // Agreements gate before TicketSpice checkout
     (function () {
       const dlg = document.getElementById('ag-dialog');
-      const CHECKOUT = 'https://wedeepen.ticketspice.com/wedeepen-nye-gathering';
+      const EARLY_END = new Date('2026-11-19T00:00:00-06:00');
+      const early = Date.now() < EARLY_END;
+      const CHECKOUT = 'https://wedeepen.ticketspice.com/wedeepen-nye-gathering' +
+        (early ? '?registrants.coupon_code859323033332572=EARLYBIRD' : '');
+      const goLink = document.getElementById('ag-go');
+      if (goLink) goLink.href = CHECKOUT;
+      const ebEls = document.querySelectorAll('.eb-only');
+      const ebClocks = document.querySelectorAll('.eb-countdown');
+      function tick() {
+        const ms = EARLY_END - Date.now();
+        if (ms <= 0) { ebEls.forEach(el => el.remove()); return; }
+        const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+        const txt = (d ? d + 'd ' : '') + h + 'h ' + m + 'm left';
+        ebClocks.forEach(el => { el.textContent = txt; });
+        setTimeout(tick, 30000);
+      }
+      tick();
       const canGate = dlg && typeof dlg.showModal === 'function';
       // Delegated, so buttons placed after this script (the mobile bar) work too.
       document.addEventListener('click', e => {
@@ -982,7 +1100,6 @@
      style="background:#E0BC78; color:#0A0F2A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     Sign Me Up &rarr;
   </button>
-  <script src="/js/lead-capture.js?v=55" defer></script>
   <script src="/js/mobile-site.js?v=4" defer></script>
 </body>
 </html>

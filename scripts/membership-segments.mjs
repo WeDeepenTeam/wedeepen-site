@@ -193,10 +193,11 @@ export function buildSegment(membership, seg) {
   html = replaceOnce(html, /<html lang="en">/, '<html lang="en" data-recordings="library">', 'html tag');
 
   // ---- Hero ----
-  html = replaceOnce(html, /<span class="text-white">Excelling at everything except love\?<\/span>/, `<span class="text-white">${seg.h1}</span>`, 'hero h1');
+  html = replaceOnce(html, /<span class="text-white">Get even better at love\.<\/span>/, `<span class="text-white">${seg.h1}</span>`, 'hero h1');
+  // The homepage hero has two short paragraphs; segment pages use one (seg.sub).
   html = replaceOnce(html,
-    /You were taught how to build a career, take care of your body and get good at a sport\. Nobody taught you how to love, or how to keep desire alive\. At WeDeepen you learn it live, with expert guides and people who want more from love too\./,
-    seg.sub, 'hero subhead');
+    /(<p class="[^"]*?)mb-4( [^"]*"[^>]*>)\s*WeDeepen is for people who are curious[\s\S]*?<\/p>\s*<p [^>]*>\s*It&rsquo;s an expert-led community[\s\S]*?<\/p>/,
+    (m, a, b) => `${a}mb-10${b}\n        ${seg.sub}\n      </p>`, 'hero subhead');
 
   // ---- At a glance closing line ----
   html = replaceOnce(html,

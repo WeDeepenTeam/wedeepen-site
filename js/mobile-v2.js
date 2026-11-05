@@ -105,6 +105,7 @@
 
   // 8. Homepage hero on phones (Christina, Nov 5, 2026).
   var QUIZ = [
+    { key: 'skills', label: 'I want to learn the skills of love', skills: [2, 4, 6], general: true },
     { key: 'long-love', label: 'I want to keep a long love alive', skills: [6, 7] },
     { key: 'intimacy', label: 'I want more intimacy and desire', skills: [6, 3] },
     { key: 'conflict', label: 'I want to handle conflict without losing connection', skills: [4, 5] },
@@ -177,8 +178,9 @@
       e.preventDefault();
       var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
       if (!picked.length) return;
+      // Specific picks fill the list first; the general "skills of love" pick tops it up.
       var idx = [];
-      QUIZ.forEach(function (q) {
+      QUIZ.filter(function (q) { return !q.general; }).concat(QUIZ.filter(function (q) { return q.general; })).forEach(function (q) {
         if (picked.indexOf(q.key) === -1) return;
         q.skills.forEach(function (n) { if (idx.indexOf(n) === -1) idx.push(n); });
       });
@@ -186,7 +188,7 @@
       result.innerHTML =
         '<p class="m2-quiz-kicker">Here&rsquo;s what you&rsquo;ll practice</p>' +
         '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Love Club Member</cite></blockquote>' +
+        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Member</cite></blockquote>' +
         '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
         '<p class="m2-reassure">Cancel anytime, on your own.</p>';
       result.hidden = false;

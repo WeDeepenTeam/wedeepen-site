@@ -563,7 +563,14 @@
         <div class="mt-8 hidden md:block"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
       </div>
       <div class="mx-auto w-full max-w-[300px] rounded-2xl overflow-hidden" style="aspect-ratio: 9 / 16; border: 1px solid rgba(224,188,120,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/_7Zx-du47yM?rel=0&amp;playsinline=1" title="The vibe of the WeDeepen community" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button type="button" id="vibe-play" data-yt="_7Zx-du47yM" class="relative block w-full h-full group" aria-label="Play the video: the vibe of the WeDeepen community">
+          <img src="/images/nye/vibe-cover.jpg" alt="" class="w-full h-full object-cover" loading="lazy">
+          <span class="absolute inset-0 flex items-center justify-center">
+            <span class="w-20 h-20 rounded-full flex items-center justify-center transition group-hover:scale-110" style="background: rgba(224,188,120,0.92); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+              <svg viewBox="0 0 24 24" class="w-8 h-8 ml-1" fill="#0A0F2A" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   </section>
@@ -1146,6 +1153,21 @@
         more.classList.toggle('hidden', !open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         btn.textContent = open ? 'Show fewer' : 'Read more love notes';
+      });
+    })();
+
+    // Video: curtain cover until tapped, then the YouTube player
+    (function () {
+      const btn = document.getElementById('vibe-play');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const f = document.createElement('iframe');
+        f.className = 'w-full h-full';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+        f.title = 'The vibe of the WeDeepen community';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        f.allowFullscreen = true;
+        btn.replaceWith(f);
       });
     })();
 

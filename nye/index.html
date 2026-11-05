@@ -120,6 +120,14 @@
       backdrop-filter: blur(4px);
     }
     @media (min-width: 768px) { .nye-strip li { font-size: 0.9rem; } }
+    .nye-daytab {
+      border-radius: 14px; padding: 0.75rem 0.5rem; text-align: center; line-height: 1.2;
+      color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease;
+    }
+    .nye-daytab:hover { color: #fff; border-color: rgba(224,188,120,0.45); }
+    .nye-daytab[aria-selected="true"] { color: #fff; background: rgba(224,188,120,0.12); border-color: rgba(224,188,120,0.7); }
+    .nye-daytab[aria-selected="true"] span:first-child { color: #E0BC78; }
     .nye-roses {
       position: absolute; left: 0; bottom: 0; width: 100%;
       aspect-ratio: 2400 / 560; height: auto; min-height: 110px;
@@ -299,7 +307,7 @@
       "name": "What if I take time to open up around new people?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We understand. You won’t be asked to manufacture vulnerability beyond what you’re comfortable with. The night begins with a shared dinner, play, and conversation so trust can build naturally, and every practice is optional. Many people arrive a bit guarded. Watching others go first makes it easier to open up in their own time."
+        "text": "We understand. You won’t be asked to manufacture vulnerability beyond what you’re comfortable with. The celebration begins with a shared dinner, play, and conversation so trust can build naturally, and every practice is optional. Many people arrive a bit guarded. Watching others go first makes it easier to open up in their own time."
       }
     },
     {
@@ -355,7 +363,7 @@
       "name": "Do I need to be a WeDeepen member?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. This night is open to everyone. If you’ve been curious about WeDeepen, it’s a beautiful way to meet us."
+        "text": "No. This celebration is open to everyone. If you’ve been curious about WeDeepen, it’s a beautiful way to meet us."
       }
     }
   ]
@@ -600,10 +608,16 @@
       <div class="text-center mb-14">
         <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">Tentative Itinerary</p>
         <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Here&rsquo;s how the magic <span class="italic" style="color:#9FB4FF;">unfolds.</span></h2>
-        <p class="text-white/55 text-sm md:text-base mt-8">Structure, play, stillness, and celebration. The flow may shift as the night&nbsp;unfolds.</p>
+        <p class="text-white/55 text-sm md:text-base mt-8">Structure, play, stillness, and celebration. The flow may shift as the celebration&nbsp;unfolds.</p>
       </div>
-      <div class="grid lg:grid-cols-3 gap-5 items-stretch">
-        <div class="pillar-card rounded-2xl p-6 md:p-8 h-full">
+      <div role="tablist" aria-label="Itinerary by day" class="grid grid-cols-3 gap-2 md:gap-3 max-w-2xl mx-auto mb-6">
+        <button type="button" role="tab" id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" class="nye-daytab"><span class="block text-xs tracking-[0.2em] uppercase">Dec 30</span><span class="block font-heading text-lg md:text-xl mt-0.5">Opening Night</span></button>
+        <button type="button" role="tab" id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" class="nye-daytab"><span class="block text-xs tracking-[0.2em] uppercase">Dec 31</span><span class="block font-heading text-lg md:text-xl mt-0.5">New Year&rsquo;s Eve</span></button>
+        <button type="button" role="tab" id="day-tab-2" aria-controls="day-panel-2" aria-selected="false" class="nye-daytab"><span class="block text-xs tracking-[0.2em] uppercase">Jan 1</span><span class="block font-heading text-lg md:text-xl mt-0.5">New Year&rsquo;s Morning</span></button>
+      </div>
+      <div class="max-w-2xl mx-auto">
+      <div role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0" class="nye-daypanel">
+        <div class="pillar-card rounded-2xl p-6 md:p-10">
           <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-2">Dec 30 &middot; The Egg</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">Opening Night</h3>
           <p class="text-white/50 text-sm mb-4">6pm to 10pm</p>
@@ -614,7 +628,9 @@
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">10pm</span><div><p class="text-white font-semibold">Rest up</p><p class="text-white/60 text-sm leading-relaxed mt-1">Head home or to your room. We&rsquo;ve got a big day ahead!</p></div></li>
           </ol>
         </div>
-        <div class="pillar-card rounded-2xl p-6 md:p-8 h-full">
+      </div>
+      <div role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" class="nye-daypanel">
+        <div class="pillar-card rounded-2xl p-6 md:p-10">
           <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-2">Dec 31 &middot; Caterpillar, Chrysalis, Butterfly</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">New Year&rsquo;s Eve</h3>
           <p class="text-white/50 text-sm mb-4">10am through the night</p>
@@ -627,7 +643,9 @@
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">Late night</span><div><p class="text-white font-semibold">Dance, connect, rest</p><p class="text-white/60 text-sm leading-relaxed mt-1">Follow your own rhythm. The communal lounge is open all night.</p></div></li>
           </ol>
         </div>
-        <div class="pillar-card rounded-2xl p-6 md:p-8 h-full">
+      </div>
+      <div role="tabpanel" id="day-panel-2" aria-labelledby="day-tab-2" class="nye-daypanel">
+        <div class="pillar-card rounded-2xl p-6 md:p-10">
           <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-2">Jan 1</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">New Year&rsquo;s Morning</h3>
           <p class="text-white/50 text-sm mb-4">Out the door by 10am</p>
@@ -637,6 +655,8 @@
           <li class="flex gap-4 py-4 border-b border-white/10 last:border-0"><span class="nye-time">10am</span><div><p class="text-white font-semibold">Out the door</p><p class="text-white/60 text-sm leading-relaxed mt-1">Into the new year, high on life.</p></div></li>
           </ol>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   </section>
@@ -654,8 +674,7 @@
   <section id="hosts" class="py-20 md:py-28 px-6 bg-ink">
     <div class="max-w-site mx-auto reveal">
       <div class="text-center mb-12">
-        <p class="text-gold text-sm tracking-[0.2em] uppercase font-medium mb-4">Your Hosts</p>
-        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Your Guides for the <span class="italic" style="color:#9FB4FF;">Experience</span></h2>
+        <h2 class="font-heading text-4xl md:text-5xl font-normal gold-line-center">Your Guides for <span class="italic" style="color:#9FB4FF;">New Year&rsquo;s</span></h2>
         <p class="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-xl mx-auto mt-8">Spend two nights with people equally committed to loving and being loved&nbsp;better.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-5 items-stretch max-w-5xl mx-auto">
@@ -870,7 +889,7 @@
       <div class="text-center mb-12">
         <h2 class="font-heading text-4xl md:text-5xl font-normal mb-6 gold-line-center">Let&rsquo;s make this a New Year&rsquo;s <span class="italic" style="color:#9FB4FF;">to&nbsp;remember.</span></h2>
         <p class="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-xl mx-auto mt-8">Great people. A gorgeous mansion. Experiences that bring us closer. And a celebration we get to be fully present for.</p>
-        <p class="text-white/55 text-base mt-4">The night lasts until sunrise. What you choose at midnight lasts all year.</p>
+        <p class="text-white/55 text-base mt-4">The party lasts until sunrise. What you choose at midnight lasts all year.</p>
         <p class="text-white/55 text-base mt-2">Only 30 spots, and when they&rsquo;re gone, they&rsquo;re&nbsp;gone.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-5 mb-10">
@@ -954,7 +973,7 @@
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">What if I take time to open up around new people?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
-          <div class="faq-answer pb-6 text-white/65 leading-relaxed">We understand. You won&rsquo;t be asked to manufacture vulnerability beyond what you&rsquo;re comfortable with. The night begins with a shared dinner, play, and conversation so trust can build naturally, and every practice is optional. Many people arrive a bit guarded. Watching others go first makes it easier to open up in their own time.</div>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">We understand. You won&rsquo;t be asked to manufacture vulnerability beyond what you&rsquo;re comfortable with. The celebration begins with a shared dinner, play, and conversation so trust can build naturally, and every practice is optional. Many people arrive a bit guarded. Watching others go first makes it easier to open up in their own time.</div>
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Is it really sober?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
@@ -982,7 +1001,7 @@
         </div>
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Do I need to be a WeDeepen member?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
-          <div class="faq-answer pb-6 text-white/65 leading-relaxed">No. This night is open to everyone. If you&rsquo;ve been curious about <a href="https://wedeepen.com/" class="text-gold hover:underline">WeDeepen</a>, it&rsquo;s a beautiful way to meet us.</div>
+          <div class="faq-answer pb-6 text-white/65 leading-relaxed">No. This celebration is open to everyone. If you&rsquo;ve been curious about <a href="https://wedeepen.com/" class="text-gold hover:underline">WeDeepen</a>, it&rsquo;s a beautiful way to meet us.</div>
         </div>
       </div>
     </div>
@@ -1071,6 +1090,18 @@
       paint();
     })();
 
+
+    // Itinerary day tabs
+    (function () {
+      const tabs = [...document.querySelectorAll('.nye-daytab')];
+      const panels = [...document.querySelectorAll('.nye-daypanel')];
+      function show(i) {
+        tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+        panels.forEach((p, k) => { p.hidden = k !== i; });
+      }
+      tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+      show(0);
+    })();
 
     // Agreements gate before TicketSpice checkout
     (function () {

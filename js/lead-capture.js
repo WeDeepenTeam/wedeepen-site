@@ -94,6 +94,11 @@
   }
 
   var POPUP_DELAY_MS = 4000;
+  // NYE early bird: until the code expires, the bar promotes the party
+  // instead of the list hooks, then goes back to them on its own.
+  var NYE_EARLY_END = new Date('2026-11-19T00:00:00-06:00').getTime();
+  var NYE_PROMO = Date.now() < NYE_EARLY_END && !/^\/nye\//.test(location.pathname);
+  var LS_NYE_BAR = 'wd_nye_bar_until';
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
   // desktop bar line, `title`/`sub` head the popup. The bar is list capture
@@ -361,7 +366,12 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Announcement');
     bar.classList.add('wd-slim');
-    bar.innerHTML = (IS_MOBILE
+    bar.innerHTML = NYE_PROMO
+      ? (IS_MOBILE
+        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Sober NYE: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> til Nov 18 <a class="wd-bar-cta" href="/nye/">See it</a></span></span>'
+        : '<span class="wd-bar-msg">A sober New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="wd-bar-join" href="/nye/">See NYE</a></span>')
+        + '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
+      : (IS_MOBILE
       // Phones: one tap opens Messages with COUNT ME IN typed (same list as desktop).
       ? '<span class="wd-bar-stack"><span class="wd-bar-line1">' + HOOK.bar + ' <a class="wd-bar-cta wd-bar-sms" href="' + SMS_HREF + '">Count Me In</a></span></span>'
       : '<span class="wd-bar-msg">' + HOOK.bar + ' ' +
@@ -423,7 +433,7 @@
     });
     bar.querySelector('.wd-bar-x').addEventListener('click', function () {
       removeBar();
-      snooze(LS_BAR, BAR_DISMISS_DAYS);
+      snooze(NYE_PROMO ? LS_NYE_BAR : LS_BAR, BAR_DISMISS_DAYS);
     });
   }
 
@@ -540,8 +550,10 @@
       '<a class="wd-sheet-save" href="' + VCARD_URL + '" download>Save WeDeepen to your contacts</a>';
     document.body.appendChild(sheet);
     // One prompt at a time: the sheet replaces the top bar for this visit.
-    removeBar();
-    try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
+    if (!NYE_PROMO) { // the NYE early-bird bar stays up alongside it
+      removeBar();
+      try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
+    }
     requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add('wd-open'); }); });
     function close(days) {
       sheet.classList.remove('wd-open');
@@ -732,8 +744,10 @@
       '</div>';
     document.body.appendChild(g);
     try { localStorage.setItem('wd_lead_seen', '1'); } catch (e) {}
-    removeBar();
-    try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
+    if (!NYE_PROMO) { // the NYE early-bird bar stays up alongside it
+      removeBar();
+      try { sessionStorage.setItem(SS_BAR_OFF, '1'); } catch (e) {}
+    }
     requestAnimationFrame(function () { requestAnimationFrame(function () { g.classList.add('wd-open'); }); });
 
     function close(dismissed) {
@@ -1062,7 +1076,8 @@
 
     var barOff = false;
     try { barOff = IS_MOBILE && sessionStorage.getItem(SS_BAR_OFF) === '1'; } catch (e) {}
-    if (!snoozed(LS_BAR) && !barOff && !FROM_EMAIL && !ON_MEMBERSHIP) buildBar();
+    if (NYE_PROMO ? !snoozed(LS_NYE_BAR) && !ON_MEMBERSHIP
+                  : !snoozed(LS_BAR) && !barOff && !FROM_EMAIL && !ON_MEMBERSHIP) buildBar();
 
     // Any element with data-lead-popup opens the popup on click.
     document.addEventListener('click', function (e) {

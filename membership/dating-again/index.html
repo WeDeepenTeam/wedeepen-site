@@ -179,6 +179,12 @@
       pointer-events: none;
       z-index: 1;
     }
+    /* Vertical Short on phones: 9:16 frame, less oversize than the wide video. */
+    .hero-video-wrap.is-vertical iframe {
+      aspect-ratio: 9 / 16;
+      min-width: 118%;
+      min-height: 118%;
+    }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
@@ -414,7 +420,7 @@
     <!-- Hero background — YouTube video lazy-injects after first paint.
          Falls back to the gradient defined on .hero-video-wrap if the video
          is blocked (saveData / 2g connections). -->
-    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-loaded="false"></div>
+    <div class="hero-video-wrap" id="hero-video-wrap" data-yt-id="0vme8zZeEu4" data-yt-id-mobile="_7Zx-du47yM" data-yt-loaded="false"></div>
     <!-- Dark overlay -->
     <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.62) 40%, rgba(26,26,26,0.82) 85%, rgba(26,26,26,0.95) 100%);"></div>
 
@@ -1716,7 +1722,10 @@
       const inject = () => {
         if (wrap.dataset.ytLoaded === 'true') return;
         wrap.dataset.ytLoaded = 'true';
-        const id = wrap.dataset.ytId;
+        // Phones get a vertical Short (fills a tall screen); desktop keeps the wide video (Christina, Nov 5, 2026).
+        const vertical = !!wrap.dataset.ytIdMobile && window.matchMedia('(max-width: 1023px)').matches;
+        const id = vertical ? wrap.dataset.ytIdMobile : wrap.dataset.ytId;
+        if (vertical) wrap.classList.add('is-vertical');
         const iframe = document.createElement('iframe');
         iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&enablejsapi=1&cc_load_policy=3&iv_load_policy=3`;
         iframe.title = 'WeDeepen background';

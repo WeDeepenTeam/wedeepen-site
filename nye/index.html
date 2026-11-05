@@ -857,6 +857,44 @@
         <p class="text-white/60 text-sm mt-2">For both nights, per room. Choose yours on the ticket page, right after your&nbsp;ticket.</p>
         <div class="mt-6"><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
       </div>
+
+      <div class="mt-14 max-w-xl mx-auto">
+        <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold mb-2">Find your room</p>
+        <p class="text-white/65 text-base mb-6">The room numbers match the bedrooms on the ticket&nbsp;page. Prices are for both nights.</p>
+        <div role="tablist" aria-label="Bedrooms by floor" class="grid grid-cols-3 gap-2 md:gap-3 mb-5">
+          <button type="button" role="tab" id="floor-tab-0" aria-controls="floor-panel-0" aria-selected="true" class="nye-floortab nye-daytab"><span class="block font-heading text-base md:text-lg">Main floor</span><span class="block text-xs text-white/50 mt-0.5">2 rooms</span></button>
+          <button type="button" role="tab" id="floor-tab-1" aria-controls="floor-panel-1" aria-selected="false" class="nye-floortab nye-daytab"><span class="block font-heading text-base md:text-lg">2nd floor</span><span class="block text-xs text-white/50 mt-0.5">4 rooms</span></button>
+          <button type="button" role="tab" id="floor-tab-2" aria-controls="floor-panel-2" aria-selected="false" class="nye-floortab nye-daytab"><span class="block font-heading text-base md:text-lg">3rd floor</span><span class="block text-xs text-white/50 mt-0.5">3 rooms</span></button>
+        </div>
+        <div class="pillar-card rounded-2xl p-4 md:p-6">
+          <div role="tabpanel" id="floor-panel-0" aria-labelledby="floor-tab-0" class="nye-floorpanel">
+            <img src="/images/nye/plan-main.webp" width="1100" height="1086" alt="Floor plan of the main floor with the bedrooms numbered" loading="lazy" class="w-full h-auto rounded-xl bg-[#ECECEC]">
+            <ul class="mt-5 text-left">
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 1</span>Green Light</span><span class="text-white/80 text-sm whitespace-nowrap">$1,095</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 2</span>West Egg</span><span class="text-white/80 text-sm whitespace-nowrap">$1,095</span></li>
+            </ul>
+          </div>
+          <div role="tabpanel" id="floor-panel-1" aria-labelledby="floor-tab-1" class="nye-floorpanel">
+            <img src="/images/nye/plan-l2.webp" width="1100" height="886" alt="Floor plan of the 2nd floor with the bedrooms numbered" loading="lazy" class="w-full h-auto rounded-xl bg-[#ECECEC]">
+            <ul class="mt-5 text-left">
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 3</span>Deco</span><span class="text-white/80 text-sm whitespace-nowrap">$695</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 4</span>East Egg</span><span class="text-white/80 text-sm whitespace-nowrap">$795</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 5</span>Jazz</span><span class="text-white/80 text-sm whitespace-nowrap">$795</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 7</span>Gatsby Suite</span><span class="text-white/80 text-sm whitespace-nowrap">$1,895</span></li>
+            </ul>
+            <p class="text-white/45 text-xs mt-3 text-left">Room 6 isn&rsquo;t available for this&nbsp;event.</p>
+          </div>
+          <div role="tabpanel" id="floor-panel-2" aria-labelledby="floor-tab-2" class="nye-floorpanel">
+            <img src="/images/nye/plan-l3.webp" width="1100" height="936" alt="Floor plan of the 3rd floor with the bedrooms numbered" loading="lazy" class="w-full h-auto rounded-xl bg-[#ECECEC]">
+            <ul class="mt-5 text-left">
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 8</span>Pearl</span><span class="text-white/80 text-sm whitespace-nowrap">$1,095</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 9</span>Gold</span><span class="text-white/80 text-sm whitespace-nowrap">$1,095</span></li>
+              <li class="flex items-baseline justify-between gap-4 py-2.5 border-b border-white/10 last:border-0"><span class="text-white"><span class="text-gold text-xs font-semibold tracking-wider uppercase mr-2">Room 10</span>Midnight</span><span class="text-white/80 text-sm whitespace-nowrap">$1,495</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-white/45 text-xs italic mt-4">The basement holds the game room and theater, no&nbsp;bedrooms.</p>
+      </div>
       <p class="text-white/45 text-xs italic mt-6">Bedroom photos courtesy of the Gatsby Mansion. Rooms shown are a sample.</p>
     </div>
   </section>
@@ -1142,9 +1180,21 @@
     });
 
 
+    // Bedroom floor-plan tabs
+    (function () {
+      const tabs = [...document.querySelectorAll('.nye-floortab')];
+      const panels = [...document.querySelectorAll('.nye-floorpanel')];
+      function show(i) {
+        tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+        panels.forEach((p, k) => { p.hidden = k !== i; });
+      }
+      tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+      show(0);
+    })();
+
     // Itinerary day tabs
     (function () {
-      const tabs = [...document.querySelectorAll('.nye-daytab')];
+      const tabs = [...document.querySelectorAll('.nye-daytab:not(.nye-floortab)')];
       const panels = [...document.querySelectorAll('.nye-daypanel')];
       function show(i) {
         tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i ? 'true' : 'false'));

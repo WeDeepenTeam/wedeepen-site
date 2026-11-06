@@ -447,6 +447,7 @@
   <main id="main">
   <!-- HERO -->
   <section class="cloud-hero relative md:min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <canvas id="nye-fireworks" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;" aria-hidden="true"></canvas>
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-28 md:pt-32 pb-28 md:pb-52">
       <p class="text-gold text-xs md:text-sm tracking-[0.22em] uppercase font-medium mb-6" style="text-shadow: 0 2px 12px rgba(0,0,0,0.6);">Dec 30 to Jan 1 &middot; The Gatsby Mansion &middot; Austin, TX</p>
       <h1 class="font-vilonti uppercase text-cream mb-6" style="text-shadow: 0 6px 30px rgba(0,0,0,0.5);">
@@ -1211,6 +1212,56 @@
       }
       tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
       show(0);
+    })();
+
+    // Hero fireworks: small canvas bursts, paused off-screen, off for reduced motion
+    (function () {
+      const c = document.getElementById('nye-fireworks');
+      if (!c || !c.getContext || (matchMedia('(prefers-reduced-motion: reduce)').matches && !/[?&]fw=1/.test(location.search))) return;
+      const ctx = c.getContext('2d');
+      const COLORS = ['#E0BC78', '#F3D9A4', '#FFFFFF', '#F28AB2', '#9FB4FF'];
+      let w = 0, h = 0, dpr = 1, parts = [], running = false, raf = 0, next = 0, last = 0;
+      function size() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = c.clientWidth; h = c.clientHeight;
+        c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function burst() {
+        const small = w < 768;
+        const x = w * (0.1 + Math.random() * 0.8);
+        const y = h * (0.08 + Math.random() * 0.35);
+        const color = COLORS[(Math.random() * COLORS.length) | 0];
+        const n = small ? 46 : 70, speed = (small ? 1.6 : 2.2) + Math.random();
+        for (let i = 0; i < n; i++) {
+          const a = (i / n) * Math.PI * 2 + Math.random() * 0.2;
+          const v = speed * (0.6 + Math.random() * 0.5);
+          parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: 0.012 + Math.random() * 0.01, color });
+        }
+      }
+      function frame(t) {
+        if (!running) return;
+        const dt = Math.min((t - (last || t)) / 16.7, 3); last = t;
+        if (t > next) { burst(); next = t + 900 + Math.random() * 1300; }
+        ctx.clearRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'lighter';
+        parts = parts.filter(p => p.life > 0);
+        for (const p of parts) {
+          p.vx *= 0.985; p.vy = p.vy * 0.985 + 0.035 * dt;
+          p.x += p.vx * dt; p.y += p.vy * dt; p.life -= p.decay * dt;
+          ctx.globalAlpha = Math.max(p.life, 0) * 0.9;
+          ctx.strokeStyle = p.color; ctx.lineWidth = 1.8; ctx.lineCap = 'round';
+          ctx.beginPath(); ctx.moveTo(p.x - p.vx * 4, p.y - p.vy * 4); ctx.lineTo(p.x, p.y); ctx.stroke();
+        }
+        ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+        raf = requestAnimationFrame(frame);
+      }
+      function start() { if (running || document.hidden) return; running = true; last = 0; raf = requestAnimationFrame(frame); }
+      function stop() { running = false; cancelAnimationFrame(raf); }
+      size(); window.addEventListener('resize', size);
+      let visible = true;
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(c);
+      document.addEventListener('visibilitychange', () => { document.hidden ? stop() : (visible && start()); });
     })();
 
     // Itinerary day tabs

@@ -456,14 +456,13 @@
       <p class="font-heading italic text-white text-2xl md:text-4xl leading-snug mb-5" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Get high on life. Take flight&nbsp;into&nbsp;2027.</p>
       <p class="text-white/85 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-2" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Ring in 2027 clear-headed, fully awake, and activated into the life you truly&nbsp;want.</p>
       <p class="text-white/75 text-sm md:text-base tracking-wide leading-relaxed max-w-xl mx-auto mt-3 mb-8" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">Substance-free. Wildly&nbsp;alive.</p>
-      <ul class="nye-strip flex flex-wrap justify-center gap-2 md:gap-3 max-w-3xl mx-auto mb-9">
-        <li>Dec 30 to Jan 1 at a private mansion</li>
-        <li>3 expert guides</li>
-        <li>4 shared meals</li>
-      </ul>
-      <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
+      <div class="eb-only inline-block rounded-2xl px-5 py-3 mb-6" style="background: rgba(10,15,42,0.55); border: 1px solid rgba(224,188,120,0.7); backdrop-filter: blur(4px);">
+        <p class="text-gold text-xs tracking-[0.2em] uppercase font-semibold">Early bird &middot; Ends Nov&nbsp;18</p>
+        <p class="text-white text-base md:text-lg font-semibold mt-1">$200 off with code <span style="color:#E0BC78;">EARLYBIRD</span></p>
+        <p class="text-white/65 text-xs mt-1"><span class="eb-countdown"></span></p>
+      </div>
+      <div><button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button></div>
       <p class="text-white/80 text-sm mt-5">From $1,995 &middot; 30 people&nbsp;max</p>
-      <p class="eb-only text-sm mt-2" style="color:#E0BC78;">Early bird: $200 off with code <strong>EARLYBIRD</strong> until Nov&nbsp;18 &middot; <span class="eb-countdown"></span></p>
       <p class="mt-3"><a href="/reviews/" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-sm transition-colors"><span style="color:#E0BC78;letter-spacing:0.1em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0 on Google &middot; 26 reviews</span></a></p>
     </div>
     <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true"></picture>
@@ -798,9 +797,7 @@
           <img src="/images/nye/gatsby-game-room.webp" width="1440" height="960" alt="The game room" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-aerial.webp" width="1440" height="1080" alt="Aerial view of the estate" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-entrance-night.webp" width="1440" height="962" alt="The front entrance at night" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
-          <img src="/images/nye/gatsby-entrance.webp" width="1440" height="958" alt="The front doors between the columns" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-lobby-bar.webp" width="1440" height="958" alt="The lobby with its champagne cart and grand piano" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
-          <img src="/images/nye/gatsby-lobby-statues.webp" width="1440" height="958" alt="The lobby lounge under the art-deco balcony" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-living-spiral.webp" width="1440" height="958" alt="The living room with its spiral staircase" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-dining.webp" width="1440" height="958" alt="The formal dining room" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
           <img src="/images/nye/gatsby-foyer-balcony.webp" width="1440" height="958" alt="The foyer seen from the upstairs balcony" loading="lazy" draggable="false" class="w-full h-full object-cover flex-shrink-0 select-none">
@@ -1307,9 +1304,10 @@
   <!-- Mobile sticky ticket bar (its id tells mobile-site.js to skip the $99 join bar) -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <button type="button" id="mobile-join-bar"
-     class="ag-trigger lg:hidden fixed bottom-0 left-0 right-0 z-40 w-full flex items-center justify-center gap-2 font-semibold py-4 px-6"
+     class="ag-trigger lg:hidden fixed bottom-0 left-0 right-0 z-40 w-full flex flex-col items-center justify-center font-semibold py-3 px-6"
      style="background:#E0BC78; color:#0A0F2A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
-    Sign Me Up &rarr;
+    <span>Sign Me Up &rarr;</span>
+    <span class="eb-only text-xs font-medium mt-0.5">$200 off with code EARLYBIRD until Nov&nbsp;18</span>
   </button>
   <script src="/js/mobile-site.js?v=4" defer></script>
 </body>

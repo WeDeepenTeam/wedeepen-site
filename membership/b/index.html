@@ -9,6 +9,7 @@
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
   <link rel="stylesheet" href="/css/mobile-v2.css?v=10" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/member-videos.css?v=1">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
@@ -925,88 +926,79 @@
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <!-- Member video testimonials (René, Nov 2026). js/member-videos.js reshuffles these six on every load:
+           card 1 is Hannah, Shailzah or Beth, then male, female, couple, female, male. Edits: WD Content project,
+           claude/website-video-testimonials.md. Written quotes that used to be here are on /reviews/. -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto" data-mv-grid>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Bo L.</p>
-              <p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Member</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="hannah-space-for-you">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/hannah-space-for-you.mp4" aria-label="Play Hannah’s story (0:31)"><img src="/images/testimonials/hannah-space-for-you.webp" alt="Hannah, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:31</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">H</div>
+              <div><p class="text-charcoal font-semibold text-sm">Hannah</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Being with the people I'd been learning with on Zoom was incredible. The Love Club gives me foundation. The immersions bring it all to life.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">P</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Phil G.</p>
-              <p class="text-charcoal/70 text-xs">CPA from Miami, Member &amp; Love Immersion Participant</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="bo-friends-open-heart">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/bo-friends-open-heart.mp4" aria-label="Play Bo’s story (0:35)"><img src="/images/testimonials/bo-friends-open-heart.webp" alt="Bo L., speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">The people were so amazing and so warm. We’ve become amazing friends, we feel each other’s hearts, and the love is real.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
+              <div><p class="text-charcoal font-semibold text-sm">Bo L.</p><p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Member</p></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with. That level of expertise isn't easy to find.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">K</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Krista &amp; Thomas</p>
-              <p class="text-charcoal/70 text-xs">Couple of 15 Years &amp; Love Immersion Participants</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="cara-11-months">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/cara-11-months.mp4" aria-label="Play Cara’s story (0:28)"><img src="/images/testimonials/cara-11-months.webp" alt="Cara, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:28</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">Eleven months in, I feel like I’m a new person. I’ve created this community that is truly safe and secure and full of love.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">C</div>
+              <div><p class="text-charcoal font-semibold text-sm">Cara</p><p class="text-charcoal/70 text-xs">Member, 11 months</p></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            The hot seats were 10/10, and not just mine. I learned just as much watching other people. I'd never experienced anything like that. The whole container felt magical.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">J</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Joshua W.</p>
-              <p class="text-charcoal/70 text-xs">Austin Entrepreneur &amp; Love Immersion Participant</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="matt-same-team">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/matt-same-team.mp4" aria-label="Play their story (0:40)"><img src="/images/testimonials/matt-same-team.webp" alt="Matt &amp; Jen, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:40</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">When I shift that perspective and see my partner as the loving person, it makes all the difference in the world.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">M</div>
+              <div><p class="text-charcoal font-semibold text-sm">Matt &amp; Jen</p><p class="text-charcoal/70 text-xs">Austin couple</p></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Being in a room with people who want to grow was priceless. The connections didn't stop after the weekend. We remain in touch and genuinely support each other's growth.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">K</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Karolina &amp; John</p>
-              <p class="text-charcoal/70 text-xs">Austin Couple &amp; Love Immersion Participants</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="shailzah-friends">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/shailzah-friends.mp4" aria-label="Play Shailzah’s story (0:35)"><img src="/images/testimonials/shailzah-friends.webp" alt="Shailzah, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">It’s probably my favorite friends group. Before joining this community I had fewer friends. Now I have this whole group of friends, and I thrive in it.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">S</div>
+              <div><p class="text-charcoal font-semibold text-sm">Shailzah</p><p class="text-charcoal/70 text-xs">Member, Austin</p></div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-sm">
-          <div class="flex text-gold text-sm mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="text-charcoal/80 text-sm leading-relaxed mb-4">
-            Seeing everyone as 'the one' changed my life. Christina said it once during the immersion, and it opened my heart in a way I'll never forget.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark font-semibold text-sm">M</div>
-            <div>
-              <p class="text-charcoal font-semibold text-sm">Mo M.</p>
-              <p class="text-charcoal/70 text-xs">WeDeepen Summit at OMEGA Participant</p>
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="justin-strangers">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/justin-strangers.mp4" aria-label="Play Justin’s story (0:44)"><img src="/images/testimonials/justin-strangers.webp" alt="Justin, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:44</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">I’d describe the vibe of this community as vulnerable strangers. There’s so much natural grace and compassion, it’s impossible for it not to rub off on you.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">J</div>
+              <div><p class="text-charcoal font-semibold text-sm">Justin</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
             </div>
           </div>
         </div>
@@ -1788,6 +1780,7 @@
   <script src="/js/mobile-site.js?v=4" defer></script>
   <script src="/js/social-proof.js?v=4" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
+  <script src="/js/member-videos.js?v=1" defer></script>
   <script src="/js/mobile-v2.js?v=14" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>

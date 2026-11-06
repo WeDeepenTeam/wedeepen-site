@@ -132,6 +132,8 @@
   function init() {
     var grid = document.querySelector('[data-mv-grid]');
     if (!grid) return;
+    var skip = (grid.getAttribute('data-mv-exclude') || '').split(/\s+/);   // set by membership segment pages
+    CLIPS = CLIPS.filter(function (c) { return skip.indexOf(c.id) < 0; });
     cur = lineup();
     var frag = document.createDocumentFragment();
     cur.forEach(function (c, i) { frag.appendChild(card(c, i)); });

@@ -25,7 +25,17 @@ function replaceOnce(html, pattern, replacement, label) {
 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-// One text testimonial card in the "What Members Say" grid, found by name.
+// "What Members Say" is a rotating video grid (js/member-videos.js). A segment page can drop clips from the pool:
+// the static fallback card goes, and the grid's data-mv-exclude tells the script to skip that clip.
+function excludeClips(html, ids) {
+  for (const id of ids) {
+    html = replaceOnce(html, new RegExp(`\\n[ \\t]*<div class="mv-card[^"]*" data-mv="${esc(id)}">[\\s\\S]*?\\n        </div>\\n`), '\n',
+      `video card ${id}`);
+  }
+  return replaceOnce(html, /<div ([^>]*)data-mv-grid>/, `<div $1data-mv-grid data-mv-exclude="${ids.join(' ')}">`, 'video grid');
+}
+
+// One text testimonial card in the "What Members Say" grid, found by name (pre-video layout).
 function removeCard(html, name) {
   const re = new RegExp(
     `\\n[ \\t]*<div class="bg-white rounded-xl p-6 shadow-sm">(?:(?!<div class="bg-white rounded-xl)[\\s\\S])*?${esc(name)}[\\s\\S]*?\\n        </div>\\n`);
@@ -130,6 +140,8 @@ export const SEGMENTS = [
       { file: 'experts', name: 'Who teaches it' },
     ],
     removeCards: ['Krista &amp; Thomas', 'Karolina &amp; John'],
+    // Video grid: single people only.
+    excludeClips: ['matt-same-team'],
   },
   {
     slug: 'together',
@@ -165,6 +177,8 @@ export const SEGMENTS = [
       { file: 'experts', name: 'Who teaches it' },
     ],
     removeCards: ['Bo L.', 'Phil G.', 'Joshua W.', 'Mo M.'],
+    // Video grid: the couple plus the women's stories (no single men).
+    excludeClips: ['bo-friends-open-heart', 'justin-strangers'],
     priceQuote: {
       text: 'The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with. That level of expertise isn&#39;t easy to find.',
       who: 'Krista &amp; Thomas, together 15 years',
@@ -236,8 +250,9 @@ export function buildSegment(membership, seg) {
     'The growing Love Mastermind recording library, from day one', 'final card recordings');
 
   // ---- Text testimonials for this audience ----
-  for (const name of seg.removeCards) html = removeCard(html, name);
-  if (seg.testimonialsHeading) {
+  if (/data-mv-grid/.test(html)) html = excludeClips(html, seg.excludeClips || []);
+  else for (const name of seg.removeCards) html = removeCard(html, name);
+  if (seg.testimonialsHeading && !/data-mv-grid/.test(html)) {
     html = replaceOnce(html, />What Members Say<\/h2>/, `>${seg.testimonialsHeading}</h2>`, 'testimonials heading');
   }
   if (seg.priceQuote) {

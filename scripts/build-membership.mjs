@@ -91,6 +91,10 @@ export function buildMembershipB(membership) {
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership B'", 'ViewContent name (B)');
   html = replaceOnce(html, /(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"', 'checkout links (B)');
   html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (B: see buildMembershipB). -->', 'generated note (B)');
+  // Hero headline test (René, Nov 6, 2026): five heroes, one per visitor; see js/hero-test.js.
+  // Must load before mobile-v2.js so the phone layout sees the chosen hero.
+  html = replaceOnce(html, /([ \t]*)<script src="\/js\/mobile-v2\.js/,
+    (m, indent) => `${indent}<script src="/js/hero-test.js?v=1" defer></script>\n${m}`, 'mobile-v2 script (B)');
   return html;
 }
 

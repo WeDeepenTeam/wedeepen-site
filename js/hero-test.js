@@ -3,15 +3,16 @@
  * Loaded by scripts/build-membership.mjs (buildMembershipB), before mobile-v2.js.
  *
  * Each visitor gets one of five heroes, kept for return visits:
- *   base      the current hero, untouched (phones: Christina's Nov 5 hero)
+ *   base      the current headline and copy (phones: Christina's Nov 5 hero)
  *   career    "You studied your career for years. When did you study love?" (Christina's pick)
  *   quiet     "Desire doesn't die. It goes quiet."
  *   distance  "Love wants closeness. Desire needs a little distance."
  *   taught    "You are not behind. You are not broken. You were just never taught."
- * The four new heroes share one short subhead, a trial-first button, the cancel
- * line, a row of testimonial faces with the Google rating (taps jump to the
- * member videos), and the "chemistry vs alignment" contrasts right under the hero.
- * The two original intro paragraphs move to the top of "At a glance" (not deleted).
+ * All five share a trial-first button, the cancel line, a row of testimonial
+ * faces with the Google rating (taps jump to the member videos) and the
+ * "chemistry vs alignment" contrasts right under the hero (base included since
+ * Nov 6, René). The four new heroes also get one short subhead, and their two
+ * original intro paragraphs move to the top of "At a glance" (not deleted).
  *
  * ?hv=<key> forces a hero (to match an ad). Measurement: Clarity tag
  * hero_variant, GA4 event hero_variant (param hero_variant), and
@@ -28,8 +29,9 @@
   };
   var SUB = 'Live expert-led sessions and a private community for people who want to get even better at love. Come solo, dating, or partnered.';
   var FACES = [
-    ['hannah-space-for-you', 'Hannah'], ['justin-strangers', 'Justin'], ['cara-11-months', 'Cara'],
-    ['matt-same-team', 'Matt and Jen'], ['shailzah-friends', 'Shailzah']
+    // Female, male, female, male, female (René, Nov 6).
+    ['shailzah-friends', 'Shailzah'], ['justin-strangers', 'Justin'], ['hannah-space-for-you', 'Hannah'],
+    ['bo-friends-open-heart', 'Bo'], ['beth-belonging', 'Beth']
   ];
 
   function pick() {
@@ -61,7 +63,10 @@
     } catch (err) {}
   }, true);
 
-  if (key === 'base') return;
+  // Since Nov 6 (René): the baseline keeps its own headline and copy but gets the
+  // same button, cancel line, testimonial faces and contrasts as the other four,
+  // so the test compares headlines only.
+  var BASE = key === 'base';
 
   var hero = document.getElementById('hero');
   var h1 = hero && hero.querySelector('h1');
@@ -84,23 +89,25 @@
     'html.m2 #hero .ht-proof{margin-bottom:26px}html.m2 #hero h1{font-size:2.15rem;line-height:1.14}';
   document.head.appendChild(css);
 
-  h1.innerHTML = '<span class="text-white">' + HEADLINES[key] + '</span>';
+  if (!BASE) {
+    h1.innerHTML = '<span class="text-white">' + HEADLINES[key] + '</span>';
 
-  // Move the two intro paragraphs (not deleted) to the top of "At a glance".
-  var intro = Array.prototype.slice.call(hero.querySelectorAll('h1 ~ p'));
-  var glance = document.querySelector('[data-m2="glance"]');
-  var glanceInner = glance && glance.firstElementChild;
-  if (glanceInner && intro.length) {
-    var box = document.createElement('div');
-    box.className = 'm2-intro mb-10 text-center';
-    intro.forEach(function (p) { box.appendChild(p); });
-    glanceInner.insertAdjacentElement('afterbegin', box);
+    // Move the two intro paragraphs (not deleted) to the top of "At a glance".
+    var intro = Array.prototype.slice.call(hero.querySelectorAll('h1 ~ p'));
+    var glance = document.querySelector('[data-m2="glance"]');
+    var glanceInner = glance && glance.firstElementChild;
+    if (glanceInner && intro.length) {
+      var box = document.createElement('div');
+      box.className = 'm2-intro mb-10 text-center';
+      intro.forEach(function (p) { box.appendChild(p); });
+      glanceInner.insertAdjacentElement('afterbegin', box);
+    }
+
+    var sub = document.createElement('p');
+    sub.className = 'ht-sub';
+    sub.textContent = SUB;
+    h1.insertAdjacentElement('afterend', sub);
   }
-
-  var sub = document.createElement('p');
-  sub.className = 'ht-sub';
-  sub.textContent = SUB;
-  h1.insertAdjacentElement('afterend', sub);
 
   // Trial first; the price is the small line.
   cta.innerHTML = '<span class="whitespace-nowrap">Start my 14 free days &rarr;</span>' +
@@ -137,6 +144,21 @@
     members.scrollIntoView({ behavior: 'smooth', block: 'start' });
     try { if (window.gtag) window.gtag('event', 'hero_proof_click', { hero_variant: key }); } catch (err) {}
   });
+
+  // Baseline on phones: mobile-v2.js (runs next) adds Christina's reassurance
+  // line and the "What brings you" quiz right after the button. Once it has run,
+  // keep the cancel line + faces directly under the button, the quiz after them,
+  // and hide its reassurance line (the cancel line says the same thing).
+  if (BASE) {
+    var tidy = function () {
+      var reassure = hero.querySelector(':scope .m2-reassure');
+      if (reassure && reassure.parentElement === row.parentElement) reassure.style.display = 'none';
+      row.insertAdjacentElement('afterend', cancel);
+      cancel.insertAdjacentElement('afterend', proof);
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tidy);
+    else setTimeout(tidy, 0);
+  }
 
   // "Chemistry vs alignment" contrasts right under the hero (moved, not copied).
   var ledger = document.querySelector('[data-m2="skill"] .home-ledger');

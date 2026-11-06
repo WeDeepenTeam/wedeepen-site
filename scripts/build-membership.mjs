@@ -94,7 +94,7 @@ export function buildMembershipB(membership) {
   // Hero headline test (René, Nov 6, 2026): five heroes, one per visitor; see js/hero-test.js.
   // Must load before mobile-v2.js so the phone layout sees the chosen hero.
   html = replaceOnce(html, /([ \t]*)<script src="\/js\/mobile-v2\.js/,
-    (m, indent) => `${indent}<script src="/js/hero-test.js?v=1" defer></script>\n${m}`, 'mobile-v2 script (B)');
+    (m, indent) => `${indent}<script src="/js/hero-test.js?v=2" defer></script>\n${m}`, 'mobile-v2 script (B)');
   return html;
 }
 

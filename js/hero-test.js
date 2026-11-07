@@ -30,7 +30,7 @@
   var SUB = 'Live expert-led sessions and a private community for people who want to get even better at love. Come solo, dating, or partnered.';
   var FACES = [
     // Female, male, female, male, female (René, Nov 6).
-    ['shailzah-friends', 'Shailzah'], ['justin-strangers', 'Justin'], ['hannah-space-for-you', 'Hannah'],
+    ['shailzah-friends', 'Shailza'], ['justin-strangers', 'Justin'], ['hannah-space-for-you', 'Hannah'],
     ['bo-friends-open-heart', 'Bo'], ['beth-belonging', 'Beth']
   ];
 

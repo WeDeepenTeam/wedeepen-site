@@ -279,5 +279,5 @@ export function pageScripts() {
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
-  <script src="/js/lead-capture.js?v=57" defer></script>`;
+  <script src="/js/lead-capture.js?v=59" defer></script>`;
 }

@@ -3,7 +3,7 @@
  * René, Nov 2026.
  *
  * - Every page load builds a new lineup of six cards from CLIPS below.
- *   Card 1 is always Hannah, Shailzah or Beth (picked evenly by person), then the order alternates
+ *   Card 1 is always Hannah, Shailza or Beth (picked evenly by person), then the order alternates
  *   male, female, couple, female, male: F, M, F, couple, F, M. No person appears twice.
  * - The six cards in index.html are the no-JS / SEO fallback; this script replaces them in place.
  * - Tapping a card opens a full-screen player with sound. Close with the X, the backdrop, Esc or the phone's back
@@ -18,7 +18,7 @@
   var CLIPS = [
     { id: 'hannah-space-for-you', person: 'Hannah', g: 'F', lead: true, len: '0:31', role: 'WeDeepen community',
       quote: 'If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.' },
-    { id: 'shailzah-friends', person: 'Shailzah', g: 'F', lead: true, len: '0:35', role: 'Member, Austin',
+    { id: 'shailzah-friends', person: 'Shailza', g: 'F', lead: true, len: '0:35', role: 'Member, Austin',
       quote: 'It’s probably my favorite friends group. Before joining this community I had fewer friends. Now I have this whole group of friends, and I thrive in it.' },
     { id: 'beth-belonging', person: 'Beth', g: 'F', lead: true, len: '0:39', role: 'Austin',
       quote: 'This community welcomes you in and wants to know the real you. More possibility has opened up in my life because of the support and love I feel here.' },

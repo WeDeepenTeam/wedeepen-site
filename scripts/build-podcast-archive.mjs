@@ -209,7 +209,7 @@ ${footer}
     mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
   </script>
-  <script src="/js/lead-capture.js?v=57" defer></script>
+  <script src="/js/lead-capture.js?v=59" defer></script>
   <script src="/js/mobile-site.js?v=4" defer></script>
 </body>
 </html>

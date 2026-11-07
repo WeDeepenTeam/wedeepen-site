@@ -100,7 +100,12 @@
   // NYE early bird: until the code expires, the bar promotes the party
   // instead of the list hooks, then goes back to them on its own.
   var NYE_EARLY_END = new Date('2026-11-19T00:00:00-06:00').getTime();
-  var NYE_PROMO = Date.now() < NYE_EARLY_END && !/^\/nye\//.test(location.pathname);
+  var ON_NYE = /^\/nye\//.test(location.pathname);
+  // On /nye itself the bar shows too (even with data-quiet) and points at the tickets.
+  var NYE_PROMO = Date.now() < NYE_EARLY_END;
+  var NYE_HREF = ON_NYE ? '#tickets' : '/nye/';
+  // .ag-trigger: on /nye the page opens the same agreements step -> checkout as its Sign Me Up buttons.
+  var NYE_LINK_CLS = ON_NYE ? 'wd-bar-link ag-trigger' : 'wd-bar-link';
   var LS_NYE_BAR = 'wd_nye_bar_until';
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
@@ -268,6 +273,8 @@
     + '#wd-lead-bar strong{font-weight:700;letter-spacing:.02em;}'
     + '#wd-lead-bar .wd-bar-join{background:linear-gradient(90deg,#A8855C,#C9A277,#D4B78C);color:#1A1A1A;border:0;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}'
     + '#wd-lead-bar .wd-bar-join:hover{filter:brightness(1.08);}'
+    + '#wd-lead-bar a.wd-bar-link{color:#E0BC78;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;white-space:nowrap;margin-left:2px;}'
+    + '#wd-lead-bar a.wd-bar-link:hover{color:#F4D9A4;}'
     + '#wd-lead-bar .wd-bar-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#F4EDE0;opacity:.5;font-size:18px;line-height:1;cursor:pointer;padding:6px;}'
     + '#wd-lead-bar .wd-bar-x:hover{opacity:1;}'
     + '#wd-lead-bar .wd-bar-msg{font-weight:500;letter-spacing:.01em;color:rgba(244,237,224,.92);}'
@@ -371,8 +378,8 @@
     bar.classList.add('wd-slim');
     bar.innerHTML = NYE_PROMO
       ? (IS_MOBILE
-        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>$200 off</strong> with <strong>EARLYBIRD</strong> til Nov 18 <a class="wd-bar-cta" href="/nye/">See it</a></span></span>'
-        : '<span class="wd-bar-msg">Get high on life this New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="wd-bar-join" href="/nye/">See NYE</a></span>')
+        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>$200 off</strong> with <strong>EARLYBIRD</strong> til Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get tickets' : 'See the party') + '</a></span></span>'
+        : '<span class="wd-bar-msg">Get high on life this New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get your tickets' : 'See the party') + ' &rarr;</a></span>')
         + '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
       : (IS_MOBILE
       // Phones: one tap opens Messages with COUNT ME IN typed (same list as desktop).
@@ -1071,7 +1078,10 @@
     wireGuidePageForm();
     wireWaitlistForm();
 
-    if (QUIET) return;
+    if (QUIET) {
+      if (ON_NYE && NYE_PROMO && !snoozed(LS_NYE_BAR)) buildBar();
+      return;
+    }
 
     if (MEMBER_LINK) {
       document.querySelectorAll('[data-lead-popup],[data-guide-popup]').forEach(function (el) { el.style.display = 'none'; });

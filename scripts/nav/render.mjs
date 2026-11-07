@@ -40,7 +40,7 @@ function isActive(link, pagePath) {
 // A link with `children` is a menu. Desktop: the label still links to its own
 // href, and the panel opens on hover or keyboard focus (focus also covers a
 // tap on tablets). Mobile: the label becomes a small heading over the items.
-const BADGE = 'ml-2 inline-block align-middle rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold text-ink';
+const BADGE = 'ml-2.5 inline-block align-middle text-[10px] font-semibold uppercase tracking-[0.2em] text-gold';
 const label = (c) => c.badge ? `${c.label}<span class="${BADGE}">${c.badge}</span>` : c.label;
 const CHEVRON = '<svg class="w-3 h-3 opacity-70 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
 

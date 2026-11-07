@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Four Pillars of a Conscious Relationship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8in 10in; margin: 0; }
+  :root{
+    --plum:#4E0B41; --plum-deep:#2A0B33; --pink:#FF1F9E; --cream:#F1EBE3; --ink:#1B1418; --muted:#5d5058; --blush:#F2C3DA;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#ccc; }
+  body{ font-family:'Montserrat',sans-serif; color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  a{ color:inherit; text-decoration:none; }
+  .page{ width:8in; height:10in; position:relative; overflow:hidden; page-break-after:always; break-after:page; background:var(--cream); }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+  .glow{ background:
+      radial-gradient(60% 45% at 100% 55%, rgba(242,170,205,.55), transparent 70%),
+      radial-gradient(55% 40% at 0% 95%, rgba(242,170,205,.6), transparent 70%),
+      var(--cream); }
+
+  /* header / footer (inner pages) */
+  .hdr{ position:absolute; top:0; left:0; right:0; height:.95in; display:flex; align-items:center; justify-content:space-between; padding:0 .55in; border-bottom:1px solid #1b1418; }
+  .hdr img{ height:.27in; }
+  .hdr .t{ text-align:right; line-height:1.05; }
+  .hdr .t b{ display:block; font-weight:800; font-size:12.5pt; letter-spacing:.01em; }
+  .hdr .t span{ font-size:7.5pt; letter-spacing:.06em; }
+  .ftr{ position:absolute; bottom:0; left:0; right:0; height:.85in; display:flex; align-items:center; justify-content:space-between; padding:0 .65in; border-top:1px solid #1b1418; font-size:9pt; letter-spacing:.04em; }
+
+  /* pillar band */
+  .band{ position:absolute; left:0; top:1.25in; width:7.2in; background:var(--plum); color:#fff; border-radius:0 1in 1in 0; padding:.28in .5in .28in .55in; display:flex; align-items:center; gap:.28in; }
+  .band .n{ font-weight:300; color:var(--pink); font-size:72pt; line-height:.8; }
+  .band h2{ font-weight:800; font-size:21pt; line-height:1.08; text-transform:uppercase; letter-spacing:.005em; }
+  .body{ position:absolute; left:.6in; right:.9in; }
+  .sub{ font-weight:700; font-size:14pt; line-height:1.25; margin-bottom:.16in; }
+  .sub.soft{ font-weight:500; color:var(--muted); font-size:12pt; letter-spacing:.04em; text-transform:uppercase; }
+  .p{ font-weight:400; font-size:11.2pt; line-height:1.48; margin-bottom:.11in; }
+  .p.lead{ font-weight:600; }
+  em{ font-style:italic; }
+  .practice{ margin-top:.18in; border-left:4px solid var(--pink); background:rgba(255,255,255,.55); padding:.14in .2in; border-radius:0 .14in .14in 0; }
+  .practice .k{ font-weight:800; font-size:8.5pt; letter-spacing:.18em; color:var(--plum); text-transform:uppercase; margin-bottom:.05in; }
+  .practice .v{ font-size:10.6pt; line-height:1.45; }
+  .practice + .practice{ margin-top:.1in; }
+  .lines{ margin-top:.1in; }
+  .lines i{ display:block; height:.26in; border-bottom:1px solid rgba(78,11,65,.25); }
+
+  /* cover */
+  .cover{ background:#2A0B33 url('bg-rose.jpg') center/cover; color:#fff; text-align:center; }
+  .cover::before{ content:''; position:absolute; inset:0; background:rgba(40,8,50,.55); }
+  .cover > *{ position:relative; }
+  .cover .logo{ display:block; margin:.62in auto 0; height:.33in; }
+  .cover h1{ margin-top:.55in; font-weight:800; font-size:44pt; letter-spacing:.005em; line-height:1; }
+  .cover .of{ font-weight:400; font-size:21pt; letter-spacing:.04em; margin-top:.08in; }
+  .cover .art{ display:block; margin:.42in auto 0; height:5.25in; }
+  .cover .tag{ position:absolute; left:0; right:0; bottom:.75in; font-style:italic; font-weight:400; font-size:13pt; }
+  .cover .by{ position:absolute; left:0; right:0; bottom:.42in; font-size:8.5pt; letter-spacing:.2em; text-transform:uppercase; opacity:.7; }
+
+  /* letter */
+  .letterbg{ background: linear-gradient(135deg,#F3C9DE 0%, #F1EBE3 35%, #F1EBE3 70%, #E3B6CF 100%); }
+  .paper{ position:absolute; left:.55in; top:.45in; right:.6in; bottom:.55in; background:#fff; box-shadow:10px 14px 0 rgba(78,11,65,.25); padding:.45in .6in .4in; }
+  .paper h2{ font-weight:800; font-style:italic; font-size:22pt; text-transform:uppercase; margin-bottom:.22in; }
+  .paper p{ font-size:11.8pt; line-height:1.45; margin-bottom:.09in; letter-spacing:.01em; }
+  .paper p.gap{ margin-top:.12in; }
+  .paper p.strong{ font-weight:700; }
+  .paper .sig{ display:block; height:.72in; margin:.12in 0 0 -.05in; }
+  .paper .who{ font-size:9pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+
+  .sigrow{ display:flex; align-items:center; gap:.22in; margin-top:.14in; }
+  .sigrow .portrait{ width:1.05in; height:1.05in; border-radius:50%; box-shadow:0 0 0 3px #fff, 0 0 0 5px var(--pink); }
+  .sigrow .sig{ margin:0 0 0 -.05in; }
+  /* page 3 */
+  .h-big{ font-weight:800; font-size:25pt; line-height:1.1; text-transform:uppercase; margin-bottom:.2in; }
+  .quote{ font-weight:300; font-size:19pt; line-height:1.3; color:var(--plum); border-left:5px solid var(--pink); padding-left:.2in; margin:.18in 0 .16in; }
+  .quote b{ font-weight:700; }
+  .strip{ margin-top:.18in; display:grid; gap:.07in; }
+  .pill{ background:var(--plum); color:#fff; border-radius:.5in; display:flex; align-items:center; gap:.2in; padding:.1in .3in; }
+  .pill .n{ color:var(--pink); font-weight:300; font-size:24pt; line-height:1; width:.3in; text-align:center; }
+  .pill span{ font-weight:700; font-size:10.2pt; letter-spacing:.03em; text-transform:uppercase; line-height:1.25; border-left:1px dashed var(--pink); padding-left:.2in; }
+
+  /* formula */
+  .tagpill{ display:inline-block; background:var(--pink); color:#fff; font-weight:600; letter-spacing:.35em; font-size:11pt; padding:.06in .35in; border-radius:.2in; }
+  .center{ text-align:center; }
+  .formula h2{ font-weight:800; font-size:38pt; margin-top:.12in; line-height:1; }
+  .formula .subt{ font-weight:700; font-size:10pt; letter-spacing:.06em; text-transform:uppercase; margin-top:.08in; }
+  .steps{ position:absolute; left:.55in; right:.55in; top:3.02in; }
+  .step{ display:flex; gap:.2in; align-items:flex-start; margin-bottom:.15in; }
+  .step .c{ flex:0 0 .55in; height:.55in; border-radius:50%; background:var(--plum); color:var(--pink); font-weight:300; font-size:24pt; display:flex; align-items:center; justify-content:center; }
+  .step .bar{ background:var(--plum); color:#fff; font-weight:700; font-size:12.5pt; text-transform:uppercase; padding:.1in .25in; border-radius:.3in; display:inline-block; letter-spacing:.02em; }
+  .step .d{ font-size:10.6pt; line-height:1.42; margin:.07in 0 0 .1in; }
+
+
+  .fsteps{ position:absolute; left:.5in; right:.4in; top:2.75in; }
+  .fs{ position:relative; padding-right:1.25in; margin-bottom:.12in; min-height:1.08in; }
+  .fs::before{ content:''; position:absolute; left:.33in; top:.3in; bottom:-.2in; width:2px; background:var(--plum); }
+  .fs.last::before{ display:none; }
+  .fbar{ background:var(--plum); color:#fff; border-radius:.3in; height:.42in; display:flex; align-items:center; padding:0 .25in; white-space:nowrap; }
+  .fbar .st{ font-weight:300; font-size:13pt; letter-spacing:.03em; }
+  .fbar .sep{ width:2.5px; height:.2in; background:#fff; margin:0 .16in; }
+  .fbar .ft{ font-weight:700; font-size:12.5pt; text-transform:uppercase; letter-spacing:.02em; }
+  .fd{ margin:.1in 0 0 .55in; font-size:10.8pt; line-height:1.4; }
+  .fs .ic{ position:absolute; right:.05in; top:-.2in; width:.95in; height:.95in; }
+  /* page 9 path */
+  .path{ display:grid; gap:.08in; margin-top:.12in; }
+  .card{ border-radius:.16in; padding:.1in .22in; background:rgba(255,255,255,.65); border:1px solid rgba(78,11,65,.15); display:flex; gap:.2in; align-items:flex-start; }
+  .card .n{ color:var(--pink); font-weight:300; font-size:30pt; line-height:.9; width:.32in; }
+  .card .k{ font-weight:800; font-size:8.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); }
+  .card .t{ font-weight:700; font-size:12pt; margin:.01in 0 .03in; }
+  .card .v{ font-size:9.2pt; line-height:1.38; }
+  .card .u{ font-size:9pt; font-weight:600; color:var(--plum); margin-top:.05in; letter-spacing:.02em; }
+  .card.hero{ background:var(--plum); color:#fff; border:none; padding:.14in .22in; }
+  .card.hero .k{ color:var(--blush); }
+  .card.hero .v{ color:rgba(255,255,255,.92); }
+  .btn{ display:inline-block; margin-top:.08in; background:var(--pink); color:#fff; font-weight:700; font-size:10.5pt; letter-spacing:.04em; padding:.09in .3in; border-radius:.3in; }
+  .card .q{ font-style:italic; font-size:9pt; margin-top:.04in; }
+
+  .card .pod{ margin-left:auto; flex:0 0 1.05in; }
+  .card .pod img{ display:block; width:1.05in; height:1.05in; border-radius:.08in; box-shadow:0 3px 10px rgba(42,11,51,.2); }
+
+  .nx{ position:absolute; left:.6in; right:.6in; }
+  .eyebrow{ font-weight:800; font-size:9pt; letter-spacing:.22em; text-transform:uppercase; color:var(--pink); margin-bottom:.08in; }
+  .nx-h{ font-weight:800; font-size:16pt; line-height:1.15; text-transform:uppercase; }
+  .nx-p{ font-size:10.6pt; line-height:1.5; margin-top:.12in; color:#2b2228; }
+  .k{ font-weight:800; font-size:8.5pt; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); }
+  .t{ font-weight:700; font-size:12.5pt; margin:.03in 0; }
+  .v{ font-size:10pt; line-height:1.45; }
+  .u{ display:inline-block; font-size:9.5pt; font-weight:700; color:var(--plum); margin-top:.06in; letter-spacing:.02em; }
+  .pod-row{ display:flex; gap:.25in; align-items:center; margin-top:.2in; padding:.15in .18in; background:rgba(255,255,255,.7); border-radius:.18in; }
+  .pod-art{ display:block; width:1.15in; height:1.15in; border-radius:.1in; box-shadow:0 4px 12px rgba(42,11,51,.25); }
+  .mem{ margin-top:.2in; background:var(--plum); color:#fff; border-radius:.22in; overflow:hidden; display:flex; height:3.95in; }
+  .mem-photo{ flex:0 0 2.35in; background-size:cover; background-position:42% center; }
+  .mem-body{ padding:.26in .3in; flex:1; }
+  .mem .k{ color:var(--blush); }
+  .mem-t{ font-weight:800; font-size:16pt; line-height:1.15; margin:.04in 0 .08in; }
+  .mem-v{ font-size:10.2pt; line-height:1.45; color:rgba(255,255,255,.92); }
+  .mem-v.soft{ margin-top:.06in; color:rgba(255,255,255,.75); font-size:9.6pt; }
+  .ticks{ list-style:none; margin:.1in 0 .02in; }
+  .ticks li{ position:relative; padding-left:.24in; font-size:9.9pt; line-height:1.35; margin-bottom:.06in; }
+  .ticks li::before{ content:''; position:absolute; left:0; top:.06in; width:.11in; height:.11in; border-radius:50%; background:var(--pink); }
+  .price{ margin-top:.14in; font-size:10.2pt; font-weight:500; }
+  .price b{ font-weight:800; }
+  .btn.big{ font-size:11.5pt; padding:.11in .36in; margin-top:.14in; }
+  .li{ margin-top:.22in; border-radius:.22in; overflow:hidden; background:rgba(255,255,255,.75); }
+  .li-photo{ height:2.05in; background-size:cover; background-position:center 30%; position:relative; }
+  .chip{ position:absolute; left:.2in; top:.2in; background:var(--pink); color:#fff; font-weight:800; font-size:8.5pt; letter-spacing:.2em; text-transform:uppercase; padding:.06in .18in; border-radius:.2in; }
+  .li-body{ padding:.16in .28in .18in; }
+  .li-q{ margin-top:.12in; border-left:3px solid var(--pink); padding-left:.14in; font-style:italic; font-size:10.4pt; line-height:1.4; color:var(--plum); }
+  .li-q span{ display:block; font-style:normal; font-size:8.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.04in; }
+  .li-foot{ margin-top:.12in; font-size:9.6pt; color:var(--muted); display:flex; flex-direction:column; }
+  .one{ margin-top:.16in; display:flex; border-radius:.22in; overflow:hidden; background:rgba(255,255,255,.75); height:2.2in; }
+  .one-photo{ flex:0 0 1.85in; background-size:cover; background-position:center 25%; }
+  .one-body{ padding:.18in .26in; flex:1; }
+  .one-body .mem-v{ font-size:9.8pt; }
+  .one-body .price{ margin-top:.07in; font-weight:700; font-size:9.8pt; }
+  .one-body .btn{ margin-top:.1in; }
+  /* talk */
+  .talk h2{ font-weight:800; font-size:30pt; line-height:1.05; text-transform:uppercase; }
+  .talk .thumb{ display:block; width:6.4in; margin:.3in auto 0; border-radius:.06in; box-shadow:0 8px 24px rgba(42,11,51,.25); }
+
+  /* closing */
+  .closing{ background:#2A0B33 url('bg-rose.jpg') center/cover; color:#fff; text-align:center; }
+  .closing::before{ content:''; position:absolute; inset:0; background:rgba(40,8,50,.6); }
+  .closing > *{ position:relative; }
+  .closing .pre{ margin-top:1.2in; font-weight:600; font-size:11pt; letter-spacing:.2em; text-transform:uppercase; }
+  .closing h2{ font-weight:800; font-size:54pt; margin-top:.2in; }
+  .closing .copy{ width:5.3in; margin:.35in auto 0; font-size:12pt; line-height:1.55; font-weight:300; }
+  .closing .copy p{ margin-bottom:.14in; }
+  .closing .see{ margin-top:.3in; font-weight:700; font-size:14pt; }
+  .closing .team{ font-size:10.5pt; opacity:.85; margin-top:.04in; }
+  .closing .links{ position:absolute; left:0; right:0; bottom:1.05in; font-size:10pt; letter-spacing:.08em; }
+  .closing .logo{ position:absolute; left:50%; transform:translateX(-50%); bottom:1.45in; height:.28in; }
+  .closing .credit{ position:absolute; left:0; right:0; bottom:.5in; font-style:italic; font-size:8.5pt; opacity:.7; }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <img class="logo" src="logo-white.png" alt="WeDeepen">
+  <h1>THE FOUR PILLARS</h1>
+  <div class="of">OF A CONSCIOUS RELATIONSHIP</div>
+  <img class="art" src="sculpture.png" alt="">
+  <div class="tag">A framework for loving with more honesty, more courage, and more joy.</div>
+  <div class="by">A free guide from Christina Weber and WeDeepen</div>
+</section>
+
+<!-- 2 LETTER -->
+<section class="page letterbg">
+  <div class="paper">
+    <h2>A letter from Christina</h2>
+    <p>I grew up watching my parents struggle with each other.</p>
+    <p>My high school sweetheart cheated on me and lied about it.</p>
+    <p>Then came years of trial and error in New York City and Los&nbsp;Angeles.</p>
+    <p class="strong">No one ever taught me how to do love well.</p>
+    <p class="gap">Most of us never learn. Our schools cover history, chemistry, and calculus. They neglect nearly everything about healthy&nbsp;relationships.</p>
+    <p>So we guess. And when it hurts, we decide something is wrong with us. Or with them.</p>
+    <p class="strong">Nothing is wrong. You were just never taught.</p>
+    <p class="gap">In the fall of 2018, I discovered therapist Shelly Bullard's Four Pillars of a Conscious Relationship. Everything finally made sense.</p>
+    <p>Of everything I've studied, this is what I come back to again and again. Grounded. Simple. True in romance, friendship, and business.</p>
+    <p>It's how we practice at WeDeepen. And when I share it with someone I'm dating, I watch their whole nervous system relax.</p>
+    <p class="gap">Love is not something you find. Love is who you are. And that's what we're here to practice.</p>
+    <p class="gap strong">Your intimacy journey is your life story.<br>Let's make it a good one, together.</p>
+    <div class="sigrow"><img class="portrait" src="portrait.png" alt="Christina Weber"><div><img class="sig" src="signature.png" alt="Christina Weber"><div class="who">Founder, WeDeepen</div></div></div>
+  </div>
+</section>
+
+<!-- 3 WHAT IS A CONSCIOUS RELATIONSHIP -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="body" style="top:1.3in; right:.7in;">
+    <div class="h-big">The old way of doing love is breaking down.</div>
+    <p class="p lead">People are unsatisfied in love. And believe it or not, this is a good thing.</p>
+    <p class="p">When a system breaks down, that's when it changes. The old model said: find the right person, meet each other's needs, live happily ever after. It works for a few years. Then it stops working, and we feel cheated.</p>
+    <p class="p">Something better is emerging. We call it a conscious relationship.</p>
+    <div class="quote">A conscious relationship has a purpose, and that purpose is <b>growth.</b></div>
+    <p class="p">Your growth. Growth as a couple. Growth that makes the world a better place. And you don't need a partner to begin. Partnered, dating, or solo, these pillars apply to every relationship you're in, starting with the one with yourself.</p>
+    <div class="strip">
+      <div class="pill"><div class="n">1</div><span>No attachment to outcome. Growth comes first.</span></div>
+      <div class="pill"><div class="n">2</div><span>Own your own sh*t.</span></div>
+      <div class="pill"><div class="n">3</div><span>All feelings are welcome. No internal process is condemned.</span></div>
+      <div class="pill"><div class="n">4</div><span>The relationship is a place to practice love.</span></div>
+    </div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 4 PILLAR 1 -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="band"><div class="n">1</div><h2>No attachment to outcome.<br>Growth comes first.</h2></div>
+  <div class="body" style="top:3.05in;">
+    <div class="sub soft">Prioritize growth</div>
+    <p class="p">This doesn't mean you don't care what happens. You can still dream about where this goes.</p>
+    <p class="p">It means you're more committed to growing than to making it "work."</p>
+    <p class="p">When growth stops, we shrink to keep the peace. We bend to please. Soon love feels like a cage.</p>
+    <div class="quote">We built the cage <b>ourselves.</b></div>
+    <p class="p">A conscious couple chooses growth, even when it's scary. Even at the risk of outgrowing each other. That's what keeps love alive.</p>
+    <p class="p">Instead of asking <em>"Will this work out?"</em> ask <em>"Who do I get to become here?"</em></p>
+    <div class="practice"><div class="k">Practice this week</div><div class="v">Notice one place you've been making yourself smaller to keep things comfortable. Say one true sentence about it, out loud, to the person it involves.</div></div>
+    <div class="practice"><div class="k">Journal</div><div class="v">Where am I playing it safe in love, and what would growth ask of me instead?</div><div class="lines"><i></i><i></i></div></div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 5 PILLAR 2 -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="band"><div class="n">2</div><h2>Own your<br>own sh*t.</h2></div>
+  <div class="body" style="top:3.05in;">
+    <div class="sub">Both partners agree to own their own sh*t: their wounds, reactions, and patterns.</div>
+    <p class="p">We all carry wounds from the past. Closeness will find them.</p>
+    <p class="p">At some point, you'll feel abandoned. Trapped. Rejected. Overlooked.</p>
+    <p class="p">Those feelings are real. But your partner didn't cause them. They come from old wounds you brought with you. The good news: what's yours, you can change.</p>
+    <div class="quote">Blame keeps you stuck. <b>Ownership sets you&nbsp;free.</b></div>
+    <p class="p">When something stings, pause and ask: <em>What part of this is mine?</em></p>
+    <div class="practice"><div class="k">Practice this week</div><div class="v">The next time you feel triggered, swap "You always..." for "When that happened, I felt... and it reminded me of..."</div></div>
+    <div class="practice"><div class="k">Journal</div><div class="v">What feeling keeps showing up in my relationships, and when did I first feel it?</div><div class="lines"><i></i><i></i></div></div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 6 PILLAR 3 -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="band"><div class="n">3</div><h2>All feelings are welcome.<br>No internal process is condemned.</h2></div>
+  <div class="body" style="top:3.25in;">
+    <p class="p">There's room to feel anything. Jealousy. Desire. Insecurity. Grief. Fantasies you've never said out loud.</p>
+    <p class="p lead">And there's room to share them.</p>
+    <p class="p">What your partner shares may trigger the heck out of you. You let them be honest anyway, because you'd rather know them than keep them comfortable.</p>
+    <div class="quote">Honesty without blame is <b>magnetic.</b></div>
+    <p class="p">Radical honesty is how we finally feel known, seen, and truly understood.</p>
+    <div class="practice"><div class="k">Practice this week</div><div class="v">Share one feeling you've been editing out. Start with: "Something I haven't said yet is..." When it's your turn to listen, just say thank you.</div></div>
+    <div class="practice"><div class="k">Journal</div><div class="v">What feeling do I judge most in myself, and what might it be asking for?</div><div class="lines"><i></i><i></i></div></div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 7 PILLAR 4 -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="band"><div class="n">4</div><h2>The relationship is a place<br>to practice love.</h2></div>
+  <div class="body" style="top:3.05in;">
+    <div class="sub">In every moment, with every person.</div>
+    <p class="p">We treat love like a destination. We chase the peak feeling, and when it fades, we think we failed.</p>
+    <p class="p">Love is a practice. Of acceptance, presence, forgiveness. It shows up in your hello. In your patience on a hard day. In staying open when it's easier to shut down.</p>
+    <div class="quote">Keep asking: <b>What would love do here?</b></div>
+    <p class="p">The answer is different every time. That's the adventure.</p>
+    <p class="p lead">And like any practice, it gets better with company.</p>
+    <div class="practice"><div class="k">Practice this week</div><div class="v">Once a day, before you react, ask "What would love do here?" Then do the smallest version of the answer.</div></div>
+    <div class="practice"><div class="k">Journal</div><div class="v">Where in my life is love asking me to show up more fully?</div><div class="lines"><i></i><i></i></div></div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 8 FORMULA -->
+<section class="page glow formula">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="center" style="position:absolute; top:1.22in; left:0; right:0;">
+    <span class="tagpill">BONUS PRACTICE</span>
+    <h2>PROACTIVE FORMULA</h2>
+    <div class="subt">Five steps from reaction to love</div>
+  </div>
+  <div class="fsteps">
+    <div class="fs"><div class="fbar"><span class="st">STEP 1</span><span class="sep"></span><span class="ft">An obstacle shows up.</span></div><div class="fd">You feel it in your body first. A tight chest, a hot face. Every hard moment is a chance to grow.</div><img class="ic" src="icon1.png" alt=""></div>
+    <div class="fs"><div class="fbar"><span class="st">STEP 2</span><span class="sep"></span><span class="ft">Your reaction is the real work.</span></div><div class="fd">The obstacle isn't the other person or what happened. It's your response to it.</div><img class="ic" src="icon2.png" alt=""></div>
+    <div class="fs"><div class="fbar"><span class="st">STEP 3</span><span class="sep"></span><span class="ft">Pause. Breathe.</span></div><div class="fd">Hold back the urge to blame, lash out, or shut down. Restraint is a superpower.</div><img class="ic" src="icon3.png" alt=""></div>
+    <div class="fs"><div class="fbar"><span class="st">STEP 4</span><span class="sep"></span><span class="ft">Ask for insight.</span></div><div class="fd">Turn inward, or upward. Your higher self, the Light, God, love itself. Ask: what am I here to learn?</div><img class="ic" src="icon4.png" alt=""></div>
+    <div class="fs last"><div class="fbar"><span class="st">STEP 5</span><span class="sep"></span><span class="ft">Respond with love, not fear.</span></div><div class="fd">Take one conscious action that matches what you just learned. This is Pillar 2 in action.</div><img class="ic" src="icon5.png" alt=""></div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 10 TALK -->
+<section class="page glow talk">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="body" style="top:1.45in; left:.8in; right:.8in; text-align:center;">
+    <h2>See the pillars<br>in action.</h2>
+    <p class="p" style="margin-top:.22in; font-size:12pt;">In my Biohacking Conference talk, <em>Hack Your Love Life</em>, I share the stories behind these pillars and tools you can use tonight.</p>
+  </div>
+  <a href="https://youtu.be/MMhmKjTsEs8"><img class="thumb" src="talk.jpg" alt="Hack Your Love Life talk" style="position:absolute; top:3.55in; left:.8in;"></a>
+  <div style="position:absolute; top:7.5in; left:0; right:0; text-align:center;">
+    <a class="btn" style="font-size:12pt;" href="https://youtu.be/MMhmKjTsEs8">Watch the talk</a>
+    <p style="margin-top:.3in; font-weight:600; font-style:italic; font-size:15pt;">Because love isn't just read. It's lived.</p>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 9 NEXT STEP -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="nx" style="top:1.25in;">
+    <div class="eyebrow">Your next step</div>
+    <div class="nx-h">Reading about love is a start.<br>Practicing it together changes everything.</div>
+    <p class="nx-p">You can't learn to swim from a book. Love works the same way. The pillars come alive when you practice them with people doing the same. That's why I built WeDeepen.</p>
+
+    <div class="pod-row">
+      <a href="https://wedeepen.com/podcast/?utm_source=four_pillars_guide&utm_medium=pdf"><img class="pod-art" src="podcast.jpg" alt="Mastering Love with Christina Weber"></a>
+      <div>
+        <div class="k">Start listening · Free</div>
+        <div class="t">Mastering Love with Christina Weber</div>
+        <div class="v">The podcast. Conversations with the world's leading relationship&nbsp;experts.</div>
+        <a class="u" href="https://wedeepen.com/podcast/?utm_source=four_pillars_guide&utm_medium=pdf">wedeepen.com/podcast &rarr;</a>
+      </div>
+    </div>
+
+    <div class="mem">
+      <div class="mem-photo" style="background-image:url('ph-teach.jpg')"></div>
+      <div class="mem-body">
+        <div class="k">Practice every week</div>
+        <div class="mem-t">The WeDeepen Membership</div>
+        <div class="mem-v">Where the four pillars become a weekly&nbsp;practice.</div>
+        <ul class="ticks">
+          <li>Live Love Masterminds on Zoom with WeDeepen&nbsp;faculty</li>
+          <li>Recordings when you can't make it live</li>
+          <li>Ask the Experts, anytime</li>
+          <li>A Sunday Dare every week</li>
+        </ul>
+        <div class="mem-v soft">Come partnered, dating, or solo. Camera off is fine.</div>
+        <div class="price"><b>14 days free.</b> Then $99/month, our founding member rate. Cancel anytime.</div>
+        <a class="btn big" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?utm_source=four_pillars_guide&utm_medium=pdf">Start your 14 free days</a>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 10 GO DEEPER -->
+<section class="page glow">
+  <div class="hdr"><img src="logo-dark.png" alt="WeDeepen"><div class="t"><b>THE FOUR PILLARS</b><span>OF A CONSCIOUS RELATIONSHIP</span></div></div>
+  <div class="nx" style="top:1.25in;">
+    <div class="eyebrow">Ready for more?</div>
+    <div class="nx-h">Go deeper, in person<br>and one-on-one.</div>
+
+    <div class="li">
+      <div class="li-photo" style="background-image:url('ph-li.jpg')"><span class="chip">Love Immersion</span></div>
+      <div class="li-body">
+        <div class="mem-t" style="color:var(--ink)">Three days in Austin. A mastermind for your heart.</div>
+        <div class="mem-v" style="color:var(--ink)">Hot-seat coaching from WeDeepen faculty, world-class experts in love and intimacy. A room full of people saying yes to&nbsp;love.</div>
+        <div class="li-q">"It was the most love-saturated environment I've ever been in."<span>Love Immersion Attendee</span></div>
+        <div class="li-foot"><span>We gather quarterly. 2027 dates are coming soon.</span><a class="u" href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">Visit wedeepen.com to be first to know &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="one">
+      <div class="one-photo" style="background-image:url('ph-christina.jpg')"></div>
+      <div class="one-body">
+        <div class="k">Go all in</div>
+        <div class="mem-t" style="color:var(--ink)">A one-on-one with Christina Weber</div>
+        <div class="mem-v" style="color:var(--ink)">Schedule personal time with me. We'll talk about your love life and about going deeper in Love Club, our inner circle, with Collaborative Matchmaking, Couples Council, and more.</div>
+        <div class="price" style="color:var(--plum)">Love Club membership starts at $10,000.</div>
+        <a class="btn" href="https://wedeepen.com/schedule-with-christina/?utm_source=four_pillars_guide&utm_medium=pdf">Schedule your one-on-one</a>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span>@WEDEEPEN</span><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">WEDEEPEN.COM</a><span>@CHRISTINAWEBER</span></div>
+</section>
+
+<!-- 11 CLOSING -->
+<section class="page closing">
+  <div class="pre">As you practice these pillars,<br>remember this, always:</div>
+  <h2>You are love.</h2>
+  <div class="copy">
+    <p>Choosing growth over comfort and connection over protection takes courage. You're already doing it, just by reading this far.</p>
+    <p>Be patient with yourself. Practice. Play. Come back to these pages whenever you need them. And reply to my email to tell me which pillar stumps you most. I read every reply.</p>
+    <p>And when you're ready to practice with us, we'll be here.</p>
+  </div>
+  <a class="btn big" style="margin-top:.28in;" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?utm_source=four_pillars_guide&utm_medium=pdf">Start your 14 free days</a>
+  <div class="see" style="margin-top:.22in;">See you inside.</div>
+  <div class="team">Christina and the WeDeepen team</div>
+  <img class="logo" src="logo-white.png" alt="WeDeepen">
+  <div class="links"><a href="https://wedeepen.com/?utm_source=four_pillars_guide&utm_medium=pdf">wedeepen.com</a> &nbsp;·&nbsp; <a href="https://instagram.com/wedeepen">@wedeepen</a> &nbsp;·&nbsp; <a href="https://instagram.com/christinaweber">@christinaweber</a></div>
+  <div class="credit">Based on the original teachings of Shelly Bullard, MFT. Adapted by Christina Weber for WeDeepen.</div>
+</section>
+
+</body>
+</html>

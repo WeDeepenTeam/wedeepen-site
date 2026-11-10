@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-11-07T06:35:05.471Z",
+  "last_updated": "2026-11-10T07:43:47.417Z",
   "source": "circle.wedeepen.com",
-  "event_count": 77,
+  "event_count": 78,
   "events": [
     {
       "id": "love-mastermind-mikaal-bates",
@@ -1657,6 +1657,28 @@
       "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
       "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-4b92d1"
+    },
+    {
+      "id": "love-mastermind-no-faculty-yet-927921",
+      "title": "Love Mastermind",
+      "date": "2027-11-09",
+      "end_date": null,
+      "time": "6:00 PM",
+      "starts_at_iso": "2027-11-10T00:00:00.000Z",
+      "ends_at_iso": "2027-11-10T01:30:00.000Z",
+      "location_type": "online",
+      "location_label": "Online",
+      "tag": "",
+      "topics": [
+        "Love Mastermind",
+        "Love Club",
+        "WeDeepen Members"
+      ],
+      "recurring": true,
+      "series": "love-mastermind-no-faculty-yet",
+      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "image_url": "https://assets-v2.circle.so/mjvdqavuv0ei4dtajh9gcjq8spaz",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-no-faculty-yet-927921"
     }
   ]
 }

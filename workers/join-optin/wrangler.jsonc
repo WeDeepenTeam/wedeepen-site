@@ -1,0 +1,16 @@
+{
+  // Backend for the opt-in form on wedeepen.com/join/ (js/optin.js).
+  // Deploy from this folder: npx wrangler deploy
+  "name": "wedeepen-join-optin",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "wedeepen-optin",
+      "database_id": "5d67a8ea-db87-46a9-b546-a888a4c6ca1c",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

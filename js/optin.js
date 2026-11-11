@@ -21,10 +21,17 @@
   if (window.__wdOptinLoaded) return;
   window.__wdOptinLoaded = true;
 
-  // Submission endpoint: Supabase Edge Function join-optin (sister repo my-app)
-  // that writes the consent record (table optin_consents), then adds the person
-  // to MailerLite ("Website opt-in (/join/)") and SimpleTexting server-side.
-  var ENDPOINT = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/join-optin';
+  // Sign-ups happen here in the browser, the same way the site popup and the
+  // checkout email step do them (both services refuse server-side calls from
+  // Cloudflare): email to the MailerLite form "Website opt-in (/join/) - server"
+  // (group "Website opt-in (/join/)", double opt-in), text to the same
+  // SimpleTexting web form as the popup (it sends the confirmation text).
+  // Then the consent record, with what each service answered, goes to the
+  // Cloudflare Worker wedeepen-join-optin (source: workers/join-optin/).
+  var ENDPOINT = 'https://wedeepen-join-optin.team-68a.workers.dev';
+  var ML_FORM_URL = 'https://assets.mailerlite.com/jsonp/321715/forms/203848160976570352/subscribe';
+  var ST_ENDPOINT = 'https://app2.simpletexting.com/join/joinContact';
+  var ST_WEBFORM_ID = '6a725eb22813b371a658bdc9';
 
   var CONSENT_LANGUAGE_VERSION = '2026-07-13';
 
@@ -213,12 +220,54 @@
       btn.disabled = true;
       btn.textContent = 'One sec…';
 
-      fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+      // Email: MailerLite form endpoint (opaque response, so we can't read it).
+      function joinEmail() {
+        if (!emailConsent) return Promise.resolve(null);
+        var body = new URLSearchParams();
+        body.append('fields[email]', email);
+        body.append('fields[name]', firstName);
+        body.append('ml-submit', '1');
+        body.append('anticsrf', 'true');
+        return fetch(ML_FORM_URL, { method: 'POST', mode: 'no-cors', body: body, keepalive: true })
+          .then(function () { return 'sent'; }, function () { return 'error: network'; });
+      }
+
+      // Text: SimpleTexting web form. A duplicate number means they're already in.
+      function joinSms() {
+        if (!smsConsent) return Promise.resolve(null);
+        return fetch(ST_ENDPOINT + '?r=' + Date.now(), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+          body: JSON.stringify({
+            webFormId: ST_WEBFORM_ID,
+            fieldValues: { phone: phoneE164.replace(/^\+1/, ''), firstname: firstName, email: email },
+            listIds: []
+          })
+        }).then(function (res) {
+          if (res.ok) return 'added';
+          return res.text().then(function (t) {
+            var err = {};
+            try { err = JSON.parse(t); } catch (e2) {}
+            if (err.code === 'DuplicateContactPhoneException') return 'already on list';
+            return 'error: HTTP ' + res.status + ' ' + (err.code || '');
+          });
+        }, function () { return 'error: network'; });
+      }
+
+      Promise.all([joinEmail(), joinSms()]).then(function (r) {
+        payload.mailerlite_status = r[0];
+        payload.simpletexting_status = r[1];
+        // Consent record. A logging failure doesn't undo the sign-up.
+        var log = fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(function (e) { console.error('Opt-in consent log failed:', e); });
+        var failed = [r[0], r[1]].some(function (x) { return typeof x === 'string' && x.indexOf('error') === 0; });
+        if (failed) throw new Error(r[0] + ' / ' + r[1]);
+        return log;
+      }).then(function () {
         form.reset();
         btn.textContent = 'Count me in';
         btn.disabled = false;

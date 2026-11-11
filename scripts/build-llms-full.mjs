@@ -20,7 +20,7 @@ const SITE = 'https://wedeepen.com';
 // at the current retreat page; follow the stub when there is one.
 const retreat = ((await fs.readFile(path.join(ROOT, 'love-immersion/index.html'), 'utf8').catch(() => ''))
   .match(/location\.replace\('(\/love-immersion\/[a-z0-9-]*\/?)'/) || [, '/love-immersion/'])[1];
-const CORE = ['/', '/about/', '/love-club/', retreat, '/events/', '/love-guides/',
+const CORE = ['/', '/about/', '/love-club/', retreat, '/events/', '/faculty/',
   '/book-session-with-christina/', '/four-pillars/', '/reviews/', '/podcast/'];
 
 const decode = (s) => s.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')

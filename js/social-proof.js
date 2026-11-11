@@ -63,7 +63,7 @@
     { text: '<strong>70%</strong> come back for another Love Immersion.', href: '/love-immersion/' },
     { text: 'More than <strong>40,000 people</strong> have joined a WeDeepen experience.', href: '/about/' },
     { text: '<strong>183 episodes</strong> of Mastering Love, and counting.', href: '/podcast/' },
-    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/love-guides/' },
+    { text: '<strong>9 world-class guides</strong> teach inside WeDeepen.', href: '/faculty/' },
     { text: 'A global community creating spaces for human connection and growth for <strong>10+ years</strong>.', href: '/about/' },
     { text: '<strong>1,850+ events</strong> and experiences hosted so far.', href: '/events/' },
     { text: '<strong>96%</strong> member satisfaction.', href: '/reviews/' }

@@ -66,7 +66,7 @@ wedeepen-site/
 │   ├── july-2027/
 │   └── _generate_event_pages.py         # Regenerate detail pages from template
 │
-├── love-guides/                         # The Council of Love Strategists
+├── faculty/                         # The Council of Love Strategists
 ├── events/                              # Live events calendar
 ├── reviews/                             # Member testimonials
 ├── about/                               # Christina's story + WeDeepen framework
@@ -115,7 +115,7 @@ wedeepen-site/
 | Homepage | `/` | `index.html` |
 | Love Club | `/love-club/` | `love-club/index.html` |
 | Love Immersion | `/love-immersion/` | `love-immersion/index.html` |
-| Love Strategists | `/love-guides/` | `love-guides/index.html` |
+| Love Strategists | `/faculty/` | `faculty/index.html` |
 | Events | `/events/` | `events/index.html` |
 | WeDeepen In-Person (Aug 2026) | `/inperson/` | `inperson/index.html` |
 | Reviews | `/reviews/` | `reviews/index.html` |

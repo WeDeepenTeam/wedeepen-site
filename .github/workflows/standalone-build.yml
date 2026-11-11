@@ -28,7 +28,7 @@ on:
       - 'love-club/index.html'
       - 'love-immersion/**/index.html'
       - 'events/index.html'
-      - 'love-guides/index.html'
+      - 'faculty/index.html'
       - 'book-session-with-christina/index.html'
       - 'four-pillars/index.html'
       - 'reviews/index.html'

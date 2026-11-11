@@ -31,7 +31,7 @@ const LI = { name: 'Love Immersion', path: '/love-immersion/' };
 const PAGES = [
   { path: '/about/', name: 'About' },
   { path: '/events/', name: 'Events' },
-  { path: '/love-guides/', name: 'Faculty' },
+  { path: '/faculty/', name: 'Faculty' },
   { path: '/reviews/', name: 'Reviews' },
   { path: '/four-pillars/', name: 'The Four Pillars' },
   { path: '/podcast/', name: 'Podcast' },

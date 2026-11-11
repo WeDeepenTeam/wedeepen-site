@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 /**
- * build-faculty-schema.mjs — stamp /love-guides/ with CollectionPage + ItemList JSON-LD.
+ * build-faculty-schema.mjs — stamp /faculty/ with CollectionPage + ItemList JSON-LD.
  *
  * Reads the faculty straight from the page (the featured STRATEGIST sections
  * and the full-council cards), so the markup can't drift from what visitors
  * see. Each teacher becomes a Person with name, specialty, bio, photo and the
  * links shown on their card. Couples ("A & B") are listed by name only.
  *
- * Run after editing love-guides/index.html:  node scripts/build-faculty-schema.mjs
+ * Run after editing faculty/index.html:  node scripts/build-faculty-schema.mjs
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const PAGE = path.join(ROOT, 'love-guides/index.html');
+const PAGE = path.join(ROOT, 'faculty/index.html');
 const SITE = 'https://wedeepen.com';
-const URL = `${SITE}/love-guides/`;
+const URL = `${SITE}/faculty/`;
 const START = '<!-- faculty:ld -->';
 const END = '<!-- /faculty:ld -->';
 
@@ -87,4 +87,4 @@ html = html.includes(START)
   ? html.slice(0, html.indexOf(START)) + block + html.slice(html.indexOf(END) + END.length)
   : html.replace('</head>', `  ${block}\n</head>`);
 await fs.writeFile(PAGE, html, 'utf8');
-console.log(`Stamped ${people.length} faculty into love-guides/index.html`);
+console.log(`Stamped ${people.length} faculty into faculty/index.html`);

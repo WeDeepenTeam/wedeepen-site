@@ -403,7 +403,7 @@ def render_episode_page(ep: dict, related: list) -> str:
         <a href="/" class="text-white hover:text-white transition">Membership</a>
         <a href="/love-immersion/october-2026/" class="text-white/80 hover:text-white transition">Love Immersion</a>
         <a href="/events/" class="text-white/80 hover:text-white transition">Events</a>
-        <a href="/love-guides/" class="text-white/80 hover:text-white transition">Faculty</a>
+        <a href="/faculty/" class="text-white/80 hover:text-white transition">Faculty</a>
         <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
         <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
         <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
@@ -433,7 +433,7 @@ def render_episode_page(ep: dict, related: list) -> str:
       <a href="/" class="text-white hover:text-gold transition">Membership</a>
       <a href="/love-immersion/october-2026/" class="text-white hover:text-gold transition">Love Immersion</a>
       <a href="/events/" class="text-white hover:text-gold transition">Events</a>
-      <a href="/love-guides/" class="text-white hover:text-gold transition">Faculty</a>
+      <a href="/faculty/" class="text-white hover:text-gold transition">Faculty</a>
       <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
       <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
       <a href="/about/" class="text-white hover:text-gold transition">About</a>

@@ -242,7 +242,7 @@
   }
 
   function run() {
-    if (/^\/love-guides\/?$/.test(path)) faculty();
+    if (/^\/faculty\/?$/.test(path)) faculty();
     else if (/^\/love-immersion\/[^/]+\/?$/.test(path)) loveImmersion();
     else if (/^\/deepen-with-christina\/[^/]+\/?$/.test(path)) episode();
     else if (/^\/events\/?$/.test(path)) {

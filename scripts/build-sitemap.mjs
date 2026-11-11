@@ -25,7 +25,7 @@ const RULES = [
   { match: (p) => p === '/',                                       priority: '1.0', changefreq: 'weekly' },
   { match: (p) => p === '/events/',                                priority: '0.9', changefreq: 'weekly' },
   { match: (p) => p.startsWith('/love-immersion/') && p !== '/love-immersion/', priority: '0.8', changefreq: 'monthly' },
-  { match: (p) => ['/love-immersion/', '/love-club/', '/biohacking-love/', '/podcast/', '/gallery/', '/love-guides/'].includes(p), priority: '0.9', changefreq: 'weekly' },
+  { match: (p) => ['/love-immersion/', '/love-club/', '/biohacking-love/', '/podcast/', '/gallery/', '/faculty/'].includes(p), priority: '0.9', changefreq: 'weekly' },
   { match: (p) => ['/about/', '/reviews/'].includes(p),            priority: '0.7', changefreq: 'monthly' },
   { match: (p) => p.startsWith('/gallery/'),                       priority: '0.6', changefreq: 'monthly' },
   { match: (p) => p.startsWith('/deepen-with-christina/'),         priority: '0.6', changefreq: 'yearly'  },

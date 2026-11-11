@@ -21,9 +21,9 @@
   if (window.__wdOptinLoaded) return;
   window.__wdOptinLoaded = true;
 
-  // Submission endpoint: Supabase Edge Function (sister repo my-app) that
-  // writes the consent record, then subscribes to Mailchimp and SimpleTexting
-  // server-side. Until it is deployed, submissions show the fallback message.
+  // Submission endpoint: Supabase Edge Function join-optin (sister repo my-app)
+  // that writes the consent record (table optin_consents), then adds the person
+  // to MailerLite ("Website opt-in (/join/)") and SimpleTexting server-side.
   var ENDPOINT = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/join-optin';
 
   var CONSENT_LANGUAGE_VERSION = '2026-07-13';

@@ -1,29 +1,8 @@
 {
-  "last_updated": "2026-11-11T07:06:03.470Z",
+  "last_updated": "2026-11-11T19:51:08.763Z",
   "source": "circle.wedeepen.com",
-  "event_count": 77,
+  "event_count": 76,
   "events": [
-    {
-      "id": "reality-transurfing-office-hours-with-bootsy-greenwood",
-      "title": "Reality Transurfing Office Hours with Bootsy Greenwood",
-      "date": "2026-11-11",
-      "end_date": null,
-      "time": "12:00 PM",
-      "starts_at_iso": "2026-11-11T18:00:00.000Z",
-      "ends_at_iso": "2026-11-11T19:00:00.000Z",
-      "location_type": "online",
-      "location_label": "Online",
-      "tag": "",
-      "topics": [
-        "Love Club",
-        "WeDeepen Members"
-      ],
-      "recurring": true,
-      "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
-      "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood"
-    },
     {
       "id": "integration-session-practice-what-you-learned-3ca078",
       "title": "Integration & Bonding Session",

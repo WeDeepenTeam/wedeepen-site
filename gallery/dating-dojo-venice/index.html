@@ -262,7 +262,7 @@
           <span class="w-1 h-1 rounded-full bg-white/30"></span><span>Photos by Jen Esteban for WeDeepen</span>
         </div>
         <p class="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-3xl">WeDeepen&#39;s Dating Dojo in Venice.</p>
-        
+        <p class="mt-6"><a href="https://drive.google.com/drive/folders/1xg2Ey4nc08BmcesEJy6fC6wRw0E-zguc" target="_blank" rel="noopener" class="btn-outline">Download full-resolution originals &rarr;</a></p>
       </div>
     </section>
 
@@ -925,8 +925,10 @@
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
       // Supabase Storage turns ?download=<name> into a Content-Disposition
-      // attachment, so this link saves the file instead of opening it.
-      dlBtn.href = t.dataset.full + '?download=' + encodeURIComponent('WeDeepen-dating-dojo-venice-' + (currentIndex + 1) + '.webp');
+      // attachment, so this link saves the file instead of opening it. Every
+      // full rendition has a .jpg sibling (see backfill-jpg-renditions.mjs).
+      var dlUrl = t.dataset.full.replace(/.webp$/, '.jpg');
+      dlBtn.href = dlUrl + '?download=' + encodeURIComponent('WeDeepen-dating-dojo-venice-' + (currentIndex + 1) + '.' + dlUrl.split('.').pop());
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

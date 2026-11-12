@@ -24,8 +24,18 @@ export function renderAlbumPage(album, photos) {
       width: p.width,
       height: p.height,
       caption: photoAlt(p, i, album),
+      copyrightNotice: '\u00a9 WeDeepen',
+      creditText: album.photographer ? `WeDeepen / ${album.photographer}` : 'WeDeepen',
+      creator: album.photographer
+        ? { '@type': 'Person', name: album.photographer }
+        : { '@type': 'Organization', name: 'WeDeepen' },
     })),
     publisher: {
+      '@type': 'Organization',
+      name: 'WeDeepen',
+      url: SITE,
+    },
+    copyrightHolder: {
       '@type': 'Organization',
       name: 'WeDeepen',
       url: SITE,
@@ -62,9 +72,11 @@ ${pageNav()}
         <div class="flex flex-wrap items-center gap-3 text-white/55 text-sm mb-6">
           ${album.location ? `<span>${escapeHtml(album.location)}</span><span class="w-1 h-1 rounded-full bg-white/30"></span>` : ''}
           <span>${photos.length} photo${photos.length === 1 ? '' : 's'}</span>
-          ${album.photographer ? `<span class="w-1 h-1 rounded-full bg-white/30"></span><span>Photos by ${escapeHtml(album.photographer)}</span>` : ''}
+          <span class="w-1 h-1 rounded-full bg-white/30"></span><span>&copy; WeDeepen</span>
+          ${album.photographer ? `<span class="w-1 h-1 rounded-full bg-white/30"></span><span>Photos by ${escapeHtml(album.photographer)} for WeDeepen</span>` : ''}
         </div>
         ${album.description ? `<p class="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-3xl">${escapeHtml(album.description)}</p>` : ''}
+        ${album.originals_url ? `<p class="mt-6"><a href="${escapeHtml(album.originals_url)}" target="_blank" rel="noopener" class="btn-outline">Download full-resolution originals &rarr;</a></p>` : ''}
       </div>
     </section>
 
@@ -113,7 +125,11 @@ ${album.cta_href ? `
       <button class="lightbox-btn lightbox-next" aria-label="Next photo">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
       </button>
+      <a class="lightbox-btn lightbox-download" id="lightbox-download" href="#" download aria-label="Download this photo">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+      </a>
       <img class="lightbox-img" alt="" id="lightbox-img">
+      <div class="lightbox-credit">&copy; WeDeepen${album.photographer ? ` &middot; Photo by ${escapeHtml(album.photographer)}` : ''}</div>
       <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
@@ -148,6 +164,7 @@ ${pageScripts()}
     const closeBtn = lightbox.querySelector('.lightbox-close');
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
+    const dlBtn = document.getElementById('lightbox-download');
     let currentIndex = 0;
 
     function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
@@ -204,6 +221,9 @@ ${pageScripts()}
       lbImg.dataset.retry = '0';
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
+      // Supabase Storage turns ?download=<name> into a Content-Disposition
+      // attachment, so this link saves the file instead of opening it.
+      dlBtn.href = t.dataset.full + '?download=' + encodeURIComponent('WeDeepen-${album.slug}-' + (currentIndex + 1) + '.webp');
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

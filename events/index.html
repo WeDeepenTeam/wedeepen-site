@@ -1620,6 +1620,8 @@
       { match: /kashf/i,           url: '/kashf/' },
       { match: /love immersion/i,  url: '/love-immersion/' },
       { match: /new year/i,        url: '/nye/' },
+      // Affiliate link (aff=wedeepen) is per event: swap it for each new MindTravel date
+      { match: /mindtravel/i,      url: 'https://www.eventbrite.com/e/mindtravel-november-live-to-headphones-silent-piano-concert-in-austin-tickets-2003468806131?aff=wedeepen' },
     ];
     function resolveEventUrl(e) {
       for (const o of EVENT_URL_OVERRIDES) {

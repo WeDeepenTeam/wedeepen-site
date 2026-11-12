@@ -37,6 +37,7 @@ const EVENT_URL_OVERRIDES = [
   { match: /kashf/i, url: '/kashf/' },
   { match: /love immersion/i, url: '/love-immersion/' },
   { match: /new year/i, url: '/nye/' },
+  { match: /mindtravel/i, url: 'https://www.eventbrite.com/e/mindtravel-november-live-to-headphones-silent-piano-concert-in-austin-tickets-2003468806131?aff=wedeepen' },
 ];
 const resolveUrl = (e) => (EVENT_URL_OVERRIDES.find((o) => o.match.test(e.title || '')) || {}).url || e.url;
 const absUrl = (u) => (u.startsWith('http') ? u : `${SITE}${u}`);

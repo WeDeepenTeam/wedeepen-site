@@ -42,7 +42,7 @@
   <meta name="twitter:description" content="Mindful Mingling gatherings. 3 photos.">
   <meta name="twitter:image" content="https://wedeepen.com/images/og/gallery-mindful-mingling.jpg">
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ImageGallery","name":"Mindful Mingling","description":"Mindful Mingling gatherings. 3 photos.","url":"https://wedeepen.com/gallery/mindful-mingling/","image":[{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_001.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_001.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 1"},{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_002.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_002.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 2"},{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_003.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_003.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 3"}],"publisher":{"@type":"Organization","name":"WeDeepen","url":"https://wedeepen.com"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ImageGallery","name":"Mindful Mingling","description":"Mindful Mingling gatherings. 3 photos.","url":"https://wedeepen.com/gallery/mindful-mingling/","image":[{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_001.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_001.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 1","copyrightNotice":"© WeDeepen","creditText":"WeDeepen","creator":{"@type":"Organization","name":"WeDeepen"}},{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_002.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_002.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 2","copyrightNotice":"© WeDeepen","creditText":"WeDeepen","creator":{"@type":"Organization","name":"WeDeepen"}},{"@type":"ImageObject","contentUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/full/WeDeepen_Mindful_Mingling_003.webp","thumbnailUrl":"https://oycfonjaufdihuwjecxu.supabase.co/storage/v1/object/public/gallery/mindful-mingling/thumb/WeDeepen_Mindful_Mingling_003.webp","width":1500,"height":1000,"caption":"Mindful Mingling, photo 3","copyrightNotice":"© WeDeepen","creditText":"WeDeepen","creator":{"@type":"Organization","name":"WeDeepen"}}],"publisher":{"@type":"Organization","name":"WeDeepen","url":"https://wedeepen.com"},"copyrightHolder":{"@type":"Organization","name":"WeDeepen","url":"https://wedeepen.com"}}</script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -147,9 +147,16 @@
       position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
       color: rgba(255,255,255,0.7); font-size: 0.875rem; letter-spacing: 0.05em;
     }
+    .lightbox-download { top: 1.5rem; right: 5.25rem; }
+    .lightbox-credit {
+      position: absolute; bottom: 3.1rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.45); font-size: 0.75rem; letter-spacing: 0.05em;
+      text-align: center; white-space: nowrap;
+    }
     @media (max-width: 640px) {
       .lightbox-prev, .lightbox-next { width: 40px; height: 40px; }
       .lightbox-prev { left: 0.5rem; } .lightbox-next { right: 0.5rem; }
+      .lightbox-download { right: 4.5rem; top: 1rem; } .lightbox-close { top: 1rem; }
     }
 
     /* Skip-to-content for screen readers + keyboard */
@@ -251,9 +258,11 @@
         <div class="flex flex-wrap items-center gap-3 text-white/55 text-sm mb-6">
           
           <span>3 photos</span>
+          <span class="w-1 h-1 rounded-full bg-white/30"></span><span>&copy; WeDeepen</span>
           
         </div>
         <p class="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-3xl">Mindful Mingling gatherings.</p>
+        
       </div>
     </section>
 
@@ -288,7 +297,11 @@
       <button class="lightbox-btn lightbox-next" aria-label="Next photo">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
       </button>
+      <a class="lightbox-btn lightbox-download" id="lightbox-download" href="#" download aria-label="Download this photo">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+      </a>
       <img class="lightbox-img" alt="" id="lightbox-img">
+      <div class="lightbox-credit">&copy; WeDeepen</div>
       <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
@@ -388,6 +401,7 @@
     const closeBtn = lightbox.querySelector('.lightbox-close');
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
+    const dlBtn = document.getElementById('lightbox-download');
     let currentIndex = 0;
 
     function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
@@ -444,6 +458,9 @@
       lbImg.dataset.retry = '0';
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
+      // Supabase Storage turns ?download=<name> into a Content-Disposition
+      // attachment, so this link saves the file instead of opening it.
+      dlBtn.href = t.dataset.full + '?download=' + encodeURIComponent('WeDeepen-mindful-mingling-' + (currentIndex + 1) + '.webp');
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

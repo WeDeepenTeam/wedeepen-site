@@ -53,6 +53,12 @@ async function loadAlbumExtras() {
       cta_image: a.cta_image || null,
       cta_image_alt: a.cta_image_alt || null,
       cta_tagline: a.cta_tagline || null,
+      // Public "download originals" link: explicit originals_url wins; or set
+      // originals_public: true to expose the album's Drive folder. Default: off.
+      originals_url: a.originals_url
+        || (a.originals_public && a.drive_folder_id
+            ? `https://drive.google.com/drive/folders/${a.drive_folder_id}`
+            : null),
     };
   }
   return map;
@@ -124,6 +130,7 @@ async function buildAlbumPage(album, extras) {
     cta_image: extra.cta_image || null,
     cta_image_alt: extra.cta_image_alt || null,
     cta_tagline: extra.cta_tagline || null,
+    originals_url: extra.originals_url || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);
   await ensureDir(dir);

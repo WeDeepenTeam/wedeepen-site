@@ -222,8 +222,10 @@ ${pageScripts()}
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
       // Supabase Storage turns ?download=<name> into a Content-Disposition
-      // attachment, so this link saves the file instead of opening it.
-      dlBtn.href = t.dataset.full + '?download=' + encodeURIComponent('WeDeepen-${album.slug}-' + (currentIndex + 1) + '.webp');
+      // attachment, so this link saves the file instead of opening it. Every
+      // full rendition has a .jpg sibling (see backfill-jpg-renditions.mjs).
+      var dlUrl = t.dataset.full.replace(/\.webp$/, '.jpg');
+      dlBtn.href = dlUrl + '?download=' + encodeURIComponent('WeDeepen-${album.slug}-' + (currentIndex + 1) + '.' + dlUrl.split('.').pop());
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

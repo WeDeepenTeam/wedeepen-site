@@ -151,6 +151,7 @@ async function processOne(albumId, slug, sourcePath, indexInAlbum, album, dryRun
     return { mediaId: null, skipped: true, excluded: true };
   }
   const fullPath = `${slug}/full/${hash}.webp`;
+  const fullJpgPath = `${slug}/full/${hash}.jpg`;
   const thumbPath = `${slug}/thumb/${hash}.webp`;
 
   // Idempotency
@@ -177,7 +178,16 @@ async function processOne(albumId, slug, sourcePath, indexInAlbum, album, dryRun
     .webp({ quality: 80 })
     .toBuffer({ resolveWithObject: true });
 
+  // JPEG sibling of the full rendition: what the lightbox Download button
+  // serves (facilitators' phones, Photoshop and printers choke on WebP).
+  const fullJpgBuf = await input
+    .clone()
+    .resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 88, mozjpeg: true })
+    .toBuffer();
+
   const fullUrl = await uploadBuffer(fullPath, fullBuf.data, 'image/webp');
+  await uploadBuffer(fullJpgPath, fullJpgBuf, 'image/jpeg');
   const thumbUrl = await uploadBuffer(thumbPath, thumbBuf.data, 'image/webp');
 
   const altText = `${album.title}, photo ${indexInAlbum + 1}`;

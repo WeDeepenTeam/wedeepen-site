@@ -10,8 +10,9 @@
  *   - title says Membership, so ad and analytics reports are easy to read
  *   - Meta ViewContent fires after PageView (membership-intent signal)
  *   - no JSON-LD (the homepage owns the Organization/FAQ structured data)
- *   - membership-only conversion copy (hero subhead, price-card line,
- *     closing headline) and no Love Immersion spotlight; homepage unchanged
+ *   - nothing else: since Nov 13, 2026 the visible page (copy, sections,
+ *     buttons, layout) is the homepage as is. Christina edits index.html and
+ *     /membership/b/ follows. (Audience pages still get audienceCopy().)
  *
  * The /membership/ vs /membership/b/ A/B test ended in Oct 2026; /membership/b/
  * is now the one ad landing page. membership/b/index.html is the full page
@@ -36,7 +37,7 @@ const SRC = path.join(ROOT, 'index.html');
 const OUT = path.join(ROOT, 'membership', 'index.html');
 const OUT_B = path.join(ROOT, 'membership', 'b', 'index.html');
 const URL = 'https://wedeepen.com/membership/';
-const TITLE = 'WeDeepen Membership | Get better at love, one week at a time';
+const TITLE = 'WeDeepen Membership | Get Even Better at Love';
 
 function replaceOnce(html, pattern, replacement, label) {
   const next = html.replace(pattern, replacement);
@@ -54,9 +55,18 @@ export function buildMembership(home) {
     (m, indent) => `${m}${indent}fbq('track', 'ViewContent', { content_name: 'WeDeepen Membership', content_category: 'Membership' });\n`,
     'Meta PageView');
 
-  // ---- Membership-only copy (ad landing page). The homepage keeps its own copy. ----
-  // Hero: since Nov 4, 2026 the ad landing page uses the homepage hero as is
-  // (Christina + René: lead with the problem, most ad traffic only sees the first screen).
+  html = html.replace(/[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>\n/g, '');
+  html = replaceOnce(html, /<html([^>]*)>/,
+    '<!-- Generated from index.html by scripts/build-membership.mjs. Edit index.html instead. -->\n<html$1>',
+    '<html> tag');
+  return html;
+}
+
+// Audience pages only (/membership/dating-again/, /membership/together/): the
+// older ad-page copy swaps. Since Nov 13, 2026 /membership/b/ carries none of
+// these: Christina edits the homepage and /membership/b/ mirrors it as is.
+export function audienceCopy(membership) {
+  let html = membership;
   // Price-card line: lead with value, not fear.
   html = replaceOnce(html,
     /\$99 a month is nothing next to what getting it wrong costs: years of your life, bad dates, divorce, starting over\./,
@@ -74,10 +84,6 @@ export function buildMembership(home) {
   html = replaceOnce(html,
     /[ \t]*<a href="\/love-immersion\/[^"]*" class="btn-outline text-base">Join the Love Immersion waitlist<\/a>\n/,
     '', 'closing Love Immersion button');
-  html = html.replace(/[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>\n/g, '');
-  html = replaceOnce(html, /<html([^>]*)>/,
-    '<!-- Generated from index.html by scripts/build-membership.mjs. Edit index.html instead. -->\n<html$1>',
-    '<html> tag');
   return html;
 }
 
@@ -91,10 +97,7 @@ export function buildMembershipB(membership) {
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership B'", 'ViewContent name (B)');
   html = replaceOnce(html, /(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"', 'checkout links (B)');
   html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (B: see buildMembershipB). -->', 'generated note (B)');
-  // Hero headline test (René, Nov 6, 2026): five heroes, one per visitor; see js/hero-test.js.
-  // Must load before mobile-v2.js so the phone layout sees the chosen hero.
-  html = replaceOnce(html, /([ \t]*)<script src="\/js\/mobile-v2\.js/,
-    (m, indent) => `${indent}<script src="/js/hero-test.js?v=3" defer></script>\n${m}`, 'mobile-v2 script (B)');
+  // The Nov 6 hero headline test ended Nov 13, 2026 (René): /membership/b/ shows the homepage hero.
   return html;
 }
 
@@ -125,7 +128,7 @@ const next = buildMembership(fs.readFileSync(SRC, 'utf8'));
 const outputs = [[OUT, buildMembershipRedirect(), 'membership'], [OUT_B, buildMembershipB(next), 'membership/b']];
 // Audience landing pages (scripts/membership-segments.mjs), built from the same page.
 for (const seg of SEGMENTS) {
-  outputs.push([path.join(ROOT, 'membership', seg.slug, 'index.html'), buildSegment(next, seg), `membership/${seg.slug}`]);
+  outputs.push([path.join(ROOT, 'membership', seg.slug, 'index.html'), buildSegment(audienceCopy(next), seg), `membership/${seg.slug}`]);
 }
 // nav:sync rewrites the menu block afterwards, so compare outside it.
 const strip = (s) => s.replace(/<!-- nav:links -->[\s\S]*?<!-- \/nav:links -->/g, '');

@@ -107,20 +107,20 @@
   // Inner-voice options, dating and partnered lines mixed near the top (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
   // skills = indexes into the "Build the skills" list (data-m2="build").
   var QUIZ = [
-    { key: 'this-time', label: 'I don&rsquo;t want to f*ck it up this time', skills: [1, 3, 7],
-      lead: 'You already know your pattern. Now you learn the skills to change it.' },
+    { key: 'get-it-right', label: 'I want to get it right this time', skills: [1, 3, 7],
+      lead: 'Getting it right starts with owning your part. Then you practice, alongside people doing the same.' },
     { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 2, 3],
-      lead: 'Dating has new rules. You get to learn them alongside people who get it.' },
+      lead: 'Date by the Four Pillars. Prioritize growth. Own your part. Let every feeling be welcome. Practice love with every person you meet.' },
     { key: 'same-fight', label: 'We keep having the same fight', skills: [5, 4, 3],
-      lead: 'The same fight is a skill gap, and skills can be learned.' },
+      lead: 'All feelings are welcome here, even the ones that started the fight. You learn to repair before hurt turns into distance.' },
     { key: 'wanted', label: 'I want to feel wanted again', skills: [6, 3, 7],
-      lead: 'Desire isn&rsquo;t gone. It needs different conditions.' },
+      lead: 'Desire is a skill too. Wanting and being wanted both grow with practice.' },
     { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
-      lead: 'Roommate mode is common. Desire responds to practice.' },
+      lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
     { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],
-      lead: 'You don&rsquo;t have to decide today. Get clear on where you stand first.' },
+      lead: 'You don&rsquo;t have to decide today. Growth comes first. Clarity follows.' },
     { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
-      lead: 'Heartbreak is a teacher. You don&rsquo;t have to sit with it alone.' }
+      lead: 'Heartbreak is welcome here. You don&rsquo;t have to carry it alone.' }
   ];
   function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
 
@@ -188,11 +188,13 @@
       e.preventDefault();
       var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
       if (!picked.length) return;
-      // The first pick (in list order) sets the opener; all picks fill the skills list.
+      // The first pick (in list order) sets the opener; all picks share the skills list.
       var chosen = QUIZ.filter(function (q) { return picked.indexOf(q.key) !== -1; });
+      // Take skills round-robin so every pick gets at least one line.
       var idx = [];
-      chosen.forEach(function (q) {
-        q.skills.forEach(function (n) { if (idx.indexOf(n) === -1) idx.push(n); });
+      for (var r = 0; r < 3; r++) chosen.forEach(function (q) {
+        var n = q.skills[r];
+        if (n !== undefined && idx.indexOf(n) === -1) idx.push(n);
       });
       var items = idx.slice(0, 3).map(skillText).filter(Boolean);
       result.innerHTML =

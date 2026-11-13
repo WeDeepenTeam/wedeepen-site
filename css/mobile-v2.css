@@ -169,8 +169,16 @@ html.m2 .m2-intro { text-align: center; margin: 0 auto 36px; max-width: 36rem; }
 html.m2 .m2-intro p { margin: 0 auto 12px !important; }
 
 /* At a glance on phones is just the intro lines now (Christina, Nov 13, 2026). */
-html.m2 .m2-glance-intro { padding-bottom: 8px !important; }
-html.m2 .m2-glance-intro .m2-intro { margin-bottom: 0; }
+html.m2 .m2-glance-intro { padding: 56px 24px 52px !important; }
+html.m2 .m2-glance-intro .m2-intro { margin: 0 auto; max-width: 21rem; }
+html.m2 .m2-glance-intro .m2-intro p:first-child {
+  font-family: "Playfair Display", Georgia, serif; font-size: 1.4rem !important; line-height: 1.4 !important;
+  color: #fff !important; font-weight: 400 !important; text-wrap: balance !important; margin: 0 auto !important;
+}
+html.m2 .m2-glance-intro .m2-intro p + p {
+  color: #C9A277 !important; font-size: 0.72rem !important; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 600 !important; margin: 22px auto 0 !important; text-wrap: balance !important;
+}
 
 /* Compact Four Pillars on phones (Christina, Nov 13, 2026 test). */
 html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 { gap: 10px; }

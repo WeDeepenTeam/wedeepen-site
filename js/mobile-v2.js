@@ -251,7 +251,7 @@
           '<ol>' +
             '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes, and you&rsquo;re in the private member community right away.</p></li>' +
             '<li><span class="n">2</span><h3>Find a session on the calendar</h3><p>The next live sessions are waiting on the member calendar inside the community.</p></li>' +
-            '<li><span class="n">3</span><h3>Show up live</h3><p>90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
+            '<li><span class="n">3</span><h3>Show up live</h3><p>60 to 90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
           '</ol>' +
         '</section>'
       );

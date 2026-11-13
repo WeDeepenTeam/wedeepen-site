@@ -288,15 +288,15 @@
       if (plansPanel) plansPanel.id = 'm2-plans';
       var summary = el(
         '<div class="m2-offer" id="m2-offer">' +
-          (isHome ? '<p class="m2-offer-kicker">Also included</p>' : '<p class="m2-offer-kicker">In short</p>') +
-          '<ul>' +
+          (isHome ? '' : '<p class="m2-offer-kicker">In short</p>' + '<ul>') +
           (isHome ? '' :
             '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
             '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
             '<li><b>Real-world practice</b><span>Weekly Sunday Dares by email</span></li>') +
+          (isHome ? '' :
             '<li><b>Member perks</b><span>Discounts with partners like MindTravel and Tantra Speed Date</span></li>' +
-            (isHome ? '' : '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>') +
-          '</ul>' +
+            '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>' +
+          '</ul>') +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +
           '<a data-cta="m2-offer" href="' + CHECKOUT + '" class="btn-rose">Start my 14 free days</a>' +
           (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '') +
@@ -306,7 +306,17 @@
       // Homepage (Christina, Nov 13, 2026): the photo cards explain what's included,
       // so the box follows them and keeps only what they don't cover, plus price and join.
       var inclCards = isHome && $('.grid.md\\:grid-cols-3', incl);
-      if (inclCards) inclCards.insertAdjacentElement('afterend', summary);
+      if (inclCards) {
+        inclCards.insertAdjacentElement('afterend', summary);
+        var commH = Array.prototype.filter.call(inclCards.querySelectorAll('h3'), function (h) { return /community/i.test(h.textContent); })[0];
+        var commUl = commH && commH.closest('.rounded-md') && commH.closest('.rounded-md').querySelector('ul');
+        var lastLi = commUl && commUl.lastElementChild;
+        if (lastLi) {
+          var perk = lastLi.cloneNode(true);
+          perk.querySelector('span').textContent = 'Member discounts with partners like MindTravel and Tantra Speed Date.';
+          commUl.appendChild(perk);
+        }
+      }
       else if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
       else incl.firstElementChild.insertAdjacentElement('afterbegin', summary);
       // 9. The three usual worries, answered right under the summary (René, 2026-10-24).

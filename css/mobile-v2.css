@@ -186,3 +186,10 @@ html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div { padding: 14px 18px; di
 html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > div:first-child { font-size: 1.6rem; margin: 0; }
 html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > h3 { margin: 0; }
 html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > p:not(.m2-folded) { flex-basis: 100%; margin: 0; }
+
+/* Closing panel photo on phones (Christina, Nov 13, 2026): a tall crop only showed
+   one person, so the photo becomes a full-width band above the heading, trimmed
+   to the four people on the right. */
+html.m2 #contact { padding-top: calc(51.4vw + 28px) !important; }
+html.m2 #contact > div:first-child { background-size: 120% auto !important; background-position: right top !important; background-repeat: no-repeat !important; }
+html.m2 #contact > div:nth-child(2) { background: linear-gradient(180deg, rgba(20,16,18,0) 0, rgba(20,16,18,.15) calc(51.4vw - 70px), #1A1A1A calc(51.4vw + 6px), #1A1A1A 100%) !important; }

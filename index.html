@@ -7,7 +7,7 @@
        /css/mobile-v2.css + /js/mobile-v2.js. Desktop never gets the class.
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
-  <link rel="stylesheet" href="/css/mobile-v2.css?v=13" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/mobile-v2.css?v=14" media="(max-width:1023px)">
   <link rel="stylesheet" href="/css/member-videos.css?v=1">
 
   <!-- Google tag (gtag.js) -->
@@ -740,6 +740,26 @@
           <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.14] mb-8" style="text-wrap: balance;">
             Love has a much messier learning curve than most things we get good at.
           </h2>
+          <!-- Love journey curve (Christina, Nov 13, 2026) -->
+          <figure class="m2-curve mb-8" style="max-width:440px;">
+            <p class="text-xs uppercase font-semibold mb-2" style="color:#A01B4A;letter-spacing:.12em;">Your intimacy journey is your life story</p>
+            <p class="font-heading text-2xl md:text-[1.7rem] leading-snug mb-4" style="text-wrap: balance;">Every great love story has a <span class="italic" style="color:#A8855C;">messy middle</span>.</p>
+            <svg viewBox="0 0 346 172" width="100%" role="img" aria-label="A dashed straight line labeled what we expect, and a messy line that dips through heartbreak and the same fight, then climbs to extraordinary love once you start practicing." style="display:block;overflow:visible;font-family:'DM Sans',system-ui,sans-serif;">
+              <path d="M14 140 L326 24" stroke="rgba(45,45,45,.32)" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+              <text x="128" y="91" transform="rotate(-20.4 128 91)" font-size="10.5" fill="rgba(45,45,45,.5)">What we expect</text>
+              <path d="M14 140 C 30 120, 42 100, 58 102 S 94 140, 112 140 S 136 104, 150 106 S 180 138, 196 138 S 214 114, 230 96 S 296 44, 326 24" stroke="#A01B4A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="14" cy="140" r="5" fill="#2D2D2D"/>
+              <text x="4" y="162" font-size="10.5" fill="#2D2D2D">You want more</text>
+              <circle cx="112" cy="140" r="4.5" fill="#2D2D2D"/>
+              <text x="112" y="162" text-anchor="middle" font-size="10.5" fill="#2D2D2D">Heartbreak</text>
+              <circle cx="196" cy="138" r="4.5" fill="#2D2D2D"/>
+              <text x="196" y="162" text-anchor="middle" font-size="10.5" fill="#2D2D2D">The same fight</text>
+              <circle cx="230" cy="96" r="6.5" fill="#C9A277"/>
+              <text x="240" y="116" font-size="10.5" font-weight="600" fill="#2D2D2D">You start practicing</text>
+              <circle cx="326" cy="24" r="6.5" fill="#A01B4A"/>
+              <text x="314" y="10" text-anchor="end" font-size="14" font-style="italic" fill="#A01B4A" style="font-family:'Playfair Display',Georgia,serif;">Extraordinary love</text>
+            </svg>
+          </figure>
           <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed mb-5">
             We develop skills in work, health, and sport through learning, practice, and feedback. Love is usually left to experience.
           </p>

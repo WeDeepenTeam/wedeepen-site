@@ -129,21 +129,6 @@
     .nye-daytab:hover { color: #fff; border-color: rgba(224,188,120,0.45); }
     .nye-daytab[aria-selected="true"] { color: #fff; background: rgba(224,188,120,0.12); border-color: rgba(224,188,120,0.7); }
     .nye-daytab[aria-selected="true"] span:first-child { color: #E0BC78; }
-    .nye-roses {
-      position: absolute; left: 0; bottom: 0; width: 100%;
-      aspect-ratio: 2400 / 560; height: auto; min-height: 110px;
-      object-fit: cover; object-position: center top;
-      pointer-events: none; z-index: 1;
-    }
-    @media (max-width: 767px) { .nye-roses { aspect-ratio: 1200 / 640; min-height: 0; } }
-    .cloud-hero {
-      background-image:
-        linear-gradient(180deg, rgba(5,8,28,0.35) 0%, rgba(5,8,28,0.25) 50%, rgba(7,11,31,0.92) 100%),
-        url('/images/nye-fireworks-bg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
 
     /* Hero (Nov 2026 restyle): indigo fireworks, Lora + Poppins */
     .nye-hero {
@@ -169,10 +154,13 @@
     .nye-hero-caps { font-family: 'Poppins', 'DM Sans', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: #d4b78c; margin: 0 0 32px; }
     .nye-hero-body { font-family: 'Poppins', 'DM Sans', sans-serif; font-weight: 300; color: #f4ede0; }
     .nye-hero-body strong { font-weight: 400; }
+    .nye-hero-h2 { font-size: 60px; }
+    .nye-hero .btn-pink { font-family: 'Poppins', 'DM Sans', sans-serif; font-weight: 400; }
     @media (max-width: 767px) {
       .nye-hero-h1 { font-size: 40px; }
       .nye-hero-rule { margin: 20px auto; }
       .nye-hero-tag { font-size: 20px; }
+      .nye-hero-h2 { font-size: 36px; }
       .nye-hero-caps { margin-bottom: 26px; }
     }
 
@@ -478,6 +466,7 @@
   <main id="main">
   <!-- HERO -->
   <section class="nye-hero relative md:min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <canvas class="nye-fw absolute inset-0 w-full h-full pointer-events-none" style="z-index:1;" aria-hidden="true"></canvas>
     <div class="relative z-10 text-center px-6 max-w-6xl mx-auto pt-28 md:pt-36 pb-20 md:pb-28">
       <h1 class="nye-hero-h1">New Year&rsquo;s at the&nbsp;Gatsby</h1>
       <hr class="nye-hero-rule">
@@ -1132,13 +1121,14 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="cloud-hero relative overflow-hidden pt-24 md:pt-32 pb-40 md:pb-56 px-6 text-center">
-    <div class="relative z-10 max-w-2xl mx-auto reveal">
-      <h2 class="font-heading text-4xl md:text-5xl font-normal mb-4" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">2027 starts with <span class="italic">your&nbsp;choice.</span></h2>
-      <p class="text-white/80 text-lg md:text-xl font-light mb-8" style="text-shadow: 0 2px 16px rgba(0,0,0,0.6);">How do you want to spend your New Year&rsquo;s?</p>
+  <section class="nye-hero relative overflow-hidden py-28 md:py-40 px-6 text-center">
+    <canvas class="nye-fw absolute inset-0 w-full h-full pointer-events-none" style="z-index:1;" aria-hidden="true"></canvas>
+    <div class="relative z-10 max-w-3xl mx-auto reveal">
+      <h2 class="nye-hero-h1 nye-hero-h2">2027 starts with your&nbsp;choice.</h2>
+      <hr class="nye-hero-rule">
+      <p class="nye-hero-tag mb-8">How do you want to spend your New&nbsp;Year&rsquo;s?</p>
       <button type="button" class="ag-trigger btn-pink text-base">Sign Me Up</button>
     </div>
-    <picture><source media="(max-width: 767px)" srcset="/images/nye/roses-garland-phone.webp"><img class="nye-roses" src="/images/nye/roses-garland.webp" alt="" aria-hidden="true" loading="lazy"></picture>
   </section>
 
 
@@ -1230,10 +1220,13 @@
 
     // Hero fireworks: small canvas bursts, paused off-screen, off for reduced motion
     (function () {
-      const c = document.getElementById('nye-fireworks');
-      if (!c || !c.getContext || (matchMedia('(prefers-reduced-motion: reduce)').matches && !/[?&]fw=1/.test(location.search))) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches && !/[?&]fw=1/.test(location.search)) return;
+      document.querySelectorAll('canvas.nye-fw').forEach(fw);
+      function fw(c) {
+      if (!c.getContext) return;
       const ctx = c.getContext('2d');
-      const COLORS = ['#E0BC78', '#F3D9A4', '#FFFFFF', '#F28AB2', '#9FB4FF'];
+      // Same palette as the background art: gold, champagne, cream, rose.
+      const COLORS = ['#d4b78c', '#e9d3a8', '#f4ede0', '#c8306a', '#e05a8f'];
       let w = 0, h = 0, dpr = 1, parts = [], running = false, raf = 0, next = 0, last = 0;
       function size() {
         dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1242,9 +1235,11 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       function burst() {
+        // Keep bursts off the text: the outer fifths on wide screens, the edges on phones.
         const small = w < 768;
-        const x = w * (0.1 + Math.random() * 0.8);
-        const y = h * (0.08 + Math.random() * 0.35);
+        const side = Math.random() < 0.5 ? 0 : 1;
+        const x = small ? w * (side ? 0.9 + Math.random() * 0.08 : 0.02 + Math.random() * 0.08) : w * (side ? 0.78 + Math.random() * 0.18 : 0.04 + Math.random() * 0.18);
+        const y = small ? h * (0.15 + Math.random() * 0.7) : h * (0.1 + Math.random() * 0.6);
         const color = COLORS[(Math.random() * COLORS.length) | 0];
         const n = small ? 46 : 70, speed = (small ? 1.6 : 2.2) + Math.random();
         for (let i = 0; i < n; i++) {
@@ -1276,6 +1271,7 @@
       let visible = true;
       new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(c);
       document.addEventListener('visibilitychange', () => { document.hidden ? stop() : (visible && start()); });
+      }
     })();
 
     // Itinerary day tabs

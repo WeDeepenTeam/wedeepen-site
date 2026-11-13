@@ -118,7 +118,7 @@
     { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
       lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
     { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],
-      lead: 'You don&rsquo;t have to decide today. Growth comes first. Clarity follows.' },
+      lead: 'You&rsquo;ve probably been ruminating on this for a while. Here, you get clear enough to choose.' },
     { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
       lead: 'Heartbreak is welcome here. You don&rsquo;t have to carry it alone.' }
   ];

@@ -268,7 +268,9 @@
     if (skill) {
       var skillPs = skill.querySelectorAll('h2 ~ p');
       var skillImg = skill.querySelector('.aspect-\\[3\\/2\\]');
-      fold(skill, [skillPs[1] || null, skillImg && skillImg.parentElement, $('.home-ledger', skill)], 'Read more', skillPs[1] || skillPs[0]);
+      // Phones: the photo comes before "WeDeepen gives you a place..." (Christina, Nov 13, 2026).
+      if (skillImg && skillPs[1]) { skillPs[1].insertAdjacentElement('beforebegin', skillImg); skillImg.style.marginBottom = '20px'; }
+      fold(skill, [skillImg, skillPs[1] || null, $('.home-ledger', skill)], 'Read more', skillPs[1] || skillPs[0]);
     }
     if (build) {
       var buildItems = Array.prototype.slice.call(build.querySelectorAll('ul > li'), 3);

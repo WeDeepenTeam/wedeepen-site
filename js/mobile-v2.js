@@ -114,7 +114,7 @@
     { key: 'same-fight', label: 'We keep having the same fight', skills: [5, 4, 3],
       lead: 'All feelings are welcome here, even the ones that started the fight. You learn to repair before hurt turns into distance.' },
     { key: 'wanted', label: 'I want to feel wanted again', skills: [6, 3, 7],
-      lead: 'Desire is a skill too. Wanting and being wanted both grow with practice.' },
+      lead: 'Desire starts in your own skin. Jump to a timeline where you know you&rsquo;re wanted.' },
     { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
       lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
     { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],

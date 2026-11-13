@@ -1645,7 +1645,7 @@
         // /events/.
         const isTuesdayCall = e =>
           (Array.isArray(e.topics) && e.topics.includes('Love Mastermind')) ||
-          /^Integration Session/i.test(e.title || '') ||
+          /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '') ||
           /orientation/i.test(e.title || '');
         const upcoming = (data.events || [])
           .filter(e => {
@@ -1672,7 +1672,7 @@
           const imgStyle = hasImg
             ? `background-image:url('${e.image_url}');background-size:cover;background-position:center;`
             : `background:linear-gradient(135deg,#A01B4A 0%,#1A1A1A 100%);`;
-          const isIntegration = /^Integration Session/i.test(e.title || '');
+          const isIntegration = /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '');
           const isOrientation = /orientation/i.test(e.title || '');
           const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
           const tagHtml = isOrientation

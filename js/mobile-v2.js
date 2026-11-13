@@ -317,17 +317,7 @@
       // Homepage (Christina, Nov 13, 2026): the photo cards explain what's included,
       // so the box follows them and keeps only what they don't cover, plus price and join.
       var inclCards = isHome && $('.grid.md\\:grid-cols-3', incl);
-      if (inclCards) {
-        inclCards.insertAdjacentElement('afterend', summary);
-        var commH = Array.prototype.filter.call(inclCards.querySelectorAll('h3'), function (h) { return /community/i.test(h.textContent); })[0];
-        var commUl = commH && commH.closest('.rounded-md') && commH.closest('.rounded-md').querySelector('ul');
-        var lastLi = commUl && commUl.lastElementChild;
-        if (lastLi) {
-          var perk = lastLi.cloneNode(true);
-          perk.querySelector('span').textContent = 'Member discounts with partners like MindTravel and Tantra Speed Date.';
-          commUl.appendChild(perk);
-        }
-      }
+      if (inclCards) inclCards.insertAdjacentElement('afterend', summary);
       else if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
       else incl.firstElementChild.insertAdjacentElement('afterbegin', summary);
       // 9. The three usual worries, answered right under the summary (René, 2026-10-24).

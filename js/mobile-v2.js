@@ -423,7 +423,7 @@
 
     // 3. Join prompts every few screens.
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));
-    if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));
+    if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from experts like these, live and online.'));
     var pillars = $('#four-pillars');
     if (pillars) pillars.firstElementChild.appendChild(joinPrompt('pillars', 'This is what we practice together.'));
 

@@ -15,18 +15,18 @@
       ],
       "children": [
         {
+          "label": "Full Calendar",
+          "href": "/events/"
+        },
+        {
           "label": "NYE",
           "href": "/nye/",
           "badge": "New"
         },
         {
-          "label": "Love Immersion",
+          "label": "Love Immersion 2027",
           "href": "/love-immersion/",
           "activePrefix": "/love-immersion/"
-        },
-        {
-          "label": "Live Sessions",
-          "href": "/events/"
         }
       ]
     },

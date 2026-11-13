@@ -108,7 +108,7 @@
   // skills = indexes into the "Build the skills" list (data-m2="build").
   var QUIZ = [
     { key: 'get-it-right', label: 'I want to get it right this time', skills: [1, 3, 7],
-      lead: 'Getting it right starts with owning your part. Then you practice, alongside people doing the same.' },
+      lead: 'Getting it right starts with owning your part. Instead of asking &lsquo;What can I get?&rsquo;, ask &lsquo;Who do I get to become?&rsquo;' },
     { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 2, 3],
       lead: 'Date by the Four Pillars. Prioritize growth. Own your part. Let every feeling be welcome. Practice love with every person you meet.' },
     { key: 'same-fight', label: 'We keep having the same fight', skills: [5, 4, 3],

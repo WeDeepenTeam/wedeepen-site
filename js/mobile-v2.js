@@ -133,7 +133,7 @@
     if (!row) return;
     hero.classList.add('m2-hero-v2');
 
-    h1.innerHTML = '<span class="text-white">Get even better at love.<br>Have fun doing it.</span>';
+    h1.innerHTML = '<span class="text-white">Get <span class="italic">even</span> better at love.<br>Have fun doing it.</span>';
 
     // Move the two intro paragraphs (not deleted) to the top of "At a glance".
     var intro = Array.prototype.slice.call(hero.querySelectorAll('h1 ~ p'));

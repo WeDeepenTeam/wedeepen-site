@@ -297,6 +297,11 @@
           else if (i > 1) el2.style.display = 'none';
         });
       }
+      // Homepage phones (Christina, Nov 13, 2026): one pricing box. Annual becomes a line
+      // under the main button and the separate plans panel is hidden (kept in the HTML).
+      var annualLink = isHome && plansPanel && Array.prototype.filter.call(plansPanel.querySelectorAll('a[data-cta="membership"]'), function (a) { return /annual/i.test(a.textContent); })[0];
+      var annualHref = annualLink && annualLink.getAttribute('href');
+      if (annualHref) plansPanel.style.display = 'none';
       var summary = el(
         '<div class="m2-offer" id="m2-offer">' +
           (isHome ? '' : '<p class="m2-offer-kicker">In short</p>' + '<ul>') +
@@ -310,7 +315,8 @@
           '</ul>') +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +
           '<a data-cta="m2-offer" href="' + CHECKOUT + '" class="btn-rose">Start my 14 free days</a>' +
-          (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '') +
+          (isHome && annualHref ? '<a data-cta="m2-offer-annual" href="' + annualHref + '" class="m2-offer-more">Or go annual: $990/year, two months free &rarr;</a>'
+            : (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '')) +
         '</div>'
       );
       var inclHead = $('.text-center', incl);

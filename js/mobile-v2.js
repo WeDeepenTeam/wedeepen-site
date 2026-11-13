@@ -29,7 +29,6 @@
 (function () {
   'use strict';
   var root = document.documentElement;
-  if (!root.classList.contains('m2')) return;
 
   var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281' +
     (/^\/membership\/b\//.test(location.pathname) ? '&utm_content=membership-b' :
@@ -40,6 +39,92 @@
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function sec(name) { return $('[data-m2="' + name + '"]'); }
   function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
+
+  // Inner-voice options, dating and partnered lines mixed near the top (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
+  // skills = indexes into the "Build the skills" list (data-m2="build").
+  var QUIZ = [
+    { key: 'get-it-right', label: 'I want to get it right this time', skills: [4, 3, 7],
+      lead: 'Getting it right starts with owning your part. Instead of asking &lsquo;What can I get?&rsquo;, ask &lsquo;Who do I get to become?&rsquo;' },
+    { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 3, 4],
+      lead: 'Date by the Four Pillars. Prioritize growth. Own your part. Let every feeling be welcome. Practice love with every person you meet.' },
+    { key: 'same-fight', label: 'We keep having the same fight', skills: [2, 6, 3],
+      lead: 'All feelings are welcome here, even the ones that started the fight. You learn to repair before hurt turns into distance.' },
+    { key: 'wanted', label: 'I want to feel wanted again', skills: [1, 5, 3],
+      lead: 'Desire starts in your own skin. Jump to a timeline where you know you&rsquo;re wanted.' },
+    { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [5, 1, 6],
+      lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
+    { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [3, 6, 7],
+      lead: 'You&rsquo;ve probably been ruminating on this for a while. Here, you get clear enough to choose.' },
+    { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [4, 3, 0],
+      lead: 'Heartbreak is a natural human experience. It&rsquo;s tender, and we&rsquo;ve got you.' }
+  ];
+  function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
+
+  // The quiz, shared by the phone hero and the desktop hero (Christina, Nov 13, 2026).
+  function buildQuiz() {
+    var skillLis = sec('build') ? sec('build').querySelectorAll('ul > li') : [];
+    var skillText = function (i) {
+      var li = skillLis[i];
+      return li ? li.textContent.replace(/^\s*0?\d+\s*/, '').trim() : '';
+    };
+    var quote = 'I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level.';
+
+    var quiz = el(
+      '<form class="m2-quiz" novalidate>' +
+        '<h2>What brings you to WeDeepen?</h2>' +
+        '<p class="m2-quiz-sub">Dating, partnered, or solo. Pick all that fit.</p>' +
+        '<div class="m2-quiz-opts">' +
+          QUIZ.map(function (q) {
+            return '<label class="m2-quiz-opt"><input type="checkbox" name="why" value="' + q.key + '"><span class="box" aria-hidden="true"></span><span class="t">' + q.label + '</span></label>';
+          }).join('') +
+        '</div>' +
+        '<button type="submit" class="m2-quiz-go" disabled>Continue</button>' +
+        '<div class="m2-quiz-result" hidden></div>' +
+      '</form>'
+    );
+    var go = $('.m2-quiz-go', quiz);
+    var result = $('.m2-quiz-result', quiz);
+    quiz.addEventListener('change', function () {
+      go.disabled = !quiz.querySelector('input:checked');
+    });
+    quiz.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
+      if (!picked.length) return;
+      // The first pick (in list order) sets the opener; all picks share the skills list.
+      var chosen = QUIZ.filter(function (q) { return picked.indexOf(q.key) !== -1; });
+      // Take skills round-robin so every pick gets at least one line.
+      var idx = [];
+      for (var r = 0; r < 3; r++) chosen.forEach(function (q) {
+        var n = q.skills[r];
+        if (n !== undefined && idx.indexOf(n) === -1) idx.push(n);
+      });
+      var items = idx.slice(0, 3).map(skillText).filter(Boolean);
+      result.innerHTML =
+        '<p class="m2-quiz-lead">' + chosen[0].lead + '</p>' +
+        '<p class="m2-quiz-kicker">The skills of intimacy you&rsquo;ll learn</p>' +
+        '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Karolina S.</cite></blockquote>' +
+        '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
+        '<p class="m2-reassure">Cancel anytime, on your own.</p>';
+      result.hidden = false;
+      go.textContent = 'Update';
+      track('quiz_complete', { choices: picked.join(','), page: location.pathname });
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return quiz;
+  }
+
+
+  // Desktop (1024px and up): only the hero quiz, in its own column (Christina, Nov 13, 2026).
+  if (!root.classList.contains('m2')) {
+    var placeQuiz = function () {
+      var slot = document.getElementById('desktop-quiz-slot');
+      if (slot && !slot.firstChild && window.matchMedia('(min-width: 1024px)').matches) slot.appendChild(buildQuiz());
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', placeQuiz); else placeQuiz();
+    return;
+  }
 
   function joinPrompt(key, lead, label) {
     return el(
@@ -106,26 +191,6 @@
   }
 
   // 8. Homepage hero on phones (Christina, Nov 5, 2026).
-  // Inner-voice options, dating and partnered lines mixed near the top (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
-  // skills = indexes into the "Build the skills" list (data-m2="build").
-  var QUIZ = [
-    { key: 'get-it-right', label: 'I want to get it right this time', skills: [4, 3, 7],
-      lead: 'Getting it right starts with owning your part. Instead of asking &lsquo;What can I get?&rsquo;, ask &lsquo;Who do I get to become?&rsquo;' },
-    { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 3, 4],
-      lead: 'Date by the Four Pillars. Prioritize growth. Own your part. Let every feeling be welcome. Practice love with every person you meet.' },
-    { key: 'same-fight', label: 'We keep having the same fight', skills: [2, 6, 3],
-      lead: 'All feelings are welcome here, even the ones that started the fight. You learn to repair before hurt turns into distance.' },
-    { key: 'wanted', label: 'I want to feel wanted again', skills: [1, 5, 3],
-      lead: 'Desire starts in your own skin. Jump to a timeline where you know you&rsquo;re wanted.' },
-    { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [5, 1, 6],
-      lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
-    { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [3, 6, 7],
-      lead: 'You&rsquo;ve probably been ruminating on this for a while. Here, you get clear enough to choose.' },
-    { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [4, 3, 0],
-      lead: 'Heartbreak is a natural human experience. It&rsquo;s tender, and we&rsquo;ve got you.' }
-  ];
-  function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
-
   function heroV2() {
     var hero = $('#hero');
     var h1 = hero && $('h1', hero);
@@ -164,58 +229,9 @@
     var more = $('a[href="#membership"]', row);
     if (more) more.remove();
 
-    var skillLis = sec('build') ? sec('build').querySelectorAll('ul > li') : [];
-    var skillText = function (i) {
-      var li = skillLis[i];
-      return li ? li.textContent.replace(/^\s*0?\d+\s*/, '').trim() : '';
-    };
-    var quote = 'I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level.';
-
-    var quiz = el(
-      '<form class="m2-quiz" novalidate>' +
-        '<h2>What brings you to WeDeepen?</h2>' +
-        '<p class="m2-quiz-sub">Dating, partnered, or solo. Pick all that fit.</p>' +
-        '<div class="m2-quiz-opts">' +
-          QUIZ.map(function (q) {
-            return '<label class="m2-quiz-opt"><input type="checkbox" name="why" value="' + q.key + '"><span class="box" aria-hidden="true"></span><span class="t">' + q.label + '</span></label>';
-          }).join('') +
-        '</div>' +
-        '<button type="submit" class="m2-quiz-go" disabled>Continue</button>' +
-        '<div class="m2-quiz-result" hidden></div>' +
-      '</form>'
-    );
+    var quiz = buildQuiz();
     row.parentElement.insertBefore(quiz, $('.m2-reassure', hero).nextSibling);
 
-    var go = $('.m2-quiz-go', quiz);
-    var result = $('.m2-quiz-result', quiz);
-    quiz.addEventListener('change', function () {
-      go.disabled = !quiz.querySelector('input:checked');
-    });
-    quiz.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
-      if (!picked.length) return;
-      // The first pick (in list order) sets the opener; all picks share the skills list.
-      var chosen = QUIZ.filter(function (q) { return picked.indexOf(q.key) !== -1; });
-      // Take skills round-robin so every pick gets at least one line.
-      var idx = [];
-      for (var r = 0; r < 3; r++) chosen.forEach(function (q) {
-        var n = q.skills[r];
-        if (n !== undefined && idx.indexOf(n) === -1) idx.push(n);
-      });
-      var items = idx.slice(0, 3).map(skillText).filter(Boolean);
-      result.innerHTML =
-        '<p class="m2-quiz-lead">' + chosen[0].lead + '</p>' +
-        '<p class="m2-quiz-kicker">The skills of intimacy you&rsquo;ll learn</p>' +
-        '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Karolina S.</cite></blockquote>' +
-        '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
-        '<p class="m2-reassure">Cancel anytime, on your own.</p>';
-      result.hidden = false;
-      go.textContent = 'Update';
-      track('quiz_complete', { choices: picked.join(','), page: location.pathname });
-      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
   }
 
   function run() {

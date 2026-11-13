@@ -207,11 +207,13 @@ export function buildSegment(membership, seg) {
   html = replaceOnce(html, /<html lang="en">/, '<html lang="en" data-recordings="library">', 'html tag');
 
   // ---- Hero ----
-  html = replaceOnce(html, /<span class="text-white">Get <span class="italic">even<\/span> better at love\.<\/span>/, `<span class="text-white">${seg.h1}</span>`, 'hero h1');
+  html = replaceOnce(html, /<span class="text-white">Get <span class="italic">even<\/span> better at love\.<br>Have fun doing it\.<\/span>/, `<span class="text-white">${seg.h1}</span>`, 'hero h1');
+  // The homepage's desktop-only synopsis line belongs to the homepage; segment pages keep their own subhead.
+  html = replaceOnce(html, /\s*<div class="hidden lg:block text-lg text-white\/85[^"]*"[^>]*>Live weekly sessions[\s\S]*?<\/div>/, '', 'desktop synopsis');
   // The homepage hero has two short paragraphs; segment pages use one (seg.sub).
   html = replaceOnce(html,
     /(<p class="[^"]*?)mb-4( [^"]*"[^>]*>)\s*WeDeepen is for people who are curious[\s\S]*?<\/p>\s*<p [^>]*>\s*It&rsquo;s an expert-led community[\s\S]*?<\/p>/,
-    (m, a, b) => `${a}mb-10${b}\n        ${seg.sub}\n      </p>`, 'hero subhead');
+    (m, a, b) => `${a.replace('lg:hidden ', '')}mb-10${b}\n        ${seg.sub}\n      </p>`, 'hero subhead');
 
   // ---- At a glance closing line ----
   html = replaceOnce(html,

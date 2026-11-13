@@ -9,6 +9,7 @@
        ?m2=0 shows the old phone layout for the visit (?m2=1 switches back). -->
   <script>(function(){var c=document.documentElement.classList;try{var k='wd_m2',q=location.search;if(/[?&]m2=0(&|$)/.test(q))sessionStorage.setItem(k,'0');if(/[?&]m2=1(&|$)/.test(q))sessionStorage.removeItem(k);if(sessionStorage.getItem(k)==='0')return;}catch(e){}if(window.matchMedia&&matchMedia('(max-width:1023px)').matches)c.add('m2');})();</script>
   <link rel="stylesheet" href="/css/mobile-v2.css?v=17" media="(max-width:1023px)">
+  <link rel="stylesheet" href="/css/desktop-v2.css?v=1" media="(min-width:1024px)">
   <link rel="stylesheet" href="/css/member-videos.css?v=1">
 
   <!-- Google tag (gtag.js) -->
@@ -439,9 +440,12 @@
     <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.62) 40%, rgba(26,26,26,0.82) 85%, rgba(26,26,26,0.95) 100%);"></div>
 
     <!-- Hero Content — generous top padding for nav clearance + breathing room -->
-    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto pt-32 md:pt-40">
+    <div class="relative z-10 text-center px-6 max-w-5xl lg:max-w-site mx-auto pt-32 md:pt-40">
+      <!-- Desktop hero (Christina, Nov 13, 2026): story on the left, the quiz on the right. -->
+      <div class="lg:grid lg:grid-cols-12 lg:gap-14 lg:items-center lg:text-left">
+      <div class="lg:col-span-7">
       <!-- DEEPEN icon (favicon-style waves, white for dark hero) -->
-      <div class="mb-6 flex justify-center">
+      <div class="mb-6 flex justify-center lg:justify-start">
         <img src="/images/deepen-icon-favicon-white.png" width="500" height="500" alt="DEEPEN" class="w-16 h-16 md:w-20 md:h-20 opacity-95">
       </div>
 
@@ -456,7 +460,7 @@
       </p>
 
       <!-- CTAs — membership primary, what's-included secondary -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-16">
+      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 mb-16 lg:mb-4">
         <a data-cta="hero" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-dating-again" class="btn-rose text-base flex flex-col items-center !px-8 sm:!px-10 !py-3 sm:!py-3.5 w-full sm:w-auto justify-center leading-tight text-center">
           <span class="whitespace-nowrap">Join WeDeepen - $99/month</span>
           <span class="whitespace-nowrap text-sm font-normal opacity-85 mt-0.5">(14-day free trial)</span>
@@ -464,6 +468,11 @@
         <a href="#membership" class="flex items-center gap-2.5 text-white/80 hover:text-white transition font-medium text-base px-6 sm:px-7 py-3 sm:py-4">
           See what&rsquo;s included
         </a>
+      </div>
+
+      <div class="hidden lg:block text-gold/90 text-sm mb-16">Way less than one private coaching session. Cancel anytime, on your own.</div>
+      </div>
+      <div class="hidden lg:block lg:col-span-5" id="desktop-quiz-slot"></div>
       </div>
 
       <!-- Press Bar — As Seen In (logos) -->
@@ -485,21 +494,112 @@
 
   </section>
 
+  <!-- ============================
+       SECTION 7: TESTIMONIALS
+       ============================ -->
+  <section data-m2="testimonials" class="bg-cream py-20 md:py-28">
+    <div class="max-w-site mx-auto px-6 reveal">
+      <div class="text-center mb-14">
+        <h2 class="font-heading text-3xl md:text-4xl font-semibold text-charcoal mb-4">What Members Say</h2>
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <div class="flex text-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="text-charcoal font-semibold"><!-- reviews:google-rating -->5.0<!-- /reviews:google-rating --></span>
+          <a href="/reviews/" class="text-charcoal/70 text-sm underline underline-offset-2 hover:text-charcoal"><!-- reviews:google-count -->26<!-- /reviews:google-count --> Google reviews</a>
+        </div>
+      </div>
+
+      <!-- Member video testimonials (René, Nov 2026). js/member-videos.js reshuffles these six on every load:
+           card 1 is Hannah, Shailza or Beth, then male, female, couple, female, male. Edits: WD Content project,
+           claude/website-video-testimonials.md. Written quotes that used to be here are on /reviews/. -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto" data-mv-grid data-mv-exclude="matt-same-team">
+
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="hannah-space-for-you">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/hannah-space-for-you.mp4" aria-label="Play Hannah’s story (0:31)"><img src="/images/testimonials/hannah-space-for-you.webp" alt="Hannah, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:31</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">H</div>
+              <div><p class="text-charcoal font-semibold text-sm">Hannah</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="bo-friends-open-heart">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/bo-friends-open-heart.mp4" aria-label="Play Bo’s story (0:35)"><img src="/images/testimonials/bo-friends-open-heart.webp" alt="Bo L., speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">The people were so amazing and so warm. We’ve become amazing friends, we feel each other’s hearts, and the love is real.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
+              <div><p class="text-charcoal font-semibold text-sm">Bo L.</p><p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Member</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="cara-11-months">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/cara-11-months.mp4" aria-label="Play Cara’s story (0:28)"><img src="/images/testimonials/cara-11-months.webp" alt="Cara, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:28</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">Eleven months in, I feel like I’m a new person. I’ve created this community that is truly safe and secure and full of love.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">C</div>
+              <div><p class="text-charcoal font-semibold text-sm">Cara</p><p class="text-charcoal/70 text-xs">Member, 11 months</p></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="shailzah-friends">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/shailzah-friends.mp4" aria-label="Play Shailza’s story (0:35)"><img src="/images/testimonials/shailzah-friends.webp" alt="Shailza, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">It’s probably my favorite friends group. Before joining this community I had fewer friends. Now I have this whole group of friends, and I thrive in it.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">S</div>
+              <div><p class="text-charcoal font-semibold text-sm">Shailza</p><p class="text-charcoal/70 text-xs">Member, Austin</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="justin-strangers">
+          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/justin-strangers.mp4" aria-label="Play Justin’s story (0:44)"><img src="/images/testimonials/justin-strangers.webp" alt="Justin, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:44</span></a>
+          <div class="mv-body">
+            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-charcoal/80 text-sm leading-relaxed">I’d describe the vibe of this community as vulnerable strangers. There’s so much natural grace and compassion, it’s impossible for it not to rub off on you.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">J</div>
+              <div><p class="text-charcoal font-semibold text-sm">Justin</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/reviews/" class="text-charcoal font-semibold hover:text-rose-deep transition">Read More Reviews &rarr;</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================
        SECTION 1.5: MEMBERSHIP AT A GLANCE
        Sits directly under the hero + press bar: the offer in three beats
        before the page starts making its argument.
        ============================ -->
-  <section data-m2="glance" class="bg-ink pt-16 pb-16 md:pt-24 md:pb-32 px-6">
+  <section data-m2="glance" class="bg-ink pt-16 pb-16 md:pt-24 md:pb-32 lg:py-24 px-6">
     <div class="max-w-site mx-auto reveal">
-      <div class="text-center mb-14 md:mb-16">
+      <div class="hidden lg:block max-w-3xl mx-auto text-center">
+        <p class="font-heading text-white text-[2.1rem] leading-snug" style="text-wrap: balance;">No one ever taught us how to do love well. WeDeepen is where you learn it, with expert faculty and members who are practicing too.</p>
+        <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mt-7">Come partnered, dating, or solo.</p>
+      </div>
+      <div class="lg:hidden text-center mb-14 md:mb-16">
         <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.9rem] font-normal leading-tight" style="text-wrap: balance;">
           WeDeepen Membership <span class="italic" style="color:#C4577A;">at a glance</span>
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-px" style="background: rgba(255,255,255,0.13);">
+      <div class="lg:hidden grid grid-cols-1 md:grid-cols-3 gap-px" style="background: rgba(255,255,255,0.13);">
         <div class="bg-ink px-0 md:pr-10 py-10 md:py-2">
           <h3 class="font-heading text-2xl md:text-[1.8rem] text-white mb-4 leading-snug">Live sessions</h3>
           <p class="text-white/60 leading-relaxed">Masterminds, relationship workshops, bonding &amp; integration</p>
@@ -514,12 +614,11 @@
         </div>
       </div>
 
-      <div class="max-w-3xl mx-auto mt-14 md:mt-16 pt-10 border-t border-white/10 text-center">
+      <div class="lg:hidden max-w-3xl mx-auto mt-14 md:mt-16 pt-10 border-t border-white/10 text-center">
         <p class="font-heading text-white/90 text-xl md:text-2xl leading-relaxed" style="text-wrap: balance;">You don&rsquo;t need your love life figured out. You just need a place to practice.</p>
       </div>
     </div>
   </section>
-
 
   <!-- ============================
        SECTION 2: THE SKILL OF LOVE
@@ -585,7 +684,6 @@
     </div>
   </section>
 
-
   <!-- ============================
        SECTION 2a: WHAT YOU BUILD — outcomes, not features. Editorial like
        the rest of the page: dark ground, hairlines, numbered list, a photo.
@@ -642,7 +740,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- ============================
        SECTION 2a+: IN THEIR WORDS — testimonial videos for this audience
@@ -780,10 +877,11 @@
         <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 lg:items-center">
           <div class="lg:col-span-5">
             <p class="text-gold text-[0.68rem] uppercase tracking-[0.28em] font-semibold mb-3">Start anytime</p>
-            <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3" style="text-wrap: balance;">Start your 14 free days today.</p>
-            <p class="text-white/70 text-sm leading-relaxed">Join any day and come to the next live session. New member orientation runs monthly; the <a href="/events/" class="text-gold hover:underline">events calendar</a> shows the next one.</p>
-            <p class="text-white/85 text-sm leading-relaxed mt-4">You&rsquo;ve spent years getting good at your work. This is 60 to 90 minutes a week for the thing that shapes everything else.</p>
-            <p class="text-white/60 text-sm leading-relaxed mt-3">For comparison, a single private coaching session can cost $300 or more. Here, $99 covers a month of live weekly group sessions with our faculty, plus the community in between.</p>
+            <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3" style="text-wrap: balance;">Choose monthly or annual.</p>
+            <p class="hidden lg:block text-white/60 text-sm leading-relaxed">Your first 14 days are free either way. Cancel anytime, on your own.</p>
+            <p class="lg:hidden text-white/70 text-sm leading-relaxed">Join any day and come to the next live session. New member orientation runs monthly; the <a href="/events/" class="text-gold hover:underline">events calendar</a> shows the next one.</p>
+            <p class="lg:hidden text-white/85 text-sm leading-relaxed mt-4">You&rsquo;ve spent years getting good at your work. This is 60 to 90 minutes a week for the thing that shapes everything else.</p>
+            <p class="lg:hidden text-white/60 text-sm leading-relaxed mt-3">For comparison, a single private coaching session can cost $300 or more. Here, $99 covers a month of live weekly group sessions with our faculty, plus the community in between.</p>
           </div>
           <div class="grid sm:grid-cols-2 gap-4 lg:col-span-7">
             <div class="rounded-sm p-6 flex flex-col" style="border:1px solid rgba(255,255,255,0.14);">
@@ -804,6 +902,22 @@
         <p class="text-white/40 text-xs leading-relaxed mt-6">*The $800 Love Immersion credit is for the first 20 annual members, is valid for one retreat during your membership year and can&rsquo;t be combined with any other discount or offer. <a href="#faq-credit" class="underline underline-offset-2 hover:text-white/70">Details in the FAQ</a>.</p>
       </div>
 
+      <!-- Desktop: the three questions people ask before joining (Christina, Nov 13, 2026). Phones get these from mobile-v2.js. -->
+      <div class="hidden lg:grid grid-cols-3 gap-10 max-w-site mx-auto mt-16 pt-12 border-t border-white/10 text-left">
+        <div>
+          <h3 class="font-heading text-xl text-white mb-3">Who is this for?</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Anyone who wants to thrive in love and get better at it. Men and women, straight and LGBTQ+, every age and stage, dating, partnered or solo. Many of our members are early adopters: optimists who believe the world is moving toward love and want to invest their time and energy in building it, starting with their own skills.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-xl text-white mb-3">Can I share a membership with my partner?</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Yes, for now. Couples are welcome to share one membership and come to sessions together. It&rsquo;s set up under one email and one phone number, so choose whose it&rsquo;ll be.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-xl text-white mb-3">Is this a cult or a clique?</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Not a church. Not an MLM. A culture shift: curious people practicing love together, with many teachers and no single guru or system.</p>
+        </div>
+      </div>
+
       <!-- Proof right where the decision happens -->
       <div class="max-w-3xl mx-auto text-center mt-10">
         <div class="flex items-center justify-center gap-2 mb-4">
@@ -821,25 +935,32 @@
     </div>
   </section>
 
-
-  <!-- ============================
-       SECTION 2c: THIS MONTH INSIDE THE MEMBERSHIP
-       Live from the Circle member calendar (same feed as /events/).
-       ============================ -->
-  <section id="calendar" class="bg-cream text-charcoal py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-12 md:mb-14">
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-charcoal leading-tight mb-5" style="text-wrap: balance;">
-          This month inside <span class="italic" style="color:#A01B4A;">the membership.</span>
-        </h2>
-        <p class="text-lg text-charcoal/70 leading-relaxed">Love Masterminds with the faculty, and Integration Sessions where you practice what you learned. Plus a New Member Orientation to get you started. Here&rsquo;s what&rsquo;s next.</p>
+  <!-- Desktop: "Your first session" (Christina, Nov 13, 2026). Phones build their own in mobile-v2.js. -->
+  <section class="hidden lg:block py-24 px-6 text-white" style="background:#1F181B;">
+    <div class="max-w-site mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="font-heading text-4xl lg:text-5xl font-normal leading-tight">Your <span class="italic" style="color:#C9A277;">first session</span></h2>
+        <p class="text-white/60 mt-4">Here&rsquo;s what happens after you join.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="home-events-grid">
-        <div class="col-span-full text-center text-charcoal/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
-      </div>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
-        <a href="/events/" class="text-rose-deep hover:underline font-medium">See the full calendar &rarr;</a>
-        <a data-cta="calendar" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-dating-again" class="btn-rose text-sm">Start my 14 free days</a>
+      <ol class="grid grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <li>
+          <span class="w-12 h-12 rounded-full flex items-center justify-center font-heading text-lg mb-5" style="border:1px solid #C9A277;color:#C9A277;">1</span>
+          <h3 class="font-semibold text-lg mb-2">Join today</h3>
+          <p class="text-white/60 leading-relaxed">It takes a couple of minutes.</p>
+        </li>
+        <li>
+          <span class="w-12 h-12 rounded-full flex items-center justify-center font-heading text-lg mb-5" style="border:1px solid #C9A277;color:#C9A277;">2</span>
+          <h3 class="font-semibold text-lg mb-2">Add the live sessions to your calendar</h3>
+          <p class="text-white/60 leading-relaxed">Save the weekly virtual sessions to your calendar to join live. If you miss a Love Mastermind, watch the recording.</p>
+        </li>
+        <li>
+          <span class="w-12 h-12 rounded-full flex items-center justify-center font-heading text-lg mb-5" style="border:1px solid #C9A277;color:#C9A277;">3</span>
+          <h3 class="font-semibold text-lg mb-2">Show up live</h3>
+          <p class="text-white/60 leading-relaxed">60 to 90 minutes, live and online, with the faculty and members who care about thriving in love. Between sessions, explore the private community in Circle.</p>
+        </li>
+      </ol>
+      <div class="text-center mt-14">
+        <a data-cta="first-session-desktop" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-dating-again" class="btn-rose text-base">Start my 14 free days</a>
       </div>
     </div>
   </section>
@@ -954,140 +1075,76 @@
     </div>
   </section>
 
-
   <!-- ============================
-       SECTION 6: PHOTO GALLERY PREVIEW
+       SECTION 2c: THIS MONTH INSIDE THE MEMBERSHIP
+       Live from the Circle member calendar (same feed as /events/).
        ============================ -->
-  <section data-m2="gallery" class="bg-ink py-20 md:py-28">
-    <div class="max-w-site mx-auto px-6 reveal">
-      <div class="text-center mb-12">
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Real People. Real Moments.</h2>
-        <p class="text-white/60 text-lg">What happens inside WeDeepen: connection, laughter, breakthroughs.</p>
+  <section id="calendar" class="bg-cream text-charcoal py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-12 md:mb-14">
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-charcoal leading-tight mb-5" style="text-wrap: balance;">
+          This month inside <span class="italic" style="color:#A01B4A;">the membership.</span>
+        </h2>
+        <p class="text-lg text-charcoal/70 leading-relaxed">Love Masterminds with the faculty, and Integration Sessions where you practice what you learned. Plus a New Member Orientation to get you started. Here&rsquo;s what&rsquo;s next.</p>
       </div>
-
-      <!-- Photo grid — real retreat moments -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/welcome.jpg" width="2400" height="1399" alt="Welcome moment at Love Immersion" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/coaches.jpg" width="2048" height="1537" alt="WeDeepen faculty coaching at a live event" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/embodiment.jpg" width="2048" height="1537" alt="Embodied practice session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/christina-teaching.jpg" width="2048" height="1537" alt="Christina Weber teaching" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/group-bonding.jpg" width="2048" height="1365" alt="Group bonding moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/circle.jpg" width="2400" height="1357" alt="Circle practice at retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/saturday.jpg" width="2400" height="1600" alt="Saturday daytime at retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
-        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
-          <img src="/images/gallery/sunday.jpg" width="2400" height="1600" alt="Sunday closing moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-        </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="home-events-grid">
+        <div class="col-span-full text-center text-charcoal/40 text-sm py-10" id="home-events-loading">Loading the calendar&hellip;</div>
       </div>
-
-      <div class="text-center mt-10">
-        <a href="/gallery/" class="btn-outline">See all photos &rarr;</a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+        <a href="/events/" class="text-rose-deep hover:underline font-medium">See the full calendar &rarr;</a>
+        <a data-cta="calendar" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=membership-dating-again" class="btn-rose text-sm">Start my 14 free days</a>
       </div>
     </div>
   </section>
 
-
   <!-- ============================
-       SECTION 7: TESTIMONIALS
+       SECTION 10: FOUNDER (carries the podcast)
+       The page never introduced Christina before this point. Photo of her
+       leading a room, who she is, then the podcast as part of her story.
        ============================ -->
-  <section data-m2="testimonials" class="bg-cream py-20 md:py-28">
+  <section data-m2="christina" class="bg-cream text-charcoal py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
-      <div class="text-center mb-14">
-        <h2 class="font-heading text-3xl md:text-4xl font-semibold text-charcoal mb-4">What Members Say</h2>
-        <div class="flex items-center justify-center gap-2 mb-2">
-          <div class="flex text-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <span class="text-charcoal font-semibold"><!-- reviews:google-rating -->5.0<!-- /reviews:google-rating --></span>
-          <a href="/reviews/" class="text-charcoal/70 text-sm underline underline-offset-2 hover:text-charcoal"><!-- reviews:google-count -->26<!-- /reviews:google-count --> Google reviews</a>
-        </div>
-      </div>
-
-      <!-- Member video testimonials (René, Nov 2026). js/member-videos.js reshuffles these six on every load:
-           card 1 is Hannah, Shailza or Beth, then male, female, couple, female, male. Edits: WD Content project,
-           claude/website-video-testimonials.md. Written quotes that used to be here are on /reviews/. -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto" data-mv-grid data-mv-exclude="matt-same-team">
-
-        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="hannah-space-for-you">
-          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/hannah-space-for-you.mp4" aria-label="Play Hannah’s story (0:31)"><img src="/images/testimonials/hannah-space-for-you.webp" alt="Hannah, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:31</span></a>
-          <div class="mv-body">
-            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="text-charcoal/80 text-sm leading-relaxed">If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.</p>
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">H</div>
-              <div><p class="text-charcoal font-semibold text-sm">Hannah</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
-            </div>
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div class="lg:col-span-6">
+          <div class="aspect-[3/2] rounded-sm overflow-hidden">
+            <picture>
+              <source srcset="/images/christina-founder.webp" type="image/webp">
+              <img src="/images/christina-founder.jpg" alt="Christina Weber, founder of WeDeepen, speaking at a WeDeepen event" class="w-full h-full object-cover" loading="lazy" width="1800" height="1200">
+            </picture>
           </div>
         </div>
+        <div class="lg:col-span-6">
+          <p class="text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-5">Meet the founder</p>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight text-charcoal">Christina Weber</h2>
+          <p class="text-charcoal/75 text-lg leading-relaxed mb-5">In 2014, Christina was throwing <em>Underground Unattached</em> dating events in New York City, convinced that if she got enough dope people in one room, everyone would live happily ever after. Two years in, she saw that chemistry couldn&rsquo;t overcome pressure, expectations and nervous energy. So she went looking for real answers, and found an entire industry teaching what school never did. WeDeepen, Love Immersion and Love Club bring that whole field together in one place. Featured on the cover of LA Magazine and on <em>Real Time with Bill Maher</em>, she now calls Austin home.</p>
+          <p class="text-charcoal/75 text-lg leading-relaxed mb-8">She also hosts <strong class="text-charcoal">Mastering Love</strong>, the WeDeepen podcast: 180+ conversations on dating, desire, conflict, and staying in love.</p>
+          <div class="flex items-center gap-5 mb-4">
+            <img src="/images/podcast-artwork-256.png" alt="Mastering Love with Christina Weber podcast artwork" width="64" height="64" class="w-16 h-16 rounded-lg shrink-0" loading="lazy">
+          <!-- Platform links -->
+          <div class="flex flex-wrap gap-3">
+            <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
+              <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              Spotify
+            </a>
+            <a href="https://podcasts.apple.com/us/podcast/deepen-with-christina-by-christina-weber/id1267527313" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
+              <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 2.568c2.336 0 4.448.902 6.053 2.37.464.425.493 1.18.066 1.644a1.165 1.165 0 01-1.645.066A6.898 6.898 0 0011.865 4.9a6.876 6.876 0 00-4.934 2.078 6.897 6.897 0 00-1.703 6.79 6.874 6.874 0 003.635 4.417c.264.145.472.367.584.646.112.28.112.593 0 .873l-.056.14a1.164 1.164 0 01-1.523.59 9.18 9.18 0 01-4.854-5.9 9.2 9.2 0 012.276-9.074 9.217 9.217 0 016.575-2.892zm.025 3.758a5.456 5.456 0 015.45 5.45c0 1.068-.315 2.078-.858 2.93a1.165 1.165 0 01-1.598.39 1.165 1.165 0 01-.39-1.598c.346-.542.515-1.106.515-1.722a3.12 3.12 0 00-3.12-3.12 3.12 3.12 0 00-3.12 3.12c0 .673.206 1.287.515 1.722a1.165 1.165 0 01-1.988 1.208 5.427 5.427 0 01-.858-2.93 5.456 5.456 0 015.452-5.45zM12 13.6a1.6 1.6 0 011.6 1.6v4.8a1.6 1.6 0 01-3.2 0v-4.8a1.6 1.6 0 011.6-1.6z"/></svg>
+              Apple Podcasts
+            </a>
+            <a href="https://www.youtube.com/@WeDeepen/videos" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
+              <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#fff" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+              YouTube
+            </a>
+          </div>
 
-        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="bo-friends-open-heart">
-          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/bo-friends-open-heart.mp4" aria-label="Play Bo’s story (0:35)"><img src="/images/testimonials/bo-friends-open-heart.webp" alt="Bo L., speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
-          <div class="mv-body">
-            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="text-charcoal/80 text-sm leading-relaxed">The people were so amazing and so warm. We’ve become amazing friends, we feel each other’s hearts, and the love is real.</p>
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">B</div>
-              <div><p class="text-charcoal font-semibold text-sm">Bo L.</p><p class="text-charcoal/70 text-xs">Retired Entrepreneur &amp; Member</p></div>
-            </div>
+          </div>
+          <div class="flex flex-wrap gap-x-8 gap-y-2">
+            <a href="/about/" class="text-rose-deep hover:underline font-medium">Read Christina&rsquo;s story &rarr;</a>
+            <a href="/podcast/" class="text-rose-deep hover:underline font-medium">Browse all episodes &rarr;</a>
           </div>
         </div>
-
-        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="cara-11-months">
-          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/cara-11-months.mp4" aria-label="Play Cara’s story (0:28)"><img src="/images/testimonials/cara-11-months.webp" alt="Cara, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:28</span></a>
-          <div class="mv-body">
-            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="text-charcoal/80 text-sm leading-relaxed">Eleven months in, I feel like I’m a new person. I’ve created this community that is truly safe and secure and full of love.</p>
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">C</div>
-              <div><p class="text-charcoal font-semibold text-sm">Cara</p><p class="text-charcoal/70 text-xs">Member, 11 months</p></div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="shailzah-friends">
-          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/shailzah-friends.mp4" aria-label="Play Shailza’s story (0:35)"><img src="/images/testimonials/shailzah-friends.webp" alt="Shailza, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:35</span></a>
-          <div class="mv-body">
-            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="text-charcoal/80 text-sm leading-relaxed">It’s probably my favorite friends group. Before joining this community I had fewer friends. Now I have this whole group of friends, and I thrive in it.</p>
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">S</div>
-              <div><p class="text-charcoal font-semibold text-sm">Shailza</p><p class="text-charcoal/70 text-xs">Member, Austin</p></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mv-card bg-white rounded-xl shadow-sm overflow-hidden" data-mv="justin-strangers">
-          <a class="mv-poster" href="https://assets.wedeepen.com/testimonials/justin-strangers.mp4" aria-label="Play Justin’s story (0:44)"><img src="/images/testimonials/justin-strangers.webp" alt="Justin, speaking about WeDeepen" width="720" height="900" loading="lazy" decoding="async"><span class="mv-badge" aria-hidden="true">&#9654; 0:44</span></a>
-          <div class="mv-body">
-            <div class="flex text-gold text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p class="text-charcoal/80 text-sm leading-relaxed">I’d describe the vibe of this community as vulnerable strangers. There’s so much natural grace and compassion, it’s impossible for it not to rub off on you.</p>
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-rose-deep/10 flex items-center justify-center text-rose-deep font-semibold text-sm">J</div>
-              <div><p class="text-charcoal font-semibold text-sm">Justin</p><p class="text-charcoal/70 text-xs">WeDeepen community</p></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="text-center mt-10">
-        <a href="/reviews/" class="text-charcoal font-semibold hover:text-rose-deep transition">Read More Reviews &rarr;</a>
       </div>
     </div>
   </section>
-
 
   <!-- ============================
        SECTION 9: FOUR PILLARS — Our Core Framework
@@ -1140,52 +1197,46 @@
     </div>
   </section>
 
-
   <!-- ============================
-       SECTION 10: FOUNDER (carries the podcast)
-       The page never introduced Christina before this point. Photo of her
-       leading a room, who she is, then the podcast as part of her story.
+       SECTION 6: PHOTO GALLERY PREVIEW
        ============================ -->
-  <section data-m2="christina" class="bg-cream text-charcoal py-20 md:py-28">
+  <section data-m2="gallery" class="bg-ink py-20 md:py-28">
     <div class="max-w-site mx-auto px-6 reveal">
-      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        <div class="lg:col-span-6">
-          <div class="aspect-[3/2] rounded-sm overflow-hidden">
-            <picture>
-              <source srcset="/images/christina-founder.webp" type="image/webp">
-              <img src="/images/christina-founder.jpg" alt="Christina Weber, founder of WeDeepen, speaking at a WeDeepen event" class="w-full h-full object-cover" loading="lazy" width="1800" height="1200">
-            </picture>
-          </div>
-        </div>
-        <div class="lg:col-span-6">
-          <p class="text-rose-deep text-xs uppercase tracking-[0.3em] font-semibold mb-5">Meet the founder</p>
-          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight text-charcoal">Christina Weber</h2>
-          <p class="text-charcoal/75 text-lg leading-relaxed mb-5">In 2014, Christina was throwing <em>Underground Unattached</em> dating events in New York City, convinced that if she got enough dope people in one room, everyone would live happily ever after. Two years in, she saw that chemistry couldn&rsquo;t overcome pressure, expectations and nervous energy. So she went looking for real answers, and found an entire industry teaching what school never did. WeDeepen, Love Immersion and Love Club bring that whole field together in one place. Featured on the cover of LA Magazine and on <em>Real Time with Bill Maher</em>, she now calls Austin home.</p>
-          <p class="text-charcoal/75 text-lg leading-relaxed mb-8">She also hosts <strong class="text-charcoal">Mastering Love</strong>, the WeDeepen podcast: 180+ conversations on dating, desire, conflict, and staying in love.</p>
-          <div class="flex items-center gap-5 mb-4">
-            <img src="/images/podcast-artwork-256.png" alt="Mastering Love with Christina Weber podcast artwork" width="64" height="64" class="w-16 h-16 rounded-lg shrink-0" loading="lazy">
-          <!-- Platform links -->
-          <div class="flex flex-wrap gap-3">
-            <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
-              <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-              Spotify
-            </a>
-            <a href="https://podcasts.apple.com/us/podcast/deepen-with-christina-by-christina-weber/id1267527313" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
-              <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 2.568c2.336 0 4.448.902 6.053 2.37.464.425.493 1.18.066 1.644a1.165 1.165 0 01-1.645.066A6.898 6.898 0 0011.865 4.9a6.876 6.876 0 00-4.934 2.078 6.897 6.897 0 00-1.703 6.79 6.874 6.874 0 003.635 4.417c.264.145.472.367.584.646.112.28.112.593 0 .873l-.056.14a1.164 1.164 0 01-1.523.59 9.18 9.18 0 01-4.854-5.9 9.2 9.2 0 012.276-9.074 9.217 9.217 0 016.575-2.892zm.025 3.758a5.456 5.456 0 015.45 5.45c0 1.068-.315 2.078-.858 2.93a1.165 1.165 0 01-1.598.39 1.165 1.165 0 01-.39-1.598c.346-.542.515-1.106.515-1.722a3.12 3.12 0 00-3.12-3.12 3.12 3.12 0 00-3.12 3.12c0 .673.206 1.287.515 1.722a1.165 1.165 0 01-1.988 1.208 5.427 5.427 0 01-.858-2.93 5.456 5.456 0 015.452-5.45zM12 13.6a1.6 1.6 0 011.6 1.6v4.8a1.6 1.6 0 01-3.2 0v-4.8a1.6 1.6 0 011.6-1.6z"/></svg>
-              Apple Podcasts
-            </a>
-            <a href="https://www.youtube.com/@WeDeepen/videos" target="_blank" rel="noopener" class="bg-charcoal hover:bg-ink transition px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 text-white">
-              <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#fff" d="M9.545 15.568V8.432L15.818 12z"/></svg>
-              YouTube
-            </a>
-          </div>
+      <div class="text-center mb-12">
+        <h2 class="font-heading text-3xl md:text-4xl font-semibold mb-4">Real People. Real Moments.</h2>
+        <p class="text-white/60 text-lg">What happens inside WeDeepen: connection, laughter, breakthroughs.</p>
+      </div>
 
-          </div>
-          <div class="flex flex-wrap gap-x-8 gap-y-2">
-            <a href="/about/" class="text-rose-deep hover:underline font-medium">Read Christina&rsquo;s story &rarr;</a>
-            <a href="/podcast/" class="text-rose-deep hover:underline font-medium">Browse all episodes &rarr;</a>
-          </div>
+      <!-- Photo grid — real retreat moments -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/welcome.jpg" width="2400" height="1399" alt="Welcome moment at Love Immersion" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
         </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/coaches.jpg" width="2048" height="1537" alt="WeDeepen faculty coaching at a live event" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/embodiment.jpg" width="2048" height="1537" alt="Embodied practice session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/christina-teaching.jpg" width="2048" height="1537" alt="Christina Weber teaching" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/group-bonding.jpg" width="2048" height="1365" alt="Group bonding moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/circle.jpg" width="2400" height="1357" alt="Circle practice at retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/saturday.jpg" width="2400" height="1600" alt="Saturday daytime at retreat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden bg-charcoal group">
+          <img src="/images/gallery/sunday.jpg" width="2400" height="1600" alt="Sunday closing moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/gallery/" class="btn-outline">See all photos &rarr;</a>
       </div>
     </div>
   </section>
@@ -1355,9 +1406,9 @@
         <div class="text-center mb-9">
           <p class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-4">WeDeepen Membership</p>
           <div class="font-heading text-5xl md:text-6xl text-white mb-2">$99<span class="text-white/40 text-2xl"> /month</span></div>
-          <p class="text-white/55 text-xs uppercase tracking-[0.22em]">Or $990 a year &middot; two months free</p>
-          <p class="text-gold text-xs tracking-[0.14em] uppercase font-medium mt-2">First 14 days free, monthly or annual</p>
-          <p class="text-gold text-xs tracking-[0.14em] uppercase font-medium mt-2">$800 credit toward one Love Immersion retreat, first 20 annual members<a href="#faq-credit" class="inline-block px-2 py-1 -my-1" aria-label="Credit terms">*</a></p>
+          <p class="text-white/70 text-base">Or $990/year, two months free.</p>
+          <p class="text-gold text-base mt-1">First 14 days free, monthly or annual.</p>
+          <p class="text-white/45 text-xs mt-3">$800 credit toward one Love Immersion retreat, first 20 annual members<a href="#faq-credit" class="inline-block px-2 py-1 -my-1" aria-label="Credit terms">*</a></p>
         </div>
         <div class="w-12 h-px bg-white/15 mx-auto mb-8"></div>
         <div class="grid sm:grid-cols-2 gap-x-10 gap-y-4 max-w-xl mx-auto text-left">
@@ -1375,8 +1426,6 @@
       </div>
     </div>
   </section>
-
-
 
   <!-- ============================
        SECTION 11: FINAL CTA + EMAIL
@@ -1878,7 +1927,7 @@
   <script src="/js/social-proof.js?v=4" defer></script>
   <script src="/js/live-dates.js?v=1" defer></script>
   <script src="/js/member-videos.js?v=2" defer></script>
-  <script src="/js/mobile-v2.js?v=44" defer></script>
+  <script src="/js/mobile-v2.js?v=45" defer></script>
   <!-- Mobile sticky join bar -->
   <div class="h-20 lg:hidden" aria-hidden="true"></div>
   <aside aria-label="Join WeDeepen">

@@ -1,0 +1,36 @@
+/* Desktop homepage (1024px and up), Christina, Nov 13, 2026.
+   Loaded with media="(min-width:1024px)". Phones use css/mobile-v2.css. */
+
+/* Even rhythm between sections: 96px instead of up to 256px between same-colored sections. */
+section.py-20, section.py-24 { padding-top: 96px !important; padding-bottom: 96px !important; }
+
+/* Hero quiz, in the right column */
+#desktop-quiz-slot .m2-quiz { margin: 0; max-width: none; padding: 30px 28px 26px; }
+#desktop-quiz-slot .m2-quiz h2 { font-family: "Playfair Display", Georgia, serif; font-size: 22px; line-height: 1.25; color: #fff; margin: 0 0 4px; font-weight: 400; }
+#desktop-quiz-slot .m2-quiz-sub { color: rgba(255,255,255,.6); font-size: 13.5px; margin: 0 0 14px; }
+#desktop-quiz-slot .m2-quiz-opts { display: grid; gap: 8px; }
+#desktop-quiz-slot .m2-quiz-opt { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); color: #fff; font-size: 15px; line-height: 1.35; cursor: pointer; }
+#desktop-quiz-slot .m2-quiz-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+#desktop-quiz-slot .m2-quiz-opt .box { flex: 0 0 20px; height: 20px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,.55); display: flex; align-items: center; justify-content: center; }
+#desktop-quiz-slot .m2-quiz-opt input:checked + .box { background: #A01B4A; border-color: #A01B4A; }
+#desktop-quiz-slot .m2-quiz-opt input:checked + .box::after { content: ""; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: translateY(-1px) rotate(45deg); }
+#desktop-quiz-slot .m2-quiz-opt:has(input:checked) { border-color: rgba(160,27,74,.8); background: rgba(160,27,74,.16); }
+#desktop-quiz-slot .m2-quiz-opt input:focus-visible + .box { outline: 2px solid #C9A277; outline-offset: 2px; }
+#desktop-quiz-slot .m2-quiz-go { margin-top: 14px; width: 100%; padding: 13px 18px; border-radius: 9999px; border: 1px solid #C9A277; background: transparent; color: #C9A277; font-weight: 600; font-size: 15px; }
+#desktop-quiz-slot .m2-quiz-go:disabled { opacity: .4; }
+#desktop-quiz-slot .m2-quiz-result { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(201,162,119,.25); scroll-margin-top: 90px; }
+#desktop-quiz-slot .m2-quiz-lead { color: rgba(255,255,255,.9); font-size: 15.5px; line-height: 1.55; margin: 0 0 16px; }
+#desktop-quiz-slot .m2-quiz-kicker { color: #C9A277; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 10px; }
+#desktop-quiz-slot .m2-quiz-result ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
+#desktop-quiz-slot .m2-quiz-result li { position: relative; padding-left: 20px; color: #fff; font-size: 15px; line-height: 1.45; }
+#desktop-quiz-slot .m2-quiz-result li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 7px; height: 7px; border-radius: 999px; background: #A01B4A; }
+#desktop-quiz-slot .m2-quiz-result blockquote { margin: 0 0 16px; color: rgba(255,255,255,.75); font-size: 14px; line-height: 1.55; font-style: italic; }
+#desktop-quiz-slot .m2-quiz-result cite { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: rgba(255,255,255,.5); }
+#desktop-quiz-slot .m2-quiz-result .btn-rose { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 13px 18px; text-align: center; line-height: 1.25; }
+#desktop-quiz-slot .m2-quiz-result .btn-rose span { font-size: 13px; font-weight: 400; opacity: .85; margin-top: 2px; }
+#desktop-quiz-slot .m2-quiz-result .m2-reassure { margin: 10px 0 0; }
+#desktop-quiz-slot .m2-quiz { text-align: left; border-radius: 16px; background: rgba(20,14,16,.74); border: 1px solid rgba(201,162,119,.3); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+#desktop-quiz-slot .m2-quiz h2 { font-size: 26px; }
+#desktop-quiz-slot .m2-quiz-opt { padding: 12px 14px; font-size: 15px; }
+#desktop-quiz-slot .m2-quiz-opt:hover { border-color: rgba(201,162,119,.45); }
+#desktop-quiz-slot .m2-reassure { color: rgba(201,162,119,.95); font-size: 13.5px; text-align: center; }

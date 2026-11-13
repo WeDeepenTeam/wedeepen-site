@@ -249,11 +249,6 @@ export function buildSegment(membership, seg) {
   html = replaceOnce(html, /Recordings of Love Masterminds held after you join/,
     'The growing Love Mastermind recording library, from day one', 'final card recordings');
 
-  // ---- Founder bio: "since 2014", never a count of years (house voice rule) ----
-  html = replaceOnce(html,
-    /Christina has spent over a decade researching, curating, and designing the most potent experiences in the love industry\. She started in 2014 hosting <em>Underground Unattached<\/em> dating events in New York City, and built WeDeepen/,
-    'Since 2014, Christina has been researching, curating, and designing the most potent experiences in the love industry. It started with <em>Underground Unattached</em>, her dating events in New York City. Then she built WeDeepen',
-    'founder bio');
 
   // ---- Text testimonials for this audience ----
   if (/data-mv-grid/.test(html)) html = excludeClips(html, seg.excludeClips || []);

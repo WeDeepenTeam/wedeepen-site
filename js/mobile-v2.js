@@ -220,6 +220,12 @@
 
     heroV2();
 
+    // Hidden, not deleted (SEO): the "skills underneath are the same" closer of
+    // At a glance repeats the dating/partnered/solo line on phones (Christina, Nov 13, 2026).
+    Array.prototype.forEach.call(document.querySelectorAll('p'), function (p) {
+      if (/the skills underneath are the same/.test(p.textContent) && p.parentElement) p.parentElement.style.display = 'none';
+    });
+
     // 1. Member proof right under the hero, as a swipe row (René). Christina's
     // opening argument (at a glance -> learning curve -> skills) follows it
     // directly, in her order; our timeline follows the membership offer.

@@ -408,6 +408,18 @@
       if (band) band.style.display = 'none';
     }
 
+    // 13. Final card on the homepage (Christina, Nov 13, 2026): the three small all-caps
+    // lines under the price read as clutter on phones; two calm lines instead, and the
+    // Love Immersion credit line is hidden (kept in the HTML).
+    var fc = isHome && sec('finalcard');
+    var fcPs = fc ? fc.querySelectorAll('.text-center.mb-9 > p') : [];
+    if (fcPs.length >= 4) {
+      fcPs[1].textContent = 'Or $990/year, two months free.';
+      fcPs[2].textContent = 'First 14 days free, monthly or annual.';
+      fcPs[1].className = fcPs[2].className = 'm2-final-line';
+      fcPs[3].style.display = 'none';
+    }
+
     // 3. Join prompts every few screens.
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));
     if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));

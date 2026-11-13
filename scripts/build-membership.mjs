@@ -72,7 +72,7 @@ export function buildMembership(home) {
     'Come play <span class="italic" style="color:#C9A277;">with us.</span>',
     'closing headline');
   html = replaceOnce(html,
-    /[ \t]*<a href="\/love-immersion\/[^"]*" class="btn-outline text-base">Attend Love Immersion<\/a>\n/,
+    /[ \t]*<a href="\/love-immersion\/[^"]*" class="btn-outline text-base">Join the Love Immersion waitlist<\/a>\n/,
     '', 'closing Love Immersion button');
   html = html.replace(/[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>\n/g, '');
   html = replaceOnce(html, /<html([^>]*)>/,

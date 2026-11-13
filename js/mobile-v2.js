@@ -107,19 +107,19 @@
   // Inner-voice options, dating and partnered lines mixed near the top (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
   // skills = indexes into the "Build the skills" list (data-m2="build").
   var QUIZ = [
-    { key: 'get-it-right', label: 'I want to get it right this time', skills: [1, 3, 7],
+    { key: 'get-it-right', label: 'I want to get it right this time', skills: [4, 3, 7],
       lead: 'Getting it right starts with owning your part. Instead of asking &lsquo;What can I get?&rsquo;, ask &lsquo;Who do I get to become?&rsquo;' },
-    { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 2, 3],
+    { key: 'dating-again', label: 'I&rsquo;m dating again and it&rsquo;s so different now', skills: [0, 3, 4],
       lead: 'Date by the Four Pillars. Prioritize growth. Own your part. Let every feeling be welcome. Practice love with every person you meet.' },
-    { key: 'same-fight', label: 'We keep having the same fight', skills: [5, 4, 3],
+    { key: 'same-fight', label: 'We keep having the same fight', skills: [2, 6, 3],
       lead: 'All feelings are welcome here, even the ones that started the fight. You learn to repair before hurt turns into distance.' },
-    { key: 'wanted', label: 'I want to feel wanted again', skills: [6, 3, 7],
+    { key: 'wanted', label: 'I want to feel wanted again', skills: [1, 5, 3],
       lead: 'Desire starts in your own skin. Jump to a timeline where you know you&rsquo;re wanted.' },
-    { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
+    { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [5, 1, 6],
       lead: 'Desire grows when you miss each other, see each other with new eyes, and build something together.' },
-    { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],
+    { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [3, 6, 7],
       lead: 'You&rsquo;ve probably been ruminating on this for a while. Here, you get clear enough to choose.' },
-    { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
+    { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [4, 3, 0],
       lead: 'Heartbreak is a natural human experience. It&rsquo;s tender, and we&rsquo;ve got you.' }
   ];
   function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }

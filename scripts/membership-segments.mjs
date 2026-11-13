@@ -230,7 +230,7 @@ export function buildSegment(membership, seg) {
 
   // ---- What you build ----
   html = replaceOnce(html,
-    /Build the skills that make love <span class="italic" style="color:#C9A277;">easier<\/span> to navigate\./,
+    /Build the skills behind an <span class="italic" style="color:#C9A277;">epic<\/span> love life\./,
     seg.buildH2, 'build h2');
   html = replaceOnce(html,
     /(<section data-m2="build"[\s\S]*?<ul class="border-t border-white\/10">\n)[\s\S]*?(\n[ \t]*<\/ul>)/,

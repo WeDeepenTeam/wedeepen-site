@@ -430,7 +430,8 @@
     // 5. Objections above the final join button.
     var card = sec('finalcard');
     var joinNow = card && $('a[data-cta="final-card"]', card);
-    if (joinNow) {
+    // Homepage: the worries are answered once, under the price (Christina, Nov 13, 2026).
+    if (joinNow && !isHome) {
       joinNow.parentElement.insertAdjacentElement('beforebegin', objections());
     }
 

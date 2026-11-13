@@ -120,7 +120,7 @@
     { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],
       lead: 'You&rsquo;ve probably been ruminating on this for a while. Here, you get clear enough to choose.' },
     { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
-      lead: 'Heartbreak is welcome here. You don&rsquo;t have to carry it alone.' }
+      lead: 'Heartbreak is a natural human experience. It&rsquo;s tender, and we&rsquo;ve got you.' }
   ];
   function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
 

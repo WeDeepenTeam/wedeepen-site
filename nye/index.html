@@ -149,15 +149,20 @@
     .nye-hero {
       background-color: #140239;
       background-image:
-        radial-gradient(ellipse 55% 60% at 50% 50%, rgba(10,2,30,0.55) 0%, rgba(10,2,30,0) 70%),
+        radial-gradient(ellipse 42% 62% at 50% 52%, rgba(12,2,34,0.88) 0%, rgba(12,2,34,0.7) 55%, rgba(12,2,34,0) 100%),
         url('/images/nye/nye-hero-bg.jpg');
       background-image:
-        radial-gradient(ellipse 55% 60% at 50% 50%, rgba(10,2,30,0.55) 0%, rgba(10,2,30,0) 70%),
+        radial-gradient(ellipse 42% 62% at 50% 52%, rgba(12,2,34,0.88) 0%, rgba(12,2,34,0.7) 55%, rgba(12,2,34,0) 100%),
         image-set(url('/images/nye/nye-hero-bg.webp') type('image/webp'), url('/images/nye/nye-hero-bg.jpg') type('image/jpeg'));
       background-size: cover; background-position: center; background-repeat: no-repeat;
       color: #f4ede0;
     }
     .nye-hero p, .nye-hero h1 { text-wrap: balance; }
+    .nye-hero h1, .nye-hero p { text-shadow: 0 1px 14px rgba(12,2,34,0.9); }
+    @media (max-width: 1023px) {
+      /* Narrow screens: text spans the width, so dim the whole starfield. */
+      .nye-hero::before { content: ''; position: absolute; inset: 0; background: rgba(12,2,34,0.62); pointer-events: none; }
+    }
     .nye-hero-logo {
       display: block; margin: 0 auto 28px; width: 150px; aspect-ratio: 1916 / 349;
       background: #f4ede0;

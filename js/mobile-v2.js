@@ -249,9 +249,9 @@
           '<h2>Your <em>first session</em></h2>' +
           '<p>Here&rsquo;s what happens after you join.</p>' +
           '<ol>' +
-            '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes, and you&rsquo;re in the private member community right away.</p></li>' +
-            '<li><span class="n">2</span><h3>Find a session on the calendar</h3><p>The next live sessions are waiting on the member calendar inside the community.</p></li>' +
-            '<li><span class="n">3</span><h3>Show up live</h3><p>60 to 90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
+            '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes.</p></li>' +
+            '<li><span class="n">2</span><h3>Add the live sessions to your calendar</h3><p>Save the weekly virtual sessions to your calendar so you&rsquo;re ready for each one.</p></li>' +
+            '<li><span class="n">3</span><h3>Show up live</h3><p>60 to 90 minutes, live and online, with the faculty and members doing the same work. Between sessions, explore the private community in Circle.</p></li>' +
           '</ol>' +
         '</section>'
       );

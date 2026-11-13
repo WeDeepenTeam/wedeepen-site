@@ -284,7 +284,7 @@
           '<ul>' +
             '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
             '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
-            '<li><b>Real-world practice</b><span>Weekly Sunday Dares by text + email</span></li>' +
+            '<li><b>Real-world practice</b><span>Weekly Sunday Dares by email</span></li>' +
             '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>' +
           '</ul>' +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +

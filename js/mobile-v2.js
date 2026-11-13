@@ -107,8 +107,6 @@
   // Inner-voice options, ordered most to least self-aware (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
   // skills = indexes into the "Build the skills" list (data-m2="build").
   var QUIZ = [
-    { key: 'wrong-people', label: 'I keep choosing the wrong people', skills: [0, 1, 2],
-      lead: 'You are not broken. You were just never taught how to choose.' },
     { key: 'this-time', label: 'I don&rsquo;t want to f*ck it up this time', skills: [1, 3, 7],
       lead: 'You already know your pattern. Now you get to practice a new one.' },
     { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
@@ -119,6 +117,8 @@
       lead: 'You don&rsquo;t have to decide today. Get clear on where you stand first.' },
     { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
       lead: 'Heartbreak is a teacher. You don&rsquo;t have to sit with it alone.' },
+    { key: 'wrong-people', label: 'I keep choosing the wrong people', skills: [0, 1, 2],
+      lead: 'You are not broken. You were just never taught how to choose.' },
     { key: 'ex-back', label: 'I want my ex back', skills: [1, 2, 5],
       lead: 'Whether you reunite or not, you get to show up as someone who understands what happened.' }
   ];

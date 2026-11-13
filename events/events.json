@@ -1,8 +1,30 @@
 {
-  "last_updated": "2026-11-11T19:51:08.763Z",
+  "last_updated": "2026-11-13T05:02:23.791Z",
   "source": "circle.wedeepen.com",
-  "event_count": 76,
+  "event_count": 78,
   "events": [
+    {
+      "id": "mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen",
+      "title": "MindTravel Silent Piano Concert in Austin (25% Off for WeDeepen)",
+      "date": "2026-11-14",
+      "end_date": null,
+      "time": "5:00 PM",
+      "starts_at_iso": "2026-11-14T23:00:00.000Z",
+      "ends_at_iso": "2026-11-15T01:00:00.000Z",
+      "location_type": "austin",
+      "location_label": "900 Guadalupe St, Austin, TX 78701",
+      "tag": "",
+      "topics": [
+        "Endorsed by WeDeepen",
+        "In-Person",
+        "Open to Everyone"
+      ],
+      "recurring": false,
+      "series": "mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen",
+      "description": "🎟️ Get your tickets on Eventbrite  Use code WEDEEPEN at checkout for 25% off.  Golden hour on the grass. Headphones on. Murray Hidary at the piano, improvising live for everyone around you.  MindTrav",
+      "image_url": "https://assets-v2.circle.so/wb13z5osf5e1nstwdszvk2fc1nz6",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen"
+    },
     {
       "id": "integration-session-practice-what-you-learned-3ca078",
       "title": "Integration & Bonding Session",
@@ -23,6 +45,28 @@
       "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
       "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-3ca078"
+    },
+    {
+      "id": "zenday-fair-wellness-longevity-ai-psychedelics",
+      "title": "Zenday Fair: Wellness, Longevity, AI & Psychedelics",
+      "date": "2026-11-22",
+      "end_date": null,
+      "time": "4:00 PM",
+      "starts_at_iso": "2026-11-22T22:00:00.000Z",
+      "ends_at_iso": "2026-11-23T02:00:00.000Z",
+      "location_type": "austin",
+      "location_label": "2101 Jesse E. Segovia St, Austin, TX 78702",
+      "tag": "",
+      "topics": [
+        "Endorsed by WeDeepen",
+        "In-Person",
+        "Open to Everyone"
+      ],
+      "recurring": false,
+      "series": "zenday-fair-wellness-longevity-ai-psychedelics",
+      "description": "A Sunday on Lady Bird Lake with the people shaping how we feel, age, and connect.  Zenday Fair brings talks, 50+ vendors, wellness classes, a 5K with an ice bath, live music, and healthy food to Fiest",
+      "image_url": "https://assets-v2.circle.so/rqg4xfpl3he4hx1ni9wqomq4g69w",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/zenday-fair-wellness-longevity-ai-psychedelics"
     },
     {
       "id": "love-mastermind-no-faculty-yet-603306",
@@ -129,7 +173,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-90200f"
     },
     {
@@ -214,7 +258,7 @@
       "recurring": false,
       "series": "a-bangin-love-filled-new-year-s",
       "description": "Get high on life. Take flight into 2027.  Ring in the new year with love, play, and people who light you up, at a private Austin mansion. Completely sober. Wildly alive.  Hosted by Christina Weber, Yo",
-      "image_url": "https://assets-v2.circle.so/16u9t89ognds8aeslgl8h2vbwfhl",
+      "image_url": "https://assets-v2.circle.so/ezmqzoz0wj3gqcxdqxandtvvps7e",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/a-bangin-love-filled-new-year-s"
     },
     {
@@ -300,7 +344,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-ac8ee7"
     },
     {
@@ -429,7 +473,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-81301d"
     },
     {
@@ -558,7 +602,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-2ef1a9"
     },
     {
@@ -709,7 +753,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-a967c3"
     },
     {
@@ -838,7 +882,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-40d921"
     },
     {
@@ -967,7 +1011,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-fc3a41"
     },
     {
@@ -1117,7 +1161,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-714df4"
     },
     {
@@ -1246,7 +1290,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-cb684f"
     },
     {
@@ -1353,7 +1397,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-abb489"
     },
     {
@@ -1526,7 +1570,7 @@
       "recurring": true,
       "series": "reality-transurfing-office-hours-with-bootsy-greenwood",
       "description": "Second Wednesday monthly, 12 to 1pm Central  What if the moments that knock you off balance in love are the exact moments you get to choose what’s next?  Reality Transurfing is a framework from author",
-      "image_url": "https://assets-v2.circle.so/xcnqdtbm5eyg1771n3enzs7omq98",
+      "image_url": "https://assets-v2.circle.so/qr18xqah85uts1vhobahiejpk4bt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-625b6b"
     },
     {

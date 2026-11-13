@@ -286,6 +286,17 @@
       var planBtn = $('a[data-cta="membership"]', incl);
       var plansPanel = planBtn && planBtn.closest('.rounded-md');
       if (plansPanel) plansPanel.id = 'm2-plans';
+      // Homepage phones (Christina, Nov 13, 2026): the plans panel opens straight on the
+      // choice. Its intro paragraphs repeat the price box and the first-session steps,
+      // so they're hidden (kept in the HTML); the heading names the choice.
+      var plansIntro = isHome && plansPanel && $('.lg\\:col-span-5', plansPanel);
+      if (plansIntro) {
+        var pi = plansIntro.querySelectorAll('p');
+        Array.prototype.forEach.call(pi, function (el2, i) {
+          if (i === 1) el2.textContent = 'Choose monthly or annual.';
+          else if (i > 1) el2.style.display = 'none';
+        });
+      }
       var summary = el(
         '<div class="m2-offer" id="m2-offer">' +
           (isHome ? '' : '<p class="m2-offer-kicker">In short</p>' + '<ul>') +

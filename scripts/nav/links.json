@@ -31,17 +31,17 @@
       ]
     },
     {
-      "label": "Photos",
-      "href": "/gallery/",
-      "activePrefix": "/gallery/"
-    },
-    {
       "label": "Faculty",
       "href": "/faculty/"
     },
     {
       "label": "Reviews",
       "href": "/reviews/"
+    },
+    {
+      "label": "Photos",
+      "href": "/gallery/",
+      "activePrefix": "/gallery/"
     },
     {
       "label": "Podcast",

@@ -146,7 +146,7 @@
     }
 
     h1.insertAdjacentElement('afterend', el(
-      '<p class="m2-synopsis">Live weekly sessions with expert faculty on dating, romance, desire, conflict, communication and jumping timelines. Ask the experts anytime in the private community, plus a new dare every Sunday.</p>'
+      '<p class="m2-synopsis">Live weekly sessions with expert faculty on dating, desire, tantra, communication and jumping timelines. Ask the experts anytime in the private community, plus a new dare every Sunday.</p>'
     ));
 
     row.insertAdjacentElement('afterend', el(

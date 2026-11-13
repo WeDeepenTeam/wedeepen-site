@@ -36,6 +36,8 @@ async function loadAlbumExtras() {
   // - cta_eyebrow / cta_heading / cta_body (copy for the CTA above the grid)
   // - cta_image / cta_image_alt (next-event graphic, linked, above the bottom CTA)
   // - cta_tagline (replaces the generic "next gathering is forming" line)
+  // - og_image (site path to a hand-made 1200x630 JPEG share image; overrides
+  //   the generated /images/og/gallery-<slug>.jpg)
   const raw = await fs.readFile(ALBUMS_JSON, 'utf-8');
   const data = JSON.parse(raw);
   const map = {};
@@ -53,6 +55,7 @@ async function loadAlbumExtras() {
       cta_image: a.cta_image || null,
       cta_image_alt: a.cta_image_alt || null,
       cta_tagline: a.cta_tagline || null,
+      og_image: a.og_image || null,
       // Public "download originals" link: explicit originals_url wins; or set
       // originals_public: true to expose the album's Drive folder. Default: off.
       originals_url: a.originals_url
@@ -130,6 +133,7 @@ async function buildAlbumPage(album, extras) {
     cta_image: extra.cta_image || null,
     cta_image_alt: extra.cta_image_alt || null,
     cta_tagline: extra.cta_tagline || null,
+    og_image: extra.og_image || null,
     originals_url: extra.originals_url || null,
   };
   const dir = path.join(GALLERY_DIR, album.slug);

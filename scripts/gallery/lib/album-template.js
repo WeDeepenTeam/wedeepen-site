@@ -8,7 +8,9 @@ export function renderAlbumPage(album, photos) {
   const cover = album.cover_full_url || photos[0]?.full_url || `${SITE}/images/og-image.jpg`;
   // WhatsApp-safe og:image: JPEG, <150KB. Falls back to the WebP cover if no
   // generated JPEG exists yet (run `node scripts/gallery/generate-og-jpegs.js`).
-  const ogImage = `${SITE}/images/og/gallery-${album.slug}.jpg`;
+  const ogImage = album.og_image
+    ? `${SITE}${album.og_image}`
+    : `${SITE}/images/og/gallery-${album.slug}.jpg`;
   const description = albumDescription(album, photos.length);
 
   const jsonLd = JSON.stringify({

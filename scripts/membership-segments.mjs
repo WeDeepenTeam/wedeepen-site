@@ -219,7 +219,7 @@ export function buildSegment(membership, seg) {
     seg.glance, 'glance line');
 
   // ---- The skill section ----
-  html = replaceOnce(html, /Love has a much messier learning curve than most things we get good at\./, seg.skillH2, 'skill h2');
+  html = replaceOnce(html, /Every great love story has a <span class="italic" style="color:#A8855C;">messy middle<\/span>\./, seg.skillH2, 'skill h2');
   html = replaceOnce(html,
     /We develop skills in work, health, and sport through learning, practice, and feedback\. Love is usually left to trial and error: we copy what we saw growing up and learn the rest through heartbreak\./,
     seg.skillP1, 'skill p1');

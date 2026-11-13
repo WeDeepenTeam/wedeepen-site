@@ -163,12 +163,6 @@
       /* Narrow screens: text spans the width, so dim the whole starfield. */
       .nye-hero::before { content: ''; position: absolute; inset: 0; background: rgba(12,2,34,0.62); pointer-events: none; }
     }
-    .nye-hero-logo {
-      display: block; margin: 0 auto 28px; width: 150px; aspect-ratio: 1916 / 349;
-      background: #f4ede0;
-      -webkit-mask: url('/images/deepen-logo-white.png') center / contain no-repeat;
-      mask: url('/images/deepen-logo-white.png') center / contain no-repeat;
-    }
     .nye-hero-h1 { font-family: 'Lora', Georgia, serif; font-style: italic; font-weight: 500; font-size: 78px; line-height: 1.1; color: #f4ede0; margin: 0; }
     .nye-hero-rule { width: 140px; height: 1px; background: #d4b78c; margin: 26px auto; border: 0; }
     .nye-hero-tag { font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.3; color: #f4ede0; margin: 0 0 14px; }
@@ -176,7 +170,6 @@
     .nye-hero-body { font-family: 'Poppins', 'DM Sans', sans-serif; font-weight: 300; color: #f4ede0; }
     .nye-hero-body strong { font-weight: 400; }
     @media (max-width: 767px) {
-      .nye-hero-logo { width: 120px; margin-bottom: 22px; }
       .nye-hero-h1 { font-size: 40px; }
       .nye-hero-rule { margin: 20px auto; }
       .nye-hero-tag { font-size: 20px; }
@@ -486,7 +479,6 @@
   <!-- HERO -->
   <section class="nye-hero relative md:min-h-[90vh] flex items-center justify-center overflow-hidden">
     <div class="relative z-10 text-center px-6 max-w-6xl mx-auto pt-28 md:pt-36 pb-20 md:pb-28">
-      <span class="nye-hero-logo" role="img" aria-label="WeDeepen"></span>
       <h1 class="nye-hero-h1">New Year&rsquo;s at the&nbsp;Gatsby</h1>
       <hr class="nye-hero-rule">
       <p class="nye-hero-tag">Take flight into&nbsp;2027.</p>

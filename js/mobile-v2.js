@@ -241,7 +241,10 @@
     // At a glance on phones keeps only the intro lines (Christina, Nov 13, 2026).
     // Its heading, three-item list and "skills underneath are the same" closer
     // repeat the photo cards in What's included, so they're hidden, not deleted (SEO).
-    var isHome = location.pathname === '/' || location.pathname === '/index.html';
+    // /membership/b/ is an exact mirror of the homepage (Christina + René, Nov 13, 2026),
+    // so it gets the homepage's phone layout too. Audience pages keep the older one.
+    var isHome = location.pathname === '/' || location.pathname === '/index.html' ||
+      /^\/membership\/b\/(index\.html)?$/.test(location.pathname);
     var glanceSec = isHome && sec('glance');
     var glanceIn = glanceSec && glanceSec.firstElementChild;
     if (glanceIn) Array.prototype.forEach.call(glanceIn.children, function (c) {

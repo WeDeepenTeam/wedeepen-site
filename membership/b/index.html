@@ -1593,6 +1593,7 @@
         const isTuesdayCall = e =>
           (Array.isArray(e.topics) && e.topics.includes('Love Mastermind')) ||
           /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '') ||
+          /reality transurfing/i.test(e.title || '') ||
           /orientation/i.test(e.title || '');
         const upcoming = (data.events || [])
           .filter(e => {
@@ -1622,7 +1623,10 @@
           const isIntegration = /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '');
           const isOrientation = /orientation/i.test(e.title || '');
           const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
-          const tagHtml = isOrientation
+          const isOfficeHours = /office hours/i.test(e.title || '');
+          const tagHtml = isOfficeHours
+            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Office hours</span>'
+            : isOrientation
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(160,27,74,0.10);color:#A01B4A;">New members</span>'
             : isIntegration
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Live practice</span>'

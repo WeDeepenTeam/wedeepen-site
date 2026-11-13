@@ -171,3 +171,10 @@ html.m2 .m2-intro p { margin: 0 auto 12px !important; }
 /* At a glance on phones is just the intro lines now (Christina, Nov 13, 2026). */
 html.m2 .m2-glance-intro { padding-bottom: 8px !important; }
 html.m2 .m2-glance-intro .m2-intro { margin-bottom: 0; }
+
+/* Compact Four Pillars on phones (Christina, Nov 13, 2026 test). */
+html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 { gap: 10px; }
+html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div { padding: 14px 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > div:first-child { font-size: 1.6rem; margin: 0; }
+html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > h3 { margin: 0; }
+html.m2 .m2-pillars-compact .grid.sm\:grid-cols-2 > div > p:not(.m2-folded) { flex-basis: 100%; margin: 0; }

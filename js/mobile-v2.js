@@ -358,6 +358,30 @@
       if (after && s) { after.insertAdjacentElement('afterend', s); after = s; }
     });
 
+    // 12. Shorter phone homepage, a two-week test (Christina, Nov 13, 2026).
+    // Everything stays in the HTML (SEO); delete this block to undo.
+    if (isHome) {
+      // Christina: photo, first paragraph and story links; the rest behind Read more.
+      if (christinaSec) {
+        var cPs = christinaSec.querySelectorAll('h2 ~ p');
+        var cPod = $('img[src*="podcast-artwork"]', christinaSec);
+        var cPodRow = cPod && cPod.parentElement;
+        var cBtns = cPodRow && cPodRow.nextElementSibling;
+        fold(christinaSec, [cPs[1] || null, cPodRow, cBtns], 'Read more');
+      }
+      // Four Pillars: names stay, illustration and explanations fold.
+      if (pillarsSec) {
+        pillarsSec.classList.add('m2-pillars-compact');
+        var pImg = $('img', pillarsSec);
+        var pDescs = Array.prototype.slice.call(pillarsSec.querySelectorAll('h3 + p'));
+        fold(pillarsSec, [pImg && pImg.parentElement].concat(pDescs), 'What each pillar means', pDescs.length ? pDescs[pDescs.length - 1].closest('.grid') : null);
+      }
+      // Gallery and the photo band: hidden on phones (testimonials and NYE carry the photos).
+      if (gallery) gallery.style.display = 'none';
+      var band = sec('photoband');
+      if (band) band.style.display = 'none';
+    }
+
     // 3. Join prompts every few screens.
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));
     if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));

@@ -60,7 +60,7 @@
         "3b71d63eed9f5497",
         "caa94f691e03cea0"
       ],
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-vii",
@@ -75,7 +75,7 @@
       "photographer": null,
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-vi",
@@ -90,7 +90,7 @@
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-v",
@@ -105,7 +105,7 @@
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-iv",
@@ -120,7 +120,7 @@
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-iii",
@@ -135,7 +135,7 @@
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-ii",
@@ -150,7 +150,7 @@
       "photographer": "Pierre Zah",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-i",
@@ -165,7 +165,7 @@
       "photographer": "Allison Powers",
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "biohacking-love-may-2026",
@@ -180,7 +180,7 @@
       "photographer": "Allison Powers",
       "parent_event": "biohacking-love",
       "parent_event_title": "Biohacking Love",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "biohacking-love",
@@ -196,7 +196,7 @@
       "parent_event": "biohacking-love",
       "parent_event_title": "Biohacking Love",
       "cover_position": "top",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "beyond-biohacking-2025",
@@ -209,7 +209,7 @@
       "event_page_slug": null,
       "display_order": 36,
       "photographer": "Allison Powers",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "midnights-with-mary",
@@ -222,7 +222,7 @@
       "event_page_slug": null,
       "display_order": 32,
       "photographer": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "dating-dojo",
@@ -237,7 +237,7 @@
       "photographer": "Jen Esteban",
       "parent_event": "dating-dojo",
       "parent_event_title": "The Dating Dojo",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "christinas-bc-talk",
@@ -252,7 +252,7 @@
       "photographer": "Allison Powers",
       "parent_event": null,
       "parent_event_title": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "medidating",
@@ -265,7 +265,7 @@
       "event_page_slug": null,
       "display_order": 26,
       "photographer": "Allison Powers",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "solar-punk-2025",
@@ -278,7 +278,7 @@
       "event_page_slug": null,
       "display_order": 27,
       "photographer": "Allison Powers",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "heart-flow",
@@ -291,7 +291,7 @@
       "event_page_slug": null,
       "display_order": 31,
       "photographer": "Sheldon Botler",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "journey-to-connection",
@@ -304,7 +304,7 @@
       "event_page_slug": null,
       "display_order": 34,
       "photographer": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "mindful-mingling",
@@ -317,7 +317,7 @@
       "event_page_slug": null,
       "display_order": 35,
       "photographer": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "we-play-recess",
@@ -330,7 +330,7 @@
       "event_page_slug": null,
       "display_order": 33,
       "photographer": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "aboutly-training",
@@ -343,7 +343,7 @@
       "event_page_slug": null,
       "display_order": 30,
       "photographer": "Pierre Zah",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "dating-dojo-venice",
@@ -358,7 +358,7 @@
       "photographer": "Jen Esteban",
       "parent_event": "dating-dojo",
       "parent_event_title": "The Dating Dojo",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "biohacking-love-may-2025",
@@ -373,7 +373,7 @@
       "photographer": "Allison Powers",
       "parent_event": "biohacking-love",
       "parent_event_title": "Biohacking Love",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "love-immersion-march-2026",
@@ -388,7 +388,7 @@
       "photographer": null,
       "parent_event": "love-immersion",
       "parent_event_title": "Love Immersion",
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "wedeepen-in-person-august-2026",
@@ -412,7 +412,7 @@
         "1ed14a18d51226b5",
         "50b4586e6d1b665e"
       ],
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "atma-cosmic-heart-ceremony",
@@ -427,7 +427,7 @@
       "photographer": "Allison Powers",
       "parent_event": null,
       "parent_event_title": null,
-      "originals_public": true
+      "originals_public": false
     },
     {
       "slug": "beyond-connection-biohacking-conference",
@@ -442,7 +442,7 @@
       "photographer": "Allison Powers",
       "parent_event": null,
       "parent_event_title": null,
-      "originals_public": true
+      "originals_public": false
     }
   ]
 }

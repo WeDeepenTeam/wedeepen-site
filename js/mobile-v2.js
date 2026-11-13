@@ -162,7 +162,7 @@
       var li = skillLis[i];
       return li ? li.textContent.replace(/^\s*0?\d+\s*/, '').trim() : '';
     };
-    var quote = 'The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.';
+    var quote = 'I spent years and significant resources on healing and biohacking, but the emotional breakthrough I experienced at the WeDeepen Love Immersion was on another level.';
 
     var quiz = el(
       '<form class="m2-quiz" novalidate>' +
@@ -201,7 +201,7 @@
         '<p class="m2-quiz-lead">' + chosen[0].lead + '</p>' +
         '<p class="m2-quiz-kicker">The skills of intimacy you&rsquo;ll learn</p>' +
         '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Member</cite></blockquote>' +
+        '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Karolina S.</cite></blockquote>' +
         '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
         '<p class="m2-reassure">Cancel anytime, on your own.</p>';
       result.hidden = false;

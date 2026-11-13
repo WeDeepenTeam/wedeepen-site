@@ -100,7 +100,7 @@
   // NYE early bird: until the code expires, the bar promotes the party
   // instead of the list hooks, then goes back to them on its own.
   var NYE_EARLY_END = new Date('2026-11-19T00:00:00-06:00').getTime();
-  var ON_NYE = /^\/nye\//.test(location.pathname);
+  var ON_NYE = /^\/nye\/(index\.html)?$/.test(location.pathname); // the ticket page itself, not /nye/letter/
   // On /nye itself the bar shows too (even with data-quiet) and points at the tickets.
   var NYE_PROMO = Date.now() < NYE_EARLY_END;
   var NYE_HREF = ON_NYE ? '#tickets' : '/nye/';

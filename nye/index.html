@@ -1120,6 +1120,34 @@
     </div>
   </section>
 
+  <!-- STAY IN THE LOOP: email sign-up for visitors not ready to book.
+       Wired up by /js/lead-capture.js ([data-guide-form] -> MailerLite "Four Pillars guide" group). -->
+  <section id="stay-in-touch" class="bg-ink py-16 md:py-20 px-6 scroll-mt-20">
+    <div class="max-w-xl mx-auto text-center reveal">
+      <p class="text-xs uppercase tracking-[0.22em] font-semibold mb-3" style="color:#E0BC78;">Not ready to book yet?</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-normal leading-tight mb-4">Stay in the&nbsp;loop.</h2>
+      <p class="text-white/65 text-base leading-relaxed mb-8">Get Christina&rsquo;s emails: new dates, private invitations, and our free Four Pillars guide to&nbsp;start.</p>
+      <form data-guide-form novalidate class="space-y-3 max-w-md mx-auto text-left">
+        <div class="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-[#E0BC78]">
+        <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-[#E0BC78]">
+        <p data-guide-err role="alert" class="text-sm text-red-300" style="display:none"></p>
+        <button type="submit" class="btn-rose w-full text-base">Count Me In</button>
+        <p class="text-white/45 text-xs text-center">A few emails a month. Unsubscribe anytime.</p>
+      </form>
+      <div data-guide-done style="display:none" class="max-w-md mx-auto">
+        <p class="text-xs uppercase tracking-[0.22em] font-semibold mb-2" style="color:#E0BC78;">You&#39;re in</p>
+        <p data-guide-hi class="font-heading text-2xl text-white mb-2">Check your inbox.</p>
+        <p class="text-white/70 mb-6">Your Four Pillars guide is on its way from Christina at WeDeepen (hello@wedeepen.com). Not there in 2 minutes? Look in Promotions or spam, and drag it to your main inbox so you get the next ones.</p>
+        <div class="border-t border-white/10 pt-5">
+          <p class="font-heading text-lg text-white mb-1">Bonus: private invitations by text</p>
+          <p class="text-white/60 text-sm mb-4">Be first to hear about new dates and live events. A few texts a month.</p>
+          <a data-guide-text href="#" class="btn-rose w-full text-base text-center inline-block">Text COUNT ME IN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="nye-hero relative overflow-hidden py-28 md:py-40 px-6 text-center">
     <canvas class="nye-fw absolute inset-0 w-full h-full pointer-events-none" style="z-index:1;" aria-hidden="true"></canvas>

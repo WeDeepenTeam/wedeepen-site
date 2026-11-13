@@ -209,3 +209,10 @@ html.m2 [data-m2="christina"] .flex.flex-wrap.gap-x-8 { column-gap: 22px !import
 /* Final card price lines on the phone homepage (Christina, Nov 13, 2026). */
 html.m2 .m2-final-line { color: rgba(255,255,255,.7); font-size: 15px; line-height: 1.5; margin: 6px 0 0; }
 html.m2 .m2-final-line + .m2-final-line { color: #C9A277; }
+
+/* Phone spacing pass (Christina, Nov 13, 2026): sections with the same background sat
+   ~190px apart (96px bottom + 96px top). Even 64px rhythm between sections instead. */
+html.m2 section.py-20, html.m2 section.py-24 { padding-top: 64px !important; padding-bottom: 64px !important; }
+/* Left-aligned text gets a left-aligned "Read more"; centered blocks stay centered. */
+html.m2 [data-m2="christina"] .m2-fold-btn { margin-left: 0; }
+html.m2 #four-pillars .mt-8 { text-align: center; }

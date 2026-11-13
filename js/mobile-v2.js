@@ -58,6 +58,7 @@
       '<div class="m2-objections' + (extraClass ? ' ' + extraClass : '') + '">' +
         '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
         '<div><h3>What if I can&rsquo;t make a session live?</h3><p>' + (LIBRARY ? 'Love Masterminds are recorded, and the whole library opens on your first day. Integration Sessions are live practice.' : 'Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.') + '</p></div>' +
+        '<div><h3>Is this a cult or a clique?</h3><p>Not a church. Not an MLM. A culture shift: curious people practicing love together, with many teachers and no single guru or system.</p></div>' +
         '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
       '</div>'
     );
@@ -290,6 +291,7 @@
             '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
             '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
             '<li><b>Real-world practice</b><span>Weekly Sunday Dares by email</span></li>' +
+            '<li><b>Member perks</b><span>Discounts with partners like MindTravel and Tantra Speed Date</span></li>' +
             '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>' +
           '</ul>' +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +

@@ -583,7 +583,7 @@
             <p class="text-gold text-[0.68rem] uppercase tracking-[0.28em] font-semibold mb-3">Start anytime</p>
             <p class="font-heading text-2xl md:text-[2rem] text-white leading-tight mb-3" style="text-wrap: balance;">Start your 14 free days today.</p>
             <p class="text-white/70 text-sm leading-relaxed">Join any day and come to the next live session. New member orientation runs monthly; the <a href="/events/" class="text-gold hover:underline">events calendar</a> shows the next one.</p>
-            <p class="text-white/85 text-sm leading-relaxed mt-4">You&rsquo;ve spent years getting good at your work. This is 90 minutes a week for the thing that shapes everything else.</p>
+            <p class="text-white/85 text-sm leading-relaxed mt-4">You&rsquo;ve spent years getting good at your work. This is 60 to 90 minutes a week for the thing that shapes everything else.</p>
           </div>
           <div class="grid sm:grid-cols-2 gap-4 lg:col-span-7">
             <div class="rounded-sm p-6 flex flex-col" style="border:1px solid rgba(255,255,255,0.14);">
@@ -755,7 +755,7 @@
             <span class="font-heading text-xl md:text-2xl text-white">When do the sessions happen?</span>
             <span class="faq-icon text-gold text-xl leading-none shrink-0 mt-1">+</span>
           </button>
-          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>Sessions are <strong class="text-white">90 minutes, live, at 7:00 PM Eastern</strong> (6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific). Love Masterminds and Integration Sessions take turns.</p>
+          <div class="faq-answer"><div class="pb-8 pr-10 text-white/60 leading-relaxed"><p>Sessions are <strong class="text-white">60 to 90 minutes, live, at 7:00 PM Eastern</strong> (6:00 PM Central, 5:00 PM Mountain, 4:00 PM Pacific). Love Masterminds and Integration Sessions take turns.</p>
             <p class="mt-4">You can join anytime and come to the very next session. New Member Orientation runs monthly, and the <a href="/events/" class="text-gold hover:underline">events calendar</a> shows the next one. It&rsquo;s a welcome, not a prerequisite.</p>
             <p class="mt-4">The <a href="/events/" class="text-gold hover:underline">events calendar</a> always shows the next Love Mastermind and Integration Session.</p></div></div>
         </div>
@@ -1104,7 +1104,8 @@
         // /events/.
         const isTuesdayCall = e =>
           (Array.isArray(e.topics) && e.topics.includes('Love Mastermind')) ||
-          /^Integration Session/i.test(e.title || '') ||
+          /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '') ||
+          /reality transurfing/i.test(e.title || '') ||
           /orientation/i.test(e.title || '');
         const upcoming = (data.events || [])
           .filter(e => {
@@ -1131,10 +1132,13 @@
           const imgStyle = hasImg
             ? `background-image:url('${e.image_url}');background-size:cover;background-position:center;`
             : `background:linear-gradient(135deg,#A01B4A 0%,#1A1A1A 100%);`;
-          const isIntegration = /^Integration Session/i.test(e.title || '');
+          const isIntegration = /^Integration (&|and)?\s*(Bonding\s*)?Session/i.test(e.title || '');
           const isOrientation = /orientation/i.test(e.title || '');
           const title = (e.title || '').replace(/\s*[-\u2013]\s*$/, '');
-          const tagHtml = isOrientation
+          const isOfficeHours = /office hours/i.test(e.title || '');
+          const tagHtml = isOfficeHours
+            ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Office hours</span>'
+            : isOrientation
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(160,27,74,0.10);color:#A01B4A;">New members</span>'
             : isIntegration
             ? '<span class="text-xs px-3 py-1 rounded-full whitespace-nowrap" style="background:rgba(44,36,32,0.06);color:rgba(44,36,32,0.7);">Live practice</span>'

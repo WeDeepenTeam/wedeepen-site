@@ -56,9 +56,11 @@
   function objections(extraClass) {
     return el(
       '<div class="m2-objections' + (extraClass ? ' ' + extraClass : '') + '">' +
-        '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life. Partners can join together, each with their own membership.</p></div>' +
+        '<div><h3>Who is this for?</h3><p>Anyone who wants to thrive in love and get better at it. Men and women, straight and LGBTQ+, every age and stage, dating, partnered or solo. Many of our members are early adopters: optimists who believe the world is moving toward love and want to invest their time and energy in building it, starting with their own skills.</p></div>' +
+        '<div><h3>Do I need to be in a relationship?</h3><p>No. It&rsquo;s for people who are dating, partnered, between relationships, or simply want a better love life.</p></div>' +
+        '<div><h3>Can I share a membership with my partner?</h3><p>Yes, for now. Couples are welcome to share one membership and come to sessions together. It&rsquo;s set up under one email and one phone number, so choose whose it&rsquo;ll be.</p></div>' +
         '<div><h3>What if I can&rsquo;t make a session live?</h3><p>' + (LIBRARY ? 'Love Masterminds are recorded, and the whole library opens on your first day. Integration Sessions are live practice.' : 'Every Love Mastermind is recorded from the time you join, so you can catch it later. Integration Sessions are live practice.') + '</p></div>' +
-        '<div><h3>What happens in a session?</h3><p>90 minutes, online. Love Masterminds with the faculty, built around real relationship questions, alternate with Integration Sessions where you practice what you learned.</p></div>' +
+        '<div><h3>Is this a cult or a clique?</h3><p>Not a church. Not an MLM. A culture shift: curious people practicing love together, with many teachers and no single guru or system.</p></div>' +
       '</div>'
     );
   }
@@ -248,9 +250,9 @@
           '<h2>Your <em>first session</em></h2>' +
           '<p>Here&rsquo;s what happens after you join.</p>' +
           '<ol>' +
-            '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes, and you&rsquo;re in the private member community right away.</p></li>' +
-            '<li><span class="n">2</span><h3>Find a session on the calendar</h3><p>The next live sessions are waiting on the member calendar inside the community.</p></li>' +
-            '<li><span class="n">3</span><h3>Show up live</h3><p>90 minutes, live and online, with the faculty and members doing the same work. Come as you are.</p></li>' +
+            '<li><span class="n">1</span><h3>Join today</h3><p>It takes a couple of minutes.</p></li>' +
+            '<li><span class="n">2</span><h3>Add the live sessions to your calendar</h3><p>Save the weekly virtual sessions to your calendar to join live. If you miss a Love Mastermind, watch the recording.</p></li>' +
+            '<li><span class="n">3</span><h3>Show up live</h3><p>60 to 90 minutes, live and online, with the faculty and members who care about thriving in love. Between sessions, explore the private community in Circle.</p></li>' +
           '</ol>' +
         '</section>'
       );
@@ -267,7 +269,9 @@
     if (skill) {
       var skillPs = skill.querySelectorAll('h2 ~ p');
       var skillImg = skill.querySelector('.aspect-\\[3\\/2\\]');
-      fold(skill, [skillPs[1] || null, skillImg && skillImg.parentElement, $('.home-ledger', skill)], 'Read more', skillPs[1] || skillPs[0]);
+      // Phones: the photo comes before "WeDeepen gives you a place..." (Christina, Nov 13, 2026).
+      if (skillImg && skillPs[1]) { skillPs[1].insertAdjacentElement('beforebegin', skillImg); skillImg.style.marginBottom = '20px'; }
+      fold(skill, [skillImg, skillPs[1] || null, $('.home-ledger', skill)], 'Read more', skillPs[1] || skillPs[0]);
     }
     if (build) {
       var buildItems = Array.prototype.slice.call(build.querySelectorAll('ul > li'), 3);
@@ -283,22 +287,45 @@
       var planBtn = $('a[data-cta="membership"]', incl);
       var plansPanel = planBtn && planBtn.closest('.rounded-md');
       if (plansPanel) plansPanel.id = 'm2-plans';
+      // Homepage phones (Christina, Nov 13, 2026): the plans panel opens straight on the
+      // choice. Its intro paragraphs repeat the price box and the first-session steps,
+      // so they're hidden (kept in the HTML); the heading names the choice.
+      var plansIntro = isHome && plansPanel && $('.lg\\:col-span-5', plansPanel);
+      if (plansIntro) {
+        var pi = plansIntro.querySelectorAll('p');
+        Array.prototype.forEach.call(pi, function (el2, i) {
+          if (i === 1) el2.textContent = 'Choose monthly or annual.';
+          else if (i > 1) el2.style.display = 'none';
+        });
+      }
+      // Homepage phones (Christina, Nov 13, 2026): one pricing box. Annual becomes a line
+      // under the main button and the separate plans panel is hidden (kept in the HTML).
+      var annualLink = isHome && plansPanel && Array.prototype.filter.call(plansPanel.querySelectorAll('a[data-cta="membership"]'), function (a) { return /annual/i.test(a.textContent); })[0];
+      var annualHref = annualLink && annualLink.getAttribute('href');
+      if (annualHref) plansPanel.style.display = 'none';
       var summary = el(
         '<div class="m2-offer" id="m2-offer">' +
-          '<p class="m2-offer-kicker">In short</p>' +
-          '<ul>' +
+          (isHome ? '' : '<p class="m2-offer-kicker">In short</p>' + '<ul>') +
+          (isHome ? '' :
             '<li><b>Live sessions</b><span>Masterminds, relationship workshops, bonding &amp; integration</span></li>' +
             '<li><b>Private community</b><span>Circle discussions + Ask the Experts</span></li>' +
-            '<li><b>Real-world practice</b><span>Weekly Sunday Dares by email</span></li>' +
+            '<li><b>Real-world practice</b><span>Weekly Sunday Dares by email</span></li>') +
+          (isHome ? '' :
+            '<li><b>Member perks</b><span>Discounts with partners like MindTravel and Tantra Speed Date</span></li>' +
             '<li><b>Recordings</b><span>' + (LIBRARY ? 'The growing Love Mastermind library, from day one' : 'Every Love Mastermind from the time you join') + '</span></li>' +
-          '</ul>' +
+          '</ul>') +
           '<p class="m2-offer-price">Your first 14 days are free. After that it&rsquo;s $99/month. Cancel anytime.</p>' +
           '<a data-cta="m2-offer" href="' + CHECKOUT + '" class="btn-rose">Start my 14 free days</a>' +
-          (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '') +
+          (isHome && annualHref ? '<a data-cta="m2-offer-annual" href="' + annualHref + '" class="m2-offer-more">Or go annual: $990/year, two months free &rarr;</a>'
+            : (plansPanel ? '<a href="#m2-plans" class="m2-offer-more">See both plans, including annual &darr;</a>' : '')) +
         '</div>'
       );
       var inclHead = $('.text-center', incl);
-      if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
+      // Homepage (Christina, Nov 13, 2026): the photo cards explain what's included,
+      // so the box follows them and keeps only what they don't cover, plus price and join.
+      var inclCards = isHome && $('.grid.md\\:grid-cols-3', incl);
+      if (inclCards) inclCards.insertAdjacentElement('afterend', summary);
+      else if (inclHead) inclHead.insertAdjacentElement('afterend', summary);
       else incl.firstElementChild.insertAdjacentElement('afterbegin', summary);
       // 9. The three usual worries, answered right under the summary (René, 2026-10-24).
       summary.insertAdjacentElement('afterend', objections('m2-objections-offer'));
@@ -320,7 +347,7 @@
       if (more) {
         more.setAttribute('href', '#m2-offer');
         more.classList.add('m2-more');
-        jump(more, summary);
+        jump(more, isHome ? incl : summary);
       }
       jump($('.m2-offer-more', summary), plansPanel);
     }
@@ -382,16 +409,29 @@
       if (band) band.style.display = 'none';
     }
 
+    // 13. Final card on the homepage (Christina, Nov 13, 2026): the three small all-caps
+    // lines under the price read as clutter on phones; two calm lines instead, and the
+    // Love Immersion credit line is hidden (kept in the HTML).
+    var fc = isHome && sec('finalcard');
+    var fcPs = fc ? fc.querySelectorAll('.text-center.mb-9 > p') : [];
+    if (fcPs.length >= 4) {
+      fcPs[1].textContent = 'Or $990/year, two months free.';
+      fcPs[2].textContent = 'First 14 days free, monthly or annual.';
+      fcPs[1].className = fcPs[2].className = 'm2-final-line';
+      fcPs[3].style.display = 'none';
+    }
+
     // 3. Join prompts every few screens.
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));
-    if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from all of them, every week.'));
+    if (faculty) faculty.firstElementChild.appendChild(joinPrompt('faculty', 'Learn from experts like these, live and online.'));
     var pillars = $('#four-pillars');
     if (pillars) pillars.firstElementChild.appendChild(joinPrompt('pillars', 'This is what we practice together.'));
 
     // 5. Objections above the final join button.
     var card = sec('finalcard');
     var joinNow = card && $('a[data-cta="final-card"]', card);
-    if (joinNow) {
+    // Homepage: the worries are answered once, under the price (Christina, Nov 13, 2026).
+    if (joinNow && !isHome) {
       joinNow.parentElement.insertAdjacentElement('beforebegin', objections());
     }
 

@@ -60,7 +60,7 @@ export function buildMembership(home) {
   // Price-card line: lead with value, not fear.
   html = replaceOnce(html,
     /\$99 a month is nothing next to what getting it wrong costs: years of your life, bad dates, divorce, starting over\./,
-    'You&rsquo;ve spent years getting good at your work. This is 90 minutes a week for the thing that shapes everything else.',
+    'You&rsquo;ve spent years getting good at your work. This is 60 to 90 minutes a week for the thing that shapes everything else.',
     'price-card line');
   // Keep ad traffic on the $99 decision: drop the Love Immersion spotlight (FAQ still covers it).
   html = replaceOnce(html,
@@ -72,7 +72,7 @@ export function buildMembership(home) {
     'Come play <span class="italic" style="color:#C9A277;">with us.</span>',
     'closing headline');
   html = replaceOnce(html,
-    /[ \t]*<a href="\/love-immersion\/[^"]*" class="btn-outline text-base">Attend Love Immersion<\/a>\n/,
+    /[ \t]*<a href="\/love-immersion\/[^"]*" class="btn-outline text-base">Join the Love Immersion waitlist<\/a>\n/,
     '', 'closing Love Immersion button');
   html = html.replace(/[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>\n/g, '');
   html = replaceOnce(html, /<html([^>]*)>/,

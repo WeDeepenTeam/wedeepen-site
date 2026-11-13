@@ -219,9 +219,9 @@ export function buildSegment(membership, seg) {
     seg.glance, 'glance line');
 
   // ---- The skill section ----
-  html = replaceOnce(html, /Love has a much messier learning curve than most things we get good at\./, seg.skillH2, 'skill h2');
+  html = replaceOnce(html, /Every great love story has a <span class="italic" style="color:#A8855C;">messy middle<\/span>\./, seg.skillH2, 'skill h2');
   html = replaceOnce(html,
-    /We develop skills in work, health, and sport through learning, practice, and feedback\. Love is usually left to experience\./,
+    /We develop skills in work, health, and sport through learning, practice, and feedback\. Love is usually left to trial and error: we copy what we saw growing up and learn the rest through heartbreak\./,
     seg.skillP1, 'skill p1');
   html = replaceOnce(html,
     /WeDeepen gives you a place to build the skill of love deliberately, including learning to tell the difference between:/,
@@ -230,7 +230,7 @@ export function buildSegment(membership, seg) {
 
   // ---- What you build ----
   html = replaceOnce(html,
-    /Build the skills behind an <span class="italic" style="color:#C9A277;">epic<\/span> love life\./,
+    /Build the skills for a <span class="italic" style="color:#C9A277;">thriving<\/span> love life\./,
     seg.buildH2, 'build h2');
   html = replaceOnce(html,
     /(<section data-m2="build"[\s\S]*?<ul class="border-t border-white\/10">\n)[\s\S]*?(\n[ \t]*<\/ul>)/,
@@ -249,11 +249,6 @@ export function buildSegment(membership, seg) {
   html = replaceOnce(html, /Recordings of Love Masterminds held after you join/,
     'The growing Love Mastermind recording library, from day one', 'final card recordings');
 
-  // ---- Founder bio: "since 2014", never a count of years (house voice rule) ----
-  html = replaceOnce(html,
-    /Christina has spent over a decade researching, curating, and designing the most potent experiences in the love industry\. She started in 2014 hosting <em>Underground Unattached<\/em> dating events in New York City, and built WeDeepen/,
-    'Since 2014, Christina has been researching, curating, and designing the most potent experiences in the love industry. It started with <em>Underground Unattached</em>, her dating events in New York City. Then she built WeDeepen',
-    'founder bio');
 
   // ---- Text testimonials for this audience ----
   if (/data-mv-grid/.test(html)) html = excludeClips(html, seg.excludeClips || []);

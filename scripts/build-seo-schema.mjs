@@ -36,7 +36,7 @@ const PAGES = [
   { path: '/four-pillars/', name: 'The Four Pillars' },
   { path: '/podcast/', name: 'Podcast' },
   { path: '/love-club/', name: 'Love Club', faq: true },
-  { path: '/book-session-with-christina/', name: 'Book a Session with Christina' },
+  { path: '/book-session-with-christina/', name: 'Private Sessions with Christina' },
   { path: '/schedule-with-christina/', name: 'Schedule with Christina' },
   { path: '/join/', name: 'Join' },
   { path: '/gallery/', name: 'Photo Galleries' },

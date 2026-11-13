@@ -67,7 +67,7 @@ ${pageNav()}
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           All galleries
         </a>
-        <p class="text-[11px] md:text-xs uppercase tracking-[0.35em] text-white/50 font-medium mb-4">WeDeepen &middot; Gallery</p>
+        <p class="text-[11px] md:text-xs uppercase tracking-[0.35em] text-white/50 font-medium mb-4">WeDeepen &middot; Photos</p>
         <h1 class="font-heading text-[2.2rem] md:text-[3rem] lg:text-[3.6rem] font-normal leading-[1.15] mb-5 max-w-4xl">
           ${escapeHtml(album.title)}
         </h1>
@@ -93,7 +93,7 @@ ${album.cta_href ? `
           ${album.cta_body ? `<p class="text-white/60 text-base md:text-lg leading-relaxed font-light mb-7 max-w-3xl">${escapeHtml(album.cta_body)}</p>` : ''}
           <div class="flex flex-col sm:flex-row items-center gap-4">
             <a href="${escapeHtml(album.cta_href)}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
-            <a href="/gallery/" class="text-white/70 hover:text-white transition font-medium">All Galleries &rarr;</a>
+            <a href="/gallery/" class="text-white/70 hover:text-white transition font-medium">All Photos &rarr;</a>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ ${album.cta_href ? `
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="${escapeHtml(album.cta_href || '/events/')}" class="btn-rose">${escapeHtml(album.cta_label || 'View Upcoming Events')} &rarr;</a>
-          <a href="/gallery/" class="text-charcoal/70 hover:text-charcoal transition font-medium">All Galleries &rarr;</a>
+          <a href="/gallery/" class="text-charcoal/70 hover:text-charcoal transition font-medium">All Photos &rarr;</a>
         </div>
       </div>
     </section>

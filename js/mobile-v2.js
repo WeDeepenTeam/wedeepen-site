@@ -220,11 +220,16 @@
 
     heroV2();
 
-    // Hidden, not deleted (SEO): the "skills underneath are the same" closer of
-    // At a glance repeats the dating/partnered/solo line on phones (Christina, Nov 13, 2026).
-    Array.prototype.forEach.call(document.querySelectorAll('p'), function (p) {
-      if (/the skills underneath are the same/.test(p.textContent) && p.parentElement) p.parentElement.style.display = 'none';
+    // At a glance on phones keeps only the intro lines (Christina, Nov 13, 2026).
+    // Its heading, three-item list and "skills underneath are the same" closer
+    // repeat the photo cards in What's included, so they're hidden, not deleted (SEO).
+    var isHome = location.pathname === '/' || location.pathname === '/index.html';
+    var glanceSec = isHome && sec('glance');
+    var glanceIn = glanceSec && glanceSec.firstElementChild;
+    if (glanceIn) Array.prototype.forEach.call(glanceIn.children, function (c) {
+      if (!c.classList.contains('m2-intro')) c.style.display = 'none';
     });
+    if (glanceSec) glanceSec.classList.add('m2-glance-intro');
 
     // 1. Member proof right under the hero, as a swipe row (René). Christina's
     // opening argument (at a glance -> learning curve -> skills) follows it
@@ -339,6 +344,19 @@
       tryEvents();
       new MutationObserver(tryEvents).observe(events, { childList: true });
     }
+
+    // 11. Lower-page order on phones (Christina, Nov 13, 2026): Faculty before the
+    // calendar, then Christina, Four Pillars, the in-person spotlight and the
+    // gallery, then the FAQ. Desktop keeps its order.
+    var calendar = $('#calendar');
+    var christinaSec = sec('christina');
+    var pillarsSec = $('#four-pillars');
+    var spotlight = sec('immersion');
+    if (isHome && calendar && faculty) calendar.insertAdjacentElement('beforebegin', faculty);
+    var after = isHome && calendar;
+    [christinaSec, pillarsSec, spotlight, gallery].forEach(function (s) {
+      if (after && s) { after.insertAdjacentElement('afterend', s); after = s; }
+    });
 
     // 3. Join prompts every few screens.
     if (build) build.firstElementChild.appendChild(joinPrompt('skills', 'Start building these skills this week.'));

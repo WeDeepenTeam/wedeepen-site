@@ -167,3 +167,7 @@ html.m2 .m2-quiz-result .m2-reassure { margin: 10px 0 0; }
 /* The two hero intro paragraphs, moved to the top of "At a glance". */
 html.m2 .m2-intro { text-align: center; margin: 0 auto 36px; max-width: 36rem; }
 html.m2 .m2-intro p { margin: 0 auto 12px !important; }
+
+/* At a glance on phones is just the intro lines now (Christina, Nov 13, 2026). */
+html.m2 .m2-glance-intro { padding-bottom: 8px !important; }
+html.m2 .m2-glance-intro .m2-intro { margin-bottom: 0; }

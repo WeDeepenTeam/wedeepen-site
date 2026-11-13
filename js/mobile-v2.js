@@ -104,13 +104,23 @@
   }
 
   // 8. Homepage hero on phones (Christina, Nov 5, 2026).
+  // Inner-voice options, ordered most to least self-aware (Christina, Nov 13, 2026). Draft. Each gets its own opener on the result.
+  // skills = indexes into the "Build the skills" list (data-m2="build").
   var QUIZ = [
-    { key: 'skills', label: 'I want to learn the skills of love', skills: [2, 4, 6], general: true },
-    { key: 'long-love', label: 'I want to keep a long love alive', skills: [6, 7] },
-    { key: 'intimacy', label: 'I want more intimacy and desire', skills: [6, 3] },
-    { key: 'conflict', label: 'I want to handle conflict without losing connection', skills: [4, 5] },
-    { key: 'dating', label: 'I&rsquo;m dating and want to choose better', skills: [0, 1] },
-    { key: 'patterns', label: 'I want to understand my own patterns', skills: [1, 2] }
+    { key: 'wrong-people', label: 'I keep choosing the wrong people', skills: [0, 1, 2],
+      lead: 'You are not broken. You were just never taught how to choose.' },
+    { key: 'this-time', label: 'I don&rsquo;t want to f*ck it up this time', skills: [1, 3, 7],
+      lead: 'You already know your pattern. Now you get to practice a new one.' },
+    { key: 'roommates', label: 'We feel more like roommates than lovers', skills: [6, 3, 4],
+      lead: 'Roommate mode is common. Desire responds to practice.' },
+    { key: 'wanted', label: 'I want to feel wanted again', skills: [6, 3, 7],
+      lead: 'Desire isn&rsquo;t gone. It needs different conditions.' },
+    { key: 'stay-go', label: 'I don&rsquo;t know if I should stay or go', skills: [2, 4, 3],
+      lead: 'You don&rsquo;t have to decide today. Get clear on where you stand first.' },
+    { key: 'not-over', label: 'I&rsquo;m still not over them', skills: [1, 2, 0],
+      lead: 'Heartbreak is a teacher. You don&rsquo;t have to sit with it alone.' },
+    { key: 'ex-back', label: 'I want my ex back', skills: [1, 2, 5],
+      lead: 'Whether you reunite or not, you get to show up as someone who understands what happened.' }
   ];
   function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
 
@@ -178,15 +188,15 @@
       e.preventDefault();
       var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
       if (!picked.length) return;
-      // Specific picks fill the list first; the general "skills of love" pick tops it up.
+      // The first pick (in list order) sets the opener; all picks fill the skills list.
+      var chosen = QUIZ.filter(function (q) { return picked.indexOf(q.key) !== -1; });
       var idx = [];
-      QUIZ.filter(function (q) { return !q.general; }).concat(QUIZ.filter(function (q) { return q.general; })).forEach(function (q) {
-        if (picked.indexOf(q.key) === -1) return;
+      chosen.forEach(function (q) {
         q.skills.forEach(function (n) { if (idx.indexOf(n) === -1) idx.push(n); });
       });
       var items = idx.slice(0, 3).map(skillText).filter(Boolean);
       result.innerHTML =
-        (picked.indexOf('skills') !== -1 ? '<p class="m2-quiz-lead">You get the frameworks, tools and practices behind a healthy love, from faculty across dating, sex, communication, attachment, intimacy and the nervous system. Keep what fits you.</p>' : '') +
+        '<p class="m2-quiz-lead">' + chosen[0].lead + '</p>' +
         '<p class="m2-quiz-kicker">Here&rsquo;s what you&rsquo;ll practice</p>' +
         '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
         '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Retired Entrepreneur &amp; Member</cite></blockquote>' +

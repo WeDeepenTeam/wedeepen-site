@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- membership/practice: short, hand-written landing page for the Perel-adjacent Meta campaign
      (utm_campaign=perel_membership, Nov 2026). One offer, one button, headline matched to the ad by utm_content.
-     No checkout email pop-up on purpose (test). Not generated: edit this file directly. Not in the menu; noindex. -->
+     Checkout email step added Nov 14, 2026 (was off for the first test). Not generated: edit this file directly. Not in the menu; noindex. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -27,6 +27,8 @@
     })(window, document, "clarity", "script", "z2chqpt354");
   </script>
   <script src="/js/checkout-tracking.js?v=3" defer></script>
+  <!-- Nov 14, 2026 (Rene): email step before Circle, like the other membership pages, so people who leave the checkout get the follow-up emails. -->
+  <script src="/js/checkout-email-step.js?v=2" defer></script>
 
   <!-- Meta pixel. Same "WeDeepen Website" dataset the /inperson page uses, so both
        pages feed one retargeting pool. Homepage fires PageView only: ViewContent is
@@ -369,6 +371,7 @@
         Start my 14 free days
       </a>
       <p class="text-gold/90 text-sm font-medium mt-4">$0 today. 14 days free, then $99/month.</p>
+      <p class="text-white/70 text-sm mt-2 leading-relaxed">Circle asks for a card to start your free days. Nothing is charged until they end.</p>
       <p class="text-white/55 text-sm mt-2 leading-relaxed">We email you 3 days before your free days end &middot; cancel yourself in Circle anytime, no calls or forms</p>
       <p class="text-white/55 text-sm mt-2">Camera off is fine &middot; Come solo, dating, or partnered</p>
     </div>
@@ -426,7 +429,7 @@
       <a data-cta="final-card" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" class="btn-rose w-full text-center !py-4 text-base">
         Start my 14 free days
       </a>
-      <p class="text-white/55 text-sm mt-3 text-center">$0 today. 14 days free, then $99/month. Cancel anytime in Circle.</p>
+      <p class="text-white/55 text-sm mt-3 text-center">$0 today. 14 days free, then $99/month. Circle asks for a card, but nothing is charged until your free days end. Cancel anytime in Circle.</p>
     </div>
   </section>
 

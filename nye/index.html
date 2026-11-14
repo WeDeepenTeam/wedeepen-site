@@ -25,25 +25,25 @@
   <script src="/js/checkout-tracking.js?v=3" defer></script>
   <script src="/js/lead-capture.js?v=59" data-quiet defer></script>
   
-  <title>A Bangin' Love-Filled New Year's | Sober NYE in Austin | WeDeepen</title>
+  <title>New Year's at the Gatsby | Sober NYE in Austin | WeDeepen</title>
   <meta name="description" content="A completely sober New Year&#39;s for 30 people at the Gatsby Mansion in Austin, Dec 30 to Jan 1. Get high on life and take flight into 2027. Book your spot.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wedeepen.com/nye/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wedeepen.com/nye/">
-  <meta property="og:title" content="A Bangin&#39; Love-Filled New Year&#39;s: Get high on life.">
+  <meta property="og:title" content="New Year&#39;s at the Gatsby: Get high on life.">
   <meta property="og:description" content="Get high on life this New Year&#39;s. At The Gatsby Mansion in Austin, Dec 30 to Jan 1, name what you really want, clear out 2026, and surf onto the timeline you choose for 2027. Walk in. Fly out. Celebrate with people who know how to have a ridiculously good time.">
-  <meta property="og:image" content="https://wedeepen.com/images/og/nye-og.jpg?v=5">
+  <meta property="og:image" content="https://wedeepen.com/images/og/nye-og-2.jpg?v=6">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="WeDeepen">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="A Bangin&#39; Love-Filled New Year&#39;s: Get high on life.">
+  <meta name="twitter:title" content="New Year&#39;s at the Gatsby: Get high on life.">
   <meta name="twitter:description" content="Get high on life this New Year&#39;s. At The Gatsby Mansion in Austin, Dec 30 to Jan 1, name what you really want, clear out 2026, and surf onto the timeline you choose for 2027. Walk in. Fly out. Celebrate with people who know how to have a ridiculously good time.">
-  <meta name="twitter:image" content="https://wedeepen.com/images/og/nye-og.jpg?v=5">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/nye-og-2.jpg?v=6">
 
 
   <!-- Fonts -->
@@ -267,7 +267,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "A Bangin' Love-Filled New Year's",
+  "name": "New Year's at the Gatsby",
   "description": "A completely sober New Year's gathering for 30 people at the Gatsby Mansion in Austin, TX.",
   "startDate": "2026-12-30T18:00:00-06:00",
   "endDate": "2027-01-01T10:00:00-06:00",
@@ -282,7 +282,7 @@
     "name": "The Gatsby Mansion",
     "address": { "@type": "PostalAddress", "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US" }
   },
-  "image": "https://wedeepen.com/images/og/nye-og.jpg?v=5",
+  "image": "https://wedeepen.com/images/og/nye-og-2.jpg?v=6",
   "organizer": { "@type": "Organization", "name": "WeDeepen", "url": "https://wedeepen.com/" },
   "maximumAttendeeCapacity": 30
 }
@@ -302,7 +302,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Bangin' Love-Filled New Year's",
+      "name": "New Year's at the Gatsby",
       "item": "https://wedeepen.com/nye/"
     }
   ]
@@ -1115,6 +1115,34 @@
         <div class="faq-item">
           <button type="button" class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left"><span class="text-white text-lg font-medium">Do I need to be a WeDeepen member?</span><span class="faq-icon text-gold text-2xl leading-none">+</span></button>
           <div class="faq-answer pb-6 text-white/65 leading-relaxed">No. This celebration is open to everyone. If you&rsquo;ve been curious about <a href="https://wedeepen.com/" class="text-gold hover:underline">WeDeepen</a>, it&rsquo;s a beautiful way to meet us.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAY IN THE LOOP: email sign-up for visitors not ready to book.
+       Wired up by /js/lead-capture.js ([data-guide-form] -> MailerLite "Four Pillars guide" group). -->
+  <section id="stay-in-touch" class="bg-ink py-16 md:py-20 px-6 scroll-mt-20">
+    <div class="max-w-xl mx-auto text-center reveal">
+      <p class="text-xs uppercase tracking-[0.22em] font-semibold mb-3" style="color:#E0BC78;">Not ready to book yet?</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-normal leading-tight mb-4">Stay in the&nbsp;loop.</h2>
+      <p class="text-white/65 text-base leading-relaxed mb-8">Get Christina&rsquo;s emails: new dates, private invitations, and our free Four Pillars guide to&nbsp;start.</p>
+      <form data-guide-form novalidate class="space-y-3 max-w-md mx-auto text-left">
+        <div class="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-[#E0BC78]">
+        <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-[#E0BC78]">
+        <p data-guide-err role="alert" class="text-sm text-red-300" style="display:none"></p>
+        <button type="submit" class="btn-rose w-full text-base">Count Me In</button>
+        <p class="text-white/45 text-xs text-center">A few emails a month. Unsubscribe anytime.</p>
+      </form>
+      <div data-guide-done style="display:none" class="max-w-md mx-auto">
+        <p class="text-xs uppercase tracking-[0.22em] font-semibold mb-2" style="color:#E0BC78;">You&#39;re in</p>
+        <p data-guide-hi class="font-heading text-2xl text-white mb-2">Check your inbox.</p>
+        <p class="text-white/70 mb-6">Your Four Pillars guide is on its way from Christina at WeDeepen (hello@wedeepen.com). Not there in 2 minutes? Look in Promotions or spam, and drag it to your main inbox so you get the next ones.</p>
+        <div class="border-t border-white/10 pt-5">
+          <p class="font-heading text-lg text-white mb-1">Bonus: private invitations by text</p>
+          <p class="text-white/60 text-sm mb-4">Be first to hear about new dates and live events. A few texts a month.</p>
+          <a data-guide-text href="#" class="btn-rose w-full text-base text-center inline-block">Text COUNT ME IN</a>
         </div>
       </div>
     </div>

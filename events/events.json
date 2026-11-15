@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-11-13T19:29:11.723Z",
+  "last_updated": "2026-11-15T07:09:41.578Z",
   "source": "circle.wedeepen.com",
-  "event_count": 78,
+  "event_count": 77,
   "events": [
-    {
-      "id": "mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen",
-      "title": "MindTravel Silent Piano Concert in Austin (25% Off for WeDeepen)",
-      "date": "2026-11-14",
-      "end_date": null,
-      "time": "5:00 PM",
-      "starts_at_iso": "2026-11-14T23:00:00.000Z",
-      "ends_at_iso": "2026-11-15T01:00:00.000Z",
-      "location_type": "austin",
-      "location_label": "900 Guadalupe St, Austin, TX 78701",
-      "tag": "",
-      "topics": [
-        "Endorsed by WeDeepen",
-        "In-Person",
-        "Open to Everyone"
-      ],
-      "recurring": false,
-      "series": "mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen",
-      "description": "🎟️ Get your tickets on Eventbrite  Use code WEDEEPEN at checkout for 25% off.  Golden hour on the grass. Headphones on. Murray Hidary at the piano, improvising live for everyone around you.  MindTrav",
-      "image_url": "https://assets-v2.circle.so/wb13z5osf5e1nstwdszvk2fc1nz6",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/mindtravel-silent-piano-concert-in-austin-25-off-for-wedeepen"
-    },
     {
       "id": "integration-session-practice-what-you-learned-3ca078",
       "title": "Integration & Bonding Session",

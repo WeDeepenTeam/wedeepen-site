@@ -185,7 +185,7 @@ def libsyn_embed_slug(link: str) -> str:
     return link.rstrip("/").split("/")[-1]
 
 def render_episode_page(ep: dict, related: list) -> str:
-    ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full") if ep.get(k)}}
+    ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full", "description_html") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
     desc_esc = html.escape(ep.get("description", ""))[:400]
     seo_desc_esc = html.escape(seo_description(ep.get("description", "")))
@@ -198,6 +198,15 @@ def render_episode_page(ep: dict, related: list) -> str:
         for para in desc_full_escaped.split("\n\n")
         if para.strip()
     )
+    # Hand-written show notes (episodes.json "description_html") replace the
+    # feed text on the page. Sync never touches this field. Links get the
+    # site's link style; off-site links open in a new tab.
+    if ep.get("description_html"):
+        def style_link(m):
+            href = m.group(1)
+            ext = "" if re.match(r"https://(www\.)?wedeepen\.com", href) else ' target="_blank" rel="noopener"'
+            return f'<a href="{href}"{ext} class="ep-link">'
+        desc_long_html = re.sub(r'<a href="([^"]+)">', style_link, ep["description_html"])
     slug = slugify(ep["title"])
     show = show_name(ep["title"])
     # Percent-encode accented slugs (René, Iván) so the canonical matches the
@@ -375,6 +384,9 @@ def render_episode_page(ep: dict, related: list) -> str:
     .line-clamp-2 {{ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
     .episode-body {{ white-space: pre-wrap; }}
     .episode-body p {{ margin-bottom: 1em; }}
+    .episode-body ul {{ list-style: disc; padding-left: 1.25em; margin-bottom: 1em; }}
+    .episode-body li {{ margin-bottom: 0.25em; }}
+    .episode-body strong {{ color: #fff; font-weight: 600; }}
     .ep-link {{ color: #C9A277; text-decoration: none; border-bottom: 1px solid rgba(201,162,119,0.35); transition: color 0.2s, border-color 0.2s; overflow-wrap: anywhere; }}
     .ep-link:hover {{ color: #E0BE93; border-bottom-color: #E0BE93; }}
   </style>

@@ -1,4 +1,9 @@
-# Add new Mastering Love episodes from the Libsyn feed, every day.
+# Add new Mastering Love episodes from the Libsyn feed, every hour.
+#
+# Hourly, not daily: episodes come out Monday 8 PM Central (01:00 UTC Tuesday)
+# and GitHub starts scheduled runs hours late, so the old once-a-day run kept
+# landing just before the release and the episode reached the site a day late.
+# A run with nothing new takes about 15 seconds and commits nothing.
 #
 # scripts/podcast/sync-feed.py --build appends new feed episodes to
 # podcast/data/episodes.json, fills empty Apple / Spotify / YouTube links on new
@@ -11,7 +16,7 @@ name: Podcast sync
 
 on:
   schedule:
-    - cron: '20 16 * * *'
+    - cron: '37 * * * *'
   workflow_dispatch:
   push:
     branches: [main]

@@ -8,7 +8,7 @@ Re-run this script any time episodes.json is refreshed, then
 sync (scripts/podcast/sync-feed.py) does both.
 """
 import json, re, os, html, sys
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -184,6 +184,32 @@ def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
 
+# Show-note links. Every <a> tag in hand-written notes is rebuilt from its
+# href alone, so attribute order, quotes, case or extra attributes from an
+# editor paste don't matter. Only http(s), site-relative (/...) and #anchor
+# hrefs are kept; anything else (javascript:, data:, ...) loses its link and
+# stays as plain text, with a warning, so one bad link can't fail the build.
+_A_TAG = re.compile(r"<a\b[^>]*>", re.I)
+_HREF = re.compile(r"""\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))""", re.I)
+_SITE_HOSTS = {"wedeepen.com", "www.wedeepen.com"}
+
+def style_show_note_links(notes_html: str, title: str) -> str:
+    def rebuild(m):
+        found = _HREF.search(m.group(0))
+        href = html.unescape(next(g for g in found.groups() if g is not None)).strip() if found else ""
+        parsed = urlparse(href)
+        scheme = parsed.scheme.lower()
+        if href.startswith(("/", "#")) and not href.startswith("//"):
+            internal = True
+        elif scheme in ("http", "https") and parsed.hostname:
+            internal = parsed.hostname.lower() in _SITE_HOSTS
+        else:
+            print(f"warning: dropped link {href!r} in show notes for {title!r}", file=sys.stderr)
+            return "<a>"
+        ext = "" if internal else ' target="_blank" rel="noopener"'
+        return f'<a href="{html.escape(href)}"{ext} class="ep-link">'
+    return _A_TAG.sub(rebuild, notes_html)
+
 def render_episode_page(ep: dict, related: list) -> str:
     ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full", "description_html") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
@@ -201,12 +227,10 @@ def render_episode_page(ep: dict, related: list) -> str:
     # Hand-written show notes (episodes.json "description_html") replace the
     # feed text on the page. Sync never touches this field. Links get the
     # site's link style; off-site links open in a new tab.
+    body_class = "episode-body"
     if ep.get("description_html"):
-        def style_link(m):
-            href = m.group(1)
-            ext = "" if re.match(r"https://(www\.)?wedeepen\.com", href) else ' target="_blank" rel="noopener"'
-            return f'<a href="{href}"{ext} class="ep-link">'
-        desc_long_html = re.sub(r'<a href="([^"]+)">', style_link, ep["description_html"])
+        desc_long_html = style_show_note_links(ep["description_html"], ep["title"])
+        body_class = "episode-body episode-notes"
     slug = slugify(ep["title"])
     show = show_name(ep["title"])
     # Percent-encode accented slugs (René, Iván) so the canonical matches the
@@ -384,6 +408,8 @@ def render_episode_page(ep: dict, related: list) -> str:
     .line-clamp-2 {{ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
     .episode-body {{ white-space: pre-wrap; }}
     .episode-body p {{ margin-bottom: 1em; }}
+    /* Hand-written notes are HTML: their source line breaks are not content. */
+    .episode-body.episode-notes {{ white-space: normal; }}
     .episode-body ul {{ list-style: disc; padding-left: 1.25em; margin-bottom: 1em; }}
     .episode-body li {{ margin-bottom: 0.25em; }}
     .episode-body strong {{ color: #fff; font-weight: 600; }}
@@ -515,7 +541,7 @@ def render_episode_page(ep: dict, related: list) -> str:
   <section class="py-16 md:py-20 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #221618 100%);">
     <div class="max-w-3xl mx-auto">
       <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-5">Show Notes</p>
-      <div class="text-white/75 text-base leading-relaxed episode-body">{desc_long_html}</div>
+      <div class="text-white/75 text-base leading-relaxed {body_class}">{desc_long_html}</div>
     </div>
   </section>
 

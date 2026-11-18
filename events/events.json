@@ -1,8 +1,30 @@
 {
-  "last_updated": "2026-11-18T07:55:25.202Z",
+  "last_updated": "2026-11-18T20:52:51.815Z",
   "source": "circle.wedeepen.com",
-  "event_count": 77,
+  "event_count": 78,
   "events": [
+    {
+      "id": "zenday-fair-wellness-longevity-ai-psychedelics-f93c28",
+      "title": "Zenday Social at BATHE + WeDeepen Networking Dojo",
+      "date": "2026-11-21",
+      "end_date": null,
+      "time": "5:00 PM",
+      "starts_at_iso": "2026-11-21T23:00:00.000Z",
+      "ends_at_iso": "2026-11-22T04:00:00.000Z",
+      "location_type": "austin",
+      "location_label": "2922 E Cesar Chavez St, Austin, TX 78702",
+      "tag": "",
+      "topics": [
+        "Endorsed by WeDeepen",
+        "In-Person",
+        "Open to Everyone"
+      ],
+      "recurring": true,
+      "series": "zenday-fair-wellness-longevity-ai-psychedelics",
+      "description": "The official pre-party for Zenday Fair. An evening of sauna, cold plunge, music, and the people you came to meet.  From 7 to 8 PM, Christina leads the WeDeepen Networking Dojo, a guided experience in",
+      "image_url": "https://assets-v2.circle.so/ngzuujdt63ailjlodhvzzjuxtecz",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/zenday-fair-wellness-longevity-ai-psychedelics-f93c28"
+    },
     {
       "id": "zenday-fair-wellness-longevity-ai-psychedelics",
       "title": "Zenday Fair: Wellness, Longevity, AI & Psychedelics",
@@ -19,9 +41,9 @@
         "In-Person",
         "Open to Everyone"
       ],
-      "recurring": false,
+      "recurring": true,
       "series": "zenday-fair-wellness-longevity-ai-psychedelics",
-      "description": "A Sunday on Lady Bird Lake with the people shaping how we feel, age, and connect.  Zenday Fair brings talks, 50+ vendors, wellness classes, a 5K with an ice bath, live music, and healthy food to Fiest",
+      "description": "A Sunday on Lady Bird Lake with the people shaping how we feel, age, and connect.  Zenday Fair brings ZEN Talks, 50+ wellness brands, classes on the lawn, a 5K, ice baths all afternoon, live music, an",
       "image_url": "https://assets-v2.circle.so/rqg4xfpl3he4hx1ni9wqomq4g69w",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/zenday-fair-wellness-longevity-ai-psychedelics"
     },

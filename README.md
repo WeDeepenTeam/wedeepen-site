@@ -117,6 +117,7 @@ wedeepen-site/
 | Love Immersion | `/love-immersion/` | `love-immersion/index.html` |
 | Love Strategists | `/faculty/` | `faculty/index.html` |
 | Events | `/events/` | `events/index.html` |
+| Zenday Weekend (Nov 21 + 22, 2026, SMS landing) | `/zenday/` | `zenday/index.html` |
 | WeDeepen In-Person (Aug 2026) | `/inperson/` | `inperson/index.html` |
 | Reviews | `/reviews/` | `reviews/index.html` |
 | About | `/about/` | `about/index.html` |

@@ -89,6 +89,7 @@ If origin moved while you were editing, `git rebase origin/main` before pushing.
 - **No personal info** in committed HTML (member names, emails, phone numbers, addresses).
 - **OG images required** for every new top-level page. Generate at 1200×630 and put in `images/og/`.
 - **Brand voice is canon** — see Editorial section in [README.md](./README.md#editorial--voice-guidelines).
+- **Never use the word "grab"** in any WeDeepen copy: pages, CTAs, emails, SMS, show notes, captions (no "grab a ticket", "grab your spot", "grab a bite"). Christina's rule. Use choose, pick, book, save, get or find instead. Check with `git grep -i -w grab -- '*.html'`.
 - **Homepage has its own phone layout.** Under 1024px, `html.m2` turns on `css/mobile-v2.css` + `js/mobile-v2.js`, which reorder and reshape sections tagged `data-m2="..."` in `index.html` (swipe rows, join prompts, sticky bar, objections, first-Tuesday timeline; testimonials under the hero, then her opening argument, first-Tuesday timeline right after the membership offer; Christina's photos, hero video and the rest of her section order stay untouched). Keep those markers when editing the homepage, check changes at phone width too, and never delete content for phones (SEO). `?m2=0` shows the old phone layout for comparison.
 
 ---

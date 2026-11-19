@@ -184,6 +184,55 @@ def libsyn_embed_slug(link: str) -> str:
     """Extract the last path segment from the Libsyn link for embed URL construction."""
     return link.rstrip("/").split("/")[-1]
 
+# "Practice this live" box under the show notes (Christina, Nov 19, 2026).
+# Matches the episode's topic to one of the homepage "Build the skills" lines.
+# First matching rule wins; an episode can override with "practice" in
+# episodes.json (the headline text). Keep the lines in sync with index.html.
+PRACTICE_RULES = [
+    (("drama triangle", "conflict", "fight", "argu", "repair", "rupture", "anger"), "Turn conflict into closeness."),
+    (("hard conversation", "difficult conversation", "communicat", "boundar", "feedback"), "Have the hard conversations that bring you closer."),
+    (("desire", "sex", "erotic", "tantra", "tantric", "pleasure", "orgasm", "kink", "bdsm", "libido", "turn on", "seduct"), "Feel desired, and keep desire alive over time."),
+    (("play", "fun", "flirt", "laugh"), "Bring more play and pleasure into love."),
+    (("attachment", "secure", "trust", "jealous", "open relationship", "polyam", "non-monog", "uncertain"), "Grow trust that can hold change and uncertainty."),
+    (("dating", "date ", "match", "soulmate", "single", "attract", "partner", "marriage", "human design"), "Choose relationships that align with the life you want."),
+    (("trauma", "heal", "pattern", "childhood", "shadow", "wound", "ego", "breakup", "heartbreak", "divorce"), "Spot your patterns and choose new ones."),
+    (("purpose", "need", "ask for", "self-worth", "worth", "confidence", "manifest"), "Know what you want, and ask for it."),
+]
+PRACTICE_DEFAULT = "Get even better at love."
+
+
+def practice_line(ep: dict) -> str:
+    if ep.get("practice"):
+        return ep["practice"]
+    # The title says what the episode is about; the description is the fallback.
+    for field in ("title", "description"):
+        text = str(ep.get(field, "")).lower()
+        for words, line in PRACTICE_RULES:
+            # Word-start match, so "play" doesn't hit "display" and "argu" still hits "argue".
+            if any(re.search(r"\b" + re.escape(w.strip()), text) for w in words):
+                return line
+    return PRACTICE_DEFAULT
+
+
+def practice_box(ep: dict) -> str:
+    line = html.escape(practice_line(ep))
+    return f"""
+  <!-- PRACTICE THIS LIVE (generated: practice_box) -->
+  <section class="pb-16 md:pb-20 px-6" style="background:#221618;">
+    <div class="max-w-3xl mx-auto">
+      <div class="rounded-2xl p-6 md:p-8" style="background: rgba(201,162,119,0.08); border: 1px solid rgba(201,162,119,0.3);">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase font-semibold mb-3">Practice this live</p>
+        <h2 class="font-heading text-2xl md:text-3xl font-normal leading-snug mb-3">{line}</h2>
+        <p class="text-white/65 leading-relaxed mb-6">This episode is a taste. Inside the WeDeepen Membership, you practice it live, every week, with expert faculty and people going deep in their own love lives.</p>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+          <a data-cta="episode-practice" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=episode-practice" class="btn-rose text-center">Start my 14 free days</a>
+          <span class="text-white/45 text-sm">$99 a month after. Cancel anytime, on your own.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+"""
+
 def render_episode_page(ep: dict, related: list) -> str:
     ep = {**ep, **{k: strip_em_dashes(ep[k]) for k in ("title", "description", "description_full", "description_html") if ep.get(k)}}
     title_esc = html.escape(ep["title"])
@@ -519,6 +568,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     </div>
   </section>
 
+{practice_box(ep)}
   <!-- RELATED -->
   <section class="py-16 md:py-20 px-6 bg-ink">
     <div class="max-w-3xl mx-auto">

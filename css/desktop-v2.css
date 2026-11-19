@@ -21,6 +21,9 @@ section.py-20, section.py-24 { padding-top: 96px !important; padding-bottom: 96p
 #desktop-quiz-slot .m2-quiz-result { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(201,162,119,.25); scroll-margin-top: 90px; }
 #desktop-quiz-slot .m2-quiz-lead { color: rgba(255,255,255,.9); font-size: 15.5px; line-height: 1.55; margin: 0 0 16px; }
 #desktop-quiz-slot .m2-quiz-kicker { color: #C9A277; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 10px; }
+#desktop-quiz-slot .m2-quiz-start { display: block; margin: -4px 0 18px; padding: 12px 14px; border-radius: 10px; background: rgba(201,162,119,.12); border: 1px solid rgba(201,162,119,.35); color: #fff; font-size: 15px; line-height: 1.4; text-decoration: none; }
+#desktop-quiz-slot .m2-quiz-start:hover { background: rgba(201,162,119,.2); }
+#desktop-quiz-slot .m2-quiz-start span { display: block; color: #C9A277; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 3px; }
 #desktop-quiz-slot .m2-quiz-result ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
 #desktop-quiz-slot .m2-quiz-result li { position: relative; padding-left: 20px; color: #fff; font-size: 15px; line-height: 1.45; }
 #desktop-quiz-slot .m2-quiz-result li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 7px; height: 7px; border-radius: 999px; background: #A01B4A; }

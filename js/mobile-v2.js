@@ -102,12 +102,17 @@
       var items = idx.slice(0, 3).map(skillText).filter(Boolean);
       result.innerHTML =
         '<p class="m2-quiz-lead">' + chosen[0].lead + '</p>' +
+        // Same fight: point to the Drama Triangle feature when the page has it (Christina, Nov 19, 2026).
+        (picked.indexOf('same-fight') !== -1 && document.getElementById('drama-triangle') ?
+          '<a class="m2-quiz-start" href="#drama-triangle"><span>Start here</span>The Drama Triangle, with Ariana Hall &rarr;</a>' : '') +
         '<p class="m2-quiz-kicker">The skills of intimacy you&rsquo;ll learn</p>' +
         '<ul>' + items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
         '<blockquote>&ldquo;' + quote + '&rdquo;<cite>Karolina S.</cite></blockquote>' +
         '<a data-cta="m2-quiz" href="' + CHECKOUT + '" class="btn-rose">Join WeDeepen - $99/month<span>(14-day free trial)</span></a>' +
         '<p class="m2-reassure">Cancel anytime, on your own.</p>';
       result.hidden = false;
+      var start = $('.m2-quiz-start', result);
+      if (start) start.addEventListener('click', function () { track('quiz_start_here', { target: 'drama-triangle', page: location.pathname }); });
       go.textContent = 'Update';
       track('quiz_complete', { choices: picked.join(','), page: location.pathname });
       result.scrollIntoView({ behavior: 'smooth', block: 'start' });

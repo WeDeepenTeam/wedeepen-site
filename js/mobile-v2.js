@@ -216,7 +216,7 @@
       intro.forEach(function (p) { box.appendChild(p); });
       // Phone-only rewrite of the two intro lines (Christina, Nov 13, 2026). Desktop keeps the originals.
       if (intro.length === 2 && /curious about how much better love/.test(intro[0].textContent)) {
-        intro[0].innerHTML = 'Most people never saw love done well growing up, and most schools don&rsquo;t teach it. WeDeepen is where you learn it, with expert faculty and members who are practicing love too.';
+        intro[0].innerHTML = 'Most people never saw love done well growing up, and most schools don&rsquo;t teach it. WeDeepen is where you learn it, with expert faculty and members committed to getting even better at love.';
         intro[1].innerHTML = 'Come partnered, dating, or solo.';
       }
       glanceInner.insertAdjacentElement('afterbegin', box);

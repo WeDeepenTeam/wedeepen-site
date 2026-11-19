@@ -107,7 +107,7 @@ export function buildMembershipB(membership) {
 
 // /membership/practice/: the Perel-adjacent and lookalike Meta ads land here. Since Nov 19, 2026
 // (René) it is the homepage as is, like /membership/b/; only the measurement differs:
-// GA4 content_group 'Membership Practice', Meta ViewContent 'WeDeepen Membership Practice', no email step,
+// GA4 content_group 'Membership Practice', Meta ViewContent 'WeDeepen Membership Practice',
 // and Circle checkout links carry the visitor's utm values with utm_content prefixed
 // "practice_" (same attribution the old hand-written page used, so reports stay continuous).
 export function buildMembershipPractice(membership) {
@@ -118,8 +118,6 @@ export function buildMembershipPractice(membership) {
     "gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership Practice', page_variant: 'practice' });", 'GA4 config (practice)');
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership Practice'", 'ViewContent name (practice)');
   html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (practice: see buildMembershipPractice). -->', 'generated note (practice)');
-  // No email step before Circle on this page (René, Nov 19, 2026): join buttons go straight to the checkout.
-  html = replaceOnce(html, /[ \t]*<script src="\/js\/checkout-email-step\.js[^"]*" defer><\/script>\n/, '', 'email step script (practice)');
   html = replaceOnce(html, /<\/body>/, `  <script>
     // Ad attribution (practice): every Circle checkout link carries the visitor's utm values,
     // with utm_content prefixed "practice_" so trials from this page can be told apart.

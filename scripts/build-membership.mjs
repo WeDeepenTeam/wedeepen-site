@@ -22,7 +22,10 @@
  * is a small redirect to /membership/b/ that keeps the query string (UTMs,
  * fbclid, gclid) and hash, so old links and bookmarks still land.
  *
- * Edit index.html, never membership/index.html or membership/b/index.html. Then run
+ * /membership/practice/ (Perel + lookalike Meta ads) is the same homepage copy since Nov 19, 2026
+ * (buildMembershipPractice: own canonical, GA4 group, ViewContent name, practice_ utm on checkout links).
+ *
+ * Edit index.html, never membership/index.html, membership/b/index.html or membership/practice/index.html. Then run
  * `node scripts/build-membership.mjs` and `npm run nav:sync` (it marks the
  * active menu item). The membership-mirror workflow does both on push.
  * Add --check to exit non-zero if membership/index.html is out of date.
@@ -36,6 +39,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'index.html');
 const OUT = path.join(ROOT, 'membership', 'index.html');
 const OUT_B = path.join(ROOT, 'membership', 'b', 'index.html');
+const OUT_P = path.join(ROOT, 'membership', 'practice', 'index.html');
 const URL = 'https://wedeepen.com/membership/';
 const TITLE = 'WeDeepen Membership | Get Even Better at Love';
 
@@ -101,6 +105,44 @@ export function buildMembershipB(membership) {
   return html;
 }
 
+// /membership/practice/: the Perel-adjacent and lookalike Meta ads land here. Since Nov 19, 2026
+// (René) it is the homepage as is, like /membership/b/; only the measurement differs:
+// GA4 content_group 'Membership Practice', Meta ViewContent 'WeDeepen Membership Practice',
+// and Circle checkout links carry the visitor's utm values with utm_content prefixed
+// "practice_" (same attribution the old hand-written page used, so reports stay continuous).
+export function buildMembershipPractice(membership) {
+  let html = membership;
+  html = replaceOnce(html, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${URL}practice/">`, 'canonical (practice)');
+  html = replaceOnce(html, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${URL}practice/">`, 'og:url (practice)');
+  html = replaceOnce(html, /gtag\('config', 'G-LZ0EY5X593'\);/,
+    "gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership Practice', page_variant: 'practice' });", 'GA4 config (practice)');
+  html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership Practice'", 'ViewContent name (practice)');
+  html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (practice: see buildMembershipPractice). -->', 'generated note (practice)');
+  html = replaceOnce(html, /<\/body>/, `  <script>
+    // Ad attribution (practice): every Circle checkout link carries the visitor's utm values,
+    // with utm_content prefixed "practice_" so trials from this page can be told apart.
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search);
+        var src = q.get('utm_source') || 'facebook';
+        var med = q.get('utm_medium') || 'paid_social';
+        var cmp = q.get('utm_campaign') || 'perel_membership';
+        var cnt = 'practice' + (q.get('utm_content') ? '_' + q.get('utm_content') : '');
+        document.querySelectorAll('a[href*="circle.wedeepen.com/checkout/wedeepen-club-membership"]').forEach(function (a) {
+          var u = new URL(a.href);
+          u.searchParams.set('utm_source', src);
+          u.searchParams.set('utm_medium', med);
+          u.searchParams.set('utm_campaign', cmp);
+          u.searchParams.set('utm_content', cnt);
+          a.href = u.toString();
+        });
+      } catch (e) {}
+    })();
+  </script>
+</body>`, '</body> (practice)');
+  return html;
+}
+
 // /membership/: redirect to /membership/b/, keeping query string and hash.
 export function buildMembershipRedirect() {
   const to = `${URL}b/`;
@@ -125,7 +167,7 @@ export function buildMembershipRedirect() {
 
 const CHECK = process.argv.includes('--check');
 const next = buildMembership(fs.readFileSync(SRC, 'utf8'));
-const outputs = [[OUT, buildMembershipRedirect(), 'membership'], [OUT_B, buildMembershipB(next), 'membership/b']];
+const outputs = [[OUT, buildMembershipRedirect(), 'membership'], [OUT_B, buildMembershipB(next), 'membership/b'], [OUT_P, buildMembershipPractice(next), 'membership/practice']];
 // Audience landing pages (scripts/membership-segments.mjs), built from the same page.
 for (const seg of SEGMENTS) {
   outputs.push([path.join(ROOT, 'membership', seg.slug, 'index.html'), buildSegment(audienceCopy(next), seg), `membership/${seg.slug}`]);

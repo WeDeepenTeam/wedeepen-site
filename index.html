@@ -985,148 +985,137 @@
   <!-- ============================
        SECTION 2a.5: FROM THE PODCAST, THE DRAMA TRIANGLE (Christina, Nov 18, 2026).
        A framework from Mastering Love ML 006 (Ariana Hall), with the YouTube
-       episode starting at the moment she teaches it. Toggle flips the Drama
-       Triangle to the TED Triangle and moves the player to that chapter.
-       Times are YouTube times, checked against the transcript (5:40, 8:25, 11:44).
+       episode starting at the moment she teaches it. Calmer layout (Nov 19):
+       centered intro, two matching cards (triangle | video + chapters), one
+       centered close. Toggle flips Drama to TED; chapters start the video at
+       YouTube times checked against the transcript (5:40, 8:25, 11:44).
        To feature another episode later, swap the copy, video id and chapters.
        ============================ -->
-  <section id="drama-triangle" data-m2="triangle" class="bg-cream text-charcoal py-24 md:py-32 px-6">
+  <section id="drama-triangle" data-m2="triangle" class="bg-cream text-charcoal py-20 md:py-28 px-6">
     <div class="max-w-site mx-auto reveal">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        <div class="lg:col-span-6">
-          <p class="text-[11px] uppercase font-semibold mb-5" style="color:#A01B4A;letter-spacing:.16em;">From the Mastering Love podcast</p>
-          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.14] mb-6" style="text-wrap: balance;">
-            Same fight, different day? You might be on the <span class="italic" style="color:#A01B4A;">Drama Triangle</span>.
-          </h2>
-          <p class="text-lg md:text-xl text-charcoal/70 leading-relaxed mb-8">
-            WeDeepen faculty Ariana Hall has coached at every Love Immersion. On the podcast, she maps the three roles we slip into when we feel powerless, and the empowered version of each one.
-          </p>
+      <header class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <p class="text-[11px] uppercase font-semibold mb-4" style="color:#A01B4A;letter-spacing:.16em;">From the Mastering Love podcast</p>
+        <h2 class="font-heading text-[2rem] md:text-4xl lg:text-[2.75rem] font-normal leading-[1.15] mb-5" style="text-wrap: balance;">
+          Same fight, different day? You might be on the <span class="italic" style="color:#A01B4A;">Drama Triangle</span>.
+        </h2>
+        <p class="text-base md:text-lg text-charcoal/65 leading-relaxed" style="text-wrap: pretty;">
+          WeDeepen faculty Ariana Hall is an executive coach to CEOs and seven-figure founders, with 28 years of coaching experience. Here she maps the three roles we slip into when we feel powerless, and the empowered version of each.
+        </p>
+      </header>
 
+      <div class="dt-grid">
+        <figure class="dt-card dt-tri" data-mode="drama">
           <div class="dt-toggle" role="tablist" aria-label="Choose a triangle">
-            <button type="button" role="tab" class="dt-tab is-on" aria-selected="true" data-mode="drama">The Drama Triangle</button>
-            <button type="button" role="tab" class="dt-tab" aria-selected="false" data-mode="ted">The TED Triangle</button>
+            <button type="button" role="tab" class="dt-tab is-on" aria-selected="true" data-mode="drama">Drama Triangle</button>
+            <button type="button" role="tab" class="dt-tab" aria-selected="false" data-mode="ted">TED Triangle</button>
           </div>
+          <svg viewBox="0 0 360 262" width="100%" role="img" aria-labelledby="dt-svg-label" style="display:block;max-width:340px;margin:0 auto;overflow:visible;font-family:'DM Sans',system-ui,sans-serif;">
+            <title id="dt-svg-label">The Drama Triangle: persecutor, rescuer and victim. The TED Triangle: challenger, coach and creator.</title>
+            <path class="dt-shape" d="M64 58 L296 58 L180 214 Z" fill="none" stroke-width="2" stroke-linejoin="round"/>
+            <circle class="dt-dot" cx="64" cy="58" r="6"/>
+            <circle class="dt-dot" cx="296" cy="58" r="6"/>
+            <circle class="dt-dot" cx="180" cy="214" r="6"/>
+            <text class="dt-name" x="64" y="34" text-anchor="middle" data-drama="Persecutor" data-ted="Challenger">Persecutor</text>
+            <text class="dt-name" x="296" y="34" text-anchor="middle" data-drama="Rescuer" data-ted="Coach">Rescuer</text>
+            <text class="dt-name" x="180" y="248" text-anchor="middle" data-drama="Victim" data-ted="Creator">Victim</text>
+            <text class="dt-center" x="180" y="92" text-anchor="middle">A map of</text>
+            <text class="dt-center dt-center-big" x="180" y="115" text-anchor="middle" data-drama="disempowerment" data-ted="empowerment">disempowerment</text>
+          </svg>
+          <ul class="dt-rows">
+            <li><span class="dt-k" data-drama="Victim" data-ted="Creator">Victim</span><span class="dt-v" data-drama="Feels sad." data-ted="&ldquo;I can do it.&rdquo;">Feels sad.</span></li>
+            <li><span class="dt-k" data-drama="Persecutor" data-ted="Challenger">Persecutor</span><span class="dt-v" data-drama="Feels angry, blames." data-ted="&ldquo;You can do it.&rdquo;">Feels angry, blames.</span></li>
+            <li><span class="dt-k" data-drama="Rescuer" data-ted="Coach">Rescuer</span><span class="dt-v" data-drama="Feels afraid, needs to be needed." data-ted="&ldquo;How would you like to do it?&rdquo;">Feels afraid, needs to be needed.</span></li>
+          </ul>
+        </figure>
 
-          <figure class="dt-card" data-mode="drama">
-            <svg viewBox="0 0 360 270" width="100%" role="img" aria-labelledby="dt-svg-label" style="display:block;overflow:visible;font-family:'DM Sans',system-ui,sans-serif;">
-              <title id="dt-svg-label">The Drama Triangle: persecutor, rescuer and victim, each one able to slide into the next.</title>
-              <path class="dt-shape" d="M60 62 L300 62 L180 222 Z" fill="none" stroke-width="2.4" stroke-linejoin="round"/>
-              <circle class="dt-dot" cx="60" cy="62" r="7"/>
-              <circle class="dt-dot" cx="300" cy="62" r="7"/>
-              <circle class="dt-dot" cx="180" cy="222" r="7"/>
-              <text class="dt-name" x="60" y="38" text-anchor="middle" data-drama="Persecutor" data-ted="Challenger">Persecutor</text>
-              <text class="dt-name" x="300" y="38" text-anchor="middle" data-drama="Rescuer" data-ted="Coach">Rescuer</text>
-              <text class="dt-name" x="180" y="256" text-anchor="middle" data-drama="Victim" data-ted="Creator">Victim</text>
-              <text class="dt-center" x="180" y="94" text-anchor="middle" data-drama="A map of" data-ted="A map of">A map of</text>
-              <text class="dt-center dt-center-big" x="180" y="117" text-anchor="middle" data-drama="disempowerment" data-ted="empowerment">disempowerment</text>
-            </svg>
-            <ul class="dt-roles">
-              <li><span class="dt-role" data-drama="Victim" data-ted="Creator">Victim</span><span class="dt-line" data-drama="Feels sad." data-ted="&ldquo;I can do it.&rdquo;">Feels sad.</span></li>
-              <li><span class="dt-role" data-drama="Persecutor" data-ted="Challenger">Persecutor</span><span class="dt-line" data-drama="Feels angry. Blames and tears down." data-ted="&ldquo;You can do it.&rdquo;">Feels angry. Blames and tears down.</span></li>
-              <li><span class="dt-role" data-drama="Rescuer" data-ted="Coach">Rescuer</span><span class="dt-line" data-drama="Feels afraid. Needs to be needed." data-ted="&ldquo;How would you like to do it?&rdquo;">Feels afraid. Needs to be needed.</span></li>
-            </ul>
-            <figcaption class="dt-note" data-drama="Any role can flip into another in a heartbeat." data-ted="Same moment, upgraded to the empowered version of your role.">Any role can flip into another in a heartbeat.</figcaption>
-          </figure>
-        </div>
-
-        <div class="lg:col-span-6">
+        <div class="dt-card dt-watch">
           <div class="dt-player" data-video="i68w8gD7arg">
             <button type="button" class="dt-poster" aria-label="Play Ariana Hall on the Drama Triangle, from 5:40">
-              <img src="https://i.ytimg.com/vi/i68w8gD7arg/maxresdefault.jpg" width="1280" height="720" alt="Christina Weber and Ariana Hall recording Mastering Love episode 6" loading="lazy">
-              <span class="dt-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span>
-              <span class="dt-poster-label">Watch Ariana teach it <span class="dt-poster-time">5:40</span></span>
+              <img src="https://i.ytimg.com/vi/i68w8gD7arg/maxres2.jpg" width="1280" height="720" alt="Ariana Hall in the Mastering Love studio" loading="lazy">
+              <span class="dt-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span>
             </button>
           </div>
-          <div class="dt-chapters" aria-label="Jump to a moment">
-            <button type="button" class="dt-chap is-on" data-start="340" data-mode="drama"><span>5:40</span>The Drama Triangle</button>
-            <button type="button" class="dt-chap" data-start="505" data-mode="ted"><span>8:25</span>The TED Triangle</button>
-            <button type="button" class="dt-chap" data-start="704"><span>11:44</span>How to step off it</button>
-          </div>
-
-          <blockquote class="dt-quote">
-            <p class="font-heading italic">&ldquo;The second you notice it, you&rsquo;re off the triangle.&rdquo;</p>
-            <cite>Ariana Hall, <a href="/deepen-with-christina/ml-006-getting-off-the-drama-triangle-with-ariana-hall/">Mastering Love, ML 006</a></cite>
-          </blockquote>
-
-          <div class="dt-bridge">
-            <p class="text-lg text-charcoal/80 leading-relaxed mb-6">The podcast names the pattern. Membership is where you practice stepping off it, live every week, with faculty like Ariana and people going deep in their own love lives.</p>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-              <a data-cta="triangle" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=drama-triangle" class="btn-rose text-base text-center !px-8">Start my 14 free days</a>
-              <a href="/deepen-with-christina/ml-006-getting-off-the-drama-triangle-with-ariana-hall/" class="text-rose-deep hover:underline font-medium text-center">Hear the full episode &rarr;</a>
-            </div>
-          </div>
-          <p class="text-xs text-charcoal/45 mt-8 leading-relaxed">The Drama Triangle was created by Dr. Stephen Karpman. TED* (The Empowerment Dynamic) is from David Emerald.</p>
+          <p class="dt-watch-label">Watch Ariana teach it</p>
+          <ul class="dt-rows dt-chapters">
+            <li><button type="button" class="dt-chap is-on" data-start="340" data-mode="drama"><span class="dt-k">5:40</span><span class="dt-v">The Drama Triangle</span><span class="dt-arrow" aria-hidden="true">&#9654;</span></button></li>
+            <li><button type="button" class="dt-chap" data-start="505" data-mode="ted"><span class="dt-k">8:25</span><span class="dt-v">The TED Triangle</span><span class="dt-arrow" aria-hidden="true">&#9654;</span></button></li>
+            <li><button type="button" class="dt-chap" data-start="704"><span class="dt-k">11:44</span><span class="dt-v">How to step off it</span><span class="dt-arrow" aria-hidden="true">&#9654;</span></button></li>
+          </ul>
         </div>
+      </div>
+
+      <div class="dt-close text-center max-w-2xl mx-auto mt-12 md:mt-16">
+        <p class="font-heading italic text-2xl md:text-[1.9rem] leading-snug mb-2">&ldquo;The second you notice it, you&rsquo;re off the triangle.&rdquo;</p>
+        <p class="text-sm text-charcoal/50 mb-8">Ariana Hall, <a href="/deepen-with-christina/ml-006-getting-off-the-drama-triangle-with-ariana-hall/" class="underline underline-offset-2 hover:text-charcoal">Mastering Love, ML 006</a></p>
+        <p class="text-base md:text-lg text-charcoal/75 leading-relaxed mb-7" style="text-wrap: pretty;">The podcast names the pattern. Membership is where you practice stepping off it, live, every week.</p>
+        <a data-cta="triangle" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=drama-triangle" class="btn-rose text-base inline-block !px-10">Start my 14 free days</a>
+        <p class="text-[11px] text-charcoal/40 mt-10">Drama Triangle: Dr. Stephen Karpman. TED* (The Empowerment Dynamic): David Emerald.</p>
       </div>
     </div>
   </section>
 
   <style>
-    #drama-triangle .dt-toggle { display:inline-flex; padding:4px; border-radius:999px; background:rgba(45,45,45,.07); margin-bottom:22px; }
-    #drama-triangle .dt-tab { border:0; background:transparent; padding:10px 18px; border-radius:999px; font-size:14px; font-weight:600; color:rgba(45,45,45,.6); cursor:pointer; transition:background .25s,color .25s; }
+    #drama-triangle .dt-grid { display:grid; gap:20px; max-width:1040px; margin:0 auto; }
+    @media (min-width: 900px) { #drama-triangle .dt-grid { grid-template-columns:1fr 1fr; gap:28px; } }
+    #drama-triangle .dt-card { margin:0; background:#FBF7F0; border:1px solid rgba(45,45,45,.07); border-radius:20px; padding:24px; display:flex; flex-direction:column; }
+    #drama-triangle .dt-toggle { align-self:center; display:inline-flex; padding:4px; border-radius:999px; background:rgba(45,45,45,.06); margin-bottom:18px; }
+    #drama-triangle .dt-tab { border:0; background:transparent; padding:8px 16px; border-radius:999px; font-size:13px; font-weight:600; color:rgba(45,45,45,.55); cursor:pointer; transition:background .25s,color .25s; }
     #drama-triangle .dt-tab.is-on { background:#2D2D2D; color:#F4EDE0; }
-    #drama-triangle .dt-card { margin:0; background:rgba(255,255,255,.55); border:1px solid rgba(45,45,45,.08); border-radius:18px; padding:26px 22px 22px; max-width:520px; }
-    #drama-triangle .dt-shape { stroke:#2D2D2D; stroke-dasharray:6 7; transition:stroke .4s; }
+    #drama-triangle .dt-shape { stroke:rgba(45,45,45,.55); stroke-dasharray:5 7; transition:stroke .4s; }
     #drama-triangle .dt-dot { fill:#2D2D2D; transition:fill .4s; }
-    #drama-triangle .dt-name { font-size:17px; font-weight:600; fill:#2D2D2D; }
-    #drama-triangle .dt-center { font-size:12px; fill:rgba(45,45,45,.55); letter-spacing:.06em; text-transform:uppercase; }
-    #drama-triangle .dt-center-big { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:19px; text-transform:none; letter-spacing:0; fill:#2D2D2D; }
-    #drama-triangle .dt-card[data-mode="ted"] .dt-shape { stroke:#A01B4A; stroke-dasharray:none; }
-    #drama-triangle .dt-card[data-mode="ted"] .dt-dot { fill:#C9A277; }
-    #drama-triangle .dt-card[data-mode="ted"] .dt-center-big { fill:#A01B4A; }
-    #drama-triangle .dt-roles { list-style:none; margin:18px 0 0; padding:0; border-top:1px solid rgba(45,45,45,.1); }
-    #drama-triangle .dt-roles li { display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px solid rgba(45,45,45,.1); }
-    #drama-triangle .dt-role { flex:0 0 96px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#A8855C; }
-    #drama-triangle .dt-line { font-size:16px; color:rgba(45,45,45,.8); }
-    #drama-triangle .dt-card[data-mode="ted"] .dt-line { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:18px; color:#A01B4A; }
-    #drama-triangle .dt-note { margin-top:14px; font-size:14px; color:rgba(45,45,45,.55); }
+    #drama-triangle .dt-name { font-size:16px; font-weight:600; fill:#2D2D2D; }
+    #drama-triangle .dt-center { font-size:10.5px; fill:rgba(45,45,45,.45); letter-spacing:.14em; text-transform:uppercase; }
+    #drama-triangle .dt-center-big { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:18px; letter-spacing:0; text-transform:none; fill:#2D2D2D; }
+    #drama-triangle .dt-tri[data-mode="ted"] .dt-shape { stroke:#A01B4A; stroke-dasharray:none; }
+    #drama-triangle .dt-tri[data-mode="ted"] .dt-dot { fill:#C9A277; }
+    #drama-triangle .dt-tri[data-mode="ted"] .dt-center-big { fill:#A01B4A; }
+
+    #drama-triangle .dt-rows { list-style:none; margin:auto 0 0; padding:0; }
+    #drama-triangle .dt-tri .dt-rows { margin-top:16px; }
+    #drama-triangle .dt-rows li { border-top:1px solid rgba(45,45,45,.09); }
+    #drama-triangle .dt-chap { display:flex; align-items:baseline; gap:14px; padding:12px 2px; }
+    #drama-triangle .dt-tri .dt-rows li { display:flex; align-items:baseline; gap:14px; padding:12px 2px; }
+    #drama-triangle .dt-k { flex:0 0 88px; font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#A8855C; }
+    #drama-triangle .dt-v { font-size:15px; color:rgba(45,45,45,.78); }
+    #drama-triangle .dt-tri[data-mode="ted"] .dt-v { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:17px; color:#A01B4A; }
     #drama-triangle .dt-swap { animation:dtFade .35s ease; }
     @keyframes dtFade { from { opacity:0; } to { opacity:1; } }
 
-    #drama-triangle .dt-player { position:relative; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#1A1A1A; box-shadow:0 18px 40px -18px rgba(26,26,26,.45); }
+    #drama-triangle .dt-player { position:relative; aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#1A1A1A; }
     #drama-triangle .dt-player iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
     #drama-triangle .dt-poster { position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer; background:#1A1A1A; }
-    #drama-triangle .dt-poster img { width:100%; height:100%; object-fit:cover; opacity:.82; transition:opacity .3s; }
-    #drama-triangle .dt-poster:hover img { opacity:1; }
-    #drama-triangle .dt-play { position:absolute; left:50%; top:50%; width:68px; height:68px; margin:-34px 0 0 -34px; border-radius:50%; background:#A01B4A; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.35); transition:transform .2s; }
-    #drama-triangle .dt-poster:hover .dt-play { transform:scale(1.06); }
-    #drama-triangle .dt-poster-label { position:absolute; left:16px; bottom:14px; background:rgba(26,26,26,.78); color:#F4EDE0; font-size:13px; font-weight:600; padding:7px 12px; border-radius:999px; }
-    #drama-triangle .dt-poster-time { color:#C9A277; margin-left:4px; }
-    #drama-triangle .dt-chapters { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 30px; }
-    #drama-triangle .dt-chap { border:1px solid rgba(45,45,45,.16); background:transparent; border-radius:999px; padding:8px 14px; font-size:14px; color:#2D2D2D; cursor:pointer; transition:background .2s,border-color .2s; }
-    #drama-triangle .dt-chap span { color:#A01B4A; font-weight:700; margin-right:7px; }
-    #drama-triangle .dt-chap:hover { border-color:#A01B4A; }
-    #drama-triangle .dt-chap.is-on { background:#2D2D2D; border-color:#2D2D2D; color:#F4EDE0; }
-    #drama-triangle .dt-chap.is-on span { color:#C9A277; }
-    #drama-triangle .dt-quote { margin:0 0 28px; padding-left:20px; border-left:2px solid #C9A277; }
-    #drama-triangle .dt-quote p { font-size:1.6rem; line-height:1.3; color:#2D2D2D; margin-bottom:8px; }
-    #drama-triangle .dt-quote cite { font-style:normal; font-size:14px; color:rgba(45,45,45,.6); }
-    #drama-triangle .dt-quote cite a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
+    #drama-triangle .dt-poster img { width:100%; height:100%; object-fit:cover; }
+    #drama-triangle .dt-play { position:absolute; left:20px; bottom:20px; width:58px; height:58px; border-radius:50%; background:rgba(160,27,74,.92); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,.3); transition:transform .2s; }
+    #drama-triangle .dt-poster:hover .dt-play { transform:scale(1.07); }
+    #drama-triangle .dt-watch .dt-rows { margin-top:0; }
+    #drama-triangle .dt-watch-label { margin:auto 2px 8px; padding-top:20px; font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:rgba(45,45,45,.45); }
+    #drama-triangle .dt-chap { width:100%; border:0; background:transparent; text-align:left; cursor:pointer; border-radius:8px; transition:background .2s; }
+    #drama-triangle .dt-chap:hover { background:rgba(45,45,45,.04); }
+    #drama-triangle .dt-chap .dt-k { color:#A01B4A; font-size:12px; letter-spacing:.04em; }
+    #drama-triangle .dt-chap .dt-v { flex:1; }
+    #drama-triangle .dt-arrow { font-size:9px; color:rgba(45,45,45,.3); transition:color .2s; }
+    #drama-triangle .dt-chap.is-on .dt-v { color:#2D2D2D; font-weight:600; }
+    #drama-triangle .dt-chap.is-on .dt-arrow, #drama-triangle .dt-chap:hover .dt-arrow { color:#A01B4A; }
     @media (max-width: 640px) {
-      #drama-triangle .dt-card { padding:20px 14px 16px; }
-      #drama-triangle .dt-role { flex-basis:84px; }
-      #drama-triangle .dt-tab { padding:9px 13px; font-size:13px; }
-      #drama-triangle .dt-quote p { font-size:1.35rem; }
+      #drama-triangle .dt-card { padding:18px 16px; border-radius:16px; }
+      #drama-triangle .dt-k { flex-basis:78px; }
     }
   </style>
   <script>
     (function () {
       var sec = document.getElementById('drama-triangle');
       if (!sec) return;
-      var card = sec.querySelector('.dt-card');
+      var card = sec.querySelector('.dt-tri');
       var player = sec.querySelector('.dt-player');
-      var label = sec.querySelector('.dt-poster-time');
       var chaps = Array.prototype.slice.call(sec.querySelectorAll('.dt-chap'));
       var tabs = Array.prototype.slice.call(sec.querySelectorAll('.dt-tab'));
       var start = 340;
       function track(action, extra) {
         if (typeof window.gtag === 'function') window.gtag('event', 'podcast_feature', Object.assign({ feature: 'drama_triangle', episode: 'ML 006', action: action }, extra || {}));
       }
-      function fmt(s) { return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
       function setChapter(btn) {
         chaps.forEach(function (c) { c.classList.toggle('is-on', c === btn); });
         start = +btn.getAttribute('data-start');
-        if (label) label.textContent = fmt(start);
       }
       function setMode(mode) {
         if (card.getAttribute('data-mode') === mode) return;

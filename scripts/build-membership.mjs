@@ -172,8 +172,8 @@ const outputs = [[OUT, buildMembershipRedirect(), 'membership'], [OUT_B, buildMe
 for (const seg of SEGMENTS) {
   outputs.push([path.join(ROOT, 'membership', seg.slug, 'index.html'), buildSegment(audienceCopy(next), seg), `membership/${seg.slug}`]);
 }
-// nav:sync rewrites the menu block afterwards, so compare outside it.
-const strip = (s) => s.replace(/<!-- nav:links -->[\s\S]*?<!-- \/nav:links -->/g, '');
+// nav:sync rewrites the menu and the Log In / Join blocks afterwards, so compare outside them.
+const strip = (s) => s.replace(/<!-- nav:(links|cta) -->[\s\S]*?<!-- \/nav:\1 -->/g, '');
 let stale = false;
 for (const [file, html, label] of outputs) {
   if (CHECK) {

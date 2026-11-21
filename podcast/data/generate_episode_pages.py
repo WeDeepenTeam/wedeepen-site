@@ -225,7 +225,7 @@ def practice_box(ep: dict) -> str:
         <h2 class="font-heading text-2xl md:text-3xl font-normal leading-snug mb-3">{line}</h2>
         <p class="text-white/65 leading-relaxed mb-6">This episode is a taste. Inside the WeDeepen Membership, you practice it live, every week, with expert faculty and people going deep in their own love lives.</p>
         <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-          <a data-cta="episode-practice" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=episode-practice" class="btn-rose text-center">Start my 14 free days</a>
+          <a data-cta="episode-practice" href="https://wedeepen.com/checkout/?price_id=368281&amp;utm_content=episode-practice" class="btn-rose text-center">Start my 14 free days</a>
           <span class="text-white/45 text-sm">$99 a month after. Cancel anytime, on your own.</span>
         </div>
       </div>
@@ -474,7 +474,7 @@ def render_episode_page(ep: dict, related: list) -> str:
 
         <!-- nav:cta -->
         <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/80 hover:text-white transition text-sm font-medium whitespace-nowrap hidden sm:inline-block">Log In</a>
-        <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join</a>
+        <a href="https://wedeepen.com/checkout/?price_id=368281" class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join</a>
         <!-- /nav:cta -->
 
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
@@ -501,7 +501,7 @@ def render_episode_page(ep: dict, related: list) -> str:
       <!-- /nav:links -->
 
           <!-- nav:cta -->
-          <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" class="btn-rose text-center mt-4">Join</a>
+          <a href="https://wedeepen.com/checkout/?price_id=368281" class="btn-rose text-center mt-4">Join</a>
           <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/70 hover:text-white transition text-center">Log In</a>
           <!-- /nav:cta -->
     </nav>
@@ -592,7 +592,7 @@ def render_episode_page(ep: dict, related: list) -> str:
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-heading text-3xl md:text-4xl font-normal mb-5 leading-tight">Love the podcast? <span class="italic" style="color:#C4577A;">Come practice it.</span></h2>
       <p class="text-white/60 mb-8 leading-relaxed">The conversations here become practice inside the WeDeepen Membership. Live sessions every week, $99 a month.</p>
-      <a href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281" class="btn-rose">Become a Member</a>
+      <a href="https://wedeepen.com/checkout/?price_id=368281" class="btn-rose">Become a Member</a>
     </div>
   </section>
 

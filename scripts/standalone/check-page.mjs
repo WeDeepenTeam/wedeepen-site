@@ -87,7 +87,7 @@ for (const slug of targets) {
   const internal = hrefs.filter((h) => /^https:\/\/(?:www\.)?wedeepen\.com|^\/(?!\/)/.test(h));
   const external = [...new Set(hrefs.filter((h) => /^https?:\/\//.test(h) && !/(?:^|\.)wedeepen\.com/.test(new URL(h).hostname)))];
   if (internal.length < 3) fail(`${internal.length} links to the main site (want 3+)`);
-  if (!hrefs.some((h) => /circle\.wedeepen\.com\/checkout|wedeepen\.com\/membership|^\/membership\//.test(h))) fail('no link to the membership (Circle checkout or /membership/)');
+  if (!hrefs.some((h) => /circle\.wedeepen\.com\/checkout|wedeepen\.com\/checkout\/|^\/checkout\/|wedeepen\.com\/membership|^\/membership\//.test(h))) fail('no link to the membership (checkout or /membership/)');
   for (const h of hrefs) if (!/^(https?:\/\/|\/|#|mailto:)/.test(h)) fail(`malformed link: ${h}`);
 
   const hits = SIGNATURE.filter((p) => lower.includes(p));

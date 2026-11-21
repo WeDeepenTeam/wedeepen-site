@@ -92,8 +92,9 @@
       elements = stripe.elements({
         mode: 'setup',
         currency: 'usd',
-        // Card (with Apple Pay and Google Pay) and Link, as on Circle's checkout. Must match the server's list.
-        paymentMethodTypes: ['card', 'link'],
+        // Card only, as on Circle's checkout: Apple Pay, Google Pay and Link's saved cards ride on card, and Link's
+        // "Bank" tab stays away. Must match the server's list.
+        paymentMethodTypes: ['card'],
         fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap' }],
         appearance: {
           theme: 'night',

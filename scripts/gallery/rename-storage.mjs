@@ -13,6 +13,11 @@
  * Robust: each photo wrapped in try/catch; failures logged + skipped.
  * Concurrency: PARALLELISM=6 across moves.
  */
+// LEGACY (one-off, already run): this moved objects inside the old Supabase
+// Storage bucket. Gallery photos now live in Cloudflare R2 (photos.wedeepen.com),
+// so running it would break URLs. Kept for history only.
+console.error('rename-storage.mjs is retired: photos moved to Cloudflare R2 in Nov 2026.');
+process.exit(1);
 import { supabase, STORAGE_BUCKET, SUPABASE_URL } from './lib/supabase-admin.js';
 
 const PARALLELISM = 6;

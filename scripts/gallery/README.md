@@ -1,13 +1,15 @@
 # WeDeepen Event Gallery — Pipeline & Runbook
 
-Pulls event photos from public Google Drive folders, resizes them, uploads to Supabase Storage, and generates static HTML gallery pages on `wedeepen.com/gallery/`.
+Pulls event photos from public Google Drive folders, resizes them, uploads them to Cloudflare R2, and generates static HTML gallery pages on `wedeepen.com/gallery/`.
+
+> **Nov 2026: photos moved from Supabase Storage to Cloudflare R2.** The free Supabase plan ran over its storage and egress quota. Photos now live in the R2 bucket `wedeepen-gallery` (Cloudflare account team@wedeepen.com) and are served at `https://photos.wedeepen.com/<slug>/{full,thumb}/<name>.webp` (plus a `.jpg` sibling of every full photo, used by the Download button). R2 has no egress fees. Album and photo **metadata** (`gallery_albums`, `gallery_media`) still lives in Supabase, and `gallery_media.full_url` / `thumb_url` point at photos.wedeepen.com. Uploads need the `R2_*` values in `scripts/gallery/.env` (see `.env.example`). The old Supabase `gallery` bucket is kept read-only as a backup until removed; `rename-storage.mjs` is retired. Steps below that mention the Supabase bucket are historical.
 
 ## What got built (already on this branch)
 
 - `supabase/migrations/20260506_gallery.sql` — schema
 - `scripts/gallery/albums.json` — album metadata + Drive folder IDs
 - `scripts/gallery/download-drive.py` — gdown wrapper
-- `scripts/gallery/process-and-upload.js` — sharp resize + Supabase upload
+- `scripts/gallery/process-and-upload.js` — sharp resize + R2 upload (`lib/r2.js`)
 - `scripts/gallery/build-static-pages.js` — DB → static HTML
 - `scripts/gallery/smoke-test.js` — verifies HTML is sound before push
 - `scripts/gallery/lib/{escape-html,page-shell,index-template,album-template,supabase-admin}.js`
@@ -27,6 +29,7 @@ bw get item "Supabase oycfonjaufdihuwjecxu" 2>/dev/null \
 # Create scripts/gallery/.env from the example
 cp scripts/gallery/.env.example scripts/gallery/.env
 # Edit scripts/gallery/.env, paste SUPABASE_SERVICE_ROLE_KEY (from Bitwarden)
+# and the R2_ACCESS_KEY_ID / R2_SECRET_ACCESS_KEY for bucket wedeepen-gallery
 
 # Install gallery pipeline deps (sharp, supabase-js, dotenv)
 npm run gallery:install
@@ -50,7 +53,7 @@ Two options. Pick the one that matches your usual workflow.
 psql "$DATABASE_URL" < supabase/migrations/20260506_gallery.sql
 ```
 
-### 2. Create the storage bucket (1 min)
+### 2. Create the storage bucket (1 min) — historical, now Cloudflare R2 `wedeepen-gallery`
 
 Supabase dashboard → Storage → New bucket:
 - Name: `gallery`
@@ -79,7 +82,7 @@ If you skip an album for now, leave `drive_folder_id: null` — the pipeline wil
 # Download (38 photos, ~700MB raw)
 python3 scripts/gallery/download-drive.py --album aboutly-training
 
-# Resize + upload to Supabase
+# Resize + upload to Cloudflare R2
 npm run gallery:process -- --album aboutly-training
 
 # Optional: clean up local copy after upload

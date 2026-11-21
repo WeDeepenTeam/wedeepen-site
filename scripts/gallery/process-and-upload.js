@@ -22,7 +22,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { supabase, STORAGE_BUCKET, SUPABASE_URL } from './lib/supabase-admin.js';
+import { supabase } from './lib/supabase-admin.js';
+import { putObject } from './lib/r2.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..', '..');
@@ -131,16 +132,8 @@ async function findExistingMedia(albumId, contentHash) {
 }
 
 async function uploadBuffer(storagePath, buffer, contentType) {
-  const { error } = await supabase
-    .storage
-    .from(STORAGE_BUCKET)
-    .upload(storagePath, buffer, {
-      contentType,
-      upsert: true,
-      cacheControl: '31536000',
-    });
-  if (error) throw error;
-  return `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/${storagePath}`;
+  // Photos live in Cloudflare R2 (photos.wedeepen.com) since Nov 2026.
+  return putObject(storagePath, buffer, contentType);
 }
 
 async function processOne(albumId, slug, sourcePath, indexInAlbum, album, dryRun) {

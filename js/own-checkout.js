@@ -1,0 +1,192 @@
+/**
+ * WeDeepen's own checkout: the card form on /checkout/ and the "You're in" page on /checkout/welcome/.
+ *
+ * People pay first and get their Circle account after. The page talks to the WeDeepen connector on
+ * Cloudflare (WeDeepenTeam/wedeepen-google-ads-mcp, src/checkout.ts); card details go from Stripe's
+ * own fields straight to Stripe and never touch this site or that server.
+ *
+ * If the server or Stripe can't be reached, the form is replaced by a button to Circle's checkout,
+ * so a visitor can always join.
+ */
+(function () {
+  'use strict';
+
+  var API = 'https://wedeepen-google-ads-mcp.team-68a.workers.dev/checkout';
+  var CIRCLE = {
+    monthly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281',
+    yearly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368282'
+  };
+  var PRICE = { monthly: 99, yearly: 990 };
+  var IS_PROD = /(^|\.)wedeepen\.com$/.test(location.hostname);
+  var IS_BOT = !!navigator.webdriver || /bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent);
+
+  var $ = function (id) { return document.getElementById(id); };
+  var qs = new URLSearchParams(location.search);
+
+  function track(ga, meta, params) {
+    if (!IS_PROD || IS_BOT) return;
+    try {
+      if (ga && typeof window.gtag === 'function') window.gtag('event', ga, params);
+      if (meta && typeof window.fbq === 'function') window.fbq('track', meta, { value: params.value, currency: 'USD', content_category: 'membership', content_name: params.plan });
+    } catch (e) { /* tracking must never break checkout */ }
+  }
+
+  function api(path, body) {
+    return fetch(API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : undefined)
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
+  }
+
+  function longDate(d) {
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  }
+
+  // ---------- /checkout/ ----------
+  function initForm() {
+    var form = $('co-form');
+    var plan = (qs.get('plan') === 'yearly' || qs.get('price_id') === '368282') ? 'yearly' : 'monthly';
+    var busy = false;
+    var stripe, elements;
+
+    function setPlan(p) {
+      plan = p;
+      $('co-sub').textContent = p === 'yearly'
+        ? '$0 today. Then $990/year. Cancel anytime.'
+        : '$0 today. Then $99/month. Cancel anytime.';
+      $('co-fallback-link').href = CIRCLE[p];
+    }
+    document.querySelectorAll('input[name="plan"]').forEach(function (r) {
+      r.checked = r.value === plan;
+      r.addEventListener('change', function () { if (r.checked) setPlan(r.value); });
+    });
+    setPlan(plan);
+
+    function fallback() {
+      form.hidden = true;
+      $('co-fallback').hidden = false;
+    }
+    function alertMsg(html) { $('co-alert').innerHTML = html; if (html) $('co-alert').scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    function fieldErr(name, msg) {
+      var input = $('co-' + name), err = $('co-' + name + '-err');
+      if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (err) err.textContent = msg || '';
+      if (msg && input) input.focus();
+    }
+    function setBusy(b) {
+      busy = b;
+      $('co-submit').disabled = b;
+      $('co-submit').textContent = b ? 'One moment…' : 'Start my 14 free days';
+    }
+
+    $('co-code-toggle').addEventListener('click', function () {
+      $('co-code-field').hidden = false;
+      this.hidden = true;
+      $('co-promo').focus();
+    });
+
+    api('/config').then(function (r) {
+      if (!r.ok || !r.data.publishableKey || typeof window.Stripe !== 'function') return fallback();
+      var days = r.data.trialDays || 14;
+      var first = new Date(Date.now() + days * 86400000);
+      $('co-charge-date').textContent = longDate(first);
+      stripe = window.Stripe(r.data.publishableKey);
+      elements = stripe.elements({
+        mode: 'setup',
+        currency: 'usd',
+        fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap' }],
+        appearance: {
+          theme: 'night',
+          variables: {
+            colorPrimary: '#C9A277', colorBackground: '#201519', colorText: '#FFFFFF', colorTextSecondary: '#EBDFE3',
+            colorTextPlaceholder: '#A8959C', colorDanger: '#FFB3C1', fontFamily: '"DM Sans", system-ui, sans-serif',
+            fontSizeBase: '16px', borderRadius: '12px', spacingUnit: '4px'
+          },
+          rules: { '.Input': { border: '1px solid #6B4A55', boxShadow: 'none' }, '.Tab': { border: '1px solid #6B4A55' } }
+        }
+      });
+      var payment = elements.create('payment', {
+        layout: { type: 'tabs' },
+        fields: { billingDetails: { name: 'never', email: 'never', phone: 'never' } }
+      });
+      payment.on('loaderror', fallback);
+      payment.mount('#co-payment');
+    }).catch(fallback);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy || !stripe) return;
+      alertMsg('');
+      ['email', 'name', 'phone', 'promo'].forEach(function (n) { fieldErr(n, ''); });
+
+      var email = $('co-email').value.trim();
+      var name = $('co-name').value.trim();
+      var phone = $('co-phone').value.trim();
+      var promo = $('co-promo').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fieldErr('email', 'Enter a valid email address.');
+      if (name.length < 2) return fieldErr('name', 'Enter your first and last name.');
+      if (phone.replace(/\D/g, '').length < 10) return fieldErr('phone', 'Enter a mobile number with its area code.');
+
+      setBusy(true);
+      track('add_payment_info', null, { plan: plan, value: PRICE[plan], currency: 'USD' });
+
+      var utm = {};
+      qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });
+
+      elements.submit().then(function (r) {
+        if (r.error) throw { shown: r.error.message };
+        return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm });
+      }).then(function (r) {
+        if (r.ok) return r.data;
+        if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };
+        if (r.status === 400 && r.data.field) { fieldErr(r.data.field, r.data.message || 'Please check this.'); throw { shown: '' }; }
+        if (r.status === 429) throw { shown: 'That\'s a lot of tries in a short time. Please wait a little and try again.' };
+        throw { fallback: true };
+      }).then(function (data) {
+        return stripe.confirmSetup({
+          elements: elements,
+          clientSecret: data.clientSecret,
+          redirect: 'if_required',
+          confirmParams: {
+            return_url: location.origin + '/checkout/welcome/?plan=' + plan,
+            payment_method_data: { billing_details: { name: name, email: email, phone: phone } }
+          }
+        });
+      }).then(function (r) {
+        if (r.error) throw { shown: r.error.message || 'Your card was not accepted. Please try another card.' };
+        location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
+      }).catch(function (err) {
+        setBusy(false);
+        if (err && err.fallback) return fallback();
+        if (err && typeof err.shown === 'string') return alertMsg(err.shown);
+        alertMsg('Something went wrong on our side and you have not been charged. Please try again, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.');
+      });
+    });
+  }
+
+  // ---------- /checkout/welcome/ ----------
+  function initWelcome() {
+    var id = qs.get('setup_intent') || '';
+    var plan = qs.get('plan') === 'yearly' ? 'yearly' : 'monthly';
+    function show(which) {
+      ['co-w-loading', 'co-w-ok', 'co-w-pending', 'co-w-problem'].forEach(function (x) { $(x).hidden = x !== which; });
+    }
+    if (!/^seti_/.test(id) || (qs.get('redirect_status') && qs.get('redirect_status') !== 'succeeded')) return show('co-w-problem');
+
+    api('/complete', { setup_intent: id }).then(function (r) {
+      if (!r.ok) return show('co-w-problem');
+      if (r.data.firstName) $('co-w-name').textContent = ', ' + r.data.firstName;
+      if (r.data.trialEnd) {
+        var d = longDate(new Date(r.data.trialEnd * 1000));
+        document.querySelectorAll('.co-w-date').forEach(function (el) { el.textContent = d; });
+      }
+      document.querySelectorAll('.co-w-price').forEach(function (el) { el.textContent = r.data.plan === 'yearly' ? '$990' : '$99'; });
+      show(r.data.access ? 'co-w-ok' : 'co-w-pending');
+      var key = 'wd-trial-' + id;
+      var seen = false;
+      try { seen = !!sessionStorage.getItem(key); sessionStorage.setItem(key, '1'); } catch (e) { /* private mode */ }
+      if (!seen) track('start_trial', 'StartTrial', { plan: r.data.plan || plan, value: PRICE[r.data.plan || plan], currency: 'USD' });
+    }).catch(function () { show('co-w-problem'); });
+  }
+
+  if ($('co-form')) initForm();
+  if ($('co-w-loading')) initWelcome();
+})();

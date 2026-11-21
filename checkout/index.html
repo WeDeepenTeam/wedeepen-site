@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // Ad-review crawlers and headless browsers load pages too; skip GA4 for them so they
+    // don't show up as (not set) / Unassigned sessions.
+    if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593', { content_group: 'Checkout' });
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z2chqpt354");
+  </script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
+
+  <title>Start your 14 free days | WeDeepen</title>
+  <meta name="description" content="Start your WeDeepen membership. $0 today, 14 days free, cancel anytime.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://wedeepen.com/checkout/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/checkout/">
+  <meta property="og:title" content="Start your 14 free days | WeDeepen">
+  <meta property="og:description" content="Start your WeDeepen membership. $0 today, 14 days free, cancel anytime.">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-join.jpg">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/own-checkout.css?v=1">
+  <script src="https://js.stripe.com/v3/" defer></script>
+  <script src="/js/own-checkout.js?v=1" defer></script>
+</head>
+<body>
+  <main class="co-wrap">
+    <header class="co-logo">
+      <a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="200" height="36"></a>
+    </header>
+
+    <!-- Stand-in photo. Swap for the group photo of Christina with the circle used on the Circle checkout. -->
+    <img class="co-photo" src="/images/li-community-1.webp" alt="WeDeepen members together, arms raised and laughing" width="1800" height="1013">
+
+    <div class="co-head">
+      <h1>Start your 14 <em>free</em> days</h1>
+      <p id="co-sub">$0 today. Then $99/month. Cancel anytime.</p>
+    </div>
+
+    <details class="co-card">
+      <summary>What you get
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <ul>
+        <li>Live masterminds, bonding, and integration</li>
+        <li>Expert-led sessions on relationships and intimacy</li>
+        <li>Private Circle discussions + Ask the Experts</li>
+        <li>Sunday Dares delivered by email</li>
+        <li>Recordings of Love Masterminds held after you join</li>
+      </ul>
+    </details>
+
+    <form id="co-form" class="co-form" novalidate>
+      <fieldset class="co-plans">
+        <legend>Choose your plan</legend>
+        <label class="co-plan">
+          <input type="radio" name="plan" value="monthly" checked>
+          <span class="co-plan-name"><span class="co-dot"></span>Monthly</span>
+          <span class="co-price">$99</span>
+          <span class="co-per">per month</span>
+        </label>
+        <label class="co-plan">
+          <input type="radio" name="plan" value="yearly">
+          <span class="co-plan-name"><span class="co-dot"></span>Yearly</span>
+          <span class="co-price">$990</span>
+          <span class="co-per">per year, two months free</span>
+          <span class="co-bonus">+ $800 Love Immersion credit</span>
+        </label>
+      </fieldset>
+
+      <div class="co-field">
+        <label for="co-email">Email</label>
+        <input id="co-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+        <span class="co-err" id="co-email-err" role="alert"></span>
+      </div>
+      <div class="co-field">
+        <label for="co-name">Full name</label>
+        <input id="co-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required>
+        <span class="co-err" id="co-name-err" role="alert"></span>
+      </div>
+      <div class="co-field">
+        <label for="co-phone">Mobile number</label>
+        <input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(512) 555-0123" required>
+        <span class="co-hint">We'll text you session reminders. Reply STOP anytime.</span>
+        <span class="co-err" id="co-phone-err" role="alert"></span>
+      </div>
+
+      <div class="co-pay-label">Payment</div>
+      <div id="co-payment"></div>
+
+      <button type="button" class="co-code-toggle" id="co-code-toggle">Have a code?</button>
+      <div class="co-field" id="co-code-field" hidden>
+        <label for="co-promo">Code</label>
+        <input id="co-promo" name="promo" type="text" autocomplete="off" autocapitalize="characters">
+        <span class="co-err" id="co-promo-err" role="alert"></span>
+      </div>
+
+      <div class="co-alert" id="co-alert" role="alert"></div>
+      <button type="submit" class="co-btn" id="co-submit">Start my 14 free days</button>
+    </form>
+
+    <!-- Shown instead of the form if Stripe or our server can't be reached, so a visitor can always join. -->
+    <div id="co-fallback" hidden>
+      <a class="co-btn" id="co-fallback-link" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281">Continue to secure checkout</a>
+    </div>
+
+    <ul class="co-ticks">
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>$0 today. You won't be charged until <span id="co-charge-date">your 14 free days end</span>.</span></li>
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Cancel anytime, on your own.</span></li>
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>We email you before your trial ends.</span></li>
+    </ul>
+
+    <figure class="co-card co-quote">
+      <span class="co-stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg></span>
+      <blockquote>"The love masterminding has been life-changing."</blockquote>
+      <figcaption>Bo L., WeDeepen member</figcaption>
+      <span class="co-rating">5.0 from 26 Google reviews</span>
+    </figure>
+
+    <p class="co-legal">By starting your trial you agree to our <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+  </main>
+</body>
+</html>

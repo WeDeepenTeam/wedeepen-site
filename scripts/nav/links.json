@@ -60,7 +60,7 @@
     },
     {
       "label": "Join",
-      "href": "https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281",
+      "href": "/checkout/?price_id=368281",
       "style": "primary"
     }
   ],

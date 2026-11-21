@@ -67,6 +67,8 @@
     // Circle price IDs: 368282 = $990 annual; anything else (368281 or none) is the $99 monthly.
     { type: 'membership', value: function (u) { return u.searchParams.get('price_id') === '368282' ? 990 : 99; }, test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/wedeepen-club-membership') === 0; } },
     { type: 'membership', test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/') === 0; } },
+    // WeDeepen's own checkout on wedeepen.com (Nov 21, 2026): the homepage Join buttons now go here. Same price IDs.
+    { type: 'membership', value: function (u) { return u.searchParams.get('price_id') === '368282' || u.searchParams.get('plan') === 'yearly' ? 990 : 99; }, test: function (u) { return /(^|\.)wedeepen\.com$/.test(u.hostname) && u.pathname === '/checkout/'; } },
     { type: 'event', test: function (u) { return /(^|\.)ticketspice\.com$/.test(u.hostname) || /(^|\.)eventbrite\.com$/.test(u.hostname); } },
     { type: 'booking', test: function (u) { return /(^|\.)acuityscheduling\.com$/.test(u.hostname); } }
   ];

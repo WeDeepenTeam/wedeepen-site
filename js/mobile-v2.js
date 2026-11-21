@@ -30,7 +30,8 @@
   'use strict';
   var root = document.documentElement;
 
-  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281' +
+  // WeDeepen's own checkout on wedeepen.com since Nov 21, 2026 (was Circle's).
+  var CHECKOUT = '/checkout/?price_id=368281' +
     (/^\/membership\/b\//.test(location.pathname) ? '&utm_content=membership-b' :
      /^\/membership\/dating-again\//.test(location.pathname) ? '&utm_content=membership-dating-again' :
      /^\/membership\/together\//.test(location.pathname) ? '&utm_content=membership-together' : '');

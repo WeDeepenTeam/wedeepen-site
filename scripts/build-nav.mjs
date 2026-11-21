@@ -103,7 +103,7 @@ for await (const file of walk(ROOT)) {
   const seg = next && pagePathOf(file).match(/^\/membership\/(b|dating-again|together)\//);
   if (seg) {
     const tag = seg[1] === 'b' ? 'membership-b' : `membership-${seg[1]}`;
-    next = next.replace(/(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, `$1&amp;utm_content=${tag}"`);
+    next = next.replace(/(checkout\/(?:wedeepen-club-membership)?\?price_id=\d+)"/g, `$1&amp;utm_content=${tag}"`);
   }
   if (next === null) { skipped.push(path.relative(ROOT, file)); continue; }
   if (next === html) { same++; continue; }

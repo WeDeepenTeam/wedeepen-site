@@ -23,11 +23,17 @@
   var $ = function (id) { return document.getElementById(id); };
   var qs = new URLSearchParams(location.search);
 
-  function track(ga, meta, params) {
+  // Meta's browser cookies, passed to the server so its StartTrial (Conversions API) matches the ad click.
+  function cookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : undefined;
+  }
+
+  function track(ga, meta, params, eventId) {
     if (!IS_PROD || IS_BOT) return;
     try {
       if (ga && typeof window.gtag === 'function') window.gtag('event', ga, params);
-      if (meta && typeof window.fbq === 'function') window.fbq('track', meta, { value: params.value, currency: 'USD', content_category: 'membership', content_name: params.plan });
+      if (meta && typeof window.fbq === 'function') window.fbq('track', meta, { value: params.value, currency: 'USD', content_category: 'membership', content_name: params.plan }, eventId ? { eventID: eventId } : undefined);
     } catch (e) { /* tracking must never break checkout */ }
   }
 
@@ -136,7 +142,7 @@
 
       elements.submit().then(function (r) {
         if (r.error) throw { shown: r.error.message };
-        return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm });
+        return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
       }).then(function (r) {
         if (r.ok) return r.data;
         if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };
@@ -186,7 +192,8 @@
       var key = 'wd-trial-' + id;
       var seen = false;
       try { seen = !!sessionStorage.getItem(key); sessionStorage.setItem(key, '1'); } catch (e) { /* private mode */ }
-      if (!seen) track('start_trial', 'StartTrial', { plan: r.data.plan || plan, value: PRICE[r.data.plan || plan], currency: 'USD' });
+      // Same event id as the server's Conversions API event, so Meta counts the trial once.
+      if (!seen) track('start_trial', 'StartTrial', { plan: r.data.plan || plan, value: PRICE[r.data.plan || plan], currency: 'USD' }, 'trial_' + id);
     }).catch(function () { show('co-w-problem'); });
   }
 

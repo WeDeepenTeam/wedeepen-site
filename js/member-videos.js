@@ -14,7 +14,7 @@
 (function () {
   'use strict';
   var BASE = 'https://assets.wedeepen.com/testimonials/';
-  var CHECKOUT = 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281';
+  var CHECKOUT = 'https://wedeepen.com/checkout/?price_id=368281';
   var CLIPS = [
     { id: 'hannah-space-for-you', person: 'Hannah', g: 'F', lead: true, len: '0:31', role: 'WeDeepen community',
       quote: 'If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.' },

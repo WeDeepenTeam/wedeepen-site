@@ -1,7 +1,7 @@
 {
   "name": "wedeepen-gallery-pipeline",
   "version": "1.0.0",
-  "description": "WeDeepen event gallery — Drive → Supabase → static HTML pipeline.",
+  "description": "WeDeepen event gallery — Drive → Cloudflare R2 (photos) + Supabase (metadata) → static HTML pipeline.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
     "test": "node --test lib/escape-html.test.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0",
     "@supabase/supabase-js": "^2.45.0",
     "dotenv": "^16.4.5",
     "sharp": "^0.33.5"

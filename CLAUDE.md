@@ -117,7 +117,7 @@ Load these only when the task matches:
 | **CDN / DNS** | Cloudflare |
 | **Backend** | Supabase (gallery data, Edge Functions in sister repo) |
 | **CMS / Community** | Circle.so |
-| **Photo CDN** | Supabase Storage public bucket `gallery` |
+| **Photo CDN** | Cloudflare R2 bucket `wedeepen-gallery`, served at `https://photos.wedeepen.com` (moved off Supabase Storage Nov 2026; gallery metadata still in Supabase) |
 | **Live URL** | https://wedeepen.com |
 | **Sister repo** | https://github.com/WeDeepenTeam/my-app |
 
@@ -152,11 +152,11 @@ Standalone sections are, on purpose, generated from data, **not** in the nav, an
 3. Run the pipeline:
    ```bash
    npm run gallery:download     # pulls photos to tmp/gallery-source/<slug>/
-   npm run gallery:process       # resizes + uploads to Supabase
+   npm run gallery:process       # resizes + uploads to Cloudflare R2 (photos.wedeepen.com)
    npm run gallery:build         # regenerates HTML
    npm run gallery:smoke         # verifies
    ```
-4. Commit only the `gallery/` HTML changes (the photos themselves are in Supabase, not committed)
+4. Commit only the `gallery/` HTML changes (the photos themselves are in Cloudflare R2, not committed)
 5. Push
 
 ### Change the site navigation

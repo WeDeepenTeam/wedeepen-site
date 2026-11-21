@@ -13,12 +13,12 @@
  *   node backfill-jpg-renditions.mjs --album love-immersion-viii
  */
 import sharp from 'sharp';
-import { supabase, STORAGE_BUCKET, SUPABASE_URL } from './lib/supabase-admin.js';
+import { supabase } from './lib/supabase-admin.js';
+import { putObject, objectExists, keyFromUrl } from './lib/r2.js';
 
 const PARALLEL = 8;
 const argIdx = process.argv.indexOf('--album');
 const onlyAlbum = argIdx === -1 ? null : process.argv[argIdx + 1];
-const PREFIX = `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/`;
 
 async function fetchAllMedia() {
   const rows = [];
@@ -37,24 +37,19 @@ async function fetchAllMedia() {
 }
 
 async function convertOne(row, stats) {
-  const objPath = decodeURIComponent((row.full_url.split(PREFIX)[1] || ''));
+  const objPath = keyFromUrl(row.full_url);
   if (!objPath.endsWith('.webp')) { stats.nonwebp.push(objPath || row.full_url); return; }
   const jpgPath = objPath.replace(/\.webp$/, '.jpg');
 
-  const head = await fetch(`${PREFIX}${jpgPath}`, { method: 'HEAD' });
-  if (head.ok) { stats.skipped++; return; }
+  if (await objectExists(jpgPath)) { stats.skipped++; return; }
 
   const res = await fetch(row.full_url);
   if (!res.ok) { stats.failed.push(`${objPath} (fetch ${res.status})`); return; }
   const webpBuf = Buffer.from(await res.arrayBuffer());
   const jpgBuf = await sharp(webpBuf).jpeg({ quality: 88, mozjpeg: true }).toBuffer();
 
-  const { error } = await supabase.storage.from(STORAGE_BUCKET).upload(jpgPath, jpgBuf, {
-    contentType: 'image/jpeg',
-    upsert: true,
-    cacheControl: '31536000',
-  });
-  if (error) { stats.failed.push(`${objPath} (upload: ${error.message})`); return; }
+  try { await putObject(jpgPath, jpgBuf, 'image/jpeg'); }
+  catch (e) { stats.failed.push(`${objPath} (upload: ${e.message})`); return; }
   stats.converted++;
 }
 

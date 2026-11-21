@@ -169,6 +169,27 @@ ${pageScripts()}
     const dlBtn = document.getElementById('lightbox-download');
     let currentIndex = 0;
 
+    // Photos live on photos.wedeepen.com (Cloudflare R2), another origin, so the
+    // download attribute alone would open the photo instead of saving it. Fetch it
+    // (the bucket allows CORS from wedeepen.com) and save a same-origin blob.
+    dlBtn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      try {
+        const res = await fetch(dlBtn.href);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const url = URL.createObjectURL(await res.blob());
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = dlBtn.dataset.name || '';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+      } catch (err) {
+        window.open(dlBtn.href, '_blank', 'noopener');
+      }
+    });
+
     function tiles() { return Array.from(grid.querySelectorAll('.photo-tile')); }
 
     // Retry thumbnails that fail to load. Supabase Storage rate-limits (429) when a big
@@ -223,11 +244,11 @@ ${pageScripts()}
       lbImg.dataset.retry = '0';
       lbImg.src = t.dataset.full;
       lbImg.alt = t.dataset.alt || '';
-      // Supabase Storage turns ?download=<name> into a Content-Disposition
-      // attachment, so this link saves the file instead of opening it. Every
-      // full rendition has a .jpg sibling (see backfill-jpg-renditions.mjs).
+      // Every full rendition has a .jpg sibling (see backfill-jpg-renditions.mjs).
+      // href stays the plain file (fallback); the click handler saves it by name.
       var dlUrl = t.dataset.full.replace(/\.webp$/, '.jpg');
-      dlBtn.href = dlUrl + '?download=' + encodeURIComponent('WeDeepen-${album.slug}-' + (currentIndex + 1) + '.' + dlUrl.split('.').pop());
+      dlBtn.href = dlUrl;
+      dlBtn.dataset.name = 'WeDeepen-${album.slug}-' + (currentIndex + 1) + '.' + dlUrl.split('.').pop();
       lbCounter.textContent = (currentIndex + 1) + ' / ' + all.length;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

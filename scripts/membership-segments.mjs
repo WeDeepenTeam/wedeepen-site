@@ -80,7 +80,7 @@ ${tiles}
       </div>
       <p class="sm:hidden text-center text-white/40 text-xs uppercase tracking-[0.25em] mt-4">Swipe &rarr;</p>
       <div class="text-center mt-10 sm:mt-12">
-        <a data-cta="videos" href="https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281&amp;utm_content=${seg.utm}" class="btn-rose text-base">Start my 14 free days</a>
+        <a data-cta="videos" href="/checkout/?price_id=368281&amp;utm_content=${seg.utm}" class="btn-rose text-base">Start my 14 free days</a>
       </div>
     </div>
   </section>
@@ -200,7 +200,7 @@ export function buildSegment(membership, seg) {
   html = replaceOnce(html, /gtag\('config', 'G-LZ0EY5X593'\);/,
     `gtag('config', 'G-LZ0EY5X593', { content_group: '${seg.group}', page_variant: '${seg.slug}' });`, 'GA4 config');
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, `content_name: 'WeDeepen ${seg.group}'`, 'ViewContent name');
-  html = replaceOnce(html, /(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, `$1&amp;utm_content=${seg.utm}"`, 'checkout links');
+  html = replaceOnce(html, /(\/checkout\/\?price_id=\d+)"/g, `$1&amp;utm_content=${seg.utm}"`, 'checkout links');
   html = replaceOnce(html, /Edit index\.html instead\. -->/,
     `Edit index.html (and scripts/membership-segments.mjs for this page's copy) instead. -->`, 'generated note');
 

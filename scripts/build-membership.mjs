@@ -99,7 +99,7 @@ export function buildMembershipB(membership) {
   html = replaceOnce(html, /gtag\('config', 'G-LZ0EY5X593'\);/,
     "gtag('config', 'G-LZ0EY5X593', { content_group: 'Membership B', page_variant: 'B' });", 'GA4 config (B)');
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership B'", 'ViewContent name (B)');
-  html = replaceOnce(html, /(checkout\/wedeepen-club-membership\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"', 'checkout links (B)');
+  html = replaceOnce(html, /(\/checkout\/\?price_id=\d+)"/g, '$1&amp;utm_content=membership-b"', 'checkout links (B)');
   html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (B: see buildMembershipB). -->', 'generated note (B)');
   // The Nov 6 hero headline test ended Nov 13, 2026 (René): /membership/b/ shows the homepage hero.
   return html;
@@ -119,7 +119,7 @@ export function buildMembershipPractice(membership) {
   html = replaceOnce(html, /content_name: 'WeDeepen Membership'/, "content_name: 'WeDeepen Membership Practice'", 'ViewContent name (practice)');
   html = replaceOnce(html, /Edit index\.html instead\. -->/, 'Edit index.html instead (practice: see buildMembershipPractice). -->', 'generated note (practice)');
   html = replaceOnce(html, /<\/body>/, `  <script>
-    // Ad attribution (practice): every Circle checkout link carries the visitor's utm values,
+    // Ad attribution (practice): every checkout link carries the visitor's utm values,
     // with utm_content prefixed "practice_" so trials from this page can be told apart.
     (function () {
       try {
@@ -128,7 +128,7 @@ export function buildMembershipPractice(membership) {
         var med = q.get('utm_medium') || 'paid_social';
         var cmp = q.get('utm_campaign') || 'perel_membership';
         var cnt = 'practice' + (q.get('utm_content') ? '_' + q.get('utm_content') : '');
-        document.querySelectorAll('a[href*="circle.wedeepen.com/checkout/wedeepen-club-membership"]').forEach(function (a) {
+        document.querySelectorAll('a[href^="/checkout/?"]').forEach(function (a) {
           var u = new URL(a.href);
           u.searchParams.set('utm_source', src);
           u.searchParams.set('utm_medium', med);

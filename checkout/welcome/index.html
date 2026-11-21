@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // Ad-review crawlers and headless browsers load pages too; skip GA4 for them so they
+    // don't show up as (not set) / Unassigned sessions.
+    if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593', { content_group: 'Checkout' });
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z2chqpt354");
+  </script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
+
+  <title>You're in | WeDeepen</title>
+  <meta name="description" content="Your WeDeepen membership has started.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://wedeepen.com/checkout/welcome/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/checkout/welcome/">
+  <meta property="og:title" content="You're in | WeDeepen">
+  <meta property="og:description" content="Your WeDeepen membership has started.">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-join.jpg">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/own-checkout.css?v=1">
+  <script src="/js/own-checkout.js?v=1" defer></script>
+</head>
+<body>
+  <main class="co-wrap">
+    <header class="co-logo">
+      <a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="200" height="36"></a>
+    </header>
+
+    <div id="co-w-loading" class="co-head" style="padding-top:40px">
+      <p>Starting your membership…</p>
+    </div>
+
+    <div id="co-w-ok" hidden style="display:contents">
+      <span class="co-check"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <div class="co-head">
+        <h1>You're <em>in</em><span id="co-w-name"></span>.</h1>
+        <p>Your 14 free days start today. Check your inbox: we just sent a link to set your password and come into the community.</p>
+      </div>
+      <ol class="co-card co-steps">
+        <li><span class="co-num">1</span><span>Open the email "You're in. Set your password to enter WeDeepen."</span></li>
+        <li><span class="co-num">2</span><span>Tap the button and choose a password.</span></li>
+        <li><span class="co-num">3</span><span>Begin with Start Here. It takes about 20 minutes.</span></li>
+      </ol>
+      <a class="co-btn" href="https://circle.wedeepen.com/c/start-here">Go to the community</a>
+      <p class="co-small co-center co-gold">Your first charge of <span class="co-w-price">$99</span> is on <span class="co-w-date">the day your trial ends</span>. We'll email you before then.</p>
+      <p class="co-small co-center" style="color:#D9C8CE">No email after a few minutes? Check spam, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+    </div>
+
+    <div id="co-w-pending" hidden style="display:contents">
+      <div class="co-head" style="padding-top:24px">
+        <h1>You're <em>in</em>.</h1>
+        <p>Your 14 free days have started and your card is saved. We're finishing your community access now. Your link to come in will arrive by email shortly.</p>
+      </div>
+      <p class="co-small co-center co-gold">Your first charge of <span class="co-w-price">$99</span> is on <span class="co-w-date">the day your trial ends</span>.</p>
+      <p class="co-small co-center" style="color:#D9C8CE">Nothing within the hour? Write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a> and we'll get you in.</p>
+    </div>
+
+    <div id="co-w-problem" hidden style="display:contents">
+      <div class="co-head" style="padding-top:24px">
+        <h1>Almost there</h1>
+        <p>We couldn't confirm your membership from this page. If you just entered your card, check your email in a few minutes. Otherwise you can try again.</p>
+      </div>
+      <a class="co-btn" href="/checkout/">Back to checkout</a>
+      <p class="co-small co-center" style="color:#D9C8CE">Need a hand? Write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+    </div>
+  </main>
+</body>
+</html>

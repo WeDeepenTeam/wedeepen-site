@@ -120,6 +120,7 @@ wedeepen-site/
 | Zenday Weekend (Nov 21 + 22, 2026, SMS landing) | `/zenday/` | `zenday/index.html` |
 | WeDeepen In-Person (Aug 2026) | `/inperson/` | `inperson/index.html` |
 | Reviews | `/reviews/` | `reviews/index.html` |
+| Own checkout (card form, noindex; not linked from any page yet) | `/checkout/`, `/checkout/welcome/` | `checkout/index.html`, `checkout/welcome/index.html`, `js/own-checkout.js`, `css/own-checkout.css` |
 | About | `/about/` | `about/index.html` |
 | Four Pillars (free guide) | `/four-pillars/` | `four-pillars/index.html` |
 | Podcast | `/podcast/` | `podcast/index.html` |

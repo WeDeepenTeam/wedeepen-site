@@ -1,0 +1,77 @@
+/* WeDeepen's own checkout (/checkout/ and /checkout/welcome/). Phone first: most visitors arrive inside
+   the Facebook or Instagram app. No Tailwind here on purpose, so the page is light and fast to respond. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; color: #fff;
+  font-family: 'DM Sans', Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5;
+  background: #1A1A1A linear-gradient(180deg, #3B1A26 0, #24161B 420px, #1A1A1A 900px) no-repeat;
+}
+a { color: #D9B68C; }
+a:hover { color: #F0D4B0; }
+.co-wrap { max-width: 460px; margin: 0 auto; padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+.co-logo { display: flex; justify-content: center; padding: 4px 0; }
+.co-logo img { height: 26px; width: auto; display: block; }
+.co-photo { width: 100%; height: 132px; object-fit: cover; object-position: center 30%; border-radius: 16px; display: block; }
+.co-head { text-align: center; display: flex; flex-direction: column; gap: 10px; }
+.co-head h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15; }
+.co-head p { margin: 0; color: #EBDFE3; }
+
+.co-card { border-radius: 14px; background: #201519; border: 1px solid #4A3039; }
+details.co-card { padding: 0 16px; }
+details.co-card summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; }
+details.co-card summary::-webkit-details-marker { display: none; }
+details.co-card summary svg { transition: transform .2s; }
+details.co-card[open] summary svg { transform: rotate(180deg); }
+details.co-card ul { margin: 0; padding: 0 0 16px 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #EBDFE3; }
+
+.co-plans { margin: 0; padding: 0; border: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.co-plans legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.co-plan { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 14px; background: #201519; border: 2px solid #4A3039; cursor: pointer; }
+.co-plan input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.co-plan:has(input:checked) { border-color: #C9A277; }
+.co-plan:has(input:focus-visible) { outline: 2px solid #fff; outline-offset: 2px; }
+.co-plan .co-plan-name { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.co-plan .co-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #8C6A75; flex: none; }
+.co-plan:has(input:checked) .co-dot { border-color: #C9A277; background: radial-gradient(#C9A277 0 45%, transparent 50%); }
+.co-plan .co-price { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; }
+.co-plan .co-per { font-size: 13px; color: #E0D2D7; }
+.co-plan .co-bonus { font-size: 13px; font-weight: 600; line-height: 1.35; color: #F0D4B0; }
+
+.co-form { display: flex; flex-direction: column; gap: 14px; margin: 0; }
+.co-field { display: flex; flex-direction: column; gap: 6px; }
+.co-field label { font-size: 13px; font-weight: 500; color: #EBDFE3; }
+.co-field input { height: 50px; padding: 0 14px; border-radius: 12px; border: 1px solid #6B4A55; background: #201519; color: #fff; font: inherit; font-size: 16px; width: 100%; }
+.co-field input::placeholder { color: #A8959C; }
+.co-field input:focus { outline: 2px solid #C9A277; outline-offset: 1px; border-color: #C9A277; }
+.co-field input[aria-invalid="true"] { border-color: #FF8FA3; }
+.co-hint { font-size: 12px; line-height: 1.4; color: #D9C8CE; }
+.co-err { font-size: 13px; color: #FFB3C1; min-height: 0; }
+.co-pay-label { font-size: 13px; font-weight: 500; color: #EBDFE3; margin-bottom: -8px; }
+#co-payment { min-height: 120px; }
+.co-code-toggle { align-self: flex-start; background: none; border: 0; padding: 10px 0; min-height: 44px; color: #D9B68C; font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
+.co-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 58px; border-radius: 9999px; border: 0; background: #A01B4A; color: #fff; font: inherit; font-size: 17px; font-weight: 600; cursor: pointer; text-decoration: none; }
+.co-btn:hover { background: #851437; color: #fff; }
+.co-btn[disabled] { opacity: .65; cursor: progress; }
+.co-alert { border-radius: 12px; border: 1px solid #FF8FA3; background: #2A1218; padding: 12px 14px; font-size: 14px; color: #FFD9E0; }
+.co-alert:empty { display: none; }
+
+.co-ticks { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #EBDFE3; }
+.co-ticks li { display: flex; gap: 10px; align-items: flex-start; }
+.co-ticks svg { flex: none; margin-top: 2px; }
+.co-quote { margin: 0; padding: 18px; border-color: #C9A277; display: flex; flex-direction: column; gap: 12px; }
+.co-quote .co-stars { display: flex; gap: 3px; color: #C9A277; }
+.co-quote blockquote { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.4; }
+.co-quote figcaption { font-size: 14px; color: #E0D2D7; }
+.co-quote .co-rating { font-size: 13px; color: #D9B68C; }
+.co-legal { margin: 0; text-align: center; font-size: 13px; color: #D9C8CE; }
+.co-gold { color: #D9B68C; }
+[hidden] { display: none !important; }
+
+/* After paying */
+.co-check { align-self: center; display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; border: 2px solid #C9A277; color: #C9A277; }
+.co-steps { margin: 0; padding: 18px; list-style: none; display: flex; flex-direction: column; gap: 16px; border-color: #C9A277; }
+.co-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+.co-steps .co-num { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #4A1A2B; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.co-center { text-align: center; }
+.co-small { margin: 0; font-size: 14px; }

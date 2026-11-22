@@ -143,6 +143,10 @@
       color: rgba(255,255,255,0.9);
     }
 
+    .zd-card { transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+    .zd-card:hover { transform: translateY(-4px); border-color: rgba(201,162,119,0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
+    .zd-card .zd-img img { transition: transform 0.8s ease; }
+    .zd-card:hover .zd-img img { transform: scale(1.05); }
     /* Venture card */
     .venture-card {
       background: rgba(255,255,255,0.03);
@@ -311,7 +315,9 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="font-heading text-3xl md:text-4xl font-normal mb-12 leading-tight text-center">Ready to go <span class="italic" style="color:#C9A277;">deeper?</span></h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 flex flex-col">
+        <div class="zd-card rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden flex flex-col">
+          <div class="zd-img aspect-[3/2] overflow-hidden"><img src="/images/li-community-2.webp" width="1400" height="933" alt="WeDeepen community members in a group embrace" class="w-full h-full object-cover" loading="lazy"></div>
+          <div class="p-8 flex flex-col flex-1">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Love Club</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-3 leading-snug">Your first 14 days are on us.</h3>
           <p class="text-white/70 mb-5">Practice love every week with expert faculty and a community doing the same. Come partnered, dating, or solo.</p>
@@ -323,8 +329,11 @@
           </ul>
           <p class="text-white/60 text-sm mb-6 mt-auto">14 days free, then $99/month. Cancel anytime.</p>
           <a href="/checkout/?price_id=368281&amp;utm_source=zenday&amp;utm_medium=qr" class="btn-rose text-base text-center">Start my 14 free days</a>
+          </div>
         </div>
-        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 flex flex-col">
+        <div class="zd-card rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden flex flex-col">
+          <div class="zd-img aspect-[3/2] overflow-hidden"><img src="/images/nye/gatsby-pool-twilight.webp" width="1440" height="1080" alt="The Gatsby Mansion pool at twilight, Austin" class="w-full h-full object-cover" loading="lazy"></div>
+          <div class="p-8 flex flex-col flex-1">
           <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">New Year&#39;s at the Gatsby</p>
           <h3 class="font-heading text-2xl md:text-3xl text-white mb-3 leading-snug">Take flight into 2027 with us.</h3>
           <p class="text-white/70 mb-5">A private Austin estate, all ours for the celebration. Four meals shared with beautiful humans, and three guides who live and breathe love: Christina, Yossef, and Melissa D.</p>
@@ -334,9 +343,28 @@
             <li>&#10003;&nbsp; Only 30 spots</li>
           </ul>
           <a href="/nye/?utm_source=zenday&amp;utm_medium=qr" class="btn-outline text-base text-center mt-auto">See New Year&#39;s at the Gatsby</a>
+          </div>
         </div>
       </div>
       <p class="font-heading italic text-white/80 text-xl md:text-2xl leading-relaxed text-center max-w-3xl mx-auto mt-16">Instead of asking &ldquo;What can I get?&rdquo; ask, &ldquo;Who do I get to become?&rdquo;</p>
+    </div>
+  </section>
+
+  <section id="podcast" class="bg-ink py-20 md:py-24 px-6 border-t border-white/5">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-5 gap-10 items-center">
+      <a href="/podcast/?utm_source=zenday&amp;utm_medium=qr" class="zd-card md:col-span-2 block rounded-xl overflow-hidden max-w-[280px] mx-auto md:max-w-full shadow-2xl">
+        <span class="zd-img block overflow-hidden"><img src="/images/podcast-artwork-640.jpg" width="640" height="640" alt="Mastering Love with Christina Weber podcast artwork" class="w-full h-auto" loading="lazy"></span>
+      </a>
+      <div class="md:col-span-3 text-center md:text-left">
+        <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">The Podcast</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-normal mb-4 leading-tight">Keep the conversation going with <span class="italic" style="color:#C4577A;">Mastering Love.</span></h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed mb-7">Christina sits down with the world&#39;s leading teachers in love, intimacy, and relationship. Real stories and practices you can use tonight.</p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          <a href="https://podcasts.apple.com/us/podcast/deepen-with-christina/id1267527313" target="_blank" rel="noopener" class="btn-rose text-sm">Apple Podcasts</a>
+          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="btn-outline text-sm">Spotify</a>
+          <a href="https://www.youtube.com/@wedeepen" target="_blank" rel="noopener" class="btn-outline text-sm">YouTube</a>
+        </div>
+      </div>
     </div>
   </section>
 

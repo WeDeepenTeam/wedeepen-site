@@ -1309,7 +1309,7 @@
   </script>
   <script>
     // Email attribution: this page is only linked from the Membership Invite emails.
-    // Every Circle checkout link (header Join buttons included) carries
+    // Every checkout link (our own /checkout/ and any left on Circle, header Join buttons included) carries
     // utm_source/medium/campaign, and utm_content records which email the visitor
     // came from (membership-invite_e3 etc.), so trials can be credited to the email.
     document.addEventListener('DOMContentLoaded', function () {
@@ -1319,7 +1319,7 @@
         var med = q.get('utm_medium') || 'email';
         var cmp = q.get('utm_campaign') || 'member_invite_oct26';
         var cnt = 'membership-invite' + (q.get('utm_content') ? '_' + q.get('utm_content') : '');
-        document.querySelectorAll('a[href*="circle.wedeepen.com/checkout/"]').forEach(function (a) {
+        document.querySelectorAll('a[href*="circle.wedeepen.com/checkout/"], a[href*="wedeepen.com/checkout/"], a[href^="/checkout/"]').forEach(function (a) {
           var u = new URL(a.href);
           u.searchParams.set('utm_source', src);
           u.searchParams.set('utm_medium', med);

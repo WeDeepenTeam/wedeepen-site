@@ -43,7 +43,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/own-checkout.css?v=1">
   <script src="https://js.stripe.com/v3/" defer></script>
-  <script src="/js/own-checkout.js?v=5" defer></script>
+  <script src="/js/own-checkout.js?v=6" defer></script>
 </head>
 <body>
   <main class="co-wrap">
@@ -93,6 +93,7 @@
       <div class="co-field">
         <label for="co-email">Email</label>
         <input id="co-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+        <span class="co-hint" id="co-email-hint">We'll send your way into the community to this address.</span>
         <span class="co-err" id="co-email-err" role="alert"></span>
       </div>
       <div class="co-field">

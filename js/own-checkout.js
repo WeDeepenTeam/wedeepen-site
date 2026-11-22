@@ -91,6 +91,21 @@
       if (err) err.textContent = msg || '';
       if (msg && input) input.focus();
     }
+    var confirmedEmail = '';
+    function showSuggestion(better) {
+      var hint = $('co-email-hint');
+      if (!hint) return;
+      if (!better) { hint.textContent = "We'll send your way into the community to this address."; return; }
+      hint.textContent = 'Did you mean ';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = better;
+      btn.style.cssText = 'background:none;border:0;padding:0;color:#E8C9A0;text-decoration:underline;cursor:pointer;font:inherit';
+      btn.addEventListener('click', function () { $('co-email').value = better; fieldErr('email', ''); showSuggestion(''); });
+      hint.appendChild(btn);
+      hint.appendChild(document.createTextNode('?'));
+    }
+    $('co-email').addEventListener('blur', function () { showSuggestion(emailSuggestion($('co-email').value)); });
     function setBusy(b) {
       busy = b;
       $('co-submit').disabled = b;
@@ -145,6 +160,12 @@
       var phone = $('co-phone').value.trim();
       var promo = $('co-promo').value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fieldErr('email', 'Enter a valid email address.');
+      var better = emailSuggestion(email);
+      if (better && confirmedEmail !== email) {
+        confirmedEmail = email; // ask once; pressing Start again keeps what they typed
+        showSuggestion(better);
+        return fieldErr('email', 'Please check your email: did you mean ' + better + '? Tap it above to fix it, or press Start again to keep yours.');
+      }
       if (name.length < 2) return fieldErr('name', 'Enter your first and last name.');
       if (phone.replace(/\D/g, '').length < 10) return fieldErr('phone', 'Enter a mobile number with its area code.');
 
@@ -213,6 +234,30 @@
       // Same event id as the server's Conversions API event, so Meta counts the trial once.
       if (!seen) track('start_trial', 'StartTrial', { plan: r.data.plan || plan, value: PRICE[r.data.plan || plan], currency: 'USD' }, 'trial_' + id);
     }).catch(function () { show('co-w-problem'); });
+  }
+
+
+  // Common email-domain typos (gmial.com, hotmial.com, .con ...). A mistyped address means the person pays but never
+  // gets the invitation, so we suggest the likely fix and ask once before submitting.
+  var DOMAINS = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com', 'msn.com', 'me.com', 'mac.com', 'comcast.net', 'protonmail.com', 'proton.me', 'mail.com', 'gmx.com', 'hey.com', 'att.net', 'verizon.net', 'sbcglobal.net', 'ymail.com'];
+  function editDistance(a, b) {
+    var d = [], i, j;
+    for (i = 0; i <= a.length; i++) d[i] = [i];
+    for (j = 0; j <= b.length; j++) d[0][j] = j;
+    for (i = 1; i <= a.length; i++) for (j = 1; j <= b.length; j++)
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    return d[a.length][b.length];
+  }
+  function emailSuggestion(email) {
+    var m = /^([^\s@]+)@([^\s@]+)$/.exec((email || '').trim().toLowerCase());
+    if (!m) return '';
+    var domain = m[2].replace(/\.(con|cmo|ocm|vom|comm|om)$/, '.com');
+    if (DOMAINS.indexOf(m[2]) >= 0) return '';
+    var best = '', bestD = 3;
+    DOMAINS.forEach(function (d) { var x = editDistance(domain, d); if (x < bestD) { bestD = x; best = d; } });
+    if (!best && domain !== m[2] && /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(domain)) best = domain; // only the .con -> .com fix
+    if (!best || best === m[2]) return '';
+    return m[1] + '@' + best;
   }
 
   if ($('co-form')) initForm();

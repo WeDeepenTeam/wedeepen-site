@@ -28,7 +28,7 @@
   // SimpleTexting web form as the popup (it sends the confirmation text).
   // Then the consent record, with what each service answered, goes to the
   // Cloudflare Worker wedeepen-join-optin (source: workers/join-optin/).
-  var ENDPOINT = 'https://wedeepen-join-optin.team-68a.workers.dev';
+  var ENDPOINT = 'https://optin.wedeepen.com'; // our own address: Norton Safe Web blocks *.workers.dev
   var ML_FORM_URL = 'https://assets.mailerlite.com/jsonp/321715/forms/203848160976570352/subscribe';
   var ST_ENDPOINT = 'https://app2.simpletexting.com/join/joinContact';
   var ST_WEBFORM_ID = '6a725eb22813b371a658bdc9';

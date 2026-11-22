@@ -12,6 +12,20 @@
   'use strict';
 
   var API = 'https://api.wedeepen.com/checkout'; // our own address: some security apps (Norton Safe Web) block *.workers.dev
+  // Follow-up emails for people who start but don't finish: the same MailerLite form the old "email first" step used
+  // (group "Checkout started (site email step)"; its automation waits an hour and skips anyone who joined). Sent from
+  // the browser because MailerLite refuses form posts from Cloudflare Workers. Never blocks the checkout.
+  var FOLLOWUP_FORM = 'https://assets.mailerlite.com/jsonp/321715/forms/202397510383175548/subscribe';
+  function followUp(email, name) {
+    try {
+      var b = new URLSearchParams();
+      b.append('fields[email]', email);
+      b.append('fields[name]', (name || '').trim().split(/\s+/)[0] || '');
+      b.append('ml-submit', '1');
+      b.append('anticsrf', 'true');
+      fetch(FOLLOWUP_FORM, { method: 'POST', mode: 'no-cors', body: b, keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
   var CIRCLE = {
     monthly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281',
     yearly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368282'
@@ -144,7 +158,7 @@
         if (r.error) throw { shown: r.error.message };
         return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
       }).then(function (r) {
-        if (r.ok) return r.data;
+        if (r.ok) { followUp(email, name); return r.data; }
         if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };
         if (r.status === 400 && r.data.field) { fieldErr(r.data.field, r.data.message || 'Please check this.'); throw { shown: '' }; }
         if (r.status === 429) throw { shown: 'That\'s a lot of tries in a short time. Please wait a little and try again.' };

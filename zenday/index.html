@@ -24,25 +24,21 @@
   </script>
   <script src="/js/checkout-tracking.js?v=3" defer></script>
 
-  <title>Zenday Weekend with WeDeepen | Nov 21 + 22, Austin</title>
-  <meta name="description" content="Two days of connection in Austin. Book the Zenday Social pre-party at BATHE with Christina's WeDeepen Networking Dojo, and Zenday Fair at Fiesta Gardens.">
+  <title>Met Us at Zenday? Start Here | WeDeepen</title>
+  <meta name="description" content="Love is a skill. Get the free Four Pillars of a Conscious Relationship guide, start your 14 free days of Love Club, or join us for New Year's at the Gatsby.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://wedeepen.com/zenday/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wedeepen.com/zenday/">
-  <meta property="og:title" content="Zenday Weekend with WeDeepen | Nov 21 + 22, Austin">
-  <meta property="og:description" content="Two days of connection in Austin. Book the Zenday Social pre-party at BATHE with Christina's WeDeepen Networking Dojo, and Zenday Fair at Fiesta Gardens.">
+  <meta property="og:title" content="Met Us at Zenday? Start Here | WeDeepen">
+  <meta property="og:description" content="Love is a skill. Get the free Four Pillars of a Conscious Relationship guide, start your 14 free days of Love Club, or join us for New Year's at the Gatsby.">
   <meta property="og:site_name" content="WeDeepen">
-  <meta property="og:image" content="https://wedeepen.com/images/og/zenday.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Zenday Weekend with WeDeepen | Nov 21 + 22, Austin">
-  <meta name="twitter:description" content="Two days of connection in Austin. Book the Zenday Social pre-party at BATHE with Christina's WeDeepen Networking Dojo, and Zenday Fair at Fiesta Gardens.">
-  <meta name="twitter:image" content="https://wedeepen.com/images/og/zenday.jpg">
+  <meta name="twitter:title" content="Met Us at Zenday? Start Here | WeDeepen">
+  <meta name="twitter:description" content="Love is a skill. Get the free Four Pillars of a Conscious Relationship guide, start your 14 free days of Love Club, or join us for New Year's at the Gatsby.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/four-pillars.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,6 +86,13 @@
       box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
+    .gold-line-center::after {
+      content: ''; display: block;
+      width: 60px; height: 2px;
+      background: #C9A277;
+      margin: 16px auto 0;
+    }
+
     .btn-rose {
       background: #A01B4A; color: #fff;
       padding: 14px 32px; border-radius: 9999px;
@@ -98,6 +101,63 @@
       display: inline-block; text-decoration: none;
     }
     .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 1.5px solid #C9A277; color: #C9A277;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+
+    /* Story section pull quote */
+    .pull-quote {
+      border-left: 3px solid #C9A277;
+      padding-left: 24px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* Pillar card */
+    .pillar-mini {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s;
+    }
+    .pillar-mini:hover { border-color: rgba(201,162,119,0.3); }
+
+    /* Credential chip */
+    .cred-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: rgba(201,162,119,0.08);
+      border: 1px solid rgba(201,162,119,0.3);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Venture card */
+    .venture-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+    }
+    .venture-card:hover {
+      border-color: rgba(201,162,119,0.3);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* Mobile nav */
     .mobile-nav {
@@ -109,10 +169,6 @@
         radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
     }
     .mobile-nav.open { transform: translateX(0); }
-
-    /* Reserve space for the JS-rendered form so the page does not shift on load */
-    .code-chip { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; }
-    .code-chip.copied::after { content: ' Copied'; font-family: 'DM Sans', sans-serif; letter-spacing: 0; color: #C9A277; }
   </style>
   <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
   <!-- Favicon -->
@@ -121,43 +177,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://wedeepen.com/zenday/#webpage",
-  "url": "https://wedeepen.com/zenday/",
-  "name": "Zenday Weekend with WeDeepen | Nov 21 + 22, Austin",
-  "description": "Two days of connection in Austin. Book the Zenday Social pre-party at BATHE with Christina's WeDeepen Networking Dojo, and Zenday Fair at Fiesta Gardens.",
-  "isPartOf": {
-    "@id": "https://wedeepen.com/#website"
-  },
-  "publisher": {
-    "@id": "https://wedeepen.com/#organization"
-  }
-}
-  </script>
+  <meta property="og:image" content="https://wedeepen.com/images/og/four-pillars.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <!-- seo:schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://wedeepen.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Zenday Weekend",
-      "item": "https://wedeepen.com/zenday/"
-    }
-  ]
-}
-  </script>
   <!-- /seo:schema -->
 </head>
 <body class="bg-ink text-white">
@@ -206,11 +230,11 @@
   </header>
 
   <!-- Mobile Nav -->
-  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8 overflow-y-auto">
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8">
     <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <nav class="flex flex-col gap-6 text-lg font-medium pb-12">
+    <nav class="flex flex-col gap-6 text-lg font-medium">
 
       <!-- nav:links -->
       <a href="/" class="text-white hover:text-gold transition">Home</a>
@@ -234,87 +258,87 @@
     </nav>
   </div>
 
-
-    <main id="main">
-  <section class="pt-32 md:pt-40 pb-12 md:pb-16 px-6">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-6">This weekend in Austin</p>
-      <h1 class="font-heading text-4xl md:text-6xl font-normal text-white leading-[1.1] tracking-tight mb-6">Zenday weekend <br class="hidden md:block">with WeDeepen</h1>
-      <p class="text-white/75 text-lg md:text-xl leading-relaxed">Love is in the air. Saturday night we kick off at the Zenday pre-party at BATHE, where I&rsquo;m hosting the Networking Dojo. Sunday we&rsquo;re at Zenday Fair on Lady Bird Lake. Come play!</p>
+  <main id="main">
+  <section class="bg-ink pt-32 md:pt-40 pb-16 md:pb-20">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Met us at Zenday?</p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight">Love is a skill. <span class="italic" style="color:#C4577A;">Get even better at it.</span></h1>
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">So glad our paths crossed. Here is how to keep the practice going: a free guide to take home, and two ways to go deeper with us.</p>
     </div>
   </section>
 
-  <section class="pb-20 md:pb-28 px-6">
-    <div class="max-w-site mx-auto grid gap-8 lg:grid-cols-2">
-
-      <!-- Saturday: pre-party -->
-      <article class="rounded-2xl overflow-hidden bg-white/[0.04] border border-white/10 flex flex-col">
-        <a href="https://events.sweatpals.com/f631771e" data-event="zenday_book_social_img" aria-label="Book the Zenday Social pre-party" class="block hover:opacity-90 transition"><img src="https://assets-v2.circle.so/ngzuujdt63ailjlodhvzzjuxtecz" width="2160" height="770" alt="Zenday Social pre-party and WeDeepen Networking Dojo, Saturday, November 21 at BATHE Austin" class="w-full h-auto"></a>
-        <div class="p-7 md:p-9 flex flex-col flex-1">
-          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">Saturday, Nov 21 &middot; 5 to 10 PM</p>
-          <h2 class="font-heading text-3xl md:text-4xl text-white leading-tight mb-4">Zenday Social at BATHE</h2>
-          <p class="text-white/75 leading-relaxed mb-4">The official pre-party for Zenday Fair. Sauna, spa, cold plunge, drinks from LMNT, Pricklee and Kenetik, and live music.</p>
-          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-5 mb-6">
-            <p class="text-gold text-xs uppercase tracking-[0.2em] font-semibold mb-2">Sat &middot; 7 to 8 PM</p>
-            <h3 class="font-heading text-xl text-white leading-snug mb-3">WeDeepen Networking Dojo with Christina Weber</h3>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">Your next big shift in life or career could begin with someone you haven&rsquo;t met, or someone you&rsquo;ve seen around town but don&rsquo;t really know yet. That&rsquo;s the magic of intentional human connection.</p>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">The Networking Dojo is a playful, guided 60-minute practice where curiosity replaces small talk, and you leave with one connection that may change your life. Why not?</p>
-          </div>
-          <p class="text-white/55 text-sm mb-6">BATHE, 2922 E Cesar Chavez St, Austin</p>
-          <div class="mt-auto">
-            <p class="text-white/80 text-sm mb-4">Save $15 with code <button type="button" class="code-chip text-white bg-white/10 rounded px-2 py-1" data-copy="ZENF&amp;FVIP">ZENF&amp;FVIP</button></p>
-            <a href="https://events.sweatpals.com/f631771e" class="btn-rose w-full text-center" data-event="zenday_book_social">Book the pre-party</a>
-            <p class="text-center text-white/60 text-sm mt-4">Already booked? <a href="https://partiful.com/e/u7YcoVLRPmpZPHt6kEqF" target="_blank" rel="noopener" class="text-gold hover:underline" data-event="zenday_partiful_social">RSVP on Partiful</a> and see who's going.</p>
+  <section id="guide" class="bg-ink pb-20 md:pb-28">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center px-6">
+      <div class="order-2 md:order-1">
+        <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl max-w-xs mx-auto md:max-w-full">
+          <img src="/images/four-pillars.webp" width="1080" height="1350" alt="The Four Pillars of a Conscious Relationship, WeDeepen Free Guide" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <div class="order-1 md:order-2">
+        <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Free Guide</p>
+        <h2 class="font-heading text-3xl md:text-4xl text-white font-normal mb-4 leading-tight">The Four Pillars of a Conscious Relationship</h2>
+        <ol class="text-white/75 text-base leading-relaxed mb-5 space-y-1.5 list-decimal list-inside">
+          <li>No attachment to outcome. Growth comes first.</li>
+          <li>Own your own sh*t.</li>
+          <li>All feelings are welcome.</li>
+          <li>The relationship is a place to practice love.</li>
+        </ol>
+        <p class="text-white/60 text-sm md:text-base leading-relaxed mb-6">The framework we practice every week, for romance, friendship, business, and more. Get the full guide in your inbox.</p>
+        <!-- Guide sign-up: wired up by /js/lead-capture.js (MailerLite "Four Pillars guide" group) -->
+        <form data-guide-form novalidate class="space-y-3 max-w-md">
+          <div class="absolute -left-[9999px] h-0 overflow-hidden" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></div>
+          <input name="firstname" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
+          <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required class="w-full rounded-full bg-white/10 border border-white/15 text-white placeholder-white/40 px-5 py-3.5 text-base focus:outline-none focus:border-gold">
+          <p data-guide-err role="alert" class="text-sm text-red-300" style="display:none"></p>
+          <button type="submit" class="btn-rose w-full text-base">Send me the guide</button>
+          <p class="text-white/45 text-xs text-center">We&#39;ll email it right away. Unsubscribe anytime.</p>
+        </form>
+        <div data-guide-done style="display:none" class="max-w-md">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-2">You&#39;re in</p>
+          <p data-guide-hi class="font-heading text-2xl text-white mb-2">Check your inbox.</p>
+          <p class="text-white/70 mb-6">Your guide is on its way from Christina at WeDeepen (hello@wedeepen.com). Not there in 2 minutes? Look in Promotions or spam.</p>
+          <div class="border-t border-white/10 pt-5">
+            <p class="font-heading text-lg text-white mb-1">Bonus: private invitations by text</p>
+            <p class="text-white/60 text-sm mb-4">Be first to hear about new dates and live events in Austin. A few texts a month.</p>
+            <a data-guide-text href="#" class="btn-rose w-full text-base text-center inline-block">Text COUNT ME IN</a>
           </div>
         </div>
-      </article>
-
-      <!-- Sunday: fair -->
-      <article class="rounded-2xl overflow-hidden bg-white/[0.04] border border-white/10 flex flex-col">
-        <a href="https://events.sweatpals.com/18bd2aee" data-event="zenday_book_fair_img" aria-label="Book Zenday Fair" class="block hover:opacity-90 transition"><img src="https://assets-v2.circle.so/rqg4xfpl3he4hx1ni9wqomq4g69w" width="2160" height="770" alt="Zenday Fair: Wellness, Longevity, AI and Psychedelics, Sunday, November 22 at Fiesta Gardens Austin" class="w-full h-auto"></a>
-        <div class="p-7 md:p-9 flex flex-col flex-1">
-          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">Sunday, Nov 22 &middot; 4 to 8 PM</p>
-          <h2 class="font-heading text-3xl md:text-4xl text-white leading-tight mb-4">Zenday Fair at Fiesta Gardens</h2>
-          <p class="text-white/75 leading-relaxed mb-4">ZEN Talks, 50+ wellness brands, yoga, breathwork and Kundalini on the lawn, ice baths all afternoon, live music and healthy food on Lady Bird Lake.</p>
-          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-5 mb-6">
-            <p class="text-gold text-xs uppercase tracking-[0.2em] font-semibold mb-2">Sun &middot; 2 PM</p>
-            <h3 class="font-heading text-xl text-white leading-snug mb-3">Tantra + AI: Building a Business at the Speed of Love</h3>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">It&rsquo;s 3am. Christina Weber is in bed with her phone. By 5am, she has rebuilt the entire WeDeepen homepage, a job that used to take at least eight months and $350,000.</p>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">Except it didn&rsquo;t take two hours. It took everything she&rsquo;s learned about love since 2012.</p>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">Now, finished is no longer the goal. The site lives and breathes, always evolving the way each of us does.</p>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">Time is speeding up. Love still moves at the speed of divinity.</p>
-            <p class="text-white/75 leading-relaxed mb-3 last:mb-0">The paradox: faster tools give her more room to tune in, listen, and design for what people truly need, when they need it. Human tech, better relationships, and way more fun.</p>
-          </div>
-          <p class="text-white/75 leading-relaxed mb-6">Find the <strong class="text-white">WeDeepen table</strong> all day, noon to 8 PM. Come say hi.</p>
-          <p class="text-white/55 text-sm mb-6">Zen Master Pass: 4 to 8 PM, with a gift bag, early access, bites and drinks, and a networking area with industry leaders. Zen Ticket: 5 to 8 PM.<br>Fiesta Gardens, 2101 Jesse E. Segovia St, Austin</p>
-          <div class="mt-auto">
-            <p class="text-white/80 text-sm mb-4">Save 33% with code <button type="button" class="code-chip text-white bg-white/10 rounded px-2 py-1" data-copy="WEDEEPEN">WEDEEPEN</button></p>
-            <a href="https://events.sweatpals.com/18bd2aee" class="btn-rose w-full text-center" data-event="zenday_book_fair">Book Zenday Fair</a>
-            <p class="text-center text-white/60 text-sm mt-4">Already booked? <a href="https://partiful.com/e/uJ5e8807rlzImPp1xsnM" target="_blank" rel="noopener" class="text-gold hover:underline" data-event="zenday_partiful_fair">RSVP on Partiful</a> and see who's going.</p>
-          </div>
-        </div>
-      </article>
-
+      </div>
     </div>
-
-    <p class="max-w-3xl mx-auto text-center text-white/60 text-sm mt-12">Tap a code to copy it, then enter it at checkout. Find more ways to get even better at love at <a href="https://wedeepen.com/" class="text-gold hover:underline">wedeepen.com</a> and follow along on Instagram at <a href="https://instagram.com/christinaweber" target="_blank" rel="noopener" class="text-gold hover:underline">@christinaweber</a>.</p>
   </section>
 
-  <script>
-    document.querySelectorAll('.code-chip').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var code = b.getAttribute('data-copy');
-        (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(function () {
-          b.classList.add('copied'); setTimeout(function () { b.classList.remove('copied'); }, 1800);
-        }).catch(function () {});
-      });
-    });
-    document.querySelectorAll('[data-event]').forEach(function (a) {
-      a.addEventListener('click', function () {
-        if (typeof gtag === 'function') gtag('event', a.getAttribute('data-event'), { link_url: a.href });
-      });
-    });
-  </script>
+  <section id="next" class="py-20 md:py-24 px-6" style="background: linear-gradient(180deg, #1A1A1A 0%, #201519 100%);">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-heading text-3xl md:text-4xl font-normal mb-12 leading-tight text-center">Ready to go <span class="italic" style="color:#C9A277;">deeper?</span></h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 flex flex-col">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">Love Club</p>
+          <h3 class="font-heading text-2xl md:text-3xl text-white mb-3 leading-snug">Your first 14 days are on us.</h3>
+          <p class="text-white/70 mb-5">Practice love every week with expert faculty and a community doing the same. Come partnered, dating, or solo.</p>
+          <ul class="text-white/75 text-sm leading-relaxed space-y-2 mb-6">
+            <li>&#10003;&nbsp; Live Love Masterminds with expert faculty</li>
+            <li>&#10003;&nbsp; Integration sessions to practice what you learn</li>
+            <li>&#10003;&nbsp; Private network. Ask the experts anytime.</li>
+            <li>&#10003;&nbsp; A new Sunday Dare every week</li>
+          </ul>
+          <p class="text-white/60 text-sm mb-6 mt-auto">14 days free, then $99/month. Cancel anytime.</p>
+          <a href="/checkout/?price_id=368281&amp;utm_source=zenday&amp;utm_medium=qr" class="btn-rose text-base text-center">Start my 14 free days</a>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8 flex flex-col">
+          <p class="text-gold text-xs uppercase tracking-[0.22em] font-semibold mb-3">New Year&#39;s at the Gatsby</p>
+          <h3 class="font-heading text-2xl md:text-3xl text-white mb-3 leading-snug">Take flight into 2027 with us.</h3>
+          <p class="text-white/70 mb-5">A private Austin estate, all ours for the celebration. Four meals shared with beautiful humans, and three guides who live and breathe love: Christina, Yossef, and Melissa D.</p>
+          <ul class="text-white/75 text-sm leading-relaxed space-y-2 mb-6">
+            <li>&#10003;&nbsp; Dec 30 to Jan 1 in Austin, TX</li>
+            <li>&#10003;&nbsp; From $1,995 per person</li>
+            <li>&#10003;&nbsp; Only 30 spots</li>
+          </ul>
+          <a href="/nye/?utm_source=zenday&amp;utm_medium=qr" class="btn-outline text-base text-center mt-auto">See New Year&#39;s at the Gatsby</a>
+        </div>
+      </div>
+      <p class="font-heading italic text-white/80 text-xl md:text-2xl leading-relaxed text-center max-w-3xl mx-auto mt-16">Instead of asking &ldquo;What can I get?&rdquo; ask, &ldquo;Who do I get to become?&rdquo;</p>
+    </div>
+  </section>
 
   </main>
   <footer class="bg-ink border-t border-white/10 py-14">
@@ -370,7 +394,14 @@
     mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
     mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
     mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
   </script>
 
+  <script src="/js/lead-capture.js?v=59" defer data-quiet></script>
+  <script src="/js/mobile-site.js?v=4" defer></script>
 </body>
 </html>

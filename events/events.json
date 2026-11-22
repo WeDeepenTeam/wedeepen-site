@@ -1,30 +1,8 @@
 {
-  "last_updated": "2026-11-19T07:54:46.266Z",
+  "last_updated": "2026-11-22T07:26:03.070Z",
   "source": "circle.wedeepen.com",
-  "event_count": 78,
+  "event_count": 77,
   "events": [
-    {
-      "id": "zenday-fair-wellness-longevity-ai-psychedelics-f93c28",
-      "title": "Zenday Social at BATHE + WeDeepen Networking Dojo",
-      "date": "2026-11-21",
-      "end_date": null,
-      "time": "5:00 PM",
-      "starts_at_iso": "2026-11-21T23:00:00.000Z",
-      "ends_at_iso": "2026-11-22T04:00:00.000Z",
-      "location_type": "austin",
-      "location_label": "2922 E Cesar Chavez St, Austin, TX 78702",
-      "tag": "",
-      "topics": [
-        "Endorsed by WeDeepen",
-        "In-Person",
-        "Open to Everyone"
-      ],
-      "recurring": true,
-      "series": "zenday-fair-wellness-longevity-ai-psychedelics",
-      "description": "The official pre-party for Zenday Fair. An evening of sauna, cold plunge, music, and the people you came to meet.  From 7 to 8 PM, Christina leads the WeDeepen Networking Dojo, a guided experience in",
-      "image_url": "https://assets-v2.circle.so/ngzuujdt63ailjlodhvzzjuxtecz",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/zenday-fair-wellness-longevity-ai-psychedelics-f93c28"
-    },
     {
       "id": "zenday-fair-wellness-longevity-ai-psychedelics",
       "title": "Zenday Fair: Wellness, Longevity, AI & Psychedelics",

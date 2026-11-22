@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  var API = 'https://wedeepen-google-ads-mcp.team-68a.workers.dev/checkout';
+  var API = 'https://api.wedeepen.com/checkout'; // our own address: some security apps (Norton Safe Web) block *.workers.dev
   var CIRCLE = {
     monthly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368281',
     yearly: 'https://circle.wedeepen.com/checkout/wedeepen-club-membership?price_id=368282'

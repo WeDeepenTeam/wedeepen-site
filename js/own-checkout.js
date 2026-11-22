@@ -190,19 +190,23 @@
     var id = qs.get('setup_intent') || '';
     var plan = qs.get('plan') === 'yearly' ? 'yearly' : 'monthly';
     function show(which) {
-      ['co-w-loading', 'co-w-ok', 'co-w-pending', 'co-w-problem'].forEach(function (x) { $(x).hidden = x !== which; });
+      ['co-w-loading', 'co-w-ok', 'co-w-back', 'co-w-pending', 'co-w-problem'].forEach(function (x) { $(x).hidden = x !== which; });
     }
     if (!/^seti_/.test(id) || (qs.get('redirect_status') && qs.get('redirect_status') !== 'succeeded')) return show('co-w-problem');
 
     api('/complete', { setup_intent: id }).then(function (r) {
       if (!r.ok) return show('co-w-problem');
-      if (r.data.firstName) $('co-w-name').textContent = ', ' + r.data.firstName;
+      if (r.data.firstName) {
+        $('co-w-name').textContent = ', ' + r.data.firstName;
+        document.querySelectorAll('.co-w-name2').forEach(function (el) { el.textContent = ', ' + r.data.firstName; });
+      }
       if (r.data.trialEnd) {
         var d = longDate(new Date(r.data.trialEnd * 1000));
         document.querySelectorAll('.co-w-date').forEach(function (el) { el.textContent = d; });
       }
       document.querySelectorAll('.co-w-price').forEach(function (el) { el.textContent = r.data.plan === 'yearly' ? '$990' : '$99'; });
-      show(r.data.access ? 'co-w-ok' : 'co-w-pending');
+      // reactivating: their Circle account had been removed; the team reopens it by hand (Circle's API can't).
+      show(r.data.reactivating ? 'co-w-back' : r.data.access ? 'co-w-ok' : 'co-w-pending');
       var key = 'wd-trial-' + id;
       var seen = false;
       try { seen = !!sessionStorage.getItem(key); sessionStorage.setItem(key, '1'); } catch (e) { /* private mode */ }

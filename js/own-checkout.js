@@ -106,6 +106,22 @@
       hint.appendChild(document.createTextNode('?'));
     }
     $('co-email').addEventListener('blur', function () { showSuggestion(emailSuggestion($('co-email').value)); });
+
+    // Follow-up emails for everyone who types an email, not only people who get as far as the card: most leave
+    // before that. The MailerLite automation waits an hour and skips anyone who started a trial. Sent once per
+    // email and name, so editing a typo sends the corrected address.
+    var followed = '';
+    function followUpEarly() {
+      if (!IS_PROD || IS_BOT) return;
+      var email = $('co-email').value.trim(), name = $('co-name').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return;
+      if (followed === email + '|' + name) return;
+      followed = email + '|' + name;
+      followUp(email, name);
+    }
+    $('co-email').addEventListener('change', followUpEarly);
+    $('co-name').addEventListener('change', followUpEarly);
+    window.addEventListener('pagehide', followUpEarly);
     function setBusy(b) {
       busy = b;
       $('co-submit').disabled = b;
@@ -196,6 +212,8 @@
       var name = $('co-name').value.trim();
       var phone = $('co-phone').value.trim();
       var promo = $('co-promo').value.trim();
+      // Clarity (Nov 2026): people tapped Start on an empty form and read "valid email" as a failure, then left.
+      if (!email) return fieldErr('email', 'Start with your email.');
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fieldErr('email', 'Enter a valid email address.');
       var better = emailSuggestion(email);
       if (better && confirmedEmail !== email) {

@@ -122,6 +122,68 @@
     $('co-email').addEventListener('change', followUpEarly);
     $('co-name').addEventListener('change', followUpEarly);
     window.addEventListener('pagehide', followUpEarly);
+
+    // The photo opens the full story (Clarity, Nov 2026: people tapped the photo again and again looking for more).
+    // Phone back gesture closes the panel instead of leaving checkout.
+    var sell = $('co-sell');
+    if (sell) {
+      var openedAt = 0;
+      // Which member video this visitor sees: half get Cara, half get Beth, kept the same for that visitor on
+      // later visits. Tagged in Clarity ("story_video", set when the story opens) and on every story event, so trial starts can be compared.
+      var VIDEOS = {
+        cara: { src: 'https://assets.wedeepen.com/testimonials/cara-11-months.mp4', poster: '/images/testimonials/cara-11-months.webp',
+          quote: '“Eleven months in, I feel like I’m a new person.”', name: 'Cara, member' },
+        beth: { src: 'https://assets.wedeepen.com/testimonials/beth-gift.mp4', poster: '/images/testimonials/beth-gift.webp',
+          quote: '\u201cGive yourself this gift. Walk into a space where you can be vulnerable and also be held and seen.\u201d', name: 'Beth, Austin' }
+      };
+      var storyVideo = 'cara';
+      try {
+        storyVideo = localStorage.getItem('wd_story_video') || '';
+        if (!VIDEOS[storyVideo]) { storyVideo = Math.random() < 0.5 ? 'cara' : 'beth'; localStorage.setItem('wd_story_video', storyVideo); }
+      } catch (e) { storyVideo = Math.random() < 0.5 ? 'cara' : 'beth'; }
+      var qv = qs.get('story_video'); if (VIDEOS[qv]) storyVideo = qv; // for previews: ?story_video=beth
+      (function () {
+        var fig = $('co-sell-video'), v = VIDEOS[storyVideo];
+        if (!fig) return;
+        fig.setAttribute('data-variant', storyVideo);
+        var el = fig.querySelector('video'); el.setAttribute('poster', v.poster); el.setAttribute('src', v.src);
+        fig.querySelector('.co-sell-vq').textContent = v.quote;
+        fig.querySelector('.co-sell-vn').textContent = v.name;
+      })();
+      var openSell = function () {
+        if (!sell.hidden) return;
+        sell.hidden = false;
+        sell.scrollTop = 0;
+        document.body.classList.add('co-sell-on');
+        openedAt = Date.now();
+        try { sessionStorage.setItem('wd_story_seen', storyVideo); } catch (e) {}
+        try { history.pushState({ coSell: 1 }, ''); } catch (e) {}
+        // tag only people who actually opened the story, so Clarity can compare Cara vs Beth among them
+        try { if (typeof window.clarity === 'function') { window.clarity('set', 'story_video', storyVideo); window.clarity('event', 'checkout_story_open'); } } catch (e) {}
+        track('checkout_story_open', null, { plan: plan, story_video: storyVideo });
+        $('co-sell-close').focus();
+      };
+      var closeSell = function (fromHistory) {
+        if (sell.hidden) return;
+        sell.hidden = true;
+        document.body.classList.remove('co-sell-on');
+        var v = sell.querySelector('video'); if (v) { try { v.pause(); } catch (e) {} }
+        track('checkout_story_close', null, { plan: plan, story_video: storyVideo, seconds: Math.round((Date.now() - openedAt) / 1000) });
+        if (!fromHistory && history.state && history.state.coSell) { try { history.back(); } catch (e) {} }
+      };
+      $('co-sell-open').addEventListener('click', openSell);
+      $('co-sell-close').addEventListener('click', function () { closeSell(false); $('co-sell-open').focus(); });
+      $('co-sell-start').addEventListener('click', function () {
+        try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_story_start'); } catch (e) {}
+        track('checkout_story_start', null, { plan: plan, story_video: storyVideo });
+        closeSell(false);
+        var email = $('co-email');
+        email.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        setTimeout(function () { try { email.focus({ preventScroll: true }); } catch (e) { email.focus(); } }, 350);
+      });
+      window.addEventListener('popstate', function () { if (!sell.hidden) closeSell(true); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sell.hidden) closeSell(false); });
+    }
     function setBusy(b) {
       busy = b;
       $('co-submit').disabled = b;
@@ -175,7 +237,7 @@
       if (!r.ok || !r.data.publishableKey || typeof window.Stripe !== 'function') return fallback();
       var days = r.data.trialDays || 14;
       var first = new Date(Date.now() + days * 86400000);
-      $('co-charge-date').textContent = longDate(first);
+      document.querySelectorAll('[data-charge-date]').forEach(function (el) { el.textContent = longDate(first); });
       stripe = window.Stripe(r.data.publishableKey);
       elements = stripe.elements({
         mode: 'setup',
@@ -225,7 +287,8 @@
       if (phone.replace(/\D/g, '').length < 10) return fieldErr('phone', 'Enter a mobile number with its area code.');
 
       setBusy(true);
-      track('add_payment_info', null, { plan: plan, value: PRICE[plan], currency: 'USD' });
+      var seenStory = ''; try { seenStory = sessionStorage.getItem('wd_story_seen') || ''; } catch (e) {}
+      track('add_payment_info', null, seenStory ? { plan: plan, value: PRICE[plan], currency: 'USD', story_video: seenStory } : { plan: plan, value: PRICE[plan], currency: 'USD' });
 
       var utm = {};
       qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });

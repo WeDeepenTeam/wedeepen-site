@@ -41,9 +41,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/own-checkout.css?v=1">
+  <link rel="stylesheet" href="/css/own-checkout.css?v=2">
   <script src="https://js.stripe.com/v3/" defer></script>
-  <script src="/js/own-checkout.js?v=8" defer></script>
+  <script src="/js/own-checkout.js?v=9" defer></script>
 </head>
 <body>
   <main class="co-wrap">
@@ -51,8 +51,12 @@
       <a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="200" height="36"></a>
     </header>
 
-    <!-- Stand-in photo. Swap for the group photo of Christina with the circle used on the Circle checkout. -->
-    <img class="co-photo" src="/images/checkout-cover.webp" alt="WeDeepen members standing in a circle, hands raised and touching" width="1080" height="607">
+    <!-- Stand-in photo. Swap for the group photo of Christina with the circle used on the Circle checkout.
+         Clarity (Nov 2026): visitors tapped this photo again and again looking for more, so it opens the full story. -->
+    <button type="button" class="co-photo-btn" id="co-sell-open" aria-haspopup="dialog" aria-controls="co-sell">
+      <img class="co-photo" src="/images/checkout-cover.webp" alt="WeDeepen members standing in a circle, hands raised and touching" width="1080" height="607">
+      <span class="co-photo-tag">See what's inside <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+    </button>
 
     <div class="co-head">
       <h1>Start your 14 <em>free</em> days</h1>
@@ -109,6 +113,7 @@
       </div>
 
       <div class="co-pay-label">Payment</div>
+      <p class="co-pay-note">$0 today. You'll get a reminder before <span data-charge-date>your 14 free days end</span>.</p>
       <div id="co-payment"></div>
 
       <button type="button" class="co-code-toggle" id="co-code-toggle">Have a code?</button>
@@ -128,7 +133,7 @@
     </div>
 
     <ul class="co-ticks">
-      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>$0 today. You won't be charged until <span id="co-charge-date">your 14 free days end</span>.</span></li>
+      <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>$0 today. You won't be charged until <span id="co-charge-date" data-charge-date>your 14 free days end</span>.</span></li>
       <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Cancel anytime, on your own.</span></li>
       <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A277" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>We email you before your trial ends.</span></li>
     </ul>
@@ -142,5 +147,66 @@
 
     <p class="co-legal">By starting your trial you agree to our <a href="/terms/" target="_blank" rel="noopener">Terms</a> and <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
   </main>
+
+  <!-- The full story, opened by tapping the photo. Copy is drawn from the homepage and membership page.
+       Opened and closed by /js/own-checkout.js. Needs Christina's sign-off before copy changes. -->
+  <div class="co-sell" id="co-sell" role="dialog" aria-modal="true" aria-labelledby="co-sell-title" hidden>
+    <div class="co-sell-bar">
+      <span class="co-sell-brand">WeDeepen</span>
+      <button type="button" class="co-sell-close" id="co-sell-close" aria-label="Close and go back to checkout">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="co-sell-body">
+      <section class="co-sell-hero">
+        <p class="co-kicker">Love is a trainable skill</p>
+        <h2 id="co-sell-title">Get even better at love. <em>Have fun doing it.</em></h2>
+        <p>Most people never saw love done well growing up, and most schools don't teach it. WeDeepen is where you practice it, with expert faculty and people doing the same work. Come partnered, dating, or solo.</p>
+      </section>
+
+      <section>
+        <h3>What people tell us when they arrive</h3>
+        <ul class="co-sell-voices">
+          <li>&ldquo;I want to get it right this time.&rdquo;</li>
+          <li>&ldquo;I'm dating again and it's so different now.&rdquo;</li>
+          <li>&ldquo;We keep having the same fight.&rdquo;</li>
+          <li>&ldquo;We feel more like roommates than lovers.&rdquo;</li>
+        </ul>
+        <p>It's not that you're doing something wrong. It's the gap between learning it and living it.</p>
+      </section>
+
+      <!-- One member video, split half and half between Cara and Beth (own-checkout.js) to see which gets more trial starts. -->
+      <figure class="co-sell-video" id="co-sell-video" data-variant="cara">
+        <video controls playsinline preload="none" poster="/images/testimonials/cara-11-months.webp" src="https://assets.wedeepen.com/testimonials/cara-11-months.mp4" width="720" height="900"></video>
+        <figcaption><span class="co-sell-vq">&ldquo;Eleven months in, I feel like I'm a new person.&rdquo;</span> <span class="co-sell-vn">Cara, member</span></figcaption>
+      </figure>
+
+      <section>
+        <h3>How it works</h3>
+        <div class="co-sell-how">
+          <div><b>Live sessions</b><span>Love Masterminds with the faculty, built around your real questions, and Integration Sessions to practice what you learned.</span></div>
+          <div><b>Private member community</b><span>Ask the Experts Q&amp;A with our faculty, and private discussions on dating, sex, conflict and anything you're working through.</span></div>
+          <div><b>Practice + recordings</b><span>A new Sunday Dare by email, and recordings of every Love Mastermind from the time you join.</span></div>
+        </div>
+        <p>Come live when you can, catch the recording when you can't. Camera off is fine, and you're welcome to just listen.</p>
+      </section>
+
+      <section class="co-sell-quotes">
+        <h3>What members say</h3>
+        <blockquote>&ldquo;The love masterminding has been life-changing. I finally understand my identity and can actually step into it. The support, the connections, the community: it reset who I am.&rdquo;<cite>Bo L., member</cite></blockquote>
+        <blockquote>&ldquo;The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with. That level of expertise isn't easy to find.&rdquo;<cite>Krista &amp; Thomas, together 15 years</cite></blockquote>
+        <p class="co-rating">5.0 from 26 Google reviews</p>
+      </section>
+
+      <section class="co-sell-end">
+        <p>Your first 14 days are free. After that it's $99/month, our founding member rate. Cancel anytime.</p>
+        <p class="co-small">Questions first? A real person answers at <a href="mailto:hello@wedeepen.com">hello@wedeepen.com</a></p>
+      </section>
+    </div>
+    <!-- Always one tap away, however far they scroll -->
+    <div class="co-sell-sticky">
+      <button type="button" class="co-btn" id="co-sell-start">Start my 14 free days</button>
+    </div>
+  </div>
 </body>
 </html>

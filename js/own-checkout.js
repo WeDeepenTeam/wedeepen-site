@@ -122,6 +122,44 @@
     $('co-email').addEventListener('change', followUpEarly);
     $('co-name').addEventListener('change', followUpEarly);
     window.addEventListener('pagehide', followUpEarly);
+
+    // The photo opens the full story (Clarity, Nov 2026: people tapped the photo again and again looking for more).
+    // Phone back gesture closes the panel instead of leaving checkout.
+    var sell = $('co-sell');
+    if (sell) {
+      var openedAt = 0;
+      var openSell = function () {
+        if (!sell.hidden) return;
+        sell.hidden = false;
+        sell.scrollTop = 0;
+        document.body.classList.add('co-sell-on');
+        openedAt = Date.now();
+        try { history.pushState({ coSell: 1 }, ''); } catch (e) {}
+        try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_story_open'); } catch (e) {}
+        track('checkout_story_open', null, { plan: plan });
+        $('co-sell-close').focus();
+      };
+      var closeSell = function (fromHistory) {
+        if (sell.hidden) return;
+        sell.hidden = true;
+        document.body.classList.remove('co-sell-on');
+        var v = sell.querySelector('video'); if (v) { try { v.pause(); } catch (e) {} }
+        track('checkout_story_close', null, { plan: plan, seconds: Math.round((Date.now() - openedAt) / 1000) });
+        if (!fromHistory && history.state && history.state.coSell) { try { history.back(); } catch (e) {} }
+      };
+      $('co-sell-open').addEventListener('click', openSell);
+      $('co-sell-close').addEventListener('click', function () { closeSell(false); $('co-sell-open').focus(); });
+      $('co-sell-start').addEventListener('click', function () {
+        try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_story_start'); } catch (e) {}
+        track('checkout_story_start', null, { plan: plan });
+        closeSell(false);
+        var email = $('co-email');
+        email.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        setTimeout(function () { try { email.focus({ preventScroll: true }); } catch (e) { email.focus(); } }, 350);
+      });
+      window.addEventListener('popstate', function () { if (!sell.hidden) closeSell(true); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sell.hidden) closeSell(false); });
+    }
     function setBusy(b) {
       busy = b;
       $('co-submit').disabled = b;
@@ -175,7 +213,7 @@
       if (!r.ok || !r.data.publishableKey || typeof window.Stripe !== 'function') return fallback();
       var days = r.data.trialDays || 14;
       var first = new Date(Date.now() + days * 86400000);
-      $('co-charge-date').textContent = longDate(first);
+      document.querySelectorAll('[data-charge-date]').forEach(function (el) { el.textContent = longDate(first); });
       stripe = window.Stripe(r.data.publishableKey);
       elements = stripe.elements({
         mode: 'setup',

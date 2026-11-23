@@ -102,7 +102,6 @@ body.co-sell-on { overflow: hidden; }
 .co-sell-video { margin: 0; display: flex; flex-direction: column; gap: 8px; }
 .co-sell-video video { width: 100%; max-height: 520px; border-radius: 16px; background: #000; object-fit: cover; }
 .co-sell-video figcaption { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 17px; }
-.co-sell-video figcaption span { display: block; font-family: 'DM Sans', system-ui, sans-serif; font-style: normal; font-size: 13px; color: #D9C8CE; }
 .co-sell-pairs { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
 .co-sell-pairs li { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; }
 .co-sell-pairs b { font-weight: 600; }
@@ -115,4 +114,7 @@ body.co-sell-on { overflow: hidden; }
 .co-sell-quotes blockquote { margin: 0; padding: 16px; border-radius: 14px; border: 1px solid #C9A277; background: #201519; font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.45; }
 .co-sell-quotes cite { display: block; margin-top: 8px; font-family: 'DM Sans', system-ui, sans-serif; font-style: normal; font-size: 13px; color: #D9C8CE; }
 .co-sell-quotes .co-rating { font-size: 13px; color: #D9B68C; }
-.co-sell-close-cta { text-align: center; align-items: stretch; padding: 20px; border-radius: 16px; border: 1px solid #C9A277; background: #24161B; }
+.co-sell-end { text-align: center; padding-bottom: 8px; }
+.co-sell-body { padding-bottom: 24px; }
+.co-sell-sticky { position: sticky; bottom: 0; max-width: 460px; margin: 0 auto; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(26,26,26,0), rgba(26,26,26,.96) 30%); }
+.co-sell-video figcaption .co-sell-vn { display: block; font-family: 'DM Sans', system-ui, sans-serif; font-style: normal; font-size: 13px; color: #D9C8CE; }

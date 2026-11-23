@@ -128,6 +128,28 @@
     var sell = $('co-sell');
     if (sell) {
       var openedAt = 0;
+      // Which member video this visitor sees: half get Cara, half get Hannah, kept the same for that visitor on
+      // later visits. Tagged in Clarity ("story_video", set when the story opens) and on every story event, so trial starts can be compared.
+      var VIDEOS = {
+        cara: { src: 'https://assets.wedeepen.com/testimonials/cara-11-months.mp4', poster: '/images/testimonials/cara-11-months.webp',
+          quote: '“Eleven months in, I feel like I’m a new person.”', name: 'Cara, member' },
+        hannah: { src: 'https://assets.wedeepen.com/testimonials/hannah-space-for-you.mp4', poster: '/images/testimonials/hannah-space-for-you.webp',
+          quote: '“If you’re in a space in your life where you’re feeling alone or disconnected, this is the space for you.”', name: 'Hannah, WeDeepen community' }
+      };
+      var storyVideo = 'cara';
+      try {
+        storyVideo = localStorage.getItem('wd_story_video') || '';
+        if (!VIDEOS[storyVideo]) { storyVideo = Math.random() < 0.5 ? 'cara' : 'hannah'; localStorage.setItem('wd_story_video', storyVideo); }
+      } catch (e) { storyVideo = Math.random() < 0.5 ? 'cara' : 'hannah'; }
+      var qv = qs.get('story_video'); if (VIDEOS[qv]) storyVideo = qv; // for previews: ?story_video=hannah
+      (function () {
+        var fig = $('co-sell-video'), v = VIDEOS[storyVideo];
+        if (!fig) return;
+        fig.setAttribute('data-variant', storyVideo);
+        var el = fig.querySelector('video'); el.setAttribute('poster', v.poster); el.setAttribute('src', v.src);
+        fig.querySelector('.co-sell-vq').textContent = v.quote;
+        fig.querySelector('.co-sell-vn').textContent = v.name;
+      })();
       var openSell = function () {
         if (!sell.hidden) return;
         sell.hidden = false;
@@ -135,8 +157,9 @@
         document.body.classList.add('co-sell-on');
         openedAt = Date.now();
         try { history.pushState({ coSell: 1 }, ''); } catch (e) {}
-        try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_story_open'); } catch (e) {}
-        track('checkout_story_open', null, { plan: plan });
+        // tag only people who actually opened the story, so Clarity can compare Cara vs Hannah among them
+        try { if (typeof window.clarity === 'function') { window.clarity('set', 'story_video', storyVideo); window.clarity('event', 'checkout_story_open'); } } catch (e) {}
+        track('checkout_story_open', null, { plan: plan, story_video: storyVideo });
         $('co-sell-close').focus();
       };
       var closeSell = function (fromHistory) {
@@ -144,14 +167,14 @@
         sell.hidden = true;
         document.body.classList.remove('co-sell-on');
         var v = sell.querySelector('video'); if (v) { try { v.pause(); } catch (e) {} }
-        track('checkout_story_close', null, { plan: plan, seconds: Math.round((Date.now() - openedAt) / 1000) });
+        track('checkout_story_close', null, { plan: plan, story_video: storyVideo, seconds: Math.round((Date.now() - openedAt) / 1000) });
         if (!fromHistory && history.state && history.state.coSell) { try { history.back(); } catch (e) {} }
       };
       $('co-sell-open').addEventListener('click', openSell);
       $('co-sell-close').addEventListener('click', function () { closeSell(false); $('co-sell-open').focus(); });
       $('co-sell-start').addEventListener('click', function () {
         try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_story_start'); } catch (e) {}
-        track('checkout_story_start', null, { plan: plan });
+        track('checkout_story_start', null, { plan: plan, story_video: storyVideo });
         closeSell(false);
         var email = $('co-email');
         email.scrollIntoView({ block: 'center', behavior: 'smooth' });

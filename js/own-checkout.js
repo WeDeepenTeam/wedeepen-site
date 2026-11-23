@@ -156,6 +156,7 @@
         sell.scrollTop = 0;
         document.body.classList.add('co-sell-on');
         openedAt = Date.now();
+        try { sessionStorage.setItem('wd_story_seen', storyVideo); } catch (e) {}
         try { history.pushState({ coSell: 1 }, ''); } catch (e) {}
         // tag only people who actually opened the story, so Clarity can compare Cara vs Beth among them
         try { if (typeof window.clarity === 'function') { window.clarity('set', 'story_video', storyVideo); window.clarity('event', 'checkout_story_open'); } } catch (e) {}
@@ -286,7 +287,8 @@
       if (phone.replace(/\D/g, '').length < 10) return fieldErr('phone', 'Enter a mobile number with its area code.');
 
       setBusy(true);
-      track('add_payment_info', null, { plan: plan, value: PRICE[plan], currency: 'USD' });
+      var seenStory = ''; try { seenStory = sessionStorage.getItem('wd_story_seen') || ''; } catch (e) {}
+      track('add_payment_info', null, seenStory ? { plan: plan, value: PRICE[plan], currency: 'USD', story_video: seenStory } : { plan: plan, value: PRICE[plan], currency: 'USD' });
 
       var utm = {};
       qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });

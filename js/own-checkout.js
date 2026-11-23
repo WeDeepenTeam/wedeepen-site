@@ -118,6 +118,43 @@
       $('co-promo').focus();
     });
 
+    // Keep what the visitor typed. Facebook's and Instagram's in-app browsers often reload the page when someone
+    // switches apps (to find their card or check their email), which wiped the form: Clarity showed people pressing
+    // Start on an empty form and getting "Enter a valid email address". Stored only in this visitor's own browser,
+    // kept 24 hours, cleared once the trial starts. Never the card: Stripe's fields are not ours to read.
+    var DRAFT_KEY = 'wd_checkout_draft';
+    var DRAFT_FIELDS = ['email', 'name', 'phone', 'promo'];
+    var draftDone = false;
+    function saveDraft() {
+      if (draftDone) return;
+      try {
+        var d = { t: Date.now(), plan: plan };
+        DRAFT_FIELDS.forEach(function (n) { d[n] = $('co-' + n).value; });
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+      } catch (e) {}
+    }
+    function clearDraft() { draftDone = true; try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+    try {
+      var saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+      if (saved && Date.now() - saved.t < 86400000) {
+        DRAFT_FIELDS.forEach(function (n) {
+          var el = $('co-' + n);
+          if (el && !el.value && saved[n]) el.value = saved[n];
+        });
+        if (saved.promo) { $('co-code-field').hidden = false; $('co-code-toggle').hidden = true; }
+        // the link they came in on decides the plan; a saved choice only fills in when the link names none
+        if (!qs.get('plan') && !qs.get('price_id') && (saved.plan === 'yearly' || saved.plan === 'monthly')) {
+          document.querySelectorAll('input[name="plan"]').forEach(function (r) { r.checked = r.value === saved.plan; });
+          setPlan(saved.plan);
+        }
+      } else if (saved) localStorage.removeItem(DRAFT_KEY);
+    } catch (e) {}
+    DRAFT_FIELDS.forEach(function (n) { $('co-' + n).addEventListener('input', saveDraft); });
+    document.querySelectorAll('input[name="plan"]').forEach(function (r) { r.addEventListener('change', saveDraft); });
+    // phones fire pagehide/visibilitychange when the visitor leaves the app; autofill may skip the input event
+    window.addEventListener('pagehide', saveDraft);
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') saveDraft(); });
+
     api('/config').then(function (r) {
       if (!r.ok || !r.data.publishableKey || typeof window.Stripe !== 'function') return fallback();
       var days = r.data.trialDays || 14;
@@ -196,6 +233,7 @@
         });
       }).then(function (r) {
         if (r.error) throw { shown: r.error.message || 'Your card was not accepted. Please try another card.' };
+        clearDraft();
         location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
       }).catch(function (err) {
         setBusy(false);
@@ -217,6 +255,7 @@
 
     api('/complete', { setup_intent: id }).then(function (r) {
       if (!r.ok) return show('co-w-problem');
+      try { localStorage.removeItem('wd_checkout_draft'); } catch (e) {} // the checkout form's saved draft
       if (r.data.firstName) {
         $('co-w-name').textContent = ', ' + r.data.firstName;
         document.querySelectorAll('.co-w-name2').forEach(function (el) { el.textContent = ', ' + r.data.firstName; });

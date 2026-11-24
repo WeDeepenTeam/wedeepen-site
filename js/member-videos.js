@@ -129,11 +129,37 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
+  // Compact tile for short pages (data-mv-compact): poster, play badge and first name only.
+  function tile(c, i) {
+    var el = document.createElement('button');
+    el.type = 'button';
+    el.className = 'mv-tile';
+    el.setAttribute('data-mv', c.id);
+    el.setAttribute('aria-label', 'Play ' + (c.g === 'C' ? 'their story' : first(c.person) + '’s story') + ' (' + c.len + ')');
+    el.innerHTML = '<img src="/images/testimonials/' + c.id + '.webp" alt="' + esc(c.person) + ', speaking about WeDeepen" width="720" height="900" decoding="async">' +
+      '<span class="mv-badge" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6.5 4.6v10.8a.6.6 0 0 0 .9.5l8.6-5.4a.6.6 0 0 0 0-1L7.4 4.1a.6.6 0 0 0-.9.5Z"/></svg>' + c.len + '</span>' +
+      '<span class="mv-tile-name">' + esc(c.person) + '</span>';
+    el.addEventListener('click', function () { open(i); });
+    return el;
+  }
+
   function init() {
     var grid = document.querySelector('[data-mv-grid]');
     if (!grid) return;
     var skip = (grid.getAttribute('data-mv-exclude') || '').split(/\s+/);   // set by membership segment pages
     CLIPS = CLIPS.filter(function (c) { return skip.indexOf(c.id) < 0; });
+    // data-mv-pick (short /membership/start/ pages): these clips show first, in this order; "Next story"
+    // then continues through everyone else. Pages without it keep the shuffled lineup.
+    var pick = (grid.getAttribute('data-mv-pick') || '').split(/\s+/).filter(Boolean);
+    if (pick.length) {
+      var first3 = pick.map(function (id) { return CLIPS.filter(function (c) { return c.id === id; })[0]; }).filter(Boolean);
+      cur = first3.concat(CLIPS.filter(function (c) { return pick.indexOf(c.id) < 0; }));
+      var show = grid.hasAttribute('data-mv-compact') ? first3.length : cur.length;
+      var f = document.createDocumentFragment();
+      for (var k = 0; k < show; k++) f.appendChild(grid.hasAttribute('data-mv-compact') ? tile(cur[k], k) : card(cur[k], k));
+      grid.innerHTML = ''; grid.appendChild(f);
+      return;
+    }
     cur = lineup();
     var frag = document.createDocumentFragment();
     cur.forEach(function (c, i) { frag.appendChild(card(c, i)); });

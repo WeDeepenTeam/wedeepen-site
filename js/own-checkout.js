@@ -215,6 +215,14 @@
         setTimeout(function () { try { email.focus({ preventScroll: true }); } catch (e) { email.focus(); } }, 350);
       });
       window.addEventListener('popstate', function () { if (!sell.hidden) closeSell(true); });
+
+      // ?story=1 opens the story on arrival. For the Meta test (Nov 24, 2026): one copy of the best ad
+      // ("A video can't hear you") goes straight here instead of /membership/practice/, so cold visitors see
+      // the short story first. Its Start button and X both land on the form. Normal visitors are never affected.
+      if (qs.get('story') === '1') {
+        try { if (typeof window.clarity === 'function') window.clarity('set', 'story_auto', '1'); } catch (e) {}
+        openSell();
+      }
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sell.hidden) closeSell(false); });
     }
     function setBusy(b) {

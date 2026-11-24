@@ -64,3 +64,6 @@ section:last-child { border-bottom: 0; }
 .sp-sticky .sp-btn { max-width: 520px; margin: 0 auto; }
 
 @media (min-width: 700px) { h1 { font-size: 48px; } h2 { font-size: 36px; } }
+.sp-label-c { text-align: center; margin: 4px 0 10px; }
+.sp-hero .mv-row { margin-bottom: 14px; justify-content: center; }
+.sp-hero .mv-tile { flex-basis: 31%; }

@@ -43,7 +43,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/start-pages.css?v=1">
+  <link rel="stylesheet" href="/css/start-pages.css?v=2">
+  <link rel="stylesheet" href="/css/member-videos.css?v=2">
 </head>
 <body>
   <header class="sp-logo"><a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="160" height="29"></a></header>
@@ -54,6 +55,8 @@
       <p class="sp-kicker">What people tell us when they arrive</p>
       <h1>&ldquo;I&rsquo;m dating again and it&rsquo;s so <em>different</em> now.&rdquo;</h1>
       <p class="sp-sub">Apps. Texts you can&rsquo;t read. A pace nobody explained. It&rsquo;s not that you&rsquo;re doing something wrong. Nobody teaches this part.</p>
+      <p class="sp-label sp-label-c">Hear it from members</p>
+      <div class="mv-row" data-mv-grid data-mv-compact data-mv-pick="gabby-intimacy sara-coolest-people hannah-space-for-you"></div>
       <a class="sp-btn" data-cta="hero" href="/checkout/?price_id=368281">Start my 14 free days &rarr;</a>
       <a class="sp-more" href="#turn" data-more>See how it works &darr;</a>
     </section>
@@ -74,10 +77,6 @@
 
     <!-- 3. Proof -->
     <section class="sp-proof">
-      <figure class="sp-video">
-        <video controls playsinline preload="none" poster="/images/testimonials/gabby-intimacy.webp" src="https://assets.wedeepen.com/testimonials/gabby-intimacy.mp4" width="720" height="900"></video>
-        <figcaption><span class="sp-vq">&ldquo;The belief that it would take 20 years to build intimacy again just disappeared. I know I can build deep intimacy when I meet someone.&rdquo;</span> <span class="sp-vn">Gabby, Santa Barbara</span></figcaption>
-      </figure>
       <blockquote class="sp-quote">&ldquo;The love masterminding has been life-changing. I finally understand my identity and can actually step into it.&rdquo;<cite>Bo L., member</cite></blockquote>
       <p class="sp-rating"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5.0 from 26 Google reviews</p>
     </section>
@@ -111,6 +110,8 @@
     <a class="sp-btn" data-cta="mobile-sticky" href="/checkout/?price_id=368281" tabindex="-1">Start my 14 free days &rarr;</a>
   </div>
 
+  <!-- Member video row + full-screen player (shared with the homepage); plays, completions and Next story go to GA4 -->
+  <script src="/js/member-videos.js?v=3" defer></script>
   <script>
     (function () {
       function ga(ev, params) { try { if (typeof window.gtag === 'function') window.gtag('event', ev, params || {}); } catch (e) {} }
@@ -154,8 +155,6 @@
         sticky.querySelector('a').tabIndex = on ? 0 : -1;
       }
       window.addEventListener('scroll', upd, { passive: true }); upd();
-      var v = document.querySelector('.sp-video video');
-      if (v) v.addEventListener('play', function () { ga('testimonial_play', { clip_id: 'gabby-intimacy' }); }, { once: true });
     })();
   </script>
 </body>

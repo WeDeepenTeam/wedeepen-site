@@ -2,7 +2,8 @@
  * start-pages.mjs — short, ad-matched membership pages at /membership/start/<slug>/.
  *
  * Why (René, Nov 24, 2026): Clarity showed 2 of 3 ad visitors never scroll the long practice page.
- * Each page opens on one pain, in the words people use when they arrive (the same lines as the
+ * Each page opens on one pain, with three member videos right under it (the most-tapped thing on
+ * the practice page, Clarity Nov 21-24),, in the words people use when they arrive (the same lines as the
  * checkout story and the phone quiz), then: the turn → member proof → how it works → the offer.
  * About five phone screens. Each page is matched to the Meta pain-clip ads on that theme.
  * Copy pre-approved by Christina (via René, Nov 24). Voice rules: no diagnosis, no outcome promises,
@@ -13,7 +14,6 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 
 const TRIAL = 'Your first 14 days are free. After that it&rsquo;s $99/month, our founding member rate. Cancel anytime.';
-const VIDEO_BASE = 'https://assets.wedeepen.com/testimonials/';
 
 export const PAGES = [
   {
@@ -31,7 +31,7 @@ export const PAGES = [
       'Keep your heart open without losing yourself.',
       'Ask the questions most people wait months to ask.',
     ],
-    video: { id: 'gabby-intimacy', quote: 'The belief that it would take 20 years to build intimacy again just disappeared. I know I can build deep intimacy when I meet someone.', name: 'Gabby, Santa Barbara' },
+    videos: 'gabby-intimacy sara-coolest-people hannah-space-for-you',
     quote: { text: 'The love masterminding has been life-changing. I finally understand my identity and can actually step into it.', who: 'Bo L., member' },
   },
   {
@@ -49,7 +49,7 @@ export const PAGES = [
       'Build something together.',
       'Ask for what you want, out loud.',
     ],
-    video: { id: 'beth-gift', quote: 'Give yourself this gift. Walk into a space where you can be vulnerable and also be held and seen.', name: 'Beth, Austin' },
+    videos: 'beth-gift gabby-intimacy matt-same-team',
     quote: { text: 'The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with.', who: 'Krista &amp; Thomas, together 15 years' },
   },
   {
@@ -67,7 +67,7 @@ export const PAGES = [
       'Tell a rough patch from a repeating pattern.',
       'Ask one question when something stings: what part of this is mine?',
     ],
-    video: { id: 'matt-same-team', quote: 'When I shift that perspective and see my partner as the loving person, it makes all the difference in the world.', name: 'Matt &amp; Jen, Austin couple' },
+    videos: 'matt-same-team cara-11-months bo-friends-open-heart',
     quote: { text: 'The quality of the coaches is unmatched. Christina brings in high-level professionals you end up wanting to keep working with.', who: 'Krista &amp; Thomas, together 15 years' },
   },
   {
@@ -85,7 +85,7 @@ export const PAGES = [
       'Ask one question when something stings: what part of this is mine?',
       'Speak up about needs and boundaries, sooner.',
     ],
-    video: { id: 'cara-11-months', quote: 'Eleven months in, I feel like I&rsquo;m a new person. I&rsquo;ve created this community that is truly safe and secure and full of love.', name: 'Cara, member, 11 months' },
+    videos: 'cara-11-months hannah-space-for-you beth-belonging',
     quote: { text: 'The love masterminding has been life-changing. I finally understand my identity and can actually step into it.', who: 'Bo L., member' },
   },
 ];
@@ -140,7 +140,8 @@ function page(p) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/start-pages.css?v=1">
+  <link rel="stylesheet" href="/css/start-pages.css?v=2">
+  <link rel="stylesheet" href="/css/member-videos.css?v=2">
 </head>
 <body>
   <header class="sp-logo"><a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="160" height="29"></a></header>
@@ -151,6 +152,8 @@ function page(p) {
       <p class="sp-kicker">What people tell us when they arrive</p>
       <h1>${p.h1}</h1>
       <p class="sp-sub">${p.sub}</p>
+      <p class="sp-label sp-label-c">Hear it from members</p>
+      <div class="mv-row" data-mv-grid data-mv-compact data-mv-pick="${p.videos}"></div>
       <a class="sp-btn" data-cta="hero" href="${CHECKOUT}">Start my 14 free days &rarr;</a>
       <a class="sp-more" href="#turn" data-more>See how it works &darr;</a>
     </section>
@@ -168,10 +171,6 @@ ${practice}
 
     <!-- 3. Proof -->
     <section class="sp-proof">
-      <figure class="sp-video">
-        <video controls playsinline preload="none" poster="/images/testimonials/${p.video.id}.webp" src="${VIDEO_BASE}${p.video.id}.mp4" width="720" height="900"></video>
-        <figcaption><span class="sp-vq">&ldquo;${p.video.quote}&rdquo;</span> <span class="sp-vn">${p.video.name}</span></figcaption>
-      </figure>
       <blockquote class="sp-quote">&ldquo;${p.quote.text}&rdquo;<cite>${p.quote.who}</cite></blockquote>
       <p class="sp-rating"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5.0 from 26 Google reviews</p>
     </section>
@@ -205,6 +204,8 @@ ${practice}
     <a class="sp-btn" data-cta="mobile-sticky" href="${CHECKOUT}" tabindex="-1">Start my 14 free days &rarr;</a>
   </div>
 
+  <!-- Member video row + full-screen player (shared with the homepage); plays, completions and Next story go to GA4 -->
+  <script src="/js/member-videos.js?v=3" defer></script>
   <script>
     (function () {
       function ga(ev, params) { try { if (typeof window.gtag === 'function') window.gtag('event', ev, params || {}); } catch (e) {} }
@@ -248,8 +249,6 @@ ${practice}
         sticky.querySelector('a').tabIndex = on ? 0 : -1;
       }
       window.addEventListener('scroll', upd, { passive: true }); upd();
-      var v = document.querySelector('.sp-video video');
-      if (v) v.addEventListener('play', function () { ga('testimonial_play', { clip_id: '${p.video.id}' }); }, { once: true });
     })();
   </script>
 </body>

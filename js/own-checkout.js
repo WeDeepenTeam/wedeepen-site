@@ -107,6 +107,39 @@
     }
     $('co-email').addEventListener('blur', function () { showSuggestion(emailSuggestion($('co-email').value)); });
 
+    // Checks the email field; shows the error and returns false if it needs fixing.
+    function checkEmail() {
+      var email = $('co-email').value.trim();
+      // Clarity (Nov 2026): people tapped Start on an empty form and read "valid email" as a failure, then left.
+      if (!email) { fieldErr('email', 'Start with your email.'); return false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { fieldErr('email', 'Enter a valid email address.'); return false; }
+      var better = emailSuggestion(email);
+      if (better && confirmedEmail !== email) {
+        confirmedEmail = email; // ask once; pressing the button again keeps what they typed
+        showSuggestion(better);
+        fieldErr('email', 'Please check your email: did you mean ' + better + '? Tap it above to fix it, or press the button again to keep yours.');
+        return false;
+      }
+      return true;
+    }
+
+    // Email first (Nov 24, 2026): plan + email, then Continue opens name, phone and card.
+    var step2 = $('co-step2'), next = $('co-next');
+    function openStep2(focus) {
+      if (!step2.hidden) return;
+      step2.hidden = false;
+      next.hidden = true;
+      if (focus) setTimeout(function () { try { $('co-name').focus({ preventScroll: true }); } catch (e) { $('co-name').focus(); } $('co-name').scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 60);
+    }
+    next.addEventListener('click', function () {
+      fieldErr('email', '');
+      if (!checkEmail()) return;
+      followUpEarly();
+      openStep2(true);
+      try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_email_continue'); } catch (e) {}
+      track('checkout_email_continue', null, { plan: plan });
+    });
+
     // Follow-up emails for everyone who types an email, not only people who get as far as the card: most leave
     // before that. The MailerLite automation waits an hour and skips anyone who started a trial. Sent once per
     // email and name, so editing a typo sends the corrected address.
@@ -225,6 +258,8 @@
           document.querySelectorAll('input[name="plan"]').forEach(function (r) { r.checked = r.value === saved.plan; });
           setPlan(saved.plan);
         }
+        // came back after already getting past the email step: open it straight away
+        if ((saved.name || saved.phone) && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('co-email').value.trim())) openStep2(false);
       } else if (saved) localStorage.removeItem(DRAFT_KEY);
     } catch (e) {}
     DRAFT_FIELDS.forEach(function (n) { $('co-' + n).addEventListener('input', saveDraft); });
@@ -266,6 +301,8 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      // Enter in the email field while step 2 is closed means Continue
+      if (step2.hidden) { next.click(); return; }
       if (busy || !stripe) return;
       alertMsg('');
       ['email', 'name', 'phone', 'promo'].forEach(function (n) { fieldErr(n, ''); });
@@ -274,15 +311,7 @@
       var name = $('co-name').value.trim();
       var phone = $('co-phone').value.trim();
       var promo = $('co-promo').value.trim();
-      // Clarity (Nov 2026): people tapped Start on an empty form and read "valid email" as a failure, then left.
-      if (!email) return fieldErr('email', 'Start with your email.');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fieldErr('email', 'Enter a valid email address.');
-      var better = emailSuggestion(email);
-      if (better && confirmedEmail !== email) {
-        confirmedEmail = email; // ask once; pressing Start again keeps what they typed
-        showSuggestion(better);
-        return fieldErr('email', 'Please check your email: did you mean ' + better + '? Tap it above to fix it, or press Start again to keep yours.');
-      }
+      if (!checkEmail()) return;
       if (name.length < 2) return fieldErr('name', 'Enter your first and last name.');
       if (phone.replace(/\D/g, '').length < 10) return fieldErr('phone', 'Enter a mobile number with its area code.');
 

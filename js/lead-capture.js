@@ -97,16 +97,26 @@
   }
 
   var POPUP_DELAY_MS = 4000;
+  // Time-boxed promo lines on any page: <p data-promo-until="ISO date"> is removed once that moment passes.
+  (function expirePromos() {
+    var els = document.querySelectorAll('[data-promo-until]');
+    for (var i = 0; i < els.length; i++) {
+      if (Date.now() >= new Date(els[i].getAttribute('data-promo-until')).getTime()) els[i].remove();
+    }
+  })();
   // NYE early bird: until the code expires, the bar promotes the party
   // instead of the list hooks, then goes back to them on its own.
   var NYE_EARLY_END = new Date('2026-11-19T00:00:00-06:00').getTime();
   var ON_NYE = /^\/nye\/(index\.html)?$/.test(location.pathname); // the ticket page itself, not /nye/letter/
   // On /nye itself the bar shows too (even with data-quiet) and points at the tickets.
-  var NYE_PROMO = Date.now() < NYE_EARLY_END;
+  // NYE Black Friday: 50% off single tickets with BLACKFRIDAY, through Cyber Monday (Nov 30, CT).
+  var NYE_BF_END = new Date('2026-12-01T00:00:00-06:00').getTime();
+  var NYE_BF = Date.now() >= NYE_EARLY_END && Date.now() < NYE_BF_END;
+  var NYE_PROMO = Date.now() < NYE_EARLY_END || NYE_BF;
   var NYE_HREF = ON_NYE ? '#tickets' : '/nye/';
   // .ag-trigger: on /nye the page opens the same agreements step -> checkout as its Sign Me Up buttons.
   var NYE_LINK_CLS = ON_NYE ? 'wd-bar-link ag-trigger' : 'wd-bar-link';
-  var LS_NYE_BAR = 'wd_nye_bar_until';
+  var LS_NYE_BAR = NYE_BF ? 'wd_nye_bf_bar_until' : 'wd_nye_bar_until'; // new key so an early-bird dismissal doesn't hide the sale
   // Announcement-bar hooks. Each visitor gets one at random and keeps it for
   // the session, so the lead log can tell which line pulled. `bar` is the
   // desktop bar line, `title`/`sub` head the popup. The bar is list capture
@@ -378,8 +388,12 @@
     bar.classList.add('wd-slim');
     bar.innerHTML = NYE_PROMO
       ? (IS_MOBILE
-        ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>$200 off</strong> with <strong>EARLYBIRD</strong> til Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get tickets' : 'See the party') + '</a></span></span>'
-        : '<span class="wd-bar-msg">Get high on life this New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get your tickets' : 'See the party') + ' &rarr;</a></span>')
+        ? (NYE_BF
+          ? '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>50% off</strong> with <strong>BLACKFRIDAY</strong> til Nov 30. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get tickets' : 'See the party') + '</a></span></span>'
+          : '<span class="wd-bar-stack"><span class="wd-bar-line1">Gatsby NYE: <strong>$200 off</strong> with <strong>EARLYBIRD</strong> til Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get tickets' : 'See the party') + '</a></span></span>')
+        : (NYE_BF
+          ? '<span class="wd-bar-msg">Black Friday: New Year&#39;s at the Gatsby Mansion is <strong>50% off</strong>, $997 with code <strong>BLACKFRIDAY</strong> through Nov 30. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get your tickets' : 'See the party') + ' &rarr;</a></span>'
+          : '<span class="wd-bar-msg">Get high on life this New Year&#39;s at the Gatsby Mansion: <strong>$200 off</strong> with code <strong>EARLYBIRD</strong> until Nov 18. <a class="' + NYE_LINK_CLS + '" href="' + NYE_HREF + '">' + (ON_NYE ? 'Get your tickets' : 'See the party') + ' &rarr;</a></span>'))
         + '<button type="button" class="wd-bar-x" aria-label="Dismiss announcement">&times;</button>'
       : (IS_MOBILE
       // Phones: one tap opens Messages with COUNT ME IN typed (same list as desktop).

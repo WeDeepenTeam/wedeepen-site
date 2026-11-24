@@ -1295,7 +1295,8 @@
           rd('AddToCart');
         }
 
-        if (a.href && a.href.indexOf('checkout/wedeepen-club-membership') > -1) {
+        // Circle's checkout, or our own /checkout/ (where Join buttons have pointed since Nov 21, 2026).
+        if (a.href && (a.href.indexOf('checkout/wedeepen-club-membership') > -1 || (/(^|\.)wedeepen\.com$|^localhost$/.test(a.hostname) && a.pathname === '/checkout/'))) {
           ga('join_click', { cta_position: a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'unknown'), link_text: (a.textContent || '').trim().slice(0, 40) });
           rd('AddToCart');
         }

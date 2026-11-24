@@ -276,6 +276,15 @@ def render_episode_page(ep: dict, related: list) -> str:
     apple_url = ep.get("apple") or "https://podcasts.apple.com/us/podcast/deepen-with-christina/id1267527313"
     youtube_url = f"https://www.youtube.com/watch?v={youtube_id}" if youtube_id else "https://www.youtube.com/@wedeepen"
 
+    # Link previews (WhatsApp, iMessage, social): Mastering Love video episodes
+    # share the episode's YouTube thumbnail (Christina and the guest on set),
+    # read live from YouTube so a thumbnail changed in Studio shows up here too.
+    # Episodes without a video keep the podcast artwork.
+    share_image, share_w, share_h, share_type = image_abs, 1400, 1400, "image/png"
+    if youtube_id and ep["title"].startswith("ML "):
+        share_image = f"https://i.ytimg.com/vi/{youtube_id}/maxresdefault.jpg"
+        share_w, share_h, share_type = 1280, 720, "image/jpeg"
+
     # YouTube embed (video episodes) — rendered above the audio player when present.
     youtube_embed = f"""
   <!-- VIDEO -->
@@ -371,16 +380,16 @@ def render_episode_page(ep: dict, related: list) -> str:
   <meta property="og:url" content="https://wedeepen.com{url_path}">
   <meta property="og:title" content="{title_esc}">
   <meta property="og:description" content="{desc_esc}">
-  <meta property="og:image" content="{image_abs}">
-  <meta property="og:image:width" content="1400">
-  <meta property="og:image:height" content="1400">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="{share_image}">
+  <meta property="og:image:width" content="{share_w}">
+  <meta property="og:image:height" content="{share_h}">
+  <meta property="og:image:type" content="{share_type}">
   <meta property="og:site_name" content="{show}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title_esc}">
   <meta name="twitter:description" content="{desc_esc}">
-  <meta name="twitter:image" content="{image_abs}">
+  <meta name="twitter:image" content="{share_image}">
 
   <script type="application/ld+json">
   {json.dumps(json_ld, indent=2)}

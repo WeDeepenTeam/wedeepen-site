@@ -1459,9 +1459,16 @@
      class="ag-trigger lg:hidden fixed bottom-0 left-0 right-0 z-40 w-full flex flex-col items-center justify-center font-semibold py-3 px-6"
      style="background:#E0BC78; color:#0A0F2A; box-shadow:0 -4px 24px rgba(0,0,0,0.45);">
     <span>Sign Me Up &rarr;</span>
-    <span class="eb-only text-xs font-medium mt-0.5">$200 off with code EARLYBIRD until Nov&nbsp;18</span>
     <span class="bf-only text-xs font-medium mt-0.5">50% off with code BLACKFRIDAY until Nov&nbsp;30</span>
   </button>
+  <script>
+    // The sticky bar comes after the page's promo script, so clear its expired promo line here.
+    (function () {
+      if (Date.now() >= new Date('2026-12-01T00:00:00-06:00').getTime()) {
+        document.querySelectorAll('#mobile-join-bar .bf-only').forEach(function (el) { el.remove(); });
+      }
+    })();
+  </script>
   <script src="/js/mobile-site.js?v=4" defer></script>
 </body>
 </html>

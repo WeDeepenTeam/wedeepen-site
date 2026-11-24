@@ -1109,6 +1109,15 @@
           <div class="py-3 border-b border-white/10 last:border-0"><span class="text-white font-semibold">8. Treat the mansion like it&rsquo;s yours. In the best way.</span> <span class="text-white/65 text-sm">Enjoy this beautiful home and care for it as you would your own. Respect the property, follow the house rules, and be ready to depart by 10 AM on Jan 1.</span></div>
       </div>
       <label class="flex gap-3 items-start mt-5 p-4 rounded-xl cursor-pointer" style="background: rgba(224,188,120,0.10); border: 1px solid rgba(224,188,120,0.5);"><input type="checkbox" class="ag-box mt-0.5 w-5 h-5 flex-shrink-0 accent-[#E0BC78]"><span class="text-white font-semibold">Yes! I&rsquo;ve read the agreements and I&rsquo;m saying yes to all eight.</span></label>
+      <div class="bf-only mt-5 p-4 rounded-xl text-center" style="background: rgba(224,188,120,0.16); border: 2px solid #E0BC78;">
+        <p class="text-white font-semibold">Black Friday: 50% off</p>
+        <p class="text-white/75 text-sm mt-1">On the next page, type this code in the <strong class="text-white">Coupon Code</strong> box and tap <strong class="text-white">Apply</strong>.</p>
+        <div class="flex items-center justify-center gap-3 mt-3">
+          <span class="font-heading text-2xl tracking-widest" style="color:#E0BC78;">BLACKFRIDAY</span>
+          <button type="button" id="bf-copy" class="text-sm px-3 py-1.5 rounded-lg text-white" style="border:1px solid rgba(224,188,120,0.7);">Copy code</button>
+        </div>
+        <p class="text-white/60 text-xs mt-2">YouYour total drops to $997 once it&rsquo;s applied.rsquo;ll see Your total drops to $997 once it&rsquo;s applied.ldquo;$998.00 discount appliedYour total drops to $997 once it&rsquo;s applied.rdquo; and $997 in your order summary.</p>
+      </div>
       <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
         <button type="button" id="ag-cancel" class="text-white/60 text-sm hover:text-white">Not yet</button>
         <a href="https://wedeepen.ticketspice.com/wedeepen-nye-gathering" id="ag-go" class="btn-pink text-base opacity-40 pointer-events-none" aria-disabled="true">Continue to Tickets &rarr;</a>
@@ -1412,6 +1421,11 @@
         bfClocks.forEach(el => { el.textContent = txt; });
         setTimeout(bfTick, 30000);
       })();
+      const bfCopy = document.getElementById('bf-copy');
+      if (bfCopy) bfCopy.addEventListener('click', () => {
+        const done = () => { bfCopy.textContent = 'Copied!'; setTimeout(() => { bfCopy.textContent = 'Copy code'; }, 2000); };
+        if (navigator.clipboard) navigator.clipboard.writeText('BLACKFRIDAY').then(done, () => {}); 
+      });
       const goLink = document.getElementById('ag-go');
       if (goLink) goLink.href = CHECKOUT;
       const ebEls = document.querySelectorAll('.eb-only');

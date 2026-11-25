@@ -56,6 +56,10 @@
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
   }
 
+  // The address the Circle invite goes to, shown on the welcome page so a wallet sign-up knows which inbox to check.
+  // This visitor's own browser only, for this tab, removed once shown.
+  function rememberEmail(email) { try { sessionStorage.setItem('wd_checkout_email', email); } catch (e) {} }
+
   function longDate(d) {
     return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   }
@@ -82,6 +86,7 @@
 
     function fallback() {
       form.hidden = true;
+      if ($('co-express')) $('co-express').hidden = true;
       $('co-fallback').hidden = false;
     }
     function alertMsg(html) { $('co-alert').innerHTML = html; if (html) $('co-alert').scrollIntoView({ block: 'center', behavior: 'smooth' }); }
@@ -305,7 +310,106 @@
       });
       payment.on('loaderror', fallback);
       payment.mount('#co-payment');
+      mountExpress();
     }).catch(fallback);
+
+    // Apple Pay / Google Pay above the email field (Nov 25, 2026). Join taps reach this page but almost nobody types an
+    // email, so a phone with a wallet can start the trial in one tap: email, name and phone come from the wallet, the
+    // card is saved for after the 14 days, nothing is charged today. Same server calls as the form (/start, then
+    // confirmSetup and /checkout/welcome/). Shown only where the browser has a wallet ready; everyone else sees the form
+    // as before. If the wallet leaves something out (often the phone), the form opens with what it gave, filled in.
+    function mountExpress() {
+      var box = $('co-express');
+      if (!box) return;
+      var express;
+      try {
+        express = elements.create('expressCheckout', {
+          buttonType: { applePay: 'subscribe', googlePay: 'subscribe' },
+          buttonTheme: { applePay: 'white', googlePay: 'white' },
+          buttonHeight: 52,
+          paymentMethods: { applePay: 'auto', googlePay: 'auto', link: 'never', paypal: 'never', amazonPay: 'never', klarna: 'never' },
+          layout: { maxColumns: 1, maxRows: 2, overflow: 'never' }
+        });
+      } catch (e) { return; }
+      express.on('ready', function (ev) {
+        if (!ev.availablePaymentMethods) return; // no wallet on this device: keep the email form as the only way in
+        box.hidden = false;
+        try { if (typeof window.clarity === 'function') window.clarity('set', 'express_shown', '1'); } catch (e) {}
+      });
+      express.on('click', function (ev) {
+        if (busy) return;
+        try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_express_click'); } catch (e) {}
+        track('checkout_express_click', null, { plan: plan, wallet: ev.expressPaymentType });
+        ev.resolve({ emailRequired: true, phoneNumberRequired: true });
+      });
+      express.on('confirm', function (ev) {
+        var bd = ev.billingDetails || {};
+        // The email is how they get into Circle (the invite goes there). If they already typed one on this page, that is
+        // the address they chose for the community, so it wins over the wallet's; otherwise the wallet's email is used.
+        var typed = $('co-email').value.trim();
+        var email = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(typed) ? typed : String(bd.email || '').trim();
+        var name = String(bd.name || '').trim();
+        var phone = String(bd.phone || '').trim();
+        // Keep what the wallet gave in the form, so a fallback to the form (or a reload) starts from it
+        if (email) $('co-email').value = email;
+        if (name) $('co-name').value = name;
+        if (phone) $('co-phone').value = phone;
+        saveDraft();
+        function toForm(field, msg) {
+          try { ev.paymentFailed({ reason: 'fail' }); } catch (e) {}
+          setBusy(false);
+          openStep2(false);
+          if (field) fieldErr(field, msg);
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return toForm('email', 'Enter your email to continue.');
+        if (name.length < 2) return toForm('name', 'Enter your first and last name.');
+        if (phone.replace(/\D/g, '').length < 10) return toForm('phone', 'Enter a mobile number with its area code. We text session reminders.');
+
+        setBusy(true);
+        alertMsg('');
+        var seenStory = ''; try { seenStory = sessionStorage.getItem('wd_story_seen') || ''; } catch (e) {}
+        var info = { plan: plan, value: PRICE[plan], currency: 'USD', payment_type: ev.expressPaymentType };
+        if (seenStory) info.story_video = seenStory;
+        track('add_payment_info', null, info);
+
+        var utm = {};
+        qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });
+        var promo = $('co-promo').value.trim();
+
+        elements.submit().then(function (r) {
+          if (r.error) throw { shown: r.error.message };
+          return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
+        }).then(function (r) {
+          if (r.ok) { followUp(email, name); return r.data; }
+          if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };
+          if (r.status === 400 && r.data.field) throw { field: r.data.field, shown: r.data.message || 'Please check this.' };
+          if (r.status === 429) throw { shown: 'That\'s a lot of tries in a short time. Please wait a little and try again.' };
+          throw { fallback: true };
+        }).then(function (data) {
+          return stripe.confirmSetup({
+            elements: elements,
+            clientSecret: data.clientSecret,
+            redirect: 'if_required',
+            confirmParams: { return_url: location.origin + '/checkout/welcome/?plan=' + plan }
+          });
+        }).then(function (r) {
+          if (r.error) throw { shown: r.error.message || 'That didn\'t go through. Please try again, or use a card below.' };
+          clearDraft();
+          rememberEmail(email);
+          location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
+        }).catch(function (err) {
+          try { ev.paymentFailed({ reason: 'fail' }); } catch (e) {}
+          setBusy(false);
+          if (err && err.fallback) return fallback();
+          if (err && err.field) { openStep2(false); return fieldErr(err.field, err.shown); }
+          openStep2(false);
+          if (err && typeof err.shown === 'string') return alertMsg(err.shown);
+          alertMsg('Something went wrong on our side and you have not been charged. Please try again, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.');
+        });
+      });
+      express.on('loaderror', function () { box.hidden = true; });
+      express.mount('#co-express-el');
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -352,6 +456,7 @@
       }).then(function (r) {
         if (r.error) throw { shown: r.error.message || 'Your card was not accepted. Please try another card.' };
         clearDraft();
+        rememberEmail(email);
         location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
       }).catch(function (err) {
         setBusy(false);
@@ -383,6 +488,14 @@
         document.querySelectorAll('.co-w-date').forEach(function (el) { el.textContent = d; });
       }
       document.querySelectorAll('.co-w-price').forEach(function (el) { el.textContent = r.data.plan === 'yearly' ? '$990' : '$99'; });
+      try {
+        var sentTo = sessionStorage.getItem('wd_checkout_email') || '';
+        if (sentTo) {
+          document.querySelectorAll('.co-w-email').forEach(function (el) { el.textContent = sentTo; });
+          document.querySelectorAll('.co-w-sentto').forEach(function (el) { el.hidden = false; });
+          sessionStorage.removeItem('wd_checkout_email');
+        }
+      } catch (e) {}
       // reactivating: their Circle account had been removed; the team reopens it by hand (Circle's API can't).
       show(r.data.reactivating ? 'co-w-back' : r.data.access ? 'co-w-ok' : 'co-w-pending');
       var key = 'wd-trial-' + id;

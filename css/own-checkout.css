@@ -119,3 +119,10 @@ body.co-sell-on { overflow: hidden; }
 .co-sell-body { padding-bottom: 24px; }
 .co-sell-sticky { position: sticky; bottom: 0; max-width: 460px; margin: 0 auto; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(26,26,26,0), rgba(26,26,26,.96) 30%); }
 .co-sell-video figcaption .co-sell-vn { display: block; font-family: 'DM Sans', system-ui, sans-serif; font-style: normal; font-size: 13px; color: #D9C8CE; }
+
+/* Apple Pay / Google Pay above the email field (own-checkout.js shows it only when a wallet is available) */
+.co-express { display: flex; flex-direction: column; gap: 14px; }
+.co-express[hidden] { display: none; }
+#co-express-el { min-height: 52px; }
+.co-or { display: flex; align-items: center; gap: 12px; color: #A8959C; font-size: 13px; }
+.co-or::before, .co-or::after { content: ""; flex: 1; height: 1px; background: #6B4A55; }

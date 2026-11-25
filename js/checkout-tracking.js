@@ -113,3 +113,58 @@
     }
   }, true);
 })();
+
+/**
+ * Where did this visitor come from? (Nov 25, 2026)
+ * Ads tag their links (utm_source, utm_campaign, utm_content = the ad), but they
+ * land on a page like /membership/start/stay/ and the Join buttons link to
+ * /checkout/ without those tags, so the checkout used to lose them. This keeps
+ * the tags from the visit that brought the person here (in this browser, for 30
+ * days) and /checkout/ sends them with the signup, so each new member's email
+ * says which ad, post or link they came from. Nothing is asked of the visitor.
+ *
+ * A visit counts when its link has utm_ tags or an ad click id (fbclid, gclid),
+ * or it arrives from another site. Later visits with none of those (typing the
+ * address, coming back from a bookmark) don't overwrite it. Kept: utm_ tags,
+ * the click id type (not the id), the landing page path, the referring site's
+ * host, and the date. No personal details.
+ */
+(function () {
+  'use strict';
+  var KEY = 'wd_source';
+  var DAYS = 30;
+  function read() {
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (s && s.at && Date.now() - s.at < DAYS * 86400000) return s;
+    } catch (e) {}
+    return null;
+  }
+  try {
+    var q = new URLSearchParams(location.search);
+    var utm = {};
+    q.forEach(function (v, k) { if (/^utm_/.test(k) && v) utm[k] = String(v).slice(0, 100); });
+    var click = q.get('fbclid') ? 'fbclid' : q.get('gclid') || q.get('gbraid') || q.get('wbraid') ? 'gclid' : q.get('ttclid') ? 'ttclid' : q.get('rdt_cid') ? 'rdt_cid' : '';
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    var external = ref && !/(^|\.)wedeepen\.com$/.test(ref) && ref !== location.hostname && !/(^|\.)stripe\.com$/.test(ref);
+    // utm_content set by our own buttons (e.g. "drama-triangle") is not a new visit.
+    var tagged = Object.keys(utm).some(function (k) { return k !== 'utm_content'; }) || !!click;
+    if (tagged || external) {
+      localStorage.setItem(KEY, JSON.stringify({ utm: utm, click: click, ref: external ? ref : '', landing: location.pathname.slice(0, 120), at: Date.now() }));
+    }
+  } catch (e) { /* private mode: nothing kept */ }
+  // For /checkout/ (js/own-checkout.js): the tags of the visit that brought this person, merged under the
+  // page's own utm_ tags (those win), plus where they landed and the referring site.
+  window.wdSource = function (pageUtm) {
+    var s = read() || {};
+    var utm = {};
+    var k;
+    for (k in (s.utm || {})) utm[k] = s.utm[k];
+    // The page's own tags win only when they are a real tagged arrival (an ad linking straight to /checkout/).
+    // A lone utm_content comes from one of our own Join buttons and must not replace the ad's name.
+    var pageTagged = Object.keys(pageUtm || {}).some(function (x) { return x !== 'utm_content'; });
+    if (pageTagged || !s.utm || !Object.keys(s.utm).length) for (k in (pageUtm || {})) utm[k] = pageUtm[k];
+    return { utm: utm, source: { click: s.click || '', ref: s.ref || '', landing: s.landing || '', at: s.at ? new Date(s.at).toISOString().slice(0, 10) : '' } };
+  };
+})();

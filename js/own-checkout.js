@@ -522,7 +522,21 @@
       try { seen = !!sessionStorage.getItem(key); sessionStorage.setItem(key, '1'); } catch (e) { /* private mode */ }
       // Same event id as the server's Conversions API event, so Meta counts the trial once.
       if (!seen) track('start_trial', 'StartTrial', { plan: r.data.plan || plan, value: PRICE[r.data.plan || plan], currency: 'USD' }, 'trial_' + id);
+      // The trial also counts as a Purchase, so ads that optimize for Purchase (Meta and Google) get credit for it.
+      // Members from this checkout never reach Circle's paywall, so Circle's own Purchase never fires for them.
+      // Meta: same event id as the server's Conversions API Purchase, so it is counted once.
+      // Google Ads: the "Purchase" conversion, deduped by the SetupIntent id. No GA4 purchase, so Google counts it once.
+      if (!seen) purchase(r.data.plan || plan, id);
     }).catch(function () { show('co-w-problem'); });
+  }
+
+  var ADS_PURCHASE = 'AW-18481553095/W63lCM737YkdEMe92OxE';
+  function purchase(p, id) {
+    if (!IS_PROD || IS_BOT) return;
+    try {
+      if (typeof window.fbq === 'function') window.fbq('track', 'Purchase', { value: PRICE[p], currency: 'USD', content_category: 'membership', content_name: p }, { eventID: 'purchase_' + id });
+      if (typeof window.gtag === 'function') window.gtag('event', 'conversion', { send_to: ADS_PURCHASE, value: PRICE[p], currency: 'USD', transaction_id: id });
+    } catch (e) { /* tracking must never break checkout */ }
   }
 
 

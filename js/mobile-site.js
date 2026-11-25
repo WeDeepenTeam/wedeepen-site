@@ -202,7 +202,7 @@
     var anchor = (audio && audio.closest('section')) || (video && video.closest('section'));
     if (!anchor) return;
     var wrap = el('<div class="px-6"></div>');
-    wrap.appendChild(prompt('episode', 'Love this conversation? Train for an epic love life, every week.'));
+    wrap.appendChild(prompt('episode', 'Love this conversation? Train to get the love you want, every week.'));
     anchor.insertAdjacentElement('afterend', wrap);
   }
 

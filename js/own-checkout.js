@@ -393,11 +393,13 @@
 
         var utm = {};
         qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });
+        // Tags from the ad or post that first brought them (js/checkout-tracking.js keeps them).
+        var src = window.wdSource ? window.wdSource(utm) : { utm: utm };
         var promo = $('co-promo').value.trim();
 
         elements.submit().then(function (r) {
           if (r.error) throw { shown: r.error.message };
-          return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
+          return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: src.utm, source: src.source, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
         }).then(function (r) {
           if (r.ok) { followUp(email, name); return r.data; }
           if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };
@@ -452,10 +454,11 @@
 
       var utm = {};
       qs.forEach(function (v, k) { if (/^utm_/.test(k)) utm[k] = v; });
+      var src = window.wdSource ? window.wdSource(utm) : { utm: utm };
 
       elements.submit().then(function (r) {
         if (r.error) throw { shown: r.error.message };
-        return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: utm, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
+        return api('/start', { email: email, name: name, phone: phone, plan: plan, promo: promo || undefined, utm: src.utm, source: src.source, fbp: cookie('_fbp'), fbc: cookie('_fbc') });
       }).then(function (r) {
         if (r.ok) { followUp(email, name); return r.data; }
         if (r.status === 409) throw { shown: 'It looks like you\'re already a member. <a href="https://circle.wedeepen.com/c/member-s-calendar">Log in here</a>, or write to the team at <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.' };

@@ -41,9 +41,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/own-checkout.css?v=3">
+  <link rel="stylesheet" href="/css/own-checkout.css?v=4">
   <script src="https://js.stripe.com/v3/" defer></script>
-  <script src="/js/own-checkout.js?v=11" defer></script>
+  <script src="/js/own-checkout.js?v=12" defer></script>
 </head>
 <body>
   <main class="co-wrap">
@@ -93,6 +93,15 @@
           <span class="co-bonus">+ $800 Love Immersion credit</span>
         </label>
       </fieldset>
+
+      <!-- Apple Pay / Google Pay up top (Nov 25, 2026). Join taps reach this page, but almost nobody types an email:
+           one new address in 4 days. A wallet starts the free trial in one tap, with email, name and phone from the
+           wallet. Shown only on phones and browsers that have a wallet set up (own-checkout.js); everyone else sees
+           the form exactly as before. Needs Christina's approval. -->
+      <div class="co-express" id="co-express" hidden>
+        <div id="co-express-el"></div>
+        <div class="co-or"><span>or continue with email</span></div>
+      </div>
 
       <div class="co-field">
         <label for="co-email">Email</label>

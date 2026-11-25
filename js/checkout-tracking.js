@@ -1,6 +1,8 @@
 /**
  * WeDeepen checkout tracking: one GA4 `begin_checkout` and one Meta
  * `InitiateCheckout` per click on a link that leaves the site to pay or book.
+ * Links to our own /checkout/ send only Meta's InitiateCheckout (and Reddit's
+ * AddToCart); GA4 counts those steps inside the checkout (Nov 25, 2026).
  *
  * Sales happen off-site (Circle, TicketSpice, Eventbrite, Acuity), so this
  * click is the last thing the site can measure. GA4 imports it into Google
@@ -68,7 +70,10 @@
     { type: 'membership', value: function (u) { return u.searchParams.get('price_id') === '368282' ? 990 : 99; }, test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/wedeepen-club-membership') === 0; } },
     { type: 'membership', test: function (u) { return u.hostname === 'circle.wedeepen.com' && u.pathname.indexOf('/checkout/') === 0; } },
     // WeDeepen's own checkout on wedeepen.com (Nov 21, 2026): the homepage Join buttons now go here. Same price IDs.
-    { type: 'membership', value: function (u) { return u.searchParams.get('price_id') === '368282' || u.searchParams.get('plan') === 'yearly' ? 990 : 99; }, test: function (u) { return /(^|\.)wedeepen\.com$/.test(u.hostname) && u.pathname === '/checkout/'; } },
+    // GA4 skips this one (ga: false): a tap here is already counted as join_click, and on our own checkout GA4's
+    // begin_checkout now fires when the person actually starts (types an email or taps Apple Pay / Google Pay; see
+    // own-checkout.js). Meta's InitiateCheckout still fires on the tap, unchanged, because a live ad set optimizes for it.
+    { type: 'membership', ga: false, value: function (u) { return u.searchParams.get('price_id') === '368282' || u.searchParams.get('plan') === 'yearly' ? 990 : 99; }, test: function (u) { return /(^|\.)wedeepen\.com$/.test(u.hostname) && u.pathname === '/checkout/'; } },
     { type: 'event', test: function (u) { return /(^|\.)ticketspice\.com$/.test(u.hostname) || /(^|\.)eventbrite\.com$/.test(u.hostname); } },
     { type: 'booking', test: function (u) { return /(^|\.)acuityscheduling\.com$/.test(u.hostname); } }
   ];
@@ -88,7 +93,7 @@
       var position = a.getAttribute('data-cta') || (a.closest('#wd-header, #mobile-nav') ? 'header' : 'body');
       var checkoutUrl = (url.hostname + url.pathname).slice(0, 100);
 
-      if (typeof window.gtag === 'function') {
+      if (d.ga !== false && typeof window.gtag === 'function') {
         window.gtag('event', 'begin_checkout', {
           checkout_type: d.type,
           checkout_url: checkoutUrl,

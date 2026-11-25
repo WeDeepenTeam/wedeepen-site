@@ -71,6 +71,22 @@
     var busy = false;
     var stripe, elements;
 
+    // Checkout funnel (Nov 25, 2026), each step named for what the person did:
+    //   1. join_click        tapped a Join button (page handlers; Meta InitiateCheckout also fires there, see checkout-tracking.js)
+    //   2. checkout_open     this page loaded (story=yes when a Meta ad sent them straight to the story)
+    //   3. begin_checkout    they started: typed in the email field, or tapped Apple Pay / Google Pay
+    //   4. start_trial       the welcome page confirmed the trial (initWelcome)
+    var story = qs.get('story') === '1' ? 'yes' : 'no';
+    try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_open'); } catch (e) {}
+    track('checkout_open', null, { checkout_type: 'membership', plan: plan, story: story });
+    var started = false;
+    function startCheckout(method) {
+      if (started) return;
+      started = true;
+      try { if (typeof window.clarity === 'function') { window.clarity('set', 'checkout_started', method); window.clarity('event', 'checkout_started'); } } catch (e) {}
+      track('begin_checkout', null, { checkout_type: 'membership', plan: plan, value: PRICE[plan], currency: 'USD', method: method, story: story });
+    }
+
     function setPlan(p) {
       plan = p;
       $('co-sub').textContent = p === 'yearly'
@@ -111,6 +127,7 @@
       hint.appendChild(document.createTextNode('?'));
     }
     $('co-email').addEventListener('blur', function () { showSuggestion(emailSuggestion($('co-email').value)); });
+    $('co-email').addEventListener('input', function () { if ($('co-email').value.trim()) startCheckout('email'); });
 
     // Checks the email field; shows the error and returns false if it needs fixing.
     function checkEmail() {
@@ -139,6 +156,7 @@
     next.addEventListener('click', function () {
       fieldErr('email', '');
       if (!checkEmail()) return;
+      startCheckout('email'); // already counted when they typed; this catches an email the browser restored
       followUpEarly();
       openStep2(true);
       try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_email_continue'); } catch (e) {}
@@ -340,6 +358,7 @@
         if (busy) return;
         try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_express_click'); } catch (e) {}
         track('checkout_express_click', null, { plan: plan, wallet: ev.expressPaymentType });
+        startCheckout(ev.expressPaymentType || 'wallet');
         ev.resolve({ emailRequired: true, phoneNumberRequired: true });
       });
       express.on('confirm', function (ev) {

@@ -14,6 +14,11 @@ Matching is by Libsyn episode link (falls back to normalized title), so it is
 safe to run repeatedly: existing entries are never removed, and the only field
 it ever changes on them is an EMPTY apple / spotify / youtube_id.
 
+New episodes also get "description_html" (to_html), so their pages keep the
+show notes' links and lists. It is written once, when the episode is added;
+later Libsyn edits do not reach the site, so fix an episode page by editing
+its "description_html" in episodes.json and rebuilding.
+
 fill_links() looks up:
   - Apple Podcasts links from the iTunes lookup API (by title),
   - Spotify episode links from the show's embed page (by title; it lists the
@@ -87,6 +92,54 @@ def to_text(desc_html):
     return "\n".join(l.strip() for l in t.strip().split("\n"))
 
 
+# Section labels in Mastering Love show notes. Libsyn's feed drops <strong> and
+# <br>, so these come through as plain text and are bolded again here.
+LABELS = ("In this episode", "Key Takeaways", "Books and Frameworks Mentioned",
+          "Frameworks Mentioned", "Books Mentioned", "Go from listening to practicing")
+TIMESTAMP = r"(?:\d{1,2}:)?\d{1,2}:\d{2}"
+
+
+def to_html(desc_html):
+    """Show notes as safe HTML for episodes.json "description_html", so the
+    episode page keeps the feed's links and lists. Only p, ul, ol, li, a
+    (href), strong, em and br survive. Plain-text section labels are bolded,
+    and an "In this episode" paragraph of run-on timestamps becomes a list."""
+    t = re.sub(r"\s+", " ", desc_html).strip()
+    t = re.sub(r"<a\s[^>]*?href=\s*\"([^\"]+)\"[^>]*>", lambda m: f'<a href="{m.group(1)}">', t, flags=re.I)
+    t = re.sub(r"<(/?)b>", r"<\1strong>", t, flags=re.I)
+    t = re.sub(r"<(/?)i>", r"<\1em>", t, flags=re.I)
+    t = re.sub(r"<(?!/?(?:p|ul|ol|li|strong|em|br|a)\b)[^>]+>", "", t, flags=re.I)
+    t = re.sub(r"<(p|ul|ol|li|strong|em)\s[^>]*>", r"<\1>", t, flags=re.I)
+    t = re.sub(r"<br\s*/?>", "<br>", t, flags=re.I)
+    t = re.sub(r"\s*(</?(?:p|ul|ol|li)>)\s*", r"\1", t)
+    t = re.sub(r'(<a href="[^"]+">)\s+', r"\1", t)
+
+    def label_para(m):
+        body = m.group(1)
+        text = re.sub(r"<[^>]+>", "", body).strip()
+        for label in LABELS:
+            if not text.startswith(label):
+                continue
+            rest = re.sub(rf"^(?:<strong>)?\s*{re.escape(label)}:?\s*(?:</strong>)?\s*(?:<br>)?\s*", "", body).strip()
+            if not rest:
+                return f"<p><strong>{label}</strong></p>"
+            if label == "In this episode" and re.match(rf"{TIMESTAMP}\s", rest):
+                parts = [p.strip() for p in re.split(rf"(?:<br>)?\s*(?<![\d:])(?={TIMESTAMP}\s)", rest) if p.strip()]
+                if all(re.match(TIMESTAMP, p) for p in parts):
+                    return f"<p><strong>{label}</strong></p><ul>" + "".join(f"<li>{p}</li>" for p in parts) + "</ul>"
+            if label == "Go from listening to practicing":
+                return f"<p><strong>{label}</strong><br>{rest}</p>"
+            # A sentence that merely starts with a label ("In this episode of
+            # Mastering Love...") is prose; leave it alone.
+            return m.group(0)
+        m2 = re.match(r"(?:<strong>)?(Work with [^:<]+:)(?:</strong>)?\s*(.*)", body, re.S)
+        if m2:
+            return f"<p><strong>{m2.group(1)}</strong> {m2.group(2)}</p>"
+        return m.group(0)
+
+    return re.sub(r"<p>(.*?)</p>", label_para, t, flags=re.S)
+
+
 def norm(s):
     s = html.unescape(s).replace("\u2019", "'").replace("\u2018", "'")
     return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
@@ -118,13 +171,15 @@ def main():
         dt = parsedate_to_datetime(tag(it, "pubDate"))
         show, num = code_of(title)
         image = attr(it, "itunes:image", "href")
+        notes = tag(it, "content:encoded") or tag(it, "description")
         new.append({
             "title": title,
             "episode": num or "",
             "date": dt.strftime("%Y-%m-%d"),
             "date_pretty": f"{dt.strftime('%b')} {dt.day}, {dt.year}",
             "duration": tag(it, "itunes:duration"),
-            "description": to_text(tag(it, "content:encoded") or tag(it, "description")),
+            "description": to_text(notes),
+            "description_html": to_html(notes),
             "image": image,
             "link": link,
             "audio": attr(it, "enclosure", "url"),

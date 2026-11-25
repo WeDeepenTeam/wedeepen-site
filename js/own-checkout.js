@@ -56,6 +56,10 @@
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, status: res.status, data: data }; }); });
   }
 
+  // The address the Circle invite goes to, shown on the welcome page so a wallet sign-up knows which inbox to check.
+  // This visitor's own browser only, for this tab, removed once shown.
+  function rememberEmail(email) { try { sessionStorage.setItem('wd_checkout_email', email); } catch (e) {} }
+
   function longDate(d) {
     return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   }
@@ -340,7 +344,10 @@
       });
       express.on('confirm', function (ev) {
         var bd = ev.billingDetails || {};
-        var email = String(bd.email || '').trim();
+        // The email is how they get into Circle (the invite goes there). If they already typed one on this page, that is
+        // the address they chose for the community, so it wins over the wallet's; otherwise the wallet's email is used.
+        var typed = $('co-email').value.trim();
+        var email = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(typed) ? typed : String(bd.email || '').trim();
         var name = String(bd.name || '').trim();
         var phone = String(bd.phone || '').trim();
         // Keep what the wallet gave in the form, so a fallback to the form (or a reload) starts from it
@@ -388,6 +395,7 @@
         }).then(function (r) {
           if (r.error) throw { shown: r.error.message || 'That didn\'t go through. Please try again, or use a card below.' };
           clearDraft();
+          rememberEmail(email);
           location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
         }).catch(function (err) {
           try { ev.paymentFailed({ reason: 'fail' }); } catch (e) {}
@@ -448,6 +456,7 @@
       }).then(function (r) {
         if (r.error) throw { shown: r.error.message || 'Your card was not accepted. Please try another card.' };
         clearDraft();
+        rememberEmail(email);
         location.href = '/checkout/welcome/?plan=' + plan + '&setup_intent=' + encodeURIComponent(r.setupIntent.id) + '&redirect_status=' + r.setupIntent.status;
       }).catch(function (err) {
         setBusy(false);
@@ -479,6 +488,14 @@
         document.querySelectorAll('.co-w-date').forEach(function (el) { el.textContent = d; });
       }
       document.querySelectorAll('.co-w-price').forEach(function (el) { el.textContent = r.data.plan === 'yearly' ? '$990' : '$99'; });
+      try {
+        var sentTo = sessionStorage.getItem('wd_checkout_email') || '';
+        if (sentTo) {
+          document.querySelectorAll('.co-w-email').forEach(function (el) { el.textContent = sentTo; });
+          document.querySelectorAll('.co-w-sentto').forEach(function (el) { el.hidden = false; });
+          sessionStorage.removeItem('wd_checkout_email');
+        }
+      } catch (e) {}
       // reactivating: their Circle account had been removed; the team reopens it by hand (Circle's API can't).
       show(r.data.reactivating ? 'co-w-back' : r.data.access ? 'co-w-ok' : 'co-w-pending');
       var key = 'wd-trial-' + id;

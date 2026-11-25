@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-25T09:07:50.703Z",
+  "last_updated": "2026-11-25T21:58:20.761Z",
   "source": "circle.wedeepen.com",
   "event_count": 76,
   "events": [
@@ -218,31 +218,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-01-05",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/0gwd0bb222f3hcp6bf9az211qgli",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-01-05"
     },
     {
-      "id": "integration-session-practice-what-you-learned-7c756e",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-01-12",
+      "title": "Love Mastermind",
       "date": "2027-01-12",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-01-13T00:00:00.000Z",
-      "ends_at_iso": "2027-01-13T01:00:00.000Z",
+      "ends_at_iso": "2027-01-13T01:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-7c756e"
+      "recurring": false,
+      "series": "love-mastermind-2027-01-12",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-01-12"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-ac8ee7",
@@ -355,26 +355,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-why-relationships-fail-anil-gupta"
     },
     {
-      "id": "integration-session-practice-what-you-learned-c82e5c",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-02-09",
+      "title": "Love Mastermind",
       "date": "2027-02-09",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-02-10T00:00:00.000Z",
-      "ends_at_iso": "2027-02-10T01:00:00.000Z",
+      "ends_at_iso": "2027-02-10T01:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-c82e5c"
+      "recurring": false,
+      "series": "love-mastermind-2027-02-09",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-02-09"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-81301d",
@@ -399,8 +399,8 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-81301d"
     },
     {
-      "id": "love-mastermind-2027-02-16",
-      "title": "Love Mastermind",
+      "id": "love-mastermind-embodied-touch-aychele-maximina",
+      "title": "Love Mastermind: Embodied Touch as a Love Language with Aychele Maximina",
       "date": "2027-02-16",
       "end_date": null,
       "time": "6:00 PM",
@@ -415,32 +415,32 @@
         "WeDeepen Members"
       ],
       "recurring": false,
-      "series": "love-mastermind-2027-02-16",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
-      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-02-16"
+      "series": "love-mastermind-embodied-touch-aychele-maximina",
+      "description": "What if touch could say what words never quite do?  Touch is a love language, and most of us were never taught to speak it fluently. This is 90 minutes dedicated to exploring touch in ways you may nev",
+      "image_url": "https://assets-v2.circle.so/080dr3gpsz7ezr6s3j8m01c9ahhi",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-embodied-touch-aychele-maximina"
     },
     {
-      "id": "integration-session-practice-what-you-learned-a9e347",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-02-23",
+      "title": "Love Mastermind",
       "date": "2027-02-23",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-02-24T00:00:00.000Z",
-      "ends_at_iso": "2027-02-24T01:00:00.000Z",
+      "ends_at_iso": "2027-02-24T01:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-a9e347"
+      "recurring": false,
+      "series": "love-mastermind-2027-02-23",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-02-23"
     },
     {
       "id": "new-member-orientation-4babe5-41ecf0-4b1799",
@@ -482,31 +482,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-03-02",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/1vlmw2r07ipidezganre3r5y1ehc",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-03-02"
     },
     {
-      "id": "integration-session-practice-what-you-learned-d88bd7",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-03-09",
+      "title": "Love Mastermind",
       "date": "2027-03-09",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-03-10T00:00:00.000Z",
-      "ends_at_iso": "2027-03-10T01:00:00.000Z",
+      "ends_at_iso": "2027-03-10T01:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-d88bd7"
+      "recurring": false,
+      "series": "love-mastermind-2027-03-09",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-03-09"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-2ef1a9",
@@ -548,31 +548,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-03-16",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/mk6hssil20pb589mjekmwhkpr53u",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-03-16"
     },
     {
-      "id": "integration-session-practice-what-you-learned-889f8f",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-03-23",
+      "title": "Love Mastermind",
       "date": "2027-03-23",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-03-23T23:00:00.000Z",
-      "ends_at_iso": "2027-03-24T00:00:00.000Z",
+      "ends_at_iso": "2027-03-24T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-889f8f"
+      "recurring": false,
+      "series": "love-mastermind-2027-03-23",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-03-23"
     },
     {
       "id": "love-mastermind-2027-03-30",
@@ -592,7 +592,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-03-30",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/3fonh4qstwtsp98fl48y9bzm3pni",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-03-30"
     },
@@ -619,26 +619,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-e727b8"
     },
     {
-      "id": "integration-session-practice-what-you-learned-9398ac",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-04-06",
+      "title": "Love Mastermind",
       "date": "2027-04-06",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-04-06T23:00:00.000Z",
-      "ends_at_iso": "2027-04-07T00:00:00.000Z",
+      "ends_at_iso": "2027-04-07T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-9398ac"
+      "recurring": false,
+      "series": "love-mastermind-2027-04-06",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-04-06"
     },
     {
       "id": "love-mastermind-2027-04-13",
@@ -658,7 +658,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-04-13",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/5r9qrn1ic5hsif0tc1lqoa0lfpdm",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-04-13"
     },
@@ -685,26 +685,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-a967c3"
     },
     {
-      "id": "integration-session-practice-what-you-learned-9bb546",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-04-20",
+      "title": "Love Mastermind",
       "date": "2027-04-20",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-04-20T23:00:00.000Z",
-      "ends_at_iso": "2027-04-21T00:00:00.000Z",
+      "ends_at_iso": "2027-04-21T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-9bb546"
+      "recurring": false,
+      "series": "love-mastermind-2027-04-20",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-04-20"
     },
     {
       "id": "love-mastermind-2027-04-27",
@@ -724,7 +724,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-04-27",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/v7q8nl82k1k9bffd0x5vvannqn69",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-04-27"
     },
@@ -751,26 +751,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-bb21ee"
     },
     {
-      "id": "integration-session-practice-what-you-learned-a5d5d8",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-05-04",
+      "title": "Love Mastermind",
       "date": "2027-05-04",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-05-04T23:00:00.000Z",
-      "ends_at_iso": "2027-05-05T00:00:00.000Z",
+      "ends_at_iso": "2027-05-05T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-a5d5d8"
+      "recurring": false,
+      "series": "love-mastermind-2027-05-04",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-05-04"
     },
     {
       "id": "love-mastermind-2027-05-11",
@@ -790,7 +790,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-05-11",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/fvxt4piv6j9ritmoxazn9erckeyz",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-05-11"
     },
@@ -817,26 +817,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-40d921"
     },
     {
-      "id": "integration-session-practice-what-you-learned-30523c",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-05-18",
+      "title": "Love Mastermind",
       "date": "2027-05-18",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-05-18T23:00:00.000Z",
-      "ends_at_iso": "2027-05-19T00:00:00.000Z",
+      "ends_at_iso": "2027-05-19T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-30523c"
+      "recurring": false,
+      "series": "love-mastermind-2027-05-18",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-05-18"
     },
     {
       "id": "love-mastermind-2027-05-25",
@@ -856,31 +856,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-05-25",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/f34x6v9s26y8uhpvb29odicpm9xt",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-05-25"
     },
     {
-      "id": "integration-session-practice-what-you-learned-53d062",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-06-01",
+      "title": "Love Mastermind",
       "date": "2027-06-01",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-06-01T23:00:00.000Z",
-      "ends_at_iso": "2027-06-02T00:00:00.000Z",
+      "ends_at_iso": "2027-06-02T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-53d062"
+      "recurring": false,
+      "series": "love-mastermind-2027-06-01",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-06-01"
     },
     {
       "id": "new-member-orientation-4babe5-41ecf0-7962b3",
@@ -922,7 +922,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-06-08",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/tpurbsh4a130dkikn3n3p3l5jl48",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-06-08"
     },
@@ -949,26 +949,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-fc3a41"
     },
     {
-      "id": "integration-session-practice-what-you-learned-947e37",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-06-15",
+      "title": "Love Mastermind",
       "date": "2027-06-15",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-06-15T23:00:00.000Z",
-      "ends_at_iso": "2027-06-16T00:00:00.000Z",
+      "ends_at_iso": "2027-06-16T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-947e37"
+      "recurring": false,
+      "series": "love-mastermind-2027-06-15",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-06-15"
     },
     {
       "id": "love-mastermind-2027-06-22",
@@ -988,31 +988,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-06-22",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/h276yt3792g6p84xveh3hlb06det",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-06-22"
     },
     {
-      "id": "integration-session-practice-what-you-learned-ee55b2",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-06-29",
+      "title": "Love Mastermind",
       "date": "2027-06-29",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-06-29T23:00:00.000Z",
-      "ends_at_iso": "2027-06-30T00:00:00.000Z",
+      "ends_at_iso": "2027-06-30T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-ee55b2"
+      "recurring": false,
+      "series": "love-mastermind-2027-06-29",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-06-29"
     },
     {
       "id": "new-member-orientation-4babe5-41ecf0-7962b3-71d243",
@@ -1054,31 +1054,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-07-06",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/ci62z80gg4njdx4klxyfn8jof38v",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-07-06"
     },
     {
-      "id": "integration-session-practice-what-you-learned-70f9a1",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-07-13",
+      "title": "Love Mastermind",
       "date": "2027-07-13",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-07-13T23:00:00.000Z",
-      "ends_at_iso": "2027-07-14T00:00:00.000Z",
+      "ends_at_iso": "2027-07-14T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-70f9a1"
+      "recurring": false,
+      "series": "love-mastermind-2027-07-13",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-07-13"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-714df4",
@@ -1120,31 +1120,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-07-20",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/1ngz3t6dml1u8omvdvxq1orvlwfn",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-07-20"
     },
     {
-      "id": "integration-session-practice-what-you-learned-f6fd8b",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-07-27",
+      "title": "Love Mastermind",
       "date": "2027-07-27",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-07-27T23:00:00.000Z",
-      "ends_at_iso": "2027-07-28T00:00:00.000Z",
+      "ends_at_iso": "2027-07-28T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-f6fd8b"
+      "recurring": false,
+      "series": "love-mastermind-2027-07-27",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-07-27"
     },
     {
       "id": "new-member-orientation-4babe5-41ecf0-7962b3-43d587",
@@ -1186,31 +1186,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-08-03",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/e8frda1hv5mhzgo500g84jq29lvg",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-08-03"
     },
     {
-      "id": "integration-session-practice-what-you-learned-fb3511",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-08-10",
+      "title": "Love Mastermind",
       "date": "2027-08-10",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-08-10T23:00:00.000Z",
-      "ends_at_iso": "2027-08-11T00:00:00.000Z",
+      "ends_at_iso": "2027-08-11T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-fb3511"
+      "recurring": false,
+      "series": "love-mastermind-2027-08-10",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-08-10"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-cb684f",
@@ -1252,31 +1252,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-08-17",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/blg0nftusesiu40h5kaar7j0htga",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-08-17"
     },
     {
-      "id": "integration-session-practice-what-you-learned-790f75",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-08-24",
+      "title": "Love Mastermind",
       "date": "2027-08-24",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-08-24T23:00:00.000Z",
-      "ends_at_iso": "2027-08-25T00:00:00.000Z",
+      "ends_at_iso": "2027-08-25T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-790f75"
+      "recurring": false,
+      "series": "love-mastermind-2027-08-24",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-08-24"
     },
     {
       "id": "love-mastermind-2027-08-31",
@@ -1296,31 +1296,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-08-31",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/8jir8pfh9dzab42tbyw8qa72oyej",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-08-31"
     },
     {
-      "id": "integration-session-practice-what-you-learned-4b4ad6",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-09-07",
+      "title": "Love Mastermind",
       "date": "2027-09-07",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-09-07T23:00:00.000Z",
-      "ends_at_iso": "2027-09-08T00:00:00.000Z",
+      "ends_at_iso": "2027-09-08T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-4b4ad6"
+      "recurring": false,
+      "series": "love-mastermind-2027-09-07",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-09-07"
     },
     {
       "id": "reality-transurfing-office-hours-with-bootsy-greenwood-abb489",
@@ -1384,31 +1384,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-09-14",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/ingf0mgwrc5ymuntmu7whrw4u1cm",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-09-14"
     },
     {
-      "id": "integration-session-practice-what-you-learned-8a6ecf",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-09-21",
+      "title": "Love Mastermind",
       "date": "2027-09-21",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-09-21T23:00:00.000Z",
-      "ends_at_iso": "2027-09-22T00:00:00.000Z",
+      "ends_at_iso": "2027-09-22T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-8a6ecf"
+      "recurring": false,
+      "series": "love-mastermind-2027-09-21",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-09-21"
     },
     {
       "id": "love-mastermind-2027-09-28",
@@ -1428,7 +1428,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-09-28",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/sq33riovlz8myn73efy5rgprt1uu",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-09-28"
     },
@@ -1455,26 +1455,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-0ae277"
     },
     {
-      "id": "integration-session-practice-what-you-learned-1347f3",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-10-05",
+      "title": "Love Mastermind",
       "date": "2027-10-05",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-10-05T23:00:00.000Z",
-      "ends_at_iso": "2027-10-06T00:00:00.000Z",
+      "ends_at_iso": "2027-10-06T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-1347f3"
+      "recurring": false,
+      "series": "love-mastermind-2027-10-05",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-10-05"
     },
     {
       "id": "love-mastermind-2027-10-12",
@@ -1494,7 +1494,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-10-12",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/9gknnkrxub8tx7rtinxyssiycljl",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-10-12"
     },
@@ -1521,26 +1521,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/reality-transurfing-office-hours-with-bootsy-greenwood-625b6b"
     },
     {
-      "id": "integration-session-practice-what-you-learned-baeaf6",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-10-19",
+      "title": "Love Mastermind",
       "date": "2027-10-19",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-10-19T23:00:00.000Z",
-      "ends_at_iso": "2027-10-20T00:00:00.000Z",
+      "ends_at_iso": "2027-10-20T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-baeaf6"
+      "recurring": false,
+      "series": "love-mastermind-2027-10-19",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-10-19"
     },
     {
       "id": "love-mastermind-2027-10-26",
@@ -1560,7 +1560,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-10-26",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/gajvmz7a39l65hvffqdb0gtxr26n",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-10-26"
     },
@@ -1587,26 +1587,26 @@
       "url": "https://circle.wedeepen.com/c/member-s-calendar/new-member-orientation-4babe5-41ecf0-7962b3-6223e2"
     },
     {
-      "id": "integration-session-practice-what-you-learned-4b92d1",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-11-02",
+      "title": "Love Mastermind",
       "date": "2027-11-02",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-11-02T23:00:00.000Z",
-      "ends_at_iso": "2027-11-03T00:00:00.000Z",
+      "ends_at_iso": "2027-11-03T00:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-4b92d1"
+      "recurring": false,
+      "series": "love-mastermind-2027-11-02",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-11-02"
     },
     {
       "id": "love-mastermind-2027-11-09",
@@ -1626,31 +1626,31 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-11-09",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/mjvdqavuv0ei4dtajh9gcjq8spaz",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-11-09"
     },
     {
-      "id": "integration-session-practice-what-you-learned-38eb83",
-      "title": "Integration & Bonding Session",
+      "id": "love-mastermind-2027-11-16",
+      "title": "Love Mastermind",
       "date": "2027-11-16",
       "end_date": null,
       "time": "6:00 PM",
       "starts_at_iso": "2027-11-17T00:00:00.000Z",
-      "ends_at_iso": "2027-11-17T01:00:00.000Z",
+      "ends_at_iso": "2027-11-17T01:30:00.000Z",
       "location_type": "online",
       "location_label": "Online",
       "tag": "",
       "topics": [
-        "Integration Session",
+        "Love Mastermind",
         "Love Club",
         "WeDeepen Members"
       ],
-      "recurring": true,
-      "series": "integration-session-practice-what-you-learned",
-      "description": "Learning about love is one thing. Living it in your actual relationships is where it gets interesting. Integration Sessions are where WeDeepen members take what they learned at the last Love Mastermin",
-      "image_url": "https://assets-v2.circle.so/xg1chihtk4u3tzjer26gau1rzmjc",
-      "url": "https://circle.wedeepen.com/c/member-s-calendar/integration-session-practice-what-you-learned-38eb83"
+      "recurring": false,
+      "series": "love-mastermind-2027-11-16",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
+      "image_url": "https://assets-v2.circle.so/w42e22rueuc1glpiut5vj3w9lls7",
+      "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-11-16"
     },
     {
       "id": "love-mastermind-2027-11-23",
@@ -1670,7 +1670,7 @@
       ],
       "recurring": false,
       "series": "love-mastermind-2027-11-23",
-      "description": "Every other Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session wi",
+      "description": "Every Tuesday, WeDeepen members learn from a guest faculty member on one dimension of love: attraction, communication, intimacy, conflict, repair, and more. Faculty and topic for this session will be",
       "image_url": "https://assets-v2.circle.so/ywi3n6ec4gi8hxwetbdpvwkuw2ju",
       "url": "https://circle.wedeepen.com/c/member-s-calendar/love-mastermind-2027-11-23"
     }

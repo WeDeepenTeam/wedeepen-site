@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facilitator Portal | WeDeepen</title>
+  <!-- Private page for WeDeepen faculty: not in the menu, not in search, not in the sitemap. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/facilitator-portal.css?v=1">
+  <script src="/js/facilitator-portal.js?v=1" defer></script>
+</head>
+<body>
+  <main class="fp-wrap">
+    <header class="fp-logo">
+      <a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="200" height="36"></a>
+    </header>
+
+    <!-- 1. Sign in -->
+    <section id="fp-signin" class="fp-card">
+      <h1>Facilitator Portal</h1>
+      <p class="fp-sub">Report referral payments and see what's been invoiced and paid.</p>
+      <form id="fp-signin-form" novalidate>
+        <label>Facilitator ID
+          <input id="fp-id" name="id" autocomplete="username" autocapitalize="characters" spellcheck="false" required maxlength="20" placeholder="e.g. SW1">
+        </label>
+        <label>Access code
+          <input id="fp-code" name="code" type="password" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required maxlength="40">
+        </label>
+        <p class="fp-err" id="fp-signin-err" role="alert" hidden></p>
+        <button type="submit" class="fp-btn">Sign in</button>
+      </form>
+      <p class="fp-small">Lost your code? Email <a href="mailto:team@wedeepen.com">team@wedeepen.com</a>.</p>
+    </section>
+
+    <!-- 2. Signed in -->
+    <section id="fp-app" hidden>
+      <div class="fp-hello">
+        <div>
+          <p class="fp-kicker">Signed in</p>
+          <h1 id="fp-name">Welcome</h1>
+          <p class="fp-small" id="fp-rate"></p>
+        </div>
+        <button type="button" class="fp-link" id="fp-signout">Sign out</button>
+      </div>
+
+      <nav class="fp-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="report">Report</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="history">My history</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="notes">Client notes</button>
+      </nav>
+
+      <!-- Report -->
+      <div class="fp-card" data-panel="report">
+        <h2>Report a referral payment</h2>
+        <p class="fp-sub">One report per client per month, by the 10th for the month before. Report money you actually received.</p>
+        <form id="fp-report" novalidate>
+          <label>Month the money came in
+            <select name="month" id="fp-month"></select>
+          </label>
+          <label>Client
+            <input name="client" maxlength="80" required placeholder="Name, initials or a client code">
+          </label>
+          <label class="fp-check"><input type="checkbox" name="nameShared"> The client has OK'd sharing their name with WeDeepen</label>
+          <label>Service or package
+            <input name="service" maxlength="120" required placeholder="e.g. 4-session couples package">
+          </label>
+          <label><span>Service date <span class="fp-opt">(optional)</span></span>
+            <input name="serviceDate" type="date">
+          </label>
+          <div class="fp-row">
+            <label>Amount received
+              <input name="gross" inputmode="decimal" required placeholder="$0.00">
+            </label>
+            <label><span>Refunds / chargebacks <span class="fp-opt">(if any)</span></span>
+              <input name="refunds" inputmode="decimal" placeholder="$0.00">
+            </label>
+          </div>
+          <label class="fp-check"><input type="checkbox" name="licensed"> This was a licensed clinical service (no commission)</label>
+          <label class="fp-check"><input type="checkbox" name="existingClient"> This was already my client before WeDeepen (first report for them)</label>
+          <label><span>Notes <span class="fp-opt">(optional)</span></span>
+            <textarea name="notes" rows="3" maxlength="1000"></textarea>
+          </label>
+          <p class="fp-total" id="fp-total" aria-live="polite"></p>
+          <p class="fp-err" id="fp-report-err" role="alert" hidden></p>
+          <button type="submit" class="fp-btn">Send report</button>
+        </form>
+        <p class="fp-ok" id="fp-report-ok" role="status" hidden></p>
+      </div>
+
+      <!-- History -->
+      <div class="fp-card" data-panel="history" hidden>
+        <h2>My history</h2>
+        <p class="fp-sub">Everything you've reported, newest first, and where each one stands.</p>
+        <div id="fp-history"></div>
+      </div>
+
+      <!-- Client notes (kept separate from the money report) -->
+      <div class="fp-card" data-panel="notes" hidden>
+        <h2>Client notes</h2>
+        <p class="fp-sub">Optional, and kept apart from your referral reports. Tell us where we can help.</p>
+        <form id="fp-note" novalidate>
+          <label><span>Client <span class="fp-opt">(optional)</span></span>
+            <input name="client" maxlength="80" placeholder="Name, initials or a client code">
+          </label>
+          <label>Is there an upsell opportunity with this client?
+            <textarea name="upsell" rows="3" maxlength="2000"></textarea>
+          </label>
+          <label>We're your biggest fans. Would you like our help with that upsell?
+            <select name="wantsHelp"><option value="">Choose…</option><option>Yes</option><option>No</option><option>Maybe</option></select>
+          </label>
+          <label>Feedback on the client or faculty experience
+            <textarea name="feedback" rows="3" maxlength="2000"></textarea>
+          </label>
+          <label>A testimonial we may share
+            <textarea name="testimonial" rows="3" maxlength="2000"></textarea>
+          </label>
+          <p class="fp-err" id="fp-note-err" role="alert" hidden></p>
+          <button type="submit" class="fp-btn">Send note</button>
+        </form>
+        <p class="fp-ok" id="fp-note-ok" role="status" hidden></p>
+      </div>
+    </section>
+
+    <footer class="fp-small fp-foot">WeDeepen faculty only. Questions: <a href="mailto:team@wedeepen.com">team@wedeepen.com</a></footer>
+  </main>
+</body>
+</html>

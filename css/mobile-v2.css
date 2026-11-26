@@ -152,6 +152,10 @@ html.m2 .m2-quiz-opt:has(input:checked) { border-color: rgba(160,27,74,.8); back
 html.m2 .m2-quiz-opt input:focus-visible + .box { outline: 2px solid #C9A277; outline-offset: 2px; }
 html.m2 .m2-quiz-go { margin-top: 14px; width: 100%; padding: 13px 18px; border-radius: 9999px; border: 1px solid #C9A277; background: transparent; color: #C9A277; font-weight: 600; font-size: 15px; }
 html.m2 .m2-quiz-go:disabled { opacity: .4; }
+html.m2 .m2-quiz-go.is-idle { opacity: .4; }
+html.m2 .m2-quiz-hint { margin: 10px 0 0; text-align: center; color: #C9A277; font-size: 14px; }
+html.m2 .m2-quiz-opts.m2-nudge { animation: m2-nudge .45s ease; }
+@keyframes m2-nudge { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 html.m2 .m2-quiz-result { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(201,162,119,.25); scroll-margin-top: 90px; }
 html.m2 .m2-quiz-lead { color: rgba(255,255,255,.9); font-size: 15.5px; line-height: 1.55; margin: 0 0 16px; }
 html.m2 .m2-quiz-kicker { color: #C9A277; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 10px; }

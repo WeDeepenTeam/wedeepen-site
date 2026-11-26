@@ -61,6 +61,10 @@
   ];
   function track(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
 
+  // Sales pages (/membership/...) keep Continue tappable: with nothing ticked it shows
+  // "Pick one to continue" instead of ignoring the tap (René, Nov 26, 2026). The homepage keeps it locked.
+  var OPEN_GO = /^\/membership\//.test(location.pathname);
+
   // The quiz, shared by the phone hero and the desktop hero (Christina, Nov 13, 2026).
   function buildQuiz() {
     var skillLis = sec('build') ? sec('build').querySelectorAll('ul > li') : [];
@@ -79,19 +83,32 @@
             return '<label class="m2-quiz-opt"><input type="checkbox" name="why" value="' + q.key + '"><span class="box" aria-hidden="true"></span><span class="t">' + q.label + '</span></label>';
           }).join('') +
         '</div>' +
-        '<button type="submit" class="m2-quiz-go" disabled>Continue</button>' +
+        '<button type="submit" class="m2-quiz-go' + (OPEN_GO ? ' is-idle' : '') + '"' + (OPEN_GO ? '' : ' disabled') + '>Continue</button>' +
+        (OPEN_GO ? '<p class="m2-quiz-hint" role="status" hidden>Pick one to continue</p>' : '') +
         '<div class="m2-quiz-result" hidden></div>' +
       '</form>'
     );
     var go = $('.m2-quiz-go', quiz);
     var result = $('.m2-quiz-result', quiz);
+    var hint = $('.m2-quiz-hint', quiz);
     quiz.addEventListener('change', function () {
-      go.disabled = !quiz.querySelector('input:checked');
+      var any = !!quiz.querySelector('input:checked');
+      if (OPEN_GO) { go.classList.toggle('is-idle', !any); if (any && hint) hint.hidden = true; }
+      else go.disabled = !any;
     });
     quiz.addEventListener('submit', function (e) {
       e.preventDefault();
       var picked = Array.prototype.slice.call(quiz.querySelectorAll('input:checked')).map(function (i) { return i.value; });
-      if (!picked.length) return;
+      if (!picked.length) {
+        // Sales pages: a tap before any pick says what to do instead of doing nothing.
+        if (hint) {
+          hint.hidden = false;
+          var opts = $('.m2-quiz-opts', quiz);
+          opts.classList.remove('m2-nudge'); void opts.offsetWidth; opts.classList.add('m2-nudge');
+          track('quiz_empty_tap', { page: location.pathname });
+        }
+        return;
+      }
       // The first pick (in list order) sets the opener; all picks share the skills list.
       var chosen = QUIZ.filter(function (q) { return picked.indexOf(q.key) !== -1; });
       // Take skills round-robin so every pick gets at least one line.

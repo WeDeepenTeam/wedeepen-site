@@ -123,7 +123,6 @@
     var g = money(rf.gross.value), r = money(rf.refunds.value);
     var out = $('fp-total');
     if (!g || r === null || g === null) { out.textContent = ''; return; }
-    if (rf.licensed.checked) { out.textContent = 'Licensed clinical service: no commission.'; return; }
     out.textContent = 'Commission to WeDeepen: ' + usd(Math.max(0, Math.round((g - r) * me.rate * 100) / 100));
   }
   ['input', 'change'].forEach(function (ev) { rf.addEventListener(ev, updateTotal); });
@@ -137,7 +136,7 @@
     var report = {
       month: rf.month.value, client: rf.client.value, nameShared: rf.nameShared.checked, service: rf.service.value,
       serviceDate: rf.serviceDate.value, gross: rf.gross.value, refunds: rf.refunds.value,
-      licensed: rf.licensed.checked, existingClient: rf.existingClient.checked, notes: rf.notes.value, nonce: reportNonce
+      existingClient: rf.existingClient.checked, notes: rf.notes.value, nonce: reportNonce
     };
     show(err, ''); btn.disabled = true; btn.textContent = 'Sending…';
     call('/report', { report: report }).then(function (data) {

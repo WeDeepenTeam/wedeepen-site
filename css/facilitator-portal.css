@@ -58,3 +58,25 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #E57373;
 .fp-badge { align-self: flex-start; display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #3A262E; color: #F0D4B0; white-space: nowrap; }
 .fp-badge.paid { background: #1F3A2B; color: #D7F5E2; }
 .fp-empty { color: #C8B8BE; font-size: 15px; margin: 0; }
+
+/* Admin (/facilitator-portal/admin/) */
+.fp-wide { max-width: 760px; }
+.fp-btn-link { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.ad-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.ad-bar select { width: auto; }
+.ad-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ad-stat { background: #201519; border: 1px solid #4A3039; border-radius: 12px; padding: 10px 12px; }
+.ad-stat b { display: block; font-size: 20px; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; color: #F0D4B0; }
+.ad-stat span { font-size: 12px; color: #C8B8BE; }
+.ad-edit { display: grid; grid-template-columns: 1.2fr 1fr 1fr auto; gap: 8px; align-items: end; margin-top: 8px; }
+.ad-edit label { font-size: 12px; }
+.ad-edit input, .ad-edit select { min-height: 42px; padding: 8px 10px; font-size: 15px; }
+.ad-edit .fp-btn { min-height: 42px; padding: 8px 14px; font-size: 15px; }
+@media (max-width: 620px) { .ad-edit { grid-template-columns: 1fr 1fr; } .ad-edit .fp-btn { grid-column: 1 / -1; } .ad-stats b { font-size: 18px; } }
+.ad-code { font-family: ui-monospace, Menlo, monospace; letter-spacing: .08em; background: #140D10; border: 1px solid #5A3E48; border-radius: 6px; padding: 2px 6px; }
+.ad-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.ad-actions button { font: inherit; font-size: 14px; color: #F0D4B0; background: #2C1D23; border: 1px solid #5A3E48; border-radius: 9px; min-height: 40px; padding: 6px 12px; cursor: pointer; }
+.ad-off { opacity: .55; }
+.ad-add summary { list-style: none; display: flex; align-items: center; justify-content: center; }
+.ad-add summary::-webkit-details-marker { display: none; }
+.ad-add form { margin-top: 14px; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Admin | WeDeepen</title>
+  <!-- Private admin page (Rene and Christina): not in the menu, not in search, not in the sitemap. -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/facilitator-portal.css?v=2">
+  <script src="/js/facilitator-portal-admin.js?v=1" defer></script>
+</head>
+<body>
+  <main class="fp-wrap fp-wide">
+    <header class="fp-logo">
+      <a href="/" aria-label="WeDeepen home"><img src="/images/deepen-logo-white-sm.png" alt="DeePeN" width="200" height="36"></a>
+    </header>
+
+    <section id="ad-signin" class="fp-card">
+      <h1>Portal Admin</h1>
+      <p class="fp-sub">For Rene and Christina. Sign in with your @wedeepen.com Google account.</p>
+      <p class="fp-err" id="ad-signin-err" role="alert" hidden></p>
+      <a class="fp-btn fp-btn-link" href="https://api.wedeepen.com/faculty/admin/start">Sign in with Google</a>
+    </section>
+
+    <section id="ad-app" hidden>
+      <div class="fp-hello">
+        <div>
+          <p class="fp-kicker">Admin</p>
+          <h1>Facilitator Portal</h1>
+          <p class="fp-small" id="ad-who"></p>
+        </div>
+        <button type="button" class="fp-link" id="ad-signout">Sign out</button>
+      </div>
+
+      <div class="ad-stats" id="ad-stats"></div>
+
+      <nav class="fp-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="reports">Reports</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="people">Facilitators</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="notes">Client notes</button>
+      </nav>
+
+      <div class="fp-card" data-panel="reports">
+        <div class="ad-bar">
+          <h2>Reports</h2>
+          <select id="ad-filter" aria-label="Show">
+            <option value="open">Open (not paid)</option>
+            <option value="all">All</option>
+          </select>
+        </div>
+        <p class="fp-err" id="ad-reports-err" role="alert" hidden></p>
+        <div id="ad-reports"></div>
+      </div>
+
+      <div class="fp-card" data-panel="people" hidden>
+        <h2>Facilitators</h2>
+        <p class="fp-ok" id="ad-code-box" role="status" hidden></p>
+        <p class="fp-err" id="ad-people-err" role="alert" hidden></p>
+        <div id="ad-people"></div>
+        <details class="ad-add">
+          <summary class="fp-btn">Add a facilitator</summary>
+          <form id="ad-add" novalidate>
+            <label>Name <input name="name" maxlength="80" required></label>
+            <label>Email <input name="email" type="email" maxlength="120"></label>
+            <div class="fp-row">
+              <label>Facilitator ID <input name="id" maxlength="10" required placeholder="e.g. SW1" autocapitalize="characters"></label>
+              <label><span>Commission <span class="fp-opt">(blank = default)</span></span> <input name="rate" maxlength="8" placeholder="10%"></label>
+            </div>
+            <button type="submit" class="fp-btn">Add and create their code</button>
+          </form>
+        </details>
+      </div>
+
+      <div class="fp-card" data-panel="notes" hidden>
+        <h2>Client notes</h2>
+        <div id="ad-notes"></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

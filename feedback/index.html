@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZ0EY5X593"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    // Ad-review crawlers and headless browsers load pages too; skip GA4 for them so they
+    // don't show up as (not set) / Unassigned sessions.
+    if (!navigator.webdriver && !/bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent)) gtag('config', 'G-LZ0EY5X593');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "z2chqpt354");
+  </script>
+  <script src="/js/checkout-tracking.js?v=3" defer></script>
+
+  <title>Share Feedback | WeDeepen</title>
+  <meta name="description" content="Tell WeDeepen how it's feeling for you. Your feedback shapes what we build next.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wedeepen.com/feedback/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedeepen.com/feedback/">
+  <meta property="og:title" content="Share Feedback | WeDeepen">
+  <meta property="og:description" content="Tell WeDeepen how it's feeling for you. Your feedback shapes what we build next.">
+  <meta property="og:site_name" content="WeDeepen">
+  <meta property="og:image" content="https://wedeepen.com/images/og/og-feedback.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Share Feedback | WeDeepen">
+  <meta name="twitter:description" content="Tell WeDeepen how it's feeling for you. Your feedback shapes what we build next.">
+  <meta name="twitter:image" content="https://wedeepen.com/images/og/og-feedback.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose:    { deep: '#A01B4A', light: '#C4577A' },
+            pink:    { hot: '#D92B6F', bright: '#FF4F8C', glow: 'rgba(232,51,122,0.25)' },
+            teal:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            gold:    { DEFAULT: '#C9A277', light: '#D4B78C', dark: '#A8855C' },
+            charcoal: '#2D2D2D',
+            cream:   '#F4EDE0',
+            ink:     '#1A1A1A',
+            black:   '#1A1A1A',
+            softgray: '#F5F5F5',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', 'Inter', system-ui, sans-serif; }
+
+    .wd-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wd-header.scrolled {
+      background-color: rgba(26,26,26,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-outline {
+      border: 1.5px solid #C9A277; color: #C9A277;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-outline:hover { background: #C9A277; color: #1A1A1A; transform: translateY(-1px); }
+    .btn-rose {
+      background: #A01B4A; color: #fff;
+      padding: 14px 32px; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-rose:hover { background: #851437; transform: translateY(-1px); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      background-color: #1A1A1A;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(160,27,74,0.20), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(201,162,119,0.10), transparent 55%);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ===== Legal document typography ===== */
+    .legal { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.8; }
+    .legal h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #fff; font-size: 1.65rem; line-height: 1.3;
+      margin-top: 3.25rem; margin-bottom: 1.1rem;
+      padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,0.08);
+      scroll-margin-top: 110px;
+    }
+    .legal h2:first-of-type { border-top: none; padding-top: 0; }
+    .legal h2 .sec-num { color: #C9A277; margin-right: 0.6rem; }
+    .legal h3 {
+      color: #fff; font-weight: 600; font-size: 1.08rem;
+      margin-top: 2rem; margin-bottom: 0.7rem;
+      scroll-margin-top: 110px;
+    }
+    .legal p { margin-bottom: 1.05rem; }
+    .legal ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1.25rem; }
+    .legal ul ul { margin: 0.5rem 0 0.5rem; list-style: circle; }
+    .legal li { margin-bottom: 0.55rem; padding-left: 0.25rem; }
+    .legal li::marker { color: #C9A277; }
+    .legal strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+    .legal a { color: #C9A277; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .legal a:hover { color: #D4B78C; }
+    .legal .callout {
+      background: rgba(201,162,119,0.06);
+      border: 1px solid rgba(201,162,119,0.3);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .legal .callout p:last-child { margin-bottom: 0; }
+    .legal .caps { letter-spacing: 0.01em; }
+
+    /* Table of contents */
+    .toc a {
+      color: rgba(255,255,255,0.65); text-decoration: none;
+      display: block; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem; transition: color 0.2s;
+    }
+    .toc a:hover { color: #C9A277; }
+    .toc a .toc-num { color: #C9A277; display: inline-block; min-width: 2rem; }
+  </style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="bg-ink text-white">
+
+  <!-- ============================
+       STICKY HEADER
+       ============================ -->
+  <header id="wd-header" class="wd-header fixed top-0 left-0 right-0 z-50" style="background: rgba(20,16,18,0.92); border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-site mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="flex flex-1 items-center">
+        <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+        <!-- nav:links -->
+        <a href="/" class="text-white/80 hover:text-white transition">Home</a>
+        <div class="relative group">
+          <a href="/events/" class="text-white/80 hover:text-white transition inline-flex items-center gap-1" aria-haspopup="true">Events<svg class="w-3 h-3 opacity-70 transition group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a>
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden group-hover:block group-focus-within:block z-50">
+            <div class="min-w-[230px] rounded-xl border border-white/10 bg-ink shadow-2xl py-2">
+              <a href="/events/" class="flex items-center px-5 py-2.5 whitespace-nowrap text-white/75 hover:text-white hover:bg-white/5 transition">Full Calendar</a>
+              <a href="/nye/" class="flex items-center px-5 py-2.5 whitespace-nowrap text-white/75 hover:text-white hover:bg-white/5 transition">NYE<span class="ml-2.5 inline-block align-middle text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">New</span></a>
+              <a href="/love-immersion/" class="flex items-center px-5 py-2.5 whitespace-nowrap text-white/75 hover:text-white hover:bg-white/5 transition">Love Immersion 2027</a>
+            </div>
+          </div>
+        </div>
+        <a href="/faculty/" class="text-white/80 hover:text-white transition">Faculty</a>
+        <a href="/reviews/" class="text-white/80 hover:text-white transition">Reviews</a>
+        <a href="/gallery/" class="text-white/80 hover:text-white transition">Photos</a>
+        <a href="/podcast/" class="text-white/80 hover:text-white transition">Podcast</a>
+        <a href="/about/" class="text-white/80 hover:text-white transition">About</a>
+        <!-- /nav:links -->
+      </nav>
+      <div class="flex flex-1 items-center justify-end lg:justify-start lg:pl-10 gap-4">
+
+        <!-- nav:cta -->
+        <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/80 hover:text-white transition text-sm font-medium whitespace-nowrap hidden sm:inline-block">Log In</a>
+        <a href="/checkout/?price_id=368281" class="btn-rose text-sm !py-2.5 !px-6 whitespace-nowrap hidden sm:inline-block">Join</a>
+        <!-- /nav:cta -->
+
+        <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div id="mobile-nav" class="mobile-nav fixed inset-0 z-[60] flex flex-col pt-20 px-8 overflow-y-auto">
+    <button id="mobile-close" class="absolute top-5 right-5 text-white p-2" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="flex flex-col gap-6 text-lg font-medium pb-12">
+
+      <!-- nav:links -->
+      <a href="/" class="text-white hover:text-gold transition">Home</a>
+      <div class="flex flex-col gap-3">
+        <span class="text-white/45 text-xs uppercase tracking-[0.2em]">Events</span>
+        <a href="/events/" class="text-white hover:text-gold transition pl-4">Full Calendar</a>
+        <a href="/nye/" class="text-white hover:text-gold transition pl-4">NYE<span class="ml-2.5 inline-block align-middle text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">New</span></a>
+        <a href="/love-immersion/" class="text-white hover:text-gold transition pl-4">Love Immersion 2027</a>
+      </div>
+      <a href="/faculty/" class="text-white hover:text-gold transition">Faculty</a>
+      <a href="/reviews/" class="text-white hover:text-gold transition">Reviews</a>
+      <a href="/gallery/" class="text-white hover:text-gold transition">Photos</a>
+      <a href="/podcast/" class="text-white hover:text-gold transition">Podcast</a>
+      <a href="/about/" class="text-white hover:text-gold transition">About</a>
+      <!-- /nav:links -->
+
+          <!-- nav:cta -->
+          <a href="/checkout/?price_id=368281" class="btn-rose text-center mt-4">Join</a>
+          <a href="https://circle.wedeepen.com/c/member-s-calendar" class="text-white/70 hover:text-white transition text-center">Log In</a>
+          <!-- /nav:cta -->
+    </nav>
+  </div>
+
+
+
+
+  <main id="main">
+  <section class="pt-32 md:pt-40 pb-8 px-6">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-gold text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-5">Share feedback</p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.08] mb-6">How's WeDeepen <span class="italic" style="color:#C4577A;">feeling for you?</span></h1>
+      <p class="text-white/70 text-lg">WeDeepen is still growing, and what you share shapes what comes next. It takes a minute. Only the first question is required.</p>
+    </div>
+  </section>
+
+  <section class="px-6 pb-24">
+    <form id="feedback-form" class="max-w-2xl mx-auto space-y-8">
+      <fieldset>
+        <legend class="block text-xs text-white/60 mb-2 uppercase tracking-wider">How's WeDeepen feeling for you right now? <span class="text-rose-light">*</span></legend>
+        <div class="flex gap-2"><label class="flex-1 cursor-pointer"><input type="radio" name="rating" value="1" class="peer sr-only" required><span class="flex flex-col items-center justify-center rounded-lg border border-white/15 py-3 text-white/70 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40"><span class="text-xl font-heading">1</span><span class="text-[10px] uppercase tracking-wider mt-0.5">Rough</span></span></label><label class="flex-1 cursor-pointer"><input type="radio" name="rating" value="2" class="peer sr-only" required><span class="flex flex-col items-center justify-center rounded-lg border border-white/15 py-3 text-white/70 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40"><span class="text-xl font-heading">2</span><span class="text-[10px] uppercase tracking-wider mt-0.5"></span></span></label><label class="flex-1 cursor-pointer"><input type="radio" name="rating" value="3" class="peer sr-only" required><span class="flex flex-col items-center justify-center rounded-lg border border-white/15 py-3 text-white/70 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40"><span class="text-xl font-heading">3</span><span class="text-[10px] uppercase tracking-wider mt-0.5">Okay</span></span></label><label class="flex-1 cursor-pointer"><input type="radio" name="rating" value="4" class="peer sr-only" required><span class="flex flex-col items-center justify-center rounded-lg border border-white/15 py-3 text-white/70 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40"><span class="text-xl font-heading">4</span><span class="text-[10px] uppercase tracking-wider mt-0.5"></span></span></label><label class="flex-1 cursor-pointer"><input type="radio" name="rating" value="5" class="peer sr-only" required><span class="flex flex-col items-center justify-center rounded-lg border border-white/15 py-3 text-white/70 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40"><span class="text-xl font-heading">5</span><span class="text-[10px] uppercase tracking-wider mt-0.5">Loving it</span></span></label></div>
+      </fieldset>
+
+      <div>
+        <label for="fb-helped" class="block text-xs text-white/60 mb-2 uppercase tracking-wider">What's helped you most lately?</label>
+        <textarea id="fb-helped" name="helped" rows="3" maxlength="1500" class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition resize-y"></textarea>
+      </div>
+
+      <div>
+        <label for="fb-blocked" class="block text-xs text-white/60 mb-2 uppercase tracking-wider">What got in your way?</label>
+        <textarea id="fb-blocked" name="blocked" rows="3" maxlength="1500" class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition resize-y"></textarea>
+      </div>
+
+      <fieldset>
+        <legend class="block text-xs text-white/60 mb-2 uppercase tracking-wider">What would you love more of?</legend>
+        <div class="flex flex-wrap gap-2"><label class="cursor-pointer"><input type="checkbox" name="more" value="Live sessions" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Live sessions</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="In-person events" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">In-person events</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="Couples content" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Couples content</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="Dating content" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Dating content</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="Replays" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Replays</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="Connecting with members" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Connecting with members</span></label><label class="cursor-pointer"><input type="checkbox" name="more" value="Something else" class="peer sr-only"><span class="inline-block rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 peer-checked:border-gold peer-checked:bg-gold/10 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold transition hover:border-white/40">Something else</span></label></div>
+      </fieldset>
+
+      <div>
+        <label for="fb-heart" class="block text-xs text-white/60 mb-2 uppercase tracking-wider">Anything else on your heart?</label>
+        <textarea id="fb-heart" name="heart" rows="3" maxlength="1500" class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition resize-y"></textarea>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="fb-name" class="block text-xs text-white/60 mb-2 uppercase tracking-wider">Name <span class="text-rose-light">*</span></label>
+          <input type="text" id="fb-name" name="name" required maxlength="200" autocomplete="name" class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition">
+        </div>
+        <div>
+          <label for="fb-email" class="block text-xs text-white/60 mb-2 uppercase tracking-wider">Email <span class="text-rose-light">*</span></label>
+          <input type="email" id="fb-email" name="email" required maxlength="320" autocomplete="email" class="w-full bg-ink border border-white/15 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold transition">
+        </div>
+      </div>
+
+      <button type="submit" id="fb-submit" class="w-full btn-rose text-center block !rounded-lg !py-3.5">Submit</button>
+      <p id="fb-status" class="text-sm text-center hidden" role="status"></p>
+      <p class="text-center text-white/45 text-sm">Need help with something instead? <a href="/support/" class="text-gold hover:underline">Contact Support</a>.</p>
+    </form>
+  </section>
+
+</main>
+  <footer class="bg-ink border-t border-white/10 py-14">
+    <!-- footer:learn -->
+    <nav aria-label="Learn" class="max-w-site mx-auto px-6 mb-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/50 text-xs">
+      <span class="uppercase tracking-widest text-white/55">Learn</span>
+      <a href="/four-pillars/" class="hover:text-gold transition">Four Pillars</a>
+      <a href="/podcast/archive/" class="hover:text-gold transition">Podcast Archive</a>
+      <a href="/love-immersion/" class="hover:text-gold transition">Love Immersion</a>
+    </nav>
+    <!-- /footer:learn -->
+    <div class="max-w-site mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+        <div>
+          <img src="/images/deepen-logo-white.png" width="1916" height="349" alt="DeePeN" class="h-7 w-auto">
+          <p class="text-white/60 text-sm mt-3 leading-relaxed max-w-xs">Your intimacy journey is your life story.</p>
+        </div>
+        <div class="flex gap-5">
+          <a href="https://www.facebook.com/WeDeepen/" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/wedeepen/" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@wedeepen" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+          </a>
+          <a href="https://open.spotify.com/show/1Aq7R8l77roUrzY9q4DO1l" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition" aria-label="Spotify">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/60 text-xs">
+        <p>&copy; 2026 WeDeepen. All rights reserved. &nbsp;&middot;&nbsp; <a href="/terms/" class="hover:text-gold transition">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a></p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 items-center justify-center">
+          <a href="/terms/" class="hover:text-gold transition">Terms of Use</a>
+          <a href="/privacy/" class="hover:text-gold transition">Privacy Policy</a>
+          <a href="/book-session-with-christina/" class="hover:text-gold transition">Book a Session</a>
+          <a href="https://christinalweber.com" class="hover:text-gold transition">christinalweber.com</a>
+          <a href="https://feminineweapon.com" target="_blank" rel="noopener" class="hover:text-gold transition">Philanthropic Initiative</a>
+          <a href="https://www.facebook.com/groups/793115204193690" target="_blank" rel="noopener" class="hover:text-gold transition">Esther Perel Discussion Group</a>
+          <a href="/#contact" class="hover:text-gold transition">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const header = document.getElementById('wd-header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+  </script>
+  <script>
+    // Feedback form: posts to the drop-a-line edge function (same inbox as
+    // Support), subject "Other", with a [Feedback] tag and every answer in the message.
+    (function initFeedback() {
+      const form = document.getElementById('feedback-form');
+      if (!form) return;
+      const status = document.getElementById('fb-status');
+      const submit = document.getElementById('fb-submit');
+      const endpoint = 'https://oycfonjaufdihuwjecxu.supabase.co/functions/v1/drop-a-line';
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.classList.add('hidden');
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+        const rating = (form.querySelector('input[name="rating"]:checked') || {}).value || '';
+        const more = [...form.querySelectorAll('input[name="more"]:checked')].map(i => i.value);
+        const lines = [
+          '[Feedback] Rating: ' + rating + ' / 5',
+          '',
+          'What has helped most lately: ' + (form.helped.value.trim() || '(blank)'),
+          'What got in the way: ' + (form.blocked.value.trim() || '(blank)'),
+          'Would love more of: ' + (more.join(', ') || '(none picked)'),
+          'Anything else on their heart: ' + (form.heart.value.trim() || '(blank)'),
+        ];
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: form.name.value.trim(), email: form.email.value.trim(), phone: '', subject: 'Other', message: lines.join('\n') }),
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.reset();
+          status.textContent = 'Thank you. We read every note.';
+          status.className = 'text-sm text-center text-gold';
+          submit.textContent = 'Sent ✓';
+        } catch (err) {
+          console.error('Feedback form failed:', err);
+          status.textContent = 'Something went wrong. Email team@wedeepen.com instead?';
+          status.className = 'text-sm text-center text-rose-light';
+          submit.disabled = false;
+          submit.textContent = 'Submit again';
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

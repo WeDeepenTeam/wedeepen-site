@@ -338,12 +338,57 @@
   </section>
 
   <section id="app" class="px-6 pb-12 scroll-mt-28">
-    <div class="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.03] p-7">
-      <h2 class="font-heading text-2xl mb-3">Get the app</h2>
-      <p class="text-white/75 text-[15px] leading-relaxed mb-5">WeDeepen lives in the Circle app. Download it, then log in with the email you joined with and choose WeDeepen.</p>
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="https://apps.apple.com/us/app/circle-communities/id1509651625" target="_blank" rel="noopener" class="btn-rose text-center text-sm">Download for iPhone</a>
-        <a href="https://play.google.com/store/apps/details?id=so.circle.circle" target="_blank" rel="noopener" class="btn-outline text-center text-sm">Download for Android</a>
+    <div class="max-w-3xl mx-auto rounded-2xl border border-white/10 overflow-hidden" style="background: radial-gradient(120% 120% at 100% 0%, rgba(160,27,74,0.35) 0%, rgba(26,26,26,0) 55%), rgba(255,255,255,0.03);">
+      <div class="grid md:grid-cols-[1fr_auto] gap-10 items-center p-7 md:p-10">
+        <div>
+          <p class="text-gold text-xs uppercase tracking-[0.25em] font-semibold mb-3">iOS &amp; Android</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight mb-4">Take WeDeepen <span class="italic" style="color:#C4577A;">with you.</span></h2>
+          <p class="text-white/70 text-[15px] leading-relaxed mb-6">WeDeepen runs on Circle, so the app you download is called <strong class="text-white font-semibold">Circle Communities</strong>. Live sessions, replays, and your people, right on your phone.</p>
+          <ol class="space-y-3 mb-7">
+            <li class="flex gap-3 items-start"><span class="w-7 h-7 rounded-full border border-gold text-gold text-xs font-semibold flex items-center justify-center shrink-0">1</span><span class="text-white/80 text-[15px] pt-0.5">Download Circle Communities.</span></li>
+            <li class="flex gap-3 items-start"><span class="w-7 h-7 rounded-full border border-gold text-gold text-xs font-semibold flex items-center justify-center shrink-0">2</span><span class="text-white/80 text-[15px] pt-0.5">Log in with the email you joined with.</span></li>
+            <li class="flex gap-3 items-start"><span class="w-7 h-7 rounded-full border border-gold text-gold text-xs font-semibold flex items-center justify-center shrink-0">3</span><span class="text-white/80 text-[15px] pt-0.5">Choose WeDeepen and you're in.</span></li>
+          </ol>
+          <div class="flex flex-wrap gap-3">
+          <a href="https://apps.apple.com/us/app/circle-communities/id1509651625" target="_blank" rel="noopener" aria-label="Download Circle Communities on the App Store" class="inline-flex items-center gap-3 rounded-xl bg-black border border-white/25 hover:border-gold px-4 py-2.5 transition min-w-[11rem]">
+            <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7.5v7m0 0-3-3m3 3 3-3M10 18.5h4"/></svg>
+            <span class="leading-tight text-left"><span class="block text-[10px] uppercase tracking-wider text-white/60">Download on the</span><span class="block text-base font-semibold text-white">App Store</span></span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=so.circle.circle&amp;hl=en_US" target="_blank" rel="noopener" aria-label="Get Circle Communities on Google Play" class="inline-flex items-center gap-3 rounded-xl bg-black border border-white/25 hover:border-gold px-4 py-2.5 transition min-w-[11rem]">
+            <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7.5v7m0 0-3-3m3 3 3-3M10 18.5h4"/></svg>
+            <span class="leading-tight text-left"><span class="block text-[10px] uppercase tracking-wider text-white/60">Get it on</span><span class="block text-base font-semibold text-white">Google Play</span></span>
+          </a>
+          </div>
+        </div>
+        <div class="flex justify-center" aria-hidden="true">
+          <div class="relative w-[210px] h-[420px] rounded-[2.6rem] border-[7px] border-[#2b2b2b] bg-[#141012] shadow-2xl" style="box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);">
+            <div class="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full bg-black"></div>
+            <div class="h-full rounded-[2rem] overflow-hidden flex flex-col px-4 pt-10 pb-4" style="background: linear-gradient(180deg, #1f1418 0%, #141012 60%);">
+              <img src="/images/deepen-logo-white.png" alt="" class="h-4 w-auto self-center mb-5 opacity-95">
+              <div class="rounded-xl px-3 py-3 mb-3" style="background:#F4EDE0;">
+                <span class="block text-[8px] uppercase tracking-widest text-rose-deep font-semibold mb-1">Members</span>
+                <span class="block font-heading text-[18px] leading-none" style="color:#D92B6F;">Events Calendar</span>
+              </div>
+              <div class="space-y-2">
+                <div class="rounded-xl bg-white/[0.06] border border-white/10 px-3 py-2.5 flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-deep/80 shrink-0"></span>
+                <span class="leading-tight"><span class="block text-[11px] text-white font-semibold">Love Mastermind</span><span class="block text-[9px] text-white/50">Live session</span></span>
+              </div>
+                <div class="rounded-xl bg-white/[0.06] border border-white/10 px-3 py-2.5 flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-deep/80 shrink-0"></span>
+                <span class="leading-tight"><span class="block text-[11px] text-white font-semibold">Sunday Dare</span><span class="block text-[9px] text-white/50">This week</span></span>
+              </div>
+                <div class="rounded-xl bg-white/[0.06] border border-white/10 px-3 py-2.5 flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-rose-deep/80 shrink-0"></span>
+                <span class="leading-tight"><span class="block text-[11px] text-white font-semibold">Office Hours</span><span class="block text-[9px] text-white/50">Bring your questions</span></span>
+              </div>
+              </div>
+              <div class="mt-auto flex justify-around text-white/40 pt-3 border-t border-white/10">
+                <span class="w-4 h-4 rounded bg-white/30"></span><span class="w-4 h-4 rounded bg-rose-light/80"></span><span class="w-4 h-4 rounded bg-white/30"></span><span class="w-4 h-4 rounded bg-white/30"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

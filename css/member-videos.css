@@ -35,3 +35,9 @@ html.mv-lock, html.mv-lock body { overflow: hidden; }
 .mv-tile .mv-badge { left: 8px; top: 8px; bottom: auto; padding: 5px 9px 5px 7px; font-size: 12px; }
 .mv-tile-name { display: block; padding: 7px 10px; font: 600 13px "DM Sans", system-ui, sans-serif; color: #fff; text-align: left; background: #201519; }
 .mv-tile:focus-visible { outline: 2px solid #C9A277; outline-offset: 2px; }
+
+/* Tap-to-play/pause mark (shared with the checkout story video) */
+.vt-mark { position: absolute; left: 50%; top: 45%; z-index: 3; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(0,0,0,.55); color: #fff; font-size: 22px; letter-spacing: -2px;
+  opacity: 0; pointer-events: none; transition: opacity .25s; }
+.vt-mark.vt-show { opacity: 1; }

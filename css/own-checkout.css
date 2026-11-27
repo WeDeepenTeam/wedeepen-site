@@ -126,3 +126,9 @@ body.co-sell-on { overflow: hidden; }
 #co-express-el { min-height: 52px; }
 .co-or { display: flex; align-items: center; gap: 12px; color: #A8959C; font-size: 13px; }
 .co-or::before, .co-or::after { content: ""; flex: 1; height: 1px; background: #6B4A55; }
+
+/* Tap-to-play/pause mark on the story video */
+.vt-mark { position: absolute; left: 50%; top: 40%; z-index: 3; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(0,0,0,.55); color: #fff; font-size: 22px; letter-spacing: -2px;
+  opacity: 0; pointer-events: none; transition: opacity .25s; }
+.vt-mark.vt-show { opacity: 1; }

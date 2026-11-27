@@ -205,6 +205,23 @@
         var el = fig.querySelector('video'); el.setAttribute('poster', v.poster); el.setAttribute('src', v.src);
         fig.querySelector('.co-sell-vq').textContent = v.quote;
         fig.querySelector('.co-sell-vn').textContent = v.name;
+        // Tap the picture (not the control bar) to play/pause, with a short mark so the tap visibly does something
+        // (taps on this video were Clarity dead taps, Nov 2026).
+        fig.style.position = 'relative';
+        var mark = document.createElement('span'); mark.className = 'vt-mark'; mark.setAttribute('aria-hidden', 'true'); fig.appendChild(mark);
+        var before = null, mt;
+        el.addEventListener('pointerdown', function () { before = el.paused; });
+        el.addEventListener('click', function (e) {
+          var r = el.getBoundingClientRect();
+          if (e.clientY > r.bottom - 56) return;
+          var was = before === null ? el.paused : before; before = null;
+          setTimeout(function () {
+            if (el.paused === was) { if (el.paused) { var p = el.play(); if (p && p.catch) p.catch(function () {}); } else el.pause(); }
+            mark.textContent = el.paused ? '\u275A\u275A' : '\u25B6';
+            mark.classList.remove('vt-show'); void mark.offsetWidth; mark.classList.add('vt-show');
+            clearTimeout(mt); mt = setTimeout(function () { mark.classList.remove('vt-show'); }, 700);
+          }, 60);
+        });
       })();
       var openSell = function () {
         if (!sell.hidden) return;

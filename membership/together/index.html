@@ -497,6 +497,9 @@
       <div class="h-16 md:h-24"></div>
     </div>
 
+  <!-- Hero text opens the "See what's inside" story on the checkout (Rene, Nov 27, 2026, approved for Christina):
+       people kept tapping the headline and intro (Clarity dead taps). Keeps the page's tracking tags. -->
+  <script>(function(){var j=document.querySelector('#hero a[data-cta="hero"]');var h=document.querySelector('#hero h1');if(!h)return;var els=[h],n=h.nextElementSibling;while(n&&(n.tagName==='P'||(n.tagName==='DIV'&&!n.querySelector('a,button,form')))){els.push(n);n=n.nextElementSibling;}els.forEach(function(el){el.style.cursor='pointer';el.setAttribute('role','link');el.setAttribute('tabindex','0');el.setAttribute('aria-label','See what\u2019s inside WeDeepen');var go=function(){var u=new URL(j?j.getAttribute('href'):'/checkout/?price_id=368281',location.href);u.searchParams.set('story','1');var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].forEach(function(k){if(q.get(k)&&!u.searchParams.get(k))u.searchParams.set(k,q.get(k));});try{gtag('event','hero_story_tap',{cta_position:'hero-text'});}catch(e){}try{clarity('event','hero_story_tap');}catch(e){}location.href=u.toString();};el.addEventListener('click',go);el.addEventListener('keydown',function(e){if(e.key==='Enter')go();});});})();</script>
   </section>
 
   <!-- ============================

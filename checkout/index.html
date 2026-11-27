@@ -41,9 +41,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/own-checkout.css?v=5">
+  <link rel="stylesheet" href="/css/own-checkout.css?v=6">
   <script src="https://js.stripe.com/v3/" defer></script>
-  <script src="/js/own-checkout.js?v=16" defer></script>
+  <script src="/js/own-checkout.js?v=17" defer></script>
 </head>
 <body>
   <main class="co-wrap">
@@ -61,6 +61,14 @@
     <div class="co-head">
       <h1>Start your 14 <em>free</em> days</h1>
       <p id="co-sub">$0 today. Then $99/month. Cancel anytime.</p>
+    </div>
+
+    <!-- Facebook / Instagram in-app browser only (Nov 27, 2026; Rene approved for Christina): saved cards and
+         wallets don't work in there, so offer the phone's own browser. Filled in and shown by own-checkout.js. -->
+    <div class="co-iab" id="co-iab" hidden>
+      <p>Paying is quicker in your phone's browser, with your saved cards and <span id="co-iab-wallet">Apple Pay</span>.</p>
+      <a href="#" id="co-iab-open" class="co-iab-btn">Open in Safari</a>
+      <p class="co-iab-help" id="co-iab-help" hidden>Tap the &middot;&middot;&middot; menu at the top of the screen, then &ldquo;Open in browser.&rdquo; Or simply continue here.</p>
     </div>
 
     <details class="co-card">

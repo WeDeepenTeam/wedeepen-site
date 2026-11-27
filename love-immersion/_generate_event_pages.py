@@ -230,7 +230,6 @@ TEMPLATE = r"""<!DOCTYPE html>
     .mobile-nav {{ transform: translateX(100%); transition: transform 0.35s ease; }}
     .mobile-nav.open {{ transform: translateX(0); }}
   </style>
-  <script src="https://catch.share.one/01954a1a-1897-7f53-bd40-a67ac4997dff.js" defer></script>
 </head>
 <body class="bg-ink text-white">
 

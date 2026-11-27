@@ -1405,6 +1405,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://wedeepen.com/guidelines/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://wedeepen.com/support/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>monthly</changefreq>

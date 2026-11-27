@@ -132,3 +132,10 @@ body.co-sell-on { overflow: hidden; }
   display: grid; place-items: center; background: rgba(0,0,0,.55); color: #fff; font-size: 22px; letter-spacing: -2px;
   opacity: 0; pointer-events: none; transition: opacity .25s; }
 .vt-mark.vt-show { opacity: 1; }
+
+/* Facebook / Instagram in-app browser note */
+.co-iab { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border: 1px solid #C9A277; border-radius: 14px; background: #201519; }
+.co-iab[hidden] { display: none; }
+.co-iab p { margin: 0; font-size: 14px; line-height: 1.45; color: #EBDFE3; }
+.co-iab-btn { align-self: flex-start; padding: 10px 16px; border-radius: 999px; background: #C9A277; color: #1A1A1A; font-weight: 600; font-size: 15px; text-decoration: none; }
+.co-iab-help[hidden] { display: none; }

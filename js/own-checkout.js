@@ -34,6 +34,14 @@
   var IS_PROD = /(^|\.)wedeepen\.com$/.test(location.hostname);
   var IS_BOT = !!navigator.webdriver || /bot|crawl|spider|facebookexternalhit|meta-external|HeadlessChrome|Lighthouse/i.test(navigator.userAgent);
 
+  // Facebook / Instagram in-app browser (Nov 27, 2026): about 6 in 10 checkout visits come from inside those apps,
+  // where saved cards, Apple Pay and Google Pay don't work. Tagged on every checkout event (GA4 "browser_kind",
+  // Clarity "browser_kind") so trial rates can be compared, and those visitors get a one-tap way into their phone's
+  // own browser (keeps the address, so the ad's tracking tags come along; nothing typed is put in the address).
+  var UA = navigator.userAgent || '';
+  var IN_APP = /Instagram/i.test(UA) ? 'instagram' : (/FBAN|FBAV|FB_IAB|FB4A|FBIOS|MessengerForiOS/i.test(UA) ? 'facebook' : '');
+  var BROWSER_KIND = IN_APP || 'browser';
+  var IS_IOS = /iPhone|iPad|iPod/i.test(UA), IS_ANDROID = /Android/i.test(UA);
   var $ = function (id) { return document.getElementById(id); };
   var qs = new URLSearchParams(location.search);
 
@@ -46,7 +54,7 @@
   function track(ga, meta, params, eventId) {
     if (!IS_PROD || IS_BOT) return;
     try {
-      if (ga && typeof window.gtag === 'function') window.gtag('event', ga, params);
+      if (ga && typeof window.gtag === 'function') { params = params || {}; params.browser_kind = BROWSER_KIND; window.gtag('event', ga, params); }
       if (meta && typeof window.fbq === 'function') window.fbq('track', meta, { value: params.value, currency: 'USD', content_category: 'membership', content_name: params.plan }, eventId ? { eventID: eventId } : undefined);
     } catch (e) { /* tracking must never break checkout */ }
   }
@@ -585,4 +593,30 @@
 
   if ($('co-form')) initForm();
   if ($('co-w-loading')) initWelcome();
+
+  // In-app browser: tag the visit and offer the phone's own browser.
+  (function () {
+    try { if (typeof window.clarity === 'function') window.clarity('set', 'browser_kind', BROWSER_KIND); } catch (e) {}
+    var box = $('co-iab');
+    if (!IN_APP || !box || (!IS_IOS && !IS_ANDROID)) return;
+    track('checkout_in_app_view', null, { app: IN_APP });
+    var btn = $('co-iab-open'), help = $('co-iab-help');
+    btn.textContent = IS_IOS ? 'Open in Safari' : 'Open in Chrome';
+    $('co-iab-wallet').textContent = IS_IOS ? 'Apple Pay' : 'Google Pay';
+    box.hidden = false;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      track('checkout_open_browser', null, { app: IN_APP });
+      try { if (typeof window.clarity === 'function') window.clarity('event', 'checkout_open_browser'); } catch (er) {}
+      var href = location.href;
+      var target = IS_IOS ? 'x-safari-' + href
+        : 'intent://' + location.host + location.pathname + location.search + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(href) + ';end';
+      var left = false;
+      var onHide = function () { left = true; };
+      document.addEventListener('visibilitychange', onHide, { once: true });
+      location.href = target;
+      // Older phones ignore the jump: then say how to do it by hand.
+      setTimeout(function () { if (!left && !document.hidden && help) help.hidden = false; }, 1500);
+    });
+  })();
 })();

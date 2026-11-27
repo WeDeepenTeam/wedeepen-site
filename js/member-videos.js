@@ -83,6 +83,29 @@
     return el;
   }
 
+
+  // Tap anywhere on the picture (not the control bar) plays or pauses, and a short
+  // play/pause mark confirms it. Native controls alone only reveal the bar on a tap,
+  // which people read as "nothing happened" (Clarity dead/rage taps, Nov 2026).
+  function tapToggle(v, host) {
+    var mark = document.createElement('span');
+    mark.className = 'vt-mark'; mark.setAttribute('aria-hidden', 'true');
+    host.appendChild(mark);
+    var before = null, t;
+    v.addEventListener('pointerdown', function () { before = v.paused; });
+    v.addEventListener('click', function (e) {
+      var r = v.getBoundingClientRect();
+      if (e.clientY > r.bottom - 56) return; // the native control bar handles its own taps
+      var was = before === null ? v.paused : before; before = null;
+      setTimeout(function () {
+        if (v.paused === was) { if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }
+        mark.textContent = v.paused ? '\u275A\u275A' : '\u25B6';
+        mark.classList.remove('vt-show'); void mark.offsetWidth; mark.classList.add('vt-show');
+        clearTimeout(t); t = setTimeout(function () { mark.classList.remove('vt-show'); }, 700);
+      }, 60);
+    });
+  }
+  window.wdTapToggle = tapToggle;
   var cur = [], idx = 0, ov, vid, end, lastFocus, pushed = false;
   function buildPlayer() {
     ov = document.createElement('div');
@@ -99,6 +122,7 @@
       '</div>';
     document.body.appendChild(ov);
     vid = ov.querySelector('video'); end = ov.querySelector('.mv-end');
+    tapToggle(vid, ov.querySelector('.mv-box'));
     ov.querySelector('.mv-x').addEventListener('click', function () { close(true); });
     ov.addEventListener('click', function (e) { if (e.target === ov) close(true); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !ov.hidden) close(true); });
